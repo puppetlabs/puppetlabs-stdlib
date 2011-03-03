@@ -58,7 +58,7 @@ module Puppet::Parser::Functions
       raise(Puppet::ParseError,
         "Data in the file `%s' is not a hash" % file) unless data.is_a?(Hash)
 
-      data = (key and data[key].is_a?(Hash) ? data[key] : {})
+      data = ((data[key] and data[key].is_a?(Hash)) ? data[key] : {}) if key
     end
 
     data.each { |param, value| setvar(param, strinterp(value)) }
