@@ -3,7 +3,7 @@
 # load_vars.rb
 #
 # This script will allow for loading variables from an external YAML
-# file and expose then for further use inside the Puppet manifest file ...
+# file and expose them for further use inside the Puppet manifest file ...
 #
 # For example:
 #
