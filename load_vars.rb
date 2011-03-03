@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-#
 # load_vars.rb
 #
 # This script will allow for loading variables from an external YAML
@@ -59,11 +57,11 @@ module Puppet::Parser::Functions
       raise(Puppet::ParseError,
         "Data in the file `%s' is not a hash" % file) unless data.is_a?(Hash)
 
-      data = data[key] if key and data[key].is_a?(Hash)
+      data = ((data[key].is_a?(Hash)) ? data[key] : {}) if key
     end
 
     data.each { |param, value| setvar(param, strinterp(value)) }
   end
 end
 
-# vim: set ts=2 sw=2 et
+# vim: set ts=2 sw=2 et :
