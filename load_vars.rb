@@ -40,11 +40,19 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:load_vars, :type => :statement) do |args|
+  newfunction(:load_vars, :type => :statement) do |arguments|
+
+    number_of_arguments = arguments.size
+
+    if number_of_arguments < 2
+      raise(Puppet::ParseError, "Wrong number of arguments " +
+        "given (#{number_of_arguments} for 2)")
+    end
+
     data = {}
 
-    file = args[0]
-    key  = args[1] if args[1]
+    file = arguments[0]
+    key  = arguments[1] if arguments[1]
 
     if File.exists?(file)
 
