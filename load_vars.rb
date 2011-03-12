@@ -42,12 +42,8 @@
 module Puppet::Parser::Functions
   newfunction(:load_vars, :type => :statement) do |arguments|
 
-    number_of_arguments = arguments.size
-
-    if number_of_arguments < 2
-      raise(Puppet::ParseError, "Wrong number of arguments " +
-        "given (#{number_of_arguments} for 2)")
-    end
+    raise(Puppet::ParseError, "Wrong number of arguments " +
+      "given (#{arguments.size} for 2)") if arguments.size < 2
 
     data = {}
 
