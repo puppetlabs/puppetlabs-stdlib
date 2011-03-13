@@ -1,46 +1,47 @@
 #
-# load_vars.rb
-#
-# This script will allow for loading variables from an external YAML
-# file and expose them for further use inside the Puppet manifest file ...
-#
-# For example:
-#
-# Given following content of the data.yaml file:
-#
-#   ---
-#   host1.example.com:
-#     foo: bar
-#     baz: quux
-#     question: 42
-#   host2.example.com:
-#     abc: def
-#     this: that
-#     darth: vader
-#
-# Then calling load_vars in Puppet manifest file as follows:
-#
-#   load_vars("/etc/puppet/data.yaml", $fqdn)
-#
-# Will result in addition of variables $foo, $baz and $question
-# for matching host name as per the variable $fqdn ...
-#
-# Another example which uses per-host file:
-#
-# Given following content of the file data-host1.example.com.yaml:
-#
-#   ---
-#   foo: bar
-#
-# Then when we call load_vars like this:
-#
-#   load_vars("/etc/puppet/data-$fqdn.yaml")
-#
-# This will result in a variable $foo being added and ready for use.
+# load_variables.rb
 #
 
 module Puppet::Parser::Functions
-  newfunction(:load_vars, :type => :statement) do |arguments|
+  newfunction(:load_variables, :type => :statement, :doc => <<-EOS
+This function will allow for loading variables from an external YAML
+file and expose them for further use inside the Puppet manifest file ...
+
+For example:
+
+Given following content of the data.yaml file:
+
+  ---
+  host1.example.com:
+    foo: bar
+    baz: quux
+    question: 42
+  host2.example.com:
+    abc: def
+    this: that
+    darth: vader
+
+Then calling load_variables in Puppet manifest file as follows:
+
+  load_variables("/etc/puppet/data.yaml", $fqdn)
+
+Will result in addition of variables $foo, $baz and $question
+for matching host name as per the variable $fqdn ...
+
+Another example which uses per-host file:
+
+Given following content of the file data-host1.example.com.yaml:
+
+  ---
+  foo: bar
+
+Then when we call load_variables like this:
+
+  load_variables("/etc/puppet/data-$fqdn.yaml")
+
+This will result in a variable $foo being added and ready for use.
+    EOS
+  ) do |arguments|
 
     raise(Puppet::ParseError, "Wrong number of arguments " +
       "given (#{arguments.size} for 2)") if arguments.size < 2
@@ -66,7 +67,7 @@ module Puppet::Parser::Functions
     end
 
     data.each { |param, value| setvar(param, strinterp(value)) }
-  end
-end
+  end # def newfunction
+end # module Puppet::Parser::Functions
 
 # vim: set ts=2 sw=2 et :
