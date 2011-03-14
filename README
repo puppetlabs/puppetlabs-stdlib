@@ -1,0 +1,3 @@
+Various functions to use within Puppet will be stored here.  Most of them
+are to be run by Puppet in order to extend its Domain Specific Language (DSL)
+abilities and functionality.
