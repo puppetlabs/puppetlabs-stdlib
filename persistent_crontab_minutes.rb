@@ -27,6 +27,11 @@ module Puppet::Parser::Functions
     file = "/puppet/state/crontab/#{host}-#{job}.minutes"
     file = File.join(modules, file)
 
+    # Get the directory portion from the file name ...
+    directory = File.dirname(file)
+
+    FileUtils.mkdir_p(directory) unless File.directory?(directory)
+
     if FileTest.exists?(file)
       File.open(file, 'r') { |f| value = f.read.to_i }
 
