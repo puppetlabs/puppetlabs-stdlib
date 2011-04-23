@@ -4,42 +4,43 @@
 
 module Puppet::Parser::Functions
   newfunction(:fact, :type => :rvalue, :doc => <<-EOS
-This function will retrieve fact from Facter based on the fact name
-and expose it for further use within Puppet manifest file ...
+This function will retrieve fact from Facter based on the fact
+name and expose it for further use within Puppet manifest file ...
 
 For example:
 
 Given the following sample manifest:
 
-  define partitions {
-    $result = split(fact("partitions_${name}"), ',')
+   define partitions {
+     $result = split(fact("partitions_${name}"), ',')
 
-    notice $result
+     notice $result
 
-    partition { $result: }
-  }
+     partition { $result: }
+   }
 
-  define partition {
-    notice $name
-  }
+   define partition {
+     notice $name
+   }
 
-  $available_disks = split($disks, ',')
+   $available_disks = split($disks, ',')
 
-  partitions { $available_disks: }
+   partitions { $available_disks: }
 
 This will produce the following:
 
-  notice: Scope(Partitions[hda]): hda1 hda2
-  notice: Scope(Partition[hda1]): hda1
-  notice: Scope(Partition[hda2]): hda2
+   notice: Scope(Partitions[hda]): hda1 hda2
+   notice: Scope(Partition[hda1]): hda1
+   notice: Scope(Partition[hda2]): hda2
 
 
 Which allows you to avoid resorting to the following:
 
-  $fact   = "partitions_${name}"
-  $result = split(inline_template("<%= scope.lookupvar(fact) %>"), ',')
+   $fact   = "partitions_${name}"
+   $result = split(inline_template("<%= scope.lookupvar(fact) %>"), ',')
 
-Taking out the need for using "inline_template" in the "partitions" define above.
+Phasing out the need for use and abuse of the infamous inline_template in the
+partitions define given above.
     EOS
   ) do |arguments|
 

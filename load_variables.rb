@@ -11,19 +11,19 @@ For example:
 
 Given following content of the data.yaml file:
 
-  ---
-  host1.example.com:
-    foo: bar
-    baz: quux
-    question: 42
-  host2.example.com:
-    abc: def
-    this: that
-    darth: vader
+   ---
+   host1.example.com:
+     foo: bar
+     baz: quux
+     question: 42
+   host2.example.com:
+     abc: def
+     this: that
+     darth: vader
 
 Then calling load_variables in Puppet manifest file as follows:
 
-  load_variables("/etc/puppet/data.yaml", $fqdn)
+   load_variables("/etc/puppet/data.yaml", $fqdn)
 
 Will result in addition of variables $foo, $baz and $question
 for matching host name as per the variable $fqdn ...
@@ -32,12 +32,12 @@ Another example which uses per-host file:
 
 Given following content of the file data-host1.example.com.yaml:
 
-  ---
-  foo: bar
+   ---
+   foo: bar
 
 Then when we call load_variables like this:
 
-  load_variables("/etc/puppet/data-$fqdn.yaml")
+   load_variables("/etc/puppet/data-$fqdn.yaml")
 
 This will result in a variable $foo being added and ready for use.
     EOS
