@@ -37,7 +37,7 @@ Given following content of the file data-host1.example.com.yaml:
 
 Then when we call load_variables like this:
 
-   load_variables("/etc/puppet/data-$fqdn.yaml")
+   load_variables("/etc/puppet/data-${fqdn}.yaml")
 
 This will result in a variable $foo being added and ready for use.
     EOS
