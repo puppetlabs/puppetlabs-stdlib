@@ -7,10 +7,25 @@ module Puppet::Parser::Functions
     EOS
   ) do |arguments|
 
+    # Technically we support three arguments but only first two are mandatory ....
+    raise(Puppet::ParseError, "Wrong number of arguments " +
+      "given (#{arguments.size} for 2)") if arguments.size < 2
+
     array = arguments[0]
+
+    if not array.is_a?(Array)
+      raise(Puppet::ParseError, 'Requires an array to work with')
+    end
 
     suffix = arguments[1]
     prefix = arguments[2]
+
+    raise(Puppet::ParseError, 'You must provide suffix ' +
+      'to join array elements with') if suffix.empty?
+
+    if prefix and prefix.empty?
+      raise(Puppet::ParseError, 'You must provide prefix to add to join')
+    end
 
     if prefix and not prefix.empty?
       result = prefix + array.join(suffix + prefix)

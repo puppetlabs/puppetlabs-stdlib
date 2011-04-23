@@ -10,7 +10,12 @@ module Puppet::Parser::Functions
     raise(Puppet::ParseError, "Wrong number of arguments " +
       "given (#{arguments.size} for 2)") if arguments.size < 2
 
-    array   = arguments.shift
+    array = arguments.shift
+
+    if not array.is_a?(Array)
+      raise(Puppet::ParseError, 'Requires an array to work with')
+    end
+
     indices = *arguments # Get them all ... Pokemon ...
 
     if not indices or indices.empty?
