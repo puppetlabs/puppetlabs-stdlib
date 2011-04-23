@@ -2,13 +2,15 @@
 # persistent_crontab_minutes.rb
 #
 
-require 'md5'
-
 module Puppet::Parser::Functions
-  newfunction(:persistent_crontab_minutes, :type => :rvalue) do |arguments|
+  newfunction(:persistent_crontab_minutes, :type => :rvalue, :doc => <<-EOS
+    EOS
+  ) do |arguments|
 
     raise(Puppet::ParseError, "Wrong number of arguments " +
       "given (#{arguments.size} for 2)") if arguments.size < 2
+
+    require 'md5'
 
     value = 0
 
@@ -55,7 +57,7 @@ module Puppet::Parser::Functions
     parser.watch_file(file) if File.exists?(file)
 
     return value
-  end # def newfunction
-end # module Puppet::Parser::Functions
+  end
+end
 
 # vim: set ts=2 sw=2 et :

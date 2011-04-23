@@ -67,7 +67,7 @@ This will result in a variable $foo being added and ready for use.
     end
 
     data.each { |param, value| setvar(param, strinterp(value)) }
-  end # def newfunction
-end # module Puppet::Parser::Functions
+  end
+end
 
 # vim: set ts=2 sw=2 et :
