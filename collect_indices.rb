@@ -10,7 +10,8 @@ module Puppet::Parser::Functions
     raise(Puppet::ParseError, "Wrong number of arguments " +
       "given (#{arguments.size} for 2)") if arguments.size < 2
 
-    array = arguments.shift
+    array      = arguments.shift
+    array_size = array.size
 
     if not array.is_a?(Array)
       raise(Puppet::ParseError, 'Requires an array to work with')
@@ -29,17 +30,29 @@ module Puppet::Parser::Functions
         start = m[1].to_i
         stop  = m[2].to_i
 
-        raise(Puppet::ParseError, 'Stop index in given indices range ' +
-          'is smaller than the start index') if start > stop
+        if start > stop
+          raise(Puppet::ParseError, 'Stop index in given indices range ' +
+            'is smaller than the start index')
+        elsif stop > array_size - 1 # First element is at index 0 is it not?
+          raise(Puppet::ParseError, 'Stop index in given indices range ' +
+            'exceeds array size')
+        end
 
         (start .. stop).each { |i| indices_list << i.to_i }
       else
-        if not i.match(/^\w+$/)
+        # Only positive numbers allowed ...
+        if not i.match(/^\d+$/)
           raise(Puppet::ParseError, 'Unknown format of given index')
         end
 
         # In Puppet numbers are often string-encoded ...
-        indices_list << i.to_i
+        i = i.to_i
+
+        if i > array_size - 1 # Same story.  First element is at index 0 ...
+          raise(Puppet::ParseError, 'Given index exceeds array size')
+        end
+
+        indices_list << i
       end
     end
 
