@@ -22,8 +22,28 @@ module Puppet::Parser::Functions
       raise(Puppet::ParseError, 'You must provide indices to collect')
     end
 
-    # In Puppet numbers are often string-encoded ...
-    array = indices.collect { |i| array[i.to_i] }.compact
+    indices_list = []
+
+    indices.each do |i|
+      if m = i.match(/^(\d+)\-(\d+)$/)
+        start = m[1].to_i
+        stop  = m[2].to_i
+
+        raise(Puppet::ParseError, 'Stop index in given indices range ' +
+          'is smaller than the start index') if start > stop
+
+        (start .. stop).each { |i| indices_list << i.to_i }
+      else
+        if not i.match(/^\w+$/)
+          raise(Puppet::ParseError, 'Unknown format of given index')
+        end
+
+        # In Puppet numbers are often string-encoded ...
+        indices_list << i.to_i
+      end
+    end
+
+    array = indices_list.collect { |i| array[i] }.compact
 
     return array
   end
