@@ -44,17 +44,25 @@ partitions define given above.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "Wrong number of arguments " +
+    raise(Puppet::ParseError, "fact(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
     fact = arguments[0]
 
-    raise(Puppet::ParseError, 'You must provide fact name') if fact.empty?
+    raise(Puppet::ParseError, 'fact(): You must provide ' +
+      'fact name') if fact.empty?
 
+    fact   = strinterp(fact) # Evaluate any interpolated variable names ...
     result = lookupvar(fact) # Get the value of interest from Facter ...
 
     if not result or result.empty?
-      raise(Puppet::ParseError, "Unable to retrieve fact `#{fact}'")
+      #
+      # Now this is a funny one ...  Puppet does not have a concept of
+      # returning neither undef nor nil back for use within the Puppet DSL
+      # and empty string is as closest to actual undef as you we can get
+      # at this point in time ...
+      #
+      result = ''
     end
 
     return result
