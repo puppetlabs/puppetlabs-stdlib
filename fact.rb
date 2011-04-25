@@ -24,14 +24,10 @@ module Puppet::Parser::Functions
     # and empty string is as closest to actual undef as you we can get
     # at this point in time ...
     #
-    result = (not result or result.empty?) ? '' : result
+    result = (result and not result.empty?) ? result : ''
 
     return result
   end
 end
 
 # vim: set ts=2 sw=2 et :
-
-notice fact('interfaces')
-notice fact('xyz')
-notice fact('')
