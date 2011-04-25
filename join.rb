@@ -4,6 +4,39 @@
 
 module Puppet::Parser::Functions
   newfunction(:join, :type => :rvalue, :doc => <<-EOS
+This function will allow to concatenate elements of an array together
+with a given suffix and optionally with prefix if such is given ...
+
+For example:
+
+Given the following sample manifest:
+
+   define iterator {
+     notice $name
+   }
+
+   $array = ['a', 'b', 'c']
+
+   $result = split(join($array, ',', 'letter_'), ',')
+
+   notice $result
+
+   iterator { $result: }
+
+This will produce the following:
+
+   notice: Scope(Class[main]): letter_a letter_b letter_c
+   notice: Scope(Iterator[letter_a]): letter_a
+   notice: Scope(Iterator[letter_b]): letter_b
+   notice: Scope(Iterator[letter_c]): letter_c
+
+Which allows you to avoid resorting to the following:
+
+   $result = split(inline_template("<%= array.collect { |i| \"letter_#{i}\" }.join(',') %>"), ',')
+
+Phasing out the need for use and abuse of the infamous inline_template
+in the example above and which in this very case is extremely ugly as
+we have to escape double-quotes to make Puppet parser not evaluate them.
     EOS
   ) do |arguments|
 
