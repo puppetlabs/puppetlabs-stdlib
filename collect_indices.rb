@@ -42,7 +42,7 @@ module Puppet::Parser::Functions
 
         (start .. stop).each { |i| indices_list << i.to_i }
       else
-        # Only positive numbers allowed ...
+        # Only positive numbers allowed in this case ...
         if not i.match(/^\d+$/)
           raise(Puppet::ParseError, 'collect_indices(): Unknown format ' +
             'of given index')
