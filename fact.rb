@@ -33,14 +33,13 @@ This will produce the following:
    notice: Scope(Partition[hda1]): hda1
    notice: Scope(Partition[hda2]): hda2
 
-
 Which allows you to avoid resorting to the following:
 
    $fact   = "partitions_${name}"
    $result = split(inline_template("<%= scope.lookupvar(fact) %>"), ',')
 
-Phasing out the need for use and abuse of the infamous inline_template in the
-partitions define given above.
+Phasing out the need for use and abuse of the infamous inline_template
+in the partitions define given above.
     EOS
   ) do |arguments|
 
