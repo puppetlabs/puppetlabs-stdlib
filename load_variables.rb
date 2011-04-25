@@ -43,8 +43,8 @@ This will result in a variable $foo being added and ready for use.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size < 2
+    raise(Puppet::ParseError, "load_variables(): Wrong number of " +
+      "arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     data = {}
 
@@ -56,17 +56,21 @@ This will result in a variable $foo being added and ready for use.
       begin
         data = YAML.load_file(file)
       rescue => error
-        raise(Puppet::ParseError, "Unable to load data " +
+        raise(Puppet::ParseError, "load_variables(): Unable to load data " +
           "from the file `%s': %s" % file, error.to_s)
       end
 
-      raise(Puppet::ParseError, "Data in the file `%s' " +
+      raise(Puppet::ParseError, "load_variables(): Data in the file `%s' " +
         "is not a hash" % file) unless data.is_a?(Hash)
 
       data = ((data[key] and data[key].is_a?(Hash)) ? data[key] : {}) if key
     end
 
-    data.each { |param, value| setvar(param, strinterp(value)) }
+    data.each do |param, value|
+      value = strinterp(value) # Evaluate any interpolated variable names ...
+
+      setvar(param, value)
+    end
   end
 end
 
