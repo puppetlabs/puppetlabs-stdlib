@@ -16,19 +16,19 @@ module Puppet::Parser::Functions
       raise(Puppet::ParseError, 'shuffle(): Requires an array to work with')
     end
 
-    return []    if array.size == 0
-    return array if array.size <= 1
+    result   = array.clone
+    elements = result.size
 
-    list     = array.clone
-    elements = list.size
+    return []     if result.size == 0
+    return result if result.size <= 1
 
     # Simple implementation of Fisher–Yates in-place shuffle ...
     elements.times do |i|
       j = rand(elements - i) + i
-      list[j], list[i] = list[i], list[j]
+      result[j], result[i] = result[i], result[j]
     end
 
-    return list
+    return result
   end
 end
 
