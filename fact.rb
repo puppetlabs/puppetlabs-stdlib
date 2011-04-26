@@ -15,7 +15,6 @@ module Puppet::Parser::Functions
     raise(Puppet::ParseError, 'fact(): You must provide ' +
       'fact name') if fact.empty?
 
-    fact   = strinterp(fact) # Evaluate any interpolated variable names ...
     result = lookupvar(fact) # Get the value of interest from Facter ...
 
     #
