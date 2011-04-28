@@ -7,6 +7,7 @@ module Puppet::Parser::Functions
     EOS
   ) do |arguments|
 
+    # We support more than one argument but at least one is mandatory ...
     raise(Puppet::ParseError, "range(): Wrong number of " +
       "arguments given (#{arguments.size} for 1)") if arguments.size < 1
 

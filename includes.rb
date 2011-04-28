@@ -3,6 +3,7 @@
 #
 
 # TODO(Krzysztof Wilczynski): We need to add support for regular expression ...
+# TODO(Krzysztof Wilczynski): Support for strings and hashes too ...
 
 module Puppet::Parser::Functions
   newfunction(:includes, :type => :rvalue, :doc => <<-EOS

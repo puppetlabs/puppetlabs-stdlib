@@ -2,6 +2,8 @@
 # empty.rb
 #
 
+# TODO(Krzysztof Wilczynski): Support for hashes would be nice too ...
+
 module Puppet::Parser::Functions
   newfunction(:empty, :type => :rvalue, :doc => <<-EOS
     EOS
