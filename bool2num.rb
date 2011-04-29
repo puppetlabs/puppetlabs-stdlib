@@ -19,6 +19,7 @@ module Puppet::Parser::Functions
     end
 
     if value.is_a?(String)
+
       result = case value
         #
         # This is how undef looks like in Puppet ...
@@ -32,6 +33,7 @@ module Puppet::Parser::Functions
         else
           raise(Puppet::ParseError, 'bool2num(): Unknown type of boolean given')
       end
+
     else
       # We have real boolean values as well ...
       result = value ? 1 : 0
