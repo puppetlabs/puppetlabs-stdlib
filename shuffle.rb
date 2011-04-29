@@ -2,6 +2,8 @@
 # shuffle.rb
 #
 
+# TODO(Krzysztof Wilczynski): Support for strings would be nice too ...
+
 module Puppet::Parser::Functions
   newfunction(:shuffle, :type => :rvalue, :doc => <<-EOS
     EOS
