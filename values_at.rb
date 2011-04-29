@@ -2,6 +2,9 @@
 # values_at.rb
 #
 
+# TODO(Krzysztof Wilczynski): Support for hashes would be nice too ...
+# TODO(Krzysztof Wilczynski): We probably need to approach numeric values differently ...
+
 module Puppet::Parser::Functions
   newfunction(:values_at, :type => :rvalue, :doc => <<-EOS
     EOS
