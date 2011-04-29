@@ -3,18 +3,18 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:bool2number, :type => :rvalue, :doc => <<-EOS
+  newfunction(:bool2num, :type => :rvalue, :doc => <<-EOS
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "bool2number(): Wrong number of arguments " +
+    raise(Puppet::ParseError, "bool2num(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
     klass = value.class
 
     if not [FalseClass, String, TrueClass].include?(klass)
-      raise(Puppet::ParseError, 'bool2number(): Requires either an ' +
+      raise(Puppet::ParseError, 'bool2num(): Requires either an ' +
         'boolean or string to work with')
     end
 
@@ -30,7 +30,7 @@ module Puppet::Parser::Functions
         # This is not likely to happen ...
         when /^(undef|undefined)$/ then 0
         else
-          raise(Puppet::ParseError, 'bool2number(): Unknown type of boolean given')
+          raise(Puppet::ParseError, 'bool2num(): Unknown type of boolean given')
       end
     else
       # We have real boolean values as well ...
