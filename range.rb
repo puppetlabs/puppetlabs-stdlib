@@ -34,7 +34,7 @@ module Puppet::Parser::Functions
       end
     end
 
-      # Check whether we have numeric value if so then make it so ...
+      # Check whether we have integer value if so then make it so ...
       if start.match(/^\d+$/)
         start = start.to_i
         stop  = stop.to_i
