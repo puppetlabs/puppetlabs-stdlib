@@ -12,13 +12,15 @@ module Puppet::Parser::Functions
     raise(Puppet::ParseError, "empty(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
-    array = arguments[0]
+    value = arguments[0]
+    klass = value.class
 
-    if not array.is_a?(Array)
-      raise(Puppet::ParseError, 'empty(): Requires an array to work with')
+    if not [Array, Hash, String].include?(klass)
+      raise(Puppet::ParseError, 'empty(): Requires either an ' +
+        'array, hash or string to work with')
     end
 
-    result = array.empty?
+    result = value.empty?
 
     return result
   end
