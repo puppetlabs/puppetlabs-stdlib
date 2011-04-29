@@ -13,21 +13,19 @@ module Puppet::Parser::Functions
     value = arguments[0]
     klass = value.class
 
-    if not [Array, String].include?(klass)
-      raise(Puppet::ParseError, 'unique(): Requires either an ' +
+    unless [Array, String].include?(klass)
+      raise(Puppet::ParseError, 'unique(): Requires either ' +
         'array or string to work with')
     end
 
     result = value.clone
 
-    string_type = value.is_a?(String) ? true : false
+    string = value.is_a?(String) ? true : false
 
     # We turn any string value into an array to be able to shuffle ...
-    result = string_type ? result.split('') : result
-
-    result = result.uniq
-
-    result = string_type ? result.join : result
+    result = string ? result.split('') : result
+    result = result.uniq # Remove duplicates ...
+    result = string ? result.join : result
 
     return result
   end
