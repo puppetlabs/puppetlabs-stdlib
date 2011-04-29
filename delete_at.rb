@@ -18,7 +18,7 @@ module Puppet::Parser::Functions
 
     index = arguments[1]
 
-    if not index.match(/^\d+$/)
+    if index.is_a?(String) and not index.match(/^\d+$/)
       raise(Puppet::ParseError, 'delete_at(): You must provide ' +
         'positive numeric index')
     end
