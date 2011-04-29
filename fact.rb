@@ -12,6 +12,10 @@ module Puppet::Parser::Functions
 
     fact = arguments[0]
 
+    if not fact.is_a?(String)
+      raise(Puppet::ParseError, 'fact(): Requires fact name to be a string')
+    end
+
     raise(Puppet::ParseError, 'fact(): You must provide ' +
       'fact name') if fact.empty?
 
