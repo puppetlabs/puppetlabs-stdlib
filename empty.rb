@@ -2,8 +2,6 @@
 # empty.rb
 #
 
-# TODO(Krzysztof Wilczynski): Support for hashes would be nice too ...
-
 module Puppet::Parser::Functions
   newfunction(:empty, :type => :rvalue, :doc => <<-EOS
     EOS
@@ -15,8 +13,8 @@ module Puppet::Parser::Functions
     value = arguments[0]
     klass = value.class
 
-    if not [Array, Hash, String].include?(klass)
-      raise(Puppet::ParseError, 'empty(): Requires either an ' +
+    unless [Array, Hash, String].include?(klass)
+      raise(Puppet::ParseError, 'empty(): Requires either ' +
         'array, hash or string to work with')
     end
 
