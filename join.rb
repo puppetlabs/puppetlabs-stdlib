@@ -13,8 +13,8 @@ module Puppet::Parser::Functions
 
     array = arguments[0]
 
-    if not array.is_a?(Array)
-      raise(Puppet::ParseError, 'join(): Requires an array to work with')
+    unless array.is_a?(Array)
+      raise(Puppet::ParseError, 'join(): Requires array to work with')
     end
 
     suffix = arguments[1] if arguments[1]

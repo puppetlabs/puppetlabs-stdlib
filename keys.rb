@@ -12,8 +12,8 @@ module Puppet::Parser::Functions
 
     hash = arguments[0]
 
-    if not hash.is_a?(Hash)
-      raise(Puppet::ParseError, 'keys(): Requires a hash to work with')
+    unless hash.is_a?(Hash)
+      raise(Puppet::ParseError, 'keys(): Requires hash to work with')
     end
 
     result = hash.keys

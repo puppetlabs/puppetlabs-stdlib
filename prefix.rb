@@ -13,8 +13,8 @@ module Puppet::Parser::Functions
 
     array = arguments[0]
 
-    if not array.is_a?(Array)
-      raise(Puppet::ParseError, 'prefix(): Requires an array to work with')
+    unless array.is_a?(Array)
+      raise(Puppet::ParseError, 'prefix(): Requires array to work with')
     end
 
     prefix = arguments[1] if arguments[1]

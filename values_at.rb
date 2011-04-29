@@ -15,9 +15,8 @@ module Puppet::Parser::Functions
 
     array = arguments.shift
 
-    if not array.is_a?(Array)
-      raise(Puppet::ParseError, 'values_at(): Requires an array ' +
-        'to work with')
+    unless array.is_a?(Array)
+      raise(Puppet::ParseError, 'values_at(): Requires array to work with')
     end
 
     indices = *arguments # Get them all ... Pokemon ...

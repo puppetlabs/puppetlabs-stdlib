@@ -12,11 +12,12 @@ module Puppet::Parser::Functions
 
     string = arguments[0]
 
-    if not string.is_a?(String)
-      raise(Puppet::ParseError, 'str2bool(): Requires either a ' +
+    unless string.is_a?(String)
+      raise(Puppet::ParseError, 'str2bool(): Requires either ' +
         'string to work with')
     end
 
+    # We consider all the yes, no, y, n and so on too ...
     result = case string
       #
       # This is how undef looks like in Puppet ...

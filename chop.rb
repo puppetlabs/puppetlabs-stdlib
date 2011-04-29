@@ -13,12 +13,13 @@ module Puppet::Parser::Functions
     value = arguments[0]
     klass = value.class
 
-    if not [Array, String].include?(klass)
+    unless [Array, String].include?(klass)
       raise(Puppet::ParseError, 'chop(): Requires either an ' +
         'array or string to work with')
     end
 
     if value.is_a?(Array)
+      # Numbers in Puppet are often string-encoded ...
       result = value.collect { |i| i.is_a?(String) ? i.chop : i }
     else
       result = value.chop

@@ -13,8 +13,8 @@ module Puppet::Parser::Functions
 
     array = arguments[0]
 
-    if not array.is_a?(Array)
-      raise(Puppet::ParseError, 'join_with_prefix(): Requires an ' +
+    unless array.is_a?(Array)
+      raise(Puppet::ParseError, 'join_with_prefix(): Requires ' +
         'array to work with')
     end
 

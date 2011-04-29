@@ -16,8 +16,8 @@ module Puppet::Parser::Functions
 
     array = arguments[0]
 
-    if not array.is_a?(Array)
-      raise(Puppet::ParseError, 'count(): Requires an array to work with')
+    unless array.is_a?(Array)
+      raise(Puppet::ParseError, 'count(): Requires array to work with')
     end
 
     item = arguments[1] if arguments[1]
