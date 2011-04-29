@@ -2,6 +2,8 @@
 # unique.rb
 #
 
+# TODO(Krzysztof Wilczynski): Support for strings would be nice too ...
+
 module Puppet::Parser::Functions
   newfunction(:unique, :type => :rvalue, :doc => <<-EOS
     EOS
