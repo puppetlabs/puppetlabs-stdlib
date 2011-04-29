@@ -13,23 +13,24 @@ module Puppet::Parser::Functions
     value = arguments[0]
     klass = value.class
 
-    if not [FalseClass, String, TrueClass].include?(klass)
-      raise(Puppet::ParseError, 'bool2num(): Requires either an ' +
+    # We can have either true or false, or string which resembles boolean ...
+    unless [FalseClass, TrueClass, String].include?(klass)
+      raise(Puppet::ParseError, 'bool2num(): Requires either ' +
         'boolean or string to work with')
     end
 
     if value.is_a?(String)
 
+      # We consider all the yes, no, y, n and so on too ...
       result = case value
         #
         # This is how undef looks like in Puppet ...
         # We yield 0 (or false if you wish) in this case.
         #
-        when /^$/, '' then 0
-        when /^(1|t|y|true|yes)$/ then 1
-        when /^(0|f|n|false|no)$/ then 0
-        # This is not likely to happen ...
-        when /^(undef|undefined)$/ then 0
+        when /^$/, '' then 0 # Empty string will be false ...
+        when /^(1|t|y|true|yes)$/  then 1
+        when /^(0|f|n|false|no)$/  then 0
+        when /^(undef|undefined)$/ then 0 # This is not likely to happen ...
         else
           raise(Puppet::ParseError, 'bool2num(): Unknown type of boolean given')
       end
