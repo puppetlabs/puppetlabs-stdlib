@@ -2,8 +2,6 @@
 # reverse.rb
 #
 
-# TODO(Krzysztof Wilczynski): Support for strings would be nice too ...
-
 module Puppet::Parser::Functions
   newfunction(:reverse, :type => :rvalue, :doc => <<-EOS
     EOS
@@ -12,13 +10,15 @@ module Puppet::Parser::Functions
     raise(Puppet::ParseError, "reverse(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
-    array = arguments[0]
+    value = arguments[0]
+    klass = value.class
 
-    if not array.is_a?(Array)
-      raise(Puppet::ParseError, 'reverse(): Requires an array to work with')
+    if not [Array, String].include?(klass)
+      raise(Puppet::ParseError, 'reverse(): Requires either an ' +
+        'array or string to work with')
     end
 
-    result = array.reverse
+    result = value.reverse
 
     return result
   end
