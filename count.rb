@@ -3,7 +3,7 @@
 #
 
 # TODO(Krzysztof Wilczynski): We need to add support for regular expression ...
-# TODO(Krzysztof Wilczynski): Support for strings and hashes too ..
+# TODO(Krzysztof Wilczynski): Support for hash values would be nice too ...
 
 module Puppet::Parser::Functions
   newfunction(:count, :type => :rvalue, :doc => <<-EOS
@@ -14,15 +14,20 @@ module Puppet::Parser::Functions
     raise(Puppet::ParseError, "count(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
-    array = arguments[0]
+    value = arguments[0]
+    klass = value.class
 
-    unless array.is_a?(Array)
-      raise(Puppet::ParseError, 'count(): Requires array to work with')
+    unless [Array, Hash, String].include?(klass)
+      raise(Puppet::ParseError, 'count(): Requires either ' +
+        'array, hash or string to work with')
     end
 
     item = arguments[1] if arguments[1]
 
-    result = item ? array.count(item) : array.count
+    value = value.is_a?(Hash) ? value.keys : value
+
+    # No item to look for and count?  Then just return current size ...
+    result = item ? value.count(item) : value.size
 
     return result
   end
