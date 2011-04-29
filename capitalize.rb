@@ -13,12 +13,13 @@ module Puppet::Parser::Functions
     value = arguments[0]
     klass = value.class
 
-    if not [Array, String].include?(klass)
-      raise(Puppet::ParseError, 'capitalize(): Requires either an ' +
+    unless [Array, String].include?(klass)
+      raise(Puppet::ParseError, 'capitalize(): Requires either ' +
         'array or string to work with')
     end
 
     if value.is_a?(Array)
+      # Numbers in Puppet are often string-encoded ...
       result = value.collect { |i| i.is_a?(String) ? i.capitalize : i }
     else
       result = value.capitalize
