@@ -12,14 +12,15 @@ module Puppet::Parser::Functions
 
     value = arguments[0]
 
+    # Numbers in Puppet are often string-encoded ...
     if value.is_a?(String)
       if value.match(/^-?(?:\d+)(?:\.\d+){1}$/)
         value = value.to_f
       elsif value.match(/^-?\d+$/)
         value = value.to_i
       else
-        raise(Puppet::ParseError, 'abs(): Requires a numeric ' +
-          'value to work with')
+        raise(Puppet::ParseError, 'abs(): Requires float or ' +
+          'integer to work with')
       end
     end
 
