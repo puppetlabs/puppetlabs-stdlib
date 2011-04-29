@@ -18,19 +18,17 @@ module Puppet::Parser::Functions
         'array or string to work with')
     end
 
-    string_given = false
-
     result = value.clone
 
-    if value.is_a?(String)
-      result = result.split('')
-      string_given = true
-    end
+    string_type = value.is_a?(String) ? true : false
+
+    # Check whether it makes sense to shuffle ...
+    return result if result.size <= 1
+
+    # We turn any string value into an array to be able to shuffle ...
+    result = string_type ? result.split('') : result
 
     elements = result.size
-
-    return []     if result.size == 0
-    return result if result.size <= 1
 
     # Simple implementation of Fisher–Yates in-place shuffle ...
     elements.times do |i|
@@ -38,7 +36,7 @@ module Puppet::Parser::Functions
       result[j], result[i] = result[i], result[j]
     end
 
-    result = string_given ? result.join : result
+    result = string_type ? result.join : result
 
     return result
   end
