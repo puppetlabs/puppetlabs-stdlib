@@ -23,6 +23,7 @@ module Puppet::Parser::Functions
       end
     end
 
+    # We have numeric value to handle ...
     result = value.abs
 
     return result
