@@ -2,8 +2,6 @@
 # shuffle.rb
 #
 
-# TODO(Krzysztof Wilczynski): Support for strings would be nice too ...
-
 module Puppet::Parser::Functions
   newfunction(:shuffle, :type => :rvalue, :doc => <<-EOS
     EOS
@@ -12,13 +10,23 @@ module Puppet::Parser::Functions
     raise(Puppet::ParseError, "shuffle(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
-    array = arguments[0]
+    value = arguments[0]
+    klass = value.class
 
-    if not array.is_a?(Array)
-      raise(Puppet::ParseError, 'shuffle(): Requires an array to work with')
+    if not [Array, String].include?(klass)
+      raise(Puppet::ParseError, 'shuffle(): Requires either an ' +
+        'array or string to work with')
     end
 
-    result   = array.clone
+    string_given = false
+
+    result = value.clone
+
+    if value.is_a?(String)
+      result = result.split('')
+      string_given = true
+    end
+
     elements = result.size
 
     return []     if result.size == 0
@@ -29,6 +37,8 @@ module Puppet::Parser::Functions
       j = rand(elements - i) + i
       result[j], result[i] = result[i], result[j]
     end
+
+    result = string_given ? result.join : result
 
     return result
   end
