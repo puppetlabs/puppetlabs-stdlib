@@ -14,15 +14,21 @@ module Puppet::Parser::Functions
 
     klass = value.class
 
-    if not [Array, Bignum, Fixnum, Float, Hash, String].include?(klass)
+    if not [Array, Bignum, Fixnum, FalseClass,
+      Float, Hash, String, TrueClass].include?(klass)
+
       raise(Puppet::ParseError, 'type(): Unknown type')
     end
 
     klass = klass.to_s # Ugly ...
 
+    #
     # We note that Integer is the parent to Bignum and Fixnum ...
+    # Plus we say Boolean for FalseClass and TrueClass ...
+    #
     result = case klass
-      when /^(?:Big|Fix)num$/ then 'Integer'
+      when /^(?:Big|Fix)num$/      then 'Integer'
+      when /^(?:False|True)Class$/ then 'Boolean'
       else klass
     end
 
