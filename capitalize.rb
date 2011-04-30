@@ -19,7 +19,7 @@ module Puppet::Parser::Functions
     end
 
     if value.is_a?(Array)
-      # Numbers in Puppet are often string-encoded ...
+      # Numbers in Puppet are often string-encoded which is troublesome ...
       result = value.collect { |i| i.is_a?(String) ? i.capitalize : i }
     else
       result = value.capitalize

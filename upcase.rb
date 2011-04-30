@@ -1,28 +1,28 @@
 #
-#  chop.rb
+# upcase.rb
 #
 
 module Puppet::Parser::Functions
-  newfunction(:chop, :type => :rvalue, :doc => <<-EOS
+  newfunction(:upcase, :type => :rvalue, :doc => <<-EOS
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "chop(): Wrong number of arguments " +
+    raise(Puppet::ParseError, "upcase(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
     klass = value.class
 
     unless [Array, String].include?(klass)
-      raise(Puppet::ParseError, 'chop(): Requires either an ' +
+      raise(Puppet::ParseError, 'upcase(): Requires either ' +
         'array or string to work with')
     end
 
     if value.is_a?(Array)
       # Numbers in Puppet are often string-encoded which is troublesome ...
-      result = value.collect { |i| i.is_a?(String) ? i.chop : i }
+      result = value.collect { |i| i.is_a?(String) ? i.upcase : i }
     else
-      result = value.chop
+      result = value.upcase
     end
 
     return result

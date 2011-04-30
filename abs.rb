@@ -12,7 +12,7 @@ module Puppet::Parser::Functions
 
     value = arguments[0]
 
-    # Numbers in Puppet are often string-encoded ...
+    # Numbers in Puppet are often string-encoded which is troublesome ...
     if value.is_a?(String)
       if value.match(/^-?(?:\d+)(?:\.\d+){1}$/)
         value = value.to_f
