@@ -19,6 +19,12 @@ module Puppet::Parser::Functions
 
     suffix = arguments[1] if arguments[1]
 
+    if suffix
+      unless suffix.is_a?(String)
+        raise(Puppet::ParseError, 'join(): Requires string to work with')
+      end
+    end
+
     result = suffix ? array.join(suffix) : array.join
 
     return result
