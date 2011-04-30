@@ -12,6 +12,7 @@ module Puppet::Parser::Functions
 
     time = Time.new
 
+    # There is probably a better way to handle Time Zone ...
     if time_zone and not time_zone.empty?
       original_zone = ENV['TZ']
 
