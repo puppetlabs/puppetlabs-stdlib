@@ -27,7 +27,7 @@ module Puppet::Parser::Functions
     # and empty string is as closest to actual undef as you we can get
     # at this point in time ...
     #
-    result = (result and not result.empty?) ? result : ''
+    result = result.empty? ? '' : result
 
     return result
   end
