@@ -2,6 +2,8 @@
 # range.rb
 #
 
+# TODO(Krzysztof Wilczynski): We probably need to approach numeric values differently ...
+
 module Puppet::Parser::Functions
   newfunction(:range, :type => :rvalue, :doc => <<-EOS
     EOS
