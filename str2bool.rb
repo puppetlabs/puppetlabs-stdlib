@@ -23,11 +23,10 @@ module Puppet::Parser::Functions
       # This is how undef looks like in Puppet ...
       # We yield false in this case.
       #
-      when /^$/, '' then false
-      when /^(1|t|y|true|yes)$/ then true
-      when /^(0|f|n|false|no)$/ then false
-      # This is not likely to happen ...
-      when /^(undef|undefined)$/ then false
+      when /^$/, '' then false # Empty string will be false ...
+      when /^(1|t|y|true|yes)$/  then true
+      when /^(0|f|n|false|no)$/  then false
+      when /^(undef|undefined)$/ then false # This is not likely to happen ...
       else
         raise(Puppet::ParseError, 'str2bool(): Unknown type of boolean given')
     end
