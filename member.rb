@@ -15,14 +15,14 @@ module Puppet::Parser::Functions
 
     array = arguments[0]
 
-    if not array.is_a?(Array)
-      raise(Puppet::ParseError, 'member(): Requires an array to work with')
+    unless array.is_a?(Array)
+      raise(Puppet::ParseError, 'member(): Requires array to work with')
     end
 
     item = arguments[1]
 
     raise(Puppet::ParseError, 'member(): You must provide item ' +
-      'to search for within given array') if item.empty?
+      'to search for within array given') if item.empty?
 
     result = array.include?(item)
 
