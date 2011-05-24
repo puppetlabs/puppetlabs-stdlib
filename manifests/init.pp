@@ -13,5 +13,6 @@
 # [Remember: No empty lines between comments and class definition]
 class stdlib {
 
+  class { 'stdlib::stages': }
 
 }
