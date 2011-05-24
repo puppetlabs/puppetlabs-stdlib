@@ -1,2 +1,5 @@
+0.1.2 2011-05-24 Jeff McCune <jeff@puppetlabs.com>
+* Update to add annotated tag
+
 0.1.1 2011-05-24 Jeff McCune <jeff@puppetlabs.com>
 * Add stdlib::stages class with a standard set of stages
