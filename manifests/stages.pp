@@ -5,13 +5,13 @@
 # The high level stages are (In order):
 #
 #  * setup
-#  * deploy
+#  * main
 #  * runtime
 #  * setup_infra
 #  * deploy_infra
-#  * main
 #  * setup_app
 #  * deploy_app
+#  * deploy
 #
 # Parameters:
 #
@@ -31,15 +31,12 @@
 #
 class stdlib::stages {
 
-  stage { 'setup':  before => Stage['deploy'] }
-  stage { 'deploy': before => Stage['setup_infra'] }
-  stage { 'runtime':
-    require => Stage['deploy'],
-    before  => Stage['setup_infra'],
-  }
-  stage { 'setup_infra':  before  => Stage['deploy_infra'] }
-  stage { 'deploy_infra': before  => Stage['main'] }
-  stage { 'setup_app':    require => Stage['main'] }
-  stage { 'deploy_app':   require => Stage['setup_app'] }
+  stage { 'setup':  before => Stage['main'] }
+  stage { 'runtime': require => Stage['main'] }
+  -> stage { 'setup_infra': }
+  -> stage { 'deploy_infra': }
+  -> stage { 'setup_app': }
+  -> stage { 'deploy_app': }
+  -> stage { 'deploy': }
 
 }
