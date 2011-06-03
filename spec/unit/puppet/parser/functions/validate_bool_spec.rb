@@ -21,21 +21,29 @@ describe Puppet::Parser::Functions.function(:validate_bool) do
   end
 
   describe 'when calling validate_bool from puppet' do
-    it "should validate true and false as bare words" do
-      Puppet[:code] = 'validate_bool(true)'
-      get_scope
-      @scope.compiler.compile
+
+    %w{ true false }.each do |the_string|
+
+      it "should not compile when #{the_string} is a string" do
+        Puppet[:code] = "validate_bool('#{the_string}')"
+        get_scope
+        expect { @scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a boolean/)
+      end
+
+      it "should compile when #{the_string} is a bare word" do
+        Puppet[:code] = "validate_bool(#{the_string})"
+        get_scope
+        @scope.compiler.compile
+      end
+
     end
-    it "should not compile when false is a string" do
-      Puppet[:code] = 'validate_bool("false")'
-      get_scope
-      expect { @scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a boolean/)
-    end
+
     it "should not compile when an arbitrary string is passed" do
       Puppet[:code] = 'validate_bool("jeff and dan are awesome")'
       get_scope
       expect { @scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a boolean/)
     end
+
     it "should not compile when no arguments are passed" do
       Puppet[:code] = 'validate_bool()'
       get_scope
