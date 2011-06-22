@@ -28,4 +28,18 @@ TBA
 
   Jeff McCune <jeff@puppetlabs.com>
 
+# Functions #
+## validate\_hash ##
 
+    $somehash = { 'one' => 'two' }
+    validate\_hash($somehash)
+
+## getvar() ##
+
+This function aims to look up variables in user-defined namespaces within
+puppet.  Note, if the namespace is a class, it should already be evaluated
+before the function is used.
+
+    $namespace = 'site::data'
+    include "${namespace}"
+    $myvar = getvar("${namespace}::myvar")
