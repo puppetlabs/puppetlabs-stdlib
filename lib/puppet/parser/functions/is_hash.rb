@@ -3,12 +3,12 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_array, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_hash, :type => :rvalue, :doc => <<-EOS
     EOS
   ) do |arguments|
 
     raise(Puppet::ParseError, "is_hash(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
+      "given (#{arguments.size} for 1)") if arguments.size != 1
 
     type = arguments[0]
 
