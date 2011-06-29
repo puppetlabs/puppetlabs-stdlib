@@ -2,8 +2,6 @@
 # kwalify.rb
 #
 
-require 'kwalify'
-
 module Puppet::Parser::Functions
   newfunction(:kwalify, :type => :statement, :doc => <<-EOS
 This function uses kwalify to validate Puppet data structures against Kwalify
@@ -16,6 +14,8 @@ schemas.
 
     schema = args[0]
     document = args[1]
+
+    require 'kwalify'
 
     validator = Kwalify::Validator.new(schema)
 
