@@ -1,11 +1,17 @@
 #
-# is_valid_doman_name.rb
+# is_valid_domain_name.rb
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_valid_doman_name, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_valid_domain_name, :type => :rvalue, :doc => <<-EOS
     EOS
   ) do |arguments|
+
+    if (arguments.size != 1) then
+      raise(Puppet::ParseError, "is_valid_domain_name(): Wrong number of arguments "+
+        "given #{arguments.size} for 1")
+    end
+
   end
 end
 

@@ -56,6 +56,7 @@ describe "the kwalify function" do
       'key1' => 'b',
       'key2' => 'c',
     }
+    @scope.function_kwalify([schema, document])
   end
 
 end
