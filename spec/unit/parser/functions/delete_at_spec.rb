@@ -18,4 +18,9 @@ describe "the delete_at function" do
     lambda { @scope.function_delete_at([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should delete an item at specified location from an array" do
+    result = @scope.function_delete_at([['a','b','c'],1])
+    result.should(eq(['a','c']))
+  end
+
 end

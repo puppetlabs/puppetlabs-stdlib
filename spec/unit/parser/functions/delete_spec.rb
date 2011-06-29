@@ -18,4 +18,9 @@ describe "the delete function" do
     lambda { @scope.function_delete([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should delete an item from an array" do
+    result = @scope.function_delete([['a','b','c'],'b'])
+    result.should(eq(['a','c']))
+  end
+
 end

@@ -18,4 +18,9 @@ describe "the empty function" do
     lambda { @scope.function_empty([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return a true for an empty string" do
+    result = @scope.function_empty([''])
+    result.should(eq(true))
+  end
+
 end

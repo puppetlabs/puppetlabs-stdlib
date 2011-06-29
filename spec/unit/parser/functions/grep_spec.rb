@@ -18,4 +18,9 @@ describe "the grep function" do
     lambda { @scope.function_grep([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should grep contents from an array" do
+    result = @scope.function_grep([["aaabbb","bbbccc","dddeee"], "bbb"])
+    result.should(eq(["aaabbb","bbbccc"]))
+  end
+
 end

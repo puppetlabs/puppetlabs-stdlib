@@ -18,4 +18,14 @@ describe "the is_array function" do
     lambda { @scope.function_is_array([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return true if passed an array" do
+    result = @scope.function_is_array([[1,2,3]])
+    result.should(eq(true))
+  end
+
+  it "should return false if passed a hash" do
+    result = @scope.function_is_array([{'a'=>1}])
+    result.should(eq(false))
+  end
+
 end

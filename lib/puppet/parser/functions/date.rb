@@ -12,6 +12,8 @@ module Puppet::Parser::Functions
         "given #{arguments.size} for 1")
     end
 
+    # TODO: stubbed
+
   end
 end
 

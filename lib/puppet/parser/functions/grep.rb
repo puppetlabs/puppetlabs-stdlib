@@ -12,6 +12,11 @@ module Puppet::Parser::Functions
         "given #{arguments.size} for 2")
     end
 
+    a = arguments[0]
+    pattern = Regexp.new(arguments[1])
+
+    a.grep(pattern)
+
   end
 end
 

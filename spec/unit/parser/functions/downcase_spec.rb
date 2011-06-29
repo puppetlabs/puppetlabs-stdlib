@@ -18,4 +18,9 @@ describe "the downcase function" do
     lambda { @scope.function_downcase([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should downcase a string" do
+    result = @scope.function_downcase(["ASFD"])
+    result.should(eq("asfd"))
+  end
+
 end

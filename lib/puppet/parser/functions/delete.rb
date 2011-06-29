@@ -15,6 +15,12 @@ module Puppet::Parser::Functions
         "given #{arguments.size} for 2")
     end
 
+    a = arguments[0]
+    item = arguments[1]
+
+    a.delete(item)
+    a
+
   end
 end
 
