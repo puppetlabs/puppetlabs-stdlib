@@ -18,4 +18,9 @@ describe "the abs function" do
     lambda { @scope.function_abs([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should convert a negative number into a positive" do
+    result = @scope.function_abs([-34])
+    result.should(eq(34))
+  end
+
 end
