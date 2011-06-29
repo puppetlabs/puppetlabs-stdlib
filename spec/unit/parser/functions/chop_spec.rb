@@ -18,4 +18,9 @@ describe "the chop function" do
     lambda { @scope.function_chop([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should chop the end of a string" do
+    result = @scope.function_chop(["asdf\n"])
+    result.should(eq("asdf"))
+  end
+
 end

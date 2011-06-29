@@ -8,7 +8,7 @@ module Puppet::Parser::Functions
   ) do |arguments|
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_valid_netmask(): Wrong number of arguments "+
+      raise(Puppet::ParseError, "date(): Wrong number of arguments "+
         "given #{arguments.size} for 1")
     end
 

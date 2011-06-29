@@ -18,4 +18,9 @@ describe "the count function" do
     lambda { @scope.function_count([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return the size of an array" do
+    result = @scope.function_count([['a','c','b']])
+    result.should(eq(3))
+  end
+
 end

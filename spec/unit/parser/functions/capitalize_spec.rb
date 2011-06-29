@@ -18,4 +18,9 @@ describe "the capitalize function" do
     lambda { @scope.function_capitalize([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should capitalize the beginning of a string" do
+    result = @scope.function_capitalize(["abc"])
+    result.should(eq("Abc"))
+  end
+
 end

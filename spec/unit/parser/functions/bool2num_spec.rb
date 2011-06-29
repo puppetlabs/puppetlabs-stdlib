@@ -18,4 +18,14 @@ describe "the bool2num function" do
     lambda { @scope.function_bool2num([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should convert true to 1" do
+    result = @scope.function_bool2num([true])
+    result.should(eq(1))
+  end
+
+  it "should convert false to 0" do
+    result = @scope.function_bool2num([false])
+    result.should(eq(0))
+  end
+
 end

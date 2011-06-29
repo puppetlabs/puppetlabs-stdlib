@@ -18,4 +18,9 @@ describe "the chomp function" do
     lambda { @scope.function_chomp([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should chomp the end of a string" do
+    result = @scope.function_chomp(["abc\n"])
+    result.should(eq("abc"))
+  end
+
 end
