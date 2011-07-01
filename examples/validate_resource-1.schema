@@ -1,0 +1,39 @@
+type: map
+mapping:
+  "title":
+    type: str
+    required: yes
+  "name":
+    type: str
+    required: yes
+  "caller_module_name":
+    type: str
+    required: yes
+  "module_name":
+    type: str
+    required: yes
+  "color":
+    type: str
+    required: yes
+  "type":
+    type: str
+    required: yes
+  "somenumber":
+    type: str
+    required: yes
+    pattern: /^\d+$/
+  "map":
+    type: map
+    mapping:
+      "a":
+        type: str
+        required: yes
+        pattern: /^\d+$/
+      "b":
+        type: str
+        required: yes
+        pattern: /^\d+$/
+      "c":
+        type: str
+        required: yes
+        pattern: /^\d+$/
