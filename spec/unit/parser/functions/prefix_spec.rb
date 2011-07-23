@@ -18,4 +18,9 @@ describe "the prefix function" do
     lambda { @scope.function_prefix([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return a prefixed array" do
+    result = @scope.function_prefix([['a','b','c'], 'p'])
+    result.should(eq(['pa','pb','pc']))
+  end
+
 end

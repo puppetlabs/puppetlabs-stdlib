@@ -18,4 +18,14 @@ describe "the is_valid_domain_name function" do
     lambda { @scope.function_is_valid_domain_name([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return true if a valid domain name" do
+    result = @scope.function_is_valid_domain_name("foo.bar.com")
+    result.should(eq(true))
+  end
+
+  it "should return false if not a valid domain name" do
+    result = @scope.function_is_valid_domain_name("not valid")
+    result.should(eq(false))
+  end
+
 end

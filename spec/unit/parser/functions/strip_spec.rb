@@ -18,4 +18,9 @@ describe "the strip function" do
     lambda { @scope.function_strip([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should strip a string" do
+    result = @scope.function_strip([" ab cd "])
+    result.should(eq('ab cd'))
+  end
+
 end

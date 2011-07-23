@@ -18,4 +18,9 @@ describe "the lstrip function" do
     lambda { @scope.function_lstrip([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should lstrip a string" do
+    result = @scope.function_lstrip(["  asdf"])
+    result.should(eq('asdf'))
+  end
+
 end

@@ -18,4 +18,9 @@ describe "the values function" do
     lambda { @scope.function_values([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return values from a hash" do
+    result = @scope.function_values([{'a'=>'1','b'=>'2','c'=>'3'}])
+    result.should(eq(['1','2','3']))
+  end
+
 end

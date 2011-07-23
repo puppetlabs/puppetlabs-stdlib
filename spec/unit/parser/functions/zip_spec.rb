@@ -18,4 +18,9 @@ describe "the zip function" do
     lambda { @scope.function_zip([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should be able to zip an array" do
+    result = @scope.function_zip([['1','2','3'],['4','5','6']])
+    result.should(eq([["1", "4"], ["2", "5"], ["3", "6"]]))
+  end
+
 end

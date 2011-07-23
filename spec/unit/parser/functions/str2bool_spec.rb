@@ -18,4 +18,14 @@ describe "the str2bool function" do
     lambda { @scope.function_str2bool([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should convert string 'true' to true" do
+    result = @scope.function_str2bool(["true"])
+    result.should(eq(true))
+  end
+
+  it "should convert string 'undef' to false" do
+    result = @scope.function_str2bool(["undef"])
+    result.should(eq(false))
+  end
+
 end

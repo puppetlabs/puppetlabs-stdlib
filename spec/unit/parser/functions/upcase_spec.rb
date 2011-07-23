@@ -18,4 +18,9 @@ describe "the upcase function" do
     lambda { @scope.function_upcase([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should upcase a string" do
+    result = @scope.function_upcase(["abc"])
+    result.should(eq('ABC'))
+  end
+
 end

@@ -18,4 +18,9 @@ describe "the num2bool function" do
     lambda { @scope.function_num2bool([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return true if 1" do
+    result = @scope.function_num2bool(["1"])
+    result.should(eq(true))
+  end
+
 end

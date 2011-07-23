@@ -18,4 +18,9 @@ describe "the join_with_prefix function" do
     lambda { @scope.function_join_with_prefix([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should join an array into a string" do
+    result = @scope.function_join_with_prefix([["a","b","c"], ":", "p"])
+    result.should(eq("pa:pb:pc"))
+  end
+
 end

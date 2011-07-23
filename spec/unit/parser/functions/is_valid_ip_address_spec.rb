@@ -18,4 +18,14 @@ describe "the is_valid_ip_address function" do
     lambda { @scope.function_is_valid_ip_address([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return true if an IP address" do
+    result = @scope.function_is_valid_ip_address("1.2.3.4")
+    result.should(eq(true))
+  end
+
+  it "should return false if not valid" do
+    result = @scope.function_is_valid_ip_address("asdf")
+    result.should(eq(false))
+  end
+
 end

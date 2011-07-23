@@ -18,4 +18,9 @@ describe "the join function" do
     lambda { @scope.function_join([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should join an array into a string" do
+    result = @scope.function_join([["a","b","c"], ":"])
+    result.should(eq("a:b:c"))
+  end
+
 end

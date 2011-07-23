@@ -18,4 +18,9 @@ describe "the unique function" do
     lambda { @scope.function_unique([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should remove duplicate elements in a string" do
+    result = @scope.function_squeeze([["aabbc"]])
+    result.should(eq(['abc']))
+  end
+
 end

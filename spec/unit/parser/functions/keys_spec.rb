@@ -18,4 +18,9 @@ describe "the keys function" do
     lambda { @scope.function_keys([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return an array of keys when given a hash" do
+    result = @scope.function_keys([{'a'=>1, 'b' => 2}])
+    result.should(eq(['a','b']))
+  end
+
 end

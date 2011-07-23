@@ -18,4 +18,9 @@ describe "the swapcase function" do
     lambda { @scope.function_swapcase([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should swapcase a string" do
+    result = @scope.function_swapcase(["aaBBccDD"])
+    result.should(eq('AAbbCCdd'))
+  end
+
 end

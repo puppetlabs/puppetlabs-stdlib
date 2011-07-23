@@ -18,4 +18,9 @@ describe "the type function" do
     lambda { @scope.function_type([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return a type when given a string" do
+    result = @scope.function_type(["aaabbbbcccc"])
+    result.should(eq('String'))
+  end
+
 end

@@ -18,4 +18,14 @@ describe "the range function" do
     lambda { @scope.function_range([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return a letter range" do
+    result = @scope.function_range(["a","d"])
+    result.should(eq(['a','b','c','d']))
+  end
+
+  it "should return a number range" do
+    result = @scope.function_range(["1","4"])
+    result.should(eq([1,2,3,4]))
+  end
+
 end

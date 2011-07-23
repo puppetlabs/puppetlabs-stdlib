@@ -7,10 +7,12 @@ module Puppet::Parser::Functions
     EOS
   ) do |arguments|
 
-    if (arguments.size != 0) then
+    if (arguments.size != 1) then
       raise(Puppet::ParseError, "sort(): Wrong number of arguments "+
-        "given #{arguments.size} for 0")
+        "given #{arguments.size} for 1")
     end
+
+    arguments[0].sort
 
   end
 end

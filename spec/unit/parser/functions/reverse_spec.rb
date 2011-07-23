@@ -18,4 +18,9 @@ describe "the reverse function" do
     lambda { @scope.function_reverse([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should reverse a string" do
+    result = @scope.function_reverse(["asdfghijkl"])
+    result.should(eq('lkjihgfdsa'))
+  end
+
 end
