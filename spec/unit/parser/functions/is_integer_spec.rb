@@ -19,12 +19,12 @@ describe "the is_integer function" do
   end
 
   it "should return true if an integer" do
-    result = @scope.function_is_integer([3])
+    result = @scope.function_is_integer(["3"])
     result.should(eq(true))
   end
 
   it "should return false if a float" do
-    result = @scope.function_is_integer([3.2])
+    result = @scope.function_is_integer(["3.2"])
     result.should(eq(false))
   end
 

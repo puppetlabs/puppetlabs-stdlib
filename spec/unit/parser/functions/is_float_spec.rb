@@ -19,7 +19,7 @@ describe "the is_float function" do
   end
 
   it "should return true if a float" do
-    result = @scope.function_is_float([0.12])
+    result = @scope.function_is_float(["0.12"])
     result.should(eq(true))
   end
 
@@ -29,7 +29,7 @@ describe "the is_float function" do
   end
 
   it "should return false if not an integer" do
-    result = @scope.function_is_float([3])
+    result = @scope.function_is_float(["3"])
     result.should(eq(false))
   end
 
