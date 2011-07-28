@@ -12,6 +12,14 @@ module Puppet::Parser::Functions
         "given #{arguments.size} for 1")
     end
 
+    value = arguments[0]
+
+    if value == value.to_f.to_s or value == value.to_i.to_s then
+      return true
+    else
+      return false
+    end
+
   end
 end
 
