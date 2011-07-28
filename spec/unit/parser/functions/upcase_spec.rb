@@ -23,4 +23,9 @@ describe "the upcase function" do
     result.should(eq('ABC'))
   end
 
+  it "should do nothing if a string is already upcase" do
+    result = @scope.function_upcase(["ABC"])
+    result.should(eq('ABC'))
+  end
+
 end
