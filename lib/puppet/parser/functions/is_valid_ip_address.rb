@@ -7,11 +7,24 @@ module Puppet::Parser::Functions
     EOS
   ) do |arguments|
 
+    require 'ipaddr'
+
     if (arguments.size != 1) then
       raise(Puppet::ParseError, "is_valid_ip_address(): Wrong number of arguments "+
         "given #{arguments.size} for 1")
     end
 
+    begin 
+      ip = IPAddr.new(arguments[0])
+    rescue ArgumentError
+      return false
+    end
+
+    if ip.ipv4? or ip.ipv6? then
+      return true
+    else
+      return false
+    end
   end
 end
 
