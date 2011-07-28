@@ -12,7 +12,13 @@ module Puppet::Parser::Functions
         "given #{arguments.size} for 1")
     end
 
-    arguments[0].sort
+    value = arguments[0]
+
+    if value.is_a?(Array) then
+      value.sort
+    elsif value.is_a?(String) then
+      value.split("").sort.to_s
+    end
 
   end
 end

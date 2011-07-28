@@ -23,4 +23,9 @@ describe "the sort function" do
     result.should(eq(['a','b','c']))
   end
 
+  it "should sort a string" do
+    result = @scope.function_sort(["acb"])
+    result.should(eq('abc'))
+  end
+
 end
