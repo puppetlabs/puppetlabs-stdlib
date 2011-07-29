@@ -12,6 +12,14 @@ module Puppet::Parser::Functions
         "given #{arguments.size} for 1")
     end
 
+    domain = arguments[0]
+
+    if domain =~ /^(([a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])\.?$/ then
+      return true
+    else
+      return false
+    end
+
   end
 end
 
