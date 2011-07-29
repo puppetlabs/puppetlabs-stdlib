@@ -23,4 +23,9 @@ describe "the downcase function" do
     result.should(eq("asfd"))
   end
 
+  it "should do nothing to a string that is already downcase" do
+    result = @scope.function_downcase(["asdf asdf"])
+    result.should(eq("asdf asdf"))
+  end
+
 end

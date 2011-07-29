@@ -23,4 +23,9 @@ describe "the flatten function" do
     result.should(eq(["a","b","c","d","e","f","g"]))
   end
 
+  it "should do nothing to a structure that is already flat" do
+    result = @scope.function_flatten([["a","b","c","d"]])
+    result.should(eq(["a","b","c","d"]))
+  end
+
 end

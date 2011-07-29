@@ -18,4 +18,19 @@ describe "the time function" do
     lambda { @scope.function_time(['','']) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return a number" do
+    result = @scope.function_time([])
+    result.class.should(eq(Fixnum))
+  end
+
+  it "should be higher then when I wrote this test" do
+    result = @scope.function_time([])
+    result.should(be > 1311953157)
+  end
+
+  it "should be lower then 1.5 trillion" do
+    result = @scope.function_time([])
+    result.should(be < 1500000000)
+  end
+
 end

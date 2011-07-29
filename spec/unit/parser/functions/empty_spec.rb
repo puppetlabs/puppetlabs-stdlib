@@ -23,4 +23,9 @@ describe "the empty function" do
     result.should(eq(true))
   end
 
+  it "should return a false for a non-empty string" do
+    result = @scope.function_empty(['asdf'])
+    result.should(eq(false))
+  end
+
 end

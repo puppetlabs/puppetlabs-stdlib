@@ -28,7 +28,7 @@ describe "the is_float function" do
     result.should(eq(false))
   end
 
-  it "should return false if not an integer" do
+  it "should return false if an integer" do
     result = @scope.function_is_float(["3"])
     result.should(eq(false))
   end

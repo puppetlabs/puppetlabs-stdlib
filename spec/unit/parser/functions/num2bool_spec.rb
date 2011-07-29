@@ -20,7 +20,12 @@ describe "the num2bool function" do
 
   it "should return true if 1" do
     result = @scope.function_num2bool(["1"])
-    result.should(eq(true))
+    result.should(be_true)
+  end
+
+  it "should return false if 0" do
+    result = @scope.function_num2bool(["0"])
+    result.should(be_false)
   end
 
 end

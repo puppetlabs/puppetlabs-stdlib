@@ -18,4 +18,14 @@ describe "the shuffle function" do
     lambda { @scope.function_shuffle([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should shuffle a string and the result should be the same size" do
+    result = @scope.function_shuffle(["asdf"])
+    result.size.should(eq(4))
+  end
+
+  it "should shuffle a string but the sorted contents should still be the same" do
+    result = @scope.function_shuffle(["adfs"])
+    result.split("").sort.to_s.should(eq("adfs"))
+  end
+
 end

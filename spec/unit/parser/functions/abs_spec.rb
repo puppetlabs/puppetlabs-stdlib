@@ -19,8 +19,13 @@ describe "the abs function" do
   end
 
   it "should convert a negative number into a positive" do
-    result = @scope.function_abs([-34])
+    result = @scope.function_abs(["-34"])
     result.should(eq(34))
+  end
+
+  it "should do nothing with a positive number" do
+    result = @scope.function_abs(["5678"])
+    result.should(eq(5678))
   end
 
 end

@@ -28,4 +28,9 @@ describe "the is_array function" do
     result.should(eq(false))
   end
 
+  it "should return false if passed a string" do
+    result = @scope.function_is_array(["asdf"])
+    result.should(eq(false))
+  end
+
 end
