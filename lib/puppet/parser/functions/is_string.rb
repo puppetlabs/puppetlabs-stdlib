@@ -4,6 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_string, :type => :rvalue, :doc => <<-EOS
+Returns true if the variable passed to this function is a string.
     EOS
   ) do |arguments|
 

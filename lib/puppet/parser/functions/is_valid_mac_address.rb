@@ -4,6 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_valid_mac_address, :type => :rvalue, :doc => <<-EOS
+Returns true if the string passed to this function is a valid mac address.
     EOS
   ) do |arguments|
 

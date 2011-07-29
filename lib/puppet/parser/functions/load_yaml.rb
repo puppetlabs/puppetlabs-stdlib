@@ -4,6 +4,8 @@
 
 module Puppet::Parser::Functions
   newfunction(:load_yaml, :type => :rvalue, :doc => <<-EOS
+This function accepts YAML as a string and converts it into the correct 
+Puppet structure.
     EOS
   ) do |arguments|
 

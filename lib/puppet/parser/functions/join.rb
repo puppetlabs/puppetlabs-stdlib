@@ -4,6 +4,13 @@
 
 module Puppet::Parser::Functions
   newfunction(:join, :type => :rvalue, :doc => <<-EOS
+This function joins an array into a string using a seperator.
+
+*Examples:*
+
+    join(['a','b','c'], ",")
+
+Would result in: "a,b,c"
     EOS
   ) do |arguments|
 

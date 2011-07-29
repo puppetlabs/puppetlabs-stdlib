@@ -4,6 +4,8 @@
 
 module Puppet::Parser::Functions
   newfunction(:load_json, :type => :rvalue, :doc => <<-EOS
+This function accepts JSON as a string and converts into the correct Puppet
+structure.
     EOS
   ) do |arguments|
 

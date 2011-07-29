@@ -4,6 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_valid_domain_name, :type => :rvalue, :doc => <<-EOS
+Returns true if the string passed to this function is a valid IP address. Support for IPv4 and IPv6 address types is included.
     EOS
   ) do |arguments|
 

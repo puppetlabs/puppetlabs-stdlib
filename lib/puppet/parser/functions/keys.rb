@@ -4,6 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:keys, :type => :rvalue, :doc => <<-EOS
+Returns the keys of a hash as an array.
     EOS
   ) do |arguments|
 

@@ -4,6 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_integer, :type => :rvalue, :doc => <<-EOS
+Returns true if the variable returned to this string is an integer.
     EOS
   ) do |arguments|
 

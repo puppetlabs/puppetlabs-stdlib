@@ -4,6 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_valid_ip_address, :type => :rvalue, :doc => <<-EOS
+Returns true if the string passed to this function is a valid IP address.
     EOS
   ) do |arguments|
 

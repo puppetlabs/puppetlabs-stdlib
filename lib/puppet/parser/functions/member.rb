@@ -7,6 +7,17 @@
 
 module Puppet::Parser::Functions
   newfunction(:member, :type => :rvalue, :doc => <<-EOS
+This function determines if a variable is a member of an array.
+
+*Examples:*
+
+    member(['a','b'], 'b')
+
+Would return: true
+
+    member(['a','b'], 'c')
+
+Would return: false
     EOS
   ) do |arguments|
 

@@ -4,6 +4,13 @@
 
 module Puppet::Parser::Functions
   newfunction(:delete_at, :type => :rvalue, :doc => <<-EOS
+Deletes a determined indexed value from an array.
+
+*Examples:*
+
+    delete_at(['a','b','c'], 1)
+
+Would return: ['a','c']
     EOS
   ) do |arguments|
 

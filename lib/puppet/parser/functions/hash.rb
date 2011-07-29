@@ -4,6 +4,13 @@
 
 module Puppet::Parser::Functions
   newfunction(:hash, :type => :rvalue, :doc => <<-EOS
+This function converts and array into a hash.
+
+*Examples:*
+
+    hash(['a',1,'b',2,'c',3])
+
+Would return: {'a'=>1,'b'=>2,'c'=>3}
     EOS
   ) do |arguments|
 

@@ -43,4 +43,9 @@ describe "the type function" do
     result.should(eq('float'))
   end
 
+  it "should return boolean when given a boolean" do
+    result = @scope.function_type([true])
+    result.should(eq('boolean'))
+  end
+
 end

@@ -4,6 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:downcase, :type => :rvalue, :doc => <<-EOS
+Converts the case of a string or all strings in an array to lower case.
     EOS
   ) do |arguments|
 

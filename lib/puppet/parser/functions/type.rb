@@ -11,6 +11,7 @@ Returns the type when passed a variable. Type can be one of:
 * hash
 * float
 * integer
+* boolean
     EOS
   ) do |arguments|
 
@@ -21,7 +22,7 @@ Returns the type when passed a variable. Type can be one of:
 
     klass = value.class
 
-    if not [Array, Bignum, Fixnum, Float, Hash, String].include?(klass)
+    if not [TrueClass, FalseClass, Array, Bignum, Fixnum, Float, Hash, String].include?(klass)
       raise(Puppet::ParseError, 'type(): Unknown type')
     end
 
@@ -30,6 +31,7 @@ Returns the type when passed a variable. Type can be one of:
     # We note that Integer is the parent to Bignum and Fixnum ...
     result = case klass
       when /^(?:Big|Fix)num$/ then 'integer'
+      when /^(?:True|False)Class$/ then 'boolean'
       else klass
     end
 

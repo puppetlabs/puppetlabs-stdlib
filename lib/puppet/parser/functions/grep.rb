@@ -4,6 +4,16 @@
 
 module Puppet::Parser::Functions
   newfunction(:grep, :type => :rvalue, :doc => <<-EOS
+This function searches through an array and returns any elements that match
+the provided regular expression.
+
+*Examples:*
+
+    grep(['aaa','bbb','ccc','aaaddd'], 'aaa')
+
+Would return:
+
+    ['aaa','aaaddd']
     EOS
   ) do |arguments|
 
