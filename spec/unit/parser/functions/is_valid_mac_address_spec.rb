@@ -19,12 +19,17 @@ describe "the is_valid_mac_address function" do
   end
 
   it "should return true if a valid mac address" do
-    result = @scope.function_is_valid_mac_address("00:a0:1f:12:7f:a0")
+    result = @scope.function_is_valid_mac_address(["00:a0:1f:12:7f:a0"])
     result.should(eq(true))
   end
 
+  it "should return false if octets are out of range" do
+    result = @scope.function_is_valid_mac_address(["00:a0:1f:12:7f:g0"])
+    result.should(eq(false))
+  end
+
   it "should return false if not valid" do
-    result = @scope.function_is_valid_mac_address("not valid")
+    result = @scope.function_is_valid_mac_address(["not valid"])
     result.should(eq(false))
   end
 

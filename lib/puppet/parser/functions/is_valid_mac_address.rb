@@ -12,6 +12,14 @@ module Puppet::Parser::Functions
         "given #{arguments.size} for 1")
     end
 
+    mac = arguments[0]
+
+    if /^[a-fA-F0-9]{1,2}:[a-fA-F0-9]{1,2}:[a-fA-F0-9]{1,2}:[a-fA-F0-9]{1,2}:[a-fA-F0-9]{1,2}:[a-fA-F0-9]{1,2}$/.match(mac) then
+      return true
+    else
+      return false
+    end
+
   end
 end
 
