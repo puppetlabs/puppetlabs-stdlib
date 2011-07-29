@@ -18,7 +18,7 @@ Sorts strings and arrays lexically.
     if value.is_a?(Array) then
       value.sort
     elsif value.is_a?(String) then
-      value.split("").sort.to_s
+      value.split("").sort.join("")
     end
 
   end

@@ -38,7 +38,7 @@ Would return ['a','c','d'].
       raise(Puppet::ParseError, 'values_at(): Requires array to work with')
     end
 
-    indices = *arguments # Get them all ... Pokemon ...
+    indices = [arguments.shift].flatten() # Get them all ... Pokemon ...
 
     if not indices or indices.empty?
       raise(Puppet::ParseError, 'values_at(): You must provide ' +

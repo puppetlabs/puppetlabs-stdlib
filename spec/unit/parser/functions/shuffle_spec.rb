@@ -25,7 +25,7 @@ describe "the shuffle function" do
 
   it "should shuffle a string but the sorted contents should still be the same" do
     result = @scope.function_shuffle(["adfs"])
-    result.split("").sort.to_s.should(eq("adfs"))
+    result.split("").sort.join("").should(eq("adfs"))
   end
 
 end
