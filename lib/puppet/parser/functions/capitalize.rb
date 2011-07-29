@@ -4,6 +4,8 @@
 
 module Puppet::Parser::Functions
   newfunction(:capitalize, :type => :rvalue, :doc => <<-EOS
+    Capitalizes the first letter of a string or array of strings.
+    Requires either a single string or an array as an input.
     EOS
   ) do |arguments|
 
