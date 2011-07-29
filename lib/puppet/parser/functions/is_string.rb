@@ -14,6 +14,10 @@ module Puppet::Parser::Functions
 
     result = type.is_a?(String)
 
+    if result and (type == type.to_f.to_s or type == type.to_i.to_s) then
+      return false
+    end
+
     return result
   end
 end
