@@ -4,6 +4,13 @@
 
 module Puppet::Parser::Functions
   newfunction(:prefix, :type => :rvalue, :doc => <<-EOS
+This function applies a prefix to all elements in an array.
+
+*Examles:*
+
+    prefix(['a','b','c'], 'p')
+
+Will return: ['pa','pb','pc']
     EOS
   ) do |arguments|
 

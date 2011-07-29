@@ -4,6 +4,15 @@
 
 module Puppet::Parser::Functions
   newfunction(:upcase, :type => :rvalue, :doc => <<-EOS
+Converts a string or an array of strings to uppercase.
+
+*Examples:*
+
+    upcase("abcd")
+
+Will return:
+
+    ASDF
     EOS
   ) do |arguments|
 

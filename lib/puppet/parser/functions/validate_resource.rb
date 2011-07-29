@@ -4,6 +4,11 @@
 
 module Puppet::Parser::Functions
   newfunction(:validate_resource, :type => :statement, :doc => <<-EOS
+This function when placed at the beginning of a class, will go looking for a
+valid kwalify schema by replacing the extension of the file with '.schema'.
+
+It will then validate the arguments passed to the function using that kwalify
+schema.
     EOS
   ) do |arguments|
  

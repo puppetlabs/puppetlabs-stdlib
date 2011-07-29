@@ -4,6 +4,23 @@
 
 module Puppet::Parser::Functions
   newfunction(:unique, :type => :rvalue, :doc => <<-EOS
+This function will remove duplicates from strings and arrays.
+
+*Examples:*
+
+    unique("aabbcc")
+
+Will return:
+
+    abc
+
+You can also use this with arrays:
+
+    unique(["a","a","b","b","c","c"])
+
+This returns:
+
+    ["a","b","c"]
     EOS
   ) do |arguments|
 

@@ -19,8 +19,13 @@ describe "the unique function" do
   end
 
   it "should remove duplicate elements in a string" do
-    result = @scope.function_squeeze([["aabbc"]])
-    result.should(eq(['abc']))
+    result = @scope.function_unique(["aabbc"])
+    result.should(eq('abc'))
+  end
+
+  it "should remove duplicate elements in an array" do
+    result = @scope.function_unique([["a","a","b","b","c"]])
+    result.should(eq(['a','b','c']))
   end
 
 end

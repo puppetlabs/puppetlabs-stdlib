@@ -4,6 +4,13 @@
 
 module Puppet::Parser::Functions
   newfunction(:type, :type => :rvalue, :doc => <<-EOS
+Returns the type when passed a variable. Type can be one of:
+
+* string
+* array
+* hash
+* float
+* integer
     EOS
   ) do |arguments|
 
@@ -22,11 +29,19 @@ module Puppet::Parser::Functions
 
     # We note that Integer is the parent to Bignum and Fixnum ...
     result = case klass
-      when /^(?:Big|Fix)num$/ then 'Integer'
+      when /^(?:Big|Fix)num$/ then 'integer'
       else klass
     end
 
-    return result
+    if result == "String" then
+      if value == value.to_i.to_s then
+        result = "Integer"
+      elsif value == value.to_f.to_s then
+        result = "Float"
+      end
+    end
+
+    return result.downcase
   end
 end
 

@@ -4,6 +4,13 @@
 
 module Puppet::Parser::Functions
   newfunction(:time, :type => :rvalue, :doc => <<-EOS
+This function will return the current time since epoch as an integer.
+
+*Examples:*
+
+    time()
+
+Will return something like: 1311972653
     EOS
   ) do |arguments|
 

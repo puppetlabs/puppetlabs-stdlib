@@ -18,19 +18,29 @@ describe "the type function" do
     lambda { @scope.function_type([]) }.should( raise_error(Puppet::ParseError))
   end
 
-  it "should return String when given a string" do
+  it "should return string when given a string" do
     result = @scope.function_type(["aaabbbbcccc"])
-    result.should(eq('String'))
+    result.should(eq('string'))
   end
 
-  it "should return Array when given an array" do
+  it "should return array when given an array" do
     result = @scope.function_type([["aaabbbbcccc","asdf"]])
-    result.should(eq('Array'))
+    result.should(eq('array'))
   end
 
-  it "should return Hash when given a hash" do
+  it "should return hash when given a hash" do
     result = @scope.function_type([{"a"=>1,"b"=>2}])
-    result.should(eq('Hash'))
+    result.should(eq('hash'))
+  end
+
+  it "should return integer when given an integer" do
+    result = @scope.function_type(["1"])
+    result.should(eq('integer'))
+  end
+
+  it "should return float when given a float" do
+    result = @scope.function_type(["1.34"])
+    result.should(eq('float'))
   end
 
 end

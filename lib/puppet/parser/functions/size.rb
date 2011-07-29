@@ -6,6 +6,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:size, :type => :rvalue, :doc => <<-EOS
+Returns the number of elements in a string or array.
     EOS
   ) do |arguments|
 

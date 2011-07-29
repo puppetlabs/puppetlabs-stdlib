@@ -6,6 +6,18 @@
 
 module Puppet::Parser::Functions
   newfunction(:range, :type => :rvalue, :doc => <<-EOS
+When given range in the form of (start, stop) it will extrapolate a range as
+an array.
+
+*Examples:*
+
+    range("0", "9")
+
+Will return: [0,1,2,3,4,5,6,7,8,9]
+
+    range("a", "c")
+
+Will return: ["a","b","c"]
     EOS
   ) do |arguments|
 

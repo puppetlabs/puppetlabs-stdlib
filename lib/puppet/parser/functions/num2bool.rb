@@ -6,6 +6,8 @@
 
 module Puppet::Parser::Functions
   newfunction(:num2bool, :type => :rvalue, :doc => <<-EOS
+This function converts a number into a true boolean. Zero becomes false. Numbers
+higher then 0 become true.
     EOS
   ) do |arguments|
 

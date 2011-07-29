@@ -4,6 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:sort, :type => :rvalue, :doc => <<-EOS
+Sorts strings and arrays lexically.
     EOS
   ) do |arguments|
 
