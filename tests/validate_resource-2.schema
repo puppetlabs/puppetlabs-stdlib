@@ -1,0 +1,26 @@
+type: map
+mapping:
+  "title":
+    type: str
+    required: yes
+  "name":
+    type: str
+    required: yes
+  "caller_module_name":
+    type: str
+    required: yes
+  "module_name":
+    type: str
+    required: yes
+  "a":
+    type: str
+    required: yes
+  "b":
+    type: str
+    required: yes
+    pattern: /^foo/
+  "c":
+    type: seq
+    required: yes
+    sequence:
+      - type: str
