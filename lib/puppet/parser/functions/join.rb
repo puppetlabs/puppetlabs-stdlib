@@ -44,6 +44,11 @@ would result in: "a,b,c"
         array = arguments
         suffix = false
       else argc > 2
+        arguments.each do |elem|
+          unless elem.is_a?(String)
+            raise(Puppet::ParseError, 'join(): Requires strings to work with')
+          end
+        end
         array = arguments[0..-2]
         suffix = arguments[-1]
       end
