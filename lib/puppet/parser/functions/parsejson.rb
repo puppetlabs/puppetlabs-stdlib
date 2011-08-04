@@ -1,16 +1,16 @@
 #
-# load_json.rb
+# parsejson.rb
 #
 
 module Puppet::Parser::Functions
-  newfunction(:load_json, :type => :rvalue, :doc => <<-EOS
+  newfunction(:parsejson, :type => :rvalue, :doc => <<-EOS
 This function accepts JSON as a string and converts into the correct Puppet
 structure.
     EOS
   ) do |arguments|
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "load_json(): Wrong number of arguments "+
+      raise(Puppet::ParseError, "parsejson(): Wrong number of arguments "+
         "given #{arguments.size} for 1")
     end
 

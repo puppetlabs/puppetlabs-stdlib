@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 require 'spec_helper'
 
-describe "the load_yaml function" do
+describe "the parsejson function" do
   before :all do
     Puppet::Parser::Functions.autoloader.loadall
   end
@@ -11,20 +11,18 @@ describe "the load_yaml function" do
   end
 
   it "should exist" do
-    Puppet::Parser::Functions.function("load_yaml").should == "function_load_yaml"
+    Puppet::Parser::Functions.function("parsejson").should == "function_parsejson"
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { @scope.function_load_yaml([]) }.should( raise_error(Puppet::ParseError))
+    lambda { @scope.function_parsejson([]) }.should( raise_error(Puppet::ParseError))
   end
 
-  it "should convert YAML to a data structure" do
-    yaml = <<-EOS
-- aaa
-- bbb
-- ccc
+  it "should convert JSON to a data structure" do
+    json = <<-EOS
+["aaa","bbb","ccc"]
 EOS
-    result = @scope.function_load_yaml([yaml])
+    result = @scope.function_parsejson([json])
     result.should(eq(['aaa','bbb','ccc']))
   end
 
