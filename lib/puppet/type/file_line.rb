@@ -1,11 +1,11 @@
-Puppet::Type.newtype(:whole_line) do
+Puppet::Type.newtype(:file_line) do
 
   desc <<-EOT
   Type that can append whole a line to a file if it does not already contain it.
 
   Example:
 
-  whole_line { 'sudo_rule':
+  file_line { 'sudo_rule':
     path => '/etc/sudoers',
     line => '%admin ALL=(ALL) ALL',
   }
