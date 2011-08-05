@@ -1,16 +1,16 @@
 #
-# load_yaml.rb
+# parseyaml.rb
 #
 
 module Puppet::Parser::Functions
-  newfunction(:load_yaml, :type => :rvalue, :doc => <<-EOS
+  newfunction(:parseyaml, :type => :rvalue, :doc => <<-EOS
 This function accepts YAML as a string and converts it into the correct 
 Puppet structure.
     EOS
   ) do |arguments|
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "load_yaml(): Wrong number of arguments "+
+      raise(Puppet::ParseError, "parseyaml(): Wrong number of arguments "+
         "given #{arguments.size} for 1")
     end
 

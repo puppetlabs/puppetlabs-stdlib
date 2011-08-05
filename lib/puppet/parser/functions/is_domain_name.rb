@@ -1,15 +1,15 @@
 #
-# is_valid_domain_name.rb
+# is_domain_name.rb
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_valid_domain_name, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_domain_name, :type => :rvalue, :doc => <<-EOS
 Returns true if the string passed to this function is a valid IP address. Support for IPv4 and IPv6 address types is included.
     EOS
   ) do |arguments|
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_valid_domain_name(): Wrong number of arguments "+
+      raise(Puppet::ParseError, "is_domain_name(): Wrong number of arguments "+
         "given #{arguments.size} for 1")
     end
 

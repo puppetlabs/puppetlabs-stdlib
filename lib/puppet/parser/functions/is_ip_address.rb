@@ -1,9 +1,9 @@
 #
-# is_valid_ip_address.rb
+# is_ip_address.rb
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_valid_ip_address, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_ip_address, :type => :rvalue, :doc => <<-EOS
 Returns true if the string passed to this function is a valid IP address.
     EOS
   ) do |arguments|
@@ -11,7 +11,7 @@ Returns true if the string passed to this function is a valid IP address.
     require 'ipaddr'
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_valid_ip_address(): Wrong number of arguments "+
+      raise(Puppet::ParseError, "is_ip_address(): Wrong number of arguments "+
         "given #{arguments.size} for 1")
     end
 

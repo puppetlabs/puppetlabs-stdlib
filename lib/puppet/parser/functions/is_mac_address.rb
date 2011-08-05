@@ -1,15 +1,15 @@
 #
-# is_valid_mac_address.rb
+# is_mac_address.rb
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_valid_mac_address, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_mac_address, :type => :rvalue, :doc => <<-EOS
 Returns true if the string passed to this function is a valid mac address.
     EOS
   ) do |arguments|
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_valid_mac_address(): Wrong number of arguments "+
+      raise(Puppet::ParseError, "is_mac_address(): Wrong number of arguments "+
         "given #{arguments.size} for 1")
     end
 
