@@ -1,3 +1,12 @@
+2011-08-04 Puppet Labs <support@puppetlabs.com> - 1.0.0
+* Initial stable release
+* Add validate_array and validate_string functions
+* Make merge() function work with Ruby 1.8.5
+* Add hash merging function
+* Add has_key function
+* Add loadyaml() function
+* Add append_line native
+
 2011-06-21 Jeff McCune <jeff@puppetlabs.com> - 0.1.7
 * Add validate_hash() and getvar() functions
 

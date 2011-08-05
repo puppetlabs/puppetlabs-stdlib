@@ -20,15 +20,21 @@ This module is designed to work with Puppet version 2.6 and later.  It may be
 forked if Puppet 2.7 specific features are added.  There are currently no plans
 for a Puppet 0.25 standard library module.
 
-# Overview #
-
-TBA
-
-# Contact Information #
-
-  Jeff McCune <jeff@puppetlabs.com>
-
 # Functions #
+
+  Please see `puppet doc -r function` for documentation on each function.  The
+  current list of functions is:
+
+ * getvar
+ * has\_key
+ * loadyaml
+ * merge.rb
+ * validate\_array
+ * validate\_bool
+ * validate\_hash
+ * validate\_re
+ * validate\_string
+
 ## validate\_hash ##
 
     $somehash = { 'one' => 'two' }
