@@ -1,12 +1,12 @@
 require 'puppet'
 require 'tempfile'
-provider_class = Puppet::Type.type(:append_line).provider(:ruby)
+provider_class = Puppet::Type.type(:whole_line).provider(:ruby)
 describe provider_class do
   before :each do
     tmp = Tempfile.new('tmp')
     @tmpfile = tmp.path
     tmp.close!
-    @resource = Puppet::Type::Append_line.new(
+    @resource = Puppet::Type::Whole_line.new(
       {:name => 'foo', :path => @tmpfile, :line => 'foo'}
     )
     @provider = provider_class.new(@resource)
