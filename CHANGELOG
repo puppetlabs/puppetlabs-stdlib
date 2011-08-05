@@ -1,3 +1,7 @@
+2011-08-04 Puppet Labs <support@puppetlabs.com> - 1.1.0
+* Rename append_line to whole_line
+* This is an API change and as such motivating a 1.1.0 release.
+
 2011-08-04 Puppet Labs <support@puppetlabs.com> - 1.0.0
 * Initial stable release
 * Add validate_array and validate_string functions
