@@ -1,3 +1,7 @@
+2011-08-04 Puppet Labs <support@puppetlabs.com> - 2.0.0
+* Rename whole_line to file_line
+* This is an API change and as such motivating a 2.0.0 release according to semver.org.
+
 2011-08-04 Puppet Labs <support@puppetlabs.com> - 1.1.0
 * Rename append_line to whole_line
 * This is an API change and as such motivating a 1.1.0 release.
