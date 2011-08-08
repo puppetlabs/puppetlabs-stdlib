@@ -1,4 +1,4 @@
-Puppet::Type.type(:whole_line).provide(:ruby) do
+Puppet::Type.type(:file_line).provide(:ruby) do
 
   def exists?
     File.readlines(resource[:path]).find do |line|
