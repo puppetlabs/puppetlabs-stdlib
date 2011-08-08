@@ -13,16 +13,12 @@
 #  * deploy_app
 #  * deploy
 #
-# Parameters:
-#
-# Actions:
+# == Actions
 #
 #   Declares various run-stages for deploying infrastructure,
 #   language runtimes, and application layers.
 #
-# Requires:
-#
-# Sample Usage:
+# == Examples
 #
 #  node default {
 #    include stdlib::stages

@@ -2,17 +2,18 @@
 #
 # This module manages stdlib
 #
-# Parameters:
+# == Parameters
 #
-# Actions:
+# == Actions
 #
-# Requires:
+# == Requires
 #
-# Sample Usage:
+# == Sample Usage
 #
 # [Remember: No empty lines between comments and class definition]
 class stdlib {
 
   class { 'stdlib::stages': }
+  class { 'stdlib::spool': }
 
 }
