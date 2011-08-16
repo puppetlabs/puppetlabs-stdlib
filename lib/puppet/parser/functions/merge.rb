@@ -4,10 +4,13 @@ module Puppet::Parser::Functions
 
     For example:
 
-      $hash1 = {'one' => 1, 'two', => 2}
-      $hash1 = {'two' => 2, 'three', => 2}
-      $merged_hash = merge($hash1, $hash2)
-      # merged_hash =  {'one' => 1, 'two' => 2, 'three' => 2}
+        $hash1 = {'one' => 1, 'two', => 2}
+        $hash2 = {'two' => 'dos', 'three', => 'tres'}
+        $merged_hash = merge($hash1, $hash2)
+        # The resulting hash is equivalent to:
+        # $merged_hash =  {'one' => 1, 'two' => 'dos', 'three' => 'tres'}
+
+    When there is a duplicate key, the key in the rightmost hash will "win."
 
     ENDHEREDOC
 
