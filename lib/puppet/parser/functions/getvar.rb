@@ -6,10 +6,13 @@ module Puppet::Parser::Functions
     For example:
 
         $foo = getvar('site::data::foo')
+        # Equivalent to $foo = $site::data::foo
 
     This is useful if the namespace itself is stored in a string:
 
+        $datalocation = 'site::data'
         $bar = getvar("${datalocation}::bar")
+        # Equivalent to $bar = $site::data::bar
     ENDHEREDOC
 
     unless args.length == 1
