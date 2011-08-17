@@ -49,3 +49,12 @@ before the function is used.
     $namespace = 'site::data'
     include "${namespace}"
     $myvar = getvar("${namespace}::myvar")
+
+## Facts ##
+
+Facts in `/etc/facts.d` and `/etc/puppetlabs/facts.d` are now loaded
+automatically.  This is a direct copy of R.I. Pienaar's custom facter fact
+located at:
+[https://github.com/ripienaar/facter-facts/tree/master/facts-dot-d](https://github.com/ripienaar/facter-facts/tree/master/facts-dot-d)
+
+
