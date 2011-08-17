@@ -1,3 +1,8 @@
+2011-08-17 Puppet Labs <support@puppetlabs.com> - 2.1.0
+* Add R.I. Pienaar's facts.d custom facter fact
+* facts defined in /etc/facts.d and /etc/puppetlabs/facts.d are
+  automatically loaded now.
+
 2011-08-04 Puppet Labs <support@puppetlabs.com> - 2.0.0
 * Rename whole_line to file_line
 * This is an API change and as such motivating a 2.0.0 release according to semver.org.
