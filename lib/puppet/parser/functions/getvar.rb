@@ -5,11 +5,11 @@ module Puppet::Parser::Functions
 
     For example:
 
-      $foo = getvar('site::data::foo')
+        $foo = getvar('site::data::foo')
 
     This is useful if the namespace itself is stored in a string:
 
-      $bar = getvar("${datalocation}::bar")
+        $bar = getvar("${datalocation}::bar")
     ENDHEREDOC
 
     unless args.length == 1

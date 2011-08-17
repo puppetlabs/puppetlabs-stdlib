@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
 
     For example:
 
-      $myhash = loadyaml('/etc/puppet/data/myhash.yaml')
+        $myhash = loadyaml('/etc/puppet/data/myhash.yaml')
     ENDHEREDOC
 
     unless args.length == 1
