@@ -1,16 +1,18 @@
 # Class: stdlib
 #
-# This module manages stdlib
+# This module manages stdlib. Most of stdlib's features are automatically
+# loaded by Puppet, but this class should be declared in order to use the
+# standardized run stages.
 #
-# Parameters:
+# Parameters: none
 #
 # Actions:
 #
-# Requires:
+#   Declares all other classes in the stdlib module. Currently, this consists
+#   of stdlib::stages.
 #
-# Sample Usage:
+# Requires: nothing
 #
-# [Remember: No empty lines between comments and class definition]
 class stdlib {
 
   class { 'stdlib::stages': }
