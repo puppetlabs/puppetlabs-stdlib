@@ -17,9 +17,6 @@ module Puppet::Parser::Functions
         validate_bool("true")
         validate_bool($some_array)
 
-    * Jeff McCune <jeff@puppetlabs.com>
-    * Dan Bode <dan@puppetlabs.com>
-
     ENDHEREDOC
 
     unless args.length > 0 then

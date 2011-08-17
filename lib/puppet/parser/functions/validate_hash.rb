@@ -16,8 +16,6 @@ module Puppet::Parser::Functions
         $undefined = undef
         validate_hash($undefined)
 
-    * Jeff McCune <jeff@puppetlabs.com>
-
     ENDHEREDOC
 
     unless args.length > 0 then

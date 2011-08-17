@@ -17,8 +17,6 @@ module Puppet::Parser::Functions
 
         validate_re('one', [ '^two', '^three' ])
 
-    Jeff McCune <jeff@puppetlabs.com>
-
     ENDHEREDOC
     if args.length != 2 then
       raise Puppet::ParseError, ("validate_re(): wrong number of arguments (#{args.length}; must be 2)")
