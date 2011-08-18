@@ -1,23 +1,21 @@
 module Puppet::Parser::Functions
 
   newfunction(:validate_re, :doc => <<-'ENDHEREDOC') do |args|
-    Perform simple validation of a string against a regular expression.  The second
-    argument of the function should be a string regular expression (without the //'s)
-    or an array of regular expressions.  If none of the regular expressions in the array
-    match the string passed in, then an exception will be raised.
+    Perform simple validation of a string against one or more regular
+    expressions. The first argument of this function should be a string to
+    test, and the second argument should be a stringified regular expression
+    (without the // delimiters) or an array of regular expressions.  If none
+    of the regular expressions match the string passed in, compilation will
+    abort with a parse error.
 
-    Example:
-
-    These strings validate against the regular expressions
+    The following strings will validate against the regular expressions:
 
         validate_re('one', '^one$')
         validate_re('one', [ '^one', '^two' ])
 
-    These strings do NOT validate
+    The following strings will fail to validate, causing compilation to abort:
 
         validate_re('one', [ '^two', '^three' ])
-
-    Jeff McCune <jeff@puppetlabs.com>
 
     ENDHEREDOC
     if args.length != 2 then

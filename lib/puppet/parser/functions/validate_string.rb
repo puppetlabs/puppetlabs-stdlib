@@ -1,17 +1,15 @@
 module Puppet::Parser::Functions
 
   newfunction(:validate_string, :doc => <<-'ENDHEREDOC') do |args|
-    Validate all passed values are a string data structure
-    value does not pass the check.
+    Validate that all passed values are string data structures. Abort catalog
+    compilation if any value fails this check.
 
-    Example:
-
-    These values validate
+    The following values will pass:
 
         $my_string = "one two"
-        validate_string($my_string)
+        validate_string($my_string, 'three')
 
-    These values do NOT validate
+    The following values will fail, causing compilation to abort:
 
         validate_string(true)
         validate_string([ 'some', 'array' ])
