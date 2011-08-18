@@ -179,5 +179,5 @@ class Facter::Util::DotD
     end
 end
 
-Facter::Util::DotD.new("/etc/facts.d").create
-Facter::Util::DotD.new("/etc/puppetlabs/facts.d").create
+Facter::Util::DotD.new("/etc/facter/facts.d").create
+Facter::Util::DotD.new("/etc/puppetlabs/facter/facts.d").create
