@@ -1,17 +1,15 @@
 module Puppet::Parser::Functions
 
   newfunction(:validate_array, :doc => <<-'ENDHEREDOC') do |args|
-    Validate all passed values are a Array data structure
-    value does not pass the check.
+    Validate that all passed values are array data structures. Abort catalog
+    compilation if any value fails this check.
 
-    Example:
-
-    These values validate
+    The following values will pass:
 
         $my_array = [ 'one', 'two' ]
         validate_array($my_array)
 
-    These values do NOT validate
+    The following values will fail, causing compilation to abort:
 
         validate_array(true)
         validate_array('some_string')
