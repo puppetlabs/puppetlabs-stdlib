@@ -7,6 +7,7 @@ p dir
 ARGV.clear
 
 require 'puppet'
+require 'facter'
 require 'mocha'
 gem 'rspec', '>=2.0.0'
 require 'rspec/expectations'
