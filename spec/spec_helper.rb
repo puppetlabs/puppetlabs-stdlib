@@ -27,6 +27,32 @@ require 'puppet_spec/matchers'
 require 'monkey_patches/alias_should_to_must'
 require 'monkey_patches/publicize_methods'
 
+# JJM Hack to make the stdlib tests run in Puppet 2.6 (See puppet commit cf183534)
+if not Puppet.constants.include? "Test" then
+  module Puppet::Test
+    class LogCollector
+      def initialize(logs)
+        @logs = logs
+      end
+
+      def <<(value)
+        @logs << value
+      end
+    end
+  end
+  Puppet::Util::Log.newdesttype :log_collector do
+    match "Puppet::Test::LogCollector"
+
+    def initialize(messages)
+      @messages = messages
+    end
+
+    def handle(msg)
+      @messages << msg
+    end
+  end
+end
+
 Pathname.glob("#{dir}/shared_behaviours/**/*.rb") do |behaviour|
   require behaviour.relative_path_from(Pathname.new(dir))
 end
@@ -66,7 +92,7 @@ RSpec.configure do |config|
     Puppet.settings.clear
     Puppet::Node::Environment.clear
     Puppet::Util::Storage.clear
-    Puppet::Util::ExecutionStub.reset
+    Puppet::Util::ExecutionStub.reset if Puppet::Util.constants.include? "ExecutionStub"
 
     PuppetSpec::Files.cleanup
 
