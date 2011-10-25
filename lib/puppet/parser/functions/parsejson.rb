@@ -15,11 +15,9 @@ structure.
     end
 
     json = arguments[0]
-    
-    require 'json'
 
-    JSON.load(json)
-
+    # PSON is natively available in puppet
+    PSON.load(json)
   end
 end
 
