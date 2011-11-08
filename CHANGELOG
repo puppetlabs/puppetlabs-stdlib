@@ -1,3 +1,9 @@
+2011-11-08 Puppet Labs <support@puppetlabs.com> - 2.2.0
+* #10285 - Refactor json to use pson instead.
+* Maint  - Add watchr autotest script
+* Maint  - Make rspec tests work with Puppet 2.6.4
+* #9859  - Add root_home fact and tests
+
 2011-08-18 Puppet Labs <support@puppetlabs.com> - 2.1.1
 * Change facts.d paths to match Facter 2.0 paths.
 * /etc/facter/facts.d
