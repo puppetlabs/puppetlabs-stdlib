@@ -14,8 +14,10 @@
    * If there are only small minor changes, the patch version may be bumped.
  * Update the CHANGELOG
  * Update the Modulefile
- * Commit these changes with a message along the lines of "Update CHANGELOG and Modulefile for release"
- * Create an annotated tag with git tag -a X.Y.Z -m 'version X.Y.Z'
+ * Commit these changes with a message along the lines of "Update CHANGELOG and
+   Modulefile for release"
+ * Create an annotated tag with git tag -a vX.Y.Z -m 'version X.Y.Z' (NOTE the
+   leading v as per semver.org)
  * Push the tag with git push origin --tags
  * Build a new package with puppet-module or the rake build task if it exists
  * Publish the new package to the forge
