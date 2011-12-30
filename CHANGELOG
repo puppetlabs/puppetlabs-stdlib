@@ -1,3 +1,6 @@
+2011-12-30 Puppet Labs <support@puppetlabs.com> - 2.1.2
+* Documentation only release for PE 2.0.x
+
 2011-11-08 Puppet Labs <support@puppetlabs.com> - 2.2.0
 * #10285 - Refactor json to use pson instead.
 * Maint  - Add watchr autotest script
