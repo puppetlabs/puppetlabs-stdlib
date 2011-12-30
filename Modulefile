@@ -1,5 +1,5 @@
 name    'puppetlabs-stdlib'
-version '2.1.1'
+version '2.1.2'
 source 'git://github.com/puppetlabs/puppetlabs-stdlib'
 author 'puppetlabs'
 license 'Apache 2.0'
