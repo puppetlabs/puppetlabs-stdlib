@@ -1,12 +1,12 @@
 module Puppet::Parser::Functions
 
   newfunction(:loadyaml, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
-    Load a YAML file and return the data if it contains an Array, String, or Hash
-    as a Puppet variable.
+    Load a YAML file containing an array, string, or hash, and return the data
+    in the corresponding native data type.
 
     For example:
 
-      $myhash = loadyaml('/etc/puppet/data/myhash.yaml')
+        $myhash = loadyaml('/etc/puppet/data/myhash.yaml')
     ENDHEREDOC
 
     unless args.length == 1

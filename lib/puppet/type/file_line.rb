@@ -1,14 +1,25 @@
 Puppet::Type.newtype(:file_line) do
 
   desc <<-EOT
-  Type that can append whole a line to a file if it does not already contain it.
+    Ensures that a given line is contained within a file.  The implementation
+    matches the full line, including whitespace at the beginning and end.  If
+    the line is not contained in the given file, Puppet will add the line to
+    ensure the desired state.  Multiple resources may be declared to manage
+    multiple lines in the same file.
 
-  Example:
+    Example:
 
-  file_line { 'sudo_rule':
-    path => '/etc/sudoers',
-    line => '%admin ALL=(ALL) ALL',
-  }
+        file_line { 'sudo_rule':
+          path => '/etc/sudoers',
+          line => '%sudo ALL=(ALL) ALL',
+        }
+        file_line { 'sudo_rule_nopw':
+          path => '/etc/sudoers',
+          line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
+        }
+
+    In this example, Puppet will ensure both of the specified lines are
+    contained in the file /etc/sudoers.
 
   EOT
 
