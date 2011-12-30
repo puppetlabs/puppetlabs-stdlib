@@ -1,24 +1,20 @@
 module Puppet::Parser::Functions
 
   newfunction(:validate_hash, :doc => <<-'ENDHEREDOC') do |args|
-    Validate all passed values are a Hash data structure
-    value does not pass the check.
+    Validate that all passed values are hash data structures. Abort catalog
+    compilation if any value fails this check.
 
-    Example:
-
-    These values validate
+    The following values will pass:
 
         $my_hash = { 'one' => 'two' }
         validate_hash($my_hash)
 
-    These values do NOT validate
+    The following values will fail, causing compilation to abort:
 
         validate_hash(true)
         validate_hash('some_string')
         $undefined = undef
         validate_hash($undefined)
-
-    * Jeff McCune <jeff@puppetlabs.com>
 
     ENDHEREDOC
 
