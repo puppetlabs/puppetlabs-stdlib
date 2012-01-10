@@ -20,7 +20,7 @@ describe "the time function" do
 
   it "should return a number" do
     result = @scope.function_time([])
-    result.class.should(eq(Fixnum))
+    result.should be_an(Integer)
   end
 
   it "should be higher then when I wrote this test" do
