@@ -20,7 +20,7 @@ describe "the keys function" do
 
   it "should return an array of keys when given a hash" do
     result = @scope.function_keys([{'a'=>1, 'b' => 2}])
-    result.should(eq(['a','b']))
+    result.sort.should(eq(['a','b']))
   end
 
 end
