@@ -20,7 +20,7 @@ describe "the values function" do
 
   it "should return values from a hash" do
     result = @scope.function_values([{'a'=>'1','b'=>'2','c'=>'3'}])
-    result.should(eq(['1','2','3']))
+    result.sort.should(eq(['1','2','3']))
   end
 
   it "should return values from a hash" do
