@@ -16,6 +16,21 @@ describe "the is_domain_name function" do
     lambda { scope.function_is_domain_name([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should return true if a valid short domain name" do
+    result = scope.function_is_domain_name(["x.com"])
+    result.should(be_true)
+  end
+
+  it "should return true if the domain is ." do
+    result = scope.function_is_domain_name(["."])
+    result.should(be_true)
+  end
+
+  it "should return true if the domain is x.com." do
+    result = scope.function_is_domain_name(["x.com."])
+    result.should(be_true)
+  end
+
   it "should return true if a valid domain name" do
     result = scope.function_is_domain_name(["foo.bar.com"])
     result.should(be_true)
