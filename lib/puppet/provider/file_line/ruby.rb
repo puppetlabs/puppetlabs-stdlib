@@ -1,9 +1,7 @@
 Puppet::Type.type(:file_line).provide(:ruby) do
 
   def exists?
-    File.readlines(resource[:path]).find do |line|
-      line.chomp == resource[:line].chomp
-    end
+    File.read(resource[:path]).split($/).index(resource[:line].chomp)
   end
 
   def create
