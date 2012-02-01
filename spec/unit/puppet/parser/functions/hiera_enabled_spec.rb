@@ -1,9 +1,4 @@
-require 'puppet'
-require 'mocha'
-
-RSpec.configure do |config|
- config.mock_with :mocha
-end
+require 'spec_helper'
 
 describe Puppet::Parser::Functions.function(:hiera_enabled) do
   before :each do

@@ -27,6 +27,10 @@ require 'puppet_spec/matchers'
 require 'monkey_patches/alias_should_to_must'
 require 'monkey_patches/publicize_methods'
 
+RSpec.configure do |config|
+  config.mock_with :mocha
+end
+
 # JJM Hack to make the stdlib tests run in Puppet 2.6 (See puppet commit cf183534)
 if not Puppet.constants.include? "Test" then
   module Puppet::Test
