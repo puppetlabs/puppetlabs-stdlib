@@ -1,4 +1,5 @@
-# A Facter plugin that loads facts from /etc/facts.d.
+# A Facter plugin that loads facts from /etc/facter/facts.d
+# and /etc/puppetlabs/facter/facts.d.
 #
 # Facts can be in the form of JSON, YAML or Text files
 # and any executable that returns key=value pairs.
