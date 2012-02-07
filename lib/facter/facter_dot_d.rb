@@ -54,8 +54,8 @@ class Facter::Util::DotD
         begin
             require 'json'
         rescue LoadError
-            require 'rubygems'
-            retry
+            retry if require 'rubygems'
+            raise
         end
 
         JSON.load(File.read(file)).each_pair do |f, v|
