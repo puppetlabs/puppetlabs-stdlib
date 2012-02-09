@@ -23,12 +23,7 @@ Puppet::Type.newtype(:file_line) do
 
   EOT
 
-  ensurable do
-    defaultto :present
-    newvalue(:present) do
-      provider.create
-    end
-  end
+  ensurable
 
   newparam(:name, :namevar => true) do
     desc 'arbitrary name used as identity'
