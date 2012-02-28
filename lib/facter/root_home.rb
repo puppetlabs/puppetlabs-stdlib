@@ -15,3 +15,10 @@ end
 Facter.add(:root_home) do
   setcode { Facter::Util::RootHome.get_root_home }
 end
+
+Facter.add(:root_home) do
+  confine :kernel => :windows
+  setcode do
+    ENV['ProgramData'] or ENV['LOCALAPPDATA'] or ENV['TEMP']
+  end
+end
