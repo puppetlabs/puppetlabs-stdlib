@@ -14,6 +14,18 @@
 class Facter::Util::DotD
     require 'yaml'
 
+    # Class helper methods
+    class << self
+      def puppet_confdir
+        begin
+          Module.const_get("Puppet")
+          Puppet[:confdir]
+        rescue NameError
+          nil
+        end
+      end
+    end
+
     def initialize(dir="/etc/facts.d", cache_file="/tmp/facts_cache.yml")
         @dir = dir
         @cache_file = cache_file
@@ -182,3 +194,10 @@ end
 
 Facter::Util::DotD.new("/etc/facter/facts.d").create
 Facter::Util::DotD.new("/etc/puppetlabs/facter/facts.d").create
+
+# Load Facts from Puppet[:confdir]/facts.d The Windows MSI installer will write
+# facts.d facts to Puppet[:confdir]/facts.d/something.txt using the IniFile XML
+# Element
+if confdir = Facter::Util::DotD.puppet_confdir then
+  Facter::Util::DotD.new(File.join(confdir, "facts.d")).create
+end
