@@ -11,6 +11,9 @@
 # The cache is stored in /tmp/facts_cache.yaml as a mode
 # 600 file and will have the end result of not calling your
 # fact scripts more often than is needed
+
+require 'facter/util/puppet_settings'
+
 class Facter::Util::DotD
     require 'yaml'
 
@@ -182,3 +185,8 @@ end
 
 Facter::Util::DotD.new("/etc/facter/facts.d").create
 Facter::Util::DotD.new("/etc/puppetlabs/facter/facts.d").create
+
+# The Windows installer creates TXT facts in <confdir>/facts.d/
+Facter::Util::PuppetSettings.with_puppet do
+  Facter::Util::DotD.new(File.join(Puppet[:confdir], "facts.d")).create
+end
