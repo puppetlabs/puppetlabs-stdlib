@@ -30,6 +30,8 @@ module Puppet::Parser::Functions
 
     msg = args[2] || "validate_re(): #{args[0].inspect} does not match #{args[1].inspect}"
 
+    # We're using a flattened array here because we can't call String#any? in
+    # Ruby 1.9 like we can in Ruby 1.8
     raise Puppet::ParseError, (msg) unless [args[1]].flatten.any? do |re_str|
       args[0] =~ Regexp.compile(re_str)
     end
