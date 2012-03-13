@@ -1,3 +1,7 @@
+2012-03-12 Puppet Labs <support@puppetlabs.com> - 2.3.0
+* Add a large number of new Puppet functions
+* Backwards compatibility preserved with 2.2.x
+
 2011-12-30 Puppet Labs <support@puppetlabs.com> - 2.2.1
 * Documentation only release for the Forge
 
