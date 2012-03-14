@@ -12,8 +12,6 @@
 # 600 file and will have the end result of not calling your
 # fact scripts more often than is needed
 
-require 'facter/util/puppet_settings'
-
 class Facter::Util::DotD
     require 'yaml'
 
