@@ -9,7 +9,7 @@ Returns true if the client has the requested IP address on some interface.
   ) do |args|
 
     raise(Puppet::ParseError, "has_ip_address(): Wrong number of arguments " +
-          "given (#{args.size} for 1)") if args.size < 1
+          "given (#{args.size} for 1)") if args.size != 1
 
     query_addr = args[0]
     result = false
