@@ -1,3 +1,7 @@
+2012-03-29 Puppet Labs <support@puppetlabs.com> - 2.1.3
+* (#11607) Add Rakefile to enable spec testing
+* (#12377) Avoid infinite loop when retrying require json
+
 2011-12-30 Puppet Labs <support@puppetlabs.com> - 2.1.2
 * Documentation only release for PE 2.0.x
 
