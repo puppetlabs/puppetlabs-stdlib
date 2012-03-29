@@ -65,22 +65,14 @@ RSpec.configure do |config|
   config.before :each do
     GC.disable
 
-    # these globals are set by Application
-    $puppet_application_mode = nil
-    $puppet_application_name = nil
 
     # REVISIT: I think this conceals other bad tests, but I don't have time to
     # fully diagnose those right now.  When you read this, please come tell me
     # I suck for letting this float. --daniel 2011-04-21
     Signal.stubs(:trap)
 
-    # Set the confdir and vardir to gibberish so that tests
-    # have to be correctly mocked.
-    Puppet[:confdir] = "/dev/null"
-    Puppet[:vardir] = "/dev/null"
+    Puppet.settings.send(:initialize_everything_for_tests)
 
-    # Avoid opening ports to the outside world
-    Puppet.settings[:bindaddress] = "127.0.0.1"
 
     @logs = []
     Puppet::Util::Log.newdestination(Puppet::Test::LogCollector.new(@logs))
@@ -89,7 +81,7 @@ RSpec.configure do |config|
   end
 
   config.after :each do
-    Puppet.settings.clear
+    Puppet.settings.send(:clear_everything_for_tests)
     Puppet::Node::Environment.clear
     Puppet::Util::Storage.clear
     Puppet::Util::ExecutionStub.reset if Puppet::Util.constants.include? "ExecutionStub"
