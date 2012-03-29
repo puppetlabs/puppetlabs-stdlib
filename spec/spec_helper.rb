@@ -71,7 +71,12 @@ RSpec.configure do |config|
     # I suck for letting this float. --daniel 2011-04-21
     Signal.stubs(:trap)
 
-    Puppet.settings.send(:initialize_everything_for_tests)
+    # We're using send because this is a private method to communicate it
+    # should only be used for tests.  We're testing if it's defined to work
+    # with Puppet 2.6.x which does not have the method.
+    if Puppet.settings.private_methods.include? "initialize_everything_for_tests"
+      Puppet.settings.send(:initialize_everything_for_tests)
+    end
 
 
     @logs = []
@@ -81,7 +86,12 @@ RSpec.configure do |config|
   end
 
   config.after :each do
-    Puppet.settings.send(:clear_everything_for_tests)
+    # We're using send because this is a private method to communicate it
+    # should only be used for tests.  We're testing if it's defined to work
+    # with Puppet 2.6.x which does not have the method at all.
+    if Puppet.settings.private_methods.include? "clear_everything_for_tests"
+      Puppet.settings.send(:clear_everything_for_tests)
+    end
     Puppet::Node::Environment.clear
     Puppet::Util::Storage.clear
     Puppet::Util::ExecutionStub.reset if Puppet::Util.constants.include? "ExecutionStub"
