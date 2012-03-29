@@ -15,9 +15,18 @@ an array.
 
 Will return: [0,1,2,3,4,5,6,7,8,9]
 
+    range("00", "09")
+
+Will return: [0,1,2,3,4,5,6,7,8,9] (Zero padded strings are converted to
+integers automatically)
+
     range("a", "c")
 
 Will return: ["a","b","c"]
+
+    range("host01", "host10")
+
+Will return: ["host01", "host02", ..., "host09", "host10"]
     EOS
   ) do |arguments|
 
