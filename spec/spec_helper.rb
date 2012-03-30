@@ -70,11 +70,8 @@ RSpec.configure do |config|
     Signal.stubs(:trap)
 
     # We're using send because this is a private method to communicate it
-    # should only be used for tests.  We're testing if it's defined to work
-    # with Puppet 2.6.x which does not have the method.
-    if Puppet.settings.private_methods.include? "initialize_everything_for_tests"
-      Puppet.settings.send(:initialize_everything_for_tests)
-    end
+    # should only be used for tests.  Puppet 2.6.x does not have the method.
+    Puppet.settings.send(:initialize_everything_for_tests) unless Puppet.version =~ /^2\.6/
 
 
     @logs = []
@@ -85,11 +82,8 @@ RSpec.configure do |config|
 
   config.after :each do
     # We're using send because this is a private method to communicate it
-    # should only be used for tests.  We're testing if it's defined to work
-    # with Puppet 2.6.x which does not have the method at all.
-    if Puppet.settings.private_methods.include? "clear_everything_for_tests"
-      Puppet.settings.send(:clear_everything_for_tests)
-    end
+    # should only be used for tests.  Puppet 2.6.x does not have the method.
+    Puppet.settings.send(:clear_everything_for_tests) unless Puppet.version =~ /^2\.6/
     Puppet::Node::Environment.clear
     Puppet::Util::Storage.clear
     Puppet::Util::ExecutionStub.reset if Puppet::Util.constants.include? "ExecutionStub"
