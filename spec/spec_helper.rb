@@ -73,7 +73,7 @@ RSpec.configure do |config|
 
     # We're using send because this is a private method to communicate it
     # should only be used for tests.  Puppet 2.6.x does not have the method.
-    Puppet.settings.send(:initialize_everything_for_tests) unless Puppet.version =~ /^2\.6/
+    Puppet.settings.send(:initialize_everything_for_tests) unless Puppet.version =~ /^(2\.6|2\.7\.[0-9][^3-9])/
 
 
     @logs = []
@@ -85,7 +85,7 @@ RSpec.configure do |config|
   config.after :each do
     # We're using send because this is a private method to communicate it
     # should only be used for tests.  Puppet 2.6.x does not have the method.
-    Puppet.settings.send(:clear_everything_for_tests) unless Puppet.version =~ /^2\.6/
+    Puppet.settings.send(:clear_everything_for_tests) unless Puppet.version =~ /^(2\.6|2\.7\.[0-9][^3-9])/
     Puppet::Node::Environment.clear
     Puppet::Util::Storage.clear
     Puppet::Util::ExecutionStub.reset if Puppet::Util.constants.include? "ExecutionStub"
