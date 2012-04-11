@@ -22,7 +22,13 @@ has_interface_with("lo")                        => true
     raise(Puppet::ParseError, "has_interface_with(): Wrong number of arguments " +
           "given (#{args.size} for 1 or 2)") if args.size < 1 or args.size > 2
 
-    interfaces = lookupvar('interfaces').split(',')
+    interfaces = lookupvar('interfaces')
+
+    # Would it just be better to return false?
+    raise(Puppet::ParseError, "has_interface_with(): failed to lookup " +
+          "'interfaces' fact") if (interfaces == :undefined)
+
+    interfaces = interfaces.split(',')
 
     if args.size == 1
       return interfaces.member?(args[0])
