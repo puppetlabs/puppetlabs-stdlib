@@ -7,6 +7,12 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def create
+    unless File.readlines(resource[:path])[-1] =~ /\n$/
+      File.open(resource[:path], 'a') do |fh|
+	fh.puts '\n'
+      end
+    end
+
     File.open(resource[:path], 'a') do |fh|
       fh.puts resource[:line]
     end
