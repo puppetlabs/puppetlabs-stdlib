@@ -24,9 +24,8 @@ has_interface_with("lo")                        => true
 
     interfaces = lookupvar('interfaces')
 
-    # Would it just be better to return false?
-    raise(Puppet::ParseError, "has_interface_with(): failed to lookup " +
-          "'interfaces' fact") if (interfaces == :undefined)
+    # If we do not have any interfaces, then there are no requested attributes
+    return false if (interfaces == :undefined)
 
     interfaces = interfaces.split(',')
 
