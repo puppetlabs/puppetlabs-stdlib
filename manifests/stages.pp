@@ -33,6 +33,7 @@
 class stdlib::stages {
 
   stage { 'setup':  before => Stage['main'] }
+
   stage { 'runtime': require => Stage['main'] }
   -> stage { 'setup_infra': }
   -> stage { 'deploy_infra': }
