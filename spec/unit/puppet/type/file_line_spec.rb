@@ -21,4 +21,7 @@ describe Puppet::Type.type(:file_line) do
   it 'should require that a file is specified' do
     expect { Puppet::Type.type(:file_line).new(:name => 'foo', :line => 'path') }.should raise_error(Puppet::Error, /Both line and path are required attributes/)
   end
+  it 'should default to ensure => present' do
+    file_line[:ensure].should eq :present
+  end
 end
