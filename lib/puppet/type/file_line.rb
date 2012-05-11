@@ -23,18 +23,20 @@ Puppet::Type.newtype(:file_line) do
 
   EOT
 
-  ensurable
+  ensurable do
+    defaultto :present
+  end
 
   newparam(:name, :namevar => true) do
-    desc 'arbitrary name used as identity'
+    desc 'An arbitrary name used as the identity of the resource.'
   end
 
   newparam(:line) do
-    desc 'The line to be appended to the path.'
+    desc 'The line to be appended to the file located by the path parameter.'
   end
 
   newparam(:path) do
-    desc 'File to possibly append a line to.'
+    desc 'The file Puppet will ensure contains the line specified by the line parameter.'
     validate do |value|
       unless (Puppet.features.posix? and value =~ /^\//) or (Puppet.features.microsoft_windows? and (value =~ /^.:\// or value =~ /^\/\/[^\/]+\/[^\/]+/))
         raise(Puppet::Error, "File paths must be fully qualified, not '#{value}'")
