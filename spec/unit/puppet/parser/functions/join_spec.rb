@@ -23,4 +23,8 @@ describe "the join function" do
     result.should(eq("a:b:c"))
   end
 
+  it "should pass a string unmodified" do
+    result = @scope.function_join(["abc"])
+    result.should(eq("abc"))
+  end
 end

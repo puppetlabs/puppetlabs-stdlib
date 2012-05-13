@@ -21,6 +21,10 @@ Would result in: "a,b,c"
     array = arguments[0]
 
     unless array.is_a?(Array)
+      if array.is_a?(String)
+        # Ok, fine. return the string unmodified.
+        return array
+      end
       raise(Puppet::ParseError, 'join(): Requires array to work with')
     end
 
