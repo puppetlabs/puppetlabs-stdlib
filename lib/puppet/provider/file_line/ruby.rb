@@ -7,8 +7,9 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def create
+    lbr = ends_with_linebreak? ? "\n" : ''
     File.open(resource[:path], 'a') do |fh|
-      fh.puts resource[:line]
+       fh.puts "#{lbr}#{resource[:line]}"
     end
   end
 
@@ -22,6 +23,10 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   private
   def lines
     @lines ||= File.readlines(resource[:path])
+  end
+
+  def ends_with_linebreak?
+    (File.size(resource[:path]) > 0) && File.read(resource[:path],1,File.size(resource[:path])-1) != "\n"
   end
 
 end
