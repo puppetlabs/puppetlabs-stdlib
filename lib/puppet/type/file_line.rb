@@ -24,6 +24,7 @@ Puppet::Type.newtype(:file_line) do
   EOT
 
   ensurable do
+    defaultvalues
     defaultto :present
   end
 
