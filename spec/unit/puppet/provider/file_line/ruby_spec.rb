@@ -25,8 +25,16 @@ describe provider_class do
       @provider.exists?.should be_nil
     end
     it 'should append to an existing file when creating' do
+      FileUtils.touch(@tmpfile) # *existing* file
       @provider.create
       File.read(@tmpfile).chomp.should == 'foo'
+    end
+    it 'should append a linebreak to an existing file when it does not end with one' do
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write('foo1')
+      end
+      @provider.create
+      File.read(@tmpfile).chomp.should == "foo1\nfoo"
     end
   end
 
