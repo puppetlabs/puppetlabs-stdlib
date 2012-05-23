@@ -50,6 +50,11 @@ Puppet::Type.newtype(:file_line) do
     end
   end
 
+  # Autorequire the file resource if it's being managed
+  autorequire(:file) do
+    self[:path]
+  end
+
   validate do
     unless self[:line] and self[:path]
       raise(Puppet::Error, "Both line and path are required attributes")
