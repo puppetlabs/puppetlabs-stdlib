@@ -1,3 +1,9 @@
+2012-05-22 - Peter Meier <peter.meier@immerda.ch> - 2.3.3
+ * fix regression in #11017 properly (f0a62c7)
+
+2012-05-10 - Jeff McCune <jeff@puppetlabs.com> - 2.3.3
+ * Fix spec tests using the new spec_helper (7d34333)
+
 2012-05-10 - Puppet Labs <support@puppetlabs.com> - 2.3.2
  * Make file_line default to ensure => present (1373e70)
  * Memoize file_line spec instance variables (20aacc5)
