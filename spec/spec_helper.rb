@@ -1,4 +1,4 @@
-require 'puppet_module_spec_helper/puppet_spec_helper'
+require 'puppetlabs_spec_helper/puppet_spec_helper'
 
 RSpec.configure do |config|
 
