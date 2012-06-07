@@ -7,6 +7,30 @@ describe Puppet::Type.type(:file_line) do
   it 'should accept a line and path' do
     file_line[:line] = 'my_line'
     file_line[:line].should == 'my_line'
+    file_line[:path] = '/my/path'
+    file_line[:path].should == '/my/path'
+  end
+  it 'should accept a match regex' do
+    file_line[:match] = '^foo.*$'
+    file_line[:match].should == '^foo.*$'
+  end
+  it 'should not accept a match regex that does not match the specified line' do
+    expect {
+      Puppet::Type.type(:file_line).new(
+          :name   => 'foo',
+          :path   => '/my/path',
+          :line   => 'foo=bar',
+          :match  => '^bar=blah$'
+    )}.to raise_error(Puppet::Error, /the value must be a regex that matches/)
+  end
+  it 'should accept a match regex that does match the specified line' do
+    expect {
+      Puppet::Type.type(:file_line).new(
+          :name   => 'foo',
+          :path   => '/my/path',
+          :line   => 'foo=bar',
+          :match  => '^\s*foo=.*$'
+      )}.not_to raise_error
   end
   it 'should accept posix filenames' do
     file_line[:path] = '/tmp/path'
