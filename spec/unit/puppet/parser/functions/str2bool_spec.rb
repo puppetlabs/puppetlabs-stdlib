@@ -18,7 +18,7 @@ describe "the str2bool function" do
     lambda { @scope.function_str2bool([]) }.should( raise_error(Puppet::ParseError))
   end
 
-  true_values = [ 'true', 't', 'yes', 'y', '1' ]
+  true_values = [ 'true', 't', 'yes', 'y', '1', 'anything' ]
 
   true_values.each do |v|
     it "should convert string '#{v}' to true" do
