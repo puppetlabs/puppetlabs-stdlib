@@ -27,11 +27,9 @@ like: 0, f, n, false, no to 'false'.
       # We yield false in this case.
       #
       when /^$/, '' then false # Empty string will be false ...
-      when /^(1|t|y|true|yes)$/  then true
       when /^(0|f|n|false|no)$/  then false
       when /^(undef|undefined)$/ then false # This is not likely to happen ...
-      else
-        raise(Puppet::ParseError, 'str2bool(): Unknown type of boolean given')
+      else true
     end
 
     return result
