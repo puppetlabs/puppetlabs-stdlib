@@ -3,7 +3,7 @@ require 'puppet'
 require 'fileutils'
 require 'spec_helper'
 describe Puppet::Parser::Functions.function(:get_module_path) do
-  include PuppetSpec::Files
+  include PuppetlabsSpec::Files
 
   def get_scope(environment = 'production')
     scope = Puppet::Parser::Scope.new
@@ -30,7 +30,7 @@ describe Puppet::Parser::Functions.function(:get_module_path) do
       get_scope.function_get_module_path(['foo']).should == foo_path
     end
     it 'should be able to find module paths from the environment' do
-      conf_file = tmpfile('conffile')
+      conf_file = tmpfilename('conffile')
       File.open(conf_file, 'w') do |fh|
         fh.write("[dansenvironment]\nmodulepath = #{modulepath}")
       end
