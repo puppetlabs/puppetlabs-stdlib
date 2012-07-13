@@ -94,6 +94,7 @@ class Facter::Util::DotD
                 cache_save!
             end
         else
+            Puppet.deprecation_warning("TTL for external facts is being removed. See http://links.puppetlabs.com/factercaching for more information.")
             Facter.debug("Using cached data for #{file}")
         end
 
