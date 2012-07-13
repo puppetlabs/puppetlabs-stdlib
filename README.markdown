@@ -80,3 +80,10 @@ automatically.  This is a direct copy of R.I. Pienaar's custom facter fact
 located at:
 [https://github.com/ripienaar/facter-facts/tree/master/facts-dot-d](https://github.com/ripienaar/facter-facts/tree/master/facts-dot-d)
 
+stdlib releases beyond 2.x will not include external fact support using
+facts-dot-d.  Instead, these versions of stdlib require Facter 2.0 which
+includes external fact support in the main Facter codebase.
+
+Please see [2157](http://projects.puppetlabs.com/issues/2157) for more
+information.
+
