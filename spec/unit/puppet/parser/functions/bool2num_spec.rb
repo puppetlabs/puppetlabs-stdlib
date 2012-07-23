@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe "the bool2num function" do
-  let(:scope) { PuppetlabsSpec::PuppetSeams.parser_scope }
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
     Puppet::Parser::Functions.function("bool2num").should == "function_bool2num"

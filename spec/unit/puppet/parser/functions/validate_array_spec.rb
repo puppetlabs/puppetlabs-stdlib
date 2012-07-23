@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Puppet::Parser::Functions.function(:validate_array) do
-  let(:scope) { PuppetlabsSpec::PuppetSeams.parser_scope }
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
   describe 'when calling validate_array from puppet' do
 
     %w{ true false }.each do |the_string|

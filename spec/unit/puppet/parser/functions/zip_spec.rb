@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe "the zip function" do
-  let(:scope) { PuppetlabsSpec::PuppetSeams.parser_scope }
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should raise a ParseError if there is less than 1 arguments" do
     lambda { scope.function_zip([]) }.should( raise_error(Puppet::ParseError))
