@@ -1,14 +1,8 @@
-#!/usr/bin/env rspec
+#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 
 describe "the range function" do
-  before :all do
-    Puppet::Parser::Functions.autoloader.loadall
-  end
-
-  let :scope do
-    Puppet::Parser::Scope.new
-  end
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
     Puppet::Parser::Functions.function("range").should == "function_range"
