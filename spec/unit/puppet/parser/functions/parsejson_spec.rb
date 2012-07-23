@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe "the parsejson function" do
-  let(:scope) { PuppetlabsSpec::PuppetSeams.parser_scope }
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
     Puppet::Parser::Functions.function("parsejson").should == "function_parsejson"

@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe Puppet::Parser::Functions.function(:getvar) do
-  let(:scope) { PuppetlabsSpec::PuppetSeams.parser_scope }
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
   describe 'when calling getvar from puppet' do
 
     it "should not compile when no arguments are passed" do
