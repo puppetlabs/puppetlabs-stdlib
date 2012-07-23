@@ -1,33 +1,18 @@
-require 'puppet'
-require 'mocha'
-describe Puppet::Parser::Functions.function(:merge) do
+#! /usr/bin/env ruby -S rspec
 
-  # Pulled from Dan's create_resources function
-  # TODO - these let statements should be moved somewhere
-  # where they can be resued
-  let(:compiler) {
-    topscope = Puppet::Parser::Scope.new
-    # This is necessary so we don't try to use the compiler to discover our parent.
-    topscope.parent = nil
-    my_scope = Puppet::Parser::Scope.new
-    my_scope.compiler = Puppet::Parser::Compiler.new(Puppet::Node.new("floppy", :environment => 'production'))
-    my_scope.parent = topscope
-    compiler = my_scope.compiler
-  }
-  let(:scope) {
-    scope = Puppet::Parser::Scope.new
-    scope.stubs(:environment).returns(Puppet::Node::Environment.new('production'))
-    scope
-  }
+require 'spec_helper'
+
+describe Puppet::Parser::Functions.function(:merge) do
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   describe 'when calling merge from puppet' do
     it "should not compile when no arguments are passed" do
       Puppet[:code] = 'merge()'
-      expect { compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
+      expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
     end
     it "should not compile when 1 argument is passed" do
       Puppet[:code] = "$my_hash={'one' => 1}\nmerge($my_hash)"
-      expect { compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
+      expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
     end
   end
   describe 'when calling merge on the scope instance' do
@@ -48,7 +33,5 @@ describe Puppet::Parser::Functions.function(:merge) do
     it 'should accept empty hashes' do
       scope.function_merge([{},{},{}]).should == {}
     end
-
   end
-
 end
