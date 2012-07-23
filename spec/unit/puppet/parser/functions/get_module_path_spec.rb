@@ -3,6 +3,12 @@ require 'spec_helper'
 
 describe Puppet::Parser::Functions.function(:get_module_path) do
   Internals = PuppetlabsSpec::PuppetInternals
+  class StubModule
+    attr_reader :path
+    def initialize(path)
+      @path = path
+    end
+  end
 
   def scope(environment = "production")
     Internals.scope(:compiler => Internals.compiler(:node => Internals.node(:environment => environment)))
@@ -17,11 +23,7 @@ describe Puppet::Parser::Functions.function(:get_module_path) do
   end
   describe 'when locating a module' do
     let(:modulepath) { "/tmp/does_not_exist" }
-    let(:path_of_module_foo) do
-      mod = mock("Puppet::Module")
-      mod.stubs(:path).returns("/tmp/does_not_exist/foo")
-      mod
-    end
+    let(:path_of_module_foo) { StubModule.new("/tmp/does_not_exist/foo") }
 
     before(:each) { Puppet[:modulepath] = modulepath }
 
