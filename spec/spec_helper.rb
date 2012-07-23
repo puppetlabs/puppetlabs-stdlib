@@ -1,12 +1,13 @@
-require 'puppetlabs_spec_helper/puppet_spec_helper'
+dir = File.expand_path(File.dirname(__FILE__))
+$LOAD_PATH.unshift File.join(dir, 'lib')
 
-RSpec.configure do |config|
+# Don't want puppet getting the command line arguments for rake or autotest
+ARGV.clear
 
-  config.before :each do
-    GC.disable
-  end
+require 'puppet'
+require 'facter'
+require 'mocha'
+gem 'rspec', '>=2.0.0'
+require 'rspec/expectations'
 
-  config.after :each do
-    GC.enable
-  end
-end
+require 'puppetlabs_spec_helper/module_spec_helper'
