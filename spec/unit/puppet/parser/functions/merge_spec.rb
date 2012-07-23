@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Puppet::Parser::Functions.function(:merge) do
-  let(:scope) { PuppetlabsSpec::PuppetSeams.parser_scope }
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   describe 'when calling merge from puppet' do
     it "should not compile when no arguments are passed" do

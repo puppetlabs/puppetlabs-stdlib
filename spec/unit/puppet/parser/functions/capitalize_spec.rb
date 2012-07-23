@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe "the capitalize function" do
-  let(:scope) { PuppetlabsSpec::PuppetSeams.parser_scope }
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
     Puppet::Parser::Functions.function("capitalize").should == "function_capitalize"

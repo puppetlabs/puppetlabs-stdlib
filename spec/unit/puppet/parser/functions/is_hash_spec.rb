@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe "the is_hash function" do
-  let(:scope) { PuppetlabsSpec::PuppetSeams.parser_scope }
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
     Puppet::Parser::Functions.function("is_hash").should == "function_is_hash"
