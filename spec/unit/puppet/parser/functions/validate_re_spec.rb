@@ -5,7 +5,9 @@ describe Puppet::Parser::Functions.function(:validate_re) do
 
   # The subject of these examplres is the method itself.
   subject do
-    scope.method :function_validate_re
+    # This makes sure the function is loaded within each test
+    function_name = Puppet::Parser::Functions.function(:validate_re)
+    scope.method(function_name)
   end
 
   context 'Using Puppet::Parser::Scope.new' do
