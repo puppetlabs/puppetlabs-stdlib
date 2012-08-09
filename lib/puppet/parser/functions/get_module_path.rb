@@ -7,7 +7,7 @@ module Puppet::Parser::Functions
       $module_path = get_module_path('stdlib')
   EOT
   ) do |args|
-    raise(Puppet::ParseError, "get_module_name(): Wrong number of arguments, expects one") unless args.size == 1
+    raise(Puppet::ParseError, "get_module_path(): Wrong number of arguments, expects one") unless args.size == 1
     if module_path = Puppet::Module.find(args[0], compiler.environment.to_s)
       module_path.path
     else

@@ -1,12 +1,8 @@
-#!/usr/bin/env rspec
+#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 
 describe "the values function" do
-  before :all do
-    Puppet::Parser::Functions.autoloader.loadall
-  end
-
-  let(:scope) { Puppet::Parser::Scope.new }
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
     Puppet::Parser::Functions.function("values").should == "function_values"

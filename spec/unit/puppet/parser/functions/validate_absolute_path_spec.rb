@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Puppet::Parser::Functions.function(:validate_absolute_path) do
-  before :all do
-    Puppet::Parser::Functions.autoloader.loadall
-  end
+  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
-  # The subject of these examplres is the method itself.
+  # The subject of these examples is the method itself.
   subject do
-    Puppet::Parser::Scope.new.method :function_validate_absolute_path
+    # This makes sure the function is loaded within each test
+    function_name = Puppet::Parser::Functions.function(:validate_absolute_path)
+    scope.method(function_name)
   end
 
   describe "Valid Paths" do
