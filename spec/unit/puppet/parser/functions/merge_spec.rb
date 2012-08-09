@@ -7,12 +7,16 @@ describe Puppet::Parser::Functions.function(:merge) do
 
   describe 'when calling merge from puppet' do
     it "should not compile when no arguments are passed" do
-      Puppet[:code] = 'merge()'
-      expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
+      Puppet[:code] = '$x = merge()'
+      expect {
+        scope.compiler.compile
+      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
     end
     it "should not compile when 1 argument is passed" do
-      Puppet[:code] = "$my_hash={'one' => 1}\nmerge($my_hash)"
-      expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
+      Puppet[:code] = "$my_hash={'one' => 1}\n$x = merge($my_hash)"
+      expect {
+        scope.compiler.compile
+      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
     end
   end
   describe 'when calling merge on the scope instance' do
