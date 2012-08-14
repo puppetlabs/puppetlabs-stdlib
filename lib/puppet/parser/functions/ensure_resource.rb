@@ -26,7 +26,7 @@ ENDOFDOC
   raise(ArgumentError, 'Must specify a title') unless title
   params ||= {}
   if function_defined_with_params(["#{type}[#{title}]", params])
-    Puppet.debug("Resource #{type}[#{title}] does not need to be created b/c it already exists")
+    Puppet.debug("Resource #{type}[#{title}] not created b/c it already exists")
   else
     function_create_resources([type.capitalize, { title => params }])
   end

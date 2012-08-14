@@ -19,7 +19,7 @@ describe 'ensure_resource' do
     end
   end
 
-  describe 'when comparted against a resource with attributes' do
+  describe 'when compared against a resource with attributes' do
     let :pre_condition do
       'user { "dan": ensure => present, shell => "/bin/csh", managehome => false}'
     end
@@ -28,9 +28,13 @@ describe 'ensure_resource' do
       should run.with_params('User', 'dan', {})
       should run.with_params('User', 'dan', '')
       should run.with_params('User', 'dan', {'ensure' => 'present'})
-      should run.with_params('User', 'dan', {'ensure' => 'present', 'managehome' => false})
+      should run.with_params('User', 'dan',
+                             {'ensure' => 'present', 'managehome' => false}
+                            )
       #  test that this fails
-      should run.with_params('User', 'dan', {'ensure' => 'absent', 'managehome' => false}).and_raise_error(Puppet::Error)
+      should run.with_params('User', 'dan',
+                             {'ensure' => 'absent', 'managehome' => false}
+                            ).and_raise_error(Puppet::Error)
     end
   end
 end
