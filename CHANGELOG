@@ -1,3 +1,18 @@
+2012-06-07 - Chris Price <chris@puppetlabs.com> - 2.4.0
+ * Add support for a 'match' parameter to file_line (a06c0d8)
+
+2012-08-07 - Erik Dalén <dalen@spotify.com> - 2.4.0
+ * (#15872) Add to_bytes function (247b69c)
+
+2012-07-19 - Jeff McCune <jeff@puppetlabs.com> - 2.4.0
+ * (Maint) use PuppetlabsSpec::PuppetInternals.scope (master) (deafe88)
+
+2012-07-10 - Hailee Kenney <hailee@puppetlabs.com> - 2.4.0
+ * (#2157) Make facts_dot_d compatible with external facts (5fb0ddc)
+
+2012-03-16 - Steve Traylen <steve.traylen@cern.ch> - 2.4.0
+ * (#13205) Rotate array/string randomley based on fqdn, fqdn_rotate() (fef247b)
+
 2012-05-22 - Peter Meier <peter.meier@immerda.ch> - 2.3.3
  * fix regression in #11017 properly (f0a62c7)
 
