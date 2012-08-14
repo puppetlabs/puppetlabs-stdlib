@@ -14,6 +14,11 @@ resource.
 This example only creates the resource if it does not already exist:
 
     ensure_resource('user, 'dan', {'ensure' => 'present' })
+
+If the resource already exists but does not match the specified parameters,
+this function will attempt to recreate the resource leading to a duplicate
+resource definition error.
+
 ENDOFDOC
 ) do |vals|
   type, title, params = vals
