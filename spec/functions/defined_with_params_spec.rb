@@ -26,6 +26,7 @@ describe 'defined_with_params' do
       should run.with_params('User[dan]', {'ensure' => 'present'}).and_return(true)
       should run.with_params('User[dan]', {'ensure' => 'present', 'managehome' => false}).and_return(true)
       should run.with_params('User[dan]', {'ensure' => 'absent', 'managehome' => false}).and_return(false)
+      should run.with_params('User[dan]', '').and_return(true)
     end
   end
 end
