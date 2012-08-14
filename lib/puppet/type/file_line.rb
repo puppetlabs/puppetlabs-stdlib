@@ -32,6 +32,11 @@ Puppet::Type.newtype(:file_line) do
     desc 'An arbitrary name used as the identity of the resource.'
   end
 
+  newparam(:match) do
+    desc 'An optional regular expression to run against existing lines in the file;\n' +
+        'if a match is found, we replace that line rather than adding a new line.'
+  end
+
   newparam(:line) do
     desc 'The line to be appended to the file located by the path parameter.'
   end
@@ -49,5 +54,12 @@ Puppet::Type.newtype(:file_line) do
     unless self[:line] and self[:path]
       raise(Puppet::Error, "Both line and path are required attributes")
     end
+
+    if (self[:match])
+      unless Regexp.new(self[:match]).match(self[:line])
+        raise(Puppet::Error, "When providing a 'match' parameter, the value must be a regex that matches against the value of your 'line' parameter")
+      end
+    end
+
   end
 end
