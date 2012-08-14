@@ -26,6 +26,7 @@ describe 'ensure_resource' do
     it do
       # these first three should not fail
       should run.with_params('User', 'dan', {})
+      should run.with_params('User', 'dan', '')
       should run.with_params('User', 'dan', {'ensure' => 'present'})
       should run.with_params('User', 'dan', {'ensure' => 'present', 'managehome' => false})
       #  test that this fails

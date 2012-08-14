@@ -20,7 +20,9 @@ ENDOFDOC
 ) do |vals|
   reference, params = vals
   raise(ArgumentError, 'Must specify a reference') unless reference
-  params ||= {}
+  if (! params) || params == ''
+    params = {}
+  end
   ret = false
   if resource = findresource(reference.to_s)
     matches = params.collect do |key, value|
