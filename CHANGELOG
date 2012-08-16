@@ -1,3 +1,16 @@
+2012-08-16 - Jeff McCune <jeff@puppetlabs.com> - 3.0.0
+ * stdlib 3.0 drops support with Puppet 2.6
+ * stdlib 3.0 preserves support with Puppet 2.7
+
+2012-08-07 - Dan Bode <dan@puppetlabs.com> - 3.0.0
+ * Add function ensure_resource and defined_with_params (ba789de)
+
+2012-07-10 - Hailee Kenney <hailee@puppetlabs.com> - 3.0.0
+ * (#2157) Remove facter_dot_d for compatibility with external facts (f92574f)
+
+2012-04-10 - Chris Price <chris@puppetlabs.com> - 3.0.0
+ * (#13693) moving logic from local spec_helper to puppetlabs_spec_helper (85f96df)
+
 2012-06-07 - Chris Price <chris@puppetlabs.com> - 2.4.0
  * Add support for a 'match' parameter to file_line (a06c0d8)
 
