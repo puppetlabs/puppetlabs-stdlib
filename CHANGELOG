@@ -1,3 +1,6 @@
+2012-08-16 - Jeff McCune <jeff@puppetlabs.com> - 3.0.1
+ * Fix accidental removal of facts_dot_d.rb in 3.0.0 release
+
 2012-08-16 - Jeff McCune <jeff@puppetlabs.com> - 3.0.0
  * stdlib 3.0 drops support with Puppet 2.6
  * stdlib 3.0 preserves support with Puppet 2.7
