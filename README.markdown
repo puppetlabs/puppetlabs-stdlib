@@ -14,6 +14,9 @@ This module is officially curated and provided by Puppet Labs.  The modules
 Puppet Labs writes and distributes will make heavy use of this standard
 library.
 
+To report or research a bug with any part of this module, please go to 
+[http://projects.puppetlabs.com/projects/stdlib](http://projects.puppetlabs.com/projects/stdlib)
+
 # Versions #
 
 This module follows semver.org (v1.0.0) versioning guidelines.  The standard
