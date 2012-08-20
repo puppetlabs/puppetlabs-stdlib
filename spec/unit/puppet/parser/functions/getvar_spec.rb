@@ -23,11 +23,13 @@ describe Puppet::Parser::Functions.function(:getvar) do
   describe 'when calling getvar from puppet' do
 
     it "should not compile when no arguments are passed" do
+      pending("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
       Puppet[:code] = '$rval = getvar()'
       get_scope
       expect { @scope.compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
     end
     it "should not compile when too many arguments are passed" do
+      pending("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
       Puppet[:code] = '$rval = getvar("foo::bar", "baz")'
       get_scope
       expect { @scope.compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
