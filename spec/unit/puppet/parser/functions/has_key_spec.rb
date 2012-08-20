@@ -22,15 +22,15 @@ describe Puppet::Parser::Functions.function(:has_key) do
 
   describe 'when calling has_key from puppet' do
     it "should not compile when no arguments are passed" do
-      Puppet[:code] = 'has_key()'
+      Puppet[:code] = '$rval = has_key()'
       expect { compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
     end
     it "should not compile when 1 argument is passed" do
-      Puppet[:code] = "has_key('foo')"
+      Puppet[:code] = "$rval = has_key('foo')"
       expect { compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
     end
     it "should require the first value to be a Hash" do
-      Puppet[:code] = "has_key('foo', 'bar')"
+      Puppet[:code] = "$rval = has_key('foo', 'bar')"
       expect { compiler.compile }.should raise_error(Puppet::ParseError, /expects the first argument to be a hash/)
     end
   end
