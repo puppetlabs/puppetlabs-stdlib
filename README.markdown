@@ -53,7 +53,7 @@ supports Puppet 2.7.
 abs
 ---
 Returns the absolute value of a number, for example -34.56 becomes 
-34.56. Takes a single integer and float value as an argument.
+34.56. Takes a single integer or float value as an argument.
 
 
 - *Type*: rvalue
@@ -1042,7 +1042,7 @@ Converts a string or an array of strings to uppercase.
 
 Will return:
 
-    ASDF
+    ABCD
 
 
 - *Type*: rvalue
