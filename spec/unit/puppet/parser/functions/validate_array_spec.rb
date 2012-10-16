@@ -9,12 +9,12 @@ describe Puppet::Parser::Functions.function(:validate_array) do
     %w{ true false }.each do |the_string|
       it "should not compile when #{the_string} is a string" do
         Puppet[:code] = "validate_array('#{the_string}')"
-        expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not an Array/)
+        expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not an Array/)
       end
 
       it "should not compile when #{the_string} is a bare word" do
         Puppet[:code] = "validate_array(#{the_string})"
-        expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not an Array/)
+        expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not an Array/)
       end
     end
 
@@ -32,7 +32,7 @@ describe Puppet::Parser::Functions.function(:validate_array) do
         $foo = undef
         validate_array($foo)
       ENDofPUPPETcode
-      expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not an Array/)
+      expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not an Array/)
     end
   end
 end

@@ -29,7 +29,7 @@ describe Puppet::Parser::Functions.function(:validate_string) do
 
       it "should not compile when #{the_string} is a bare word" do
         Puppet[:code] = "validate_string(#{the_string})"
-        expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a string/)
+        expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not a string/)
       end
     end
 
