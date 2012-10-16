@@ -11,12 +11,12 @@ describe Puppet::Parser::Functions.function(:validate_hash) do
 
       it "should not compile when #{the_string} is a string" do
         Puppet[:code] = "validate_hash('#{the_string}')"
-        expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a Hash/)
+        expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not a Hash/)
       end
 
       it "should not compile when #{the_string} is a bare word" do
         Puppet[:code] = "validate_hash(#{the_string})"
-        expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a Hash/)
+        expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not a Hash/)
       end
 
     end
@@ -35,7 +35,7 @@ describe Puppet::Parser::Functions.function(:validate_hash) do
         $foo = undef
         validate_hash($foo)
       ENDofPUPPETcode
-      expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a Hash/)
+      expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not a Hash/)
     end
 
   end

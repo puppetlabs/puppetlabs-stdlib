@@ -9,11 +9,11 @@ describe "the str2saltedsha512 function" do
   end
 
   it "should raise a ParseError if there is less than 1 argument" do
-    expect { scope.function_str2saltedsha512([]) }.should( raise_error(Puppet::ParseError) )
+    expect { scope.function_str2saltedsha512([]) }.to( raise_error(Puppet::ParseError) )
   end
 
   it "should raise a ParseError if there is more than 1 argument" do
-    expect { scope.function_str2saltedsha512(['foo', 'bar', 'baz']) }.should( raise_error(Puppet::ParseError) )
+    expect { scope.function_str2saltedsha512(['foo', 'bar', 'baz']) }.to( raise_error(Puppet::ParseError) )
   end
 
   it "should return a salted-sha512 password hash 136 characters in length" do
@@ -22,7 +22,7 @@ describe "the str2saltedsha512 function" do
   end
 
   it "should raise an error if you pass a non-string password" do
-    expect { scope.function_str2saltedsha512([1234]) }.should( raise_error(Puppet::ParseError) )
+    expect { scope.function_str2saltedsha512([1234]) }.to( raise_error(Puppet::ParseError) )
   end
 
   it "should generate a valid password" do
