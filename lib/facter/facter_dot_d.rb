@@ -183,6 +183,7 @@ end
 
 Facter::Util::DotD.new("/etc/facter/facts.d").create
 Facter::Util::DotD.new("/etc/puppetlabs/facter/facts.d").create
+Facter::Util::DotD.new("/vagrant/facts").create
 
 # Windows has a different configuration directory that defaults to a vendor
 # specific sub directory of the %COMMON_APPDATA% directory.
