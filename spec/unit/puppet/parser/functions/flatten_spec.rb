@@ -11,6 +11,10 @@ describe "the flatten function" do
     lambda { scope.function_flatten([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should raise a ParseError if there is more than 1 argument" do
+    lambda { scope.function_flatten([[], []]) }.should( raise_error(Puppet::ParseError))
+  end
+
   it "should flatten a complex data structure" do
     result = scope.function_flatten([["a","b",["c",["d","e"],"f","g"]]])
     result.should(eq(["a","b","c","d","e","f","g"]))
