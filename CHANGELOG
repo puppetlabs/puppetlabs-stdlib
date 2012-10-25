@@ -17,6 +17,9 @@
 2012-04-10 - Chris Price <chris@puppetlabs.com> - 3.0.0
  * (#13693) moving logic from local spec_helper to puppetlabs_spec_helper (85f96df)
 
+2012-10-25 - Jeff McCune <jeff@puppetlabs.com> - 2.5.1
+ * (maint) Fix spec failures resulting from Facter API changes (97f836f)
+
 2012-10-23 - Matthaus Owens <matthaus@puppetlabs.com> - 2.5.0
  * Add PE facts to stdlib (cdf3b05)
 
