@@ -4,7 +4,15 @@ require 'spec_helper'
 
 describe "PE Version specs" do
   before :each do
-    Facter.collection.loader.load(:pe_version)
+    # Explicitly load the pe_version.rb file which contains generated facts
+    # that cannot be automatically loaded.  Puppet 2.x implements
+    # Facter.collection.load while Facter 1.x markes Facter.collection.load as
+    # a private method.
+    if Facter.collection.respond_to? :load
+      Facter.collection.load(:pe_version)
+    else
+      Facter.collection.loader.load(:pe_version)
+    end
   end
 
   context "If PE is installed" do
