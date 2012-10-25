@@ -1,3 +1,18 @@
+2012-08-07 - Dan Bode <dan@puppetlabs.com> - 3.1.0
+ * Add function ensure_resource and defined_with_params (a0cb8cd)
+
+2012-10-23 - Matthaus Owens <matthaus@puppetlabs.com> - 3.1.0
+ * Add PE facts to stdlib (cdf3b05)
+
+2012-08-30 - Paul Tötterman <paul.totterman@iki.fi> - 3.1.0
+ * Fix some logical inconsistencies in README (4169e77)
+
+2012-08-20 - Jeff McCune <jeff@puppetlabs.com> - 3.1.0
+ * Disable tests that fail on 2.6.x due to #15912 (c81496e)
+
+2012-08-20 - Jeff McCune <jeff@puppetlabs.com> - 3.1.0
+ * (Maint) Fix mis-use of rvalue functions as statements (4492913)
+
 2012-08-16 - Jeff McCune <jeff@puppetlabs.com> - 3.0.1
  * Fix accidental removal of facts_dot_d.rb in 3.0.0 release
 
