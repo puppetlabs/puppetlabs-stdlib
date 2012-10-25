@@ -14,30 +14,6 @@
 2012-04-10 - Chris Price <chris@puppetlabs.com> - 3.0.0
  * (#13693) moving logic from local spec_helper to puppetlabs_spec_helper (85f96df)
 
-2012-10-23 - Matthaus Owens <matthaus@puppetlabs.com> - 2.5.0
- * Add PE facts to stdlib (cdf3b05)
-
-2012-08-15 - Dan Bode <dan@puppetlabs.com> - 2.5.0
- * Explicitly load functions used by ensure_resource (9fc3063)
-
-2012-08-13 - Dan Bode <dan@puppetlabs.com> - 2.5.0
- * Add better docs about duplicate resource failures (97d327a)
-
-2012-08-13 - Dan Bode <dan@puppetlabs.com> - 2.5.0
- * Handle undef for parameter argument (4f8b133)
-
-2012-08-07 - Dan Bode <dan@puppetlabs.com> - 2.5.0
- * Add function ensure_resource and defined_with_params (a0cb8cd)
-
-2012-08-20 - Jeff McCune <jeff@puppetlabs.com> - 2.5.0
- * Disable tests that fail on 2.6.x due to #15912 (c81496e)
-
-2012-08-20 - Jeff McCune <jeff@puppetlabs.com> - 2.5.0
- * (Maint) Fix mis-use of rvalue functions as statements (4492913)
-
-2012-08-20 - Jeff McCune <jeff@puppetlabs.com> - 2.5.0
- * Add .rspec file to repo root (88789e8)
-
 2012-06-07 - Chris Price <chris@puppetlabs.com> - 2.4.0
  * Add support for a 'match' parameter to file_line (a06c0d8)
 
