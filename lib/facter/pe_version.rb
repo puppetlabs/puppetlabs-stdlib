@@ -28,20 +28,26 @@ end
 Facter.add("pe_major_version") do
   confine :is_pe => true
   setcode do
-    Facter.value(:pe_version).split('.')[0]
+    if pe_version = Facter.value(:pe_version)
+      pe_version.to_s.split('.')[0]
+    end
   end
 end
 
 Facter.add("pe_minor_version") do
   confine :is_pe => true
   setcode do
-    Facter.value(:pe_version).split('.')[1]
+    if pe_version = Facter.value(:pe_version)
+      pe_version.to_s.split('.')[1]
+    end
   end
 end
 
 Facter.add("pe_patch_version") do
   confine :is_pe => true
   setcode do
-    Facter.value(:pe_version).split('.')[2]
+    if pe_version = Facter.value(:pe_version)
+      pe_version.to_s.split('.')[2]
+    end
   end
 end
