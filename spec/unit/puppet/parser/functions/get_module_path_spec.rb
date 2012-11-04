@@ -1,42 +1,46 @@
-#!/usr/bin/env rspec
-require 'puppet'
-require 'fileutils'
+#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
-describe Puppet::Parser::Functions.function(:get_module_path) do
-  include PuppetSpec::Files
 
-  def get_scope(environment = 'production')
-    scope = Puppet::Parser::Scope.new
-    scope.compiler = Puppet::Parser::Compiler.new(Puppet::Node.new("floppy", :environment => environment))
-    scope
+describe Puppet::Parser::Functions.function(:get_module_path) do
+  Internals = PuppetlabsSpec::PuppetInternals
+  class StubModule
+    attr_reader :path
+    def initialize(path)
+      @path = path
+    end
   end
+
+  def scope(environment = "production")
+    Internals.scope(:compiler => Internals.compiler(:node => Internals.node(:environment => environment)))
+  end
+
   it 'should only allow one argument' do
-    expect { get_scope.function_get_module_path([]) }.should raise_error(Puppet::ParseError, /Wrong number of arguments, expects one/)
-    expect { get_scope.function_get_module_path(['1','2','3']) }.should raise_error(Puppet::ParseError, /Wrong number of arguments, expects one/)
+    expect { scope.function_get_module_path([]) }.should raise_error(Puppet::ParseError, /Wrong number of arguments, expects one/)
+    expect { scope.function_get_module_path(['1','2','3']) }.should raise_error(Puppet::ParseError, /Wrong number of arguments, expects one/)
   end
   it 'should raise an exception when the module cannot be found' do
-    expect { get_scope.function_get_module_path(['foo']) }.should raise_error(Puppet::ParseError, /Could not find module/)
+    expect { scope.function_get_module_path(['foo']) }.should raise_error(Puppet::ParseError, /Could not find module/)
   end
   describe 'when locating a module' do
-    let(:modulepath) { tmpdir('modulepath') }
-    let(:foo_path) { File.join(modulepath, 'foo') }
-    before(:each) { FileUtils.mkdir(foo_path) }
+    let(:modulepath) { "/tmp/does_not_exist" }
+    let(:path_of_module_foo) { StubModule.new("/tmp/does_not_exist/foo") }
+
+    before(:each) { Puppet[:modulepath] = modulepath }
+
     it 'should be able to find module paths from the modulepath setting' do
-      Puppet[:modulepath] = modulepath
-      get_scope.function_get_module_path(['foo']).should == foo_path
+      Puppet::Module.expects(:find).with('foo', 'production').returns(path_of_module_foo)
+      scope.function_get_module_path(['foo']).should == path_of_module_foo.path
     end
     it 'should be able to find module paths when the modulepath is a list' do
       Puppet[:modulepath] = modulepath + ":/tmp"
-      get_scope.function_get_module_path(['foo']).should == foo_path
+      Puppet::Module.expects(:find).with('foo', 'production').returns(path_of_module_foo)
+      scope.function_get_module_path(['foo']).should == path_of_module_foo.path
     end
-    it 'should be able to find module paths from the environment' do
-      conf_file = tmpfile('conffile')
-      File.open(conf_file, 'w') do |fh|
-        fh.write("[dansenvironment]\nmodulepath = #{modulepath}")
-      end
-      Puppet[:config] = conf_file
-      Puppet.parse_config
-      get_scope('dansenvironment').function_get_module_path(['foo']).should ==foo_path
+    it 'should respect the environment' do
+      pending("Disabled on Puppet 2.6.x") if Puppet.version =~ /^2\.6\b/
+      Puppet.settings[:environment] = 'danstestenv'
+      Puppet::Module.expects(:find).with('foo', 'danstestenv').returns(path_of_module_foo)
+      scope('danstestenv').function_get_module_path(['foo']).should == path_of_module_foo.path
     end
   end
 end
