@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Puppet::Parser::Functions.function(:has_ip_network) do
 
   let(:scope) do
-    scope = Puppet::Parser::Scope.new
+    PuppetlabsSpec::PuppetInternals.scope
   end
 
   subject do
