@@ -2,9 +2,6 @@
 require 'spec_helper'
 
 describe Puppet::Parser::Functions.function(:has_ip_address) do
-  before :all do
-    Puppet::Parser::Functions.autoloader.loadall
-  end
 
   let(:scope) do
     scope = Puppet::Parser::Scope.new
