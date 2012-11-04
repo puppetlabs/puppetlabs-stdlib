@@ -16,10 +16,10 @@ describe Puppet::Parser::Functions.function(:has_ip_address) do
 
   context "On Linux Systems" do
     before :each do
-      scope.expects(:lookupvar).with('interfaces').returns('eth0,lo')
-      scope.expects(:lookupvar).with('ipaddress').returns('10.0.2.15')
-      scope.expects(:lookupvar).with('ipaddress_eth0').returns('10.0.2.15')
-      scope.expects(:lookupvar).with('ipaddress_lo').returns('127.0.0.1')
+      scope.stubs(:lookupvar).with('interfaces').returns('eth0,lo')
+      scope.stubs(:lookupvar).with('ipaddress').returns('10.0.2.15')
+      scope.stubs(:lookupvar).with('ipaddress_eth0').returns('10.0.2.15')
+      scope.stubs(:lookupvar).with('ipaddress_lo').returns('127.0.0.1')
     end
 
     it 'should have primary address (10.0.2.15)' do

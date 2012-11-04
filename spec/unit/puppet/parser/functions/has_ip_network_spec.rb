@@ -16,10 +16,10 @@ describe Puppet::Parser::Functions.function(:has_ip_network) do
 
   context "On Linux Systems" do
     before :each do
-      scope.expects(:lookupvar).with('interfaces').returns('eth0,lo')
-      scope.expects(:lookupvar).with('network').returns(:undefined)
-      scope.expects(:lookupvar).with('network_eth0').returns('10.0.2.0')
-      scope.expects(:lookupvar).with('network_lo').returns('127.0.0.1')
+      scope.stubs(:lookupvar).with('interfaces').returns('eth0,lo')
+      scope.stubs(:lookupvar).with('network').returns(:undefined)
+      scope.stubs(:lookupvar).with('network_eth0').returns('10.0.2.0')
+      scope.stubs(:lookupvar).with('network_lo').returns('127.0.0.1')
     end
 
     it 'should have primary network (10.0.2.0)' do

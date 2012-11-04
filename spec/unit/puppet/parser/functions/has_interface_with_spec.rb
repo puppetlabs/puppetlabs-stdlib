@@ -19,7 +19,7 @@ describe Puppet::Parser::Functions.function(:has_interface_with) do
   # to behave on different platforms.
   context "On Mac OS X Systems" do
     before :each do
-      scope.expects(:lookupvar).with("interfaces").returns('lo0,gif0,stf0,en1,p2p0,fw0,en0,vmnet1,vmnet8,utun0')
+      scope.stubs(:lookupvar).with("interfaces").returns('lo0,gif0,stf0,en1,p2p0,fw0,en0,vmnet1,vmnet8,utun0')
     end
     it 'should have loopback (lo0)' do
       subject.call(['lo0']).should be_true
@@ -30,13 +30,13 @@ describe Puppet::Parser::Functions.function(:has_interface_with) do
   end
   context "On Linux Systems" do
     before :each do
-      scope.expects(:lookupvar).with("interfaces").returns('eth0,lo')
-      scope.expects(:lookupvar).with("ipaddress").returns('10.0.0.1')
-      scope.expects(:lookupvar).with("ipaddress_lo").returns('127.0.0.1')
-      scope.expects(:lookupvar).with("ipaddress_eth0").returns('10.0.0.1')
-      scope.expects(:lookupvar).with('muppet').returns('kermit')
-      scope.expects(:lookupvar).with('muppet_lo').returns('mspiggy')
-      scope.expects(:lookupvar).with('muppet_eth0').returns('kermit')
+      scope.stubs(:lookupvar).with("interfaces").returns('eth0,lo')
+      scope.stubs(:lookupvar).with("ipaddress").returns('10.0.0.1')
+      scope.stubs(:lookupvar).with("ipaddress_lo").returns('127.0.0.1')
+      scope.stubs(:lookupvar).with("ipaddress_eth0").returns('10.0.0.1')
+      scope.stubs(:lookupvar).with('muppet').returns('kermit')
+      scope.stubs(:lookupvar).with('muppet_lo').returns('mspiggy')
+      scope.stubs(:lookupvar).with('muppet_eth0').returns('kermit')
     end
     it 'should have loopback (lo)' do
       subject.call(['lo']).should be_true
