@@ -10,27 +10,19 @@ require 'mocha'
 gem 'rspec', '>=2.0.0'
 require 'rspec/expectations'
 
-
-# So everyone else doesn't have to include this base constant.
-module PuppetSpec
-  FIXTURE_DIR = File.join(dir = File.expand_path(File.dirname(__FILE__)), "fixtures") unless defined?(FIXTURE_DIR)
-end
-
-# TODO: ultimately would like to move these requires into the puppet_spec_helper.rb file, but the namespaces
-#  are not currently the same between the two, so tests would need to be modified.  Not ready to undertake that
-#  just yet.
-require 'puppet_spec/files'
-
-require 'puppet_spec_helper'
-
+require 'puppetlabs_spec_helper/module_spec_helper'
 
 RSpec.configure do |config|
-
+  # FIXME REVISIT - We may want to delegate to Facter like we do in
+  # Puppet::PuppetSpecInitializer.initialize_via_testhelper(config) because
+  # this behavior is a duplication of the spec_helper in Facter.
   config.before :each do
-    GC.disable
-  end
-
-  config.after :each do
-    GC.enable
+    # Ensure that we don't accidentally cache facts and environment between
+    # test cases.  This requires each example group to explicitly load the
+    # facts being exercised with something like
+    # Facter.collection.loader.load(:ipaddress)
+    Facter::Util::Loader.any_instance.stubs(:load_all)
+    Facter.clear
+    Facter.clear_messages
   end
 end
