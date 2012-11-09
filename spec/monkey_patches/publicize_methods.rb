@@ -8,4 +8,3 @@ class Class
         self.class_eval { private(*saved_private_instance_methods) }
     end
 end
-

@@ -15,7 +15,7 @@ Returns true if the string passed to this function is a valid IP address.
         "given #{arguments.size} for 1")
     end
 
-    begin 
+    begin
       ip = IPAddr.new(arguments[0])
     rescue ArgumentError
       return false

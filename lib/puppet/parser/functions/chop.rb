@@ -4,9 +4,9 @@
 
 module Puppet::Parser::Functions
   newfunction(:chop, :type => :rvalue, :doc => <<-'EOS'
-    Returns a new string with the last character removed. If the string ends 
-    with `\r\n`, both characters are removed. Applying chop to an empty 
-    string returns an empty string. If you wish to merely remove record 
+    Returns a new string with the last character removed. If the string ends
+    with `\r\n`, both characters are removed. Applying chop to an empty
+    string returns an empty string. If you wish to merely remove record
     separators then you should use the `chomp` function.
     Requires a string or array of strings as input.
     EOS

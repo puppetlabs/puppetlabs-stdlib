@@ -19,7 +19,7 @@ describe "the fqdn_rotate function" do
   end
 
   it "should rotate a string to give the same results for one host" do
-    scope.expects(:lookupvar).with("::fqdn").returns("127.0.0.1").twice 
+    scope.expects(:lookupvar).with("::fqdn").returns("127.0.0.1").twice
     scope.function_fqdn_rotate(["abcdefg"]).should eql(scope.function_fqdn_rotate(["abcdefg"]))
   end
 
