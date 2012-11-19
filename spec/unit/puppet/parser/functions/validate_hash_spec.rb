@@ -41,4 +41,3 @@ describe Puppet::Parser::Functions.function(:validate_hash) do
   end
 
 end
-

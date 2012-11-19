@@ -58,4 +58,3 @@ describe Puppet::Parser::Functions.function(:validate_string) do
     end
   end
 end
-

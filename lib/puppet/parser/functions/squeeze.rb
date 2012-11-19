@@ -14,9 +14,9 @@ Returns a new string where runs of the same character that occur in this set are
     end
 
     item = arguments[0]
-    squeezeval = arguments[1] 
+    squeezeval = arguments[1]
 
-    if item.is_a?(Array) then  
+    if item.is_a?(Array) then
       if squeezeval then
         item.collect { |i| i.squeeze(squeezeval) }
       else
