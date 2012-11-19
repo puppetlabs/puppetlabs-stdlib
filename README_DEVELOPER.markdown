@@ -7,7 +7,7 @@ almost always be evaluated in the context of Puppet and Facter working
 together.
 
 Still, we don't want to write custom facts that blow up in the users face if
-Puppet is not loaded in memory.  This is often the case if the user run
+Puppet is not loaded in memory.  This is often the case if the user runs
 `facter` without also supplying the `--puppet` flag.
 
 Ah! But Jeff, the custom fact won't be in the `$LOAD_PATH` unless the user
