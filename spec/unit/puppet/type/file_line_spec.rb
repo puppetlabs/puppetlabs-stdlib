@@ -48,4 +48,22 @@ describe Puppet::Type.type(:file_line) do
   it 'should default to ensure => present' do
     file_line[:ensure].should eq :present
   end
+
+  it "should autorequire the file it manages" do
+    catalog = Puppet::Resource::Catalog.new
+    file = Puppet::Type.type(:file).new(:name => "/tmp/path")
+    catalog.add_resource file
+    catalog.add_resource file_line
+
+    relationship = file_line.autorequire.find do |rel|
+      (rel.source.to_s == "File[/tmp/path]") and (rel.target.to_s == file_line.to_s)
+    end
+    relationship.should be_a Puppet::Relationship
+  end
+
+  it "should not autorequire the file it manages if it is not managed" do
+    catalog = Puppet::Resource::Catalog.new
+    catalog.add_resource file_line
+    file_line.autorequire.should be_empty
+  end
 end
