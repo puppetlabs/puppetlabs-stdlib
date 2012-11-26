@@ -54,17 +54,16 @@ describe Puppet::Type.type(:file_line) do
     file = Puppet::Type.type(:file).new(:name => "/tmp/path")
     catalog.add_resource file
     catalog.add_resource file_line
-    reqs = file_line.autorequire
-    reqs.size.should eq 1
-    reqs[0].source.should eq file
-    reqs[0].target.should eq file_line
+
+    relationship = file_line.autorequire.find do |rel|
+      (rel.source.to_s == "File[/tmp/path]") and (rel.target.to_s == file_line.to_s)
+    end
+    relationship.should be_a Puppet::Relationship
   end
 
   it "should not autorequire the file it manages if it is not managed" do
     catalog = Puppet::Resource::Catalog.new
     catalog.add_resource file_line
-    reqs = file_line.autorequire
-    reqs.size.should eq 0
+    file_line.autorequire.should be_empty
   end
-
 end
