@@ -1,3 +1,30 @@
+2012-11-28 - Peter Meier <peter.meier@immerda.ch> - 2.6.0
+ * Add reject() function (a79b2cd)
+
+2012-09-18 - Chad Metcalf <chad@wibidata.com> - 2.6.0
+ * Add an ensure_packages function. (8a8c09e)
+
+2012-11-23 - Erik Dalén <dalen@spotify.com> - 2.6.0
+ * (#17797) min() and max() functions (9954133)
+
+2012-05-23 - Peter Meier <peter.meier@immerda.ch> - 2.6.0
+ * (#14670) autorequire a file_line resource's path (dfcee63)
+
+2012-11-19 - Joshua Harlan Lifton <lifton@puppetlabs.com> - 2.6.0
+ * Add join_keys_to_values function (ee0f2b3)
+
+2012-11-17 - Joshua Harlan Lifton <lifton@puppetlabs.com> - 2.6.0
+ * Extend delete function for strings and hashes (7322e4d)
+
+2012-08-03 - Gary Larizza <gary@puppetlabs.com> - 2.6.0
+ * Add the pick() function (ba6dd13)
+
+2012-03-20 - Wil Cooley <wcooley@pdx.edu> - 2.6.0
+ * (#13974) Add predicate functions for interface facts (f819417)
+
+2012-11-06 - Joe Julian <me@joejulian.name> - 2.6.0
+ * Add function, uriescape, to URI.escape strings. Redmine #17459 (70f4a0e)
+
 2012-10-25 - Jeff McCune <jeff@puppetlabs.com> - 2.5.1
  * (maint) Fix spec failures resulting from Facter API changes (97f836f)
 
