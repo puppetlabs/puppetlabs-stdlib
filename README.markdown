@@ -927,3 +927,23 @@ Would result in:
 
 
 - *Type*: rvalue
+
+random_password
+---------------
+Returns a string of arbitrary length that contains randomly selected characters.
+
+*Example:*
+
+    $a = 4
+    $b = 8
+    $c = 16
+
+    notice random_password($a)
+    notice random_password($b)
+    notice random_password($c)
+
+The result will be as follows:
+
+    notice: Scope(Class[main]): fNDC
+    notice: Scope(Class[main]): KcKDLrjR
+    notice: Scope(Class[main]): FtvfvkS9j9wXLsd6
