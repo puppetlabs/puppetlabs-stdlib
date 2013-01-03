@@ -26,4 +26,9 @@ describe "the is_integer function" do
     result = scope.function_is_integer(["asdf"])
     result.should(eq(false))
   end
+
+  it "should return true if an integer is created from an arithmetical operation" do
+    result = scope.function_is_integer([3*2])
+    result.should(eq(true))
+  end
 end

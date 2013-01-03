@@ -15,7 +15,7 @@ Returns true if the variable returned to this string is an integer.
 
     value = arguments[0]
 
-    if value != value.to_i.to_s then
+    if value != value.to_i.to_s and !value.is_a? Fixnum then
       return false
     else
       return true
