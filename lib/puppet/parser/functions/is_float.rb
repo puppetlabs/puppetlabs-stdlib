@@ -15,7 +15,7 @@ Returns true if the variable passed to this function is a float.
 
     value = arguments[0]
 
-    if value != value.to_f.to_s then
+    if value != value.to_f.to_s and !value.is_a? Float then
       return false
     else
       return true
