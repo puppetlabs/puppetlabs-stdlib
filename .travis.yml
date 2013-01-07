@@ -18,3 +18,10 @@ matrix:
       env: PUPPET_GEM_VERSION="~> 2.7"
     - rvm: ruby-head
       env: PUPPET_GEM_VERSION="~> 2.7"
+notifications:
+  webhooks:
+    urls:
+      - https://puppet-dev-community.herokuapp.com/event/travis-ci/
+    on_success: always
+    on_failure: always
+    on_start: yes
