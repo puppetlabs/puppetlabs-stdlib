@@ -16,6 +16,5 @@ matrix:
   exclude:
     - rvm: 1.9.3
       env: PUPPET_GEM_VERSION="~> 2.7"
-  exclude:
     - rvm: ruby-head
       env: PUPPET_GEM_VERSION="~> 2.7"
