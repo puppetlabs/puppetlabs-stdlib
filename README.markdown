@@ -209,6 +209,25 @@ Example:
 
 - *Type*: rvalue
 
+getparam
+--------
+
+Takes a resource reference and name of the parameter and returns
+value of resource's parameter.
+
+For example:
+
+    define example_resource($param) {
+    }
+
+    example_resource { "example_resource_instance":
+        param => "param_value"
+    }
+
+    getparam(Example_resource["example_resource_instance"], "param")
+
+- *Type*: rvalue
+
 getvar
 ------
 Lookup a variable in a remote namespace.
