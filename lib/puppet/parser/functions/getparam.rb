@@ -25,6 +25,8 @@ ENDOFDOC
   raise(ArgumentError, 'Must specify a reference') unless reference
   raise(ArgumentError, 'Must specify name of a parameter') unless param and param.instance_of? String
 
+  return '' if param.empty?
+
   if resource = findresource(reference.to_s)
     return resource[param] if resource[param]
   end
