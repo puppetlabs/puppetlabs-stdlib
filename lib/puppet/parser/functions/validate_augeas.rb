@@ -28,6 +28,10 @@ module Puppet::Parser::Functions
         validate_augeas($sudoerscontent, 'Sudoers.lns', [], 'Failed to validate sudoers content with Augeas')
 
     ENDHEREDOC
+    unless Puppet.features.augeas?
+      raise Puppet::ParseError, ("validate_augeas(): requires the ruby augeas bindings")
+    end
+
     if (args.length < 2) or (args.length > 4) then
       raise Puppet::ParseError, ("validate_augeas(): wrong number of arguments (#{args.length}; must be 2, 3, or 4)")
     end
