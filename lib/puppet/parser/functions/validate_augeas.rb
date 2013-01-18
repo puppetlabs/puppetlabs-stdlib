@@ -41,8 +41,11 @@ module Puppet::Parser::Functions
 
       # Test content in a temporary file
       tmpfile = Tempfile.new("validate_augeas")
-      tmpfile.write(content)
-      tmpfile.close
+      begin
+        tmpfile.write(content)
+      ensure
+        tmpfile.close
+      end
 
       # Check for syntax
       lens = args[1]
@@ -68,6 +71,7 @@ module Puppet::Parser::Functions
       end
     ensure
       aug.close
+      tmpfile.unlink
     end
   end
 end
