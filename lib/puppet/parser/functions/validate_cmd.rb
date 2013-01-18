@@ -28,11 +28,14 @@ module Puppet::Parser::Functions
 
     # Test content in a temporary file
     tmpfile = Tempfile.new("validate_cmd")
-    tmpfile.write(content)
-    tmpfile.close
-    output = `#{checkscript} #{tmpfile.path} 2>&1 1>/dev/null`
-    r = $?
-    File.delete(tmpfile.path)
+    begin
+      tmpfile.write(content)
+      output = `#{checkscript} #{tmpfile.path} 2>&1 1>/dev/null`
+      r = $?
+    ensure
+      tmpfile.close
+      tmpfile.unlink
+    end
     if output
       msg += "\nOutput is:\n#{output}"
     end
