@@ -17,7 +17,7 @@ module Puppet::Parser::Functions
 
     Or if you wanted to ensure that no users used the '/bin/barsh' shell,
     you could use:
-    
+
         validate_augeas($passwdcontent, 'Passwd.lns', ['$file/*[shell="/bin/barsh"]']
 
     If a fourth argument is specified, this will be the error message raised and
@@ -36,35 +36,38 @@ module Puppet::Parser::Functions
 
     require 'augeas'
     aug = Augeas::open(nil, nil, Augeas::NO_MODL_AUTOLOAD)
+    begin
+      content = args[0]
 
-    content = args[0]
+      # Test content in a temporary file
+      tmpfile = Tempfile.new("validate_augeas")
+      tmpfile.write(content)
+      tmpfile.close
 
-    # Test content in a temporary file
-    tmpfile = Tempfile.new("validate_augeas")
-    tmpfile.write(content)
-    tmpfile.close
+      # Check for syntax
+      lens = args[1]
+      aug.transform(
+        :lens => lens,
+        :name => 'Validate_augeas',
+        :incl => tmpfile.path
+      )
+      aug.load!
 
-    # Check for syntax
-    lens = args[1]
-    aug.transform(
-      :lens => lens,
-      :name => 'Validate_augeas',
-      :incl => tmpfile.path
-    )
-    aug.load!
+      unless aug.match("/augeas/files#{tmpfile.path}//error").empty?
+        error = aug.get("/augeas/files#{tmpfile.path}//error/message")
+        msg += " with error: #{error}"
+        raise Puppet::ParseError, (msg)
+      end
 
-    unless aug.match("/augeas/files#{tmpfile.path}//error").empty?
-      error = aug.get("/augeas/files#{tmpfile.path}//error/message")
-      msg += " with error: #{error}"
-      raise Puppet::ParseError, (msg)
-    end
-
-    # Launch unit tests
-    tests = args[2] || []
-    aug.defvar('file', "/files#{tmpfile.path}")
-    tests.each do |t|
-      msg += " testing path #{t}"
-      raise Puppet::ParseError, (msg) unless aug.match(t).empty?
+      # Launch unit tests
+      tests = args[2] || []
+      aug.defvar('file', "/files#{tmpfile.path}")
+      tests.each do |t|
+        msg += " testing path #{t}"
+        raise Puppet::ParseError, (msg) unless aug.match(t).empty?
+      end
+    ensure
+      aug.close
     end
   end
 end
