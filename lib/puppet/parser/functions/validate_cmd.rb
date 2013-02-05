@@ -1,3 +1,5 @@
+require 'puppet/util/execution'
+
 module Puppet::Parser::Functions
   newfunction(:validate_cmd, :doc => <<-'ENDHEREDOC') do |args|
     Perform validation of a string with an external command.
@@ -30,15 +32,12 @@ module Puppet::Parser::Functions
     tmpfile = Tempfile.new("validate_cmd")
     begin
       tmpfile.write(content)
-      output = `#{checkscript} #{tmpfile.path} 2>&1 1>/dev/null`
-      r = $?
+      Puppet::Util.execute("#{checkscript} #{tmpfile.path}")
+    rescue Puppet::ExecutionFailure => detail
+      msg += "\n#{detail}"
+      raise Puppet::ParseError, msg
     ensure
-      tmpfile.close
       tmpfile.unlink
     end
-    if output
-      msg += "\nOutput is:\n#{output}"
-    end
-    raise Puppet::ParseError, (msg) unless r == 0
   end
 end

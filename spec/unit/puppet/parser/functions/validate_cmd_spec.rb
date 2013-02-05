@@ -74,7 +74,7 @@ describe Puppet::Parser::Functions.function(:validate_cmd) do
 
     describe "Test output message" do
       it "validate_cmd('whatever', 'kthnksbye') should fail" do
-          expect { subject.call ['whatever', 'kthnksbye'] }.to raise_error /kthnksbye.*not found/
+          expect { subject.call ['whatever', 'kthnksbye'] }.to raise_error /kthnksbye.* returned 1/
       end
     end
   end
