@@ -32,7 +32,11 @@ module Puppet::Parser::Functions
     tmpfile = Tempfile.new("validate_cmd")
     begin
       tmpfile.write(content)
-      Puppet::Util.execute("#{checkscript} #{tmpfile.path}")
+      if Puppet::Util::Execution.respond_to?('execute')
+        Puppet::Util::Execution.execute("#{checkscript} #{tmpfile.path}")
+      else
+        Puppet::Util.execute("#{checkscript} #{tmpfile.path}")
+      end
     rescue Puppet::ExecutionFailure => detail
       msg += "\n#{detail}"
       raise Puppet::ParseError, msg
