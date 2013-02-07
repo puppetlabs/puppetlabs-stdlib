@@ -28,6 +28,10 @@ module Puppet::Parser::Functions
         validate_augeas($sudoerscontent, 'Sudoers.lns', [], 'Failed to validate sudoers content with Augeas')
 
     ENDHEREDOC
+    unless Puppet.features.augeas?
+      raise Puppet::ParseError, ("validate_augeas(): this function requires the augeas feature. See http://projects.puppetlabs.com/projects/puppet/wiki/Puppet_Augeas#Pre-requisites for how to activate it.")
+    end
+
     if (args.length < 2) or (args.length > 4) then
       raise Puppet::ParseError, ("validate_augeas(): wrong number of arguments (#{args.length}; must be 2, 3, or 4)")
     end
@@ -36,35 +40,42 @@ module Puppet::Parser::Functions
 
     require 'augeas'
     aug = Augeas::open(nil, nil, Augeas::NO_MODL_AUTOLOAD)
+    begin
+      content = args[0]
 
-    content = args[0]
+      # Test content in a temporary file
+      tmpfile = Tempfile.new("validate_augeas")
+      begin
+        tmpfile.write(content)
+      ensure
+        tmpfile.close
+      end
 
-    # Test content in a temporary file
-    tmpfile = Tempfile.new("validate_augeas")
-    tmpfile.write(content)
-    tmpfile.close
+      # Check for syntax
+      lens = args[1]
+      aug.transform(
+        :lens => lens,
+        :name => 'Validate_augeas',
+        :incl => tmpfile.path
+      )
+      aug.load!
 
-    # Check for syntax
-    lens = args[1]
-    aug.transform(
-      :lens => lens,
-      :name => 'Validate_augeas',
-      :incl => tmpfile.path
-    )
-    aug.load!
+      unless aug.match("/augeas/files#{tmpfile.path}//error").empty?
+        error = aug.get("/augeas/files#{tmpfile.path}//error/message")
+        msg += " with error: #{error}"
+        raise Puppet::ParseError, (msg)
+      end
 
-    unless aug.match("/augeas/files#{tmpfile.path}//error").empty?
-      error = aug.get("/augeas/files#{tmpfile.path}//error/message")
-      msg += " with error: #{error}"
-      raise Puppet::ParseError, (msg)
-    end
-
-    # Launch unit tests
-    tests = args[2] || []
-    aug.defvar('file', "/files#{tmpfile.path}")
-    tests.each do |t|
-      msg += " testing path #{t}"
-      raise Puppet::ParseError, (msg) unless aug.match(t).empty?
+      # Launch unit tests
+      tests = args[2] || []
+      aug.defvar('file', "/files#{tmpfile.path}")
+      tests.each do |t|
+        msg += " testing path #{t}"
+        raise Puppet::ParseError, (msg) unless aug.match(t).empty?
+      end
+    ensure
+      aug.close
+      tmpfile.unlink
     end
   end
 end
