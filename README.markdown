@@ -98,6 +98,13 @@ Requires a string or array of strings as input.
 
 - *Type*: rvalue
 
+concat
+-----
+Appends the contents of the second array onto the first array.
+
+
+- *Type*: rvalue
+
 defined_with_params
 -------------------
 Takes a resource reference and an optional hash of attributes.
