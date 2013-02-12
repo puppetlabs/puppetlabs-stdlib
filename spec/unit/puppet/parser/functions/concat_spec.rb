@@ -10,6 +10,6 @@ describe "the concat function" do
 
   it "should be able to concat an array" do
     result = scope.function_concat([['1','2','3'],['4','5','6']])
-    result.should(eq([['1','2','3','4','5','6']]))
+    result.should(eq(['1','2','3','4','5','6']))
   end
 end
