@@ -34,7 +34,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
 
   def handle_create_with_match()
     regex = resource[:match] ? Regexp.new(resource[:match]) : nil
-    match_count = lines.select { |l| regex.match(l) }.count
+    match_count = lines.select { |l| regex.match(l) }.size
     if match_count > 1
       raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
     end
