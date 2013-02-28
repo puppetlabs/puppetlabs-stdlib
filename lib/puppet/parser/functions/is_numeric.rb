@@ -15,7 +15,7 @@ Returns true if the variable passed to this function is a number.
 
     value = arguments[0]
 
-    if value == value.to_f.to_s or value == value.to_i.to_s then
+    if value == value.to_f.to_s or value == value.to_i.to_s or value.is_a? Numeric then
       return true
     else
       return false

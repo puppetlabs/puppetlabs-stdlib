@@ -1,5 +1,7 @@
 # Puppet Labs Standard Library #
 
+[![Build Status](https://travis-ci.org/puppetlabs/puppetlabs-stdlib.png?branch=master)](https://travis-ci.org/puppetlabs/puppetlabs-stdlib)
+
 This module provides a "standard library" of resources for developing Puppet
 Modules.  This modules will include the following additions to Puppet
 
@@ -92,6 +94,13 @@ with `\r\n`, both characters are removed. Applying chop to an empty
 string returns an empty string. If you wish to merely remove record
 separators then you should use the `chomp` function.
 Requires a string or array of strings as input.
+
+
+- *Type*: rvalue
+
+concat
+-----
+Appends the contents of the second array onto the first array.
 
 
 - *Type*: rvalue
@@ -204,6 +213,25 @@ environment.
 Example:
   $module_path = get_module_path('stdlib')
 
+
+- *Type*: rvalue
+
+getparam
+--------
+
+Takes a resource reference and name of the parameter and returns
+value of resource's parameter.
+
+For example:
+
+    define example_resource($param) {
+    }
+
+    example_resource { "example_resource_instance":
+        param => "param_value"
+    }
+
+    getparam(Example_resource["example_resource_instance"], "param")
 
 - *Type*: rvalue
 

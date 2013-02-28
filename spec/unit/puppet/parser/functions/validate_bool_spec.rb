@@ -10,7 +10,7 @@ describe Puppet::Parser::Functions.function(:validate_bool) do
 
       it "should not compile when #{the_string} is a string" do
         Puppet[:code] = "validate_bool('#{the_string}')"
-        expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a boolean/)
+        expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not a boolean/)
       end
 
       it "should compile when #{the_string} is a bare word" do
@@ -22,12 +22,12 @@ describe Puppet::Parser::Functions.function(:validate_bool) do
 
     it "should not compile when an arbitrary string is passed" do
       Puppet[:code] = 'validate_bool("jeff and dan are awesome")'
-      expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a boolean/)
+      expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not a boolean/)
     end
 
     it "should not compile when no arguments are passed" do
       Puppet[:code] = 'validate_bool()'
-      expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /wrong number of arguments/)
+      expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
     end
 
     it "should compile when multiple boolean arguments are passed" do
@@ -45,7 +45,7 @@ describe Puppet::Parser::Functions.function(:validate_bool) do
         $bar = false
         validate_bool($foo, $bar, true, false, 'jeff')
       ENDofPUPPETcode
-      expect { scope.compiler.compile }.should raise_error(Puppet::ParseError, /is not a boolean/)
+      expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /is not a boolean/)
     end
   end
 end

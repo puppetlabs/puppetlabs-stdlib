@@ -26,4 +26,8 @@ describe "the is_float function" do
     result = scope.function_is_float(["3"])
     result.should(eq(false))
   end
+  it "should return true if a float is created from an arithmetical operation" do
+    result = scope.function_is_float([3.2*2])
+    result.should(eq(true))
+  end
 end
