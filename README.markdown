@@ -98,6 +98,13 @@ Requires a string or array of strings as input.
 
 - *Type*: rvalue
 
+concat
+-----
+Appends the contents of the second array onto the first array.
+
+
+- *Type*: rvalue
+
 defined_with_params
 -------------------
 Takes a resource reference and an optional hash of attributes.
@@ -772,6 +779,38 @@ The following values will fail, causing compilation to abort:
 
 - *Type*: statement
 
+validate_augeas
+--------------
+Perform validation of a string using an Augeas lens
+The first argument of this function should be a string to
+test, and the second argument should be the name of the Augeas lens to use.
+If Augeas fails to parse the string with the lens, the compilation will
+abort with a parse error.
+
+A third argument can be specified, listing paths which should
+not be found in the file. The `$file` variable points to the location
+of the temporary file being tested in the Augeas tree.
+
+For example, if you want to make sure your passwd content never contains
+a user `foo`, you could write:
+
+    validate_augeas($passwdcontent, 'Passwd.lns', ['$file/foo'])
+
+Or if you wanted to ensure that no users used the '/bin/barsh' shell,
+you could use:
+
+    validate_augeas($passwdcontent, 'Passwd.lns', ['$file/*[shell="/bin/barsh"]']
+
+If a fourth argument is specified, this will be the error message raised and
+seen by the user.
+
+A helpful error message can be returned like this:
+
+    validate_augeas($sudoerscontent, 'Sudoers.lns', [], 'Failed to validate sudoers content with Augeas')
+
+
+- *Type*: statement
+
 validate_bool
 -------------
 Validate that all passed values are either true or false. Abort catalog
@@ -789,6 +828,29 @@ The following values will fail, causing compilation to abort:
     validate_bool("false")
     validate_bool("true")
     validate_bool($some_array)
+
+
+
+- *Type*: statement
+
+
+validate_cmd
+-------------
+Perform validation of a string with an external command.
+The first argument of this function should be a string to
+test, and the second argument should be a path to a test command
+taking a file as last argument. If the command, launched against
+a tempfile containing the passed string, returns a non-null value,
+compilation will abort with a parse error.
+
+If a third argument is specified, this will be the error message raised and
+seen by the user.
+
+A helpful error message can be returned like this:
+
+Example:
+
+    validate_cmd($sudoerscontent, '/usr/sbin/visudo -c -f', 'Visudo failed to validate sudoers content')
 
 
 
