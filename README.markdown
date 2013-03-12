@@ -60,6 +60,21 @@ a single integer and float value as an argument.
 
 - *Type*: rvalue
 
+augeas
+------
+Modifies a string using Augeas.
+
+*Example:*
+
+    augeas("proc        /proc   proc    nodev,noexec,nosuid     0       0\n", 'Fstab.lns', ['rm ./1/opt[3]'])
+
+Would result in:
+
+    "proc        /proc   proc    nodev,noexec     0       0\n"
+
+
+- *Type*: rvalue
+
 bool2num
 --------
 Converts a boolean to a number. Converts the values:
