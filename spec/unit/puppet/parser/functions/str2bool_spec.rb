@@ -21,4 +21,11 @@ describe "the str2bool function" do
     result = scope.function_str2bool(["undef"])
     result.should(eq(false))
   end
+  
+  it "should return the boolean it was called with" do
+    result = scope.function_str2bool([true])
+    result.should(eq(true))
+    result = scope.function_str2bool([false])
+    result.should(eq(false))
+  end
 end
