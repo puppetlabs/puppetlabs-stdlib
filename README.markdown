@@ -198,6 +198,20 @@ Would return: ['a','b','c']
 
 - *Type*: rvalue
 
+floor
+-----
+Returns the largest integer less or equal to the argument.
+Takes a single numeric value as an argument.
+
+*Examples:*
+
+    floor('3.8')
+
+Would return: '3'
+
+
+- *Type*: rvalue
+
 fqdn_rotate
 -----------
 Rotates an array a random number of times based on a nodes fqdn.
