@@ -20,4 +20,8 @@ describe "the max function" do
   it "should be able to compare numbers" do
     scope.function_max([6,8,4]).should(eq(8))
   end
+
+  it "should be able to compare a number with a stringified number" do
+    scope.function_max([1,"2"]).should(eq("2"))
+  end
 end
