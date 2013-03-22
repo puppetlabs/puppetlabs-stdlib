@@ -14,7 +14,8 @@ higher then 0 become true.
     raise(Puppet::ParseError, "num2bool(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
-    number = arguments[0]
+    # Since we're matching against a regex, coerce to String
+    number = arguments[0].to_s
 
     # Only numbers allowed ...
     unless number.match(/^\-?\d+$/)
