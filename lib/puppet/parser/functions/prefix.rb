@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
   newfunction(:prefix, :type => :rvalue, :doc => <<-EOS
 This function applies a prefix to all elements in an array.
 
-*Examles:*
+*Examples:*
 
     prefix(['a','b','c'], 'p')
 

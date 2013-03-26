@@ -479,7 +479,7 @@ prefix
 ------
 This function applies a prefix to all elements in an array.
 
-*Examles:*
+*Examples:*
 
     prefix(['a','b','c'], 'p')
 
@@ -657,6 +657,19 @@ every string inside an array.
     strip("    aaa   ")
 
 Would result in: "aaa"
+
+
+- *Type*: rvalue
+
+suffix
+------
+This function applies a suffix to all elements in an array.
+
+*Examples:*
+
+    suffix(['a','b','c'], 'p')
+
+Will return: ['ap','bp','cp']
 
 
 - *Type*: rvalue
