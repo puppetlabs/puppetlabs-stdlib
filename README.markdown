@@ -479,7 +479,7 @@ prefix
 ------
 This function applies a prefix to all elements in an array.
 
-*Examles:*
+*Examples:*
 
     prefix(['a','b','c'], 'p')
 
