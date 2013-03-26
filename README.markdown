@@ -661,6 +661,19 @@ Would result in: "aaa"
 
 - *Type*: rvalue
 
+suffix
+------
+This function applies a suffix to all elements in an array.
+
+*Examples:*
+
+    suffix(['a','b','c'], 'p')
+
+Will return: ['ap','bp','cp']
+
+
+- *Type*: rvalue
+
 swapcase
 --------
 This function will swap the existing case of a string.
