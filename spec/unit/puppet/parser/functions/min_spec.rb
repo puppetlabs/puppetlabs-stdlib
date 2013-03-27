@@ -20,4 +20,8 @@ describe "the min function" do
   it "should be able to compare numbers" do
     scope.function_min([6,8,4]).should(eq(4))
   end
+
+  it "should be able to compare a number with a stringified number" do
+    scope.function_min([1,"2"]).should(eq(1))
+  end
 end
