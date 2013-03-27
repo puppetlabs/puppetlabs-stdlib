@@ -21,14 +21,14 @@ Will return: ['ap','bp','cp']
     array = arguments[0]
 
     unless array.is_a?(Array)
-      raise(Puppet::ParseError, 'suffix(): Requires array to work with')
+      raise Puppet::ParseError, "suffix(): expected first argument to be an Array, got #{array.inspect}"
     end
 
     suffix = arguments[1] if arguments[1]
 
     if suffix
-      unless suffix.is_a?(String)
-        raise(Puppet::ParseError, 'suffix(): Requires string to work with')
+      unless suffix.is_a? String
+        raise Puppet::ParseError, "suffix(): expected second argument to be a String, got #{suffix.inspect}"
       end
     end
 
