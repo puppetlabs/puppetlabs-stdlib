@@ -12,13 +12,33 @@ describe "the num2bool function" do
     lambda { scope.function_num2bool([]) }.should( raise_error(Puppet::ParseError))
   end
 
-  it "should return true if 1" do
+  it "should return true if passed string 1" do
     result = scope.function_num2bool(["1"])
     result.should(be_true)
   end
 
-  it "should return false if 0" do
+  it "should return true if passed number 1" do
+    result = scope.function_num2bool([1])
+    result.should(be_true)
+  end
+
+  it "should return false if passed string 0" do
     result = scope.function_num2bool(["0"])
+    result.should(be_false)
+  end
+
+  it "should return false if passed number 0" do
+    result = scope.function_num2bool([0])
+    result.should(be_false)
+  end
+
+  it "should return false if passed string -1" do
+    result = scope.function_num2bool(["-1"])
+    result.should(be_false)
+  end
+
+  it "should return false if passed number -1" do
+    result = scope.function_num2bool([-1])
     result.should(be_false)
   end
 end
