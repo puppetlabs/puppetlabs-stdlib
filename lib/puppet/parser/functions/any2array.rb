@@ -1,5 +1,5 @@
 #
-# str2bool.rb
+# any2array.rb
 #
 
 module Puppet::Parser::Functions
