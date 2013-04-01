@@ -23,8 +23,6 @@ converted to arrays of alternating keys and values.
                 result << key << value
             end
             return result
-        else
-            return [arguments[0]]
         end
     end
 
