@@ -25,18 +25,13 @@ describe "the num2bool function" do
     result.should(be_true)
   end
 
+  it "should return true if passed string 1.5" do
+    result = scope.function_num2bool(["1.5"])
+    result.should(be_true)
+  end
+
   it "should return true if passed number 1" do
     result = scope.function_num2bool([1])
-    result.should(be_true)
-  end
-
-  it "should return true if passed array with string 1" do
-    result = scope.function_num2bool([["1"]])
-    result.should(be_true)
-  end
-
-  it "should return true if passed array with number 1" do
-    result = scope.function_num2bool([[1]])
     result.should(be_true)
   end
 
@@ -50,18 +45,13 @@ describe "the num2bool function" do
     result.should(be_false)
   end
 
-  it "should return false if passed array with string 0" do
-    result = scope.function_num2bool([["0"]])
-    result.should(be_false)
-  end
-
-  it "should return false if passed array with number 0" do
-    result = scope.function_num2bool([[0]])
-    result.should(be_false)
-  end
-
   it "should return false if passed string -1" do
     result = scope.function_num2bool(["-1"])
+    result.should(be_false)
+  end
+
+  it "should return false if passed string -1.5" do
+    result = scope.function_num2bool(["-1.5"])
     result.should(be_false)
   end
 
@@ -70,14 +60,8 @@ describe "the num2bool function" do
     result.should(be_false)
   end
 
-  it "should return false if passed array with string -1" do
-    result = scope.function_num2bool([["-1"]])
+  it "should return false if passed float -1.5" do
+    result = scope.function_num2bool([-1.5])
     result.should(be_false)
   end
-
-  it "should return false if passed array with number -1" do
-    result = scope.function_num2bool([[-1]])
-    result.should(be_false)
-  end
-
 end

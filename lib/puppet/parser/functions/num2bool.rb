@@ -19,28 +19,24 @@ become true.
     when Numeric
       # Yay, it's a number
     when String
-      # Deal with strings later
+      begin
+        number = Float(number)
+      rescue ArgumentError => ex
+        raise(Puppet::ParseError, "num2bool(): '#{number}' does not look like a number: #{ex.message}")
+      end
     else
       begin
         number = number.to_s
-      rescue NoMethodError
-        raise(Puppet::ParseError, 'num2bool(): Unable to parse argument: ' + $!)
+      rescue NoMethodError => ex
+        raise(Puppet::ParseError, "num2bool(): Unable to parse argument: #{ex.message}")
       end
     end
 
-    case number
-    when String
-      # Only accept strings that look somewhat like numbers
-      unless number =~ /^-?\d+/
-        raise(Puppet::ParseError, "num2bool(): '#{number}' does not look like a number")
-      end
-    end
-
-    # Truncate floats
+    # Truncate Floats
     number = number.to_i
 
     # Return true for any positive number and false otherwise
-    return number > 0 ? true : false
+    return number > 0
   end
 end
 
