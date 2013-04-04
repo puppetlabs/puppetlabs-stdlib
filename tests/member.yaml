@@ -1,0 +1,3 @@
+array:
+ - c
+ - !ruby/regexp '/^d$/'
