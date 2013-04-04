@@ -487,6 +487,13 @@ Strips leading spaces to the right of the string.
 
 - *Type*: rvalue
 
+sha1_passwd
+------
+Converts string to a base64 encoded sha1 digest suitable for Apache SHA1 htpasswd files
+
+
+- *Type*: rvalue
+
 shuffle
 -------
 Randomizes the order of a string or array elements.
