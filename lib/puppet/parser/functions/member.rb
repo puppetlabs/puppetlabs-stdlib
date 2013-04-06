@@ -40,7 +40,7 @@ Would return: false
         when String
           item == el
         when Regexp
-          item =~ Regexp.compile(el)
+          item =~ el
       end
     end
 
