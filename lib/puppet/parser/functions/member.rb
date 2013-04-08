@@ -35,9 +35,15 @@ Would return: false
     raise(Puppet::ParseError, 'member(): You must provide item ' +
       'to search for within array given') if item.empty?
 
-    result = array.include?(item)
+    array.flatten.any? do |el|
+      case el
+        when String
+          item == el
+        when Regexp
+          item =~ el
+      end
+    end
 
-    return result
   end
 end
 

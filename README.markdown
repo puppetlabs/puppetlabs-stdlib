@@ -430,6 +430,23 @@ Would return: true
 
 Would return: false
 
+Internally it also supports regexp as an element of an array.
+
+Limitation: Since regexps cannot be passed to functions in puppet,
+it only works when used together with hiera or loadyaml.
+
+    # example.yaml
+    #
+    # array:
+    #  - c
+    #  - d
+    #  - !ruby/regexp '/foo/'
+    #  - !ruby/regexp '/^bar$/'
+
+    $myhash = loadyaml('example.yaml')
+    member(['a','b',$myhash['array']], 'fooo')
+
+Would return: true
 
 - *Type*: rvalue
 
