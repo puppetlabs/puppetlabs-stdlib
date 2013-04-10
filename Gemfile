@@ -6,6 +6,7 @@ end
 
 group :development, :test do
   gem 'rake'
+  gem 'puppetmodule-stdlib', ">= 1.0.0", :path => File.expand_path("..", __FILE__)
   gem 'rspec', "~> 2.11.0", :require => false
   gem 'mocha', "~> 0.10.5", :require => false
   gem 'puppetlabs_spec_helper', :require => false
