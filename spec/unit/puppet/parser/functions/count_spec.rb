@@ -21,7 +21,11 @@ describe "the count function" do
     scope.function_count([["1", "2", "2"], "2"]).should(eq(2))
   end
 
-  it "should not count :undef, nil or empty strings" do
-    scope.function_count([["foo","bar",:undef,nil,""]]).should(eq(2))
+  it "should not count nil or empty strings" do
+    scope.function_count([["foo","bar",nil,""]]).should(eq(2))
+  end
+
+  it 'does not count an undefined hash key or an out of bound array index (which are both :undef)' do
+    expect(scope.function_count([["foo",:undef,:undef]])).to eq(1)
   end
 end
