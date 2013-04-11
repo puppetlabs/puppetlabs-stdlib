@@ -62,8 +62,17 @@ supports Puppet 3.  Notably, ruby 1.8.5 is no longer supported though ruby
 
 abs
 ---
-Returns the absolute value of a number, for example -34.56 becomes 34.56. Takes
-a single integer and float value as an argument.
+Returns the absolute value of a number, for example -34.56 becomes
+34.56. Takes a single integer and float value as an argument.
+
+
+- *Type*: rvalue
+
+any2array
+---------
+This converts any object to an array containing that object. Empty argument
+lists are converted to an empty array. Arrays are left untouched. Hashes are
+converted to arrays of alternating keys and values.
 
 
 - *Type*: rvalue
@@ -88,9 +97,9 @@ Requires either a single string or an array as an input.
 
 chomp
 -----
-Removes the record separator from the end of a string or an array of strings,
-for example `hello\n` becomes `hello`.  Requires a single string or array as an
-input.
+Removes the record separator from the end of a string or an array of
+strings, for example `hello\n` becomes `hello`.
+Requires a single string or array as an input.
 
 
 - *Type*: rvalue
@@ -107,8 +116,25 @@ Requires a string or array of strings as input.
 - *Type*: rvalue
 
 concat
+------
+Appends the contents of array 2 onto array 1.
+
+*Example:*
+
+    concat(['1','2','3'],['4','5','6'])
+
+Would result in:
+
+  ['1','2','3','4','5','6']
+
+
+- *Type*: rvalue
+
+count
 -----
-Appends the contents of the second array onto the first array.
+Takes an array as first argument and an optional second argument.
+Count the number of elements in array that matches second argument.
+If called with only an array it counts the number of elements that are not nil/undef.
 
 
 - *Type*: rvalue
@@ -133,13 +159,19 @@ to the catalog, and false otherwise.
 
 delete
 ------
-Deletes a selected element from an array.
+Deletes all instances of a given element from an array, substring from a
+string, or key from a hash.
 
 *Examples:*
 
-    delete(['a','b','c'], 'b')
+    delete(['a','b','c','b'], 'b')
+    Would return: ['a','c']
 
-Would return: ['a','c']
+    delete({'a'=>1,'b'=>2,'c'=>3}, 'b')
+    Would return: {'a'=>1,'c'=>3}
+
+    delete('abracadabra', 'bra')
+    Would return: 'acada'
 
 
 - *Type*: rvalue
@@ -170,6 +202,13 @@ Returns true if the variable is empty.
 
 
 - *Type*: rvalue
+
+ensure_packages
+---------------
+Takes a list of packages and only installs them if they don't already exist.
+
+
+- *Type*: statement
 
 ensure_resource
 ---------------
@@ -211,12 +250,6 @@ floor
 Returns the largest integer less or equal to the argument.
 Takes a single numeric value as an argument.
 
-*Examples:*
-
-    floor('3.8')
-
-Would return: '3'
-
 
 - *Type*: rvalue
 
@@ -240,11 +273,10 @@ Example:
 
 getparam
 --------
+Takes a resource reference and name of the parameter and
+returns value of resource's parameter.
 
-Takes a resource reference and name of the parameter and returns
-value of resource's parameter.
-
-For example:
+*Examples:*
 
     define example_resource($param) {
     }
@@ -254,6 +286,9 @@ For example:
     }
 
     getparam(Example_resource["example_resource_instance"], "param")
+
+Would return: param_value
+
 
 - *Type*: rvalue
 
@@ -287,6 +322,44 @@ the provided regular expression.
 Would return:
 
     ['aaa','aaaddd']
+
+
+- *Type*: rvalue
+
+has_interface_with
+------------------
+Returns boolean based on kind and value:
+* macaddress
+* netmask
+* ipaddress
+* network
+
+has_interface_with("macaddress", "x:x:x:x:x:x")
+has_interface_with("ipaddress", "127.0.0.1")    => true
+etc.
+
+If no "kind" is given, then the presence of the interface is checked:
+has_interface_with("lo")                        => true
+
+
+- *Type*: rvalue
+
+has_ip_address
+--------------
+Returns true if the client has the requested IP address on some interface.
+
+This function iterates through the 'interfaces' fact and checks the
+'ipaddress_IFACE' facts, performing a simple string comparison.
+
+
+- *Type*: rvalue
+
+has_ip_network
+--------------
+Returns true if the client has an IP address within the requested network.
+
+This function iterates through the 'interfaces' fact and checks the
+'network_IFACE' facts, performing a simple string comparision.
 
 
 - *Type*: rvalue
@@ -325,56 +398,38 @@ Would return: {'a'=>1,'b'=>2,'c'=>3}
 is_array
 --------
 Returns true if the variable passed to this function is an array.
-
-
 - *Type*: rvalue
-
 is_domain_name
 --------------
 Returns true if the string passed to this function is a syntactically correct domain name.
-
-
 - *Type*: rvalue
-
 is_float
---------
 Returns true if the variable passed to this function is a float.
-
-
 - *Type*: rvalue
-
+is_function_available
+---------------------
+This function accepts a string as an argument, determines whether the
+Puppet runtime has access to a function by that name.  It returns a
+true if the function exists, false if not.
+- *Type*: rvalue
 is_hash
 -------
 Returns true if the variable passed to this function is a hash.
-
-
-- *Type*: rvalue
-
 is_integer
 ----------
 Returns true if the variable returned to this string is an integer.
-
-
 - *Type*: rvalue
-
 is_ip_address
 -------------
 Returns true if the string passed to this function is a valid IP address.
-
-
 - *Type*: rvalue
-
 is_mac_address
 --------------
 Returns true if the string passed to this function is a valid mac address.
-
-
 - *Type*: rvalue
-
 is_numeric
 ----------
 Returns true if the variable passed to this function is a number.
-
 
 - *Type*: rvalue
 
@@ -394,6 +449,21 @@ This function joins an array into a string using a seperator.
     join(['a','b','c'], ",")
 
 Would result in: "a,b,c"
+
+
+- *Type*: rvalue
+
+join_keys_to_values
+-------------------
+This function joins each key of a hash to that key's corresponding value with a
+separator. Keys and values are cast to strings. The return value is an array in
+which each element is one joined key/value pair.
+
+*Examples:*
+
+    join_keys_to_values({'a'=>1,'b'=>2}, " is ")
+
+Would result in: ["a is 1","b is 2"]
 
 
 - *Type*: rvalue
@@ -421,6 +491,20 @@ lstrip
 ------
 Strips leading spaces to the left of a string.
 
+
+- *Type*: rvalue
+
+max
+---
+Returns the highest value of all arguments.
+Requires at least one argument.
+
+
+- *Type*: rvalue
+
+md5
+---
+Returns a MD5 hash value from a provided string.
 
 - *Type*: rvalue
 
@@ -459,10 +543,25 @@ When there is a duplicate key, the key in the rightmost hash will "win."
 
 - *Type*: rvalue
 
+min
+---
+Returns the lowest value of all arguments.
+Requires at least one argument.
+
+
+- *Type*: rvalue
+
+notice
+------
+Log a message on the server at level notice.
+
+- *Type*: statement
+
 num2bool
 --------
-This function converts a number into a true boolean. Zero becomes false. Numbers
-higher then 0 become true.
+This function converts a number or a string representation of a number into a
+true boolean. Zero or anything non-numeric becomes false. Numbers higher then 0
+become true.
 
 
 - *Type*: rvalue
@@ -479,6 +578,25 @@ parseyaml
 ---------
 This function accepts YAML as a string and converts it into the correct
 Puppet structure.
+
+
+- *Type*: rvalue
+
+pick
+----
+This function is similar to a coalesce function in SQL in that it will return
+the first value in a list of values that is not undefined or an empty string
+(two things in Puppet that will return a boolean false value). Typically,
+this function is used to check for a value in the Puppet Dashboard/Enterprise
+Console, and failover to a default value like the following:
+
+  $real_jenkins_version = pick($::jenkins_version, '1.449')
+
+The value of $real_jenkins_version will first look for a top-scope variable
+called 'jenkins_version' (note that parameters set in the Puppet Dashboard/
+Enterprise Console are brought into Puppet as top-scope variables), and,
+failing that, will use a default value of 1.449.
+
 
 
 - *Type*: rvalue
@@ -523,6 +641,94 @@ Will return: ["host01", "host02", ..., "host09", "host10"]
 
 - *Type*: rvalue
 
+realize
+-------
+Make a virtual object real.  This is useful
+when you want to know the name of the virtual object and don't want to
+bother with a full collection.  It is slightly faster than a collection,
+and, of course, is a bit shorter.  You must pass the object using a
+reference; e.g.: `realize User[luke]`.
+
+- *Type*: statement
+
+regsubst
+--------
+Perform regexp replacement on a string or array of strings.
+
+* *Parameters* (in order):
+    * _target_  The string or array of strings to operate on.  If an array, the replacement will be performed on each of the elements in the array, and the return value will be an array.
+    * _regexp_  The regular expression matching the target string.  If you want it anchored at the start and or end of the string, you must do that with ^ and $ yourself.
+    * _replacement_  Replacement string. Can contain backreferences to what was matched using \0 (whole match), \1 (first set of parentheses), and so on.
+    * _flags_  Optional. String of single letter flags for how the regexp is interpreted:
+        - *E*         Extended regexps
+        - *I*         Ignore case in regexps
+        - *M*         Multiline regexps
+        - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
+    * _encoding_  Optional.  How to handle multibyte characters.  A single-character string with the following values:
+        - *N*         None
+        - *E*         EUC
+        - *S*         SJIS
+        - *U*         UTF-8
+
+* *Examples*
+
+Get the third octet from the node's IP address:
+
+    $i3 = regsubst($ipaddress,'^(\d+)\.(\d+)\.(\d+)\.(\d+)$','\3')
+
+Put angle brackets around each octet in the node's IP address:
+
+    $x = regsubst($ipaddress, '([0-9]+)', '<\1>', 'G')
+
+
+- *Type*: rvalue
+
+reject
+------
+This function searches through an array and rejects all elements that match
+the provided regular expression.
+
+*Examples:*
+
+    reject(['aaa','bbb','ccc','aaaddd'], 'aaa')
+
+Would return:
+
+    ['bbb','ccc']
+
+
+- *Type*: rvalue
+
+require
+-------
+Evaluate one or more classes,  adding the required class as a dependency.
+
+The relationship metaparameters work well for specifying relationships
+between individual resources, but they can be clumsy for specifying
+relationships between classes.  This function is a superset of the
+'include' function, adding a class relationship so that the requiring
+class depends on the required class.
+
+Warning: using require in place of include can lead to unwanted dependency cycles.
+
+For instance the following manifest, with 'require' instead of 'include' would produce a nasty dependence cycle, because notify imposes a before between File[/foo] and Service[foo]:
+
+    class myservice {
+      service { foo: ensure => running }
+    }
+
+    class otherstuff {
+      include myservice
+      file { '/foo': notify => Service[foo] }
+    }
+
+Note that this function only works with clients 0.25 and later, and it will
+fail if used with earlier clients.
+
+
+
+- *Type*: statement
+
 reverse
 -------
 Reverses the order of a string or array.
@@ -537,6 +743,7 @@ Strips leading spaces to the right of the string.
 
 - *Type*: rvalue
 
+search
 shuffle
 -------
 Randomizes the order of a string or array elements.
@@ -560,8 +767,7 @@ Sorts strings and arrays lexically.
 
 squeeze
 -------
-Returns a new string where runs of the same character that occur in this set
-are replaced by a single character.
+Returns a new string where runs of the same character that occur in this set are replaced by a single character.
 
 
 - *Type*: rvalue
@@ -577,10 +783,10 @@ like: 0, f, n, false, no to 'false'.
 
 str2saltedsha512
 ----------------
-This converts a string to a salted-SHA512 password hash (which is used for OS X
-versions >= 10.7). Given any simple string, you will get a hex version of a
-salted-SHA512 password hash that can be inserted into your Puppet manifests as
-a valid password attribute.
+This converts a string to a salted-SHA512 password hash (which is used for
+OS X versions >= 10.7). Given any simple string, you will get a hex version
+of a salted-SHA512 password hash that can be inserted into your Puppet
+manifests as a valid password attribute.
 
 
 - *Type*: rvalue
@@ -763,7 +969,15 @@ Converts a string or an array of strings to uppercase.
 
 Will return:
 
-    ABCD
+    ASDF
+
+
+- *Type*: rvalue
+
+uriescape
+---------
+Urlencodes a string or array of strings.
+Requires either a single string or an array as an input.
 
 
 - *Type*: rvalue
@@ -815,7 +1029,7 @@ The following values will fail, causing compilation to abort:
 - *Type*: statement
 
 validate_augeas
---------------
+---------------
 Perform validation of a string using an Augeas lens
 The first argument of this function should be a string to
 test, and the second argument should be the name of the Augeas lens to use.
@@ -844,6 +1058,7 @@ A helpful error message can be returned like this:
     validate_augeas($sudoerscontent, 'Sudoers.lns', [], 'Failed to validate sudoers content with Augeas')
 
 
+
 - *Type*: statement
 
 validate_bool
@@ -868,9 +1083,8 @@ The following values will fail, causing compilation to abort:
 
 - *Type*: statement
 
-
 validate_cmd
--------------
+------------
 Perform validation of a string with an external command.
 The first argument of this function should be a string to
 test, and the second argument should be a path to a test command
@@ -1045,3 +1259,5 @@ Would result in:
 
 
 - *Type*: rvalue
+
+*This page autogenerated on 2013-04-11 13:54:25 -0700*
