@@ -28,9 +28,11 @@ older versions of Puppet Enterprise that Puppet Labs still supports will have
 bugfix maintenance branches periodically "merged up" into master.  The current
 list of integration branches are:
 
- * v2.1.x (v2.1.1 released in PE 1.2, 1.2.1, 1.2.3, 1.2.4)
+ * v2.1.x (v2.1.1 released in PE 1)
  * v2.2.x (Never released as part of PE, only to the Forge)
- * v2.3.x (Released in PE 2.5.x)
+ * v2.3.x (Released in PE 2)
+ * v3.0.x (Never released as part of PE, only to the Forge)
+ * v4.0.x (Drops support for Puppet 2.7)
  * master (mainline development branch)
 
 The first Puppet Enterprise version including the stdlib module is Puppet
@@ -49,6 +51,12 @@ All stdlib releases in the 2.0 major version support Puppet 2.6 and Puppet 2.7.
 
 The 3.0 major release of stdlib drops support for Puppet 2.6.  Stdlib 3.x
 supports Puppet 2 and Puppet 3.
+
+## stdlib 4.x ##
+
+The 4.0 major release of stdlib drops support for Puppet 2.7.  Stdlib 4.x
+supports Puppet 3.  Notably, ruby 1.8.5 is no longer supported though ruby
+1.8.7, 1.9.3, and 2.0.0 are fully supported.
 
 # Functions #
 
