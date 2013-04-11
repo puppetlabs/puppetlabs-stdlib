@@ -398,35 +398,53 @@ Would return: {'a'=>1,'b'=>2,'c'=>3}
 is_array
 --------
 Returns true if the variable passed to this function is an array.
+
 - *Type*: rvalue
+
 is_domain_name
 --------------
 Returns true if the string passed to this function is a syntactically correct domain name.
+
 - *Type*: rvalue
+
 is_float
+--------
 Returns true if the variable passed to this function is a float.
+
 - *Type*: rvalue
+
 is_function_available
 ---------------------
 This function accepts a string as an argument, determines whether the
 Puppet runtime has access to a function by that name.  It returns a
 true if the function exists, false if not.
+
 - *Type*: rvalue
+
 is_hash
 -------
 Returns true if the variable passed to this function is a hash.
+
+- *Type*: rvalue
+
 is_integer
 ----------
 Returns true if the variable returned to this string is an integer.
+
 - *Type*: rvalue
+
 is_ip_address
 -------------
 Returns true if the string passed to this function is a valid IP address.
+
 - *Type*: rvalue
+
 is_mac_address
 --------------
 Returns true if the string passed to this function is a valid mac address.
+
 - *Type*: rvalue
+
 is_numeric
 ----------
 Returns true if the variable passed to this function is a number.
@@ -436,7 +454,6 @@ Returns true if the variable passed to this function is a number.
 is_string
 ---------
 Returns true if the variable passed to this function is a string.
-
 
 - *Type*: rvalue
 
@@ -449,7 +466,6 @@ This function joins an array into a string using a seperator.
     join(['a','b','c'], ",")
 
 Would result in: "a,b,c"
-
 
 - *Type*: rvalue
 
@@ -465,13 +481,11 @@ which each element is one joined key/value pair.
 
 Would result in: ["a is 1","b is 2"]
 
-
 - *Type*: rvalue
 
 keys
 ----
 Returns the keys of a hash as an array.
-
 
 - *Type*: rvalue
 
@@ -491,20 +505,12 @@ lstrip
 ------
 Strips leading spaces to the left of a string.
 
-
 - *Type*: rvalue
 
 max
 ---
 Returns the highest value of all arguments.
 Requires at least one argument.
-
-
-- *Type*: rvalue
-
-md5
----
-Returns a MD5 hash value from a provided string.
 
 - *Type*: rvalue
 
@@ -522,7 +528,6 @@ Would return: true
 
 Would return: false
 
-
 - *Type*: rvalue
 
 merge
@@ -539,8 +544,6 @@ For example:
 
 When there is a duplicate key, the key in the rightmost hash will "win."
 
-
-
 - *Type*: rvalue
 
 min
@@ -548,21 +551,13 @@ min
 Returns the lowest value of all arguments.
 Requires at least one argument.
 
-
 - *Type*: rvalue
-
-notice
-------
-Log a message on the server at level notice.
-
-- *Type*: statement
 
 num2bool
 --------
 This function converts a number or a string representation of a number into a
 true boolean. Zero or anything non-numeric becomes false. Numbers higher then 0
 become true.
-
 
 - *Type*: rvalue
 
@@ -571,14 +566,12 @@ parsejson
 This function accepts JSON as a string and converts into the correct Puppet
 structure.
 
-
 - *Type*: rvalue
 
 parseyaml
 ---------
 This function accepts YAML as a string and converts it into the correct
 Puppet structure.
-
 
 - *Type*: rvalue
 
@@ -590,14 +583,12 @@ the first value in a list of values that is not undefined or an empty string
 this function is used to check for a value in the Puppet Dashboard/Enterprise
 Console, and failover to a default value like the following:
 
-  $real_jenkins_version = pick($::jenkins_version, '1.449')
+    $real_jenkins_version = pick($::jenkins_version, '1.449')
 
 The value of $real_jenkins_version will first look for a top-scope variable
 called 'jenkins_version' (note that parameters set in the Puppet Dashboard/
 Enterprise Console are brought into Puppet as top-scope variables), and,
 failing that, will use a default value of 1.449.
-
-
 
 - *Type*: rvalue
 
@@ -610,7 +601,6 @@ This function applies a prefix to all elements in an array.
     prefix(['a','b','c'], 'p')
 
 Will return: ['pa','pb','pc']
-
 
 - *Type*: rvalue
 
@@ -638,49 +628,6 @@ Will return: ["a","b","c"]
 
 Will return: ["host01", "host02", ..., "host09", "host10"]
 
-
-- *Type*: rvalue
-
-realize
--------
-Make a virtual object real.  This is useful
-when you want to know the name of the virtual object and don't want to
-bother with a full collection.  It is slightly faster than a collection,
-and, of course, is a bit shorter.  You must pass the object using a
-reference; e.g.: `realize User[luke]`.
-
-- *Type*: statement
-
-regsubst
---------
-Perform regexp replacement on a string or array of strings.
-
-* *Parameters* (in order):
-    * _target_  The string or array of strings to operate on.  If an array, the replacement will be performed on each of the elements in the array, and the return value will be an array.
-    * _regexp_  The regular expression matching the target string.  If you want it anchored at the start and or end of the string, you must do that with ^ and $ yourself.
-    * _replacement_  Replacement string. Can contain backreferences to what was matched using \0 (whole match), \1 (first set of parentheses), and so on.
-    * _flags_  Optional. String of single letter flags for how the regexp is interpreted:
-        - *E*         Extended regexps
-        - *I*         Ignore case in regexps
-        - *M*         Multiline regexps
-        - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
-    * _encoding_  Optional.  How to handle multibyte characters.  A single-character string with the following values:
-        - *N*         None
-        - *E*         EUC
-        - *S*         SJIS
-        - *U*         UTF-8
-
-* *Examples*
-
-Get the third octet from the node's IP address:
-
-    $i3 = regsubst($ipaddress,'^(\d+)\.(\d+)\.(\d+)\.(\d+)$','\3')
-
-Put angle brackets around each octet in the node's IP address:
-
-    $x = regsubst($ipaddress, '([0-9]+)', '<\1>', 'G')
-
-
 - *Type*: rvalue
 
 reject
@@ -699,40 +646,9 @@ Would return:
 
 - *Type*: rvalue
 
-require
--------
-Evaluate one or more classes,  adding the required class as a dependency.
-
-The relationship metaparameters work well for specifying relationships
-between individual resources, but they can be clumsy for specifying
-relationships between classes.  This function is a superset of the
-'include' function, adding a class relationship so that the requiring
-class depends on the required class.
-
-Warning: using require in place of include can lead to unwanted dependency cycles.
-
-For instance the following manifest, with 'require' instead of 'include' would produce a nasty dependence cycle, because notify imposes a before between File[/foo] and Service[foo]:
-
-    class myservice {
-      service { foo: ensure => running }
-    }
-
-    class otherstuff {
-      include myservice
-      file { '/foo': notify => Service[foo] }
-    }
-
-Note that this function only works with clients 0.25 and later, and it will
-fail if used with earlier clients.
-
-
-
-- *Type*: statement
-
 reverse
 -------
 Reverses the order of a string or array.
-
 
 - *Type*: rvalue
 
@@ -740,14 +656,11 @@ rstrip
 ------
 Strips leading spaces to the right of the string.
 
-
 - *Type*: rvalue
 
-search
 shuffle
 -------
 Randomizes the order of a string or array elements.
-
 
 - *Type*: rvalue
 
@@ -755,20 +668,18 @@ size
 ----
 Returns the number of elements in a string or array.
 
-
 - *Type*: rvalue
 
 sort
 ----
 Sorts strings and arrays lexically.
 
-
 - *Type*: rvalue
 
 squeeze
 -------
-Returns a new string where runs of the same character that occur in this set are replaced by a single character.
-
+Returns a new string where runs of the same character that occur in this set
+are replaced by a single character.
 
 - *Type*: rvalue
 
@@ -1192,7 +1103,6 @@ The following values will fail, causing compilation to abort:
     validate_string([ 'some', 'array' ])
     $undefined = undef
     validate_string($undefined)
-
 
 
 - *Type*: statement
