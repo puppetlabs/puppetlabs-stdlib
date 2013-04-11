@@ -1,3 +1,6 @@
+2013-04-11 - Jeff McCune <jeff@puppetlabs.com> - 4.0.1
+ * Fix README function documentation (ab3e30c)
+
 2013-04-11 - Jeff McCune <jeff@puppetlabs.com> - 4.0.0
  * stdlib 4.0 drops support with Puppet 2.7
  * stdlib 4.0 preserves support with Puppet 3
