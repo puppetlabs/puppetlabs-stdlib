@@ -1,5 +1,16 @@
 source "https://rubygems.org"
 
+def location_for(place, fake_version = nil)
+  mdata = /^(git:[^#]*)#(.*)/.match(place)
+  if mdata
+    [fake_version, { :git => mdata[1], :branch => mdata[2], :require => false }].compact
+  elsif place =~ /^file:\/\/(.*)/
+    ['>= 0', { :path => File.expand_path(mdata[1]), :require => false }]
+  else
+    [place, { :require => false }]
+  end
+end
+
 group :development do
   gem 'watchr'
 end
@@ -14,7 +25,7 @@ group :development, :test do
 end
 
 if puppetversion = ENV['PUPPET_GEM_VERSION']
-  gem 'puppet', puppetversion, :require => false
+  gem 'puppet', *location_for(puppetversion)
 else
   gem 'puppet', :require => false
 end
