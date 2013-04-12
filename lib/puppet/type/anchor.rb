@@ -38,4 +38,9 @@ Puppet::Type.newtype(:anchor) do
     desc "The name of the anchor resource."
   end
 
+  def refresh
+    # We don't do anything with them, but we need this to
+    #   show that we are "refresh aware" and not break the
+    #   chain of propagation.
+  end
 end
