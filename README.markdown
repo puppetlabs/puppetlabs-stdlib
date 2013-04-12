@@ -40,6 +40,12 @@ Enterprise 1.2.
 
 # Compatibility #
 
+Puppet Versions | < 2.6 | 2.6 | 2.7 | 3.x |
+:---------------|:-----:|:---:|:---:|:----:
+**stdlib 2.x**  | no    | **yes** | **yes** | no
+**stdlib 3.x**  | no    | no  | **yes** | **yes**
+**stdlib 4.x**  | no    | no  | no  | **yes**
+
 The stdlib module does not work with Puppet versions released prior to Puppet
 2.6.0.
 
