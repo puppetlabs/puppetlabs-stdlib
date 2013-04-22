@@ -1,5 +1,84 @@
-2012-11-28 - Peter Meier <peter.meier@immerda.ch> - 3.2.0
- * Add reject() function (a79b2cd)
+2013-04-12 - Jeff McCune <jeff@puppetlabs.com> - 4.0.2
+ * Update user information in gemspec to make the intent of the Gem clear.
+
+2013-04-11 - Jeff McCune <jeff@puppetlabs.com> - 4.0.1
+ * Fix README function documentation (ab3e30c)
+
+2013-04-11 - Jeff McCune <jeff@puppetlabs.com> - 4.0.0
+ * stdlib 4.0 drops support with Puppet 2.7
+ * stdlib 4.0 preserves support with Puppet 3
+
+2013-04-11 - Jeff McCune <jeff@puppetlabs.com> - 4.0.0
+ * Add ability to use puppet from git via bundler (9c5805f)
+
+2013-04-10 - Jeff McCune <jeff@puppetlabs.com> - 4.0.0
+ * (maint) Make stdlib usable as a Ruby GEM (e81a45e)
+
+2013-04-10 - Erik Dalén <dalen@spotify.com> - 4.0.0
+ * Add a count function (f28550e)
+
+2013-03-31 - Amos Shapira <ashapira@atlassian.com> - 4.0.0
+ * (#19998) Implement any2array (7a2fb80)
+
+2013-03-29 - Steve Huff <shuff@vecna.org> - 4.0.0
+ * (19864) num2bool match fix (8d217f0)
+
+2013-03-20 - Erik Dalén <dalen@spotify.com> - 4.0.0
+ * Allow comparisons of Numeric and number as String (ff5dd5d)
+
+2013-03-26 - Richard Soderberg <rsoderberg@mozilla.com> - 4.0.0
+ * add suffix function to accompany the prefix function (88a93ac)
+
+2013-03-19 - Kristof Willaert <kristof.willaert@gmail.com> - 4.0.0
+ * Add floor function implementation and unit tests (0527341)
+
+2012-04-03 - Eric Shamow <eric@puppetlabs.com> - 4.0.0
+ * (#13610) Add is_function_available to stdlib (961dcab)
+
+2012-12-17 - Justin Lambert <jlambert@eml.cc> - 4.0.0
+ * str2bool should return a boolean if called with a boolean (5d5a4d4)
+
+2012-10-23 - Uwe Stuehler <ustuehler@team.mobile.de> - 4.0.0
+ * Fix number of arguments check in flatten() (e80207b)
+
+2013-03-11 - Jeff McCune <jeff@puppetlabs.com> - 4.0.0
+ * Add contributing document (96e19d0)
+
+2013-03-04 - Raphaël Pinson <raphael.pinson@camptocamp.com> - 4.0.0
+ * Add missing documentation for validate_augeas and validate_cmd to README.markdown (a1510a1)
+
+2013-02-14 - Joshua Hoblitt <jhoblitt@cpan.org> - 4.0.0
+ * (#19272) Add has_element() function (95cf3fe)
+
+2013-02-07 - Raphaël Pinson <raphael.pinson@camptocamp.com> - 4.0.0
+ * validate_cmd(): Use Puppet::Util::Execution.execute when available (69248df)
+
+2012-12-06 - Raphaël Pinson <raphink@gmail.com> - 4.0.0
+ * Add validate_augeas function (3a97c23)
+
+2012-12-06 - Raphaël Pinson <raphink@gmail.com> - 4.0.0
+ * Add validate_cmd function (6902cc5)
+
+2013-01-14 - David Schmitt <david@dasz.at> - 4.0.0
+ * Add geppetto project definition (b3fc0a3)
+
+2013-01-02 - Jaka Hudoklin <jakahudoklin@gmail.com> - 4.0.0
+ * Add getparam function to get defined resource parameters (20e0e07)
+
+2013-01-05 - Jeff McCune <jeff@puppetlabs.com> - 4.0.0
+ * (maint) Add Travis CI Support (d082046)
+
+2012-12-04 - Jeff McCune <jeff@puppetlabs.com> - 4.0.0
+ * Clarify that stdlib 3 supports Puppet 3 (3a6085f)
+
+2012-11-30 - Erik Dalén <dalen@spotify.com> - 4.0.0
+ * maint: style guideline fixes (7742e5f)
+
+2012-11-09 - James Fryman <james@frymanet.com> - 4.0.0
+ * puppet-lint cleanup (88acc52)
+
+2012-11-06 - Joe Julian <me@joejulian.name> - 4.0.0
+ * Add function, uriescape, to URI.escape strings. Redmine #17459 (fd52b8d)
 
 2012-09-18 - Chad Metcalf <chad@wibidata.com> - 3.2.0
  * Add an ensure_packages function. (8a8c09e)

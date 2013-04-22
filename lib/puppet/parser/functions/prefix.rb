@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
   newfunction(:prefix, :type => :rvalue, :doc => <<-EOS
 This function applies a prefix to all elements in an array.
 
-*Examles:*
+*Examples:*
 
     prefix(['a','b','c'], 'p')
 
@@ -21,14 +21,14 @@ Will return: ['pa','pb','pc']
     array = arguments[0]
 
     unless array.is_a?(Array)
-      raise(Puppet::ParseError, 'prefix(): Requires array to work with')
+      raise Puppet::ParseError, "prefix(): expected first argument to be an Array, got #{array.inspect}"
     end
 
     prefix = arguments[1] if arguments[1]
 
     if prefix
       unless prefix.is_a?(String)
-        raise(Puppet::ParseError, 'prefix(): Requires string to work with')
+        raise Puppet::ParseError, "prefix(): expected second argument to be a String, got #{suffix.inspect}"
       end
     end
 

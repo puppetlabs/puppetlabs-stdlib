@@ -1,6 +1,6 @@
 name    'puppetlabs-stdlib'
-version '3.2.0'
-source 'git://github.com/puppetlabs/puppetlabs-stdlib'
+version '4.0.2'
+source 'git://github.com/puppetlabs/puppetlabs-stdlib.git'
 author 'puppetlabs'
 license 'Apache 2.0'
 summary 'Puppet Module Standard Library'

@@ -2,6 +2,7 @@ pkg/
 .DS_Store
 metadata.json
 coverage/
-vendor/
-.bundle/
+spec/fixtures/
 Gemfile.lock
+.bundle/
+vendor/bundle/
