@@ -4,7 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:hash, :type => :rvalue, :doc => <<-EOS
-This function converts and array into a hash.
+This function converts an array into a hash.
 
 *Examples:*
 
