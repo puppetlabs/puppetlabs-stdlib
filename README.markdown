@@ -195,6 +195,16 @@ Would return: ['a','c']
 
 - *Type*: rvalue
 
+dirname
+-------
+Returns the `dirname` of a path.
+
+*Examples:*
+
+    dirname('/path/to/a/file.ext')
+
+Would return: '/path/to/a'
+
 downcase
 --------
 Converts the case of a string or all strings in an array to lower case.
