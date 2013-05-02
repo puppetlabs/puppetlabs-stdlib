@@ -17,7 +17,7 @@ module Puppet::Parser::Functions
 
     Or if you wanted to ensure that no users used the '/bin/barsh' shell,
     you could use:
-    
+
         validate_augeas($passwdcontent, 'Passwd.lns', ['$file/*[shell="/bin/barsh"]']
 
     If a fourth argument is specified, this will be the error message raised and
