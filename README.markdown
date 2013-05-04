@@ -234,6 +234,38 @@ Would return: ['/path/to/a', '/path/to', '/path']
 
 Would return: ['/path/to/a']
 
+*Usage:*
+
+This function can be used to manage recursive directories given a file name (thus getting rid of `mkdir -p` `exec` resources).
+
+For example, if you know a file is either in `/var/cache` or `/usr/local/app/cache`, and you want to recursively create its hierarchy up to (and excluding) `/var/cache` or `/usr/local/app/cache`, you can use:
+
+    $filepath = '/var/cache/someapp/somefix.txt'
+    
+    file { dirname_rec($filepath, ['/var/cache', '/usr/local/app/cache']):
+      ensure => 'directory',
+    }
+
+Or, if you want to create its hierarchy up to 2 levels above the file:
+
+  file { dirname_rec($filepath, [], 0, 2):
+    ensure => 'directory',
+  }
+
+The parameters (`excludes`, `upper_limit`, `lower_limit`) can be combined, the first one matching determining where to stop:
+
+    file { dirname_rec($filepath, ['/etc/myapp', '/var/etc/myapp', '/home/myapp'], 3, 2):
+      ensure => directory,
+   }
+
+meaning:
+
+Manage the directories above `$filepath` recursively:
+
+- Stop if you meet either `/etc/myapp`, `/var/etc/myapp` or `/home/myapp` (and don't manage them);
+- Stop if you meet a directory that is 3 levels under `/` (e.g. `/usr/share/myapp`);
+- Stop after 2 levels above $filepath (e.g. if `$filepath = '/home/myapp/somedir/someotherdir/yetanotherdir/file.txt'`, it will manage `/home/myapp/somedir/someotherdir/yetanotherdir` and `/home/myapp/somedir/someotherdir`).
+
 - *Type*: rvalue
 
 downcase
