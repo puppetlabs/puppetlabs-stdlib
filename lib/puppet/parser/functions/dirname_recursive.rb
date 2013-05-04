@@ -1,5 +1,5 @@
 module Puppet::Parser::Functions
-  newfunction(:dirname_rec, :type => :rvalue, :doc => <<-EOS
+  newfunction(:dirname_recursive, :type => :rvalue, :doc => <<-EOS
     Returns an array of recursive dirnames of a path.
     EOS
   ) do |arguments|
