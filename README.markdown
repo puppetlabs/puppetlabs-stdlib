@@ -205,8 +205,8 @@ Returns the `dirname` of a path.
 
 Would return: '/path/to/a'
 
-dirname_rec
------------
+dirname_recursive
+-----------------
 Returns an array of `dirnames` of a path.
 
 *Parameters:*
@@ -218,19 +218,19 @@ Returns an array of `dirnames` of a path.
 
 *Examples:*
 
-    dirname_rec('/path/to/a/file.ext')
+    dirname_recursive('/path/to/a/file.ext')
 
 Would return: ['/path/to/a', '/path/to', '/path']
 
-    dirname_rec('/path/to/a/file.ext', ['/path/to', '/path', '/etc'])
+    dirname_recursive('/path/to/a/file.ext', ['/path/to', '/path', '/etc'])
 
 Would return: ['/path/to/a']
 
-    dirname_rec('/path/to/a/file.ext', [], 1)
+    dirname_recursive('/path/to/a/file.ext', [], 1)
 
 Would return: ['/path/to/a', '/path/to', '/path']
 
-    dirname_rec('/path/to/a/file.ext', [], 0, 1)
+    dirname_recursive('/path/to/a/file.ext', [], 0, 1)
 
 Would return: ['/path/to/a']
 
@@ -242,19 +242,19 @@ For example, if you know a file is either in `/var/cache` or `/usr/local/app/cac
 
     $filepath = '/var/cache/someapp/somefix.txt'
     
-    file { dirname_rec($filepath, ['/var/cache', '/usr/local/app/cache']):
+    file { dirname_recursive($filepath, ['/var/cache', '/usr/local/app/cache']):
       ensure => 'directory',
     }
 
 Or, if you want to create its hierarchy up to 2 levels above the file:
 
-  file { dirname_rec($filepath, [], 0, 2):
+  file { dirname_recursive($filepath, [], 0, 2):
     ensure => 'directory',
   }
 
 The parameters (`excludes`, `upper_limit`, `lower_limit`) can be combined, the first one matching determining where to stop:
 
-    file { dirname_rec($filepath, ['/etc/myapp', '/var/etc/myapp', '/home/myapp'], 3, 2):
+    file { dirname_recursive($filepath, ['/etc/myapp', '/var/etc/myapp', '/home/myapp'], 3, 2):
       ensure => directory,
    }
 
