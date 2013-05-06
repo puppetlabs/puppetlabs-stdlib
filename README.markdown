@@ -243,6 +243,11 @@ If the resource already exists but does not match the specified parameters,
 this function will attempt to recreate the resource leading to a duplicate
 resource definition error.
 
+An array of resources can also be passed in and each will be created with
+the type and parameters specified if it doesn't already exist.
+
+    ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
+
 
 
 - *Type*: statement
