@@ -31,12 +31,12 @@ ENDOFDOC
   raise(ArgumentError, 'Must specify a title') unless title
   params ||= {}
 
-  items = title.kind_of?(Array) ? title : [].push(title)
+  items = title.kind_of?(Array) ? title : [title]
 
   items.each do |item|
     Puppet::Parser::Functions.function(:defined_with_params)
     if function_defined_with_params(["#{type}[#{item}]", params])
-      Puppet.debug("Resource #{type}[#{item}] not created b/c it already exists")
+      Puppet.debug("Resource #{type}[#{item}] not created because it already exists")
     else
       Puppet::Parser::Functions.function(:create_resources)
       function_create_resources([type.capitalize, { item => params }])
