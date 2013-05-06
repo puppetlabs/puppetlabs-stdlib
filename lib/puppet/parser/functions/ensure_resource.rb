@@ -31,7 +31,7 @@ ENDOFDOC
   raise(ArgumentError, 'Must specify a title') unless title
   params ||= {}
 
-  items = title.kind_of?(Array) ? title : [title]
+  items = [title].flatten
 
   items.each do |item|
     Puppet::Parser::Functions.function(:defined_with_params)
