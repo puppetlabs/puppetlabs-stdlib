@@ -24,7 +24,16 @@ group :development, :test do
   gem 'rspec-puppet', :require => false
 end
 
-if puppetversion = ENV['PUPPET_GEM_VERSION']
+facterversion = ENV['GEM_FACTER_VERSION']
+if facterversion
+  gem 'facter', *location_for(facterversion)
+else
+  gem 'facter', :require => false
+end
+
+ENV['GEM_PUPPET_VERSION'] ||= ENV['PUPPET_GEM_VERSION']
+puppetversion = ENV['GEM_PUPPET_VERSION']
+if puppetversion
   gem 'puppet', *location_for(puppetversion)
 else
   gem 'puppet', :require => false
