@@ -181,12 +181,22 @@ class Facter::Util::DotD
     end
 end
 
-Facter::Util::DotD.new("/etc/facter/facts.d").create
-Facter::Util::DotD.new("/etc/puppetlabs/facter/facts.d").create
 
-# Windows has a different configuration directory that defaults to a vendor
-# specific sub directory of the %COMMON_APPDATA% directory.
-if Dir.const_defined? 'COMMON_APPDATA' then
-  windows_facts_dot_d = File.join(Dir::COMMON_APPDATA, 'PuppetLabs', 'facter', 'facts.d')
-  Facter::Util::DotD.new(windows_facts_dot_d).create
+mdata = Facter.version.match(/(\d+)\.(\d+)\.(\d+)/)
+if mdata
+  (major, minor, patch) = mdata.captures.map { |v| v.to_i }
+  if major < 2
+    # Facter 1.7 introduced external facts support directly
+    unless major == 1 and minor > 6
+      Facter::Util::DotD.new("/etc/facter/facts.d").create
+      Facter::Util::DotD.new("/etc/puppetlabs/facter/facts.d").create
+
+      # Windows has a different configuration directory that defaults to a vendor
+      # specific sub directory of the %COMMON_APPDATA% directory.
+      if Dir.const_defined? 'COMMON_APPDATA' then
+        windows_facts_dot_d = File.join(Dir::COMMON_APPDATA, 'PuppetLabs', 'facter', 'facts.d')
+        Facter::Util::DotD.new(windows_facts_dot_d).create
+      end
+    end
+  end
 end
