@@ -1,3 +1,25 @@
+2013-05-06 - Jeff McCune <jeff@puppetlabs.com> - 4.1.0
+ * (#20582) Restore facter_dot_d to stdlib for PE users (3b887c8)
+ * (maint) Update Gemfile with GEM_FACTER_VERSION (f44d535)
+
+2013-05-06 - Alex Cline <acline@us.ibm.com> - 4.1.0
+ * Terser method of string to array conversion courtesy of ethooz. (d38bce0)
+
+2013-05-06 - Alex Cline <acline@us.ibm.com> 4.1.0
+ * Refactor ensure_resource expectations (b33cc24)
+
+2013-05-06 - Alex Cline <acline@us.ibm.com> 4.1.0
+ * Changed str-to-array conversion and removed abbreviation. (de253db)
+
+2013-05-03 - Alex Cline <acline@us.ibm.com> 4.1.0
+ * (#20548) Allow an array of resource titles to be passed into the ensure_resource function (e08734a)
+
+2013-05-02 - Raphaël Pinson <raphael.pinson@camptocamp.com> - 4.1.0
+ * Add a dirname function (2ba9e47)
+
+2013-04-29 - Mark Smith-Guerrero <msmithgu@gmail.com> - 4.1.0
+ * (maint) Fix a small typo in hash() description (928036a)
+
 2013-04-12 - Jeff McCune <jeff@puppetlabs.com> - 4.0.2
  * Update user information in gemspec to make the intent of the Gem clear.
 
