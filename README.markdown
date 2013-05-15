@@ -195,6 +195,18 @@ Would return: ['a','c']
 
 - *Type*: rvalue
 
+difference
+----------
+This function returns the difference between two arrays.
+The returned array is a copy of the original array, removing any items that
+also appear in the second array.
+
+*Examples:*
+
+    difference(["a","b","c"],["b","c","d"])
+
+Would return: ["a"]
+
 dirname
 -------
 Returns the `dirname` of a path.
@@ -415,6 +427,16 @@ Would return: {'a'=>1,'b'=>2,'c'=>3}
 
 
 - *Type*: rvalue
+
+intersection
+-----------
+This function returns an array an intersection of two.
+
+*Examples:*
+
+    intersection(["a","b","c"],["b","c","d"])
+
+Would return: ["b","c"]
 
 is_array
 --------
@@ -867,6 +889,17 @@ Returns the type when passed a variable. Type can be one of:
 
 
 - *Type*: rvalue
+
+union
+-----
+This function returns a union of two arrays.
+
+*Examples:*
+
+    union(["a","b","c"],["b","c","d"])
+
+Would return: ["a","b","c","d"]
+
 
 unique
 ------
