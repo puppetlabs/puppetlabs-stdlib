@@ -26,6 +26,11 @@ describe Puppet::Parser::Functions.function(:merge) do
   describe 'when calling merge on the scope instance' do
     it 'should require all parameters are hashes' do
       expect { new_hash = scope.function_merge([{}, '2'])}.to raise_error(Puppet::ParseError, /unexpected argument type String/)
+      expect { new_hash = scope.function_merge([{}, 2])}.to raise_error(Puppet::ParseError, /unexpected argument type Fixnum/)
+    end
+
+    it 'should accept empty strings as puppet undef' do
+      expect { new_hash = scope.function_merge([{}, ''])}.not_to raise_error(Puppet::ParseError, /unexpected argument type String/)
     end
 
     it 'should be able to merge two hashes' do
