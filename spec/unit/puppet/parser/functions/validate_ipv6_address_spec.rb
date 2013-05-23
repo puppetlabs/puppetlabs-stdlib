@@ -8,12 +8,12 @@ describe Puppet::Parser::Functions.function(:validate_ipv6_address) do
   describe "when calling validate_ipv6_address from puppet" do
     describe "when given IPv6 address strings" do
       it "should compile with one argument" do
-        Puppet[:code] = "validate_ipv6_address('3ffe:505:2')"
+        Puppet[:code] = "validate_ipv6_address('3ffe:0505:0002::')"
         scope.compiler.compile
       end
 
       it "should compile with multiple arguments" do
-        Puppet[:code] = "validate_ipv6_address('3ffe:505:2', '3ffe:505:1')"
+        Puppet[:code] = "validate_ipv6_address('3ffe:0505:0002::', '3ffe:0505:0001::')"
         scope.compiler.compile
       end
     end
@@ -37,9 +37,11 @@ describe Puppet::Parser::Functions.function(:validate_ipv6_address) do
     end
 
     describe "when given numbers" do
-      it "should compile" do
+      it "should not compile" do
         Puppet[:code] = "validate_ipv6_address(1, 2)"
-        scope.compiler.compile
+        expect {
+          scope.compiler.compile
+        }.to raise_error(Puppet::ParseError, /not a valid IPv6 address/)
       end
     end
 
