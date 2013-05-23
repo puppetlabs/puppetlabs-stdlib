@@ -32,12 +32,13 @@
 #
 class stdlib::stages {
 
-  stage { 'setup':  before => Stage['main'] }
-  stage { 'runtime': require => Stage['main'] }
-  -> stage { 'setup_infra': }
-  -> stage { 'deploy_infra': }
-  -> stage { 'setup_app': }
-  -> stage { 'deploy_app': }
-  -> stage { 'deploy': }
+  stage { 'setup': }
+  stage { 'runtime': }
+  stage { 'setup_infra': }
+  stage { 'deploy_infra': }
+  stage { 'setup_app': }
+  stage { 'deploy_app': }
+  stage { 'deploy': }
 
+  Stage[setup] -> Stage[main] -> Stage[runtime]-> Stage[setup_infra] -> Stage[deploy_infra] -> Stage[setup_app] -> Stage[deploy_app] -> Stage[deploy]
 }
