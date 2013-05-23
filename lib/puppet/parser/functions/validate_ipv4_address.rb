@@ -18,6 +18,13 @@ module Puppet::Parser::Functions
     ENDHEREDOC
   ) do |args|
 
+    require "ipaddr"
+    rescuable_exceptions = [ ArgumentError ]
+
+    if defined?(IPAddr::InvalidAddressError)
+      rescuable_exceptions << IPAddr::InvalidAddressError
+    end
+
     unless args.length > 0 then
       raise Puppet::ParseError, ("validate_ipv4_address(): wrong number of arguments (#{args.length}; must be > 0)")
     end
@@ -31,7 +38,7 @@ module Puppet::Parser::Functions
         unless IPAddr.new(arg).ipv4?
           raise Puppet::ParseError, "#{arg.inspect} is not a valid IPv4 address."
         end
-      rescue ArgumentError
+      rescue *rescuable_exceptions
         raise Puppet::ParseError, "#{arg.inspect} is not a valid IPv4 address."
       end
     end
