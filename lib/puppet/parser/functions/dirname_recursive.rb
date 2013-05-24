@@ -9,7 +9,7 @@ module Puppet::Parser::Functions
 
     path = arguments[0]
     excludes = arguments[1] || []
-    upper_limit = arguments[2] || 0
+    upper_limit = arguments[2] || 2
     lower_limit = arguments[3] || 0
 
     # Validate arguments

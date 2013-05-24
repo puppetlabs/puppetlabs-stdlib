@@ -213,26 +213,26 @@ Returns an array of `dirnames` of a path.
 
   - the path to be analyzed
   - an array of paths to exclude (and where to stop recursing when met), defaults to []
-  - an upper_limit setting the maximal depth for the top-level directory, defaults to '0'
+  - an upper_limit setting the maximal depth for the top-level directory, defaults to '2'
   - a lower limit setting the maximal number of levels to go up from the given path, defaults to '0', meaning no limit 
 
 *Examples:*
 
-    dirname_recursive('/path/to/a/file.ext')
+    dirname_recursive('/some/path/to/a/file.ext')
 
-Would return: ['/path/to/a', '/path/to', '/path']
+Would return: `['/some/path/to/a', '/some/path/to']` (because `upper_limit` defaults to 2)
 
     dirname_recursive('/path/to/a/file.ext', ['/path/to', '/path', '/etc'])
 
-Would return: ['/path/to/a']
+Would return: `['/path/to/a']`
 
     dirname_recursive('/path/to/a/file.ext', [], 1)
 
-Would return: ['/path/to/a', '/path/to', '/path']
+Would return: `['/path/to/a', '/path/to', '/path']`
 
     dirname_recursive('/path/to/a/file.ext', [], 0, 1)
 
-Would return: ['/path/to/a']
+Would return: `['/path/to/a']`
 
 *Usage:*
 
@@ -246,7 +246,7 @@ For example, if you know a file is either in `/var/cache` or `/usr/local/app/cac
       ensure => 'directory',
     }
 
-Or, if you want to create its hierarchy up to 2 levels above the file:
+Or, if you want to create its hierarchy up to 2 levels above the file (including managing top-level directories):
 
   file { dirname_recursive($filepath, [], 0, 2):
     ensure => 'directory',
