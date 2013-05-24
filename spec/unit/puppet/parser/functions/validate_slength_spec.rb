@@ -35,7 +35,7 @@ describe "the validate_slength function" do
   end
 
   it "should fail if you pass something other than a string or array" do
-    expect { scope.function_validate_slength([Hash.new["moo" => "7"],6]) }.to(raise_error(Puppet::ParseError), /please pass a string, or an array of strings/)
+    expect { scope.function_validate_slength([Hash.new["moo" => "7"],6]) }.to(raise_error(Puppet::ParseError, /please pass a string, or an array of strings/))
   end
 
   it "should not fail if string is smaller or equal to size" do
