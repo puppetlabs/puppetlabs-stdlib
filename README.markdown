@@ -83,6 +83,15 @@ converted to arrays of alternating keys and values.
 
 - *Type*: rvalue
 
+base64
+--------
+Converts a string to and from base64 encoding.
+Requires an action ['encode','decode'] and either a plain or base64 encoded
+string
+
+
+- *Type*: rvalue
+
 bool2num
 --------
 Converts a boolean to a number. Converts the values:
