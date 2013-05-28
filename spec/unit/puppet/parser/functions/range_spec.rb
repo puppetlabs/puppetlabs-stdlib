@@ -15,44 +15,44 @@ describe "the range function" do
   describe 'with a letter range' do
     it "returns a letter range" do
       result = scope.function_range(["a","d"])
-      result.should(eq(['a','b','c','d']))
+      result.should eq ['a','b','c','d']
     end
 
     it "returns a letter range given a step of 1" do
       result = scope.function_range(["a","d","1"])
-      result.should(eq(['a','b','c','d']))
+      result.should eq ['a','b','c','d']
     end
 
     it "returns a stepped letter range" do
       result = scope.function_range(["a","d","2"])
-      result.should(eq(['a','c']))
+      result.should eq ['a','c']
     end
 
     it "returns a stepped letter range given a negative step" do
       result = scope.function_range(["a","d","-2"])
-      result.should(eq(['a','c']))
+      result.should eq ['a','c']
     end
   end
 
   describe 'with a number range' do
     it "returns a number range" do
       result = scope.function_range(["1","4"])
-      result.should(eq([1,2,3,4]))
+      result.should eq [1,2,3,4]
     end
 
     it "returns a number range given a step of 1" do
       result = scope.function_range(["1","4","1"])
-      result.should(eq([1,2,3,4]))
+      result.should eq [1,2,3,4]
     end
 
     it "returns a stepped number range" do
       result = scope.function_range(["1","4","2"])
-      result.should(eq([1,3]))
+      result.should eq [1,3]
     end
 
     it "returns a stepped number range given a negative step" do
       result = scope.function_range(["1","4","-2"])
-      result.should(eq([1,3]))
+      result.should eq [1,3]
     end
   end
 
