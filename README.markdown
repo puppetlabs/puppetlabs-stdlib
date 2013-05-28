@@ -226,6 +226,69 @@ Returns the `dirname` of a path.
 
 Would return: '/path/to/a'
 
+dirname_recursive
+-----------------
+Returns an array of `dirnames` of a path.
+
+*Parameters:*
+
+  - the path to be analyzed
+  - an array of paths to exclude (and where to stop recursing when met), defaults to []
+  - an upper_limit setting the maximal depth for the top-level directory, defaults to '2'
+  - a lower limit setting the maximal number of levels to go up from the given path, defaults to '0', meaning no limit 
+
+*Examples:*
+
+    dirname_recursive('/some/path/to/a/file.ext')
+
+Would return: `['/some/path/to/a', '/some/path/to']` (because `upper_limit` defaults to 2)
+
+    dirname_recursive('/path/to/a/file.ext', ['/path/to', '/path', '/etc'])
+
+Would return: `['/path/to/a']`
+
+    dirname_recursive('/path/to/a/file.ext', [], 1)
+
+Would return: `['/path/to/a', '/path/to', '/path']`
+
+    dirname_recursive('/path/to/a/file.ext', [], 0, 1)
+
+Would return: `['/path/to/a']`
+
+*Usage:*
+
+This function can be used to manage recursive directories given a file name (thus getting rid of `mkdir -p` `exec` resources).
+
+For example, if you know a file is either in `/var/cache` or `/usr/local/app/cache`, and you want to recursively create its hierarchy up to (and excluding) `/var/cache` or `/usr/local/app/cache`, you can use:
+
+    $filepath = '/var/cache/someapp/somefix.txt'
+    
+    file { dirname_recursive($filepath, ['/var/cache', '/usr/local/app/cache']):
+      ensure => 'directory',
+    }
+
+Or, if you want to create its hierarchy up to 2 levels above the file (including managing top-level directories):
+
+  file { dirname_recursive($filepath, [], 0, 2):
+    ensure => 'directory',
+  }
+
+The parameters (`excludes`, `upper_limit`, `lower_limit`) can be combined, the first one matching determining where to stop:
+
+    file { dirname_recursive($filepath, ['/etc/myapp', '/var/etc/myapp', '/home/myapp'], 3, 2):
+      ensure => directory,
+   }
+
+meaning:
+
+Manage the directories above `$filepath` recursively:
+
+- Stop if you meet either `/etc/myapp`, `/var/etc/myapp` or `/home/myapp` (and don't manage them);
+- Stop if you meet a directory that is 3 levels under `/` (e.g. `/usr/share/myapp`);
+- Stop after 2 levels above $filepath (e.g. if `$filepath = '/home/myapp/somedir/someotherdir/yetanotherdir/file.txt'`, it will manage `/home/myapp/somedir/someotherdir/yetanotherdir` and `/home/myapp/somedir/someotherdir`).
+
+- *Type*: rvalue
+
 downcase
 --------
 Converts the case of a string or all strings in an array to lower case.
