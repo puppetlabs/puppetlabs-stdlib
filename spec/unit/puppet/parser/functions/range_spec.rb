@@ -9,7 +9,7 @@ describe "the range function" do
   end
 
   it "raises a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_range([]) }.should( raise_error(Puppet::ParseError))
+    expect { scope.function_range([]) }.to raise_error Puppet::ParseError, /Wrong number of arguments.*0 for 1/
   end
 
   describe 'with a letter range' do
