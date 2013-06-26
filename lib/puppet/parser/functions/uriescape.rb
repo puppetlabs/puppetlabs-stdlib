@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
 
     value = arguments[0]
     klass = value.class
-    unsafe = ":/?#[]@!$&'()*+,;= "
+    unsafe = ":/?#[]@!$&'()*+,;= {}\""
 
     unless [Array, String].include?(klass)
       raise(Puppet::ParseError, 'uriescape(): Requires either ' +
