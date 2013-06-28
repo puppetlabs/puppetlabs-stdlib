@@ -26,8 +26,20 @@ describe "the validate_slength function" do
     expect { scope.function_validate_slength(["moo","0"]) }.to(raise_error(Puppet::ParseError, /please pass a positive number as max_length/))
   end
 
+  it "should raise a ParseError if argument 3 doesn't convert to a fixnum" do
+    expect { scope.function_validate_slength(["moo",2,["3"]]) }.to(raise_error(Puppet::ParseError, /Couldn't convert whatever you passed/))
+  end
+
+  it "should raise a ParseError if argument 3 converted, but to 0, e.g. a string" do
+    expect { scope.function_validate_slength(["moo",2,"monkey"]) }.to(raise_error(Puppet::ParseError, /Couldn't convert whatever you passed/))
+  end
+
   it "should fail if string greater then size" do
-    expect { scope.function_validate_slength(["test", 2]) }.to(raise_error(Puppet::ParseError, /It should have been less than or equal to/))
+    expect { scope.function_validate_slength(["test", 2]) }.to(raise_error(Puppet::ParseError, /It should have been between 0 and 2/))
+  end
+
+  it "should fail if the min length is larger than the max length" do
+    expect { scope.function_validate_slength(["test", 10, 15]) }.to(raise_error(Puppet::ParseError, /pass a min length that is smaller than the max/))
   end
 
   it "should fail if you pass an array of something other than strings" do
