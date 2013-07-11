@@ -39,6 +39,7 @@ Puppet::Type.newtype(:file_line) do
 
   newparam(:multiple) do
     desc 'An optional value to determine if match can change multiple lines.'
+    newvalues(true, false)
   end
 
   newparam(:line) do

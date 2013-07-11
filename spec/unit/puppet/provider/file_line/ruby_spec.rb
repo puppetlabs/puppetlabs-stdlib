@@ -80,6 +80,20 @@ describe provider_class do
       File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2\nfoo = bar")
     end
 
+    it 'should raise an error with invalid values' do
+      expect {
+        @resource = Puppet::Type::File_line.new(
+          {
+           :name => 'foo',
+           :path => @tmpfile,
+           :line => 'foo = bar',
+           :match => '^foo\s*=.*$',
+           :multiple => 'asgadga'
+          }
+        )
+      }.to raise_error(Puppet::Error, /Invalid value "asgadga"\. Valid values are true, false\./)
+    end
+
     it 'should replace a line that matches' do
       File.open(@tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo=blah\nfoo2")
