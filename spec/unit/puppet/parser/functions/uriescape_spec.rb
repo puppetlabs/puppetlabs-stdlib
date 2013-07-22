@@ -13,8 +13,8 @@ describe "the uriescape function" do
   end
 
   it "should uriescape a string" do
-    result = scope.function_uriescape([":/?#[]@!$&'()*+,;= "])
-    result.should(eq('%3A%2F%3F%23%5B%5D%40%21%24%26%27%28%29%2A%2B%2C%3B%3D%20'))
+    result = scope.function_uriescape([":/?#[]@!$&'()*+,;= \"{}"])
+    result.should(eq(':/?%23[]@!$&\'()*+,;=%20%22%7B%7D'))
   end
 
   it "should do nothing if a string is already safe" do
