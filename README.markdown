@@ -204,6 +204,33 @@ Would return: ['a','c']
 
 - *Type*: rvalue
 
+delete_values
+-------------
+Deletes all instances of a given value from a hash.
+
+*Examples:*
+
+    delete_values({'a'=>'A','b'=>'B','c'=>'C','B'=>'D'}, 'B')
+
+Would return: {'a'=>'A','c'=>'C','B'=>'D'}
+
+
+delete_undef_values
+-------------------
+Deletes all instances of the undef value from an array or hash.
+
+*Examples:*
+    
+    $hash = delete_undef_values({a=>'A', b=>'', c=>undef, d => false})
+
+Would return: {a => 'A', b => '', d => false}
+
+    $array = delete_undef_values(['A','',undef,false])
+
+Would return: ['A','',false]
+
+- *Type*: rvalue
+
 difference
 ----------
 This function returns the difference between two arrays.
