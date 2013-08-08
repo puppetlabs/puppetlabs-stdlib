@@ -15,12 +15,11 @@ Would return: {'a'=>'A','c'=>'C','B'=>'D'}
           "delete_values(): Wrong number of arguments given " +
           "(#{arguments.size} of 2)") if arguments.size != 2
 
-    hash = arguments[0]
-    item = arguments[1]
+    hash, item = arguments
 
     if not hash.is_a?(Hash)
       raise(TypeError, "delete_values(): First argument must be a Hash. " + \
-                       "Given an" " argument of class #{hash.class}.") 
+                       "Given an argument of class #{hash.class}.") 
     end
     hash.delete_if { |key, val| item == val }
   end
