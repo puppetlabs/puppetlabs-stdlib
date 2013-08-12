@@ -21,47 +21,51 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
 
-    raise Puppet::ParseError, ("validate_slength(): Wrong number of arguments (#{args.length}; must be 2 or 3)") unless args.length == 2 or args.length == 3
+    raise Puppet::ParseError, "validate_slength(): Wrong number of arguments (#{args.length}; must be 2 or 3)" unless args.length == 2 or args.length == 3
 
-    unless (args[0].is_a?(String) or args[0].is_a?(Array))
-      raise Puppet::ParseError, ("validate_slength(): please pass a string, or an array of strings - what you passed didn't work for me at all - #{args[0].class}")
-    end
+    input, max_length, min_length = *args
 
     begin
-      max_length = args[1].to_i
-    rescue NoMethodError => e
-      raise Puppet::ParseError, ("validate_slength(): Couldn't convert whatever you passed as the max length parameter to an integer  - sorry: " + e.message )
+      max_length = Integer(max_length)
+      raise ArgumentError if max_length <= 0
+    rescue ArgumentError, TypeError
+      raise Puppet::ParseError, "validate_slength(): Expected second argument to be a positive Numeric, got #{max_length}:#{max_length.class}"
     end
 
-    unless args.length == 2
+    if min_length
       begin
-        min_length = Integer(args[2])
-      rescue StandardError => e
-        raise Puppet::ParseError, ("validate_slength(): Couldn't convert whatever you passed as the min length parameter to an integer  - sorry: " + e.message )
+        min_length = Integer(min_length)
+        raise ArgumentError if min_length < 0
+    rescue ArgumentError, TypeError
+        raise Puppet::ParseError, "validate_slength(): Expected third argument to be unset or a positive Numeric, got #{min_length}:#{min_length.class}"
       end
     else
       min_length = 0
     end
 
-    raise Puppet::ParseError, ("validate_slength(): please pass a positive number as max_length") unless max_length > 0
-    raise Puppet::ParseError, ("validate_slength(): please pass a positive number as min_length") unless min_length >= 0
-    raise Puppet::ParseError, ("validate_slength(): please pass a min length that is smaller than the maximum") unless min_length <= max_length
+    if min_length > max_length
+      raise Puppet::ParseError, "validate_slength(): Expected second argument to be larger than third argument"
+    end
 
-    case args[0]
-      when String
-        raise Puppet::ParseError, ("validate_slength(): #{args[0].inspect} is #{args[0].length} characters.  It should have been between #{min_length} and #{max_length} characters") unless args[0].length <= max_length and min_length <= args[0].length
-      when Array
-        args[0].each do |arg|
-          if arg.is_a?(String)
-            unless ( arg.is_a?(String) and arg.length <= max_length and min_length <= arg.length)
-              raise Puppet::ParseError, ("validate_slength(): #{arg.inspect} is #{arg.length} characters.  It should have been between #{min_length} and #{max_length} characters")
-            end
-          else
-            raise Puppet::ParseError, ("validate_slength(): #{arg.inspect} is not a string, it's a #{arg.class}")
-          end
+    validator = lambda do |str|
+      unless str.length <= max_length and str.length >= min_length
+        raise Puppet::ParseError, "validate_slength(): Expected length of #{input.inspect} to be between #{min_length} and #{max_length}, was #{input.length}"
+      end
+    end
+
+    case input
+    when String
+      validator.call(input)
+    when Array
+      input.each_with_index do |arg, pos|
+        if arg.is_a? String
+          validator.call(arg)
+        else
+          raise Puppet::ParseError, "validate_slength(): Expected element at array position #{pos} to be a String, got #{arg.class}"
         end
-      else
-        raise Puppet::ParseError, ("validate_slength(): please pass a string, or an array of strings - what you passed didn't work for me at all - #{args[0].class}")
+      end
+    else
+      raise Puppet::ParseError, "validate_slength(): Expected first argument to be a String or Array, got #{input.class}"
     end
   end
 end
