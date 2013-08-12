@@ -49,7 +49,7 @@ module Puppet::Parser::Functions
 
     case args[0]
       when String
-        raise Puppet::ParseError, ("validate_slength(): #{args[0].inspect} is #{args[0].length} characters.  It should have been between #{min_length} and #{max_length} characters") unless args[0].length <= max_length and min_length <= arg.length
+        raise Puppet::ParseError, ("validate_slength(): #{args[0].inspect} is #{args[0].length} characters.  It should have been between #{min_length} and #{max_length} characters") unless args[0].length <= max_length and min_length <= args[0].length
       when Array
         args[0].each do |arg|
           if arg.is_a?(String)
