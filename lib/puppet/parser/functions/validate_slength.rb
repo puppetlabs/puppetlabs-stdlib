@@ -30,24 +30,26 @@ module Puppet::Parser::Functions
     end
 
     begin
-      max_length = max_length.to_i
-    rescue NoMethodError => e
-      raise Puppet::ParseError, "validate_slength(): Expected second argument to be a positive Numeric, got a #{max_length.class}"
+      max_length = Integer(max_length)
+      raise ArgumentError if max_length <= 0
+    rescue ArgumentError, TypeError
+      raise Puppet::ParseError, "validate_slength(): Expected second argument to be a positive Numeric, got #{max_length}:#{max_length.class}"
     end
 
-    unless args.length == 2
+    if min_length
       begin
         min_length = Integer(min_length)
-      rescue StandardError => e
-        raise Puppet::ParseError, "validate_slength(): Expected third argument to be unset or a positive Numeric, got a #{min_length.class}"
+        raise ArgumentError if min_length < 0
+    rescue ArgumentError, TypeError
+        raise Puppet::ParseError, "validate_slength(): Expected third argument to be unset or a positive Numeric, got #{min_length}:#{min_length.class}"
       end
     else
       min_length = 0
     end
 
-    raise Puppet::ParseError, "validate_slength(): please pass a positive number as max_length" unless max_length > 0
-    raise Puppet::ParseError, "validate_slength(): please pass a positive number as min_length" unless min_length >= 0
-    raise Puppet::ParseError, "validate_slength(): please pass a min length that is smaller than the maximum" unless min_length <= max_length
+    if min_length > max_length
+      raise Puppet::ParseError, "validate_slength(): Expected second argument to be larger than third argument"
+    end
 
     case input
       when String
