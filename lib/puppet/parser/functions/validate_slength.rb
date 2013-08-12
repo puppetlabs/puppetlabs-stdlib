@@ -26,20 +26,20 @@ module Puppet::Parser::Functions
     input, max_length, min_length = *args
 
     unless (input.is_a?(String) or input.is_a?(Array))
-      raise Puppet::ParseError, "validate_slength(): please pass a string, or an array of strings - what you passed didn't work for me at all - #{input.class}"
+      raise Puppet::ParseError, "validate_slength(): Expected first argument to be a String or Array, got a #{input.class}"
     end
 
     begin
       max_length = max_length.to_i
     rescue NoMethodError => e
-      raise Puppet::ParseError, "validate_slength(): Couldn't convert whatever you passed as the max length parameter to an integer  - sorry: " + e.message
+      raise Puppet::ParseError, "validate_slength(): Expected second argument to be a positive Numeric, got a #{max_length.class}"
     end
 
     unless args.length == 2
       begin
         min_length = Integer(min_length)
       rescue StandardError => e
-        raise Puppet::ParseError, "validate_slength(): Couldn't convert whatever you passed as the min length parameter to an integer  - sorry: " + e.message
+        raise Puppet::ParseError, "validate_slength(): Expected third argument to be unset or a positive Numeric, got a #{min_length.class}"
       end
     else
       min_length = 0
