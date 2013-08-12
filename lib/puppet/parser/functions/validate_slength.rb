@@ -58,16 +58,16 @@ module Puppet::Parser::Functions
     end
 
     case input
-      when String
-        validator.call(input)
-      when Array
-        input.each_with_index do |arg, pos|
-          if arg.is_a?(String)
-            validator.call(arg)
-          else
-            raise Puppet::ParseError, "validate_slength(): Expected element at array position #{pos} to be a String, got a #{arg.class}"
-          end
+    when String
+      validator.call(input)
+    when Array
+      input.each_with_index do |arg, pos|
+        if arg.is_a?(String)
+          validator.call(arg)
+        else
+          raise Puppet::ParseError, "validate_slength(): Expected element at array position #{pos} to be a String, got a #{arg.class}"
         end
+      end
     end
   end
 end
