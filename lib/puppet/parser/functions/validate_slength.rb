@@ -51,21 +51,23 @@ module Puppet::Parser::Functions
       raise Puppet::ParseError, "validate_slength(): Expected second argument to be larger than third argument"
     end
 
+    validator = lambda do |str|
+      unless str.length <= max_length and str.length >= min_length
+        raise Puppet::ParseError, "validate_slength(): Expected length of #{input.inspect} to be between #{min_length} and #{max_length}, was #{input.length}"
+      end
+    end
+
     case input
       when String
-        raise Puppet::ParseError, "validate_slength(): #{input.inspect} is #{input.length} characters.  It should have been between #{min_length} and #{max_length} characters" unless input.length <= max_length and min_length <= input.length
+        validator.call(input)
       when Array
-        input.each do |arg|
+        input.each_with_index do |arg, pos|
           if arg.is_a?(String)
-            unless ( arg.is_a?(String) and arg.length <= max_length and min_length <= arg.length)
-              raise Puppet::ParseError, "validate_slength(): #{arg.inspect} is #{arg.length} characters.  It should have been between #{min_length} and #{max_length} characters"
-            end
+            validator.call(arg)
           else
-            raise Puppet::ParseError, "validate_slength(): #{arg.inspect} is not a string, it's a #{arg.class}"
+            raise Puppet::ParseError, "validate_slength(): Expected element at array position #{pos} to be a String, got a #{arg.class}"
           end
         end
-      else
-        raise Puppet::ParseError, "validate_slength(): please pass a string, or an array of strings - what you passed didn't work for me at all - #{input.class}"
     end
   end
 end
