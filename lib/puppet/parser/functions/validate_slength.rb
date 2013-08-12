@@ -25,10 +25,6 @@ module Puppet::Parser::Functions
 
     input, max_length, min_length = *args
 
-    unless (input.is_a?(String) or input.is_a?(Array))
-      raise Puppet::ParseError, "validate_slength(): Expected first argument to be a String or Array, got a #{input.class}"
-    end
-
     begin
       max_length = Integer(max_length)
       raise ArgumentError if max_length <= 0
@@ -62,12 +58,14 @@ module Puppet::Parser::Functions
       validator.call(input)
     when Array
       input.each_with_index do |arg, pos|
-        if arg.is_a?(String)
+        if arg.is_a? String
           validator.call(arg)
         else
-          raise Puppet::ParseError, "validate_slength(): Expected element at array position #{pos} to be a String, got a #{arg.class}"
+          raise Puppet::ParseError, "validate_slength(): Expected element at array position #{pos} to be a String, got #{arg.class}"
         end
       end
+    else
+      raise Puppet::ParseError, "validate_slength(): Expected first argument to be a String or Array, got #{input.class}"
     end
   end
 end
