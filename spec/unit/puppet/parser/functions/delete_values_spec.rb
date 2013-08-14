@@ -13,7 +13,7 @@ describe "the delete_values function" do
   end
 
   it "should raise a ParseError if there are greater than 2 arguments" do
-    lambda { scope.function_delete([[], 'foo', 'bar']) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_delete_values([[], 'foo', 'bar']) }.should( raise_error(Puppet::ParseError))
   end
 
   it "should raise a TypeError if the argument is not a hash" do
