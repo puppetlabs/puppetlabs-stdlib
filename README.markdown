@@ -215,6 +215,8 @@ Deletes all instances of a given value from a hash.
 Would return: {'a'=>'A','c'=>'C','B'=>'D'}
 
 
+- *Type*: rvalue
+
 delete_undef_values
 -------------------
 Deletes all instances of the undef value from an array or hash.
