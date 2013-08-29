@@ -4,7 +4,7 @@ def location_for(place, fake_version = nil)
   mdata = /^(git:[^#]*)#(.*)/.match(place)
   if mdata
     [fake_version, { :git => mdata[1], :branch => mdata[2], :require => false }].compact
-  elsif place =~ /^file:\/\/(.*)/
+  elsif mdata = /^file:\/\/(.*)/.match(place)
     ['>= 0', { :path => File.expand_path(mdata[1]), :require => false }]
   else
     [place, { :require => false }]
