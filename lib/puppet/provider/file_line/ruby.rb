@@ -49,10 +49,32 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def handle_create_without_match
-    File.open(resource[:path], 'a') do |fh|
-      fh.puts resource[:line]
-    end
-  end
 
+    regex = resource[:after] ? Regexp.new(resource[:after]) : nil
+    after_count = File.exists?(resource[:path]) ? lines.select { |l| regex.match(l) }.size : 0
+    if after_count > 1 then
+     raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches after pattern '#{resource[:after]}'"
+    end
+
+    if (after_count == 0)
+
+      File.open(resource[:path], 'a') do |fh|
+        fh.puts resource[:line]
+      end
+
+    else
+
+      File.open(resource[:path], 'w') do |fh|
+        lines.each do |l|
+          fh.puts(l)
+          if regex.match(l) then
+            fh.puts(resource[:line])
+          end
+        end
+      end
+
+    end
+
+  end
 
 end

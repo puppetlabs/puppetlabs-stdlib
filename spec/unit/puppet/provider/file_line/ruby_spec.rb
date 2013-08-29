@@ -80,6 +80,24 @@ describe provider_class do
       File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2\nfoo = bar")
     end
 
+    it 'should replace all lines that matches with after' do
+      @resource = Puppet::Type::File_line.new(
+          {
+           :name => 'foo',
+           :path => @tmpfile,
+           :line => 'inserted = line',
+           :after => '^foo1',
+          }
+      )
+      @provider = provider_class.new(@resource)
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo = blah\nfoo2\nfoo = baz")
+      end
+      @provider.exists?.should be_nil
+      @provider.create
+      File.read(@tmpfile).chomp.should eql("foo1\ninserted = line\nfoo = blah\nfoo2\nfoo = baz")
+    end
+
     it 'should raise an error with invalid values' do
       expect {
         @resource = Puppet::Type::File_line.new(
