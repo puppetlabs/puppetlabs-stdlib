@@ -36,7 +36,7 @@ describe 'ensure_packages' do
     it 'declares package resources with ensure => present' do
       should run.with_params(['facter'])
       rsrc = compiler.catalog.resource('Package[facter]')
-      rsrc.to_hash.should == {:name => "facter", :ensure => "present"}
+      rsrc.to_hash[:ensure].should eq("present")
     end
   end
 end
