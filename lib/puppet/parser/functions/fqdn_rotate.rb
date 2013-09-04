@@ -3,13 +3,10 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:fqdn_rotate, :type => :rvalue, :doc => <<-EOS
+  newfunction(:fqdn_rotate, :type => :rvalue, :arity => 1, :doc => <<-EOS
 Rotates an array a random number of times based on a nodes fqdn.
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "fqdn_rotate(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
     klass = value.class

@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:union, :type => :rvalue, :doc => <<-EOS
+  newfunction(:union, :type => :rvalue, :arity => 2, :doc => <<-EOS
 This function returns a union of two arrays.
 
 *Examples:*
@@ -13,10 +13,6 @@ This function returns a union of two arrays.
 Would return: ["a","b","c","d"]
     EOS
   ) do |arguments|
-
-    # Two arguments are required
-    raise(Puppet::ParseError, "union(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size != 2
 
     first = arguments[0]
     second = arguments[1]

@@ -3,14 +3,11 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:bool2str, :type => :rvalue, :doc => <<-EOS
+  newfunction(:bool2str, :type => :rvalue, :arity => 1, :doc => <<-EOS
     Converts a boolean to a string.
     Requires a single boolean as an input.
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "bool2str(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
     klass = value.class

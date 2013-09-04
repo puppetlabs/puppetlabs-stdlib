@@ -61,7 +61,7 @@ describe Puppet::Parser::Functions.function(:validate_ipv6_address) do
       Puppet[:code] = "validate_ipv6_address()"
       expect {
         scope.compiler.compile
-      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
+      }.to raise_error(Puppet::ParseError)
     end
   end
 end

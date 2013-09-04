@@ -10,7 +10,7 @@ describe "the to_bytes function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_to_bytes([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_to_bytes([]) }.to( raise_error(ArgumentError))
   end
 
   it "should convert kB to B" do

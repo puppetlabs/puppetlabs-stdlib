@@ -58,7 +58,7 @@ describe Puppet::Parser::Functions.function(:validate_ipv4_address) do
       Puppet[:code] = "validate_ipv4_address()"
       expect {
         scope.compiler.compile
-      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
+      }.to raise_error(Puppet::ParseError)
     end
   end
 end

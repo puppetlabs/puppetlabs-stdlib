@@ -1,5 +1,5 @@
 module Puppet::Parser::Functions
- newfunction(:pick_default, :type => :rvalue, :doc => <<-EOS
+ newfunction(:pick_default, :type => :rvalue, :arity => -2, :doc => <<-EOS
 
 This function is similar to a coalesce function in SQL in that it will return
 the first value in a list of values that is not undefined or an empty string
@@ -23,7 +23,6 @@ default.
 
 EOS
 ) do |args|
-   fail "Must receive at least one argument." if args.empty?
    default = args.last
    args = args[0..-2].compact
    args.delete(:undef)

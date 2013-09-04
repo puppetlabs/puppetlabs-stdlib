@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:difference, :type => :rvalue, :doc => <<-EOS
+  newfunction(:difference, :type => :rvalue, :arity => 2, :doc => <<-EOS
 This function returns the difference between two arrays.
 The returned array is a copy of the original array, removing any items that
 also appear in the second array.
@@ -15,10 +15,6 @@ also appear in the second array.
 Would return: ["a"]
     EOS
   ) do |arguments|
-
-    # Two arguments are required
-    raise(Puppet::ParseError, "difference(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size != 2
 
     first = arguments[0]
     second = arguments[1]

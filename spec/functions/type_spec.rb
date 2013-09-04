@@ -8,7 +8,7 @@ describe "the type function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_type([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_type([]) }.to( raise_error(ArgumentError))
   end
 
   it "should return string when given a string" do

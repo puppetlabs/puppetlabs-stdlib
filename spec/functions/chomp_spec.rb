@@ -9,7 +9,7 @@ describe "the chomp function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_chomp([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_chomp([]) }.to( raise_error(ArgumentError))
   end
 
   it "should chomp the end of a string" do

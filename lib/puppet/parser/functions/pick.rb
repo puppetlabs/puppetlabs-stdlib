@@ -1,5 +1,5 @@
 module Puppet::Parser::Functions
- newfunction(:pick, :type => :rvalue, :doc => <<-EOS
+ newfunction(:pick, :type => :rvalue, :arity => -2, :doc => <<-EOS
 
 This function is similar to a coalesce function in SQL in that it will return
 the first value in a list of values that is not undefined or an empty string

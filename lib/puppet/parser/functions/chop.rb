@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:chop, :type => :rvalue, :doc => <<-'EOS'
+  newfunction(:chop, :type => :rvalue, :arity => 1, :doc => <<-'EOS'
     Returns a new string with the last character removed. If the string ends
     with `\r\n`, both characters are removed. Applying chop to an empty
     string returns an empty string. If you wish to merely remove record
@@ -11,9 +11,6 @@ module Puppet::Parser::Functions
     Requires a string or array of strings as input.
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "chop(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
     klass = value.class

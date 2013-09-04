@@ -1,5 +1,5 @@
 module Puppet::Parser::Functions
-  newfunction(:validate_augeas, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_augeas, :arity => -3, :doc => <<-'ENDHEREDOC') do |args|
     Perform validation of a string using an Augeas lens
     The first argument of this function should be a string to
     test, and the second argument should be the name of the Augeas lens to use.
@@ -32,8 +32,8 @@ module Puppet::Parser::Functions
       raise Puppet::ParseError, ("validate_augeas(): this function requires the augeas feature. See http://projects.puppetlabs.com/projects/puppet/wiki/Puppet_Augeas#Pre-requisites for how to activate it.")
     end
 
-    if (args.length < 2) or (args.length > 4) then
-      raise Puppet::ParseError, ("validate_augeas(): wrong number of arguments (#{args.length}; must be 2, 3, or 4)")
+    if args.length > 4 then
+      raise ArgumentError, ("validate_augeas(): wrong number of arguments (#{args.length}; must be 2, 3, or 4)")
     end
 
     msg = args[3] || "validate_augeas(): Failed to validate content against #{args[1].inspect}"

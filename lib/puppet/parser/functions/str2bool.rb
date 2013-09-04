@@ -3,15 +3,12 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:str2bool, :type => :rvalue, :doc => <<-EOS
+  newfunction(:str2bool, :type => :rvalue, :arity => 1, :doc => <<-EOS
 This converts a string to a boolean. This attempt to convert strings that
 contain things like: y, 1, t, true to 'true' and strings that contain things
 like: 0, f, n, false, no to 'false'.
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "str2bool(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     string = arguments[0]
 

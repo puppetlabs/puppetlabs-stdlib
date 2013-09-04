@@ -9,7 +9,7 @@ describe "the is_integer function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_is_integer([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_is_integer([]) }.to( raise_error(ArgumentError))
   end
 
   it "should return true if an integer" do

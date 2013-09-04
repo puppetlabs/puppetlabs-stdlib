@@ -9,7 +9,7 @@ describe "the squeeze function" do
   end
 
   it "should raise a ParseError if there is less than 2 arguments" do
-    expect { scope.function_squeeze([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_squeeze([]) }.to( raise_error(ArgumentError))
   end
 
   it "should squeeze a string" do

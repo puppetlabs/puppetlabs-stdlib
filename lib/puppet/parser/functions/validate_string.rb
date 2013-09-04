@@ -1,6 +1,6 @@
 module Puppet::Parser::Functions
 
-  newfunction(:validate_string, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_string, :arity => -2, :doc => <<-'ENDHEREDOC') do |args|
     Validate that all passed values are string data structures. Abort catalog
     compilation if any value fails this check.
 
@@ -22,10 +22,6 @@ module Puppet::Parser::Functions
         }
     
     ENDHEREDOC
-
-    unless args.length > 0 then
-      raise Puppet::ParseError, ("validate_string(): wrong number of arguments (#{args.length}; must be > 0)")
-    end
 
     args.each do |arg|
       unless arg.is_a?(String)

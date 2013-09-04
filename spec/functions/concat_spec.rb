@@ -5,7 +5,7 @@ describe "the concat function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should raise a ParseError if the client does not provide two arguments" do
-    expect { scope.function_concat([]) }.to(raise_error(Puppet::ParseError))
+    expect { scope.function_concat([]) }.to(raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if the first parameter is not an array" do

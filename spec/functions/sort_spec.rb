@@ -9,7 +9,7 @@ describe "the sort function" do
   end
 
   it "should raise a ParseError if there is not 1 arguments" do
-    expect { scope.function_sort(['','']) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_sort(['','']) }.to( raise_error(ArgumentError))
   end
 
   it "should sort an array" do

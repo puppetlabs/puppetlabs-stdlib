@@ -25,7 +25,7 @@ describe Puppet::Parser::Functions.function(:validate_re) do
 
       inputs.each do |input|
         it "validate_re(#{input.inspect}) should fail" do
-          expect { subject.call [input] }.to raise_error Puppet::ParseError
+          expect { subject.call [input] }.to raise_error ArgumentError
         end
       end
     end

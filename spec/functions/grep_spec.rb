@@ -9,7 +9,7 @@ describe "the grep function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_grep([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_grep([]) }.to( raise_error(ArgumentError))
   end
 
   it "should grep contents from an array" do

@@ -1,5 +1,5 @@
 module Puppet::Parser::Functions
-  newfunction(:validate_absolute_path, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_absolute_path, :arity => -2, :doc => <<-'ENDHEREDOC') do |args|
     Validate the string represents an absolute path in the filesystem.  This function works
     for windows and unix style paths.
 
@@ -22,10 +22,6 @@ module Puppet::Parser::Functions
     ENDHEREDOC
 
     require 'puppet/util'
-
-    unless args.length > 0 then
-      raise Puppet::ParseError, ("validate_absolute_path(): wrong number of arguments (#{args.length}; must be > 0)")
-    end
 
     args.each do |arg|
       # This logic was borrowed from

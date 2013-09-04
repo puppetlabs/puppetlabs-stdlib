@@ -1,5 +1,5 @@
 module Puppet::Parser::Functions
-  newfunction(:deep_merge, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:deep_merge, :type => :rvalue, :arity => -3, :doc => <<-'ENDHEREDOC') do |args|
     Recursively merges two or more hashes together and returns the resulting hash.
 
     For example:
@@ -14,10 +14,6 @@ module Puppet::Parser::Functions
     When there is a duplicate key that is not a hash, the key in the rightmost hash will "win."
 
     ENDHEREDOC
-
-    if args.length < 2
-      raise Puppet::ParseError, ("deep_merge(): wrong number of arguments (#{args.length}; must be at least 2)")
-    end
 
     deep_merge = Proc.new do |hash1,hash2|
       hash1.merge(hash2) do |key,old_value,new_value|
