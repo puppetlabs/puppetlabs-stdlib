@@ -1,6 +1,6 @@
 module Puppet::Parser::Functions
  
-  newfunction(:base64, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:base64, :type => :rvalue, :arity => 2, :doc => <<-'ENDHEREDOC') do |args|
 
     Base64 encode or decode a string based on the command and the string submitted
 
@@ -13,8 +13,6 @@ module Puppet::Parser::Functions
  
     require 'base64'
  
-    raise Puppet::ParseError, ("base64(): Wrong number of arguments (#{args.length}; must be = 2)") unless args.length == 2
-
     actions = ['encode','decode']
 
     unless actions.include?(args[0])

@@ -1,12 +1,9 @@
 module Puppet::Parser::Functions
-  newfunction(:to_bytes, :type => :rvalue, :doc => <<-EOS
+  newfunction(:to_bytes, :type => :rvalue, :arity => 1, :doc => <<-EOS
     Converts the argument into bytes, for example 4 kB becomes 4096.
     Takes a single string value as an argument.
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "to_bytes(): Wrong number of arguments " +
-          "given (#{arguments.size} for 1)") if arguments.size != 1
 
     arg = arguments[0]
 

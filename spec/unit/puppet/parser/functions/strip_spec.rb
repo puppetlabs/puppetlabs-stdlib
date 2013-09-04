@@ -8,7 +8,7 @@ describe "the strip function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_strip([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_strip([]) }.should( raise_error(ArgumentError))
   end
 
   it "should strip a string" do

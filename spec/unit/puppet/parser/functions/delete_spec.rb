@@ -9,11 +9,11 @@ describe "the delete function" do
   end
 
   it "should raise a ParseError if there are fewer than 2 arguments" do
-    lambda { scope.function_delete([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_delete([]) }.should( raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if there are greater than 2 arguments" do
-    lambda { scope.function_delete([[], 'foo', 'bar']) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_delete([[], 'foo', 'bar']) }.should( raise_error(ArgumentError))
   end
 
   it "should raise a TypeError if a number is passed as the first argument" do

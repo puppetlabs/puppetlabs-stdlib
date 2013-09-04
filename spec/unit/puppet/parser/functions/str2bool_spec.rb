@@ -9,7 +9,7 @@ describe "the str2bool function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_str2bool([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_str2bool([]) }.should( raise_error(ArgumentError))
   end
 
   it "should convert string 'true' to true" do

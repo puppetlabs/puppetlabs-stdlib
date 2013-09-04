@@ -4,14 +4,11 @@
 require 'uri'
 
 module Puppet::Parser::Functions
-  newfunction(:uriescape, :type => :rvalue, :doc => <<-EOS
+  newfunction(:uriescape, :type => :rvalue, :arity => 1, :doc => <<-EOS
     Urlencodes a string or array of strings.
     Requires either a single string or an array as an input.
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "uriescape(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
     klass = value.class

@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:delete_at, :type => :rvalue, :doc => <<-EOS
+  newfunction(:delete_at, :type => :rvalue, :arity => 2, :doc => <<-EOS
 Deletes a determined indexed value from an array.
 
 *Examples:*
@@ -13,9 +13,6 @@ Deletes a determined indexed value from an array.
 Would return: ['a','c']
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "delete_at(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments[0]
 

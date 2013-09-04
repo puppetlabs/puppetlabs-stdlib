@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:concat, :type => :rvalue, :doc => <<-EOS
+  newfunction(:concat, :type => :rvalue, :arity => 2, :doc => <<-EOS
 Appends the contents of array 2 onto array 1.
 
 *Example:*
@@ -15,10 +15,6 @@ Would result in:
   ['1','2','3','4','5','6']
     EOS
   ) do |arguments|
-
-    # Check that 2 arguments have been given ...
-    raise(Puppet::ParseError, "concat(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size != 2
 
     a = arguments[0]
     b = arguments[1]

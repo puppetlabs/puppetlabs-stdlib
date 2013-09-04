@@ -27,7 +27,7 @@ describe Puppet::Parser::Functions.function(:validate_bool) do
 
     it "should not compile when no arguments are passed" do
       Puppet[:code] = 'validate_bool()'
-      expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
+      expect { scope.compiler.compile }.to raise_error(Puppet::ParseError)
     end
 
     it "should compile when multiple boolean arguments are passed" do

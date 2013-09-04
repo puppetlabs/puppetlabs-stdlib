@@ -5,7 +5,7 @@
 # TODO(Krzysztof Wilczynski): We need to add support for regular expression ...
 
 module Puppet::Parser::Functions
-  newfunction(:delete, :type => :rvalue, :doc => <<-EOS
+  newfunction(:delete, :type => :rvalue, :arity => 2, :doc => <<-EOS
 Deletes all instances of a given element from an array, substring from a
 string, or key from a hash.
 
@@ -21,11 +21,6 @@ string, or key from a hash.
     Would return: 'acada'
     EOS
   ) do |arguments|
-
-    if (arguments.size != 2) then
-      raise(Puppet::ParseError, "delete(): Wrong number of arguments "+
-        "given #{arguments.size} for 2.")
-    end
 
     collection = arguments[0]
     item = arguments[1]

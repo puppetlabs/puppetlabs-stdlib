@@ -10,7 +10,7 @@ describe "the max function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_max([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_max([]) }.should( raise_error(ArgumentError))
   end
 
   it "should be able to compare strings" do

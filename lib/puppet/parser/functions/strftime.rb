@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:strftime, :type => :rvalue, :doc => <<-EOS
+  newfunction(:strftime, :type => :rvalue, :arity => -2, :doc => <<-EOS
 This function returns formatted time.
 
 *Examples:*
@@ -69,10 +69,6 @@ To return the date:
     %% - Literal ``%'' character
     EOS
   ) do |arguments|
-
-    # Technically we support two arguments but only first is mandatory ...
-    raise(Puppet::ParseError, "strftime(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     format = arguments[0]
 

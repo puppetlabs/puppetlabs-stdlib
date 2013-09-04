@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:type, :type => :rvalue, :doc => <<-EOS
+  newfunction(:type, :type => :rvalue, :arity => 1, :doc => <<-EOS
 Returns the type when passed a variable. Type can be one of:
 
 * string
@@ -14,9 +14,6 @@ Returns the type when passed a variable. Type can be one of:
 * boolean
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "type(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
 

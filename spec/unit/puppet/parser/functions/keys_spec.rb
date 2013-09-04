@@ -9,7 +9,7 @@ describe "the keys function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_keys([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_keys([]) }.should( raise_error(ArgumentError))
   end
 
   it "should return an array of keys when given a hash" do

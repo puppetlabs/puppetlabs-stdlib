@@ -9,7 +9,7 @@ describe "the fqdn_rotate function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_fqdn_rotate([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_fqdn_rotate([]) }.should( raise_error(ArgumentError))
   end
 
   it "should rotate a string and the result should be the same size" do

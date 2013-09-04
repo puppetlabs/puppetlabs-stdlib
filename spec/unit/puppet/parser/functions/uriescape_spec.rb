@@ -9,7 +9,7 @@ describe "the uriescape function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_uriescape([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_uriescape([]) }.should( raise_error(ArgumentError))
   end
 
   it "should uriescape a string" do

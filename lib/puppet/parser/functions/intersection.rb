@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:intersection, :type => :rvalue, :doc => <<-EOS
+  newfunction(:intersection, :type => :rvalue, :arity => 2, :doc => <<-EOS
 This function returns an array an intersection of two.
 
 *Examples:*
@@ -13,10 +13,6 @@ This function returns an array an intersection of two.
 Would return: ["b","c"]
     EOS
   ) do |arguments|
-
-    # Two arguments are required
-    raise(Puppet::ParseError, "intersection(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size != 2
 
     first = arguments[0]
     second = arguments[1]

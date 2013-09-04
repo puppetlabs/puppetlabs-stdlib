@@ -9,11 +9,11 @@ describe "the join_keys_to_values function" do
   end
 
   it "should raise a ParseError if there are fewer than two arguments" do
-    lambda { scope.function_join_keys_to_values([{}]) }.should raise_error Puppet::ParseError
+    lambda { scope.function_join_keys_to_values([{}]) }.should raise_error ArgumentError
   end
 
   it "should raise a ParseError if there are greater than two arguments" do
-    lambda { scope.function_join_keys_to_values([{}, 'foo', 'bar']) }.should raise_error Puppet::ParseError
+    lambda { scope.function_join_keys_to_values([{}, 'foo', 'bar']) }.should raise_error ArgumentError
   end
 
   it "should raise a TypeError if the first argument is an array" do

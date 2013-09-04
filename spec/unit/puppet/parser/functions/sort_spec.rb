@@ -9,7 +9,7 @@ describe "the sort function" do
   end
 
   it "should raise a ParseError if there is not 1 arguments" do
-    lambda { scope.function_sort(['','']) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_sort(['','']) }.should( raise_error(ArgumentError))
   end
 
   it "should sort an array" do

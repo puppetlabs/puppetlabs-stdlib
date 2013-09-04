@@ -11,11 +11,11 @@ describe "the validate_slength function" do
 
   describe "validating the input argument types" do
     it "raises an error if there are less than two arguments" do
-      expect { scope.function_validate_slength([]) }.to raise_error Puppet::ParseError, /Wrong number of arguments/
+      expect { scope.function_validate_slength([]) }.to raise_error ArgumentError
     end
 
     it "raises an error if there are more than three arguments" do
-      expect { scope.function_validate_slength(['input', 1, 2, 3]) }.to raise_error Puppet::ParseError, /Wrong number of arguments/
+      expect { scope.function_validate_slength(['input', 1, 2, 3]) }.to raise_error ArgumentError
     end
 
     it "raises an error if the first argument is not a string" do

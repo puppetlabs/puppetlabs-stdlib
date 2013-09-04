@@ -9,7 +9,7 @@ describe "the delete_at function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_delete_at([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_delete_at([]) }.should( raise_error(ArgumentError))
   end
 
   it "should delete an item at specified location from an array" do

@@ -5,7 +5,7 @@ describe "the concat function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_concat([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_concat([]) }.should( raise_error(ArgumentError))
   end
 
   it "should be able to concat an array" do

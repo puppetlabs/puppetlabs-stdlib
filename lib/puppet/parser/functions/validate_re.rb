@@ -1,5 +1,5 @@
 module Puppet::Parser::Functions
-  newfunction(:validate_re, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_re, :arity => -3, :doc => <<-'ENDHEREDOC') do |args|
     Perform simple validation of a string against one or more regular
     expressions. The first argument of this function should be a string to
     test, and the second argument should be a stringified regular expression
@@ -24,8 +24,8 @@ module Puppet::Parser::Functions
         validate_re($::puppetversion, '^2.7', 'The $puppetversion fact value does not match 2.7')
 
     ENDHEREDOC
-    if (args.length < 2) or (args.length > 3) then
-      raise Puppet::ParseError, ("validate_re(): wrong number of arguments (#{args.length}; must be 2 or 3)")
+    if args.length > 3 then
+      raise ArgumentError, ("validate_re(): wrong number of arguments (#{args.length}; must be 2 or 3)")
     end
 
     msg = args[2] || "validate_re(): #{args[0].inspect} does not match #{args[1].inspect}"

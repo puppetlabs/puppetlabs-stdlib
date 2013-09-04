@@ -5,7 +5,7 @@
 # TODO(Krzysztof Wilczynski): We probably need to approach numeric values differently ...
 
 module Puppet::Parser::Functions
-  newfunction(:range, :type => :rvalue, :doc => <<-EOS
+  newfunction(:range, :type => :rvalue, :arity => -2, :doc => <<-EOS
 When given range in the form of (start, stop) it will extrapolate a range as
 an array.
 
@@ -37,10 +37,6 @@ Will return: [0,2,4,6,8]
     EOS
   ) do |arguments|
 
-    # We support more than one argument but at least one is mandatory ...
-    raise(Puppet::ParseError, "range(): Wrong number of " +
-      "arguments given (#{arguments.size} for 1)") if arguments.size < 1
-
     if arguments.size > 1
       start = arguments[0]
       stop  = arguments[1]
@@ -48,7 +44,7 @@ Will return: [0,2,4,6,8]
 
       type = '..' # We select simplest type for Range available in Ruby ...
 
-    elsif arguments.size > 0
+    else
       value = arguments[0]
 
       if m = value.match(/^(\w+)(\.\.\.?|\-)(\w+)$/)

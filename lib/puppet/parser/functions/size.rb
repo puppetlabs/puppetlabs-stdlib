@@ -5,13 +5,10 @@
 # TODO(Krzysztof Wilczynski): Support for hashes would be nice too ...
 
 module Puppet::Parser::Functions
-  newfunction(:size, :type => :rvalue, :doc => <<-EOS
+  newfunction(:size, :type => :rvalue, :arity => 1, :doc => <<-EOS
 Returns the number of elements in a string or array.
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "size(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     item = arguments[0]
 

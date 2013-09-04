@@ -9,11 +9,11 @@ describe "the num2bool function" do
   end
 
   it "should raise a ParseError if there are no arguments" do
-    lambda { scope.function_num2bool([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_num2bool([]) }.should( raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if there are more than 1 arguments" do
-    lambda { scope.function_num2bool(["foo","bar"]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_num2bool(["foo","bar"]) }.should( raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if passed something non-numeric" do

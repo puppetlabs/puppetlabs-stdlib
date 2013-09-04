@@ -1,7 +1,7 @@
 require 'puppet/util/execution'
 
 module Puppet::Parser::Functions
-  newfunction(:validate_cmd, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_cmd, :arity => -3, :doc => <<-'ENDHEREDOC') do |args|
     Perform validation of a string with an external command.
     The first argument of this function should be a string to
     test, and the second argument should be a path to a test command
@@ -19,8 +19,8 @@ module Puppet::Parser::Functions
         validate_cmd($sudoerscontent, '/usr/sbin/visudo -c -f', 'Visudo failed to validate sudoers content')
 
     ENDHEREDOC
-    if (args.length < 2) or (args.length > 3) then
-      raise Puppet::ParseError, ("validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)")
+    if args.length > 3 then
+      raise ArgumentError, ("validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)")
     end
 
     msg = args[2] || "validate_cmd(): failed to validate content with command #{args[1].inspect}"
