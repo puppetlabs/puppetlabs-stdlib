@@ -3,33 +3,36 @@ require 'tempfile'
 provider_class = Puppet::Type.type(:file_line).provider(:ruby)
 describe provider_class do
   context "when adding" do
-    before :each do
-      # TODO: these should be ported over to use the PuppetLabs spec_helper
-      #  file fixtures once the following pull request has been merged:
-      # https://github.com/puppetlabs/puppetlabs-stdlib/pull/73/files
+    let :tmpfile do
       tmp = Tempfile.new('tmp')
-      @tmpfile = tmp.path
+      path = tmp.path
       tmp.close!
-      @resource = Puppet::Type::File_line.new(
-        {:name => 'foo', :path => @tmpfile, :line => 'foo'}
-      )
-      @provider = provider_class.new(@resource)
+      path
     end
+    let :resource do
+      Puppet::Type::File_line.new(
+        {:name => 'foo', :path => tmpfile, :line => 'foo'}
+      )
+    end
+    let :provider do
+      provider_class.new(resource)
+    end
+
     it 'should detect if the line exists in the file' do
-      File.open(@tmpfile, 'w') do |fh|
+      File.open(tmpfile, 'w') do |fh|
         fh.write('foo')
       end
-      @provider.exists?.should be_true
+      provider.exists?.should be_true
     end
     it 'should detect if the line does not exist in the file' do
-      File.open(@tmpfile, 'w') do |fh|
+      File.open(tmpfile, 'w') do |fh|
         fh.write('foo1')
       end
-      @provider.exists?.should be_nil
+      provider.exists?.should be_nil
     end
     it 'should append to an existing file when creating' do
-      @provider.create
-      File.read(@tmpfile).chomp.should == 'foo'
+      provider.create
+      File.read(tmpfile).chomp.should == 'foo'
     end
   end
 
@@ -52,71 +55,132 @@ describe provider_class do
       @provider = provider_class.new(@resource)
     end
 
-    it 'should raise an error if more than one line matches, and should not have modified the file' do
-      File.open(@tmpfile, 'w') do |fh|
-        fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz")
+    describe 'using match' do
+      it 'should raise an error if more than one line matches, and should not have modified the file' do
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz")
+        end
+        @provider.exists?.should be_nil
+        expect { @provider.create }.to raise_error(Puppet::Error, /More than one line.*matches/)
+        File.read(@tmpfile).should eql("foo1\nfoo=blah\nfoo2\nfoo=baz")
       end
-      @provider.exists?.should be_nil
-      expect { @provider.create }.to raise_error(Puppet::Error, /More than one line.*matches/)
-      File.read(@tmpfile).should eql("foo1\nfoo=blah\nfoo2\nfoo=baz")
-    end
 
-    it 'should replace all lines that matches' do
-      @resource = Puppet::Type::File_line.new(
-          {
-           :name => 'foo',
-           :path => @tmpfile,
-           :line => 'foo = bar',
-           :match => '^foo\s*=.*$',
-           :multiple => true
-          }
-      )
-      @provider = provider_class.new(@resource)
-      File.open(@tmpfile, 'w') do |fh|
-        fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz")
-      end
-      @provider.exists?.should be_nil
-      @provider.create
-      File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2\nfoo = bar")
-    end
-
-    it 'should raise an error with invalid values' do
-      expect {
+      it 'should replace all lines that matches' do
         @resource = Puppet::Type::File_line.new(
           {
-           :name => 'foo',
-           :path => @tmpfile,
-           :line => 'foo = bar',
-           :match => '^foo\s*=.*$',
-           :multiple => 'asgadga'
+            :name => 'foo',
+            :path => @tmpfile,
+            :line => 'foo = bar',
+            :match => '^foo\s*=.*$',
+            :multiple => true
           }
         )
-      }.to raise_error(Puppet::Error, /Invalid value "asgadga"\. Valid values are true, false\./)
+        @provider = provider_class.new(@resource)
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz")
+        end
+        @provider.exists?.should be_nil
+        @provider.create
+        File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2\nfoo = bar")
+      end
+
+      it 'should raise an error with invalid values' do
+        expect {
+          @resource = Puppet::Type::File_line.new(
+            {
+              :name => 'foo',
+              :path => @tmpfile,
+              :line => 'foo = bar',
+              :match => '^foo\s*=.*$',
+              :multiple => 'asgadga'
+            }
+          )
+        }.to raise_error(Puppet::Error, /Invalid value "asgadga"\. Valid values are true, false\./)
+      end
+
+      it 'should replace a line that matches' do
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo=blah\nfoo2")
+        end
+        @provider.exists?.should be_nil
+        @provider.create
+        File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2")
+      end
+      it 'should add a new line if no lines match' do
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo2")
+        end
+        @provider.exists?.should be_nil
+        @provider.create
+        File.read(@tmpfile).should eql("foo1\nfoo2\nfoo = bar\n")
+      end
+      it 'should do nothing if the exact line already exists' do
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo = bar\nfoo2")
+        end
+        @provider.exists?.should be_true
+        @provider.create
+        File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2")
+      end
     end
 
-    it 'should replace a line that matches' do
-      File.open(@tmpfile, 'w') do |fh|
-        fh.write("foo1\nfoo=blah\nfoo2")
+    describe 'using after' do
+      let :resource do
+        Puppet::Type::File_line.new(
+          {
+            :name  => 'foo',
+            :path  => @tmpfile,
+            :line  => 'inserted = line',
+            :after => '^foo1',
+          }
+        )
       end
-      @provider.exists?.should be_nil
-      @provider.create
-      File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2")
-    end
-    it 'should add a new line if no lines match' do
-      File.open(@tmpfile, 'w') do |fh|
-        fh.write("foo1\nfoo2")
+
+      let :provider do
+        provider_class.new(resource)
       end
-      @provider.exists?.should be_nil
-      @provider.create
-      File.read(@tmpfile).should eql("foo1\nfoo2\nfoo = bar\n")
-    end
-    it 'should do nothing if the exact line already exists' do
-      File.open(@tmpfile, 'w') do |fh|
-        fh.write("foo1\nfoo = bar\nfoo2")
+
+      context 'with one line matching the after expression' do
+        before :each do
+          File.open(@tmpfile, 'w') do |fh|
+            fh.write("foo1\nfoo = blah\nfoo2\nfoo = baz")
+          end
+        end
+
+        it 'inserts the specified line after the line matching the "after" expression' do
+          provider.create
+          File.read(@tmpfile).chomp.should eql("foo1\ninserted = line\nfoo = blah\nfoo2\nfoo = baz")
+        end
       end
-      @provider.exists?.should be_true
-      @provider.create
-      File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2")
+
+      context 'with two lines matching the after expression' do
+        before :each do
+          File.open(@tmpfile, 'w') do |fh|
+            fh.write("foo1\nfoo = blah\nfoo2\nfoo1\nfoo = baz")
+          end
+        end
+
+        it 'errors out stating "One or no line must match the pattern"' do
+          expect { provider.create }.to raise_error(Puppet::Error, /One or no line must match the pattern/)
+        end
+      end
+
+      context 'with no lines matching the after expression' do
+        let :content do
+          "foo3\nfoo = blah\nfoo2\nfoo = baz\n"
+        end
+
+        before :each do
+          File.open(@tmpfile, 'w') do |fh|
+            fh.write(content)
+          end
+        end
+
+        it 'appends the specified line to the file' do
+          provider.create
+          File.read(@tmpfile).should eq(content << resource[:line] << "\n")
+        end
+      end
     end
   end
 
