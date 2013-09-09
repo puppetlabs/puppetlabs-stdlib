@@ -35,4 +35,22 @@ describe "the delete function" do
     result.should(eq({ 'a' => 1, 'c' => 3 }))
   end
 
+  it "should not change origin array passed as argument" do 
+    origin_array = ['a','b','c','d']
+    result = scope.function_delete([origin_array, 'b'])
+    origin_array.should(eq(['a','b','c','d']))
+  end
+
+  it "should not change the origin string passed as argument" do
+    origin_string = 'foobarbabarz'
+    result = scope.function_delete([origin_string,'bar'])
+    origin_string.should(eq('foobarbabarz'))
+  end
+
+  it "should not change origin hash passed as argument" do 
+    origin_hash = { 'a' => 1, 'b' => 2, 'c' => 3 } 
+    result = scope.function_delete([origin_hash, 'b'])
+    origin_hash.should(eq({ 'a' => 1, 'b' => 2, 'c' => 3 }))
+  end
+
 end

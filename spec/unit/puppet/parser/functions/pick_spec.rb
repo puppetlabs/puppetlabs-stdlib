@@ -29,6 +29,6 @@ describe "the pick function" do
   end
 
   it 'should error if no values are passed' do
-    expect { scope.function_pick([]) }.to raise_error(Puppet::Error, /Must provide non empty value./)
+    lambda { scope.function_pick([]) }.should( raise_error(Puppet::ParseError))
   end
 end

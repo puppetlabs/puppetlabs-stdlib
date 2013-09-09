@@ -32,14 +32,13 @@ string, or key from a hash.
 
     case collection
     when Array, Hash
-      collection.delete item
+     collection.reject { |k| k == item}
     when String
-      collection.gsub! item, ''
+     collection.gsub item, ''
     else
       raise(TypeError, "delete(): First argument must be an Array, " +
             "String, or Hash. Given an argument of class #{collection.class}.")
     end
-    collection
   end
 end
 
