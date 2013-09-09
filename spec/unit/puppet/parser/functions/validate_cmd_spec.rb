@@ -78,4 +78,12 @@ describe Puppet::Parser::Functions.function(:validate_cmd) do
       end
     end
   end
+
+  it "can positively validate file content" do
+    expect { subject.call ["non-empty", "/usr/bin/test -s"] }.to_not raise_error
+  end
+
+  it "can negatively validate file content" do
+    expect { subject.call ["", "/usr/bin/test -s"] }.to raise_error Puppet::ParseError, /failed to validate.*test -s/
+  end
 end
