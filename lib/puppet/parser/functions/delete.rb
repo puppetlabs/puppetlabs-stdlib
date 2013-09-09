@@ -27,7 +27,7 @@ string, or key from a hash.
         "given #{arguments.size} for 2.")
     end
 
-    collection = arguments[0]
+    collection = arguments[0].dup
     item = arguments[1]
 
     case collection
