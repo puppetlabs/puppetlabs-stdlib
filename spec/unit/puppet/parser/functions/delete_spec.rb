@@ -47,4 +47,10 @@ describe "the delete function" do
     origin_string.should(eq('foobarbabarz'))
   end
 
+  it "should not change origin hash passed as argument" do 
+    origin_hash = { 'a' => 1, 'b' => 2, 'c' => 3 } 
+    result = scope.function_delete([origin_hash, 'b'])
+    origin_hash.should(eq({ 'a' => 1, 'b' => 2, 'c' => 3 }))
+  end
+
 end
