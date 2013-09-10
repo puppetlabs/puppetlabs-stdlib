@@ -625,6 +625,15 @@ For example:
 
 When there is a duplicate key, the key in the rightmost hash will "win."
 
+If the last argument is an array of hashes, it performs the merge described above on all of them.
+For example:
+
+    $arr = {'one' => 1, 'two' => 2}
+    $hash2 = [ {'two' => 'dos', 'three' => 'tres'}, { 'two' => 'due' } ]
+    $merged_hash = merge($hash1, $arr)
+    # The result is:
+    # $result =  [ {'one' => 1, 'two' => 'dos', 'three' => 'tres'}, {'one' => 1, 'two' => 'due', 'three' => 'tres'} ]
+
 - *Type*: rvalue
 
 min

@@ -48,5 +48,21 @@ describe Puppet::Parser::Functions.function(:merge) do
     it 'should accept empty hashes' do
       scope.function_merge([{},{},{}]).should == {}
     end
+
+    it 'should be able to merge multiple hashes into each hash in the array passed as last argument' do
+      def1 = {'one' => '1', 'two' => '1'}
+      def2 = {'one' => '2'}
+      
+      arr = [ { 'one' => '3' }, { 'two' => '3' }, {} ]
+
+      new_hashes = scope.function_merge([ def1, def2, arr ])
+
+      new_hashes[0]['one'].should == '3'
+      new_hashes[0]['two'].should == '1'
+      new_hashes[1]['one'].should == '2'
+      new_hashes[1]['two'].should == '3'
+      new_hashes[2]['one'].should == '2'
+      new_hashes[2]['two'].should == '1'
+    end
   end
 end
