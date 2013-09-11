@@ -770,7 +770,7 @@ are replaced by a single character.
 
 str2bool
 --------
-This converts a string to a boolean. This attempt to convert strings that
+This converts a string to a boolean. This attempts to convert strings that
 contain things like: y, 1, t, true to 'true' and strings that contain things
 like: 0, f, n, false, no to 'false'.
 
