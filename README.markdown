@@ -405,12 +405,16 @@ Returns boolean based on kind and value:
 * ipaddress
 * network
 
-has_interface_with("macaddress", "x:x:x:x:x:x")
-has_interface_with("ipaddress", "127.0.0.1")    => true
+*Examples:*
+
+    has_interface_with("macaddress", "x:x:x:x:x:x")
+    has_interface_with("ipaddress", "127.0.0.1")    => true
+
 etc.
 
 If no "kind" is given, then the presence of the interface is checked:
-has_interface_with("lo")                        => true
+
+    has_interface_with("lo")                        => true
 
 
 - *Type*: rvalue
