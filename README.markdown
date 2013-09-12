@@ -363,6 +363,59 @@ Would return: param_value
 
 - *Type*: rvalue
 
+getparamdefault
+---------------
+
+Takes a type or resource reference and name of the parameter and returns
+default value of parameter for that type/resource (or empty string if default
+is not set).
+
+*Examples:*
+
+    package { 'apache2': provider => apt }
+    getparamdefault(Package['apache2'], provider)
+
+Would return '' (default provider was not defined).
+
+    Package { provider => aptitude }
+
+    node example.com {
+      package { 'apache2': provider => apt }
+      getparamdefault(Package['apache2'], provider)
+    }
+
+Would return 'aptitude'.
+
+    Package { provider => aptitude }
+
+    node example.com {
+      Package { provider => apt }
+      package { 'apache2': }
+      getparamdefault(Package['apache2'], provider)
+    }
+
+Would return 'apt'.
+
+    Package { provider => aptitude }
+
+    node example.com {
+      Package { provider => apt }
+      getparamdefault(Package, provider)
+    }
+
+Would return 'apt'.
+
+    getparamdefault(Foo['bar'], geez)
+
+Would not compile (resource Foo[bar] does not exist)
+
+    getparamdefault(Foo, geez)
+
+Would not compile (type Foo does not exist)
+
+
+- *Type*: rvalue
+
 getvar
 ------
 Lookup a variable in a remote namespace.
