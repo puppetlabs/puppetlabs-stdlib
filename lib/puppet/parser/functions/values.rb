@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:values, :type => :rvalue, :doc => <<-EOS
+  newfunction(:values, :type => :rvalue, :arity => 1, :doc => <<-EOS
 When given a hash this function will return the values of that hash.
 
 *Examples:*
@@ -20,9 +20,6 @@ This example would return:
     [1,2,3]
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "values(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     hash = arguments[0]
 

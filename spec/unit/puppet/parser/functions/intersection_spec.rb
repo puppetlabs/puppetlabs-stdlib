@@ -9,7 +9,7 @@ describe "the intersection function" do
   end
 
   it "should raise a ParseError if there are fewer than 2 arguments" do
-    lambda { scope.function_intersection([]) }.should( raise_error(Puppet::ParseError) )
+    lambda { scope.function_intersection([]) }.should( raise_error(ArgumentError) )
   end
 
   it "should return the intersection of two arrays" do

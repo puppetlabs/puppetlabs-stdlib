@@ -3,15 +3,10 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_integer, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_integer, :type => :rvalue, :arity => 1, :doc => <<-EOS
 Returns true if the variable returned to this string is an integer.
     EOS
   ) do |arguments|
-
-    if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_integer(): Wrong number of arguments "+
-        "given #{arguments.size} for 1")
-    end
 
     value = arguments[0]
 

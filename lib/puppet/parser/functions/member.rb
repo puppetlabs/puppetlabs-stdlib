@@ -6,7 +6,7 @@
 # TODO(Krzysztof Wilczynski): Support for strings and hashes too ...
 
 module Puppet::Parser::Functions
-  newfunction(:member, :type => :rvalue, :doc => <<-EOS
+  newfunction(:member, :type => :rvalue, :arity => 2, :doc => <<-EOS
 This function determines if a variable is a member of an array.
 
 *Examples:*
@@ -20,9 +20,6 @@ Would return: true
 Would return: false
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "member(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments[0]
 

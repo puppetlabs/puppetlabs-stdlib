@@ -9,7 +9,7 @@ describe "the bool2num function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_bool2num([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_bool2num([]) }.should( raise_error(ArgumentError))
   end
 
   it "should convert true to 1" do

@@ -9,7 +9,7 @@ describe "the shuffle function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_shuffle([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_shuffle([]) }.should( raise_error(ArgumentError))
   end
 
   it "should shuffle a string and the result should be the same size" do

@@ -9,7 +9,7 @@ describe "the time function" do
   end
 
   it "should raise a ParseError if there is more than 2 arguments" do
-    lambda { scope.function_time(['','']) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_time(['','']) }.should( raise_error(ArgumentError))
   end
 
   it "should return a number" do

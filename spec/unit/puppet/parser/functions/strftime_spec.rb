@@ -9,7 +9,7 @@ describe "the strftime function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_strftime([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_strftime([]) }.should( raise_error(ArgumentError))
   end
 
   it "using %s should be higher then when I wrote this test" do

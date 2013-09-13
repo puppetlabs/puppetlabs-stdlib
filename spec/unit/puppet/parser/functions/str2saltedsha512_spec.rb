@@ -9,11 +9,11 @@ describe "the str2saltedsha512 function" do
   end
 
   it "should raise a ParseError if there is less than 1 argument" do
-    expect { scope.function_str2saltedsha512([]) }.to( raise_error(Puppet::ParseError) )
+    expect { scope.function_str2saltedsha512([]) }.to( raise_error(ArgumentError) )
   end
 
   it "should raise a ParseError if there is more than 1 argument" do
-    expect { scope.function_str2saltedsha512(['foo', 'bar', 'baz']) }.to( raise_error(Puppet::ParseError) )
+    expect { scope.function_str2saltedsha512(['foo', 'bar', 'baz']) }.to( raise_error(ArgumentError) )
   end
 
   it "should return a salted-sha512 password hash 136 characters in length" do

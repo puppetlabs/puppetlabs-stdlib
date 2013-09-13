@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:grep, :type => :rvalue, :doc => <<-EOS
+  newfunction(:grep, :type => :rvalue, :arity => 2, :doc => <<-EOS
 This function searches through an array and returns any elements that match
 the provided regular expression.
 
@@ -16,11 +16,6 @@ Would return:
     ['aaa','aaaddd']
     EOS
   ) do |arguments|
-
-    if (arguments.size != 2) then
-      raise(Puppet::ParseError, "grep(): Wrong number of arguments "+
-        "given #{arguments.size} for 2")
-    end
 
     a = arguments[0]
     pattern = Regexp.new(arguments[1])

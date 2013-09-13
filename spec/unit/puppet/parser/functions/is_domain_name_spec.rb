@@ -9,7 +9,7 @@ describe "the is_domain_name function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_is_domain_name([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_is_domain_name([]) }.should( raise_error(ArgumentError))
   end
 
   it "should return true if a valid short domain name" do

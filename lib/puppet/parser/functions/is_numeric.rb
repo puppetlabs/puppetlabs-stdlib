@@ -3,15 +3,10 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_numeric, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_numeric, :type => :rvalue, :arity => 1, :doc => <<-EOS
 Returns true if the variable passed to this function is a number.
     EOS
   ) do |arguments|
-
-    if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_numeric(): Wrong number of arguments "+
-        "given #{arguments.size} for 1")
-    end
 
     value = arguments[0]
 

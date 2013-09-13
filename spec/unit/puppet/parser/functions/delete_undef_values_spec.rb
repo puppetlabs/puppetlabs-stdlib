@@ -9,7 +9,7 @@ describe "the delete_undef_values function" do
   end
 
   it "should raise a ParseError if there is less than 1 argument" do
-    lambda { scope.function_delete_undef_values([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_delete_undef_values([]) }.should( raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if the argument is not Array nor Hash" do

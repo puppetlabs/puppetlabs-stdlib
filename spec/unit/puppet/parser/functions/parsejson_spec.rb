@@ -9,7 +9,7 @@ describe "the parsejson function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_parsejson([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_parsejson([]) }.should( raise_error(ArgumentError))
   end
 
   it "should convert JSON to a data structure" do

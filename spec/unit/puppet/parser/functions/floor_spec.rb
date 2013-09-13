@@ -10,7 +10,7 @@ describe "the floor function" do
   end
 
   it "should raise a ParseError if there is less than 1 argument" do
-    lambda { scope.function_floor([]) }.should( raise_error(Puppet::ParseError, /Wrong number of arguments/))
+    lambda { scope.function_floor([]) }.should( raise_error(ArgumentError, /Wrong number of arguments/))
   end
 
   it "should should raise a ParseError if input isn't numeric (eg. String)" do

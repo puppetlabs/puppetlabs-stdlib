@@ -9,7 +9,7 @@ describe "the chop function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_chop([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_chop([]) }.should( raise_error(ArgumentError))
   end
 
   it "should chop the end of a string" do

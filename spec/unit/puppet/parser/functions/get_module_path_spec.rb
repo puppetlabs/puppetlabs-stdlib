@@ -15,8 +15,8 @@ describe Puppet::Parser::Functions.function(:get_module_path) do
   end
 
   it 'should only allow one argument' do
-    expect { scope.function_get_module_path([]) }.to raise_error(Puppet::ParseError, /Wrong number of arguments, expects one/)
-    expect { scope.function_get_module_path(['1','2','3']) }.to raise_error(Puppet::ParseError, /Wrong number of arguments, expects one/)
+    expect { scope.function_get_module_path([]) }.to raise_error(ArgumentError)
+    expect { scope.function_get_module_path(['1','2','3']) }.to raise_error(ArgumentError)
   end
   it 'should raise an exception when the module cannot be found' do
     expect { scope.function_get_module_path(['foo']) }.to raise_error(Puppet::ParseError, /Could not find module/)

@@ -8,11 +8,11 @@ describe "the flatten function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_flatten([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_flatten([]) }.should( raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if there is more than 1 argument" do
-    lambda { scope.function_flatten([[], []]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_flatten([[], []]) }.should( raise_error(ArgumentError))
   end
 
   it "should flatten a complex data structure" do

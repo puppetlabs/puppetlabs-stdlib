@@ -9,7 +9,7 @@ describe "the is_numeric function" do
   end
 
   it "should raise a ParseError if there is less than 1 argument" do
-    lambda { scope.function_is_numeric([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_is_numeric([]) }.should( raise_error(ArgumentError))
   end
 
   it "should return true if an integer" do

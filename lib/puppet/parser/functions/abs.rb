@@ -3,14 +3,11 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:abs, :type => :rvalue, :doc => <<-EOS
+  newfunction(:abs, :type => :rvalue, :arity => 1, :doc => <<-EOS
     Returns the absolute value of a number, for example -34.56 becomes
     34.56. Takes a single integer and float value as an argument.
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "abs(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
 

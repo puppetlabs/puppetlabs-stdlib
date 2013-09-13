@@ -9,7 +9,7 @@ describe "the parseyaml function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_parseyaml([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_parseyaml([]) }.should( raise_error(ArgumentError))
   end
 
   it "should convert YAML to a data structure" do

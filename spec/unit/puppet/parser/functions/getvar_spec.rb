@@ -10,7 +10,7 @@ describe Puppet::Parser::Functions.function(:getvar) do
       Puppet[:code] = '$foo = getvar()'
       expect {
         scope.compiler.compile
-      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
+      }.to raise_error(Puppet::ParseError)
     end
 
     it "should not compile when too many arguments are passed" do
@@ -18,7 +18,7 @@ describe Puppet::Parser::Functions.function(:getvar) do
       Puppet[:code] = '$foo = getvar("foo::bar", "baz")'
       expect {
         scope.compiler.compile
-      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
+      }.to raise_error(Puppet::ParseError)
     end
 
     it "should lookup variables in other namespaces" do

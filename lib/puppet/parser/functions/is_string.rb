@@ -3,13 +3,10 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_string, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_string, :type => :rvalue, :arity => 1, :doc => <<-EOS
 Returns true if the variable passed to this function is a string.
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "is_string(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     type = arguments[0]
 

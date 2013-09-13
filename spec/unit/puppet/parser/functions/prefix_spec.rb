@@ -9,7 +9,7 @@ describe "the prefix function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_prefix([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_prefix([]) }.should( raise_error(ArgumentError))
   end
 
   it "should return a prefixed array" do

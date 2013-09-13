@@ -9,7 +9,7 @@ describe "the values function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_values([]) }.should( raise_error(Puppet::ParseError))
+    lambda { scope.function_values([]) }.should( raise_error(ArgumentError))
   end
 
   it "should return values from a hash" do

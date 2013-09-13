@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:values_at, :type => :rvalue, :doc => <<-EOS
+  newfunction(:values_at, :type => :rvalue, :arity => 2, :doc => <<-EOS
 Finds value inside an array based on location.
 
 The first argument is the array you want to analyze, and the second element can
@@ -28,9 +28,6 @@ Would return ['a','b'].
 Would return ['a','c','d'].
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "values_at(): Wrong number of " +
-      "arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments.shift
 
