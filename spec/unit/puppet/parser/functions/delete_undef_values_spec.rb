@@ -26,4 +26,16 @@ describe "the delete_undef_values function" do
     result = scope.function_delete_undef_values([{'a'=>'A','b'=>:undef,'c'=>'C','d'=>'undef'}])
     result.should(eq({'a'=>'A','c'=>'C','d'=>'undef'}))
   end
+
+  it "should not change origin array passed as argument" do 
+    origin_array = ['a',:undef,'c','undef']
+    result = scope.function_delete_undef_values([origin_array])
+    origin_array.should(eq(['a',:undef,'c','undef']))
+  end 
+
+  it "should not change origin hash passed as argument" do 
+    origin_hash = { 'a' => 1, 'b' => :undef, 'c' => 'undef' } 
+    result = scope.function_delete_undef_values([origin_hash])
+    origin_hash.should(eq({ 'a' => 1, 'b' => :undef, 'c' => 'undef' }))
+  end 
 end
