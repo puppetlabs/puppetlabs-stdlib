@@ -16,4 +16,10 @@ describe "the delete_at function" do
     result = scope.function_delete_at([['a','b','c'],1])
     result.should(eq(['a','c']))
   end
+
+  it "should not change origin array passed as argument" do 
+    origin_array = ['a','b','c','d']
+    result = scope.function_delete_at([origin_array, 1])
+    origin_array.should(eq(['a','b','c','d']))
+  end 
 end
