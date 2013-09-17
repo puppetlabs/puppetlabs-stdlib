@@ -21,6 +21,6 @@ Would return: {'a'=>'A','c'=>'C','B'=>'D'}
       raise(TypeError, "delete_values(): First argument must be a Hash. " + \
                        "Given an argument of class #{hash.class}.") 
     end
-    hash.delete_if { |key, val| item == val }
+    hash.dup.delete_if { |key, val| item == val }
   end
 end
