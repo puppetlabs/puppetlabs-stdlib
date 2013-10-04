@@ -1,6 +1,5 @@
 pkg/
 .DS_Store
-metadata.json
 coverage/
 spec/fixtures/
 Gemfile.lock
