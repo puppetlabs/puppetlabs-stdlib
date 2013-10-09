@@ -689,6 +689,11 @@ Will return: ['pa','pb','pc']
 
 - *Type*: rvalue
 
+random_element
+--------------
+
+Given an array, this function will return a random element from it
+
 range
 -----
 When given range in the form of (start, stop) it will extrapolate a range as
