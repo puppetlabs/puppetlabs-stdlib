@@ -14,14 +14,15 @@ called 'jenkins_version' (note that parameters set in the Puppet Dashboard/
 Enterprise Console are brought into Puppet as top-scope variables), and,
 failing that, will use a default value of 1.449.
 
+If none of the arguments has an actual value, undef is returned.
 EOS
 ) do |args|
    args = args.compact
    args.delete(:undef)
    args.delete(:undefined)
    args.delete("")
-   if args[0].to_s.empty? then
-     fail Puppet::ParseError, "pick(): must receive at last one non empty value"
+   if args.length == 0 then
+      :undefined
    else
      return args[0]
    end
