@@ -544,7 +544,7 @@ Returns true if the variable passed to this function is a string.
 
 join
 ----
-This function joins an array into a string using a seperator.
+This function joins an array into a string using a separator.
 
 *Examples:*
 
