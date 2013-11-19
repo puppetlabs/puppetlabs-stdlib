@@ -13,8 +13,9 @@ describe 'ensure_packages' do
     it 'requires an array' do
       lambda { scope.function_ensure_packages([['foo']]) }.should_not raise_error
     end
-    it 'fails when given a string' do
-      should run.with_params('foo').and_raise_error(Puppet::ParseError)
+
+    it 'accepts a single package name as a string' do
+      scope.function_ensure_packages(['foo'])
     end
   end
 
