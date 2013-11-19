@@ -11,8 +11,7 @@ Takes a list of packages and only installs them if they don't already exist.
 
     raise(Puppet::ParseError, "ensure_packages(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size != 1
-    raise(Puppet::ParseError, "ensure_packages(): Requires array " +
-      "given (#{arguments[0].class})") if !arguments[0].kind_of?(Array)
+    arguments[0] = [ arguments[0] ] unless arguments[0].kind_of?(Array)
 
     Puppet::Parser::Functions.function(:ensure_resource)
     arguments[0].each { |package_name|
