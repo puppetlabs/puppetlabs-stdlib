@@ -16,6 +16,7 @@ Would result in:
     EOS
   ) do |arguments|
 
+    Puppet.warn("The concat function is being depricated. Use add() instead.")
     # Check that 2 arguments have been given ...
     raise(Puppet::ParseError, "concat(): Wrong number of arguments " +
       "given (#{arguments.size} for 2)") if arguments.size != 2
