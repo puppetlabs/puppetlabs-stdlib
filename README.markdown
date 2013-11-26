@@ -1203,6 +1203,33 @@ The following values will fail, causing compilation to abort:
 
 - *Type*: statement
 
+validate_url
+---------------
+Validate that the passed argument is a valid URL string.
+The first argument is the URL to validate. The second (optional) argument 
+is the scheme or schemes that will be accepted for this call to validate_url.
+Catalog compilation if this check fails.
+
+The following values will pass:
+
+    validate_url('http://puppetlabs.com')
+    $my_url = "http://forge.puppetlabs.com"
+    validate_url($my_url)
+    validate_url("http://puppetlabs.com",["puppetlabs"])
+
+The following values will fail, causing compilation to abort:
+
+    validate_url('puppetlabs.com')
+    validate_url('mailto:example@puppetlabs.com')
+    validate_url('000:111')
+    validate_url('http://puppetlabs.com', 'gopher')
+    validate_url('http://puppetlabs.com', ['gopher', 'rsync'])
+    validate_url([ 'http://puppetlabs.com', 'http://forge.puppetlabs.com' ])
+    $undefined = undef
+    validate_url($undefined)
+
+- *Type*: statement
+
 values
 ------
 When given a hash this function will return the values of that hash.
