@@ -24,7 +24,7 @@ module Puppet::Parser::Functions
     end
 
     args.each do |arg|
-      unless (arg.is_a?(TrueClass) || arg.is_a?(FalseClass))
+      unless function_is_bool([arg])
         raise Puppet::ParseError, ("#{arg.inspect} is not a boolean.  It looks to be a #{arg.class}")
       end
     end
