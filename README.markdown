@@ -31,8 +31,9 @@ list of integration branches are:
  * v2.1.x (v2.1.1 released in PE 1)
  * v2.2.x (Never released as part of PE, only to the Forge)
  * v2.3.x (Released in PE 2)
- * v3.0.x (Never released as part of PE, only to the Forge)
- * v4.0.x (Drops support for Puppet 2.7)
+ * v3.0.x (Released in PE 3)
+ * v4.0.x (Maintains compatibility with v3.x despite the major semantic version bump.  Compatible with Puppet 2.7.x)
+ * v5.x (To be released when stdlib can drop support for Puppet 2.7.x.  Please see [this discussion](https://github.com/puppetlabs/puppetlabs-stdlib/pull/176#issuecomment-30251414))
  * master (mainline development branch)
 
 The first Puppet Enterprise version including the stdlib module is Puppet
@@ -44,7 +45,7 @@ Puppet Versions | < 2.6 | 2.6 | 2.7 | 3.x |
 :---------------|:-----:|:---:|:---:|:----:
 **stdlib 2.x**  | no    | **yes** | **yes** | no
 **stdlib 3.x**  | no    | no  | **yes** | **yes**
-**stdlib 4.x**  | no    | no  | no  | **yes**
+**stdlib 4.x**  | no    | no  | **yes** | **yes**
 
 The stdlib module does not work with Puppet versions released prior to Puppet
 2.6.0.
@@ -60,8 +61,10 @@ supports Puppet 2 and Puppet 3.
 
 ## stdlib 4.x ##
 
-The 4.0 major release of stdlib drops support for Puppet 2.7.  Stdlib 4.x
-supports Puppet 3.  Notably, ruby 1.8.5 is no longer supported though ruby
+The 4.0 major release of stdlib was intended to drop support for Puppet 2.7,
+but the impact on end users was too high.  The decision was made to treat
+stdlib 4.x as a continuation of stdlib 3.x support.  Stdlib 4.x supports Puppet
+2.7 and 3.  Notably, ruby 1.8.5 is no longer supported though ruby
 1.8.7, 1.9.3, and 2.0.0 are fully supported.
 
 # Functions #
