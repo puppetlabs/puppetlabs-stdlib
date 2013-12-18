@@ -9,6 +9,7 @@ describe "External facts in /etc/puppetlabs/facter/facts.d/puppet_enterprise_ins
   context "With Facter 1.6.17 which does not have external facts support" do
     before :each do
       Facter.stubs(:version).returns("1.6.17")
+      Facter::Util::Root.stubs(:root?).returns(true)
       # Stub out the filesystem for stdlib
       Dir.stubs(:entries).with("/etc/puppetlabs/facter/facts.d").
         returns(['puppet_enterprise_installer.txt'])
