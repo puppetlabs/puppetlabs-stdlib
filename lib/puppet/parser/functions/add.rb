@@ -3,22 +3,21 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:concat, :type => :rvalue, :doc => <<-EOS
+  newfunction(:add, :type => :rvalue, :doc => <<-EOS
 Appends the contents of array 2 onto array 1.
 
 *Example:*
 
-    concat(['1','2','3'],['4','5','6'])
+    a = add(['1','2','3'],['4','5','6'])
 
-Would result in:
+Would result in a being:
 
   ['1','2','3','4','5','6']
     EOS
   ) do |arguments|
 
-    Puppet.deprecation_warning("The concat function is being depricated. Use add() instead.")
     # Check that 2 arguments have been given ...
-    raise(Puppet::ParseError, "concat(): Wrong number of arguments " +
+    raise(Puppet::ParseError, "add(): Wrong number of arguments " +
       "given (#{arguments.size} for 2)") if arguments.size != 2
 
     a = arguments[0]
@@ -26,10 +25,10 @@ Would result in:
 
     # Check that both args are arrays.
     unless a.is_a?(Array) and b.is_a?(Array)
-      raise(Puppet::ParseError, 'concat(): Requires array to work with')
+      raise(Puppet::ParseError, 'add(): Requires array to work with')
     end
 
-    result = a.concat(b)
+    result = a + b
 
     return result
   end
