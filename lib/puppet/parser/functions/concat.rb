@@ -28,7 +28,7 @@ Would result in:
       raise(Puppet::ParseError, 'concat(): Requires array to work with')
     end
 
-    result = a.concat(b)
+    result = a + b
 
     return result
   end

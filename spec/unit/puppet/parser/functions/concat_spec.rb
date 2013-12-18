@@ -12,4 +12,10 @@ describe "the concat function" do
     result = scope.function_concat([['1','2','3'],['4','5','6']])
     result.should(eq(['1','2','3','4','5','6']))
   end
+
+  it "should leave the original array intact" do
+    array_original = ['1','2','3']
+    result = scope.function_concat([array_original,['4','5','6']])
+    array_original.should(eq(['1','2','3']))
+  end
 end
