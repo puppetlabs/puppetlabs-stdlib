@@ -36,4 +36,19 @@ describe "the is_numeric function" do
     result = scope.function_is_numeric(["asdf"])
     result.should(eq(false))
   end
+
+  it "should return false if an array" do
+    result = scope.function_is_numeric([["asdf"]])
+    result.should(eq(false))
+  end
+
+  it "should return false if a hash" do
+    result = scope.function_is_numeric([{"asdf" => false}])
+    result.should(eq(false))
+  end
+
+  it "should return false if a boolean" do
+    result = scope.function_is_numeric([true])
+    result.should(eq(false))
+  end
 end
