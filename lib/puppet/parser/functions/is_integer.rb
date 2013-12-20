@@ -15,12 +15,11 @@ Returns true if the variable passed to this function is an integer.
 
     value = arguments[0]
 
-    if (value != value.to_i.to_s rescue true) and !value.is_a? Fixnum then
-      return false
-    else
+    if value.is_a? Integer or (value == value.to_i.to_s rescue false)
       return true
+    else
+      return false
     end
-
   end
 end
 

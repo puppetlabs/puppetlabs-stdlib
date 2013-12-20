@@ -19,12 +19,11 @@ Returns true if the variable passed to this function is a number.
       (value == value.to_f.to_s rescue false) or
       (value == value.to_i.to_s rescue false) or
       value.to_s =~ /^(?:-)?0x[0-9a-fA-F]+$/ or
-      value.to_s =~ /^(?:-)?0[0-7]+$/ then
+      value.to_s =~ /^(?:-)?0[0-7]+$/
       return true
     else
       return false
     end
-
   end
 end
 
