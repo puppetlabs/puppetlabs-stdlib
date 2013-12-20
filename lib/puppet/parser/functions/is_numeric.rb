@@ -15,7 +15,11 @@ Returns true if the variable passed to this function is a number.
 
     value = arguments[0]
 
-    if (value == value.to_f.to_s rescue false) or (value == value.to_i.to_s rescue false) or value.is_a? Numeric then
+    if value.is_a? Numeric or
+      (value == value.to_f.to_s rescue false) or
+      (value == value.to_i.to_s rescue false) or
+      value.to_s =~ /^(?:-)?0x[0-9a-fA-F]+$/ or
+      value.to_s =~ /^(?:-)?0[0-7]+$/ then
       return true
     else
       return false

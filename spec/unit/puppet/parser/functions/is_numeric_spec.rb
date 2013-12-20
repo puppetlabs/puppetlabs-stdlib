@@ -51,4 +51,34 @@ describe "the is_numeric function" do
     result = scope.function_is_numeric([true])
     result.should(eq(false))
   end
+
+  it "should return true if a hexadecimal" do
+    result = scope.function_is_numeric(["0x52F8c"])
+    result.should(eq(true))
+  end
+
+  it "should return true if a octal" do
+    result = scope.function_is_numeric(["0751"])
+    result.should(eq(true))
+  end
+
+  it "should return true if a negative hexadecimal" do
+    result = scope.function_is_numeric(["-0x52F8c"])
+    result.should(eq(true))
+  end
+
+  it "should return true if a negative octal" do
+    result = scope.function_is_numeric(["-0751"])
+    result.should(eq(true))
+  end
+
+  it "should return false if a bad hexadecimal" do
+    result = scope.function_is_numeric(["0x23d7g"])
+    result.should(eq(false))
+  end
+
+  it "should return false if a bad octal" do
+    result = scope.function_is_numeric(["0287"])
+    result.should(eq(false))
+  end
 end
