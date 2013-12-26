@@ -6,7 +6,8 @@ module Puppet::Parser::Functions
   newfunction(:is_integer, :type => :rvalue, :doc => <<-EOS
 Returns true if the variable passed to this function is an integer.
 
-This works also with whitespaces around the number.
+If the variable is a string it has to be in the correct format of an
+integer.
     EOS
   ) do |arguments|
 
