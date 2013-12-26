@@ -57,18 +57,38 @@ describe "the is_numeric function" do
     result.should(eq(true))
   end
 
+  it "should return true if a hexadecimal with uppercase 0X prefix" do
+    result = scope.function_is_numeric(["0X52F8c"])
+    result.should(eq(true))
+  end
+
+  it "should return false if a hexadecimal without a prefix" do
+    result = scope.function_is_numeric(["52F8c "])
+    result.should(eq(false))
+  end
+
   it "should return true if a octal" do
-    result = scope.function_is_numeric(["0751"])
+    result = scope.function_is_numeric(["0751 "])
+    result.should(eq(true))
+  end
+
+  it "should return true if a negative float with exponent" do
+    result = scope.function_is_numeric(["-342.2315e-12"])
     result.should(eq(true))
   end
 
   it "should return true if a negative hexadecimal" do
-    result = scope.function_is_numeric(["-0x52F8c"])
+    result = scope.function_is_numeric([" - 0x52F8c"])
     result.should(eq(true))
   end
 
   it "should return true if a negative octal" do
     result = scope.function_is_numeric(["-0751"])
+    result.should(eq(true))
+  end
+
+  it "should return true if a negative octal with whitespaces before/after the dash" do
+    result = scope.function_is_numeric([" -  0751"])
     result.should(eq(true))
   end
 
