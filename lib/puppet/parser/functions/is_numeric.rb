@@ -12,18 +12,19 @@ of a number.
 
 Valid examples:
 
-  - 0x02F93
+  -0x02F93
   077435
   10e-12
-   -8475
+  -8475
   0.2343
   -23.561e3
 
 Invalid examples:
 
-  - 2F93  (hex without prefix)
+  -2F93  (hex without prefix)
   09342   (octal with invalid digit)
   000245  (unclear if octal or integer)
+  - 2345  (empty spaces)
     EOS
   ) do |arguments|
 
@@ -47,19 +48,19 @@ Invalid examples:
     # 0xaa230F
     # 0X1234009C
     # 0x0012
-    # - 12FcD
-    numeric_hex = %r{^\s*-?\s*0[xX][0-9A-Fa-f]+\s*$}
+    # -12FcD
+    numeric_hex = %r{^-?0[xX][0-9A-Fa-f]+$}
 
     # OCTAL numbers like
     # 01234567
     # -045372
-    numeric_oct = %r{^\s*-?\s*0[1-7][0-7]*\s*$}
+    numeric_oct = %r{^-?0[1-7][0-7]*$}
 
     # Integer/Float numbers like
-    # - 0.1234568981273
+    # -0.1234568981273
     # 47291
     # 42.12345e-12
-    numeric = %r{^\s*-?\s*(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?\s*$}
+    numeric = %r{^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$}
 
     if value.is_a? Numeric or
       value.to_s.match(numeric) or

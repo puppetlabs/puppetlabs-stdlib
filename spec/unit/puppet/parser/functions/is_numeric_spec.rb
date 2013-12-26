@@ -63,12 +63,12 @@ describe "the is_numeric function" do
   end
 
   it "should return false if a hexadecimal without a prefix" do
-    result = scope.function_is_numeric(["52F8c "])
+    result = scope.function_is_numeric(["52F8c"])
     result.should(eq(false))
   end
 
   it "should return true if a octal" do
-    result = scope.function_is_numeric(["0751 "])
+    result = scope.function_is_numeric(["0751"])
     result.should(eq(true))
   end
 
@@ -78,7 +78,7 @@ describe "the is_numeric function" do
   end
 
   it "should return true if a negative hexadecimal" do
-    result = scope.function_is_numeric([" - 0x52F8c"])
+    result = scope.function_is_numeric(["-0x52F8c"])
     result.should(eq(true))
   end
 
@@ -87,9 +87,9 @@ describe "the is_numeric function" do
     result.should(eq(true))
   end
 
-  it "should return true if a negative octal with whitespaces before/after the dash" do
+  it "should return false if a negative octal with whitespaces before/after the dash" do
     result = scope.function_is_numeric([" -  0751"])
-    result.should(eq(true))
+    result.should(eq(false))
   end
 
   it "should return false if a bad hexadecimal" do

@@ -27,10 +27,10 @@ This works also with whitespaces around the number.
     # Puppet::Parser::Functions
 
     # Integer numbers like
-    # - 1234568981273
+    # -1234568981273
     # 47291
     # 42e12
-    numeric = %r{^\s*-?\s*(?:(?:[1-9]\d*)|0)\s*$}
+    numeric = %r{^-?(?:(?:[1-9]\d*)|0)$}
 
     if value.is_a? Integer or value.to_s.match(numeric)
       return true
