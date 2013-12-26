@@ -17,7 +17,7 @@ Puppet Labs writes and distributes will make heavy use of this standard
 library.
 
 To report or research a bug with any part of this module, please go to
-[http://projects.puppetlabs.com/projects/stdlib](http://projects.puppetlabs.com/projects/stdlib)
+[http://tickets.puppetlabs.com/browse/PUP](http://tickets.puppetlabs.com/browse/PUP)
 
 # Versions #
 
