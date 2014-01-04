@@ -6,25 +6,19 @@ module Puppet::Parser::Functions
   newfunction(:is_numeric, :type => :rvalue, :doc => <<-EOS
 Returns true if the variable passed to this function is a number.
 
-The function recognizes integer, float, hex and octal numbers. The
-parameter can be in the native format or given as string representation
+The function recognizes only integer and float but not hex or octal
+numbers (for now) until a decision is made how to handle these types.
+
+The parameter can be in the native format or given as string representation
 of a number.
 
 Valid examples:
 
-  -0x02F93
-  077435
+  77435
   10e-12
   -8475
   0.2343
   -23.561e3
-
-Invalid examples:
-
-  -2F93  (hex without prefix)
-  09342   (octal with invalid digit)
-  000245  (unclear if octal or integer)
-  - 2345  (empty spaces)
     EOS
   ) do |arguments|
 
@@ -44,17 +38,19 @@ Invalid examples:
     # if there is no risk to declare them inside of the module
     # Puppet::Parser::Functions
 
+    # TODO decide if this should be used
     # HEX numbers like
     # 0xaa230F
     # 0X1234009C
     # 0x0012
     # -12FcD
-    numeric_hex = %r{^-?0[xX][0-9A-Fa-f]+$}
+    #numeric_hex = %r{^-?0[xX][0-9A-Fa-f]+$}
 
+    # TODO decide if this should be used
     # OCTAL numbers like
     # 01234567
     # -045372
-    numeric_oct = %r{^-?0[1-7][0-7]*$}
+    #numeric_oct = %r{^-?0[1-7][0-7]*$}
 
     # Integer/Float numbers like
     # -0.1234568981273
@@ -63,9 +59,9 @@ Invalid examples:
     numeric = %r{^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$}
 
     if value.is_a? Numeric or
-      value.to_s.match(numeric) or
-      value.to_s.match(numeric_hex) or
-      value.to_s.match(numeric_oct)
+      value.to_s.match(numeric) #or
+    #  value.to_s.match(numeric_hex) or
+    #  value.to_s.match(numeric_oct)
       return true
     else
       return false

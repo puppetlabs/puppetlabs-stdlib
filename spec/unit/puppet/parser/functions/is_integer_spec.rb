@@ -61,4 +61,9 @@ describe "the is_integer function" do
     result = scope.function_is_numeric(["0001234"])
     result.should(eq(false))
   end
+
+  it "should return false if it is wrapped inside an array" do
+    result = scope.function_is_numeric([[1234]])
+    result.should(eq(false))
+  end
 end

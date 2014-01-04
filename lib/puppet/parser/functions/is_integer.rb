@@ -30,10 +30,9 @@ integer.
     # Integer numbers like
     # -1234568981273
     # 47291
-    # 42e12
     numeric = %r{^-?(?:(?:[1-9]\d*)|0)$}
 
-    if value.is_a? Integer or value.to_s.match(numeric)
+    if value.is_a? Integer or (value.is_a? String and value.match numeric)
       return true
     else
       return false
