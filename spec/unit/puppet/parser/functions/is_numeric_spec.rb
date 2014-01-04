@@ -42,8 +42,18 @@ describe "the is_numeric function" do
     result.should(eq(false))
   end
 
+  it "should return false if an array of integers" do
+    result = scope.function_is_numeric([[1,2,3,4]])
+    result.should(eq(false))
+  end
+
   it "should return false if a hash" do
     result = scope.function_is_numeric([{"asdf" => false}])
+    result.should(eq(false))
+  end
+
+  it "should return false if a hash with numbers in it" do
+    result = scope.function_is_numeric([{1 => 2}])
     result.should(eq(false))
   end
 

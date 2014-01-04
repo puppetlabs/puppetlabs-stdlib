@@ -58,10 +58,11 @@ Valid examples:
     # 42.12345e-12
     numeric = %r{^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$}
 
-    if value.is_a? Numeric or
-      value.to_s.match(numeric) #or
-    #  value.to_s.match(numeric_hex) or
-    #  value.to_s.match(numeric_oct)
+    if value.is_a? Numeric or (value.is_a? String and (
+      value.match(numeric) #or
+    #  value.match(numeric_hex) or
+    #  value.match(numeric_oct)
+    ))
       return true
     else
       return false
