@@ -8,10 +8,13 @@ describe 'ensure_packages' do
 
   describe 'argument handling' do
     it 'fails with no arguments' do
-      should run.with_params().and_raise_error(Puppet::ParseError)
+      expect {
+        scope.function_ensure_packages([])
+      }.to raise_error(Puppet::ParseError, /0 for 1/)
     end
-    it 'requires an array' do
-      lambda { scope.function_ensure_packages([['foo']]) }.should_not raise_error
+
+    it 'accepts an array of values' do
+      scope.function_ensure_packages([['foo']])
     end
 
     it 'accepts a single package name as a string' do
