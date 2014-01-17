@@ -17,3 +17,16 @@ end
 Facter.add(:root_home) do
   setcode { Facter::Util::RootHome.get_root_home }
 end
+
+Facter.add(:root_home) do
+  confine :kernel => :darwin
+  setcode do
+    str = Facter::Util::Resolution.exec("dscacheutil -q user -a name root")
+    hash = {}
+    str.split("\n").each do |pair|
+      key,value = pair.split(/:/)
+      hash[key] = value
+    end
+    hash['dir'].strip
+  end
+end
