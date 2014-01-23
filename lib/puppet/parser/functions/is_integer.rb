@@ -4,7 +4,10 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_integer, :type => :rvalue, :doc => <<-EOS
-Returns true if the variable returned to this string is an integer.
+Returns true if the variable passed to this function is an integer.
+
+If the variable is a string it has to be in the correct format of an
+integer.
     EOS
   ) do |arguments|
 
@@ -15,12 +18,25 @@ Returns true if the variable returned to this string is an integer.
 
     value = arguments[0]
 
-    if value != value.to_i.to_s and !value.is_a? Fixnum then
-      return false
-    else
-      return true
-    end
+    # Regex is taken from the lexer of puppet
+    # puppet/pops/parser/lexer.rb but modified to match also
+    # negative values and disallow numbers prefixed with multiple
+    # 0's
+    #
+    # TODO these parameter should be a constant but I'm not sure
+    # if there is no risk to declare it inside of the module
+    # Puppet::Parser::Functions
 
+    # Integer numbers like
+    # -1234568981273
+    # 47291
+    numeric = %r{^-?(?:(?:[1-9]\d*)|0)$}
+
+    if value.is_a? Integer or (value.is_a? String and value.match numeric)
+      return true
+    else
+      return false
+    end
   end
 end
 
