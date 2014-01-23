@@ -4,13 +4,15 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_numeric, :type => :rvalue, :doc => <<-EOS
-Returns true if the variable passed to this function is a number.
+Returns true if the given argument is a Numeric (Integer or Float),
+or a String containing either a valid integer in decimal base 10 form, or
+a valid floating point string representation.
 
-The function recognizes only integer and float but not hex or octal
-numbers (for now) until a decision is made how to handle these types.
+The function recognizes only decimal (base 10) integers and float but not
+integers in hex (base 16) or octal (base 8) form.
 
-The parameter can be in the native format or given as string representation
-of a number.
+The string representation may start with a '-' (minus). If a decimal '.' is used,
+it must be followed by at least one digit.
 
 Valid examples:
 
