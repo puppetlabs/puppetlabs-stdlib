@@ -20,15 +20,6 @@ describe Facter::Util::RootHome do
       Facter::Util::RootHome.get_root_home.should == expected_root_home
     end
   end
-  context "macosx" do
-    let(:root_ent) { "root:*:0:0:System Administrator:/var/root:/bin/sh" }
-    let(:expected_root_home) { "/var/root" }
-
-    it "should return /var/root" do
-      Facter::Util::Resolution.expects(:exec).with("getent passwd root").returns(root_ent)
-      Facter::Util::RootHome.get_root_home.should == expected_root_home
-    end
-  end
   context "windows" do
     before :each do
       Facter::Util::Resolution.expects(:exec).with("getent passwd root").returns(nil)
@@ -37,4 +28,24 @@ describe Facter::Util::RootHome do
       Facter::Util::RootHome.get_root_home.should be_nil
     end
   end
+end
+
+describe 'root_home', :type => :fact do
+  before { Facter.clear }
+  after { Facter.clear }
+
+  context "macosx" do
+    before do
+      Facter.fact(:kernel).stubs(:value).returns("Darwin")
+      Facter.fact(:osfamily).stubs(:value).returns("Darwin")
+    end
+    let(:expected_root_home) { "/var/root" }
+    sample_dscacheutil = File.read(fixtures('dscacheutil','root'))
+
+    it "should return /var/root" do
+      Facter::Util::Resolution.stubs(:exec).with("dscacheutil -q user -a name root").returns(sample_dscacheutil)
+      Facter.fact(:root_home).value.should == expected_root_home
+    end
+  end
+
 end
