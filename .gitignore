@@ -6,3 +6,4 @@ spec/fixtures/
 Gemfile.lock
 .bundle/
 vendor/bundle/
+/metadata.json
