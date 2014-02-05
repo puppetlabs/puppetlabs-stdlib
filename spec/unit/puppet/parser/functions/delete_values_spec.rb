@@ -27,10 +27,10 @@ describe "the delete_values function" do
     result.should(eq({ 'a'=>'A', 'B'=>'C' }))
   end
 
-  it "should not change origin hash passed as argument" do 
-    origin_hash = { 'a' => 1, 'b' => 2, 'c' => 3 } 
+  it "should not change origin hash passed as argument" do
+    origin_hash = { 'a' => 1, 'b' => 2, 'c' => 3 }
     result = scope.function_delete_values([origin_hash, 2])
     origin_hash.should(eq({ 'a' => 1, 'b' => 2, 'c' => 3 }))
-  end 
+  end
 
 end

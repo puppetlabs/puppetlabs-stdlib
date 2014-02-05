@@ -14,7 +14,7 @@ like: 0, f, n, false, no to 'false'.
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
     string = arguments[0]
-    
+
     # If string is already Boolean, return it
     if !!string == string
       return string

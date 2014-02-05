@@ -19,7 +19,7 @@ Would return: {'a'=>'A','c'=>'C','B'=>'D'}
 
     if not hash.is_a?(Hash)
       raise(TypeError, "delete_values(): First argument must be a Hash. " + \
-                       "Given an argument of class #{hash.class}.") 
+                       "Given an argument of class #{hash.class}.")
     end
     hash.dup.delete_if { |key, val| item == val }
   end

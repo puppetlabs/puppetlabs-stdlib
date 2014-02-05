@@ -28,7 +28,7 @@ Will return: ["a","b","c"]
 
 Will return: ["host01", "host02", ..., "host09", "host10"]
 
-Passing a third argument will cause the generated range to step by that 
+Passing a third argument will cause the generated range to step by that
 interval, e.g.
 
     range("0", "9", "2")

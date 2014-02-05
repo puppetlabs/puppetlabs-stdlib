@@ -225,7 +225,7 @@ delete_undef_values
 Deletes all instances of the undef value from an array or hash.
 
 *Examples:*
-    
+
     $hash = delete_undef_values({a=>'A', b=>'', c=>undef, d => false})
 
 Would return: {a => 'A', b => '', d => false}
