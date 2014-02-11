@@ -305,6 +305,26 @@ the type and parameters specified if it doesn't already exist.
 
 - *Type*: statement
 
+file_line
+---------
+This resource ensures that a given line is contained within a file. You can also use 
+"match" to replace existing lines.
+
+*Examples:*
+
+    file_line { 'sudo_rule':
+      path => '/etc/sudoers',
+      line => '%sudo ALL=(ALL) ALL',
+    }
+
+    file_line { 'change_mount':
+      path  => '/etc/fstab',
+      line  => '10.0.0.1:/vol/data /opt/data nfs defaults 0 0',
+      match => '^172.16.17.2:/vol/old',
+    }
+
+- *Type*: resource
+
 flatten
 -------
 This function flattens any deeply nested arrays and returns a single flat array
