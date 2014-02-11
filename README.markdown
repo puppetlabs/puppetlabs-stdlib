@@ -831,8 +831,7 @@ To return the date:
     %L - Millisecond of the second (000..999)
     %m - Month of the year (01..12)
     %M - Minute of the hour (00..59)
-    %n - Newline (
-)
+    %n - Newline (\n)
     %N - Fractional seconds digits, default is 9 digits (nanosecond)
             %3N  millisecond (3 digits)
             %6N  microsecond (6 digits)
