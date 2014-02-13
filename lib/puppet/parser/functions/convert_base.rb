@@ -2,7 +2,7 @@ module Puppet::Parser::Functions
 
   newfunction(:convert_base, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
 
-    Convert a given integer or string representing an integer to a specified base, as a string.
+    Converts a given integer or string representing an integer to a specified base, as a string.
 
     Usage:
 
