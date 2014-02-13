@@ -23,6 +23,14 @@ describe "the convert_base function" do
     expect { scope.function_convert_base(["encode",["2"]]) }.to(raise_error(Puppet::ParseError, /argument must be either a string or an integer/))
   end
 
+  it "should raise a ParseError if argument 1 is a string that does not correspond to an integer in base 10" do
+    expect { scope.function_convert_base(["ten",6]) }.to(raise_error(Puppet::ParseError, /argument must be an integer or a string corresponding to an integer in base 10/))
+  end
+
+  it "should raise a ParseError if argument 2 is a string and does not correspond to an integer in base 10" do
+    expect { scope.function_convert_base([100,"hex"]) }.to(raise_error(Puppet::ParseError, /argument must be an integer or a string corresponding to an integer in base 10/))
+  end
+
   it "should convert two strings to the correct base" do
     result = scope.function_convert_base(["11",'16'])
     result.should =~ /^[bB]$/
