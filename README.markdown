@@ -145,6 +145,11 @@ Would result in:
 
   ['1','2','3','4','5','6']
 
+  concat(['1','2','3'],'4')
+
+Would result in:
+
+  ['1','2','3','4']
 
 - *Type*: rvalue
 
