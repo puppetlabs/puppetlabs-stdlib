@@ -12,6 +12,14 @@ describe "the file_join function" do
     lambda { scope.function_file_join([]) }.should( raise_error(Puppet::ParseError))
   end
 
+  it "should raise a ParseError if there is more than 1 arguments" do
+    lambda { scope.function_file_join(['one','two']) }.should( raise_error(Puppet::ParseError))
+  end
+
+  it "should raise a ParseError if 1 argument, but it is not an array" do
+    lambda { scope.function_file_join(['one']) }.should( raise_error(Puppet::ParseError))
+  end
+
   it "should join an array into a path" do
     result = scope.function_file_join([["a","b","c"]])
     result.should(eq("a/b/c"))
