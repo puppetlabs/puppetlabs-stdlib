@@ -17,16 +17,23 @@ Would result in: "/usr/bin/crontab"
     file_join(['/usr/','/bin/','/crontab'])
 
 Would result in: "/usr/bin/crontab"
+
+    file_join('/usr/','/bin/','/crontab')
+
+Would result in: "/usr/bin/crontab"
+
+    file_join([['/usr/','local'],'/bin/'],'/crontab')
+
+Would result in: "/usr/local/bin/crontab"
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "file_join(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size != 1
+    array = arguments.flatten()
 
-    array = arguments[0]
-
-    unless array.is_a?(Array)
-      raise(Puppet::ParseError, 'file_join(): Requires array to work with')
+    array.each do |i| 
+      unless i.is_a?(String) 
+        raise(Puppet::ParseError, 'file_join(): Requires only strings or nested arrays of strings.')
+      end
     end
 
     result = File.join(array)
