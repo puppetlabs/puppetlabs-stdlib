@@ -20,7 +20,6 @@ Would result in: "/usr/bin/crontab"
     EOS
   ) do |arguments|
 
-    # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "file_join(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size != 1
 
