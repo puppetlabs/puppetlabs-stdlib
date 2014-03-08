@@ -1,4 +1,4 @@
-require 'puppet'
+require 'spec_helper'
 require 'tempfile'
 provider_class = Puppet::Type.type(:file_line).provider(:ruby)
 describe provider_class do

@@ -1,31 +1,28 @@
-require 'puppet'
-require 'rspec-puppet'
+require 'spec_helper'
+require 'puppet_spec/compiler'
 
 describe "anchorrefresh" do
-  let(:node) { 'testhost.example.com' }
-  let :pre_condition do
-    <<-ANCHORCLASS
-class anchored {
-  anchor { 'anchored::begin': }
-  ~> anchor { 'anchored::end': }
-}
+  include PuppetSpec::Compiler
 
-class anchorrefresh {
-  notify { 'first': }
-  ~> class { 'anchored': }
-  ~> anchor { 'final': }
-}
+  let :transaction do
+    apply_compiled_manifest(<<-ANCHORCLASS)
+      class anchored {
+        anchor { 'anchored::begin': }
+        ~> anchor { 'anchored::end': }
+      }
+
+      class anchorrefresh {
+        notify { 'first': }
+        ~> class { 'anchored': }
+        ~> anchor { 'final': }
+      }
+
+      include anchorrefresh
     ANCHORCLASS
   end
 
-  def apply_catalog_and_return_exec_rsrc
-    catalog = subject.to_ral
-    transaction = catalog.apply
-    transaction.resource_status("Anchor[final]")
-  end
-
   it 'propagates events through the anchored class' do
-    resource = apply_catalog_and_return_exec_rsrc
+    resource = transaction.resource_status('Anchor[final]')
 
     expect(resource.restarted).to eq(true)
   end

@@ -30,7 +30,7 @@ describe Puppet::Parser::Functions.function(:deep_merge) do
     end
 
     it 'should accept empty strings as puppet undef' do
-      expect { new_hash = scope.function_deep_merge([{}, ''])}.not_to raise_error(Puppet::ParseError, /unexpected argument type String/)
+      expect { new_hash = scope.function_deep_merge([{}, ''])}.not_to raise_error
     end
 
     it 'should be able to deep_merge two hashes' do

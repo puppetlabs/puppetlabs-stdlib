@@ -1,4 +1,4 @@
-require 'puppet'
+require 'spec_helper'
 require 'tempfile'
 describe Puppet::Type.type(:file_line) do
   let :file_line do
