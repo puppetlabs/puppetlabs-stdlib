@@ -22,8 +22,6 @@ describe "anchorrefresh" do
   end
 
   it 'propagates events through the anchored class' do
-    require 'pry'
-    binding.pry
     resource = transaction.resource_status('Anchor[final]')
 
     expect(resource.restarted).to eq(true)
