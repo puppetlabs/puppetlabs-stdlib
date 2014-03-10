@@ -25,8 +25,10 @@ group :development, :test do
   gem 'beaker-rspec',            :require => false
 end
 
-if puppetversion = ENV['PUPPET_GEM_VERSION']
-  gem 'puppet', puppetversion, :require => false
+ENV['GEM_PUPPET_VERSION'] ||= ENV['PUPPET_GEM_VERSION']
+puppetversion = ENV['GEM_PUPPET_VERSION']
+if puppetversion
+  gem 'puppet', *location_for(puppetversion)
 else
   gem 'puppet', :require => false
 end
