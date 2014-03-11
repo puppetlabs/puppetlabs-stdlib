@@ -650,8 +650,8 @@ Merges two or more hashes together and returns the resulting hash.
 
 For example:
 
-    $hash1 = {'one' => 1, 'two', => 2}
-    $hash2 = {'two' => 'dos', 'three', => 'tres'}
+    $hash1 = {'one' => 1, 'two' => 2}
+    $hash2 = {'two' => 'dos', 'three' => 'tres'}
     $merged_hash = merge($hash1, $hash2)
     # The resulting hash is equivalent to:
     # $merged_hash =  {'one' => 1, 'two' => 'dos', 'three' => 'tres'}
