@@ -20,7 +20,7 @@ module Puppet::Parser::Functions
     end
 
     deep_merge = Proc.new do |hash1,hash2|
-      hash1.merge!(hash2) do |key,old_value,new_value|
+      hash1.merge(hash2) do |key,old_value,new_value|
         if old_value.is_a?(Hash) && new_value.is_a?(Hash)
           deep_merge.call(old_value, new_value)
         else
@@ -37,7 +37,7 @@ module Puppet::Parser::Functions
         raise Puppet::ParseError, "deep_merge: unexpected argument type #{arg.class}, only expects hash arguments"
       end
 
-      deep_merge.call(result, arg)
+      result = deep_merge.call(result, arg)
     end
     return( result )
   end
