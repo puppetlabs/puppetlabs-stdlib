@@ -35,7 +35,7 @@ describe Puppet::Parser::Functions.function(:validate_absolute_path) do
       end
       valid_paths.each do |path|
         it "validate_absolute_path(#{path.inspect}) should not fail" do
-          expect { subject.call [path] }.not_to raise_error Puppet::ParseError
+          expect { subject.call [path] }.not_to raise_error
         end
       end
     end
@@ -43,7 +43,7 @@ describe Puppet::Parser::Functions.function(:validate_absolute_path) do
     context "Puppet without mocking" do
       valid_paths.each do |path|
         it "validate_absolute_path(#{path.inspect}) should not fail" do
-          expect { subject.call [path] }.not_to raise_error Puppet::ParseError
+          expect { subject.call [path] }.not_to raise_error
         end
       end
     end
