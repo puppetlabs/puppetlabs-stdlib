@@ -1199,13 +1199,13 @@ to a number.
 
 The following values will pass:
 
-  validate_slength("discombobulate",17)
-  validate_slength(["discombobulate","moo"],17)
+    validate_slength("discombobulate",17)
+    validate_slength(["discombobulate","moo"],17)
 
-The following valueis will not:
+The following values will not:
 
-  validate_slength("discombobulate",1)
-  validate_slength(["discombobulate","thermometer"],5)
+    validate_slength("discombobulate",1)
+    validate_slength(["discombobulate","thermometer"],5)
 
 
 
