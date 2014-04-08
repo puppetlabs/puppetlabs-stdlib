@@ -1,46 +1,48 @@
 require 'spec_helper_acceptance'
 
 describe 'any2array function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
-  it 'should create an empty array' do
-    pp = <<-EOS
-    $input = ''
-    $output = any2array($input)
-    validate_array($output)
-    notify { "Output: ${output}": }
-    EOS
+  describe 'success' do
+    it 'should create an empty array' do
+      pp = <<-EOS
+      $input = ''
+      $output = any2array($input)
+      validate_array($output)
+      notify { "Output: ${output}": }
+      EOS
 
-    apply_manifest(pp, :catch_failures => true) do |r|
-      expect(r.stdout).to match(/Notice: Output: /)
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stdout).to match(/Notice: Output: /)
+      end
     end
-  end
 
-  it 'should leave arrays modified' do
-    pp = <<-EOS
-    $input = ['test', 'array']
-    $output = any2array($input)
-    validate_array($output)
-    notify { "Output: ${output}": }
-    EOS
+    it 'should leave arrays modified' do
+      pp = <<-EOS
+      $input = ['test', 'array']
+      $output = any2array($input)
+      validate_array($output)
+      notify { "Output: ${output}": }
+      EOS
 
-    apply_manifest(pp, :catch_failures => true) do |r|
-      expect(r.stdout).to match(/Notice: Output: testarray/)
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stdout).to match(/Notice: Output: testarray/)
+      end
     end
-  end
 
-  it 'should turn a hash into an array' do
-    pp = <<-EOS
-    $input = {'test' => 'array'}
-    $output = any2array($input)
+    it 'should turn a hash into an array' do
+      pp = <<-EOS
+      $input = {'test' => 'array'}
+      $output = any2array($input)
 
-    validate_array($output)
-    # Check each element of the array is a plain string.
-    validate_string($output[0])
-    validate_string($output[1])
-    notify { "Output: ${output}": }
-    EOS
+      validate_array($output)
+      # Check each element of the array is a plain string.
+      validate_string($output[0])
+      validate_string($output[1])
+      notify { "Output: ${output}": }
+      EOS
 
-    apply_manifest(pp, :catch_failures => true) do |r|
-      expect(r.stdout).to match(/Notice: Output: testarray/)
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stdout).to match(/Notice: Output: testarray/)
+      end
     end
   end
 end
