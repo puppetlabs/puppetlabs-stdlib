@@ -1,5 +1,7 @@
 # Puppet Labs Standard Library #
 
+Bleah.
+
 [![Build Status](https://travis-ci.org/puppetlabs/puppetlabs-stdlib.png?branch=master)](https://travis-ci.org/puppetlabs/puppetlabs-stdlib)
 
 This module provides a "standard library" of resources for developing Puppet
