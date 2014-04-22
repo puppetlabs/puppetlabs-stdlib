@@ -40,7 +40,7 @@ class Facter::Util::DotD
 
   def txt_parser(file)
     File.readlines(file).each do |line|
-      if line =~ /^(.+)=(.+)$/
+      if line =~ /^([^=]+)=(.+)$/
         var = $1; val = $2
 
         Facter.add(var) do
