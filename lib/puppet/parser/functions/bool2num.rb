@@ -15,10 +15,9 @@ module Puppet::Parser::Functions
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
-    klass = value.class
 
     # We can have either true or false, or string which resembles boolean ...
-    unless [FalseClass, TrueClass, String].include?(klass)
+    unless value.is_a?(String) || value.is_a?(FalseClass) || value.is_a?(TrueClass)
       raise(Puppet::ParseError, 'bool2num(): Requires either ' +
         'boolean or string to work with')
     end

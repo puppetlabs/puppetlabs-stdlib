@@ -16,4 +16,13 @@ describe "the lstrip function" do
     result = scope.function_lstrip(["  asdf"])
     expect(result).to(eq('asdf'))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new("  asdf")
+    result = scope.function_lstrip([value])
+    result.should(eq("asdf"))
+  end
 end

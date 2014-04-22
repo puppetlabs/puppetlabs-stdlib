@@ -16,4 +16,13 @@ describe "the capitalize function" do
     result = scope.function_capitalize(["abc"])
     expect(result).to(eq("Abc"))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new('abc')
+    result = scope.function_capitalize([value])
+    result.should(eq('Abc'))
+  end
 end

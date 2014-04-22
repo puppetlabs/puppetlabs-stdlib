@@ -21,4 +21,13 @@ describe "the upcase function" do
     result = scope.function_upcase(["ABC"])
     expect(result).to(eq('ABC'))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new('abc')
+    result = scope.function_upcase([value])
+    result.should(eq('ABC'))
+  end
 end

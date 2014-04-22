@@ -21,4 +21,13 @@ describe "the shuffle function" do
     result = scope.function_shuffle(["adfs"])
     expect(result.split("").sort.join("")).to(eq("adfs"))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new('asdf')
+    result = scope.function_shuffle([value])
+    result.size.should(eq(4))
+  end
 end

@@ -30,10 +30,8 @@ Would result in:
     flatten = arguments[2] if arguments[2]
 
     if flatten
-      klass = flatten.class
-
       # We can have either true or false, or string which resembles boolean ...
-      unless [FalseClass, TrueClass, String].include?(klass)
+      unless flatten.is_a?(String) || flatten.is_a?(FalseClass) || flatten.is_a?(TrueClass)
         raise(Puppet::ParseError, 'zip(): Requires either ' +
           'boolean or string to work with')
       end
