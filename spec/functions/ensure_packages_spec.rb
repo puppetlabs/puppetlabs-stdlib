@@ -32,7 +32,7 @@ describe 'ensure_packages' do
     it 'fails with no arguments' do
       expect {
         scope.function_ensure_packages([])
-      }.to raise_error(Puppet::ParseError, /0 for 1/)
+      }.to raise_error(Puppet::ParseError, /0 for 1 or 2/)
     end
 
     it 'accepts an array of values' do
@@ -65,6 +65,17 @@ describe 'ensure_packages' do
 
     it 'declares package resources with ensure => present' do
       expect(catalog.resource(:package, 'facter')['ensure']).to eq('present')
+    end
+  end
+
+  context 'given a clean catalog and specified defaults' do
+    let :catalog do
+      compile_to_catalog('ensure_packages(["facter"], {"provider" => "gem"})')
+    end
+
+    it 'declares package resources with ensure => present' do
+      expect(catalog.resource(:package, 'facter')['ensure']).to eq('present')
+      expect(catalog.resource(:package, 'facter')['provider']).to eq('gem')
     end
   end
 end
