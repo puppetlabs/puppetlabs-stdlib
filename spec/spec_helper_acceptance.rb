@@ -2,7 +2,7 @@ require 'beaker-rspec'
 
 UNSUPPORTED_PLATFORMS = []
 
-unless ENV['RS_PROVISION'] == 'no'
+unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
   hosts.each do |host|
     # Install Puppet
     if host.is_pe?
