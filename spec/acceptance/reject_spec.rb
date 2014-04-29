@@ -29,7 +29,7 @@ describe 'reject function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('oper
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/reject is \["aaa", "bbb", "ccc", "aaaddd"\]/)
+        expect(r.stdout).to match(/reject is \[\]/)
       end
     end
   end

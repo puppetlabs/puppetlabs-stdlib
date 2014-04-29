@@ -5,7 +5,7 @@ describe 'size function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operat
     it 'single string size' do
       pp = <<-EOS
       $a = 'discombobulate'
-      $o =size($a)
+      $o = size($a)
       notice(inline_template('size is <%= @o.inspect %>'))
       EOS
 
@@ -16,7 +16,7 @@ describe 'size function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operat
     it 'with empty string' do
       pp = <<-EOS
       $a = ''
-      $o =size($a)
+      $o = size($a)
       notice(inline_template('size is <%= @o.inspect %>'))
       EOS
 
@@ -27,7 +27,7 @@ describe 'size function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operat
     it 'with undef' do
       pp = <<-EOS
       $a = undef
-      $o =size($a)
+      $o = size($a)
       notice(inline_template('size is <%= @o.inspect %>'))
       EOS
 
@@ -38,7 +38,7 @@ describe 'size function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operat
     it 'strings in array' do
       pp = <<-EOS
       $a = ['discombobulate', 'moo']
-      $o =size($a)
+      $o = size($a)
       notice(inline_template('size is <%= @o.inspect %>'))
       EOS
 
