@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 # vim: set sw=2 sts=2 et tw=80 :
 require 'rspec'
-require 'pry'
 
 #XXX Super ugly hack to keep from starting beaker nodes
 module Kernel
@@ -44,15 +43,30 @@ def get_tests(children)
   end
 end
 
+def count_test_types_in(type,group)
+  return 0 if group.nil?
+  group.inject(0) do |m,(k,v)|
+    m += v.length if k == type
+    m += count_tests_in(v) if v.is_a?(Hash)
+    m
+  end
+end
+def count_tests_in(group)
+  count_test_types_in('tests',group)
+end
+def count_pending_tests_in(group)
+  count_test_types_in('pending_tests',group)
+end
+
 # Convert tests hash to csv format
 def to_csv(function_list,tests)
   function_list.collect do |function_name|
     if v = tests["#{function_name} function"]
-      positive_tests = v["groups"]["success"] ? v["groups"]["success"]["tests"].length : 0
-      negative_tests = v["groups"]["failure"] ? v["groups"]["failure"]["tests"].length : 0
+      positive_tests = count_tests_in(v["groups"]["success"])
+      negative_tests = count_tests_in(v["groups"]["failure"])
       pending_tests  =
-        (v["groups"]["failure"] ? v["groups"]["success"]["pending_tests"].length : 0) +
-        (v["groups"]["failure"] ? v["groups"]["failure"]["pending_tests"].length : 0)
+        count_pending_tests_in(v["groups"]["failure"]) +
+        count_pending_tests_in(v["groups"]["failure"])
     else
       positive_tests = 0
       negative_tests = 0
