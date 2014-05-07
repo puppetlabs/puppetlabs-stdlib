@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 module PuppetSpec::Pops
   extend RSpec::Matchers::DSL
 

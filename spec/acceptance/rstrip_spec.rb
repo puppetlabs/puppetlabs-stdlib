@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
 describe 'rstrip function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do

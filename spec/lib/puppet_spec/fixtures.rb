@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 module PuppetSpec::Fixtures
   def fixtures(*rest)
     File.join(PuppetSpec::FIXTURE_DIR, *rest)

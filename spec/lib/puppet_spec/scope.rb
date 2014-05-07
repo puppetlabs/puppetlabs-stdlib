@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 
 module PuppetSpec::Scope
   # Initialize a new scope suitable for testing.

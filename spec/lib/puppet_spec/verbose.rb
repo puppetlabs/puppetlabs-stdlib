@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 # Support code for running stuff with warnings disabled.
 module Kernel
   def with_verbose_disabled

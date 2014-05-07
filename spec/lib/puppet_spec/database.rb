@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 # This just makes some nice things available at global scope, and for setup of
 # tests to use a real fake database, rather than a fake stubs-that-don't-work
 # version of the same.  Fun times.

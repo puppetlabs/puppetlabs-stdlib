@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 
 describe Puppet::Parser::Functions.function(:validate_augeas), :if => Puppet.features.augeas? do

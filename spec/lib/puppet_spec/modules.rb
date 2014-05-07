@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 module PuppetSpec::Modules
   class << self
     def create(name, dir, options = {})
