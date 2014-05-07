@@ -4,14 +4,16 @@ require 'beaker-rspec'
 UNSUPPORTED_PLATFORMS = []
 
 unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
+  if hosts.first.is_pe?
+    install_pe
+    on hosts, 'mkdir -p /etc/puppetlabs/facter/facts.d'
+  else
+    install_puppet
+    on hosts, 'mkdir -p /etc/facter/facts.d'
+    on hosts, '/bin/touch /etc/puppet/hiera.yaml'
+  end
   hosts.each do |host|
-    # Install Puppet
-    if host.is_pe?
-      install_pe
-    else
-      install_puppet
-      on host, "mkdir -p #{host['distmoduledir']}"
-    end
+    on host, "mkdir -p #{host['distmoduledir']}"
   end
 end
 
@@ -24,10 +26,6 @@ RSpec.configure do |c|
 
   # Configure all nodes in nodeset
   c.before :suite do
-    # Install module and dependencies
     puppet_module_install(:source => proj_root, :module_name => 'stdlib')
-    hosts.each do |host|
-      shell('/bin/touch /etc/puppet/hiera.yaml')
-    end
   end
 end
