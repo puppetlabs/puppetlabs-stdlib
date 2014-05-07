@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
 describe 'delete_undef_values function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do

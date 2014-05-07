@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 require 'tempfile'
 describe Puppet::Type.type(:file_line) do

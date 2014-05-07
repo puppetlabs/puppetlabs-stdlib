@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 
 TESTEXE = File.exists?('/usr/bin/test') ? '/usr/bin/test' : '/bin/test'

@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby -S rspec
 module PuppetSpec::Settings
 
   # It would probably be preferable to refactor defaults.rb such that the real definitions of
