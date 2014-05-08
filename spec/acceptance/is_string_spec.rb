@@ -50,7 +50,7 @@ describe 'is_string function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('o
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/is_string is true/)
+        expect(r.stdout).to match(/is_string is false/)
       end
     end
     it 'is_strings floats' do
