@@ -15,6 +15,9 @@ true if the function exists, false if not.
         "given #{arguments.size} for 1")
     end
 
+    # Only allow String types
+    return false unless arguments[0].is_a?(String)
+
     function = Puppet::Parser::Functions.function(arguments[0].to_sym)
     function.is_a?(String) and not function.empty?
   end

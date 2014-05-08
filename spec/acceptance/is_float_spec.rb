@@ -7,7 +7,7 @@ describe 'is_float function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('op
       pp = <<-EOS
       $a = ['aaa.com','bbb','ccc']
       $o = is_float($a)
-      notice(inline_template('is_floats is <%= @o.inspect %>'))
+      notice(inline_template('is_float is <%= @o.inspect %>'))
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
@@ -18,7 +18,7 @@ describe 'is_float function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('op
       pp = <<-EOS
       $a = true
       $o = is_float($a)
-      notice(inline_template('is_floats is <%= @o.inspect %>'))
+      notice(inline_template('is_float is <%= @o.inspect %>'))
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
@@ -75,7 +75,7 @@ describe 'is_float function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('op
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/is_floats is false/)
+        expect(r.stdout).to match(/is_float is false/)
       end
     end
   end

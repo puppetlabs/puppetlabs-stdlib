@@ -20,6 +20,9 @@ Returns true if the string passed to this function is a syntactically correct do
     label_min_length=1
     label_max_length=63
 
+    # Only allow string types
+    return false unless domain.is_a?(String)
+
     # Allow ".", it is the top level domain
     return true if domain == '.'
 

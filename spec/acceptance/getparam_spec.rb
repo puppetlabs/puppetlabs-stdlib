@@ -13,7 +13,7 @@ describe 'getparam function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('op
       notice(inline_template('getparam is <%= @o.inspect %>'))
       EOS
 
-      apply_manifest(pp, :expect_changes => true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(/getparam is true/)
       end
     end
