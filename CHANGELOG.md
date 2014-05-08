@@ -1,3 +1,38 @@
+## 2014-05-08 - Release - 4.2.0
+### Summary
+This release adds many new functions and fixes, and continues to be backwards compatible with stdlib 3.x
+
+#### Features
+- New `base64()` function
+- New `deep_merge()` function
+- New `delete_undef_values()` function
+- New `delete_values()` function
+- New `difference()` function
+- New `intersection()` function
+- New `is_bool()` function
+- New `pick_default()` function
+- New `union()` function
+- New `validate_ipv4_address` function
+- New `validate_ipv6_address` function
+- Update `ensure_packages()` to take an option hash as a second parameter.
+- Update `range()` to take an optional third argument for range step
+- Update `validate_slength()` to take an optional third argument for minimum length
+- Update `file_line` resource to take `after` and `multiple` attributes
+
+#### Bugfixes
+- Correct `is_string`, `is_domain_name`, `is_array`, `is_float`, and `is_function_available` for parsing odd types such as bools and hashes.
+- Allow facts.d facts to contain `=` in the value
+- Fix `root_home` fact on darwin systems
+- Fix `concat()` to work with a second non-array argument
+- Fix `floor()` to work with integer strings
+- Fix `is_integer()` to return true if passed integer strings
+- Fix `is_numeric()` to return true if passed integer strings
+- Fix `merge()` to work with empty strings
+- Fix `pick()` to raise the correct error type
+- Fix `uriescape()` to use the default URI.escape list
+- Add/update unit & acceptance tests.
+
+
 ##2014-03-04 - Supported Release - 3.2.1
 ###Summary
 This is a supported release
