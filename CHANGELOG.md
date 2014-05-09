@@ -1,3 +1,7 @@
+## 2014-05-08 - Release - 4.2.1
+### Summary
+This release moves a stray symlink that can cause problems.
+
 ## 2014-05-08 - Release - 4.2.0
 ### Summary
 This release adds many new functions and fixes, and continues to be backwards compatible with stdlib 3.x
