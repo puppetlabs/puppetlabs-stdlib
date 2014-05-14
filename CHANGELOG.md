@@ -1,3 +1,8 @@
+##2014-05-14 - Supported Release 4.3.0
+### Summary
+
+This is a supported release of the code released as 4.2.1.
+
 ## 2014-05-08 - Release - 4.2.1
 ### Summary
 This release moves a stray symlink that can cause problems.
