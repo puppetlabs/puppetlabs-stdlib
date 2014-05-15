@@ -46,10 +46,6 @@ Puppet::Type.newtype(:file_line) do
     desc 'An optional value used to specify the line after which we will add any new lines. (Existing lines are added in place)'
   end
 
-  newparam(:before) do
-    desc 'An optional value used to specify the line before which we will add any new lines. (Existing lines are added in place)'
-  end
-
   newparam(:line) do
     desc 'The line to be appended to the file located by the path parameter.'
   end
