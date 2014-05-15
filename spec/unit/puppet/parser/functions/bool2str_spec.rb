@@ -31,4 +31,16 @@ describe "the bool2str function" do
     result = scope.function_bool2str([false])
     result.class.should(eq(String))
   end
+
+  it "should not accept a string" do
+    lambda { scope.function_bool2str(["false"]) }.should( raise_error(Puppet::ParseError))
+  end
+
+  it "should not accept a nil value" do
+    lambda { scope.function_bool2str([nil]) }.should( raise_error(Puppet::ParseError))
+  end
+
+  it "should not accept an undef" do
+    lambda { scope.function_bool2str([:undef]) }.should( raise_error(Puppet::ParseError))
+  end
 end
