@@ -9,9 +9,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     if resource[:match]
       handle_create_with_match
     elsif resource[:after]
-      handle_create_with_position :after
-    elsif resource[:before]
-      handle_create_with_position :before
+      handle_create_with_after
     else
       append_line
     end
@@ -51,29 +49,29 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     end
   end
 
-  def handle_create_with_position(position)
-    regex = resource[position] ? Regexp.new(resource[position]) : nil
+  def handle_create_with_after
+    regex = Regexp.new(resource[:after])
 
     count = lines.count {|l| l.match(regex)}
 
     case count
-    when 1 # find the line to put our line before/after
+    when 1 # find the line to put our line after
       File.open(resource[:path], 'w') do |fh|
         lines.each do |l|
-          fh.puts(l) if position == :after
+          fh.puts(l)
           if regex.match(l) then
             fh.puts(resource[:line])
           end
-          fh.puts(l) if position == :before
         end
       end
     when 0 # append the line to the end of the file
       append_line
     else
-      raise Puppet::Error, "#{count} lines match pattern '#{resource[position]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
+      raise Puppet::Error, "#{count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
     end
   end
 
+  ##
   # append the line to the file.
   #
   # @api private
