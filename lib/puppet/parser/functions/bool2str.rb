@@ -5,7 +5,7 @@
 module Puppet::Parser::Functions
   newfunction(:bool2str, :type => :rvalue, :doc => <<-EOS
     Converts a boolean to a string.
-    Requires a single boolean or string as an input.
+    Requires a single boolean as an input.
     EOS
   ) do |arguments|
 
@@ -15,15 +15,12 @@ module Puppet::Parser::Functions
     value = arguments[0]
     klass = value.class
 
-    # We can have either true or false, or string which resembles boolean ...
-    unless [FalseClass, TrueClass, String].include?(klass)
-      raise(Puppet::ParseError, 'bool2str(): Requires either ' +
-        'boolean or string to work with')
+    # We can have either true or false, and nothing else
+    unless [FalseClass, TrueClass].include?(klass)
+      raise(Puppet::ParseError, 'bool2str(): Requires a boolean to work with')
     end
 
-    result = value.is_a?(String) ? value : value.to_s
-
-    return result
+    return value.to_s
   end
 end
 
