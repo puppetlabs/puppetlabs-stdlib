@@ -183,6 +183,65 @@ describe provider_class do
         end
       end
     end
+
+    describe 'using before' do
+      let :resource do
+        Puppet::Type::File_line.new(
+          {
+            :name  => 'foo',
+            :path  => @tmpfile,
+            :line  => 'inserted = line',
+            :before => '^foo1',
+          }
+        )
+      end
+
+      let :provider do
+        provider_class.new(resource)
+      end
+
+      context 'with one line matching the before expression' do
+        before :each do
+          File.open(@tmpfile, 'w') do |fh|
+            fh.write("foo1\nfoo = blah\nfoo2\nfoo = baz")
+          end
+        end
+
+        it 'inserts the specified line before the line matching the "before" expression' do
+          provider.create
+          File.read(@tmpfile).chomp.should eql("inserted = line\nfoo1\nfoo = blah\nfoo2\nfoo = baz")
+        end
+      end
+
+      context 'with two lines matching the before expression' do
+        before :each do
+          File.open(@tmpfile, 'w') do |fh|
+            fh.write("foo1\nfoo = blah\nfoo2\nfoo1\nfoo = baz")
+          end
+        end
+
+        it 'errors out stating "One or no line must match the pattern"' do
+          expect { provider.create }.to raise_error(Puppet::Error, /One or no line must match the pattern/)
+        end
+      end
+
+      context 'with no lines matching the after expression' do
+        let :content do
+          "foo3\nfoo = blah\nfoo2\nfoo = baz\n"
+        end
+
+        before :each do
+          File.open(@tmpfile, 'w') do |fh|
+            fh.write(content)
+          end
+        end
+
+        it 'appends the specified line to the file' do
+          provider.create
+          File.read(@tmpfile).should eq(content << resource[:line] << "\n")
+        end
+      end
+    end
   end
 
   context "when removing" do
