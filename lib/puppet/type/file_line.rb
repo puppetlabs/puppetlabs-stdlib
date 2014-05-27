@@ -1,8 +1,9 @@
 Puppet::Type.newtype(:file_line) do
 
   desc <<-EOT
-    Ensures that a given line is contained within a file.  The implementation
-    matches the full line, including whitespace at the beginning and end.  If
+    Ensures that a given line is present or absent within a file.  The implementation
+    matches the full line, including whitespace at the beginning and end. If a 'match'
+    parameter was given, Puppet will change (or remove) the given line. If
     the line is not contained in the given file, Puppet will add the line to
     ensure the desired state.  Multiple resources may be declared to manage
     multiple lines in the same file.
