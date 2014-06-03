@@ -11,7 +11,7 @@ describe 'ensure_packages function', :unless => UNSUPPORTED_PLATFORMS.include?(f
       EOS
 
       apply_manifest(pp, :expect_changes => true) do |r|
-        expect(r.stdout).to match(/Package\[zsh\]\/ensure: created/)
+        expect(r.stdout).to match(/Package\[zsh\]\/ensure: (created|ensure changed 'purged' to 'present')/)
       end
     end
     it 'ensures a package already declared'
