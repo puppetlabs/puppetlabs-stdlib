@@ -14,6 +14,7 @@ describe 'fqdn_rotate function', :unless => UNSUPPORTED_PLATFORMS.include?(fact(
       shell("if [ -f #{facts_d}/fqdn.txt ] ; then rm #{facts_d}/fqdn.txt ; fi")
     end
     it 'fqdn_rotates floats' do
+      shell("mkdir -p #{facts_d}")
       shell("echo 'fqdn=fakehost.localdomain' > #{facts_d}/fqdn.txt")
       pp = <<-EOS
       $a = ['a','b','c','d']

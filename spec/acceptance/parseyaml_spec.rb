@@ -26,7 +26,7 @@ describe 'parseyaml function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('o
       EOS
 
       apply_manifest(pp, :expect_failures => true) do |r|
-        expect(r.stderr).to match(/syntax error/)
+        expect(r.stderr).to match(/(syntax error|did not find expected key)/)
       end
     end
 
