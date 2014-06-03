@@ -5,14 +5,14 @@ describe 'shuffle function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('ope
   describe 'success' do
     it 'shuffles arrays' do
       pp = <<-EOS
-      $a = ["the","public","art","galleries"]
+      $a = ["1", "2", "3", "4", "5", "6", "7", "8", "the","public","art","galleries"]
       # Anagram: Large picture halls, I bet
       $o = shuffle($a)
       notice(inline_template('shuffle is <%= @o.inspect %>'))
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to_not match(/shuffle is \["the", "public", "art", "galleries"\]/)
+        expect(r.stdout).to_not match(/shuffle is \["1", "2", "3", "4", "5", "6", "7", "8", "the", "public", "art", "galleries"\]/)
       end
     end
     it 'shuffles strings' do
