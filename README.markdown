@@ -360,7 +360,7 @@ returns the value of the resource's parameter. For example, the following code r
 
  *Type*: rvalue
 
-* `prefix`: This function applies a prefix to all elements in an array. For example, `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc']. *Type*: rvalue
+* `prefix`: This function applies a prefix to all elements in an array or to the keys in a hash. For example, `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc'], and `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}. *Type*: rvalue
 
 
 * `private`: This function sets the current class or definition as private.
@@ -452,7 +452,6 @@ manifests as a valid password attribute. *Type*: rvalue
     * `%z`: Time zone as  hour offset from UTC (e.g. +0900)
     * `%Z`: Time zone name
     * `%%`: Literal '%' character
-
 
 * `strip`: This function removes leading and trailing whitespace from a string or from every string inside an array. For example, `strip("    aaa   ")` results in "aaa". *Type*: rvalue
 
