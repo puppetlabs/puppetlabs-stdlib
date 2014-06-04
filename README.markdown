@@ -715,13 +715,18 @@ failing that, will use a default value of 1.449.
 
 prefix
 ------
-This function applies a prefix to all elements in an array.
+This function applies a prefix to all elements in an array or to the keys of a hash.
 
 *Examples:*
 
     prefix(['a','b','c'], 'p')
 
 Will return: ['pa','pb','pc']
+
+
+    prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')
+
+Will return: {'pa'=>'b','pb'=>'c','pc'=>'d'}
 
 - *Type*: rvalue
 

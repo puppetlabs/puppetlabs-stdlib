@@ -25,4 +25,9 @@ describe "the prefix function" do
     result = scope.function_prefix([['a','b','c'], 'p'])
     expect(result).to(eq(['pa','pb','pc']))
   end
+
+  it "returns a prefixed hash" do
+    result = scope.function_prefix([{'a' => 'b','b' => 'c','c' => 'd'}, 'p'])
+    expect(result).to(eq({'pa'=>'b','pb'=>'c','pc'=>'d'}))
+  end
 end
