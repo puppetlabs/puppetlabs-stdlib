@@ -1,3 +1,7 @@
+##2014-06-04 - Release - 3.2.2
+###Summary
+This is a compatibility release; only metadata changes.
+
 ##2014-03-04 - Supported Release - 3.2.1
 ###Summary
 This is a supported release
