@@ -26,23 +26,23 @@ describe "PE Version specs" do
         (major,minor,patch) = version.split(".")
 
         it "Should return true" do
-          Facter.fact(:is_pe).value.should == true
+          expect(Facter.fact(:is_pe).value).to eq(true)
         end
 
         it "Should have a version of #{version}" do
-          Facter.fact(:pe_version).value.should == version
+          expect(Facter.fact(:pe_version).value).to eq(version)
         end
 
         it "Should have a major version of #{major}" do
-          Facter.fact(:pe_major_version).value.should == major
+          expect(Facter.fact(:pe_major_version).value).to eq(major)
         end
 
         it "Should have a minor version of #{minor}" do
-          Facter.fact(:pe_minor_version).value.should == minor
+          expect(Facter.fact(:pe_minor_version).value).to eq(minor)
         end
 
         it "Should have a patch version of #{patch}" do
-          Facter.fact(:pe_patch_version).value.should == patch
+          expect(Facter.fact(:pe_patch_version).value).to eq(patch)
         end
       end
     end
@@ -54,23 +54,23 @@ describe "PE Version specs" do
     end
 
     it "is_pe is false" do
-      Facter.fact(:is_pe).value.should == false
+      expect(Facter.fact(:is_pe).value).to eq(false)
     end
 
     it "pe_version is nil" do
-      Facter.fact(:pe_version).value.should be_nil
+      expect(Facter.fact(:pe_version).value).to be_nil
     end
 
     it "pe_major_version is nil" do
-      Facter.fact(:pe_major_version).value.should be_nil
+      expect(Facter.fact(:pe_major_version).value).to be_nil
     end
 
     it "pe_minor_version is nil" do
-      Facter.fact(:pe_minor_version).value.should be_nil
+      expect(Facter.fact(:pe_minor_version).value).to be_nil
     end
 
     it "Should have a patch version" do
-      Facter.fact(:pe_patch_version).value.should be_nil
+      expect(Facter.fact(:pe_patch_version).value).to be_nil
     end
   end
 end

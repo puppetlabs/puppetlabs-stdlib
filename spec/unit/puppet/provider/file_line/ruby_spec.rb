@@ -23,17 +23,17 @@ describe provider_class do
       File.open(tmpfile, 'w') do |fh|
         fh.write('foo')
       end
-      provider.exists?.should be_true
+      expect(provider.exists?).to be_truthy
     end
     it 'should detect if the line does not exist in the file' do
       File.open(tmpfile, 'w') do |fh|
         fh.write('foo1')
       end
-      provider.exists?.should be_nil
+      expect(provider.exists?).to be_nil
     end
     it 'should append to an existing file when creating' do
       provider.create
-      File.read(tmpfile).chomp.should == 'foo'
+      expect(File.read(tmpfile).chomp).to eq('foo')
     end
   end
 
@@ -61,9 +61,9 @@ describe provider_class do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz")
         end
-        @provider.exists?.should be_nil
+        expect(@provider.exists?).to be_nil
         expect { @provider.create }.to raise_error(Puppet::Error, /More than one line.*matches/)
-        File.read(@tmpfile).should eql("foo1\nfoo=blah\nfoo2\nfoo=baz")
+        expect(File.read(@tmpfile)).to eql("foo1\nfoo=blah\nfoo2\nfoo=baz")
       end
 
       it 'should replace all lines that matches' do
@@ -80,9 +80,9 @@ describe provider_class do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz")
         end
-        @provider.exists?.should be_nil
+        expect(@provider.exists?).to be_nil
         @provider.create
-        File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2\nfoo = bar")
+        expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2\nfoo = bar")
       end
 
       it 'should raise an error with invalid values' do
@@ -103,25 +103,25 @@ describe provider_class do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo=blah\nfoo2")
         end
-        @provider.exists?.should be_nil
+        expect(@provider.exists?).to be_nil
         @provider.create
-        File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2")
+        expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2")
       end
       it 'should add a new line if no lines match' do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo2")
         end
-        @provider.exists?.should be_nil
+        expect(@provider.exists?).to be_nil
         @provider.create
-        File.read(@tmpfile).should eql("foo1\nfoo2\nfoo = bar\n")
+        expect(File.read(@tmpfile)).to eql("foo1\nfoo2\nfoo = bar\n")
       end
       it 'should do nothing if the exact line already exists' do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo = bar\nfoo2")
         end
-        @provider.exists?.should be_true
+        expect(@provider.exists?).to be_truthy
         @provider.create
-        File.read(@tmpfile).chomp.should eql("foo1\nfoo = bar\nfoo2")
+        expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2")
       end
     end
 
@@ -150,7 +150,7 @@ describe provider_class do
 
         it 'inserts the specified line after the line matching the "after" expression' do
           provider.create
-          File.read(@tmpfile).chomp.should eql("foo1\ninserted = line\nfoo = blah\nfoo2\nfoo = baz")
+          expect(File.read(@tmpfile).chomp).to eql("foo1\ninserted = line\nfoo = blah\nfoo2\nfoo = baz")
         end
       end
 
@@ -179,7 +179,7 @@ describe provider_class do
 
         it 'appends the specified line to the file' do
           provider.create
-          File.read(@tmpfile).should eq(content << resource[:line] << "\n")
+          expect(File.read(@tmpfile)).to eq(content << resource[:line] << "\n")
         end
       end
     end
@@ -203,7 +203,7 @@ describe provider_class do
         fh.write("foo1\nfoo\nfoo2")
       end
       @provider.destroy
-      File.read(@tmpfile).should eql("foo1\nfoo2")
+      expect(File.read(@tmpfile)).to eql("foo1\nfoo2")
     end
 
     it 'should remove the line without touching the last new line' do
@@ -211,7 +211,7 @@ describe provider_class do
         fh.write("foo1\nfoo\nfoo2\n")
       end
       @provider.destroy
-      File.read(@tmpfile).should eql("foo1\nfoo2\n")
+      expect(File.read(@tmpfile)).to eql("foo1\nfoo2\n")
     end
 
     it 'should remove any occurence of the line' do
@@ -219,7 +219,7 @@ describe provider_class do
         fh.write("foo1\nfoo\nfoo2\nfoo\nfoo")
       end
       @provider.destroy
-      File.read(@tmpfile).should eql("foo1\nfoo2\n")
+      expect(File.read(@tmpfile)).to eql("foo1\nfoo2\n")
     end
   end
 end
