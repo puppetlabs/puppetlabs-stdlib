@@ -9,6 +9,8 @@ module Puppet::Parser::Functions
 Returns true if the file exists.
     EOS
   ) do |args|
+    raise(Puppet::ParseError, "file_exists(): Wrong number of arguments " +
+      "given (#{args.size} for 1)") if args.size != 1
     if File.exists?(args[0])
       return true
     else
