@@ -23,6 +23,6 @@ describe "the prefix function" do
 
   it "returns a prefixed array" do
     result = scope.function_prefix([['a','b','c'], 'p'])
-    result.should(eq(['pa','pb','pc']))
+    expect(result).to(eq(['pa','pb','pc']))
   end
 end

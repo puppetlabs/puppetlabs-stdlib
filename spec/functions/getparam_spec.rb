@@ -25,7 +25,7 @@ describe 'getparam' do
   end
 
   it "should exist" do
-    Puppet::Parser::Functions.function("getparam").should == "function_getparam"
+    expect(Puppet::Parser::Functions.function("getparam")).to eq("function_getparam")
   end
 
   describe 'when a resource is not specified' do

@@ -7,7 +7,7 @@ describe Puppet::Parser::Functions.function(:merge) do
 
   describe 'when calling merge from puppet' do
     it "should not compile when no arguments are passed" do
-      pending("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
+      skip("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
       Puppet[:code] = '$x = merge()'
       expect {
         scope.compiler.compile
@@ -15,7 +15,7 @@ describe Puppet::Parser::Functions.function(:merge) do
     end
 
     it "should not compile when 1 argument is passed" do
-      pending("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
+      skip("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
       Puppet[:code] = "$my_hash={'one' => 1}\n$x = merge($my_hash)"
       expect {
         scope.compiler.compile
@@ -35,18 +35,18 @@ describe Puppet::Parser::Functions.function(:merge) do
 
     it 'should be able to merge two hashes' do
       new_hash = scope.function_merge([{'one' => '1', 'two' => '1'}, {'two' => '2', 'three' => '2'}])
-      new_hash['one'].should   == '1'
-      new_hash['two'].should   == '2'
-      new_hash['three'].should == '2'
+      expect(new_hash['one']).to   eq('1')
+      expect(new_hash['two']).to   eq('2')
+      expect(new_hash['three']).to eq('2')
     end
 
     it 'should merge multiple hashes' do
       hash = scope.function_merge([{'one' => 1}, {'one' => '2'}, {'one' => '3'}])
-      hash['one'].should == '3'
+      expect(hash['one']).to eq('3')
     end
 
     it 'should accept empty hashes' do
-      scope.function_merge([{},{},{}]).should == {}
+      expect(scope.function_merge([{},{},{}])).to eq({})
     end
   end
 end

@@ -21,19 +21,19 @@ describe Puppet::Parser::Functions.function(:has_ip_address) do
     end
 
     it 'should have primary address (10.0.2.15)' do
-      subject.call(['10.0.2.15']).should be_true
+      expect(subject.call(['10.0.2.15'])).to be_truthy
     end
 
     it 'should have lookupback address (127.0.0.1)' do
-      subject.call(['127.0.0.1']).should be_true
+      expect(subject.call(['127.0.0.1'])).to be_truthy
     end
 
     it 'should not have other address' do
-      subject.call(['192.1681.1.1']).should be_false
+      expect(subject.call(['192.1681.1.1'])).to be_falsey
     end
 
     it 'should not have "mspiggy" on an interface' do
-      subject.call(['mspiggy']).should be_false
+      expect(subject.call(['mspiggy'])).to be_falsey
     end
   end
 end
