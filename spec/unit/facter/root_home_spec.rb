@@ -9,7 +9,7 @@ describe Facter::Util::RootHome do
 
     it "should return /" do
       Facter::Util::Resolution.expects(:exec).with("getent passwd root").returns(root_ent)
-      Facter::Util::RootHome.get_root_home.should == expected_root_home
+      expect(Facter::Util::RootHome.get_root_home).to eq(expected_root_home)
     end
   end
   context "linux" do
@@ -18,7 +18,7 @@ describe Facter::Util::RootHome do
 
     it "should return /root" do
       Facter::Util::Resolution.expects(:exec).with("getent passwd root").returns(root_ent)
-      Facter::Util::RootHome.get_root_home.should == expected_root_home
+      expect(Facter::Util::RootHome.get_root_home).to eq(expected_root_home)
     end
   end
   context "windows" do
@@ -26,7 +26,7 @@ describe Facter::Util::RootHome do
       Facter::Util::Resolution.expects(:exec).with("getent passwd root").returns(nil)
     end
     it "should be nil on windows" do
-      Facter::Util::RootHome.get_root_home.should be_nil
+      expect(Facter::Util::RootHome.get_root_home).to be_nil
     end
   end
 end
@@ -45,7 +45,7 @@ describe 'root_home', :type => :fact do
 
     it "should return /var/root" do
       Facter::Util::Resolution.stubs(:exec).with("dscacheutil -q user -a name root").returns(sample_dscacheutil)
-      Facter.fact(:root_home).value.should == expected_root_home
+      expect(Facter.fact(:root_home).value).to eq(expected_root_home)
     end
   end
 

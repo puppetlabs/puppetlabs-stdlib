@@ -22,6 +22,6 @@ describe "the suffix function" do
 
   it "returns a suffixed array" do
     result = scope.function_suffix([['a','b','c'], 'p'])
-    result.should(eq(['ap','bp','cp']))
+    expect(result).to(eq(['ap','bp','cp']))
   end
 end

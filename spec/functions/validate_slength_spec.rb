@@ -6,7 +6,7 @@ describe "the validate_slength function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
-    Puppet::Parser::Functions.function("validate_slength").should == "function_validate_slength"
+    expect(Puppet::Parser::Functions.function("validate_slength")).to eq("function_validate_slength")
   end
 
   describe "validating the input argument types" do

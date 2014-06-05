@@ -5,20 +5,20 @@ describe "the sort function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
-    Puppet::Parser::Functions.function("sort").should == "function_sort"
+    expect(Puppet::Parser::Functions.function("sort")).to eq("function_sort")
   end
 
   it "should raise a ParseError if there is not 1 arguments" do
-    lambda { scope.function_sort(['','']) }.should( raise_error(Puppet::ParseError))
+    expect { scope.function_sort(['','']) }.to( raise_error(Puppet::ParseError))
   end
 
   it "should sort an array" do
     result = scope.function_sort([["a","c","b"]])
-    result.should(eq(['a','b','c']))
+    expect(result).to(eq(['a','b','c']))
   end
 
   it "should sort a string" do
     result = scope.function_sort(["acb"])
-    result.should(eq('abc'))
+    expect(result).to(eq('abc'))
   end
 end

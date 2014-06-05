@@ -6,7 +6,7 @@ describe "the base64 function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
-    Puppet::Parser::Functions.function("base64").should == "function_base64"
+    expect(Puppet::Parser::Functions.function("base64")).to eq("function_base64")
   end
 
   it "should raise a ParseError if there are other than 2 arguments" do
@@ -25,10 +25,10 @@ describe "the base64 function" do
 
   it "should encode a encoded string" do
     result = scope.function_base64(["encode",'thestring'])
-    result.should =~ /\AdGhlc3RyaW5n\n\Z/
+    expect(result).to match(/\AdGhlc3RyaW5n\n\Z/)
   end
   it "should decode a base64 encoded string" do
     result = scope.function_base64(["decode",'dGhlc3RyaW5n'])
-    result.should == 'thestring'
+    expect(result).to eq('thestring')
   end
 end

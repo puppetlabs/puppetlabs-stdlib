@@ -6,7 +6,7 @@ describe Puppet::Parser::Functions.function(:getvar) do
   describe 'when calling getvar from puppet' do
 
     it "should not compile when no arguments are passed" do
-      pending("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
+      skip("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
       Puppet[:code] = '$foo = getvar()'
       expect {
         scope.compiler.compile
@@ -14,7 +14,7 @@ describe Puppet::Parser::Functions.function(:getvar) do
     end
 
     it "should not compile when too many arguments are passed" do
-      pending("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
+      skip("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
       Puppet[:code] = '$foo = getvar("foo::bar", "baz")'
       expect {
         scope.compiler.compile
@@ -22,7 +22,7 @@ describe Puppet::Parser::Functions.function(:getvar) do
     end
 
     it "should lookup variables in other namespaces" do
-      pending("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
+      skip("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
       Puppet[:code] = <<-'ENDofPUPPETcode'
         class site::data { $foo = 'baz' }
         include site::data

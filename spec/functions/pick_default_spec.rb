@@ -5,51 +5,51 @@ describe "the pick_default function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
-    Puppet::Parser::Functions.function("pick_default").should == "function_pick_default"
+    expect(Puppet::Parser::Functions.function("pick_default")).to eq("function_pick_default")
   end
 
   it 'should return the correct value' do
-    scope.function_pick_default(['first', 'second']).should == 'first'
+    expect(scope.function_pick_default(['first', 'second'])).to eq('first')
   end
 
   it 'should return the correct value if the first value is empty' do
-    scope.function_pick_default(['', 'second']).should == 'second'
+    expect(scope.function_pick_default(['', 'second'])).to eq('second')
   end
 
   it 'should skip empty string values' do
-    scope.function_pick_default(['', 'first']).should == 'first'
+    expect(scope.function_pick_default(['', 'first'])).to eq('first')
   end
 
   it 'should skip :undef values' do
-    scope.function_pick_default([:undef, 'first']).should == 'first'
+    expect(scope.function_pick_default([:undef, 'first'])).to eq('first')
   end
 
   it 'should skip :undefined values' do
-    scope.function_pick_default([:undefined, 'first']).should == 'first'
+    expect(scope.function_pick_default([:undefined, 'first'])).to eq('first')
   end
 
   it 'should return the empty string if it is the last possibility' do
-    scope.function_pick_default([:undef, :undefined, '']).should == ''
+    expect(scope.function_pick_default([:undef, :undefined, ''])).to eq('')
   end
 
   it 'should return :undef if it is the last possibility' do
-    scope.function_pick_default(['', :undefined, :undef]).should == :undef
+    expect(scope.function_pick_default(['', :undefined, :undef])).to eq(:undef)
   end
 
   it 'should return :undefined if it is the last possibility' do
-    scope.function_pick_default([:undef, '', :undefined]).should == :undefined
+    expect(scope.function_pick_default([:undef, '', :undefined])).to eq(:undefined)
   end
 
   it 'should return the empty string if it is the only possibility' do
-    scope.function_pick_default(['']).should == ''
+    expect(scope.function_pick_default([''])).to eq('')
   end
 
   it 'should return :undef if it is the only possibility' do
-    scope.function_pick_default([:undef]).should == :undef
+    expect(scope.function_pick_default([:undef])).to eq(:undef)
   end
 
   it 'should return :undefined if it is the only possibility' do
-    scope.function_pick_default([:undefined]).should == :undefined
+    expect(scope.function_pick_default([:undefined])).to eq(:undefined)
   end
 
   it 'should error if no values are passed' do
