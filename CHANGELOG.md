@@ -1,3 +1,7 @@
+##2014-06-04 - Release - 3.2.3
+###Summary
+This is a repackage release.
+
 ##2014-06-04 - Release - 3.2.2
 ###Summary
 This is a compatibility release; only metadata changes.
