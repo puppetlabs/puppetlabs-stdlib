@@ -725,6 +725,27 @@ Will return: ['pa','pb','pc']
 
 - *Type*: rvalue
 
+
+private
+-------
+This function sets the current class or definition as private.
+Calling the class or definition from outside the current module will fail.
+
+*Examples:*
+
+    private()
+
+called in class `foo::bar` will output the following message if class is called
+from outside module `foo`:
+
+    Class foo::bar is private
+
+You can specify the error message you want to use as a parameter:
+
+    private("You're not supposed to do that!")
+
+- *Type*: statement
+
 range
 -----
 When given range in the form of (start, stop) it will extrapolate a range as
