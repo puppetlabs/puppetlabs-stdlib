@@ -332,6 +332,21 @@ This resource ensures that a given line is contained within a file. You can also
 
 - *Type*: resource
 
+filter_hash
+---------
+Filter a hash by applying a regex to the keys
+
+*Examples:*
+
+    $myhash = {
+        'foo' => 'bar',
+        'hello' => 'world',
+    }
+
+    filter_hash($myhash, '^f') # will return {'foo'=>'bar'}
+
+- *Type*: rvalue
+
 flatten
 -------
 This function flattens any deeply nested arrays and returns a single flat array
