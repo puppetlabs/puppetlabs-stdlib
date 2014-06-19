@@ -5,7 +5,7 @@ describe "the str2saltedsha512 function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
-    Puppet::Parser::Functions.function("str2saltedsha512").should == "function_str2saltedsha512"
+    expect(Puppet::Parser::Functions.function("str2saltedsha512")).to eq("function_str2saltedsha512")
   end
 
   it "should raise a ParseError if there is less than 1 argument" do
@@ -18,7 +18,7 @@ describe "the str2saltedsha512 function" do
 
   it "should return a salted-sha512 password hash 136 characters in length" do
     result = scope.function_str2saltedsha512(["password"])
-    result.length.should(eq(136))
+    expect(result.length).to(eq(136))
   end
 
   it "should raise an error if you pass a non-string password" do
@@ -40,6 +40,6 @@ describe "the str2saltedsha512 function" do
     # Combine the Binary Salt with 'password' and compare the end result
     saltedpass    = Digest::SHA512.digest(str_salt + 'password')
     result        = (str_salt + saltedpass).unpack('H*')[0]
-    result.should == password_hash
+    expect(result).to eq(password_hash)
   end
 end

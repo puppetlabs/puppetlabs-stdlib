@@ -5,15 +5,15 @@ describe "the swapcase function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
-    Puppet::Parser::Functions.function("swapcase").should == "function_swapcase"
+    expect(Puppet::Parser::Functions.function("swapcase")).to eq("function_swapcase")
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_swapcase([]) }.should( raise_error(Puppet::ParseError))
+    expect { scope.function_swapcase([]) }.to( raise_error(Puppet::ParseError))
   end
 
   it "should swapcase a string" do
     result = scope.function_swapcase(["aaBBccDD"])
-    result.should(eq('AAbbCCdd'))
+    expect(result).to(eq('AAbbCCdd'))
   end
 end

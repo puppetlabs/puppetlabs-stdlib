@@ -21,15 +21,15 @@ describe Puppet::Parser::Functions.function(:has_ip_network) do
     end
 
     it 'should have primary network (10.0.2.0)' do
-      subject.call(['10.0.2.0']).should be_true
+      expect(subject.call(['10.0.2.0'])).to be_truthy
     end
 
     it 'should have loopback network (127.0.0.0)' do
-      subject.call(['127.0.0.1']).should be_true
+      expect(subject.call(['127.0.0.1'])).to be_truthy
     end
 
     it 'should not have other network' do
-      subject.call(['192.168.1.0']).should be_false
+      expect(subject.call(['192.168.1.0'])).to be_falsey
     end
   end
 end

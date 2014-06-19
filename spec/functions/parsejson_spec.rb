@@ -5,11 +5,11 @@ describe "the parsejson function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
-    Puppet::Parser::Functions.function("parsejson").should == "function_parsejson"
+    expect(Puppet::Parser::Functions.function("parsejson")).to eq("function_parsejson")
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_parsejson([]) }.should( raise_error(Puppet::ParseError))
+    expect { scope.function_parsejson([]) }.to( raise_error(Puppet::ParseError))
   end
 
   it "should convert JSON to a data structure" do
@@ -17,6 +17,6 @@ describe "the parsejson function" do
 ["aaa","bbb","ccc"]
 EOS
     result = scope.function_parsejson([json])
-    result.should(eq(['aaa','bbb','ccc']))
+    expect(result).to(eq(['aaa','bbb','ccc']))
   end
 end

@@ -13,7 +13,7 @@ describe Facter::Util::DotD do
     end
 
     it 'should return successfully' do
-      Facter.fact(:fake_fact).value.should == 'fake fact'
+      expect(Facter.fact(:fake_fact).value).to eq('fake fact')
     end
   end
 
@@ -26,7 +26,7 @@ describe Facter::Util::DotD do
     end
 
     it 'should return successfully' do
-      Facter.fact(:foo).value.should == '1+1=2'
+      expect(Facter.fact(:foo).value).to eq('1+1=2')
     end
   end
 end

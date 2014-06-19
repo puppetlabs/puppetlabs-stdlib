@@ -11,11 +11,11 @@ describe Facter::Util::PuppetSettings do
       end
 
       it 'should be nil' do
-        subject.with_puppet { Puppet[:vardir] }.should be_nil
+        expect(subject.with_puppet { Puppet[:vardir] }).to be_nil
       end
       it 'should not yield to the block' do
         Puppet.expects(:[]).never
-        subject.with_puppet { Puppet[:vardir] }.should be_nil
+        expect(subject.with_puppet { Puppet[:vardir] }).to be_nil
       end
     end
     context "With Puppet loaded" do
@@ -29,7 +29,7 @@ describe Facter::Util::PuppetSettings do
         subject.with_puppet { Puppet[:vardir] }
       end
       it 'should return the nodes vardir' do
-        subject.with_puppet { Puppet[:vardir] }.should eq vardir
+        expect(subject.with_puppet { Puppet[:vardir] }).to eq vardir
       end
     end
   end

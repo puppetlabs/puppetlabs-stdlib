@@ -5,20 +5,20 @@ describe "the uriescape function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
-    Puppet::Parser::Functions.function("uriescape").should == "function_uriescape"
+    expect(Puppet::Parser::Functions.function("uriescape")).to eq("function_uriescape")
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    lambda { scope.function_uriescape([]) }.should( raise_error(Puppet::ParseError))
+    expect { scope.function_uriescape([]) }.to( raise_error(Puppet::ParseError))
   end
 
   it "should uriescape a string" do
     result = scope.function_uriescape([":/?#[]@!$&'()*+,;= \"{}"])
-    result.should(eq(':/?%23[]@!$&\'()*+,;=%20%22%7B%7D'))
+    expect(result).to(eq(':/?%23[]@!$&\'()*+,;=%20%22%7B%7D'))
   end
 
   it "should do nothing if a string is already safe" do
     result = scope.function_uriescape(["ABCdef"])
-    result.should(eq('ABCdef'))
+    expect(result).to(eq('ABCdef'))
   end
 end

@@ -29,18 +29,18 @@ describe Puppet::Parser::Functions.function(:get_module_path) do
 
     it 'should be able to find module paths from the modulepath setting' do
       Puppet::Module.expects(:find).with('foo', 'production').returns(path_of_module_foo)
-      scope.function_get_module_path(['foo']).should == path_of_module_foo.path
+      expect(scope.function_get_module_path(['foo'])).to eq(path_of_module_foo.path)
     end
     it 'should be able to find module paths when the modulepath is a list' do
       Puppet[:modulepath] = modulepath + ":/tmp"
       Puppet::Module.expects(:find).with('foo', 'production').returns(path_of_module_foo)
-      scope.function_get_module_path(['foo']).should == path_of_module_foo.path
+      expect(scope.function_get_module_path(['foo'])).to eq(path_of_module_foo.path)
     end
     it 'should respect the environment' do
-      pending("Disabled on Puppet 2.6.x") if Puppet.version =~ /^2\.6\b/
+      skip("Disabled on Puppet 2.6.x") if Puppet.version =~ /^2\.6\b/
       Puppet.settings[:environment] = 'danstestenv'
       Puppet::Module.expects(:find).with('foo', 'danstestenv').returns(path_of_module_foo)
-      scope('danstestenv').function_get_module_path(['foo']).should == path_of_module_foo.path
+      expect(scope('danstestenv').function_get_module_path(['foo'])).to eq(path_of_module_foo.path)
     end
   end
 end

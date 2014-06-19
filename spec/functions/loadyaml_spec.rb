@@ -7,7 +7,7 @@ describe "the loadyaml function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
-    Puppet::Parser::Functions.function("loadyaml").should == "function_loadyaml"
+    expect(Puppet::Parser::Functions.function("loadyaml")).to eq("function_loadyaml")
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
@@ -20,6 +20,6 @@ describe "the loadyaml function" do
       fh.write("---\n aaa: 1\n bbb: 2\n ccc: 3\n ddd: 4\n")
     end
     result = scope.function_loadyaml([yaml_file])
-    result.should == {"aaa" => 1, "bbb" => 2, "ccc" => 3, "ddd" => 4 }
+    expect(result).to eq({"aaa" => 1, "bbb" => 2, "ccc" => 3, "ddd" => 4 })
   end
 end
