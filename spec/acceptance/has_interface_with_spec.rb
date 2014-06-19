@@ -27,7 +27,11 @@ describe 'has_interface_with function', :unless => UNSUPPORTED_PLATFORMS.include
     end
     it 'has_interface_with existing interface' do
       pp = <<-EOS
-      $a = 'lo'
+      if $osfamily == 'Solaris' {
+        $a = 'lo0'
+      } else {
+        $a = 'lo'
+      }
       $o = has_interface_with($a)
       notice(inline_template('has_interface_with is <%= @o.inspect %>'))
       EOS

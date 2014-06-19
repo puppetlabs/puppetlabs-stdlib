@@ -6,8 +6,8 @@ describe 'ensure_packages function', :unless => UNSUPPORTED_PLATFORMS.include?(f
     it 'ensure_packages a package' do
       apply_manifest('package { "zsh": ensure => absent, }')
       pp = <<-EOS
-      $a = "zsh"
-      ensure_packages($a)
+      $a = "rake"
+      ensure_packages($a,{'provider' => 'gem'})
       EOS
 
       apply_manifest(pp, :expect_changes => true) do |r|
