@@ -27,7 +27,7 @@ describe 'has_interface_with function', :unless => UNSUPPORTED_PLATFORMS.include
     end
     it 'has_interface_with existing interface' do
       pp = <<-EOS
-      if $osfamily == 'Solaris' {
+      if $osfamily == 'Solaris' or $osfamily == 'Darwin' {
         $a = 'lo0'
       } else {
         $a = 'lo'
