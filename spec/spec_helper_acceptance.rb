@@ -6,7 +6,12 @@ UNSUPPORTED_PLATFORMS = []
 unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
   if hosts.first.is_pe?
     install_pe
-    on hosts, 'mkdir -p /etc/puppetlabs/facter/facts.d'
+    hosts.each do |host|
+      if !(host['platform'] =~ /windows/)
+        on host, 'mkdir -p /etc/puppetlabs/facter/facts.d'
+      end
+    end
+
   else
     install_puppet
     on hosts, 'mkdir -p /etc/facter/facts.d'
@@ -26,6 +31,15 @@ RSpec.configure do |c|
 
   # Configure all nodes in nodeset
   c.before :suite do
-    puppet_module_install(:source => proj_root, :module_name => 'stdlib')
+    hosts.each do |host|
+      if host['platform'] !~ /windows/i
+        copy_root_module_to(host, :source => proj_root, :module_name => 'stdlib')
+      end
+    end
+    hosts.each do |host|
+      if host['platform'] =~ /windows/i
+        on host, puppet('plugin download')
+      end
+    end
   end
 end
