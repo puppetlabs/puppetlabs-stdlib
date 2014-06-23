@@ -1,16 +1,18 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
+tmpdir = default.tmpdir('stdlib')
+
 describe 'loadyaml function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
   describe 'success' do
     it 'loadyamls array of values' do
-      shell('echo "---
+      shell("echo '---
       aaa: 1
       bbb: 2
       ccc: 3
-      ddd: 4" > /testyaml.yaml')
+      ddd: 4' > #{tmpdir}/testyaml.yaml")
       pp = <<-EOS
-      $o = loadyaml('/testyaml.yaml')
+      $o = loadyaml('#{tmpdir}/testyaml.yaml')
       notice(inline_template('loadyaml[aaa] is <%= @o["aaa"].inspect %>'))
       notice(inline_template('loadyaml[bbb] is <%= @o["bbb"].inspect %>'))
       notice(inline_template('loadyaml[ccc] is <%= @o["ccc"].inspect %>'))
