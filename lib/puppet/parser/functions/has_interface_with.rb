@@ -25,7 +25,7 @@ has_interface_with("lo")                        => true
     interfaces = lookupvar('interfaces')
 
     # If we do not have any interfaces, then there are no requested attributes
-    return false if (interfaces == :undefined)
+    return false if (interfaces == :undefined || interfaces.nil?)
 
     interfaces = interfaces.split(',')
 
