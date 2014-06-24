@@ -6,7 +6,6 @@ describe 'getparam function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('op
     it 'getparam a notify' do
       pp = <<-EOS
       notify { 'rspec':
-        ensure  => present,
         message => 'custom rspec message',
       }
       $o = getparam(Notify['rspec'], 'message')
