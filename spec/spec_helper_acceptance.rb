@@ -6,12 +6,7 @@ UNSUPPORTED_PLATFORMS = []
 unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
   if hosts.first.is_pe?
     install_pe
-    hosts.each do |host|
-      if !(host['platform'] =~ /windows/)
-        on host, 'mkdir -p /etc/puppetlabs/facter/facts.d'
-      end
-    end
-
+    on hosts, 'mkdir -p /etc/puppetlabs/facter/facts.d'
   else
     install_puppet
     on hosts, 'mkdir -p /etc/facter/facts.d'
