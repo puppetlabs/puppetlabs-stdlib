@@ -1,0 +1,9 @@
+---
+.travis.yml:
+  unmanaged: true
+Rakefile:
+  unmanaged: true
+Gemfile:
+  unmanaged: true
+spec/spec_helper.rb:
+  unmanaged: true
