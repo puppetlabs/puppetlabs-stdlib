@@ -19,12 +19,12 @@ describe 'fqdn_rotate function', :unless => UNSUPPORTED_PLATFORMS.include?(fact(
       end
     end
     after :each do
-      shell("if [ -f #{facts_d}/fqdn.txt ] ; then rm #{facts_d}/fqdn.txt ; fi")
+      shell("if [ -f '#{facts_d}/fqdn.txt' ] ; then rm '#{facts_d}/fqdn.txt' ; fi")
     end
     before :all do
       #No need to create on windows, PE creates by default
       if fact('osfamily') !~ /windows/i
-        shell("mkdir -p #{facts_d}")
+        shell("mkdir -p '#{facts_d}'")
       end
     end
     it 'fqdn_rotates floats' do
