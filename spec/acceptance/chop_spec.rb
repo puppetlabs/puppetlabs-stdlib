@@ -19,7 +19,7 @@ describe 'chop function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operat
     end
 
     it 'should eat the last two characters of \r\n' do
-      pp = <<-EOS
+      pp = <<-'EOS'
       $input = "test\r\n"
       if size($input) != 6 {
         fail("Size of ${input} is not 6.")
