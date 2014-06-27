@@ -1,3 +1,15 @@
+##2014-06-27 - Supported Release 4.3.0
+### Summary
+This release is the first supported release of the stdlib 4 series. It remains
+backwards-compatible with the stdlib 3 series. It adds two new functions, one bugfix, and many testing updates.
+
+#### Features
+- New `bool2str()` function
+- New `camalcase()` function
+
+#### Bugfixes
+- Fix `has_interface_with()` when interfaces fact is nil
+
 ##2014-06-04 - Release 4.2.2
 ### Summary
 
