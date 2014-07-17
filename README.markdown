@@ -381,8 +381,11 @@ the type and parameters specified if it doesn't already exist.
 
 file_line
 ---------
-This resource ensures that a given line is contained within a file. You can also use 
-"match" to replace existing lines.
+Ensures that a given line is contained within a file. The implementation
+matches the full line, including whitespace at the beginning and end. If
+the line is not contained in the given file, Puppet will add the line to
+ensure the desired state. Multiple resources may be declared to manage
+multiple lines in the same file.
 
 *Examples:*
 
@@ -390,12 +393,41 @@ This resource ensures that a given line is contained within a file. You can also
       path => '/etc/sudoers',
       line => '%sudo ALL=(ALL) ALL',
     }
-
-    file_line { 'change_mount':
-      path  => '/etc/fstab',
-      line  => '10.0.0.1:/vol/data /opt/data nfs defaults 0 0',
-      match => '^172.16.17.2:/vol/old',
+    file_line { 'sudo_rule_nopw':
+      path => '/etc/sudoers',
+      line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
     }
+
+In this example, Puppet will ensure both of the specified lines are
+contained in the file /etc/sudoers.
+
+*Parameters within `file_line`:*
+
+**`after`**
+
+An optional value used to specify the line after which we will add any new
+lines. (Existing lines are added in place)
+
+**`line`**
+
+The line to be appended to the file located by the path parameter.
+
+**`match`**
+
+An optional regular expression to run against existing lines in the file;
+if a match is found, we replace that line rather than adding a new line.
+
+**`multiple`**
+
+An optional value to determine if match can change multiple lines.
+
+**`name`**
+
+An arbitrary name used as the identity of the resource.
+
+**`path`**
+
+The file Puppet will ensure contains the line specified by the line parameter.
 
 - *Type*: resource
 
@@ -839,6 +871,13 @@ Will return: ["a","b","c"]
     range("host01", "host10")
 
 Will return: ["host01", "host02", ..., "host09", "host10"]
+
+Passing a third argument will cause the generated range to step by that
+interval, e.g.
+
+    range("0", "9", "2")
+
+Will return: [0,2,4,6,8]
 
 - *Type*: rvalue
 
@@ -1328,21 +1367,22 @@ A helpful error message can be returned like this:
 validate_slength
 ----------------
 Validate that the first argument is a string (or an array of strings), and
-less/equal to than the length of the second argument.  It fails if the first
-argument is not a string or array of strings, and if arg 2 is not convertable
-to a number.
+less/equal to than the length of the second argument. An optional third
+parameter can be given a the minimum length. It fails if the first
+argument is not a string or array of strings, and if arg 2 and arg 3 are
+not convertable to a number.
 
 The following values will pass:
 
     validate_slength("discombobulate",17)
     validate_slength(["discombobulate","moo"],17)
+    validate_slength(["discombobulate","moo"],17,3)
 
 The following values will not:
 
     validate_slength("discombobulate",1)
     validate_slength(["discombobulate","thermometer"],5)
-
-
+    validate_slength(["discombobulate","moo"],17,10)
 
 - *Type*: statement
 
