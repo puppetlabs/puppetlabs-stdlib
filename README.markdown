@@ -77,6 +77,43 @@ Returns the absolute value of a number, for example -34.56 becomes
 
 - *Type*: rvalue
 
+anchor
+------
+A simple resource type intended to be used as an anchor in a composite class.
+
+In Puppet 2.6, when a class declares another class, the resources in the
+interior class are not contained by the exterior class. This interacts badly
+with the pattern of composing complex modules from smaller classes, as it
+makes it impossible for end users to specify order relationships between the
+exterior class and other modules.
+
+The anchor type lets you work around this. By sandwiching any interior
+classes between two no-op resources that _are_ contained by the exterior
+class, you can ensure that all resources in the module are contained.
+
+    class ntp {
+      # These classes will have the correct order relationship with each
+      # other. However, without anchors, they won't have any order
+      # relationship to Class['ntp'].
+      class { 'ntp::package': }
+      -> class { 'ntp::config': }
+      -> class { 'ntp::service': }
+    
+      # These two resources "anchor" the composed classes within the ntp
+      # class.
+      anchor { 'ntp::begin': } -> Class['ntp::package']
+      Class['ntp::service'] -> anchor { 'ntp::end': }
+    }
+
+This allows the end user of the ntp module to establish require and before
+relationships with Class['ntp']:
+
+    class { 'ntp': } -> class { 'mcollective': }
+    class { 'mcollective': } -> class { 'ntp': }
+
+
+- *Type*: resource
+
 any2array
 ---------
 This converts any object to an array containing that object. Empty argument
@@ -102,6 +139,19 @@ false, f, 0, n, and no to 0
 true, t, 1, y, and yes to 1
     Requires a single boolean or string as an input.
 
+
+- *Type*: rvalue
+
+bool2str
+--------
+Converts a boolean to a string.
+Requires a single boolean as an input.
+
+- *Type*: rvalue
+
+camelcase
+---------
+Converts the case of a string or all strings in an array to camel case.
 
 - *Type*: rvalue
 
@@ -159,6 +209,23 @@ Takes an array as first argument and an optional second argument.
 Count the number of elements in array that matches second argument.
 If called with only an array it counts the number of elements that are not nil/undef.
 
+
+- *Type*: rvalue
+
+deep_merge
+----------
+Recursively merges two or more hashes together and returns the resulting hash.
+
+*Example:*
+
+    $hash1 = {'one' => 1, 'two' => 2, 'three' => { 'four' => 4 } }
+    $hash2 = {'two' => 'dos', 'three' => { 'five' => 5 } }
+    $merged_hash = deep_merge($hash1, $hash2)
+    # The resulting hash is equivalent to:
+    # $merged_hash = { 'one' => 1, 'two' => 'dos', 'three' => { 'four' => 4, 'five' => 5 } }
+
+When there is a duplicate key that is a hash, they are recursively merged.
+When there is a duplicate key that is not a hash, the key in the rightmost hash will "win."
 
 - *Type*: rvalue
 
@@ -713,6 +780,30 @@ failing that, will use a default value of 1.449.
 
 - *Type*: rvalue
 
+pick_default
+------------
+This function is similar to a coalesce function in SQL in that it will return
+the first value in a list of values that is not undefined or an empty string
+(two things in Puppet that will return a boolean false value). If no value is
+found, it will return the last argument.
+
+Typically, this function is used to check for a value in the Puppet
+Dashboard/Enterprise Console, and failover to a default value like the
+following:
+
+    $real_jenkins_version = pick_default($::jenkins_version, '1.449')
+
+The value of $real_jenkins_version will first look for a top-scope variable
+called 'jenkins_version' (note that parameters set in the Puppet Dashboard/
+Enterprise Console are brought into Puppet as top-scope variables), and,
+failing that, will use a default value of 1.449.
+
+Note that, contrary to the pick() function, the pick_default does not fail if
+all arguments are empty. This allows pick_default to use an empty value as
+default.
+
+- *Type*: rvalue
+
 prefix
 ------
 This function applies a prefix to all elements in an array.
@@ -1165,6 +1256,43 @@ The following values will fail, causing compilation to abort:
     validate_hash($undefined)
 
 
+
+- *Type*: statement
+
+validate_ipv4_address
+---------------------
+Validate that all values passed are valid IPv4 addresses.
+Fail compilation if any value fails this check.
+
+The following values will pass:
+
+    $my_ip = "1.2.3.4"
+    validate_ipv4_address($my_ip)
+    validate_bool("8.8.8.8", "172.16.0.1", $my_ip)
+
+The following values will fail, causing compilation to abort:
+
+    $some_array = [ 1, true, false, "garbage string", "3ffe:505:2" ]
+    validate_ipv4_address($some_array)
+
+- *Type*: statement
+
+validate_ipv6_address
+---------------------
+ Validate that all values passed are valid IPv6 addresses.
+Fail compilation if any value fails this check.
+
+The following values will pass:
+
+    $my_ip = "3ffe:505:2"
+    validate_ipv6_address(1)
+    validate_ipv6_address($my_ip)
+    validate_bool("fe80::baf6:b1ff:fe19:7507", $my_ip)
+
+The following values will fail, causing compilation to abort:
+
+    $some_array = [ true, false, "garbage string", "1.2.3.4" ]
+    validate_ipv6_address($some_array)
 
 - *Type*: statement
 
