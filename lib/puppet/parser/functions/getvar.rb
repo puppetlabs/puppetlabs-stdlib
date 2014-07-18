@@ -19,7 +19,10 @@ module Puppet::Parser::Functions
       raise Puppet::ParseError, ("getvar(): wrong number of arguments (#{args.length}; must be 1)")
     end
 
-    self.lookupvar("#{args[0]}")
+    begin
+      self.lookupvar("#{args[0]}")
+    rescue Puppet::ParseError # Eat the exception if strict_variables = true is set
+    end
 
   end
 
