@@ -162,6 +162,22 @@ If called with only an array it counts the number of elements that are not nil/u
 
 - *Type*: rvalue
 
+deep_merge
+----------
+Deep merges two or more hashes together using gem *deep_merge* and returns the resulting hash.
+
+For example:
+
+    $hash1 = {'one' => 1, 'two' => [1]}
+    $hash2 = {'two' => [2], 'three' => 'tres'}
+    $merged_hash = merge($hash1, $hash2)
+    # The resulting hash is equivalent to:
+    # $merged_hash =  {'one' => 1, 'two' => [1, 2], 'three' => 'tres'}
+
+A fatal error will be raised if gem *deep_merge* is not available.
+
+- *Type*: rvalue
+
 defined_with_params
 -------------------
 Takes a resource reference and an optional hash of attributes.

@@ -20,6 +20,7 @@ group :development, :test do
   gem 'simplecov',               :require => false
   gem 'beaker',                  :require => false
   gem 'beaker-rspec',            :require => false
+  gem 'deep_merge',              :require => false
 end
 
 ENV['GEM_PUPPET_VERSION'] ||= ENV['PUPPET_GEM_VERSION']
