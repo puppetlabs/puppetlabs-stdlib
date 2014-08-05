@@ -1,11 +1,20 @@
 {
+  "name": "puppetlabs-stdlib",
+  "version": "4.3.1",
+  "author": "puppetlabs",
+  "summary": "Puppet Module Standard Library",
+  "license": "Apache 2.0",
+  "source": "git://github.com/puppetlabs/puppetlabs-stdlib",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-stdlib",
+  "issues_url": "https://github.com/puppetlabs/puppetlabs-stdlib/issues",
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
         "4",
         "5",
-        "6"
+        "6",
+        "7"
       ]
     },
     {
@@ -13,7 +22,8 @@
       "operatingsystemrelease": [
         "4",
         "5",
-        "6"
+        "6",
+        "7"
       ]
     },
     {
@@ -21,7 +31,8 @@
       "operatingsystemrelease": [
         "4",
         "5",
-        "6"
+        "6",
+        "7"
       ]
     },
     {
@@ -29,7 +40,8 @@
       "operatingsystemrelease": [
         "4",
         "5",
-        "6"
+        "6",
+        "7"
       ]
     },
     {
@@ -49,7 +61,8 @@
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
         "10.04",
-        "12.04"
+        "12.04",
+        "14.04"
       ]
     },
     {
@@ -84,22 +97,15 @@
   "requirements": [
     {
       "name": "pe",
-      "version_requirement": "3.2.x"
+      "version_requirement": "3.3.x"
     },
     {
       "name": "puppet",
       "version_requirement": ">=2.7.20 <4.0.0"
     }
   ],
-  "name": "puppetlabs-stdlib",
-  "version": "4.2.1",
-  "source": "git://github.com/puppetlabs/puppetlabs-stdlib",
-  "author": "puppetlabs",
-  "license": "Apache 2.0",
-  "summary": "Puppet Module Standard Library",
   "description": "Standard Library for Puppet Modules",
-  "project_page": "https://github.com/puppetlabs/puppetlabs-stdlib",
   "dependencies": [
-
+  
   ]
 }

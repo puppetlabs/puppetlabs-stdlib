@@ -1,3 +1,27 @@
+##2014-07-14 - Supported Release 4.3.1
+### Summary
+This supported release updates the metadata.json to work around upgrade behavior of the PMT.
+
+#### Bugfixes
+- Synchronize metadata.json with PMT-generated metadata to pass checksums
+
+##2014-06-27 - Supported Release 4.3.0
+### Summary
+This release is the first supported release of the stdlib 4 series. It remains
+backwards-compatible with the stdlib 3 series. It adds two new functions, one bugfix, and many testing updates.
+
+#### Features
+- New `bool2str()` function
+- New `camalcase()` function
+
+#### Bugfixes
+- Fix `has_interface_with()` when interfaces fact is nil
+
+##2014-06-04 - Release 4.2.2
+### Summary
+
+This release adds PE3.3 support in the metadata and fixes a few tests.
+
 ## 2014-05-08 - Release - 4.2.1
 ### Summary
 This release moves a stray symlink that can cause problems.

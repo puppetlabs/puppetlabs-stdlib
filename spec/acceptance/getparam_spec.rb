@@ -3,18 +3,17 @@ require 'spec_helper_acceptance'
 
 describe 'getparam function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
   describe 'success' do
-    it 'getparam a package' do
+    it 'getparam a notify' do
       pp = <<-EOS
-      user { "rspec":
-        ensure     => present,
-        managehome => true,
+      notify { 'rspec':
+        message => 'custom rspec message',
       }
-      $o = getparam(User['rspec'], 'managehome')
+      $o = getparam(Notify['rspec'], 'message')
       notice(inline_template('getparam is <%= @o.inspect %>'))
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/getparam is true/)
+        expect(r.stdout).to match(/getparam is "custom rspec message"/)
       end
     end
   end

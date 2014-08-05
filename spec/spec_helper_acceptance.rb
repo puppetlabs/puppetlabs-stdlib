@@ -26,6 +26,15 @@ RSpec.configure do |c|
 
   # Configure all nodes in nodeset
   c.before :suite do
-    puppet_module_install(:source => proj_root, :module_name => 'stdlib')
+    hosts.each do |host|
+      if host['platform'] !~ /windows/i
+        copy_root_module_to(host, :source => proj_root, :module_name => 'stdlib')
+      end
+    end
+    hosts.each do |host|
+      if host['platform'] =~ /windows/i
+        on host, puppet('plugin download')
+      end
+    end
   end
 end
