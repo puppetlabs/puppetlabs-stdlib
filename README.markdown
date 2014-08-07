@@ -772,6 +772,61 @@ Will return: ["host01", "host02", ..., "host09", "host10"]
 
 - *Type*: rvalue
 
+resources_deep_merge
+--------------------
+
+Returns a [deep-merged](#deep_merge) resource hash (hash of hashes).
+
+*Examples:*
+
+    $tcresource_defaults = {
+      ensure     => 'present',
+      attributes => {
+        driverClassName => 'org.postgresql.Driver',
+      }
+    }
+
+    $tcresources = {
+      'app1:jdbc/db1' => {
+        attributes => {
+          url      => 'jdbc:postgresql://localhost:5432/db1',
+          userpass => 'user1:pass1',
+        },
+      },
+      'app2:jdbc/db2' => {
+        attributes => {
+          url      => 'jdbc:postgresql://localhost:5432/db2',
+          userpass => 'user2:pass2',
+        },
+      }
+    }
+
+When called as:
+
+    $result = resources_deep_merge($tcresources, $tcresource_defaults)
+
+will return:
+    {
+     'app1:jdbc/db1' => {
+       ensure     => 'present',
+       attributes => {
+         url      => 'jdbc:postgresql://localhost:5432/db1',
+         userpass => 'user1:pass1',
+         driverClassName => 'org.postgresql.Driver',
+       },
+     },
+     'app2:jdbc/db2' => {
+       ensure     => 'present',
+       attributes => {
+         url      => 'jdbc:postgresql://localhost:5432/db2',
+         userpass => 'user2:pass2',
+         driverClassName => 'org.postgresql.Driver',
+       },
+     }
+    }
+
+- *Type*: rvalue
+
 reject
 ------
 This function searches through an array and rejects all elements that match
