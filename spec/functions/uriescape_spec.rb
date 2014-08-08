@@ -17,6 +17,13 @@ describe "the uriescape function" do
     expect(result).to(eq(':/?%23[]@!$&\'()*+,;=%20%22%7B%7D'))
   end
 
+  it "should uriescape an array of strings, while not touching up nonstrings" do
+    teststring = ":/?#[]@!$&'()*+,;= \"{}"
+    expectstring = ':/?%23[]@!$&\'()*+,;=%20%22%7B%7D'
+    result = scope.function_uriescape([[teststring, teststring, 1]])
+    expect(result).to(eq([expectstring, expectstring, 1]))
+  end
+
   it "should do nothing if a string is already safe" do
     result = scope.function_uriescape(["ABCdef"])
     expect(result).to(eq('ABCdef'))
