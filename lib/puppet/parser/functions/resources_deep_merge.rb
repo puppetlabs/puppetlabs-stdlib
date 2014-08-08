@@ -79,7 +79,7 @@ EOS
 
   deep_merged_resources = {}
   resources.each do |title, params|
-    deep_merged_resources[title]  = function_deep_merge([params, defaults])
+    deep_merged_resources[title]  = function_deep_merge([defaults, params])
   end
 
   return deep_merged_resources
