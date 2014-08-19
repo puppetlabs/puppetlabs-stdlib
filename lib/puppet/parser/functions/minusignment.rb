@@ -27,7 +27,7 @@ ENDOFDOC
 
   if resource = findresource(reference.to_s)
     new = function_delete(resource[param], value)
-    resource.set_parameter(param, new) unless param == new
+    resource.set_parameter(param, new) unless resource[param] == new
   end
 
 end
