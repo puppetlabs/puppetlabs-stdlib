@@ -15,7 +15,7 @@ group :development, :test do
   gem 'rspec-puppet',            :require => false
   gem 'puppetlabs_spec_helper',  :require => false
   gem 'serverspec',              :require => false
-  gem 'puppet-lint',             :require => false
+  gem 'puppet-lint', '0.3.2',    :require => false
   gem 'pry',                     :require => false
   gem 'simplecov',               :require => false
   gem 'beaker-rspec',            :require => false
