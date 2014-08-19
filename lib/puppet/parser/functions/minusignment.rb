@@ -2,7 +2,6 @@
 require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:minusignment,
-                                      #:type => :rvalue,
                                       :doc => <<-'ENDOFDOC'
 Takes a resource reference, the name of the parameter,
 and a value, removing the value from resource's parameter.
