@@ -4,16 +4,15 @@ require 'beaker-rspec'
 UNSUPPORTED_PLATFORMS = []
 
 unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
-  if hosts.first.is_pe?
-    install_pe
-    on hosts, 'mkdir -p /etc/puppetlabs/facter/facts.d'
-  else
-    install_puppet
-    on hosts, 'mkdir -p /etc/facter/facts.d'
-    on hosts, '/bin/touch /etc/puppet/hiera.yaml'
-  end
+  # This will install the latest available package on el and deb based
+  # systems fail on windows and osx, and install via gem on other *nixes
+  foss_opts = { :default_action => 'gem_install' }
+
+  if default.is_pe?; then install_pe; else install_puppet( foss_opts ); end
+
   hosts.each do |host|
     on host, "mkdir -p #{host['distmoduledir']}"
+    on host, "/bin/touch #{default['puppetpath']}/hiera.yaml"
   end
 end
 
