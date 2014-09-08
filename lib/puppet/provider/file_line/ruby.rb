@@ -40,7 +40,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     end
     if (match_count == 0) and resource[:after]
       handle_create_with_after
-    elsif
+    else
       File.open(resource[:path], 'w') do |fh|
         lines.each do |l|
           fh.puts(regex.match(l) ? resource[:line] : l)
