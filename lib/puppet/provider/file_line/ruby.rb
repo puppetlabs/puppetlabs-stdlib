@@ -38,13 +38,17 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     if match_count > 1 && resource[:multiple].to_s != 'true'
      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
     end
-    File.open(resource[:path], 'w') do |fh|
-      lines.each do |l|
-        fh.puts(regex.match(l) ? resource[:line] : l)
-      end
+    if (match_count == 0) and resource[:after]
+      handle_create_with_after
+    elsif
+      File.open(resource[:path], 'w') do |fh|
+        lines.each do |l|
+          fh.puts(regex.match(l) ? resource[:line] : l)
+        end
 
-      if (match_count == 0)
-        fh.puts(resource[:line])
+        if (match_count == 0)
+          fh.puts(resource[:line])
+        end
       end
     end
   end
