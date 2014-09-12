@@ -4,7 +4,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:jstringtohash, :type => :rvalue, :doc => <<-EOS
-Take a json string object and convert to a hash.
+Take a json string object and converts to a hash.
     EOS
   ) do |arguments|
 
