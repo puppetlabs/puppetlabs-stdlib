@@ -15,8 +15,6 @@ Take a json string object and converts to a hash.
 
     value = arguments[0]
 
-    #Puppet::Parser::Functions.function('regsubst')
-
     if ! value.is_a?(String) then
       raise(Puppet::ParseError, "jstringtohash(): Supply a string only")
     else
