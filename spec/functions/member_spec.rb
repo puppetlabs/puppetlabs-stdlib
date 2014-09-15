@@ -21,4 +21,14 @@ describe "the member function" do
     result = scope.function_member([["a","b","c"], "d"])
     expect(result).to(eq(false))
   end
+
+  it "should return true if a member array is in an array" do
+    result = scope.function_member([["a","b","c"], ["a", "b"]])
+    expect(result).to(eq(true))
+  end
+
+  it "should return false if a member array is not in an array" do
+    result = scope.function_member([["a","b","c"], ["d", "e"]])
+    expect(result).to(eq(false))
+  end
 end
