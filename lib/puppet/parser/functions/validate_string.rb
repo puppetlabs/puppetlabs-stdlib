@@ -14,11 +14,13 @@ module Puppet::Parser::Functions
         validate_string(true)
         validate_string([ 'some', 'array' ])
         
-    NOTE: undef will only fail when using the future parser (See: https://tickets.puppetlabs.com/browse/MODULES-457)
+    Note: validate_string(undef) will not fail in this version of the
+    functions API (incl. current and future parser). Instead, use:
     
-        $undefined = undef
-        validate_string($undefined)
-
+        if $var == undef {
+          fail('...')
+        }
+    
     ENDHEREDOC
 
     unless args.length > 0 then
