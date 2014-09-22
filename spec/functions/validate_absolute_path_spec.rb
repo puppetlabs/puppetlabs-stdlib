@@ -39,22 +39,12 @@ describe Puppet::Parser::Functions.function(:validate_absolute_path) do
           expect { subject.call [path] }.not_to raise_error
         end
       end
-      valid_paths do
-        it "validate_absolute_path(#{valid_paths.inspect}) should not fail" do
-          expect { subject.call [valid_paths] }.not_to raise_error
-        end
-      end
     end
 
     context "Puppet without mocking" do
       valid_paths.each do |path|
         it "validate_absolute_path(#{path.inspect}) should not fail" do
           expect { subject.call [path] }.not_to raise_error
-        end
-      end
-      valid_paths do
-        it "validate_absolute_path(#{valid_paths.inspect}) should not fail" do
-          expect { subject.call [valid_paths] }.not_to raise_error
         end
       end
     end
@@ -65,7 +55,6 @@ describe Puppet::Parser::Functions.function(:validate_absolute_path) do
       [
         nil,
         [ nil ],
-        [ nil, nil ],
         { 'foo' => 'bar' },
         { },
         '',
@@ -77,25 +66,17 @@ describe Puppet::Parser::Functions.function(:validate_absolute_path) do
     end
 
     context 'Relative paths' do
-      def self.rel_paths 
-        %w{
-          relative1
-          .
-          ..
-          ./foo
-          ../foo
-          etc/puppetlabs/puppet
-          opt/puppet/bin
-        }
-      end
-      rel_paths.each do |path|
+      %w{
+        relative1
+        .
+        ..
+        ./foo
+        ../foo
+        etc/puppetlabs/puppet
+        opt/puppet/bin
+      }.each do |path|
         it "validate_absolute_path(#{path.inspect}) should fail" do
           expect { subject.call [path] }.to raise_error Puppet::ParseError
-        end
-      end
-      rel_paths do
-        it "validate_absolute_path(#{rel_paths.inspect}) should fail" do
-          expect { subject.call [rel_paths] }.to raise_error Puppet::ParseError
         end
       end
     end

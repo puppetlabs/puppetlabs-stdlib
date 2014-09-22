@@ -6,25 +6,15 @@ module Puppet::Parser::Functions
 
     The following values will pass:
 
-        $my_path = 'C:/Program Files (x86)/Puppet Labs/Puppet'
-        validate_absolute_path($my_path)
-        $my_path2 = '/var/lib/puppet'
-        validate_absolute_path($my_path2)
-        $my_path3 = ['C:/Program Files (x86)/Puppet Labs/Puppet','C:/Program Files/Puppet Labs/Puppet']
-        validate_absolute_path($my_path3)
-        $my_path4 = ['/var/lib/puppet','/usr/share/puppet']
-        validate_absolute_path($my_path4)
-
+        $my_array = [ 'one', 'two' ]
+        validate_array($my_array)
 
     The following values will fail, causing compilation to abort:
 
-        validate_absolute_path(true)
-        validate_absolute_path('../var/lib/puppet')
-        validate_absolute_path('var/lib/puppet')
-        validate_absolute_path([ 'var/lib/puppet', '/var/foo' ])
-        validate_absolute_path([ '/var/lib/puppet', 'var/foo' ])
+        validate_array(true)
+        validate_array('some_string')
         $undefined = undef
-        validate_absolute_path($undefined)
+        validate_array($undefined)
 
     ENDHEREDOC
 
