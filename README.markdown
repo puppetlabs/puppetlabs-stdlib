@@ -77,6 +77,43 @@ Returns the absolute value of a number, for example -34.56 becomes
 
 - *Type*: rvalue
 
+anchor
+------
+A simple resource type intended to be used as an anchor in a composite class.
+
+In Puppet 2.6, when a class declares another class, the resources in the
+interior class are not contained by the exterior class. This interacts badly
+with the pattern of composing complex modules from smaller classes, as it
+makes it impossible for end users to specify order relationships between the
+exterior class and other modules.
+
+The anchor type lets you work around this. By sandwiching any interior
+classes between two no-op resources that _are_ contained by the exterior
+class, you can ensure that all resources in the module are contained.
+
+    class ntp {
+      # These classes will have the correct order relationship with each
+      # other. However, without anchors, they won't have any order
+      # relationship to Class['ntp'].
+      class { 'ntp::package': }
+      -> class { 'ntp::config': }
+      -> class { 'ntp::service': }
+    
+      # These two resources "anchor" the composed classes within the ntp
+      # class.
+      anchor { 'ntp::begin': } -> Class['ntp::package']
+      Class['ntp::service'] -> anchor { 'ntp::end': }
+    }
+
+This allows the end user of the ntp module to establish require and before
+relationships with Class['ntp']:
+
+    class { 'ntp': } -> class { 'mcollective': }
+    class { 'mcollective': } -> class { 'ntp': }
+
+
+- *Type*: resource
+
 any2array
 ---------
 This converts any object to an array containing that object. Empty argument
@@ -102,6 +139,19 @@ false, f, 0, n, and no to 0
 true, t, 1, y, and yes to 1
     Requires a single boolean or string as an input.
 
+
+- *Type*: rvalue
+
+bool2str
+--------
+Converts a boolean to a string.
+Requires a single boolean as an input.
+
+- *Type*: rvalue
+
+camelcase
+---------
+Converts the case of a string or all strings in an array to camel case.
 
 - *Type*: rvalue
 
@@ -159,6 +209,23 @@ Takes an array as first argument and an optional second argument.
 Count the number of elements in array that matches second argument.
 If called with only an array it counts the number of elements that are not nil/undef.
 
+
+- *Type*: rvalue
+
+deep_merge
+----------
+Recursively merges two or more hashes together and returns the resulting hash.
+
+*Example:*
+
+    $hash1 = {'one' => 1, 'two' => 2, 'three' => { 'four' => 4 } }
+    $hash2 = {'two' => 'dos', 'three' => { 'five' => 5 } }
+    $merged_hash = deep_merge($hash1, $hash2)
+    # The resulting hash is equivalent to:
+    # $merged_hash = { 'one' => 1, 'two' => 'dos', 'three' => { 'four' => 4, 'five' => 5 } }
+
+When there is a duplicate key that is a hash, they are recursively merged.
+When there is a duplicate key that is not a hash, the key in the rightmost hash will "win."
 
 - *Type*: rvalue
 
@@ -314,8 +381,11 @@ the type and parameters specified if it doesn't already exist.
 
 file_line
 ---------
-This resource ensures that a given line is contained within a file. You can also use 
-"match" to replace existing lines.
+Ensures that a given line is contained within a file. The implementation
+matches the full line, including whitespace at the beginning and end. If
+the line is not contained in the given file, Puppet will add the line to
+ensure the desired state. Multiple resources may be declared to manage
+multiple lines in the same file.
 
 *Examples:*
 
@@ -323,12 +393,41 @@ This resource ensures that a given line is contained within a file. You can also
       path => '/etc/sudoers',
       line => '%sudo ALL=(ALL) ALL',
     }
-
-    file_line { 'change_mount':
-      path  => '/etc/fstab',
-      line  => '10.0.0.1:/vol/data /opt/data nfs defaults 0 0',
-      match => '^172.16.17.2:/vol/old',
+    file_line { 'sudo_rule_nopw':
+      path => '/etc/sudoers',
+      line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
     }
+
+In this example, Puppet will ensure both of the specified lines are
+contained in the file /etc/sudoers.
+
+*Parameters within `file_line`:*
+
+**`after`**
+
+An optional value used to specify the line after which we will add any new
+lines. (Existing lines are added in place)
+
+**`line`**
+
+The line to be appended to the file located by the path parameter.
+
+**`match`**
+
+An optional regular expression to run against existing lines in the file;
+if a match is found, we replace that line rather than adding a new line.
+
+**`multiple`**
+
+An optional value to determine if match can change multiple lines.
+
+**`name`**
+
+An arbitrary name used as the identity of the resource.
+
+**`path`**
+
+The file Puppet will ensure contains the line specified by the line parameter.
 
 - *Type*: resource
 
@@ -713,6 +812,30 @@ failing that, will use a default value of 1.449.
 
 - *Type*: rvalue
 
+pick_default
+------------
+This function is similar to a coalesce function in SQL in that it will return
+the first value in a list of values that is not undefined or an empty string
+(two things in Puppet that will return a boolean false value). If no value is
+found, it will return the last argument.
+
+Typically, this function is used to check for a value in the Puppet
+Dashboard/Enterprise Console, and failover to a default value like the
+following:
+
+    $real_jenkins_version = pick_default($::jenkins_version, '1.449')
+
+The value of $real_jenkins_version will first look for a top-scope variable
+called 'jenkins_version' (note that parameters set in the Puppet Dashboard/
+Enterprise Console are brought into Puppet as top-scope variables), and,
+failing that, will use a default value of 1.449.
+
+Note that, contrary to the pick() function, the pick_default does not fail if
+all arguments are empty. This allows pick_default to use an empty value as
+default.
+
+- *Type*: rvalue
+
 prefix
 ------
 This function applies a prefix to all elements in an array.
@@ -748,6 +871,13 @@ Will return: ["a","b","c"]
     range("host01", "host10")
 
 Will return: ["host01", "host02", ..., "host09", "host10"]
+
+Passing a third argument will cause the generated range to step by that
+interval, e.g.
+
+    range("0", "9", "2")
+
+Will return: [0,2,4,6,8]
 
 - *Type*: rvalue
 
@@ -1168,6 +1298,43 @@ The following values will fail, causing compilation to abort:
 
 - *Type*: statement
 
+validate_ipv4_address
+---------------------
+Validate that all values passed are valid IPv4 addresses.
+Fail compilation if any value fails this check.
+
+The following values will pass:
+
+    $my_ip = "1.2.3.4"
+    validate_ipv4_address($my_ip)
+    validate_bool("8.8.8.8", "172.16.0.1", $my_ip)
+
+The following values will fail, causing compilation to abort:
+
+    $some_array = [ 1, true, false, "garbage string", "3ffe:505:2" ]
+    validate_ipv4_address($some_array)
+
+- *Type*: statement
+
+validate_ipv6_address
+---------------------
+ Validate that all values passed are valid IPv6 addresses.
+Fail compilation if any value fails this check.
+
+The following values will pass:
+
+    $my_ip = "3ffe:505:2"
+    validate_ipv6_address(1)
+    validate_ipv6_address($my_ip)
+    validate_bool("fe80::baf6:b1ff:fe19:7507", $my_ip)
+
+The following values will fail, causing compilation to abort:
+
+    $some_array = [ true, false, "garbage string", "1.2.3.4" ]
+    validate_ipv6_address($some_array)
+
+- *Type*: statement
+
 validate_re
 -----------
 Perform simple validation of a string against one or more regular
@@ -1200,21 +1367,22 @@ A helpful error message can be returned like this:
 validate_slength
 ----------------
 Validate that the first argument is a string (or an array of strings), and
-less/equal to than the length of the second argument.  It fails if the first
-argument is not a string or array of strings, and if arg 2 is not convertable
-to a number.
+less/equal to than the length of the second argument. An optional third
+parameter can be given a the minimum length. It fails if the first
+argument is not a string or array of strings, and if arg 2 and arg 3 are
+not convertable to a number.
 
 The following values will pass:
 
     validate_slength("discombobulate",17)
     validate_slength(["discombobulate","moo"],17)
+    validate_slength(["discombobulate","moo"],17,3)
 
 The following values will not:
 
     validate_slength("discombobulate",1)
     validate_slength(["discombobulate","thermometer"],5)
-
-
+    validate_slength(["discombobulate","moo"],17,10)
 
 - *Type*: statement
 
