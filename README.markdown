@@ -604,6 +604,24 @@ Would result in: ["a is 1","b is 2"]
 
 - *Type*: rvalue
 
+jstringtohash
+---------
+This function accepts a Ruby hash as a string and converts into the correct Puppet
+structure.
+
+*Examples:*
+
+    $str = '{
+      "foo"   => "bar",
+      "hello" => "world"
+    }'
+    $hash = jstringtohash($str)
+    $hash['hello']
+
+Would result in: 'world'
+
+- *Type*: rvalue
+
 keys
 ----
 Returns the keys of a hash as an array.
