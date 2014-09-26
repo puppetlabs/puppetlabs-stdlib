@@ -56,8 +56,27 @@ Puppet::Type.newtype(:file_line) do
   newparam(:path) do
     desc 'The file Puppet will ensure contains the line specified by the line parameter.'
     validate do |value|
-      unless (Puppet.features.posix? and value =~ /^\//) or (Puppet.features.microsoft_windows? and (value =~ /^.:\// or value =~ /^\/\/[^\/]+\/[^\/]+/))
-        raise(Puppet::Error, "File paths must be fully qualified, not '#{value}'")
+      # This logic was borrowed from
+      # [lib/puppet/file_serving/base.rb](https://github.com/puppetlabs/puppet/blob/master/lib/puppet/file_serving/base.rb)
+
+      # Puppet 2.7 and beyond will have Puppet::Util.absolute_path?  Fall back to a back-ported implementation otherwise.
+      if Puppet::Util.respond_to?(:absolute_path?) then
+        unless Puppet::Util.absolute_path?(value, :posix) or Puppet::Util.absolute_path?(value, :windows)
+          raise Puppet::Error, ("File paths must be fully qualified, not '#{value}'")
+        end
+      else
+        # This code back-ported from 2.7.x's lib/puppet/util.rb Puppet::Util.absolute_path?
+        # Determine in a platform-specific way whether a path is absolute. This
+        # defaults to the local platform if none is specified.
+        # Escape once for the string literal, and once for the regex.
+        slash = '[\\\\/]'
+        name = '[^\\\\/]+'
+        regexes = {
+          :windows => %r!^(([A-Z]:#{slash})|(#{slash}#{slash}#{name}#{slash}#{name})|(#{slash}#{slash}\?#{slash}#{name}))!i,
+          :posix   => %r!^/!,
+        }
+        rval = (!!(value =~ regexes[:posix])) || (!!(value =~ regexes[:windows]))
+        rval or raise Puppet::Error, ("File paths must be fully qualified, not '#{value}'")
       end
     end
   end
