@@ -162,6 +162,16 @@ If called with only an array it counts the number of elements that are not nil/u
 
 - *Type*: rvalue
 
+create_password
+---------------
+Generate a password based on the hostname and a provided salt. It uses then pbkdf2_hmac_sha1
+in order to provide a derivation.
+You can provide the number of iteration (default 1000) and the desired length (default 28).
+
+WARNING: provided password is not the best for security — use it wisely!
+
+- *Type*: rvalue
+
 defined_with_params
 -------------------
 Takes a resource reference and an optional hash of attributes.
