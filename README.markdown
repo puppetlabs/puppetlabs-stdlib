@@ -92,7 +92,23 @@ Converts a string to and from base64 encoding.
 Requires an action ['encode','decode'] and either a plain or base64 encoded
 string
 
+ - *Type*: rvalue
+ 
+basename
+--------
+Returns the `basename` of a path.
 
+*Examples:*
+
+    basename('/path/to/a/file.ext')
+
+    Would return: 'file.ext'
+
+    basename('/path/to/a/file.ext', '.ext')
+
+    Would return: 'file'
+
+ 
 - *Type*: rvalue
 
 bool2num
