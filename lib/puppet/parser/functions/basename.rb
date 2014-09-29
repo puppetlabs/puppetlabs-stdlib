@@ -5,7 +5,7 @@ module Puppet::Parser::Functions
   ) do |arguments|
 
     raise(Puppet::ParseError, "basename(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1 or 2)") if arguments.size < 1
+      "given (#{arguments.size} for 1 or 2)") if arguments.size < 1 || arguments.size > 2
 
     path, extension = arguments
     return File.basename(path, extension || '')
