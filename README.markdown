@@ -314,8 +314,8 @@ the type and parameters specified if it doesn't already exist.
 
 file_line
 ---------
-This resource ensures that a given line is contained within a file. You can also use 
-"match" to replace existing lines.
+This resource ensures that a given line is present or absent within a file. You
+can also use "match" to replace or remove existing lines.
 
 *Examples:*
 

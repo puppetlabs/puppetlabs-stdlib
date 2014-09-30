@@ -1,7 +1,11 @@
 Puppet::Type.type(:file_line).provide(:ruby) do
   def exists?
-    lines.find do |line|
-      line.chomp == resource[:line].chomp
+    if resource[:ensure].to_s == 'absent'
+      # only use matcher when we ensure absence; else create
+      # won't be called when the (matching) line is to be replaced
+      lines.find &matcher
+    else
+      lines.find{|l| l.chomp == resource[:line].chomp}
     end
   end
 
@@ -18,7 +22,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   def destroy
     local_lines = lines
     File.open(resource[:path],'w') do |fh|
-      fh.write(local_lines.reject{|l| l.chomp == resource[:line] }.join(''))
+      fh.write(local_lines.reject(&matcher).join(''))
     end
   end
 
@@ -32,15 +36,26 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     @lines ||= File.readlines(resource[:path])
   end
 
+  def matcher
+    if @matcher.nil?
+      if resource[:match]
+        regex = Regexp.new(resource[:match])
+        @matcher = Proc.new { |line| regex.match(line) }
+      else
+        @matcher = Proc.new { |line| line.chomp == resource[:line].chomp }
+      end
+    end
+    @matcher
+  end
+
   def handle_create_with_match()
-    regex = resource[:match] ? Regexp.new(resource[:match]) : nil
-    match_count = lines.select { |l| regex.match(l) }.size
+    match_count = lines.count &matcher
     if match_count > 1 && resource[:multiple].to_s != 'true'
      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
     end
     File.open(resource[:path], 'w') do |fh|
       lines.each do |l|
-        fh.puts(regex.match(l) ? resource[:line] : l)
+        fh.puts(matcher.call(l) ? resource[:line] : l)
       end
 
       if (match_count == 0)

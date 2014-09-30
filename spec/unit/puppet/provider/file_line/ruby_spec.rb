@@ -222,4 +222,42 @@ describe provider_class do
       expect(File.read(@tmpfile)).to eql("foo1\nfoo2\n")
     end
   end
+
+  context "when removing matching" do
+    before :each do
+      # TODO: these should be ported over to use the PuppetLabs spec_helper
+      #  file fixtures once the following pull request has been merged:
+      # https://github.com/puppetlabs/puppetlabs-stdlib/pull/73/files
+      tmp = Tempfile.new('tmp')
+      @tmpfile = tmp.path
+      tmp.close!
+      @resource = Puppet::Type::File_line.new(
+        {:name => 'foo', :path => @tmpfile, :line => 'foobar', :match => '^foo(bar)?$', :ensure => 'absent' }
+      )
+      @provider = provider_class.new(@resource)
+    end
+    it 'should remove the match if it exists' do
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo\nfoo2")
+      end
+      @provider.destroy
+      File.read(@tmpfile).should eql("foo1\nfoo2")
+    end
+
+    it 'should remove the match without touching the last new line' do
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo\nfoo2\n")
+      end
+      @provider.destroy
+      File.read(@tmpfile).should eql("foo1\nfoo2\n")
+    end
+
+    it 'should remove any occurence of the match' do
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo\nfoo2\nfoo\nfoo")
+      end
+      @provider.destroy
+      File.read(@tmpfile).should eql("foo1\nfoo2\n")
+    end
+  end
 end
