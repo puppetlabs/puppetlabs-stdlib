@@ -95,6 +95,16 @@ string
 
 - *Type*: rvalue
 
+basename
+-------
+Returns the `basename` of a path.
+
+*Examples:*
+
+    basename('/path/to/a/file.ext')
+
+Would return: 'file.ext'
+
 bool2num
 --------
 Converts a boolean to a number. Converts the values:
