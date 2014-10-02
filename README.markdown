@@ -314,8 +314,10 @@ the type and parameters specified if it doesn't already exist.
 
 file_line
 ---------
-This resource ensures that a given line is contained within a file. You can also use 
-"match" to replace existing lines.
+This resource ensures that a given line is contained within a file. You can also
+use "match" with a regular expression to ensure that only the correct line is 
+left in the file. Note that the "match" value must match both the value of the
+"line" parameter, and the line you'd like removed from the file.
 
 *Examples:*
 
@@ -324,11 +326,12 @@ This resource ensures that a given line is contained within a file. You can also
       line => '%sudo ALL=(ALL) ALL',
     }
 
-    file_line { 'change_mount':
-      path  => '/etc/fstab',
-      line  => '10.0.0.1:/vol/data /opt/data nfs defaults 0 0',
-      match => '^172.16.17.2:/vol/old',
-    }
+   file_line { 'bashrc_proxy':
+     ensure => present,
+     path   => '/etc/bashrc',
+     line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+     match  => '^export\ HTTP_PROXY\=',
+   }
 
 - *Type*: resource
 
