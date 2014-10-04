@@ -772,6 +772,21 @@ Will return: ["host01", "host02", ..., "host09", "host10"]
 
 - *Type*: rvalue
 
+random
+-----
+When given an integer x, it will choose a random float between 0 and x. If 
+given a range as 'x..y', it will return a float between x and y.
+
+*Examples:*
+
+    random('10')
+
+Will return: [0,1,2,3,4,5,6,7,8,9]
+
+    random('1..10')
+
+Will return: [1,2,3,4,5,6,7,8,9]
+
 reject
 ------
 This function searches through an array and rejects all elements that match
