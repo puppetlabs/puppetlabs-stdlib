@@ -34,13 +34,15 @@ has_interface_with("lo")                        => true
     end
 
     kind, value = args
-
+    kind.downcase!
+    
     if lookupvar(kind) == value
       return true
     end
 
     result = false
     interfaces.each do |iface|
+      iface.downcase!
       if value == lookupvar("#{kind}_#{iface}")
         result = true
         break
