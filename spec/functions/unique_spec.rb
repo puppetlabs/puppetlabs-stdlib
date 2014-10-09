@@ -21,4 +21,13 @@ describe "the unique function" do
     result = scope.function_unique([["a","a","b","b","c"]])
     expect(result).to(eq(['a','b','c']))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new('aabbc')
+    result = scope.function_unique([value])
+    result.should(eq('abc'))
+  end
 end

@@ -17,8 +17,22 @@ describe "the bool2num function" do
     expect(result).to(eq(1))
   end
 
-  it "should convert false to 0" do
-    result = scope.function_bool2num([false])
+  it "should convert 'true' to 1" do
+    result = scope.function_bool2num(['true'])
+    result.should(eq(1))
+  end
+
+  it "should convert 'false' to 0" do
+    result = scope.function_bool2num(['false'])
     expect(result).to(eq(0))
+  end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new('true')
+    result = scope.function_bool2num([value])
+    result.should(eq(1))
   end
 end

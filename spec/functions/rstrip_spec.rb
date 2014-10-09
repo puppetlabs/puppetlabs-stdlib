@@ -21,4 +21,13 @@ describe "the rstrip function" do
     result = scope.function_rstrip([["a ","b ", "c "]])
     expect(result).to(eq(['a','b','c']))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new('asdf ')
+    result = scope.function_rstrip([value])
+    result.should(eq('asdf'))
+  end
 end
