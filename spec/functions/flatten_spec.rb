@@ -8,11 +8,11 @@ describe "the flatten function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_flatten([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_flatten([]) }.to( raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if there is more than 1 argument" do
-    expect { scope.function_flatten([[], []]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_flatten([[], []]) }.to( raise_error(ArgumentError))
   end
 
   it "should flatten a complex data structure" do

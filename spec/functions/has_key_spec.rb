@@ -10,7 +10,7 @@ describe Puppet::Parser::Functions.function(:has_key) do
       Puppet[:code] = '$x = has_key()'
       expect {
         scope.compiler.compile
-      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
+      }.to raise_error(Puppet::ParseError)
     end
 
     it "should not compile when 1 argument is passed" do
@@ -18,7 +18,7 @@ describe Puppet::Parser::Functions.function(:has_key) do
       Puppet[:code] = "$x = has_key('foo')"
       expect {
         scope.compiler.compile
-      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
+      }.to raise_error(Puppet::ParseError)
     end
 
     it "should require the first value to be a Hash" do

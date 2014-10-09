@@ -10,7 +10,7 @@ describe "the floor function" do
   end
 
   it "should raise a ParseError if there is less than 1 argument" do
-    expect { scope.function_floor([]) }.to( raise_error(Puppet::ParseError, /Wrong number of arguments/))
+    expect { scope.function_floor([]) }.to( raise_error(ArgumentError, /Wrong number of arguments/))
   end
 
   it "should should raise a ParseError if input isn't numeric (eg. String)" do
@@ -36,4 +36,3 @@ describe "the floor function" do
     expect(result).to(eq(3))
   end
 end
-

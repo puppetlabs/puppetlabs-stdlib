@@ -3,6 +3,7 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:defined_with_params,
                                       :type => :rvalue,
+                                      :arity => -1,
                                       :doc => <<-'ENDOFDOC'
 Takes a resource reference and an optional hash of attributes.
 

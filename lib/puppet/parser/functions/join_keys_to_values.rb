@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:join_keys_to_values, :type => :rvalue, :doc => <<-EOS
+  newfunction(:join_keys_to_values, :type => :rvalue, :arity => 2, :doc => <<-EOS
 This function joins each key of a hash to that key's corresponding value with a
 separator. Keys and values are cast to strings. The return value is an array in
 which each element is one joined key/value pair.
@@ -15,12 +15,6 @@ which each element is one joined key/value pair.
 Would result in: ["a is 1","b is 2"]
     EOS
   ) do |arguments|
-
-    # Validate the number of arguments.
-    if arguments.size != 2
-      raise(Puppet::ParseError, "join_keys_to_values(): Takes exactly two " +
-            "arguments, but #{arguments.size} given.")
-    end
 
     # Validate the first argument.
     hash = arguments[0]

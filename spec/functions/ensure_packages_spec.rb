@@ -32,7 +32,7 @@ describe 'ensure_packages' do
     it 'fails with no arguments' do
       expect {
         scope.function_ensure_packages([])
-      }.to raise_error(Puppet::ParseError, /0 for 1 or 2/)
+      }.to raise_error(ArgumentError)
     end
 
     it 'accepts an array of values' do

@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_numeric, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_numeric, :type => :rvalue, :arity => 1, :doc => <<-EOS
 Returns true if the given argument is a Numeric (Integer or Float),
 or a String containing either a valid integer in decimal base 10 form, or
 a valid floating point string representation.
@@ -23,11 +23,6 @@ Valid examples:
   -23.561e3
     EOS
   ) do |arguments|
-
-    if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_numeric(): Wrong number of arguments "+
-        "given #{arguments.size} for 1")
-    end
 
     value = arguments[0]
 

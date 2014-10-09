@@ -53,6 +53,6 @@ describe "the pick_default function" do
   end
 
   it 'should error if no values are passed' do
-    expect { scope.function_pick_default([]) }.to raise_error(Puppet::Error, /Must receive at least one argument./)
+    expect { scope.function_pick_default([]) }.to raise_error(ArgumentError)
   end
 end

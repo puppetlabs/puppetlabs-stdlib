@@ -10,9 +10,9 @@ describe "the base64 function" do
   end
 
   it "should raise a ParseError if there are other than 2 arguments" do
-    expect { scope.function_base64([]) }.to(raise_error(Puppet::ParseError))
-    expect { scope.function_base64(["asdf"]) }.to(raise_error(Puppet::ParseError))
-    expect { scope.function_base64(["asdf","moo","cow"]) }.to(raise_error(Puppet::ParseError))
+    expect { scope.function_base64([]) }.to(raise_error(ArgumentError))
+    expect { scope.function_base64(["asdf"]) }.to(raise_error(ArgumentError))
+    expect { scope.function_base64(["asdf","moo","cow"]) }.to(raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if argument 1 isn't 'encode' or 'decode'" do

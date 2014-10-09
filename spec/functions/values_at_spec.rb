@@ -9,7 +9,7 @@ describe "the values_at function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_values_at([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_values_at([]) }.to( raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if you try to use a range where stop is greater then start" do

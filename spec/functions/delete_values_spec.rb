@@ -9,11 +9,11 @@ describe "the delete_values function" do
   end
 
   it "should raise a ParseError if there are fewer than 2 arguments" do
-    expect { scope.function_delete_values([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_delete_values([]) }.to( raise_error(ArgumentError))
   end
 
   it "should raise a ParseError if there are greater than 2 arguments" do
-    expect { scope.function_delete_values([[], 'foo', 'bar']) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_delete_values([[], 'foo', 'bar']) }.to( raise_error(ArgumentError))
   end
 
   it "should raise a TypeError if the argument is not a hash" do

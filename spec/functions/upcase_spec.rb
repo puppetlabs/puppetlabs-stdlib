@@ -9,7 +9,7 @@ describe "the upcase function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_upcase([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_upcase([]) }.to( raise_error(ArgumentError))
   end
 
   it "should upcase a string" do

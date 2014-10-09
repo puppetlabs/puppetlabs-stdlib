@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:has_interface_with, :type => :rvalue, :doc => <<-EOS
+  newfunction(:has_interface_with, :type => :rvalue, :arity => -2, :doc => <<-EOS
 Returns boolean based on kind and value:
   * macaddress
   * netmask
@@ -19,8 +19,8 @@ has_interface_with("lo")                        => true
     EOS
   ) do |args|
 
-    raise(Puppet::ParseError, "has_interface_with(): Wrong number of arguments " +
-          "given (#{args.size} for 1 or 2)") if args.size < 1 or args.size > 2
+    raise(ArgumentError, "has_interface_with(): Wrong number of arguments " +
+          "given (#{args.size} for 1 or 2)") if args.size > 2
 
     interfaces = lookupvar('interfaces')
 

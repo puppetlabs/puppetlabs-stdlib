@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:swapcase, :type => :rvalue, :doc => <<-EOS
+  newfunction(:swapcase, :type => :rvalue, :arity => 1, :doc => <<-EOS
 This function will swap the existing case of a string.
 
 *Examples:*
@@ -13,9 +13,6 @@ This function will swap the existing case of a string.
 Would result in: "AbCd"
     EOS
   ) do |arguments|
-
-    raise(Puppet::ParseError, "swapcase(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
     klass = value.class

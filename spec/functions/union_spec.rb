@@ -9,7 +9,7 @@ describe "the union function" do
   end
 
   it "should raise a ParseError if there are fewer than 2 arguments" do
-    expect { scope.function_union([]) }.to( raise_error(Puppet::ParseError) )
+    expect { scope.function_union([]) }.to( raise_error(ArgumentError) )
   end
 
   it "should join two arrays together" do

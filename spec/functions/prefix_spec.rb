@@ -5,7 +5,7 @@ describe "the prefix function" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "raises a ParseError if there is less than 1 arguments" do
-    expect { scope.function_prefix([]) }.to raise_error(Puppet::ParseError, /number of arguments/)
+    expect { scope.function_prefix([]) }.to raise_error(ArgumentError)
   end
 
   it "raises an error if the first argument is not an array" do
@@ -13,7 +13,6 @@ describe "the prefix function" do
       scope.function_prefix([Object.new])
     }.to raise_error(Puppet::ParseError, /expected first argument to be an Array/)
   end
-
 
   it "raises an error if the second argument is not a string" do
     expect {

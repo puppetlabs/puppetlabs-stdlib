@@ -29,6 +29,6 @@ describe "the pick function" do
   end
 
   it 'should error if no values are passed' do
-    expect { scope.function_pick([]) }.to( raise_error(Puppet::ParseError, "pick(): must receive at least one non empty value"))
+    expect { scope.function_pick([]) }.to( raise_error(ArgumentError))
   end
 end

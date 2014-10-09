@@ -11,7 +11,7 @@ describe Puppet::Parser::Functions.function(:deep_merge) do
       Puppet[:code] = '$x = deep_merge()'
       expect {
         scope.compiler.compile
-      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
+      }.to raise_error(Puppet::ParseError)
     end
 
     it "should not compile when 1 argument is passed" do
@@ -19,7 +19,7 @@ describe Puppet::Parser::Functions.function(:deep_merge) do
       Puppet[:code] = "$my_hash={'one' => 1}\n$x = deep_merge($my_hash)"
       expect {
         scope.compiler.compile
-      }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
+      }.to raise_error(Puppet::ParseError)
     end
   end
 

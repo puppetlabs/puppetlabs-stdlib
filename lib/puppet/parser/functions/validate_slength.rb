@@ -1,6 +1,6 @@
 module Puppet::Parser::Functions
 
-  newfunction(:validate_slength, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_slength, :arity => -3, :doc => <<-'ENDHEREDOC') do |args|
     Validate that the first argument is a string (or an array of strings), and
     less/equal to than the length of the second argument. An optional third
     parameter can be given a the minimum length. It fails if the first
@@ -21,7 +21,7 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
 
-    raise Puppet::ParseError, "validate_slength(): Wrong number of arguments (#{args.length}; must be 2 or 3)" unless args.length == 2 or args.length == 3
+    raise ArgumentError, "validate_slength(): Wrong number of arguments (#{args.length}; must be 2 or 3)" unless args.length == 2 or args.length == 3
 
     input, max_length, min_length = *args
 

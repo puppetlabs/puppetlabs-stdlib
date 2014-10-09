@@ -10,7 +10,7 @@ describe "the abs function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_abs([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_abs([]) }.to( raise_error(ArgumentError))
   end
 
   it "should convert a negative number into a positive" do

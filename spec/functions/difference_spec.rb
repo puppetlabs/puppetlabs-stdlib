@@ -9,7 +9,7 @@ describe "the difference function" do
   end
 
   it "should raise a ParseError if there are fewer than 2 arguments" do
-    expect { scope.function_difference([]) }.to( raise_error(Puppet::ParseError) )
+    expect { scope.function_difference([]) }.to( raise_error(ArgumentError) )
   end
 
   it "should return the difference between two arrays" do

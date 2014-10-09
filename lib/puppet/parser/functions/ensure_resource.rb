@@ -3,6 +3,7 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:ensure_resource,
                                       :type => :statement,
+                                      :arity => -3,
                                       :doc => <<-'ENDOFDOC'
 Takes a resource type, title, and a list of attributes that describe a
 resource.
@@ -27,8 +28,6 @@ the type and parameters specified if it doesn't already exist.
 ENDOFDOC
 ) do |vals|
   type, title, params = vals
-  raise(ArgumentError, 'Must specify a type') unless type
-  raise(ArgumentError, 'Must specify a title') unless title
   params ||= {}
 
   items = [title].flatten
