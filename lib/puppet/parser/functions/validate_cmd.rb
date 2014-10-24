@@ -1,4 +1,5 @@
 require 'puppet/util/execution'
+require 'tempfile'
 
 module Puppet::Parser::Functions
   newfunction(:validate_cmd, :doc => <<-'ENDHEREDOC') do |args|
