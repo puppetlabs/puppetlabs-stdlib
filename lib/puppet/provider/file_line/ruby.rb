@@ -34,7 +34,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
 
   def handle_create_with_match()
     regex = resource[:match] ? Regexp.new(resource[:match]) : nil
-    match_count = lines.select { |l| regex.match(l) }.size
+    match_count = count_matches(regex)
     if match_count > 1 && resource[:multiple].to_s != 'true'
      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
     end
@@ -51,9 +51,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
 
   def handle_create_with_after
     regex = Regexp.new(resource[:after])
-
-    count = lines.count {|l| l.match(regex)}
-
+    count = count_matches(regex)
     case count
     when 1 # find the line to put our line after
       File.open(resource[:path], 'w') do |fh|
@@ -69,6 +67,10 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     else
       raise Puppet::Error, "#{count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
     end
+  end
+
+  def count_matches(regex)
+    lines.select{|l| l.match(regex)}.size
   end
 
   ##

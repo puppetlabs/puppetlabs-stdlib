@@ -41,6 +41,7 @@ has_interface_with("lo")                        => true
 
     result = false
     interfaces.each do |iface|
+      iface.downcase!
       factval = nil
       begin
         factval = lookupvar("#{kind}_#{iface}")
