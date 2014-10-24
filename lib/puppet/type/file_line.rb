@@ -31,8 +31,8 @@ Puppet::Type.newtype(:file_line) do
           match  => '^export\ HTTP_PROXY\=',
         }
 
-    In this code example match will look for a line beginning with export followed
-    by HTTP_PROXY and replace it with the value in line.
+    In this code example match will look for a line beginning with export 
+    followed by HTTP_PROXY and replace it with the value in line.
 
     **Autorequires:** If Puppet is managing the file that will contain the line
     being managed, the file_line resource will autorequire that file.
