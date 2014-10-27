@@ -80,6 +80,8 @@ If you want to use a standardized set of run stages for Puppet, `include stdlib`
 
 * `any2array`: This converts any object to an array containing that object. Empty argument lists are converted to an empty array. Arrays are left untouched. Hashes are converted to arrays of alternating keys and values. *Type*: rvalue
 
+* `append_file_content`: Add content to a file resource. This allows to generate concatenated files on the master side, without managing multiple file resources.
+
 * `base64`: Converts a string to and from base64 encoding.
 Requires an action ('encode', 'decode') and either a plain or base64-encoded
 string. *Type*: rvalue
