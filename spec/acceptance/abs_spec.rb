@@ -7,7 +7,7 @@ describe 'abs function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operati
       pp = <<-EOS
       $input  = '-34.56'
       $output = abs($input)
-      notify { $output: }
+      notify { "$output": }
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
@@ -19,7 +19,7 @@ describe 'abs function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operati
       pp = <<-EOS
       $input  = -34.56
       $output = abs($input)
-      notify { $output: }
+      notify { "$output": }
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|

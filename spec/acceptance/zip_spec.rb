@@ -11,8 +11,11 @@ describe 'zip function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operati
       $output = zip($one,$two)
       notice(inline_template('<%= @output.inspect %>'))
       EOS
-
-      expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[\["1", "5"\], \["2", "6"\], \["3", "7"\], \["4", "8"\]\]/)
+      if is_future_parser_enabled?
+        expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[\[1, 5\], \[2, 6\], \[3, 7\], \[4, 8\]\]/)
+      else
+        expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[\["1", "5"\], \["2", "6"\], \["3", "7"\], \["4", "8"\]\]/)
+      end
     end
     it 'zips two arrays of numbers & bools together' do
       pp = <<-EOS
@@ -21,8 +24,11 @@ describe 'zip function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operati
       $output = zip($one,$two)
       notice(inline_template('<%= @output.inspect %>'))
       EOS
-
-      expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[\["1", true\], \["2", true\], \["three", false\], \["4", false\]\]/)
+      if is_future_parser_enabled?
+        expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[\[1, true\], \[2, true\], \["three", false\], \[4, false\]\]/)
+      else
+        expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[\["1", true\], \["2", true\], \["three", false\], \["4", false\]\]/)
+      end
     end
     it 'zips two arrays of numbers together and flattens them' do
       # XXX This only tests the argument `true`, even though the following are valid:
@@ -35,8 +41,11 @@ describe 'zip function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operati
       $output = zip($one,$two,true)
       notice(inline_template('<%= @output.inspect %>'))
       EOS
-
-      expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\["1", "5", "2", "6", "3", "7", "4", "8"\]/)
+      if is_future_parser_enabled?
+        expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[1, 5, 2, 6, 3, 7, 4, 8\]/)
+      else
+        expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\["1", "5", "2", "6", "3", "7", "4", "8"\]/)
+      end
     end
     it 'handles unmatched length' do
       # XXX Is this expected behavior?
@@ -46,8 +55,11 @@ describe 'zip function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operati
       $output = zip($one,$two)
       notice(inline_template('<%= @output.inspect %>'))
       EOS
-
-      expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[\["1", "5"\], \["2", "6"\]\]/)
+      if is_future_parser_enabled?
+        expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[\[1, 5\], \[2, 6\]\]/)
+      else
+        expect(apply_manifest(pp, :catch_failures => true).stdout).to match(/\[\["1", "5"\], \["2", "6"\]\]/)
+      end
     end
   end
   describe 'failure' do

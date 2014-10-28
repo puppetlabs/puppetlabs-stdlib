@@ -49,6 +49,7 @@ Would return ['a','c','d'].
     indices_list = []
 
     indices.each do |i|
+      i = i.to_s
       if m = i.match(/^(\d+)(\.\.\.?|\-)(\d+)$/)
         start = m[1].to_i
         stop  = m[3].to_i
