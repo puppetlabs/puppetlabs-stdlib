@@ -37,7 +37,7 @@ describe 'validate_cmd function', :unless => UNSUPPORTED_PLATFORMS.include?(fact
       } else {
         $two = '/bin/aoeu'
       }
-      validate_cmd($one,$two,"aoeu is dvorak)
+      validate_cmd($one,$two,"aoeu is dvorak")
       EOS
 
       expect(apply_manifest(pp, :expect_failures => true).stderr).to match(/aoeu is dvorak/)

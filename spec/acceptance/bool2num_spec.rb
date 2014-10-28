@@ -4,11 +4,11 @@ require 'spec_helper_acceptance'
 describe 'bool2num function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
   describe 'success' do
     ['false', 'f', '0', 'n', 'no'].each do |bool|
-      it 'should convert a given boolean, #{bool}, to 0' do
+      it "should convert a given boolean, #{bool}, to 0" do
         pp = <<-EOS
-        $input = #{bool}
+        $input = "#{bool}"
         $output = bool2num($input)
-        notify { $output: }
+        notify { "$output": }
         EOS
 
         apply_manifest(pp, :catch_failures => true) do |r|
@@ -18,11 +18,11 @@ describe 'bool2num function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('op
     end
 
     ['true', 't', '1', 'y', 'yes'].each do |bool|
-      it 'should convert a given boolean, #{bool}, to 1' do
+      it "should convert a given boolean, #{bool}, to 1" do
         pp = <<-EOS
-        $input = #{bool}
+        $input = "#{bool}"
         $output = bool2num($input)
-        notify { $output: }
+        notify { "$output": }
         EOS
 
         apply_manifest(pp, :catch_failures => true) do |r|

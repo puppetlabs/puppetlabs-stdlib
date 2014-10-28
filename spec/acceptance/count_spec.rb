@@ -7,7 +7,7 @@ describe 'count function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('opera
       pp = <<-EOS
       $input = [1,2,3,4]
       $output = count($input)
-      notify { $output: }
+      notify { "$output": }
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
@@ -19,7 +19,7 @@ describe 'count function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('opera
       pp = <<-EOS
       $input = [1,1,1,2]
       $output = count($input, 1)
-      notify { $output: }
+      notify { "$output": }
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
