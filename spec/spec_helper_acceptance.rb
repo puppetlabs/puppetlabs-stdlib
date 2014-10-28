@@ -25,10 +25,15 @@ RSpec.configure do |c|
 
   # Configure all nodes in nodeset
   c.before :suite do
+    if ENV['FUTURE_PARSER'] == 'true'
+      default[:default_apply_opts] ||= {}
+      default[:default_apply_opts].merge!({:parser => 'future'})
+    end
     hosts.each do |host|
       if host['platform'] !~ /windows/i
         copy_root_module_to(host, :source => proj_root, :module_name => 'stdlib')
       end
+
     end
     hosts.each do |host|
       if host['platform'] =~ /windows/i
@@ -36,4 +41,11 @@ RSpec.configure do |c|
       end
     end
   end
+end
+
+def is_future_parser_enabled?
+  if default[:default_apply_opts]
+    return default[:default_apply_opts][:parser] == 'future'
+  end
+  return false
 end

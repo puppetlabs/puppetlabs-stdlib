@@ -25,7 +25,7 @@ describe 'any2array function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('o
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/Notice: Output: testarray/)
+        expect(r.stdout).to match(/Notice: Output: (\[|)test(,\s|)array(\]|)/)
       end
     end
 
@@ -42,7 +42,7 @@ describe 'any2array function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('o
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/Notice: Output: testarray/)
+        expect(r.stdout).to match(/Notice: Output: (\[|)test(,\s|)array(\]|)/)
       end
     end
   end
