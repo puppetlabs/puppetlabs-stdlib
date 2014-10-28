@@ -12,7 +12,7 @@ unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
 
   hosts.each do |host|
     on host, "mkdir -p #{host['distmoduledir']}"
-    on host, "/bin/touch #{default['puppetpath']}/hiera.yaml"
+    on host, "/bin/touch #{host['puppetpath']}/hiera.yaml"
   end
 end
 
