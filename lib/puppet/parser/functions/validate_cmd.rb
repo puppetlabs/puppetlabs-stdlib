@@ -42,6 +42,9 @@ module Puppet::Parser::Functions
     rescue Puppet::ExecutionFailure => detail
       msg += "\n#{detail}"
       raise Puppet::ParseError, msg
+    rescue SystemCallError => detail
+      msg += "\nWin32::Process::SystemCallError #{detail}"
+      raise Puppet::ParseError, msg
     ensure
       tmpfile.unlink
     end
