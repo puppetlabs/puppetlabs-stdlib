@@ -1,3 +1,7 @@
+class Puppet::Parser::Resource
+  attr_accessor :concat_fragments
+end
+
 module Puppet::Parser::Functions
   newfunction(:append_file_content, :doc => <<-'ENDHEREDOC') do |args|
     Add content to a file resource.
@@ -44,17 +48,17 @@ module Puppet::Parser::Functions
 
     # Find resource
     if resource = findresource("File[#{file}]")
-      @append_content_data[file] ||= [{
+      resource.concat_fragments ||= [{
         :content => resource[:content],
         :order   => '00',
       }]
 
-      @append_content_data[file] << {
+      resource.concat_fragments << {
         :content => content,
         :order   => order,
       }
 
-      resource[:content] = @append_content_data[file].sort_by { |c|
+      resource[:content] = resource.concat_fragments.sort_by { |c|
         [c[:order], c[:content]]
       }.map { |c| c[:content] }.join
     else
