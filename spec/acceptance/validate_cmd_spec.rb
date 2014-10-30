@@ -40,7 +40,9 @@ describe 'validate_cmd function', :unless => UNSUPPORTED_PLATFORMS.include?(fact
       validate_cmd($one,$two,"aoeu is dvorak")
       EOS
 
-      expect(apply_manifest(pp, :expect_failures => true).stderr).to match(/aoeu is dvorak/)
+      apply_manifest(pp, :expect_failures => true) do |output|
+        expect(output.stderr).to match(/aoeu is dvorak/)
+      end
     end
   end
   describe 'failure' do
