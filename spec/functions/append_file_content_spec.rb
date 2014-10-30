@@ -117,5 +117,27 @@ describe 'append_file_content' do
         expect(catalog.resource(:file, '/tmp/foo')[:content]).to eq('Hello, World! Here or there? The end is near')
       end
     end
+
+    context 'when calling the function from different scopes' do
+      let :catalog do
+        compile_to_catalog(<<-EOS
+        class world {
+          append_file_content('/tmp/foo', 'World! ', '05')
+        }
+
+        file { "/tmp/foo":
+          content => "Hello, ",
+        }
+        append_file_content('/tmp/foo', 'The end is near', '50')
+        append_file_content('/tmp/foo', 'Here or there? ', '50')
+        include ::world
+                           EOS
+                          )
+      end
+
+      it 'should position content alphabetically' do
+        expect(catalog.resource(:file, '/tmp/foo')[:content]).to eq('Hello, World! Here or there? The end is near')
+      end
+    end
   end
 end
