@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'ensure_packages function', :unless => (UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) || fact('operatingsystem') != 'windows') do
+describe 'ensure_packages function', :unless => (UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) || fact('osfamily') == 'windows') do
   describe 'success' do
     it 'ensure_packages a package' do
       apply_manifest('package { "rake": ensure => absent, provider => "gem", }')
