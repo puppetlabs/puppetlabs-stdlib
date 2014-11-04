@@ -32,8 +32,9 @@ Would return: false
 
     item = arguments[1]
 
+
     raise(Puppet::ParseError, 'member(): You must provide item ' +
-      'to search for within array given') if item.empty?
+      'to search for within array given') if item.respond_to?('empty?') && item.empty?
 
     result = array.include?(item)
 
