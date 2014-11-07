@@ -18,6 +18,31 @@ describe "the to_bytes function" do
     expect(result).to(eq(4096))
   end
 
+  it "should convert MB to B" do
+    result = scope.function_to_bytes(["4 MB"])
+    expect(result).to(eq(4194304))
+  end
+
+  it "should convert GB to B" do
+    result = scope.function_to_bytes(["4 GB"])
+    expect(result).to(eq(4294967296))
+  end
+
+  it "should convert TB to B" do
+    result = scope.function_to_bytes(["4 TB"])
+    expect(result).to(eq(4398046511104))
+  end
+
+  it "should convert PB to B" do
+    result = scope.function_to_bytes(["4 PB"])
+    expect(result).to(eq(4503599627370496))
+  end
+
+  it "should convert PB to B" do
+    result = scope.function_to_bytes(["4 EB"])
+    expect(result).to(eq(4611686018427387904))
+  end
+
   it "should work without B in unit" do
     result = scope.function_to_bytes(["4 k"])
     expect(result).to(eq(4096))
