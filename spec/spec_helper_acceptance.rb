@@ -4,15 +4,23 @@ require 'beaker-rspec'
 UNSUPPORTED_PLATFORMS = []
 
 unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
-  # This will install the latest available package on el and deb based
-  # systems fail on windows and osx, and install via gem on other *nixes
-  foss_opts = { :default_action => 'gem_install' }
+  foss_opts = {
+    :default_action => 'gem_install',
+    :version        => (ENV['PUPPET_VERSION'] ? ENV['PUPPET_VERSION'] : '3.7.2'),
+  }
 
   if default.is_pe?; then install_pe; else install_puppet( foss_opts ); end
 
   hosts.each do |host|
-    on host, "mkdir -p #{host['distmoduledir']}"
-    on host, "/bin/touch #{host['puppetpath']}/hiera.yaml"
+    if host['platform'] !~ /windows/i
+      if host.is_pe?
+        on host, 'mkdir -p /etc/puppetlabs/facter/facts.d'
+      else
+        on host, "/bin/touch #{host['puppetpath']}/hiera.yaml"
+        on host, "mkdir -p #{host['distmoduledir']}"
+        on host, 'mkdir -p /etc/facter/facts.d'
+      end
+    end
   end
 end
 
@@ -29,17 +37,8 @@ RSpec.configure do |c|
       default[:default_apply_opts] ||= {}
       default[:default_apply_opts].merge!({:parser => 'future'})
     end
-    hosts.each do |host|
-      if host['platform'] !~ /windows/i
-        copy_root_module_to(host, :source => proj_root, :module_name => 'stdlib')
-      end
 
-    end
-    hosts.each do |host|
-      if host['platform'] =~ /windows/i
-        on host, puppet('plugin download')
-      end
-    end
+    copy_root_module_to(default, :source => proj_root, :module_name => 'stdlib')
   end
 end
 

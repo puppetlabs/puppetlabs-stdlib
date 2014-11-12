@@ -1,3 +1,23 @@
+##2014-11-10 - Supported Release 4.4.0
+###Summary
+This release has an overhauled readme, new private manifest function, and fixes many future parser bugs.
+
+####Features
+- All new shiny README
+- New `private()` function for making private manifests (yay!)
+
+####Bugfixes
+- Code reuse in `bool2num()` and `zip()`
+- Fix many functions to handle `generate()` no longer returning a string on new puppets
+- `concat()` no longer modifies the first argument (whoops)
+- strict variable support for `getvar()`, `member()`, `values_at`, and `has_interface_with()`
+- `to_bytes()` handles PB and EB now
+- Fix `tempfile` ruby requirement for `validate_augeas()` and `validate_cmd()`
+- Fix `validate_cmd()` for windows
+- Correct `validate_string()` docs to reflect non-handling of `undef`
+- Fix `file_line` matching on older rubies
+
+
 ##2014-07-15 - Supported Release 4.3.2
 ###Summary
 
