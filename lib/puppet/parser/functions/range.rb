@@ -66,7 +66,7 @@ Will return: [0,2,4,6,8]
     end
 
     # Check whether we have integer value if so then make it so ...
-    if start.match(/^\d+$/)
+    if start.to_s.match(/^\d+$/)
       start = start.to_i
       stop  = stop.to_i
     else
