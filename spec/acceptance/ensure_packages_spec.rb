@@ -2,6 +2,7 @@
 require 'spec_helper_acceptance'
 
 describe 'ensure_packages function', :unless => fact('osfamily') =~ /windows/i do
+
   describe 'success' do
     it 'ensure_packages a package' do
       apply_manifest('package { "rake": ensure => absent, provider => "gem", }')

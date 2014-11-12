@@ -8,7 +8,8 @@ unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
     install_pe
     on hosts, 'mkdir -p /etc/puppetlabs/facter/facts.d'
   else
-    install_puppet :version => (ENV['PUPPET_VERSION'] ? ENV['PUPPET_VERSION'] : '3.7.2')
+    foss_opts = {:default_action => 'gem_install', :version => (ENV['PUPPET_VERSION'] ? ENV['PUPPET_VERSION'] : '3.7.2')}
+    install_puppet foss_opts
     hosts.each do |host|
       if host['platform'] !~ /windows/i
         on host, 'mkdir -p /etc/facter/facts.d'
@@ -18,6 +19,7 @@ unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
     end
   end
 end
+
 
 RSpec.configure do |c|
   # Project root

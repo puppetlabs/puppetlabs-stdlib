@@ -21,6 +21,9 @@ Puppet::Type.newtype(:file_line) do
     In this example, Puppet will ensure both of the specified lines are
     contained in the file /etc/sudoers.
 
+    **Autorequires:** If Puppet is managing the file that will contain the line
+    being managed, the file_line resource will autorequire that file.
+
   EOT
 
   ensurable do

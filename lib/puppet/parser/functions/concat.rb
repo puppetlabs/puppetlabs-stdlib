@@ -28,11 +28,7 @@ Would result in:
       raise(Puppet::ParseError, 'concat(): Requires array to work with')
     end
 
-    if b.is_a?(Array)
-      result = a.concat(b)
-    else
-      result = a << b
-    end
+    result = a + Array(b)
 
     return result
   end

@@ -16,4 +16,13 @@ describe "the chop function" do
     result = scope.function_chop(["asdf\n"])
     expect(result).to(eq("asdf"))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new("abc\n")
+    result = scope.function_chop([value])
+    result.should(eq('abc'))
+  end
 end

@@ -21,4 +21,13 @@ describe "the downcase function" do
     result = scope.function_downcase(["asdf asdf"])
     expect(result).to(eq("asdf asdf"))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new("ASFD")
+    result = scope.function_downcase([value])
+    result.should(eq('asfd'))
+  end
 end

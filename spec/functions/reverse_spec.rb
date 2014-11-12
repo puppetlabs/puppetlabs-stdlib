@@ -16,4 +16,13 @@ describe "the reverse function" do
     result = scope.function_reverse(["asdfghijkl"])
     expect(result).to(eq('lkjihgfdsa'))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new('asdfghjkl')
+    result = scope.function_reverse([value])
+    result.should(eq('lkjhgfdsa'))
+  end
 end

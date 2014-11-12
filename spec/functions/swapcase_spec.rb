@@ -16,4 +16,13 @@ describe "the swapcase function" do
     result = scope.function_swapcase(["aaBBccDD"])
     expect(result).to(eq('AAbbCCdd'))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new("aaBBccDD")
+    result = scope.function_swapcase([value])
+    result.should(eq("AAbbCCdd"))
+  end
 end
