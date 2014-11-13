@@ -8,6 +8,7 @@
 module Puppet::Parser::Functions
   newfunction(:member, :type => :rvalue, :doc => <<-EOS
 This function determines if a variable is a member of an array.
+The variable can either be a string or an array.
 
 *Examples:*
 
@@ -15,9 +16,17 @@ This function determines if a variable is a member of an array.
 
 Would return: true
 
+    member(['a', 'b', 'c'], ['a', 'b'])
+
+would return: true
+
     member(['a','b'], 'c')
 
 Would return: false
+
+    member(['a', 'b', 'c'], ['d', 'b'])
+
+would return: false
     EOS
   ) do |arguments|
 
@@ -30,13 +39,17 @@ Would return: false
       raise(Puppet::ParseError, 'member(): Requires array to work with')
     end
 
-    item = arguments[1]
+    if arguments[1].is_a? String
+      item = Array(arguments[1])
+    else
+      item = arguments[1]
+    end
 
 
     raise(Puppet::ParseError, 'member(): You must provide item ' +
       'to search for within array given') if item.respond_to?('empty?') && item.empty?
 
-    result = array.include?(item)
+    result = (item - array).empty?
 
     return result
   end
