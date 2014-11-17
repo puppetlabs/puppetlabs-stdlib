@@ -8,7 +8,7 @@
 module Puppet::Parser::Functions
   newfunction(:member, :type => :rvalue, :doc => <<-EOS
 This function determines if a variable is a member of an array.
-The variable can either be a string or an array.
+The variable can be a string, fixnum, or array.
 
 *Examples:*
 
@@ -39,7 +39,11 @@ would return: false
       raise(Puppet::ParseError, 'member(): Requires array to work with')
     end
 
-    if arguments[1].is_a? String
+    unless arguments[1].is_a? String or arguments[1].is_a? Fixnum or arguments[1].is_a? Array
+      raise(Puppet::ParseError, 'member(): Item to search for must be a string, fixnum, or array')
+    end
+
+    if arguments[1].is_a? String or arguments[1].is_a? Fixnum
       item = Array(arguments[1])
     else
       item = arguments[1]
