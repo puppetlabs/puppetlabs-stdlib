@@ -4,11 +4,17 @@ module Puppet::Parser::Functions
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "dirname(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
+    if arguments.size < 1 then
+      raise(Puppet::ParseError, "dirname(): No arguments given")
+    end
+    if arguments.size > 1 then
+      raise(Puppet::ParseError, "dirname(): Too many arguments given (#{arguments.size})")
+    end
+    unless arguments[0].is_a?(String)
+      raise(Puppet::ParseError, 'dirname(): Requires string as argument')
+    end
 
-    path = arguments[0]
-    return File.dirname(path)
+    return File.dirname(arguments[0])
   end
 end
 
