@@ -67,4 +67,20 @@ describe "the range function" do
       expect(scope.function_range(["00", "10"])).to eq expected
     end
   end
+
+  describe 'with a numeric range' do
+    it "returns a range of numbers" do
+      expected = (1..10).to_a
+      expect(scope.function_range([1,10])).to eq expected
+    end
+    it "returns a range of numbers with step parameter" do
+      expected = (1..10).step(2).to_a
+      expect(scope.function_range([1,10,2])).to eq expected
+    end
+    it "works with mixed numeric like strings and numeric arguments" do
+      expected = (1..10).to_a
+      expect(scope.function_range(['1',10])).to eq expected
+      expect(scope.function_range([1,'10'])).to eq expected
+    end
+  end
 end

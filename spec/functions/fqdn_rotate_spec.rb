@@ -30,4 +30,14 @@ describe "the fqdn_rotate function" do
      val2 = scope.function_fqdn_rotate(["abcdefghijklmnopqrstuvwxyz01234567890987654321"])
      expect(val1).not_to eql(val2)
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    scope.expects(:lookupvar).with("::fqdn").returns("127.0.0.1")
+    value = AlsoString.new("asdf")
+    result = scope.function_fqdn_rotate([value])
+    result.size.should(eq(4))
+  end
 end

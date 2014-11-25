@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'type function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'type function', :unless => (UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) || is_future_parser_enabled?) do
   describe 'success' do
     it 'types arrays' do
       pp = <<-EOS

@@ -16,4 +16,13 @@ describe "the chomp function" do
     result = scope.function_chomp(["abc\n"])
     expect(result).to(eq("abc"))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new("abc\n")
+    result = scope.function_chomp([value])
+    result.should(eq("abc"))
+  end
 end
