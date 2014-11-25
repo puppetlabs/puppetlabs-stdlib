@@ -27,6 +27,8 @@ modules. Puppet modules make heavy use of this standard library. The stdlib modu
  * Defined resource types
  * Types
  * Providers
+ 
+> *Note:* As of version 3.7, Puppet Enterprise no longer includes the stdlib module. If you're running Puppet Enterprise, you should install the most recent release of stdlib for compatibility with Puppet modules.
 
 ##Setup
 
@@ -675,6 +677,8 @@ of the regular expressions match the string passed in, compilation aborts with a
 * `zip`: Takes one element from first array and merges corresponding elements from second array. This generates a sequence of n-element arrays, where n is one more than the count of arguments. For example, `zip(['1','2','3'],['4','5','6'])` results in ["1", "4"], ["2", "5"], ["3", "6"]. *Type*: rvalue
 
 ##Limitations
+
+As of Puppet Enterprise version 3.7, the stdlib module is no longer included in PE. PE users should install the most recent release of stdlib for compatibility with Puppet modules.
 
 ###Version Compatibility
 
