@@ -4,15 +4,15 @@
 
 module Puppet::Parser::Functions
   newfunction(:concat, :type => :rvalue, :doc => <<-EOS
-Appends the contents of array 2 onto array 1.
+Appends the contents of multiple arrays into array 1.
 
 *Example:*
 
-    concat(['1','2','3'],['4','5','6'])
+    concat(['1','2','3'],['4','5','6'],['7','8','9'])
 
 Would result in:
 
-  ['1','2','3','4','5','6']
+  ['1','2','3','4','5','6','7','8','9']
     EOS
   ) do |arguments|
 
