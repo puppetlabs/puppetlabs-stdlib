@@ -13,6 +13,10 @@ describe "the concat function" do
     expect { scope.function_concat([1, []])}.to(raise_error(Puppet::ParseError))
   end
 
+  it "should not raise a ParseError if the client provides more than two arguments" do
+    expect { scope.function_concat([[1],[2],[3]]) }.not_to raise_error
+  end
+
   it "should be able to concat an array" do
     result = scope.function_concat([['1','2','3'],['4','5','6']])
     expect(result).to(eq(['1','2','3','4','5','6']))
