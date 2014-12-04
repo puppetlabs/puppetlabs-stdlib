@@ -32,4 +32,14 @@ describe "the concat function" do
     result = scope.function_concat([array_original,['4','5','6']])
     array_original.should(eq(['1','2','3']))
   end
+
+  it "should be able to concat multiple arrays" do
+    result = scope.function_concat([['1','2','3'],['4','5','6'],['7','8','9']])
+    expect(result).to(eq(['1','2','3','4','5','6','7','8','9']))
+  end
+
+  it "should be able to concat mix of primitives and arrays to a final array" do
+    result = scope.function_concat([['1','2','3'],'4',['5','6','7']])
+    expect(result).to(eq(['1','2','3','4','5','6','7']))
+  end
 end
