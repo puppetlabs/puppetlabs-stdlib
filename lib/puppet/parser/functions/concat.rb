@@ -21,14 +21,18 @@ Would result in:
       "given (#{arguments.size} for < 2)") if arguments.size < 2
 
     a = arguments[0]
-    b = arguments[1]
 
     # Check that the first parameter is an array
     unless a.is_a?(Array)
       raise(Puppet::ParseError, 'concat(): Requires array to work with')
     end
 
-    result = a + Array(b)
+    result = a
+    arguments.shift
+
+    arguments.each do |x|
+      result = result + Array(x)
+    end
 
     return result
   end
