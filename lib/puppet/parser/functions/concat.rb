@@ -16,9 +16,9 @@ Would result in:
     EOS
   ) do |arguments|
 
-    # Check that 2 arguments have been given ...
+    # Check that more than 2 arguments have been given ...
     raise(Puppet::ParseError, "concat(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size != 2
+      "given (#{arguments.size} for < 2)") if arguments.size < 2
 
     a = arguments[0]
     b = arguments[1]
