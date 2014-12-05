@@ -77,6 +77,9 @@ module Puppet::Parser::Functions
           raise Puppet::ParseError, "validate_numeric(): Expected element at array position #{pos} to be a Numeric, got #{arg.class}"
         end
       end
+    # for the sake of compatibility with ruby 1.8, we need extra handling of hashes
+    when Hash
+      raise Puppet::ParseError, "validate_integer(): Expected first argument to be a Numeric or Array, got #{input.class}"
     # check the input. this will also fail any stuff other than pure, shiny integers
     else
       begin
