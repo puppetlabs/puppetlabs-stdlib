@@ -40,7 +40,7 @@ After you've installed stdlib, all of its functions, facts, and resources are av
 
 If you want to use a standardized set of run stages for Puppet, `include stdlib` in your manifest. 
 
-##Reference
+## Reference
 
 ### Classes 
 
@@ -75,7 +75,30 @@ If you want to use a standardized set of run stages for Puppet, `include stdlib`
     class { java: stage => 'runtime' }
   }
   ```
+  
+### Resources
 
+* `file_line`: This resource ensures that a given line, including whitespace at the beginning and end, is contained within a file. If the line is not contained in the given file, Puppet will add the line. Multiple resources can be declared to manage multiple lines in the same file. You can also use match to replace existing lines. 
+ 
+  ```
+  file_line { 'sudo_rule':
+    path => '/etc/sudoers',
+    line => '%sudo ALL=(ALL) ALL',
+  }
+  file_line { 'sudo_rule_nopw':
+    path => '/etc/sudoers',
+    line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
+  }
+  ```
+  
+  * `after`: Specify the line after which Puppet will add any new lines. (Existing lines are added in place.) Optional.
+  * `ensure`: Ensures whether the resource is present. Valid values are 'present', 'absent'.
+ * `line`: The line to be added to the file located by the `path` parameter.
+ * `match`: A regular expression to run against existing lines in the file; if a match is found, we replace that line rather than adding a new line. Optional.
+ * `multiple`: Determine if match can change multiple lines. Valid values are 'true', 'false'. Optional.
+ * `name`: An arbitrary name used as the identity of the resource.
+ * `path`: The file in which Puppet will ensure the line specified by the line parameter.
+  
 ### Functions
 
 * `abs`: Returns the absolute value of a number; for example, '-34.56' becomes '34.56'. Takes a single integer and float value as an argument. *Type*: rvalue
@@ -157,25 +180,6 @@ also appear in the second array. For example, `difference(["a","b","c"],["b","c"
   `ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})`
 
   *Type*: statement
-
-* `file_line`: This resource ensures that a given line is contained within a file. You can also use match to replace existing lines.
-
-  *Example:*
-  
-  ```
-  file_line { 'sudo_rule':
-    path => '/etc/sudoers',
-    line => '%sudo ALL=(ALL) ALL',
-  }
-
-  file_line { 'change_mount':
-    path  => '/etc/fstab',
-    line  => '10.0.0.1:/vol/data /opt/data nfs defaults 0 0',
-    match => '^172.16.17.2:/vol/old',
-  }
-  ```
-  
-  *Type*: resource
 
 * `flatten`: This function flattens any deeply nested arrays and returns a single flat array as a result. For example, `flatten(['a', ['b', ['c']]])` returns ['a','b','c']. *Type*: rvalue
 
