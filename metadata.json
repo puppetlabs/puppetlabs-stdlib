@@ -2,7 +2,7 @@
   "name": "puppetlabs-stdlib",
   "version": "4.5.0",
   "author": "puppetlabs",
-  "summary": "Puppet Module Standard Library",
+  "summary": "Standard library of resources for Puppet modules.",
   "license": "Apache-2.0",
   "source": "https://github.com/puppetlabs/puppetlabs-stdlib",
   "project_page": "https://github.com/puppetlabs/puppetlabs-stdlib",
