@@ -312,7 +312,7 @@ returns the value of the resource's parameter. For example, the following code r
 
 * `max`: Returns the highest value of all arguments. Requires at least one argument. *Type*: rvalue
 
-* `member`: This function determines if a variable is a member of an array. For example, `member(['a','b'], 'b')` returns 'true', while `member(['a','b'], 'c')`  returns 'false'. *Type*: rvalue
+* `member`: This function determines if a variable is a member of an array. The variable can be either a string, array, or fixnum. For example, `member(['a','b'], 'b')` and `member(['a','b','c'], ['b','c'])` return 'true', while `member(['a','b'], 'c')`  and `member(['a','b','c'], ['c','d'])` return 'false'. *Type*: rvalue
 
 * `merge`: Merges two or more hashes together and returns the resulting hash.
 
