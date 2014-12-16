@@ -464,7 +464,12 @@ manifests as a valid password attribute. *Type*: rvalue
 * `to_bytes`: Converts the argument into bytes, for example 4 kB becomes 4096.
 Takes a single string value as an argument. *Type*: rvalue
 
-* `type`: Returns the type when passed a variable. Type can be a string, array, hash, float, integer, or boolean. *Type*: rvalue
+* `type3x`: Returns a string description of the type when passed a value. Type can be a string, array, hash, float, integer, or boolean. This function will be removed when puppet 3 support is dropped and the new type system may be used. *Type*: rvalue
+
+* `type_of`: Returns the literal type when passed a value. Requires the new
+  parser. Useful for comparison of types with `<=` such as in `if
+  type_of($some_value) <= Array[String] { ... }` (which is equivalent to `if
+  $some_value =~ Array[String] { ... }`) *Type*: rvalue
 
 * `union`: This function returns a union of two arrays. For example, `union(["a","b","c"],["b","c","d"])` returns ["a","b","c","d"].
 
