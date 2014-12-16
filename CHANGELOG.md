@@ -10,6 +10,7 @@ This release improves functionality of the member function and adds improved fut
 ####Bugfixes
 - Fix range() to work with numeric ranges with the future parser
 - Accurately express SLES support in metadata.json (was missing 10SP4 and 12)
+- Don't require `line` to match the `match` parameter
 
 ##2014-11-10 - Supported Release 4.4.0
 ###Summary
