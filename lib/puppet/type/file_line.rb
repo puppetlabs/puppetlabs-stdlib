@@ -71,12 +71,5 @@ Puppet::Type.newtype(:file_line) do
     unless self[:line] and self[:path]
       raise(Puppet::Error, "Both line and path are required attributes")
     end
-
-    if (self[:match])
-      unless Regexp.new(self[:match]).match(self[:line])
-        raise(Puppet::Error, "When providing a 'match' parameter, the value must be a regex that matches against the value of your 'line' parameter")
-      end
-    end
-
   end
 end
