@@ -470,27 +470,34 @@ You can also use this with arrays. For example, `unique(["a","a","b","b","c","c"
 
 * `uriescape`: Urlencodes a string or array of strings. Requires either a single string or an array as an input. *Type*: rvalue
 
-* `validate_absolute_path`: Validate that the string represents an absolute path in the filesystem. This function works for Windows and Unix-style paths.
-  The following values will pass:
+* `validate_absolute_path`: Validate the string represents an absolute path in the filesystem.  This function works for Windows and Unix style paths.
 
-  ```
-  $my_path = "C:/Program Files (x86)/Puppet Labs/Puppet"
-  validate_absolute_path($my_path)
-  $my_path2 = "/var/lib/puppet"
-  validate_absolute_path($my_path2)
-  ```
+    The following values will pass:
 
-  The following values will fail, causing compilation to abort:
+    ```
+    $my_path = 'C:/Program Files (x86)/Puppet Labs/Puppet'
+    validate_absolute_path($my_path)
+    $my_path2 = '/var/lib/puppet'
+    validate_absolute_path($my_path2)
+    $my_path3 = ['C:/Program Files (x86)/Puppet Labs/Puppet','C:/Program Files/Puppet Labs/Puppet']
+    validate_absolute_path($my_path3)
+    $my_path4 = ['/var/lib/puppet','/usr/share/puppet']
+    validate_absolute_path($my_path4)
+    ```
 
-  ```
-  validate_absolute_path(true)
-  validate_absolute_path([ 'var/lib/puppet', '/var/foo' ])
-  validate_absolute_path([ '/var/lib/puppet', 'var/foo' ])
-  $undefined = undef
-  validate_absolute_path($undefined)
-  ```
-  
-  *Type*: statement
+    The following values will fail, causing compilation to abort:
+
+    ```
+    validate_absolute_path(true)
+    validate_absolute_path('../var/lib/puppet')
+    validate_absolute_path('var/lib/puppet')
+    validate_absolute_path([ 'var/lib/puppet', '/var/foo' ])
+    validate_absolute_path([ '/var/lib/puppet', 'var/foo' ])
+    $undefined = undef
+    validate_absolute_path($undefined)
+    ```
+
+    *Type*: statement 
 
 * `validate_array`: Validate that all passed values are array data structures. Abort catalog compilation if any value fails this check. 
 
