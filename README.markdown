@@ -86,6 +86,13 @@ If you want to use a standardized set of run stages for Puppet, `include stdlib`
 Requires an action ('encode', 'decode') and either a plain or base64-encoded
 string. *Type*: rvalue
 
+* `basename`: Returns the `basename` of a path (optionally stripping an extension). For example:
+  * ('/path/to/a/file.ext') returns 'file.ext'
+  * ('relative/path/file.ext') returns 'file.ext'
+  * ('/path/to/a/file.ext', '.ext') returns 'file'
+
+  *Type*: rvalue
+
 * `bool2num`: Converts a boolean to a number. Converts values:
   * 'false', 'f', '0', 'n', and 'no' to 0.
   * 'true', 't', '1', 'y', and 'yes' to 1.
