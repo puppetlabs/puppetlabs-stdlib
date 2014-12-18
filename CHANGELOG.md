@@ -1,3 +1,17 @@
+##2014-12-15 - Supported Release 4.5.0
+###Summary
+
+This release improves functionality of the member function and adds improved future parser support.
+
+####Features
+- MODULES-1329: Update member() to allow the variable to be an array.
+- Sync .travis.yml, Gemfile, Rakefile, and CONTRIBUTING.md via modulesync
+
+####Bugfixes
+- Fix range() to work with numeric ranges with the future parser
+- Accurately express SLES support in metadata.json (was missing 10SP4 and 12)
+- Don't require `line` to match the `match` parameter
+
 ##2014-11-10 - Supported Release 4.4.0
 ###Summary
 This release has an overhauled readme, new private manifest function, and fixes many future parser bugs.
