@@ -39,7 +39,7 @@ module Puppet::Parser::Functions
       tmpfile.write(content)
       tmpfile.close
 
-      if checkscript.include?('%')
+      if checkscript =~ /\s%(\s|$)/
         check_with_correct_location = checkscript.gsub(/%/,tmpfile.path)
       else
         check_with_correct_location = "#{checkscript} #{tmpfile.path}"
