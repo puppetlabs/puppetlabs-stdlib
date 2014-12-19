@@ -129,7 +129,9 @@ strings; for example, 'hello\n' becomes 'hello'. Requires a single string or arr
 
 * `chop`: Returns a new string with the last character removed. If the string ends with '\r\n', both characters are removed. Applying `chop` to an empty string returns an empty string. If you want to merely remove record separators, then you should use the `chomp` function. Requires a string or an array of strings as input. *Type*: rvalue
 
-* `concat`: Appends the contents of array 2 onto array 1. For example, `concat(['1','2','3'],'4')` results in: ['1','2','3','4']. *Type*: rvalue
+* `concat`: Appends the contents of multiple arrays onto array 1. For example:
+  * `concat(['1','2','3'],'4')` results in: ['1','2','3','4'].
+  * `concat(['1','2','3'],'4',['5','6','7'])` results in: ['1','2','3','4','5','6','7'].
 
 * `count`: Takes an array as first argument and an optional second argument. Count the number of elements in array that matches second argument. If called with only an array, it counts the number of elements that are **not** nil/undef. *Type*: rvalue
 
@@ -569,12 +571,17 @@ The first argument of this function should be the string to test, and the second
 
   *Type*: statement
 
-* `validate_cmd`: Performs validation of a string with an external command. The first argument of this function should be the string to test, and the second argument should be the path to a test command taking a file as last argument. If the command, launched against a tempfile containing the passed string, returns a non-null value, compilation aborts with a parse error.
+* `validate_cmd`: Performs validation of a string with an external command. The first argument of this function should be a string to test, and the second argument should be a path to a test command taking a % as a placeholder for the file path (will default to the end of the command if no % placeholder given). If the command, launched against a tempfile containing the passed string, returns a non-null value, compilation will abort with a parse error.
 
-  You can pass a third argument as the error message raised and shown to the user:
+If a third argument is specified, this will be the error message raised and seen by the user.
 
   ```
+  # Defaults to end of path
   validate_cmd($sudoerscontent, '/usr/sbin/visudo -c -f', 'Visudo failed to validate sudoers content')
+  ```
+  ```
+  # % as file location
+  validate_cmd($haproxycontent, '/usr/sbin/haproxy -f % -c', 'Haproxy failed to validate config content')
   ```
 
   *Type*: statement
