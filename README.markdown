@@ -14,7 +14,7 @@
 
 ##Overview
 
-Adds a standard library of resources for Puppet modules.    
+Adds a standard library of resources for Puppet modules.
 
 ##Module Description
 
@@ -27,22 +27,22 @@ modules. Puppet modules make heavy use of this standard library. The stdlib modu
  * Defined resource types
  * Types
  * Providers
- 
+
 > *Note:* As of version 3.7, Puppet Enterprise no longer includes the stdlib module. If you're running Puppet Enterprise, you should install the most recent release of stdlib for compatibility with Puppet modules.
 
 ##Setup
 
-Installing the stdlib module adds the functions, facts, and resources of this standard library to Puppet. 
+Installing the stdlib module adds the functions, facts, and resources of this standard library to Puppet.
 
 ##Usage
 
-After you've installed stdlib, all of its functions, facts, and resources are available for module use or development. 
+After you've installed stdlib, all of its functions, facts, and resources are available for module use or development.
 
-If you want to use a standardized set of run stages for Puppet, `include stdlib` in your manifest. 
+If you want to use a standardized set of run stages for Puppet, `include stdlib` in your manifest.
 
 ## Reference
 
-### Classes 
+### Classes
 
 #### Public Classes
 
@@ -75,11 +75,11 @@ If you want to use a standardized set of run stages for Puppet, `include stdlib`
     class { java: stage => 'runtime' }
   }
   ```
-  
+
 ### Resources
 
-* `file_line`: This resource ensures that a given line, including whitespace at the beginning and end, is contained within a file. If the line is not contained in the given file, Puppet will add the line. Multiple resources can be declared to manage multiple lines in the same file. You can also use match to replace existing lines. 
- 
+* `file_line`: This resource ensures that a given line, including whitespace at the beginning and end, is contained within a file. If the line is not contained in the given file, Puppet will add the line. Multiple resources can be declared to manage multiple lines in the same file. You can also use match to replace existing lines.
+
   ```
   file_line { 'sudo_rule':
     path => '/etc/sudoers',
@@ -90,7 +90,7 @@ If you want to use a standardized set of run stages for Puppet, `include stdlib`
     line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
   }
   ```
-  
+
   * `after`: Specify the line after which Puppet will add any new lines. (Existing lines are added in place.) Optional.
   * `ensure`: Ensures whether the resource is present. Valid values are 'present', 'absent'.
  * `line`: The line to be added to the file located by the `path` parameter.
@@ -98,7 +98,7 @@ If you want to use a standardized set of run stages for Puppet, `include stdlib`
  * `multiple`: Determine if match can change multiple lines. Valid values are 'true', 'false'. Optional.
  * `name`: An arbitrary name used as the identity of the resource.
  * `path`: The file in which Puppet will ensure the line specified by the line parameter.
-  
+
 ### Functions
 
 * `abs`: Returns the absolute value of a number; for example, '-34.56' becomes '34.56'. Takes a single integer and float value as an argument. *Type*: rvalue
@@ -144,11 +144,11 @@ strings; for example, 'hello\n' becomes 'hello'. Requires a single string or arr
     user { 'dan': ensure => present, }
   }
   ```
-  
+
   *Type*: rvalue
 
 * `delete`: Deletes all instances of a given element from an array, substring from a
-string, or key from a hash. For example, `delete(['a','b','c','b'], 'b')` returns ['a','c']; `delete('abracadabra', 'bra')` returns 'acada'. *Type*: rvalue
+string, or key from a hash. For example, `delete(['a','b','c','b'], 'b')` returns ['a','c']; `delete('abracadabra', 'bra')` returns 'acada'. `delete({'a' => 1,'b' => 2,'c' => 3},['b','c'])` returns {'a'=> 1} *Type*: rvalue
 
 * `delete_at`: Deletes a determined indexed value from an array. For example, `delete_at(['a','b','c'], 1)` returns ['a','c']. *Type*: rvalue
 
@@ -252,7 +252,7 @@ returns the value of the resource's parameter. For example, the following code r
   has_interface_with("macaddress", "x:x:x:x:x:x")
   has_interface_with("ipaddress", "127.0.0.1")    => true
   ```
-    
+
   If no kind is given, then the presence of the interface is checked:
 
   ```
@@ -278,7 +278,7 @@ returns the value of the resource's parameter. For example, the following code r
     notice('this will be printed')
   }
   ```
-  
+
   *Type*: rvalue
 
 * `hash`: This function converts an array into a hash. For example, `hash(['a',1,'b',2,'c',3])` returns {'a'=>1,'b'=>2,'c'=>3}. *Type*: rvalue
@@ -330,7 +330,7 @@ returns the value of the resource's parameter. For example, the following code r
 * `merge`: Merges two or more hashes together and returns the resulting hash.
 
   *Example*:
-  
+
   ```
   $hash1 = {'one' => 1, 'two' => 2}
   $hash2 = {'two' => 'dos', 'three' => 'tres'}
@@ -338,7 +338,7 @@ returns the value of the resource's parameter. For example, the following code r
   # The resulting hash is equivalent to:
   # $merged_hash =  {'one' => 1, 'two' => 'dos', 'three' => 'tres'}
   ```
-  
+
   When there is a duplicate key, the key in the rightmost hash "wins." *Type*: rvalue
 
 * `min`: Returns the lowest value of all arguments. Requires at least one argument. *Type*: rvalue
@@ -354,7 +354,7 @@ returns the value of the resource's parameter. For example, the following code r
   ```
   $real_jenkins_version = pick($::jenkins_version, '1.449')
   ```
-  
+
  *Type*: rvalue
 
 * `prefix`: This function applies a prefix to all elements in an array. For example, `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc']. *Type*: rvalue
@@ -366,9 +366,9 @@ Calling the class or definition from outside the current module will fail. For e
   ```
   Class foo::bar is private
   ```
-  
+
   You can specify the error message you want to use:
-  
+
   ```
   private("You're not supposed to do that!")
   ```
@@ -377,8 +377,8 @@ Calling the class or definition from outside the current module will fail. For e
 
 * `range`: When given range in the form of '(start, stop)', `range` extrapolates a range as an array. For example, `range("0", "9")` returns [0,1,2,3,4,5,6,7,8,9]. Zero-padded strings are converted to integers automatically, so `range("00", "09")` returns [0,1,2,3,4,5,6,7,8,9].
 
-  Non-integer strings are accepted; `range("a", "c")` returns ["a","b","c"], and `range("host01", "host10")` returns ["host01", "host02", ..., "host09", "host10"]. 
-  
+  Non-integer strings are accepted; `range("a", "c")` returns ["a","b","c"], and `range("host01", "host10")` returns ["host01", "host02", ..., "host09", "host10"].
+
   *Type*: rvalue
 
 * `reject`: This function searches through an array and rejects all elements that match the provided regular expression. For example, `reject(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['bbb','ccc']. *Type*: rvalue
@@ -403,7 +403,7 @@ manifests as a valid password attribute. *Type*: rvalue
 * `strftime`: This function returns formatted time. For example,  `strftime("%s")` returns the time since epoch, and `strftime("%Y=%m-%d")` returns the date. *Type*: rvalue
 
   *Format:*
-  
+
     * `%a`: The abbreviated weekday name ('Sun')
     * `%A`: The  full  weekday  name ('Sunday')
     * `%b`: The abbreviated month name ('Jan')
@@ -501,9 +501,9 @@ You can also use this with arrays. For example, `unique(["a","a","b","b","c","c"
     validate_absolute_path($undefined)
     ```
 
-    *Type*: statement 
+    *Type*: statement
 
-* `validate_array`: Validate that all passed values are array data structures. Abort catalog compilation if any value fails this check. 
+* `validate_array`: Validate that all passed values are array data structures. Abort catalog compilation if any value fails this check.
 
   The following values will pass:
 
@@ -533,13 +533,13 @@ The first argument of this function should be the string to test, and the second
   ```
   validate_augeas($passwdcontent, 'Passwd.lns', ['$file/foo'])
   ```
-  
+
   To ensure that no users use the '/bin/barsh' shell:
 
   ```
   validate_augeas($passwdcontent, 'Passwd.lns', ['$file/*[shell="/bin/barsh"]']
   ```
-  
+
   You can pass a fourth argument as the error message raised and shown to the user:
 
   ```
@@ -551,13 +551,13 @@ The first argument of this function should be the string to test, and the second
 * `validate_bool`: Validate that all passed values are either true or false. Abort catalog compilation if any value fails this check.
 
   The following values will pass:
-  
+
   ```
   $iamtrue = true
   validate_bool(true)
   validate_bool(true, true, false, $iamtrue)
   ```
-  
+
   The following values will fail, causing compilation to abort:
 
   ```
@@ -576,7 +576,7 @@ The first argument of this function should be the string to test, and the second
   ```
   validate_cmd($sudoerscontent, '/usr/sbin/visudo -c -f', 'Visudo failed to validate sudoers content')
   ```
-  
+
   *Type*: statement
 
 * `validate_hash`: Validates that all passed values are hash data structures. Abort catalog compilation if any value fails this check.
@@ -596,7 +596,7 @@ The first argument of this function should be the string to test, and the second
   $undefined = undef
   validate_hash($undefined)
   ```
-  
+
   *Type*: statement
 
 * `validate_re`: Performs simple validation of a string against one or more regular expressions. The first argument of this function should be the string to
@@ -619,8 +619,8 @@ of the regular expressions match the string passed in, compilation aborts with a
   validate_re('one', [ '^two', '^three' ])
   ```
 
-  To set the error message: 
-  
+  To set the error message:
+
   ```
   validate_re($::puppetversion, '^2.7', 'The $puppetversion fact value does not match 2.7')
   ```
@@ -630,19 +630,19 @@ of the regular expressions match the string passed in, compilation aborts with a
 * `validate_slength`: Validates that the first argument is a string (or an array of strings), and is less than or equal to the length of the second argument. It fails if the first argument is not a string or array of strings, or if arg 2 is not convertable to a number.
 
   The following values pass:
-  
+
   ```
   validate_slength("discombobulate",17)
   validate_slength(["discombobulate","moo"],17)
   ```
-  
+
   The following values fail:
 
   ```
   validate_slength("discombobulate",1)
   validate_slength(["discombobulate","thermometer"],5)
   ```
-  
+
   *Type*: statement
 
 * `validate_string`: Validates that all passed values are string data structures. Aborts catalog compilation if any value fails this check.
@@ -700,7 +700,7 @@ As of Puppet Enterprise version 3.7, the stdlib module is no longer included in 
 
 ###Version Compatibility
 
-Versions | Puppet 2.6 | Puppet 2.7 | Puppet 3.x | Puppet 4.x | 
+Versions | Puppet 2.6 | Puppet 2.7 | Puppet 3.x | Puppet 4.x |
 :---------------|:-----:|:---:|:---:|:----:
 **stdlib 2.x**  | **yes** | **yes** | no | no
 **stdlib 3.x**  | no    | **yes**  | **yes** | no
