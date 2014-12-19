@@ -17,6 +17,9 @@ string, or key from a hash.
     delete({'a'=>1,'b'=>2,'c'=>3}, 'b')
     Would return: {'a'=>1,'c'=>3}
 
+    delete({'a'=>1,'b'=>2,'c'=>3}, ['b','c'])
+    Would return: {'a'=>1}
+
     delete('abracadabra', 'bra')
     Would return: 'acada'
   EOS
