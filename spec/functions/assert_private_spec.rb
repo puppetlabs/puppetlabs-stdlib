@@ -1,11 +1,11 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 
-describe Puppet::Parser::Functions.function(:private) do
+describe Puppet::Parser::Functions.function(:assert_private) do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   subject do
-    function_name = Puppet::Parser::Functions.function(:private)
+    function_name = Puppet::Parser::Functions.function(:assert_private)
     scope.method(function_name)
   end
 
