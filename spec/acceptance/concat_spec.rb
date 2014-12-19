@@ -29,7 +29,7 @@ describe 'concat function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('oper
       pp = <<-EOS
       $output = concat(['1','2','3'],['4','5','6'],['7','8','9'])
       validate_array($output)
-      if size($output) != 6 {
+      if size($output) != 9 {
         fail("${output} should have 9 elements.")
       }
       EOS
