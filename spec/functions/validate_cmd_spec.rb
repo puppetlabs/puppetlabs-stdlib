@@ -12,37 +12,74 @@ describe Puppet::Parser::Functions.function(:validate_cmd) do
     scope.method(function_name)
   end
 
-  describe "with an explicit failure message" do
-    it "prints the failure message on error" do
-      expect {
-        subject.call ['', '/bin/false', 'failure message!']
-      }.to raise_error Puppet::ParseError, /failure message!/
+  context 'with no % placeholder' do
+    describe "with an explicit failure message" do
+      it "prints the failure message on error" do
+        expect {
+          subject.call ['', '/bin/false', 'failure message!']
+        }.to raise_error Puppet::ParseError, /failure message!/
+      end
+    end
+
+    describe "on validation failure" do
+      it "includes the command error output" do
+        expect {
+          subject.call ['', "#{TOUCHEXE} /cant/touch/this"]
+        }.to raise_error Puppet::ParseError, /(cannot touch|o such file or)/
+      end
+
+      it "includes the command return value" do
+        expect {
+          subject.call ['', '/cant/run/this']
+        }.to raise_error Puppet::ParseError, /returned 1\b/
+      end
+    end
+
+    describe "when performing actual validation" do
+      it "can positively validate file content" do
+        expect { subject.call ["non-empty", "#{TESTEXE} -s"] }.to_not raise_error
+      end
+
+      it "can negatively validate file content" do
+        expect {
+          subject.call ["", "#{TESTEXE} -s"]
+        }.to raise_error Puppet::ParseError, /failed to validate.*test -s/
+      end
     end
   end
 
-  describe "on validation failure" do
-    it "includes the command error output" do
-      expect {
-        subject.call ['', "#{TOUCHEXE} /cant/touch/this"]
-      }.to raise_error Puppet::ParseError, /(cannot touch|o such file or)/
+  context 'with % placeholder' do
+    describe "with an explicit failure message" do
+      it "prints the failure message on error" do
+        expect {
+          subject.call ['', '/bin/false % -f', 'failure message!']
+        }.to raise_error Puppet::ParseError, /failure message!/
+      end
+    end
+    describe "on validation failure" do
+      it "includes the command error output" do
+        expect {
+          subject.call ['', "#{TOUCHEXE} /cant/touch/this"]
+        }.to raise_error Puppet::ParseError, /(cannot touch|o such file or)/
+      end
+
+      it "includes the command return value" do
+        expect {
+          subject.call ['', '/cant/run/this % -z']
+        }.to raise_error Puppet::ParseError, /Execution of '\/cant\/run\/this .+ -z' returned 1/
+      end
     end
 
-    it "includes the command return value" do
-      expect {
-        subject.call ['', '/cant/run/this']
-      }.to raise_error Puppet::ParseError, /returned 1\b/
-    end
-  end
+    describe "when performing actual validation" do
+      it "can positively validate file content" do
+        expect { subject.call ["non-empty", "#{TESTEXE} -s %"] }.to_not raise_error
+      end
 
-  describe "when performing actual validation" do
-    it "can positively validate file content" do
-      expect { subject.call ["non-empty", "#{TESTEXE} -s"] }.to_not raise_error
-    end
-
-    it "can negatively validate file content" do
-      expect {
-        subject.call ["", "#{TESTEXE} -s"]
-      }.to raise_error Puppet::ParseError, /failed to validate.*test -s/
+      it "can negatively validate file content" do
+        expect {
+          subject.call ["", "#{TESTEXE} -s %"]
+        }.to raise_error Puppet::ParseError, /failed to validate.*test -s/
+      end
     end
   end
 end
