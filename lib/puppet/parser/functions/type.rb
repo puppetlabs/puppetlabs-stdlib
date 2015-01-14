@@ -4,46 +4,15 @@
 
 module Puppet::Parser::Functions
   newfunction(:type, :type => :rvalue, :doc => <<-EOS
-Returns the type when passed a variable. Type can be one of:
-
-* string
-* array
-* hash
-* float
-* integer
-* boolean
+  DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.
     EOS
-  ) do |arguments|
+  ) do |args|
 
-    raise(Puppet::ParseError, "type(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
-
-    value = arguments[0]
-
-    klass = value.class
-
-    if not [TrueClass, FalseClass, Array, Bignum, Fixnum, Float, Hash, String].include?(klass)
-      raise(Puppet::ParseError, 'type(): Unknown type')
+    warning("type() DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.")
+    if ! Puppet::Parser::Functions.autoloader.loaded?(:type3x)
+      Puppet::Parser::Functions.autoloader.load(:type3x)
     end
-
-    klass = klass.to_s # Ugly ...
-
-    # We note that Integer is the parent to Bignum and Fixnum ...
-    result = case klass
-      when /^(?:Big|Fix)num$/ then 'integer'
-      when /^(?:True|False)Class$/ then 'boolean'
-      else klass
-    end
-
-    if result == "String" then
-      if value == value.to_i.to_s then
-        result = "Integer"
-      elsif value == value.to_f.to_s then
-        result = "Float"
-      end
-    end
-
-    return result.downcase
+    function_type3x(args + [false])
   end
 end
 
