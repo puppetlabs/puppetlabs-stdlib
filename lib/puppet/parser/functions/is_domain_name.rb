@@ -33,6 +33,10 @@ Returns true if the string passed to this function is a syntactically correct do
     return false if domain.empty?
     return false if domain.length > domain_max_length
 
+    # The top level domain must be alphabetic if there are multiple labels.
+    # See rfc1123, 2.1
+    return false if domain.include? '.' and not /\.[A-Za-z]+$/.match(domain)
+
     # Check each label in the domain
     labels = domain.split('.')
     vlabels = labels.each do |label|
