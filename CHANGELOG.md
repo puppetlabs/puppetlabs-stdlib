@@ -13,6 +13,13 @@ Improved functionality and preparing for Puppet Next with new parser
 - Several test case fixes
 - Ensure_resource is more verbose on debug mode
 
+##2015-01-14 - Supported Release 4.5.1
+###Summary
+
+This release changes the temporary facter_dot_d cache locations outside of the /tmp directory due to a possible security vunerability. CVE-2015-1029
+
+####Bugfixes
+- Facter_dot_d cache will now be stored in puppet libdir instead of tmp
 
 ##2014-12-15 - Supported Release 4.5.0
 ###Summary
