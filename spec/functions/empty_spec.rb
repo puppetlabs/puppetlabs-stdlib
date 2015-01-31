@@ -20,4 +20,13 @@ describe "the empty function" do
     result = scope.function_empty(['asdf'])
     expect(result).to(eq(false))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new()
+    result = scope.function_empty([value])
+    result.should(eq(true))
+  end
 end

@@ -15,4 +15,13 @@ describe "the strip function" do
     result = scope.function_strip([" ab cd "])
     expect(result).to(eq('ab cd'))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new(' as df ')
+    result = scope.function_strip([value])
+    result.should(eq('as df'))
+  end
 end

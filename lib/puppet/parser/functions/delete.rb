@@ -17,27 +17,30 @@ string, or key from a hash.
     delete({'a'=>1,'b'=>2,'c'=>3}, 'b')
     Would return: {'a'=>1,'c'=>3}
 
+    delete({'a'=>1,'b'=>2,'c'=>3}, ['b','c'])
+    Would return: {'a'=>1}
+
     delete('abracadabra', 'bra')
     Would return: 'acada'
-    EOS
+  EOS
   ) do |arguments|
 
     if (arguments.size != 2) then
       raise(Puppet::ParseError, "delete(): Wrong number of arguments "+
-        "given #{arguments.size} for 2.")
+                                  "given #{arguments.size} for 2.")
     end
 
     collection = arguments[0].dup
-    item = arguments[1]
-
-    case collection
-    when Array, Hash
-      collection.delete item
-    when String
-      collection.gsub! item, ''
-    else
-      raise(TypeError, "delete(): First argument must be an Array, " +
-            "String, or Hash. Given an argument of class #{collection.class}.")
+    Array(arguments[1]).each do |item|
+      case collection
+        when Array, Hash
+          collection.delete item
+        when String
+          collection.gsub! item, ''
+        else
+          raise(TypeError, "delete(): First argument must be an Array, " +
+                             "String, or Hash. Given an argument of class #{collection.class}.")
+      end
     end
     collection
   end

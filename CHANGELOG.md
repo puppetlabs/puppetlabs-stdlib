@@ -1,3 +1,66 @@
+##2015-01-14 - Supported Release 4.6.0
+###Summary
+
+Improved functionality and preparing for Puppet Next with new parser
+
+####Features
+- MODULES-444: concat can now take more than two arrays
+- basename function added to have Ruby File.basename functionality
+- delete function can now take an array of items to remove
+- MODULES-1473: deprecate type function in favor of type_of
+
+####Bugfixes
+- Several test case fixes
+- Ensure_resource is more verbose on debug mode
+
+##2015-01-14 - Supported Release 4.5.1
+###Summary
+
+This release changes the temporary facter_dot_d cache locations outside of the /tmp directory due to a possible security vunerability. CVE-2015-1029
+
+####Bugfixes
+- Facter_dot_d cache will now be stored in puppet libdir instead of tmp
+
+##2014-12-15 - Supported Release 4.5.0
+###Summary
+
+This release improves functionality of the member function and adds improved future parser support.
+
+####Features
+- MODULES-1329: Update member() to allow the variable to be an array.
+- Sync .travis.yml, Gemfile, Rakefile, and CONTRIBUTING.md via modulesync
+
+####Bugfixes
+- Fix range() to work with numeric ranges with the future parser
+- Accurately express SLES support in metadata.json (was missing 10SP4 and 12)
+- Don't require `line` to match the `match` parameter
+
+##2014-11-10 - Supported Release 4.4.0
+###Summary
+This release has an overhauled readme, new private manifest function, and fixes many future parser bugs.
+
+####Features
+- All new shiny README
+- New `private()` function for making private manifests (yay!)
+
+####Bugfixes
+- Code reuse in `bool2num()` and `zip()`
+- Fix many functions to handle `generate()` no longer returning a string on new puppets
+- `concat()` no longer modifies the first argument (whoops)
+- strict variable support for `getvar()`, `member()`, `values_at`, and `has_interface_with()`
+- `to_bytes()` handles PB and EB now
+- Fix `tempfile` ruby requirement for `validate_augeas()` and `validate_cmd()`
+- Fix `validate_cmd()` for windows
+- Correct `validate_string()` docs to reflect non-handling of `undef`
+- Fix `file_line` matching on older rubies
+
+
+##2014-07-15 - Supported Release 4.3.2
+###Summary
+
+This release merely updates metadata.json so the module can be uninstalled and
+upgraded via the puppet module command.
+
 ##2014-07-14 - Supported Release 4.3.1
 ### Summary
 This supported release updates the metadata.json to work around upgrade behavior of the PMT.

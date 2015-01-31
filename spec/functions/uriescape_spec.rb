@@ -21,4 +21,13 @@ describe "the uriescape function" do
     result = scope.function_uriescape(["ABCdef"])
     expect(result).to(eq('ABCdef'))
   end
+
+  it "should accept objects which extend String" do
+    class AlsoString < String
+    end
+
+    value = AlsoString.new('abc')
+    result = scope.function_uriescape([value])
+    result.should(eq('abc'))
+  end
 end
