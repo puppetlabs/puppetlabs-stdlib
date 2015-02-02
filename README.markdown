@@ -124,6 +124,9 @@ string. *Type*: rvalue
 * `capitalize`: Capitalizes the first letter of a string or array of strings.
 Requires either a single string or an array as an input. *Type*: rvalue
 
+* `ceiling`: Returns the smallest integer greater than or equal to the argument.
+Takes a single numeric value as an argument. *Type*: rvalue
+
 * `chomp`: Removes the record separator from the end of a string or an array of
 strings; for example, 'hello\n' becomes 'hello'. Requires a single string or array as an input. *Type*: rvalue
 
