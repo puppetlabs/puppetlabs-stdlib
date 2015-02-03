@@ -500,6 +500,24 @@ Calling the class or definition from outside the current module will fail. For e
 
   *Type*: statement
 
+#### `pw_hash`
+
+Hashes a password using the crypt function. Provides a hash usable on most POSIX systems.
+
+The first argument to this function is the password to hash. If it is undef or an empty string, this function returns undef.
+
+The second argument to this function is which type of hash to use. It will be converted into the appropriate crypt(3) hash specifier. Valid hash types are:
+
+|Hash type            |Specifier|
+|---------------------|---------|
+|MD5                  |1        |
+|SHA-256              |5        |
+|SHA-512 (recommended)|6        |
+
+The third argument to this function is the salt to use.
+
+Note: this uses the Puppet Master's implementation of crypt(3). If your environment contains several different operating systems, ensure that they are compatible before using this function.
+
 #### `range`
 
 When given range in the form of '(start, stop)', `range` extrapolates a range as an array. For example, `range("0", "9")` returns [0,1,2,3,4,5,6,7,8,9]. Zero-padded strings are converted to integers automatically, so `range("00", "09")` returns [0,1,2,3,4,5,6,7,8,9].
