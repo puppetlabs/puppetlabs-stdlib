@@ -162,6 +162,10 @@ string, or key from a hash. For example, `delete(['a','b','c','b'], 'b')` return
 The returned array is a copy of the original array, removing any items that
 also appear in the second array. For example, `difference(["a","b","c"],["b","c","d"])` returns ["a"].
 
+* `dir_exists`: Returns 'true' if the path passed to this function exists. *Type*: rvalue
+
+* `dir_exists_array`: Returns an array of existing paths. For example, `dir_exists_array(['/etc', '/no_dir'])` returns ['/etc'].
+
 * `dirname`: Returns the `dirname` of a path. For example, `dirname('/path/to/a/file.ext')` returns '/path/to/a'.
 
 * `downcase`: Converts the case of a string or of all strings in an array to lowercase. *Type*: rvalue
@@ -189,6 +193,10 @@ also appear in the second array. For example, `difference(["a","b","c"],["b","c"
   `ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})`
 
   *Type*: statement
+
+* `file_exists`: Returns 'true' if the path passed to this function exists. *Type*: rvalue
+
+* `file_exists_array`: Returns an array of existing paths. For example, `file_exists_array(['/etc/passwd', '/no_file'])` returns ['/etc/passwd'].
 
 * `flatten`: This function flattens any deeply nested arrays and returns a single flat array as a result. For example, `flatten(['a', ['b', ['c']]])` returns ['a','b','c']. *Type*: rvalue
 
