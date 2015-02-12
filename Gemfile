@@ -25,8 +25,14 @@ group :system_tests do
   gem 'serverspec',              :require => false
 end
 
-ENV['GEM_PUPPET_VERSION'] ||= ENV['PUPPET_GEM_VERSION']
-puppetversion = ENV['GEM_PUPPET_VERSION']
+facterversion = ENV['GEM_FACTER_VERSION'] || ENV['FACTER_GEM_VERSION']
+if facterversion
+  gem 'facter', *location_for(facterversion)
+else
+  gem 'facter', :require => false
+end
+
+puppetversion = ENV['GEM_PUPPET_VERSION'] || ENV['PUPPET_GEM_VERSION']
 if puppetversion
   gem 'puppet', *location_for(puppetversion)
 else
