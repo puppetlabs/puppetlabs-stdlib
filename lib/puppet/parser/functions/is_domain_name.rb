@@ -13,7 +13,7 @@ Returns true if the string passed to this function is a syntactically correct do
         "given #{arguments.size} for 1")
     end
 
-    domain = arguments[0]
+    domain = arguments[0].dup
 
     # Limits (rfc1035, 3.1)
     domain_max_length=255
