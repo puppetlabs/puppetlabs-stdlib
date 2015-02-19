@@ -158,7 +158,206 @@ string, or key from a hash. For example, `delete(['a','b','c','b'], 'b')` return
 
 * `difference`: Returns the difference between two arrays.
 The returned array is a copy of the original array, removing any items that
+<<<<<<< HEAD
 also appear in the second array. For example, `difference(["a","b","c"],["b","c","d"])` returns ["a"].
+=======
+also appear in the second array.
+
+*Examples:*
+
+    difference(["a","b","c"],["b","c","d"])
+
+Would return: ["a"]
+
+dirname
+-------
+Returns the `dirname` of a path.
+
+*Examples:*
+
+    dirname('/path/to/a/file.ext')
+
+Would return: '/path/to/a'
+
+downcase
+--------
+Converts the case of a string or all strings in an array to lower case.
+
+
+- *Type*: rvalue
+
+empty
+-----
+Returns true if the variable is empty.
+
+
+- *Type*: rvalue
+
+ensure_packages
+---------------
+Takes a list of packages and only installs them if they don't already exist.
+
+
+- *Type*: statement
+
+ensure_resource
+---------------
+Takes a resource type, title, and a list of attributes that describe a
+resource.
+
+    user { 'dan':
+      ensure => present,
+    }
+
+This example only creates the resource if it does not already exist:
+
+    ensure_resource('user', 'dan', {'ensure' => 'present' })
+
+If the resource already exists but does not match the specified parameters,
+this function will attempt to recreate the resource leading to a duplicate
+resource definition error.
+
+An array of resources can also be passed in and each will be created with
+the type and parameters specified if it doesn't already exist.
+
+    ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
+
+
+
+- *Type*: statement
+
+flatten
+-------
+This function flattens any deeply nested arrays and returns a single flat array
+as a result.
+
+*Examples:*
+
+    flatten(['a', ['b', ['c']]])
+
+Would return: ['a','b','c']
+
+
+- *Type*: rvalue
+
+floor
+-----
+Returns the largest integer less or equal to the argument.
+Takes a single numeric value as an argument.
+
+
+- *Type*: rvalue
+
+fqdn_rotate
+-----------
+Rotates an array a random number of times based on a nodes fqdn.
+
+
+- *Type*: rvalue
+
+get_module_path
+---------------
+Returns the absolute path of the specified module for the current
+environment.
+
+Example:
+  $module_path = get_module_path('stdlib')
+
+
+- *Type*: rvalue
+
+getparam
+--------
+Takes a resource reference and name of the parameter and
+returns value of resource's parameter.
+
+*Examples:*
+
+    define example_resource($param) {
+    }
+
+    example_resource { "example_resource_instance":
+        param => "param_value"
+    }
+
+    getparam(Example_resource["example_resource_instance"], "param")
+
+Would return: param_value
+
+
+- *Type*: rvalue
+
+getvar
+------
+Lookup a variable in a remote namespace.
+
+For example:
+
+    $foo = getvar('site::data::foo')
+    # Equivalent to $foo = $site::data::foo
+
+This is useful if the namespace itself is stored in a string:
+
+    $datalocation = 'site::data'
+    $bar = getvar("${datalocation}::bar")
+    # Equivalent to $bar = $site::data::bar
+
+
+- *Type*: rvalue
+
+grep
+----
+This function searches through an array and returns any elements that match
+the provided regular expression.
+
+*Examples:*
+
+    grep(['aaa','bbb','ccc','aaaddd'], 'aaa')
+
+Would return:
+
+    ['aaa','aaaddd']
+
+
+- *Type*: rvalue
+
+gsub
+----
+This function will gsub (global substituation) a given string.
+
+It takes 3 arguments: the string to change, the regex to capture and
+the string to replace the regex with.
+
+*Examples:*
+
+    gsub("Foo123",'[0-9]+',"ZZZ")
+
+Would return:
+
+    'FooZZZ'
+
+- *Type*: rvalue
+
+has_interface_with
+------------------
+Returns boolean based on kind and value:
+* macaddress
+* netmask
+* ipaddress
+* network
+
+*Examples:*
+
+    has_interface_with("macaddress", "x:x:x:x:x:x")
+    has_interface_with("ipaddress", "127.0.0.1")    => true
+
+etc.
+
+If no "kind" is given, then the presence of the interface is checked:
+
+    has_interface_with("lo")                        => true
+
+- *Type*: rvalue
 
 * `dirname`: Returns the `dirname` of a path. For example, `dirname('/path/to/a/file.ext')` returns '/path/to/a'.
 
