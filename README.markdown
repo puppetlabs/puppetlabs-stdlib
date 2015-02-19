@@ -1,7 +1,5 @@
 #stdlib
 
-[![Build Status](https://travis-ci.org/puppetlabs/puppetlabs-stdlib.png?branch=master)](https://travis-ci.org/puppetlabs/puppetlabs-stdlib)
-
 ####Table of Contents
 
 1. [Overview](#overview)
