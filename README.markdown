@@ -692,6 +692,34 @@ of the regular expressions match the string passed in, compilation aborts with a
 
   *Type*: rvalue
 
+* `value_at`: Returns value for a key in a hash. Also accepts a default value for when the key is not found in the hash.
+
+  *Examples:*
+
+  ```
+  $hash = {
+    'a' => 1,
+    'b' => 2,
+    'c' => 3,
+  }
+  value_at($hash, 'c')
+  ```
+
+  The exmaple above returns 3.
+
+  ```
+  $hash = {
+    'a' => 1,
+    'b' => 2,
+    'c' => 3,
+  }
+  value_at($hash, 'z', 26)
+  ```
+
+  The exmaple above returns the given default, 26.
+
+  *Type*: rvalue
+
 * `values_at`: Finds value inside an array based on location. The first argument is the array you want to analyze, and the second element can be a combination of:
 
   * A single numeric index
