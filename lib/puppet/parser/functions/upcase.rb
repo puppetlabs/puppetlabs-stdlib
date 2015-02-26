@@ -31,8 +31,8 @@ Will return:
       result = value.collect { |i| i.is_a?(String) ? i.upcase : i }
     elsif value.is_a?(Hash)
       result = {}
-      result << value.each_pair do |k, v|
-        return {k.upcase => v.collect! { |p| p.upcase }}
+      value.each_pair do |k, v|
+        result.merge!({k.upcase => v.collect! { |p| p.upcase }})
       end
     else
       result = value.upcase
