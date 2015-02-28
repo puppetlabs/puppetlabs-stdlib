@@ -36,4 +36,23 @@ describe "the upcase function" do
         scope.function_upcase([{'test' => %w(this that and other thing)}])
     ).to eq({'TEST' => %w(THIS THAT AND OTHER THING)})
   end
+
+  if :test.respond_to?(:upcase)
+    it 'should accept hashes of symbols' do
+      expect(
+          scope.function_upcase([{:test => [:this, :that, :other]}])
+      ).to eq({:TEST => [:THIS, :THAT, :OTHER]})
+    end
+    it 'should return upcase symbol' do
+      expect(
+          scope.function_upcase([:test])
+      ).to eq(:TEST)
+    end
+    it 'should return mixed objects in upcease' do
+      expect(
+          scope.function_upcase([[:test, 'woot']])
+      ).to eq([:TEST, 'WOOT'])
+
+    end
+  end
 end

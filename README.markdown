@@ -475,7 +475,7 @@ Takes a single string value as an argument. *Type*: rvalue
 
 You can also use this with arrays. For example, `unique(["a","a","b","b","c","c"])` returns ["a","b","c"]. *Type*: rvalue
 
-* `upcase`: Converts a string or an array of strings to uppercase. For example, `upcase("abcd")` returns 'ABCD'. *Type*: rvalue
+* `upcase`: Converts an object, array or hash of objects that respond to upcase to uppercase. For example, `upcase("abcd")` returns 'ABCD'.  *Type*: rvalue
 
 * `uriescape`: Urlencodes a string or array of strings. Requires either a single string or an array as an input. *Type*: rvalue
 
