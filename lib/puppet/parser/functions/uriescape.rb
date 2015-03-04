@@ -22,7 +22,7 @@ module Puppet::Parser::Functions
 
     if value.is_a?(Array)
       # Numbers in Puppet are often string-encoded which is troublesome ...
-      result = value.collect { |i| i.is_a?(String) ? URI.escape(i,unsafe) : i }
+      result = value.collect { |i| i.is_a?(String) ? URI.escape(i) : i }
     else
       result = URI.escape(value)
     end
