@@ -286,6 +286,24 @@ returns the value of the resource's parameter. For example, the following code r
 
 * `hash`: This function converts an array into a hash. For example, `hash(['a',1,'b',2,'c',3])` returns {'a'=>1,'b'=>2,'c'=>3}. *Type*: rvalue
 
+* `hash2json`: Converts a hash to a sorted json string. This function supports nested hashes.  *Type*: rvalue
+
+  *Example*:
+
+  ```
+  $myhash = {
+    b_key => 'val1',
+    a_key => 'val2'
+  }
+
+  notice( hash2json($myhash) )
+  # The resulting json output will be
+  # {
+  #   "a_key": "val2",
+  #   "b_key": "val1"
+  # }
+  ```
+
 * `intersection`: This function returns an array an intersection of two. For example, `intersection(["a","b","c"],["b","c","d"])` returns ["b","c"].
 
 * `is_array`: Returns 'true' if the variable passed to this function is an array. *Type*: rvalue
@@ -736,7 +754,3 @@ To report or research a bug with any part of this module, please go to
 ##Contributors
 
 The list of contributors can be found at: https://github.com/puppetlabs/puppetlabs-stdlib/graphs/contributors
-
-
-
-
