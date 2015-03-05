@@ -363,8 +363,8 @@ returns the value of the resource's parameter. For example, the following code r
 * `prefix`: This function applies a prefix to all elements in an array or to the keys in a hash. For example, `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc'], and `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}. *Type*: rvalue
 
 
-* `private`: This function sets the current class or definition as private.
-Calling the class or definition from outside the current module will fail. For example, `private()` called in class `foo::bar` outputs the following message if class is called from outside module `foo`:
+* `assert_private`: This function sets the current class or definition as private.
+Calling the class or definition from outside the current module will fail. For example, `assert_private()` called in class `foo::bar` outputs the following message if class is called from outside module `foo`:
 
   ```
   Class foo::bar is private
@@ -373,7 +373,7 @@ Calling the class or definition from outside the current module will fail. For e
   You can specify the error message you want to use:
 
   ```
-  private("You're not supposed to do that!")
+  assert_private("You're not supposed to do that!")
   ```
 
   *Type*: statement
