@@ -20,7 +20,11 @@ group :development, :unit_tests do
   gem 'simplecov',               :require => false
 end
 
+beaker_version = ENV['BEAKER_VERSION']
 group :system_tests do
+  if beaker_version
+   gem 'beaker', *location_for(beaker_version)
+  end
   gem 'beaker-rspec',            :require => false
   gem 'serverspec',              :require => false
 end
