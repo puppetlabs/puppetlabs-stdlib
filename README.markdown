@@ -613,6 +613,76 @@ If a third argument is specified, this will be the error message raised and seen
 
   *Type*: statement
 
+* `validate_integer`: Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
+    
+  The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
+
+  The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+  If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+  if (all elements of) the first argument are greater or equal to the given minimum.
+
+  It will fail if the first argument is not an integer or array of integers, and if arg 2 and arg 3 are not convertable to an integer.
+
+  The following values will pass:
+
+  ```
+  validate_integer(1)
+  validate_integer(1, 2)
+  validate_integer(1, 1)
+  validate_integer(1, 2, 0)
+  validate_integer(2, 2, 2)
+  validate_integer(2, '', 0)
+  validate_integer(2, undef, 0)
+  $foo = undef
+  validate_integer(2, $foo, 0)
+  validate_integer([1,2,3,4,5], 6)
+  validate_integer([1,2,3,4,5], 6, 0)
+  ```
+
+  * Plus all of the above, but any combination of values passed as strings ('1' or "1").
+  * Plus all of the above, but with (correct) combinations of negative integer values.
+
+  The following values will fail, causing compilation to abort:
+
+  ```
+  validate_integer(true)
+  validate_integer(false)
+  validate_integer(7.0)
+  validate_integer({ 1 => 2 })
+  $foo = undef
+  validate_integer($foo)
+  validate_integer($foobaridontexist)
+
+  validate_integer(1, 0)
+  validate_integer(1, true)
+  validate_integer(1, '')
+  validate_integer(1, undef)
+  validate_integer(1, , 0)
+  validate_integer(1, 2, 3)
+  validate_integer(1, 3, 2)
+  validate_integer(1, 3, true)
+  ```
+
+  * Plus all of the above, but any combination of values passed as strings ('false' or "false").
+  * Plus all of the above, but with incorrect combinations of negative integer values.
+  * Plus all of the above, but with non-integer crap in arrays or maximum / minimum argument.
+
+  *Type*: statement
+
+* `validate_numeric`: Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
+
+  The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
+
+  The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+  If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+  if (all elements of) the first argument are greater or equal to the given minimum.
+
+  It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
+
+  For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
+
+  *Type*: statement
+
 * `validate_re`: Performs simple validation of a string against one or more regular expressions. The first argument of this function should be the string to
 test, and the second argument should be a stringified regular expression
 (without the // delimiters) or an array of regular expressions. If none
