@@ -28,12 +28,18 @@ module Puppet::Parser::Functions
       raise Puppet::ParseError, ("validate_re(): wrong number of arguments (#{args.length}; must be 2 or 3)")
     end
 
-    msg = args[2] || "validate_re(): #{args[0].inspect} does not match #{args[1].inspect}"
+    input = args[0]
+    msg = args[2] || "validate_re(): #{input.inspect} does not match #{args[1].inspect}"
 
     # We're using a flattened array here because we can't call String#any? in
     # Ruby 1.9 like we can in Ruby 1.8
     raise Puppet::ParseError, (msg) unless [args[1]].flatten.any? do |re_str|
-      args[0] =~ Regexp.compile(re_str)
+      begin
+        s = input.to_s
+      rescue TypeError
+        s = input
+      end
+      s =~ Regexp.compile(re_str)
     end
 
   end

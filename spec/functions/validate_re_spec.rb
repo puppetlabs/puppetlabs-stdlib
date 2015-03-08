@@ -59,6 +59,24 @@ describe Puppet::Parser::Functions.function(:validate_re) do
         end
       end
     end
+    describe 'Convert input to String' do
+      inputs = [ 
+        [ 1, '^\d+$' ],                   # Fixnum
+        [ 3.14, '^\d+\.\d+$' ],           # Float
+        [ nil, '^$' ],                    # NilClass
+        [ true, '^true$' ],               # TrueClass
+        [ false, '^false$' ],             # FalseClass
+        [ ["10"], '\["\d+"\]'],           # Array
+        [ :key, '^key$' ],                # Symbol
+        [ {:key=>"val"}, ':\w+=>"\w+"' ], # Hash
+      ]
+
+      inputs.each do |input|
+        it "validate_re(#{input.inspect}) should work" do
+          expect { subject.call input }.not_to raise_error
+        end
+      end
+    end
     describe "Nicer Error Messages" do
       # The intent here is to make sure the function returns the 3rd argument
       # in the exception thrown
