@@ -134,6 +134,10 @@ strings; for example, 'hello\n' becomes 'hello'. Requires a single string or arr
   * `concat(['1','2','3'],'4')` results in: ['1','2','3','4'].
   * `concat(['1','2','3'],'4',['5','6','7'])` results in: ['1','2','3','4','5','6','7'].
 
+* `convert_base`: Converts a given integer or string representing an integer to a specified base, as a string. For example:
+  * `convert_base(5, 2)` results in: '101'
+  * `convert_base('254', '16')` results in: 'fe'
+
 * `count`: Takes an array as first argument and an optional second argument. Count the number of elements in array that matches second argument. If called with only an array, it counts the number of elements that are **not** nil/undef. *Type*: rvalue
 
 * `defined_with_params`: Takes a resource reference and an optional hash of attributes. Returns 'true' if a resource with the specified attributes has already been added to the catalog. Returns 'false' otherwise.
