@@ -60,7 +60,7 @@ describe Puppet::Parser::Functions.function(:validate_augeas), :if => Puppet.fea
     end
 
     describe "Nicer Error Messages" do
-      # The intent here is to make sure the function returns the 3rd argument
+      # The intent here is to make sure the function returns the 4th argument
       # in the exception thrown
       inputs = [
         [ "root:x:0:0:root\n", 'Passwd.lns', [], 'Failed to validate passwd content' ],
@@ -69,7 +69,7 @@ describe Puppet::Parser::Functions.function(:validate_augeas), :if => Puppet.fea
 
       inputs.each do |input|
         it "validate_augeas(#{input.inspect}) should fail" do
-          expect { subject.call input }.to raise_error /#{input[2]}/
+          expect { subject.call input }.to raise_error /#{input[3]}/
         end
       end
     end
