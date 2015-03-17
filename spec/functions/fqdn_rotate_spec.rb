@@ -40,4 +40,21 @@ describe "the fqdn_rotate function" do
     result = scope.function_fqdn_rotate([value])
     result.size.should(eq(4))
   end
+
+  it "should use the Puppet::Util.deterministic_rand function if available" do
+    scope.expects(:lookupvar).with("::fqdn").returns("127.0.0.1")
+    if Puppet::Util.respond_to?(:deterministic_rand)
+      Puppet::Util.expects(:deterministic_rand).with(113646079810780526294648115052177588845,4)
+    end
+    scope.function_fqdn_rotate(["asdf"])
+  end
+
+  it "should not leave the global seed in a deterministic state" do
+    scope.expects(:lookupvar).with("::fqdn").returns("127.0.0.1").twice
+    scope.function_fqdn_rotate(["asdf"])
+    rand1 = rand()
+    scope.function_fqdn_rotate(["asdf"])
+    rand2 = rand()
+    expect(rand1).not_to eql(rand2)
+  end
 end

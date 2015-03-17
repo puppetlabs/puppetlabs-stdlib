@@ -1,7 +1,5 @@
 #stdlib
 
-[![Build Status](https://travis-ci.org/puppetlabs/puppetlabs-stdlib.png?branch=master)](https://travis-ci.org/puppetlabs/puppetlabs-stdlib)
-
 ####Table of Contents
 
 1. [Overview](#overview)
@@ -123,6 +121,9 @@ string. *Type*: rvalue
 
 * `capitalize`: Capitalizes the first letter of a string or array of strings.
 Requires either a single string or an array as an input. *Type*: rvalue
+
+* `ceiling`: Returns the smallest integer greater than or equal to the argument.
+Takes a single numeric value as an argument. *Type*: rvalue
 
 * `chomp`: Removes the record separator from the end of a string or an array of
 strings; for example, 'hello\n' becomes 'hello'. Requires a single string or array as an input. *Type*: rvalue
@@ -363,11 +364,11 @@ returns the value of the resource's parameter. For example, the following code r
 
  *Type*: rvalue
 
-* `prefix`: This function applies a prefix to all elements in an array. For example, `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc']. *Type*: rvalue
+* `prefix`: This function applies a prefix to all elements in an array or to the keys in a hash. For example, `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc'], and `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}. *Type*: rvalue
 
 
-* `private`: This function sets the current class or definition as private.
-Calling the class or definition from outside the current module will fail. For example, `private()` called in class `foo::bar` outputs the following message if class is called from outside module `foo`:
+* `assert_private`: This function sets the current class or definition as private.
+Calling the class or definition from outside the current module will fail. For example, `assert_private()` called in class `foo::bar` outputs the following message if class is called from outside module `foo`:
 
   ```
   Class foo::bar is private
@@ -376,7 +377,7 @@ Calling the class or definition from outside the current module will fail. For e
   You can specify the error message you want to use:
 
   ```
-  private("You're not supposed to do that!")
+  assert_private("You're not supposed to do that!")
   ```
 
   *Type*: statement
@@ -384,6 +385,8 @@ Calling the class or definition from outside the current module will fail. For e
 * `range`: When given range in the form of '(start, stop)', `range` extrapolates a range as an array. For example, `range("0", "9")` returns [0,1,2,3,4,5,6,7,8,9]. Zero-padded strings are converted to integers automatically, so `range("00", "09")` returns [0,1,2,3,4,5,6,7,8,9].
 
   Non-integer strings are accepted; `range("a", "c")` returns ["a","b","c"], and `range("host01", "host10")` returns ["host01", "host02", ..., "host09", "host10"].
+
+  Passing a third argument will cause the generated range to step by that interval, e.g. `range("0", "9", "2")` returns ["0","2","4","6","8"]
 
   *Type*: rvalue
 
@@ -456,7 +459,6 @@ manifests as a valid password attribute. *Type*: rvalue
     * `%Z`: Time zone name
     * `%%`: Literal '%' character
 
-
 * `strip`: This function removes leading and trailing whitespace from a string or from every string inside an array. For example, `strip("    aaa   ")` results in "aaa". *Type*: rvalue
 
 * `suffix`: This function applies a suffix to all elements in an array. For example, `suffix(['a','b','c'], 'p')` returns ['ap','bp','cp']. *Type*: rvalue
@@ -481,7 +483,7 @@ Takes a single string value as an argument. *Type*: rvalue
 
 You can also use this with arrays. For example, `unique(["a","a","b","b","c","c"])` returns ["a","b","c"]. *Type*: rvalue
 
-* `upcase`: Converts a string or an array of strings to uppercase. For example, `upcase("abcd")` returns 'ABCD'. *Type*: rvalue
+* `upcase`: Converts an object, array or hash of objects that respond to upcase to uppercase. For example, `upcase("abcd")` returns 'ABCD'.  *Type*: rvalue
 
 * `uriescape`: Urlencodes a string or array of strings. Requires either a single string or an array as an input. *Type*: rvalue
 
@@ -612,6 +614,76 @@ If a third argument is specified, this will be the error message raised and seen
   $undefined = undef
   validate_hash($undefined)
   ```
+
+  *Type*: statement
+
+* `validate_integer`: Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
+    
+  The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
+
+  The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+  If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+  if (all elements of) the first argument are greater or equal to the given minimum.
+
+  It will fail if the first argument is not an integer or array of integers, and if arg 2 and arg 3 are not convertable to an integer.
+
+  The following values will pass:
+
+  ```
+  validate_integer(1)
+  validate_integer(1, 2)
+  validate_integer(1, 1)
+  validate_integer(1, 2, 0)
+  validate_integer(2, 2, 2)
+  validate_integer(2, '', 0)
+  validate_integer(2, undef, 0)
+  $foo = undef
+  validate_integer(2, $foo, 0)
+  validate_integer([1,2,3,4,5], 6)
+  validate_integer([1,2,3,4,5], 6, 0)
+  ```
+
+  * Plus all of the above, but any combination of values passed as strings ('1' or "1").
+  * Plus all of the above, but with (correct) combinations of negative integer values.
+
+  The following values will fail, causing compilation to abort:
+
+  ```
+  validate_integer(true)
+  validate_integer(false)
+  validate_integer(7.0)
+  validate_integer({ 1 => 2 })
+  $foo = undef
+  validate_integer($foo)
+  validate_integer($foobaridontexist)
+
+  validate_integer(1, 0)
+  validate_integer(1, true)
+  validate_integer(1, '')
+  validate_integer(1, undef)
+  validate_integer(1, , 0)
+  validate_integer(1, 2, 3)
+  validate_integer(1, 3, 2)
+  validate_integer(1, 3, true)
+  ```
+
+  * Plus all of the above, but any combination of values passed as strings ('false' or "false").
+  * Plus all of the above, but with incorrect combinations of negative integer values.
+  * Plus all of the above, but with non-integer crap in arrays or maximum / minimum argument.
+
+  *Type*: statement
+
+* `validate_numeric`: Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
+
+  The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
+
+  The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+  If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+  if (all elements of) the first argument are greater or equal to the given minimum.
+
+  It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
+
+  For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
 
   *Type*: statement
 

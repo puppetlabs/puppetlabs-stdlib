@@ -1,17 +1,12 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 
-describe Puppet::Parser::Functions.function(:private) do
+describe Puppet::Parser::Functions.function(:assert_private) do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   subject do
-    function_name = Puppet::Parser::Functions.function(:private)
+    function_name = Puppet::Parser::Functions.function(:assert_private)
     scope.method(function_name)
-  end
-
-  it 'should issue a warning' do
-    scope.expects(:warning).with("private() DEPRECATED: This function will cease to function on Puppet 4; please use assert_private() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.")
-    subject.call []
   end
 
   context "when called from inside module" do
