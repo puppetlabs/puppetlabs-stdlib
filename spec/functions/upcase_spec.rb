@@ -9,7 +9,7 @@ describe "the upcase function" do
   end
 
   it "should raise a ParseError if there is less than 1 arguments" do
-    expect { scope.function_upcase([]) }.to( raise_error(Puppet::ParseError))
+    expect { scope.function_upcase([]) }.to(raise_error(Puppet::ParseError))
   end
 
   it "should upcase a string" do
@@ -29,5 +29,30 @@ describe "the upcase function" do
     value = AlsoString.new('abc')
     result = scope.function_upcase([value])
     result.should(eq('ABC'))
+  end
+
+  it 'should accept hashes and return uppercase' do
+    expect(
+        scope.function_upcase([{'test' => %w(this that and other thing)}])
+    ).to eq({'TEST' => %w(THIS THAT AND OTHER THING)})
+  end
+
+  if :test.respond_to?(:upcase)
+    it 'should accept hashes of symbols' do
+      expect(
+          scope.function_upcase([{:test => [:this, :that, :other]}])
+      ).to eq({:TEST => [:THIS, :THAT, :OTHER]})
+    end
+    it 'should return upcase symbol' do
+      expect(
+          scope.function_upcase([:test])
+      ).to eq(:TEST)
+    end
+    it 'should return mixed objects in upcease' do
+      expect(
+          scope.function_upcase([[:test, 'woot']])
+      ).to eq([:TEST, 'WOOT'])
+
+    end
   end
 end

@@ -12,6 +12,7 @@ end
 
 group :development, :unit_tests do
   gem 'rake', '~> 10.1.0',       :require => false
+  gem 'rspec', '~> 3.1.0',       :require => false
   gem 'rspec-puppet',            :require => false
   gem 'puppetlabs_spec_helper',  :require => false
   gem 'puppet-lint',             :require => false
@@ -19,13 +20,23 @@ group :development, :unit_tests do
   gem 'simplecov',               :require => false
 end
 
+beaker_version = ENV['BEAKER_VERSION']
 group :system_tests do
+  if beaker_version
+   gem 'beaker', *location_for(beaker_version)
+  end
   gem 'beaker-rspec',            :require => false
   gem 'serverspec',              :require => false
 end
 
-ENV['GEM_PUPPET_VERSION'] ||= ENV['PUPPET_GEM_VERSION']
-puppetversion = ENV['GEM_PUPPET_VERSION']
+facterversion = ENV['GEM_FACTER_VERSION'] || ENV['FACTER_GEM_VERSION']
+if facterversion
+  gem 'facter', *location_for(facterversion)
+else
+  gem 'facter', :require => false
+end
+
+puppetversion = ENV['GEM_PUPPET_VERSION'] || ENV['PUPPET_GEM_VERSION']
 if puppetversion
   gem 'puppet', *location_for(puppetversion)
 else

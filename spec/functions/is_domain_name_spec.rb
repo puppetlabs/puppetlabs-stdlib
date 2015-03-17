@@ -61,4 +61,21 @@ describe "the is_domain_name function" do
     result = scope.function_is_domain_name(["not valid"])
     expect(result).to(be_falsey)
   end
+
+  # Values obtained from Facter values will be frozen strings
+  # in newer versions of Facter:
+  it "should not throw an exception if passed a frozen string" do
+    result = scope.function_is_domain_name(["my.domain.name".freeze])
+    expect(result).to(be_truthy)
+  end
+
+  it "should return false if top-level domain is not entirely alphabetic" do
+    result = scope.function_is_domain_name(["kiwi.2bar"])
+    expect(result).to(be_falsey)
+  end
+
+  it "should return false if domain name has the dotted-decimal form, e.g. an IPv4 address" do
+    result = scope.function_is_domain_name(["192.168.1.1"])
+    expect(result).to(be_falsey)
+  end
 end
