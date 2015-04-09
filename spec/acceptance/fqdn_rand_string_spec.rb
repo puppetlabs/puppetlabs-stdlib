@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'fqdn_rand_string function', :unless => unsupported_platforms.include?(fact('operatingsystem')) do
+describe 'fqdn_rand_string function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
   describe 'success' do
     let(:facts_d) do
       if fact('is_pe', '--puppet') == "true"
