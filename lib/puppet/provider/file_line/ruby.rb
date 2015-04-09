@@ -87,7 +87,10 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   #
   # @api private
   def append_line
-    File.open(resource[:path], 'a') do |fh|
+    File.open(resource[:path], 'w') do |fh|
+      lines.each do |l|
+        fh.puts(l)
+      end
       fh.puts resource[:line]
     end
   end
