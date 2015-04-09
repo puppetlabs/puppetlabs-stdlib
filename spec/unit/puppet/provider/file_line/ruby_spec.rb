@@ -46,12 +46,12 @@ describe provider_class do
       @tmpfile = tmp.path
       tmp.close!
       @resource = Puppet::Type::File_line.new(
-          {
-           :name => 'foo',
-           :path => @tmpfile,
-           :line => 'foo = bar',
-           :match => '^foo\s*=.*$',
-          }
+        {
+          :name  => 'foo',
+          :path  => @tmpfile,
+          :line  => 'foo = bar',
+          :match => '^foo\s*=.*$',
+        }
       )
       @provider = provider_class.new(@resource)
     end
@@ -69,11 +69,11 @@ describe provider_class do
       it 'should replace all lines that matches' do
         @resource = Puppet::Type::File_line.new(
           {
-            :name => 'foo',
-            :path => @tmpfile,
-            :line => 'foo = bar',
-            :match => '^foo\s*=.*$',
-            :multiple => true
+            :name     => 'foo',
+            :path     => @tmpfile,
+            :line     => 'foo = bar',
+            :match    => '^foo\s*=.*$',
+            :multiple => true,
           }
         )
         @provider = provider_class.new(@resource)
@@ -89,11 +89,11 @@ describe provider_class do
         expect {
           @resource = Puppet::Type::File_line.new(
             {
-              :name => 'foo',
-              :path => @tmpfile,
-              :line => 'foo = bar',
-              :match => '^foo\s*=.*$',
-              :multiple => 'asgadga'
+              :name     => 'foo',
+              :path     => @tmpfile,
+              :line     => 'foo = bar',
+              :match    => '^foo\s*=.*$',
+              :multiple => 'asgadga',
             }
           )
         }.to raise_error(Puppet::Error, /Invalid value "asgadga"\. Valid values are true, false\./)
@@ -140,7 +140,54 @@ describe provider_class do
       let :provider do
         provider_class.new(resource)
       end
-
+      context 'match and after set' do
+        shared_context 'resource_create' do
+          let(:match) { '^foo2$' }
+          let(:after) { '^foo1$' }
+          let(:resource) {
+            Puppet::Type::File_line.new(
+              {
+                :name  => 'foo',
+                :path  => @tmpfile,
+                :line  => 'inserted = line',
+                :after => after,
+                :match => match,
+              }
+            )
+          }
+        end
+        before :each do
+          File.open(@tmpfile, 'w') do |fh|
+            fh.write("foo1\nfoo2\nfoo = baz")
+          end
+        end
+        describe 'inserts at match' do
+          include_context 'resource_create'
+          it {
+            provider.create
+            expect(File.read(@tmpfile).chomp).to eq("foo1\ninserted = line\nfoo = baz")
+          }
+        end
+        describe 'inserts a new line after when no match' do
+          include_context 'resource_create' do
+            let(:match) { '^nevergoingtomatch$' }
+          end
+          it {
+            provider.create
+            expect(File.read(@tmpfile).chomp).to eq("foo1\ninserted = line\nfoo2\nfoo = baz")
+          }
+        end
+        describe 'append to end of file if no match for both after and match' do
+          include_context 'resource_create' do
+            let(:match) { '^nevergoingtomatch$' }
+            let(:after) { '^stillneverafter' }
+          end
+          it {
+            provider.create
+            expect(File.read(@tmpfile).chomp).to eq("foo1\nfoo2\nfoo = baz\ninserted = line")
+          }
+        end
+      end
       context 'with one line matching the after expression' do
         before :each do
           File.open(@tmpfile, 'w') do |fh|
@@ -194,7 +241,12 @@ describe provider_class do
       @tmpfile = tmp.path
       tmp.close!
       @resource = Puppet::Type::File_line.new(
-        {:name => 'foo', :path => @tmpfile, :line => 'foo', :ensure => 'absent' }
+        {
+          :name   => 'foo',
+          :path   => @tmpfile,
+          :line   => 'foo',
+          :ensure => 'absent',
+        }
       )
       @provider = provider_class.new(@resource)
     end
