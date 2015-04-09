@@ -244,6 +244,23 @@ This function flattens any deeply nested arrays and returns a single flat array 
 Returns the largest integer less than or equal to the argument.
 Takes a single numeric value as an argument. *Type*: rvalue
 
+#### `fqdn_rand_string`
+
+Generates a random alphanumeric string using an optionally-specified character set (default is alphanumeric), combining the `$fqdn` fact and an optional seed for repeatable randomness.
+
+*Usage:*
+```
+fqdn_rand_string(LENGTH, [CHARSET], [SEED])
+```
+*Examples:*
+```
+fqdn_rand_string(10)
+fqdn_rand_string(10, 'ABCDEF!@#$%^')
+fqdn_rand_string(10, '', 'custom seed')
+```
+
+*Type*: rvalue
+
 #### `fqdn_rotate`
 
 Rotates an array a random number of times based on a node's fqdn. *Type*: rvalue
