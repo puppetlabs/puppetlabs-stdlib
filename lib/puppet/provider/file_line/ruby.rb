@@ -34,13 +34,22 @@ Puppet::Type.type(:file_line).provide(:ruby) do
 
   def handle_create_with_match()
     regex = resource[:match] ? Regexp.new(resource[:match]) : nil
+    regex_after = resource[:after] ? Regexp.new(resource[:after]) : nil
     match_count = count_matches(regex)
+
     if match_count > 1 && resource[:multiple].to_s != 'true'
      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
     end
+
     File.open(resource[:path], 'w') do |fh|
       lines.each do |l|
         fh.puts(regex.match(l) ? resource[:line] : l)
+        if (match_count == 0 and regex_after)
+          if regex_after.match(l)
+            fh.puts(resource[:line])
+            match_count += 1 #Increment match_count to indicate that the new line has been inserted.
+          end
+        end
       end
 
       if (match_count == 0)
