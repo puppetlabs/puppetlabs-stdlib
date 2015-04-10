@@ -6,7 +6,7 @@ describe 'pw_hash function', :unless => (UNSUPPORTED_PLATFORMS + ['windows', 'Da
   describe 'success' do
     it 'hashes passwords' do
       pp = <<-EOS
-      $o = pw_hash('password', 6, 'salt')
+      $o = pw_hash('password', 'sha-512', 'salt')
       notice(inline_template('pw_hash is <%= @o.inspect %>'))
       EOS
 
@@ -17,12 +17,12 @@ describe 'pw_hash function', :unless => (UNSUPPORTED_PLATFORMS + ['windows', 'Da
 
     it 'returns nil if no password is provided' do
       pp = <<-EOS
-      $o = pw_hash('', 6, 'salt')
+      $o = pw_hash('', 'sha-512', 'salt')
       notice(inline_template('pw_hash is <%= @o.inspect %>'))
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/pw_hash is ""/)
+        expect(r.stdout).to match(/pw_hash is nil/)
       end
     end
   end

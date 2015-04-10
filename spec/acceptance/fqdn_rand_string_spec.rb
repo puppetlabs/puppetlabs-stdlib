@@ -44,7 +44,7 @@ describe 'fqdn_rand_string function', :unless => UNSUPPORTED_PLATFORMS.include?(
       pp = <<-eos
       $l = 10
       $s = 'seed'
-      $o = fqdn_rand_string($l, $s)
+      $o = fqdn_rand_string($l, undef, $s)
       notice(inline_template('fqdn_rand_string is <%= @o.inspect %>'))
       eos
 
