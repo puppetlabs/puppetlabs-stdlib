@@ -15,7 +15,7 @@ describe Puppet::Parser::Functions.function(:getvar) do
 
     it "should not compile when too many arguments are passed" do
       skip("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
-      Puppet[:code] = '$foo = getvar("foo::bar", "baz")'
+      Puppet[:code] = '$foo = getvar("foo::bar", "baz", "bar")'
       expect {
         scope.compiler.compile
       }.to raise_error(Puppet::ParseError, /wrong number of arguments/)
@@ -28,10 +28,22 @@ describe Puppet::Parser::Functions.function(:getvar) do
         include site::data
         $foo = getvar("site::data::foo")
         if $foo != 'baz' {
-          fail('getvar did not return what we expect')
+          fail("getvar did not return what we expect. Got: '${foo}'. Expected: 'baz'.")
         }
       ENDofPUPPETcode
       scope.compiler.compile
     end
+
+    it "should use the given default if available" do
+      skip("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
+      Puppet[:code] = <<-'ENDofPUPPETcode'
+        $foo = getvar("dne::data::foo", "test_default")
+        if $foo != 'test_default' {
+          fail("getvar did not return what we expect. Got: '${foo}'. Expected: 'test_default'")
+        }
+      ENDofPUPPETcode
+      scope.compiler.compile
+    end
+
   end
 end
