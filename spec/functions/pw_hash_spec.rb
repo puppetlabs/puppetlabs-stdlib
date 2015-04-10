@@ -2,6 +2,11 @@
 require 'spec_helper'
 
 describe "the pw_hash function" do
+
+  before :all do
+    @enhanced_salts_supported = RUBY_PLATFORM == 'java'
+  end
+
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
   it "should exist" do
@@ -57,31 +62,35 @@ describe "the pw_hash function" do
     expect { scope.function_pw_hash(['password', 'sha-512', 'salt']) }.to( raise_error(Puppet::ParseError, /system does not support enhanced salts/) )
   end
 
-  it "should return a hashed password" do
-    result = scope.function_pw_hash(['password', 'sha-512', 'salt'])
-    expect(result).to eql('$6$salt$IxDD3jeSOb5eB1CX5LBsqZFVkJdido3OUILO5Ifz5iwMuTS4XMS130MTSuDDl3aCI6WouIL9AjRbLCelDCy.g.')
-  end
+  if @enhanced_salts_supported
+    describe "on systems with enhanced salts support" do
+      it "should return a hashed password" do
+        result = scope.function_pw_hash(['password', 'sha-512', 'salt'])
+        expect(result).to eql('$6$salt$IxDD3jeSOb5eB1CX5LBsqZFVkJdido3OUILO5Ifz5iwMuTS4XMS130MTSuDDl3aCI6WouIL9AjRbLCelDCy.g.')
+      end
 
-  it "should use the specified salt" do
-    result = scope.function_pw_hash(['password', 'sha-512', 'salt'])
-    expect(result).to match('salt')
-  end
+      it "should use the specified salt" do
+        result = scope.function_pw_hash(['password', 'sha-512', 'salt'])
+        expect(result).to match('salt')
+      end
 
-  it "should use the specified hash type" do
-    resultmd5 = scope.function_pw_hash(['password', 'md5', 'salt'])
-    resultsha256 = scope.function_pw_hash(['password', 'sha-256', 'salt'])
-    resultsha512 = scope.function_pw_hash(['password', 'sha-512', 'salt'])
+      it "should use the specified hash type" do
+        resultmd5 = scope.function_pw_hash(['password', 'md5', 'salt'])
+        resultsha256 = scope.function_pw_hash(['password', 'sha-256', 'salt'])
+        resultsha512 = scope.function_pw_hash(['password', 'sha-512', 'salt'])
 
-    expect(resultmd5).to eql('$1$salt$qJH7.N4xYta3aEG/dfqo/0')
-    expect(resultsha256).to eql('$5$salt$Gcm6FsVtF/Qa77ZKD.iwsJlCVPY0XSMgLJL0Hnww/c1')
-    expect(resultsha512).to eql('$6$salt$IxDD3jeSOb5eB1CX5LBsqZFVkJdido3OUILO5Ifz5iwMuTS4XMS130MTSuDDl3aCI6WouIL9AjRbLCelDCy.g.')
-  end
+        expect(resultmd5).to eql('$1$salt$qJH7.N4xYta3aEG/dfqo/0')
+        expect(resultsha256).to eql('$5$salt$Gcm6FsVtF/Qa77ZKD.iwsJlCVPY0XSMgLJL0Hnww/c1')
+        expect(resultsha512).to eql('$6$salt$IxDD3jeSOb5eB1CX5LBsqZFVkJdido3OUILO5Ifz5iwMuTS4XMS130MTSuDDl3aCI6WouIL9AjRbLCelDCy.g.')
+      end
 
-  it "should generate a valid hash" do
-    password_hash = scope.function_pw_hash(['password', 'sha-512', 'salt'])
+      it "should generate a valid hash" do
+        password_hash = scope.function_pw_hash(['password', 'sha-512', 'salt'])
 
-    hash_parts = password_hash.match(%r{\A\$(.*)\$([a-zA-Z0-9./]+)\$([a-zA-Z0-9./]+)\z})
+        hash_parts = password_hash.match(%r{\A\$(.*)\$([a-zA-Z0-9./]+)\$([a-zA-Z0-9./]+)\z})
 
-    expect(hash_parts).not_to eql(nil)
+        expect(hash_parts).not_to eql(nil)
+      end
+    end
   end
 end
