@@ -1,4 +1,4 @@
-##2015-01-14 - Supported Release 4.6.0
+##2015-04-14 - Supported Release 4.6.0
 ###Summary
 
 Adds functions and function argument abilities, and improves compatibility with the new puppet parser
