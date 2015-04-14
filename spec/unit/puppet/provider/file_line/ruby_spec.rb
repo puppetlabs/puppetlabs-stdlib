@@ -37,6 +37,51 @@ describe provider_class do
     end
   end
 
+  context "when matching with capture" do
+    before :each do
+      tmp = Tempfile.new('tmp')
+      @tmpfile = tmp.path
+      tmp.close!
+      @resource = Puppet::Type::File_line.new(
+          {
+            :name  => 'foo',
+            :path  => @tmpfile,
+            :line     => 'foo = \\1.bar',
+            :match    => '^foo\s*=(.*)$',
+          }
+        )
+      @provider = provider_class.new(@resource)
+    end
+    describe 'using match' do
+      it 'should replace a line that matches and reuse captured data' do
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo=blah\nfoo2")
+        end
+        @provider = provider_class.new(@resource)
+        @provider.create
+        expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = blah.bar\nfoo2")
+      end
+      it 'not append line if no match' do
+        @resource = Puppet::Type::File_line.new(
+          {
+            :name      => 'foo',
+            :path      => @tmpfile,
+            :line      => 'foo = bar',
+            :match     => '^foo\s*=(.*).bar$',
+            :no_append => true,
+          }
+        )
+        @provider = provider_class.new(@resource)
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz")
+        end
+        expect(@provider.exists?).to be_nil
+        @provider.create
+        expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo=blah\nfoo2\nfoo=baz")
+      end
+    end
+  end
+
   context "when matching" do
     before :each do
       # TODO: these should be ported over to use the PuppetLabs spec_helper

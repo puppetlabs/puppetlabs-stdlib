@@ -34,6 +34,19 @@ Puppet::Type.newtype(:file_line) do
     In this code example match will look for a line beginning with export 
     followed by HTTP_PROXY and replace it with the value in line.
 
+    Match Example with capturing regex:
+
+        file_line { 'hosts.allow':
+          ensure    => present,
+          path      => '/etc/hosts.allow',
+          line      => "mysqld: \\1 10.11.24.0/255.255.255.0",
+          match     => '^mysqld: (.*)^',
+          no_append => true,
+        }
+
+    In this code example match will add a subnet to existing mysql
+    authorization.
+
     **Autorequires:** If Puppet is managing the file that will contain the line
     being managed, the file_line resource will autorequire that file.
 
@@ -76,6 +89,12 @@ Puppet::Type.newtype(:file_line) do
         raise(Puppet::Error, "File paths must be fully qualified, not '#{value}'")
       end
     end
+  end
+
+  newparam(:no_append) do
+    desc 'An optional value to determine if parameter "line" is appended or not at the end' + 
+         ' of file if no line matches the regex.'
+    newvalues(true, false)
   end
 
   # Autorequire the file resource if it's being managed

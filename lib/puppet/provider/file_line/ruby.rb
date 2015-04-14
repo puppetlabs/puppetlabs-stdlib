@@ -43,7 +43,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
 
     File.open(resource[:path], 'w') do |fh|
       lines.each do |l|
-        fh.puts(regex.match(l) ? resource[:line] : l)
+        fh.puts(regex.match(l) ? l.sub(regex, resource[:line]) : l)
         if (match_count == 0 and regex_after)
           if regex_after.match(l)
             fh.puts(resource[:line])
@@ -53,7 +53,9 @@ Puppet::Type.type(:file_line).provide(:ruby) do
       end
 
       if (match_count == 0)
-        fh.puts(resource[:line])
+        if resource[:no_append].to_s != 'true'
+          fh.puts(resource[:line])
+        end
       end
     end
   end
