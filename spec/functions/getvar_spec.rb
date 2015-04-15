@@ -45,5 +45,18 @@ describe Puppet::Parser::Functions.function(:getvar) do
       scope.compiler.compile
     end
 
+   it "should use false if the value is defined" do
+     skip("Fails on 2.6.x, see bug #15912") if Puppet.version =~ /^2\.6\./
+     Puppet[:code] = <<-'ENDofPUPPETcode'
+       class site::data { $foo = false }
+       include site::data
+       $foo = getvar("site::data::foo", true)
+       if $foo != false {
+         fail("getvar did not return what we expect. Got: '${foo}'. Expected: false.")
+       }
+       ENDofPUPPETcode
+     scope.compiler.compile
+   end
+
   end
 end
