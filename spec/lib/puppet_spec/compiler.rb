@@ -2,6 +2,7 @@
 module PuppetSpec::Compiler
   def compile_to_catalog(string, node = Puppet::Node.new('foonode'))
     Puppet[:code] = string
+    Puppet[:parser] = 'future' if ENV['FUTURE_PARSER'] == 'yes'
     Puppet::Parser::Compiler.compile(node)
   end
 

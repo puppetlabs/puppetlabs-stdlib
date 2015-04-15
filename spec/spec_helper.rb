@@ -30,5 +30,7 @@ RSpec.configure do |config|
     Facter::Util::Loader.any_instance.stubs(:load_all)
     Facter.clear
     Facter.clear_messages
+
+    Puppet[:parser] = 'future' if ENV['FUTURE_PARSER'] == 'yes'
   end
 end
