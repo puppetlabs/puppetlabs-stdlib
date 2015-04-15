@@ -21,14 +21,14 @@ module Puppet::Parser::Functions
 
     begin
       getvar = self.lookupvar("#{args[0]}")
-      if getvar ; then
+      if getvar != nil ; then
         getvar
-      elsif args[1]
+      elsif args[1] != nil
         args[1]
       end
     rescue Puppet::ParseError # Eat the exception if strict_variables = true is set
       # Return the requested default if provided
-      if args[1]; then
+      if args[1] != nil; then
         return args[1]
       end
     end
