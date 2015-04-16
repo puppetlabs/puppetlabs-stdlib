@@ -1,17 +1,32 @@
-##2015-01-14 - Supported Release 4.6.0
+##2015-04-14 - Supported Release 4.6.0
 ###Summary
 
-Improved functionality and preparing for Puppet Next with new parser
+Adds functions and function argument abilities, and improves compatibility with the new puppet parser
 
 ####Features
-- MODULES-444: concat can now take more than two arrays
-- basename function added to have Ruby File.basename functionality
-- delete function can now take an array of items to remove
-- MODULES-1473: deprecate type function in favor of type_of
+- MODULES-444: `concat()` can now take more than two arrays
+- `basename()` added to have Ruby File.basename functionality
+- `delete()` can now take an array of items to remove
+- `prefix()` can now take a hash
+- `upcase()` can now take a hash or array of upcaseable things
+- `validate_absolute_path()` can now take an array
+- `validate_cmd()` can now use % in the command to embed the validation file argument in the string
+- MODULES-1473: deprecate `type()` function in favor of `type3x()`
+- MODULES-1473: Add `type_of()` to give better time information on future parser
+- Deprecate `private()` for `assert_private()` due to future parser
+- Adds `ceiling()` to take the ceiling of a number
+- Adds `fqdn_rand_string()` to generate random string based on fqdn
+- Adds `pw_hash()` to generate password hashes
+- Adds `validate_integer()`
+- Adds `validate_numeric()` (like `validate_integer()` but also accepts floats)
 
 ####Bugfixes
-- Several test case fixes
-- Ensure_resource is more verbose on debug mode
+- Fix seeding of `fqdn_rotate()`
+- `ensure_resource()` is more verbose on debug mode
+- Stricter argument checking for `dirname()`
+- Fix `is_domain_name()` to better match RFC
+- Fix `uriescape()` when called with array
+- Fix `file_line` resource when using the `after` attribute with `match`
 
 ##2015-01-14 - Supported Release 4.5.1
 ###Summary
