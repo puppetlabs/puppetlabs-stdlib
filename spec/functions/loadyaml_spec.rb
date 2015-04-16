@@ -14,6 +14,12 @@ describe "the loadyaml function" do
     expect { scope.function_loadyaml([]) }.to raise_error(Puppet::ParseError)
   end
 
+  it "should return nil when file does not exist" do
+    yaml_file = tmpfilename ('yamlfile')
+    result = scope.function_loadyaml([yaml_file])
+    expect(result).to(eq(nil))
+  end
+
   it "should convert YAML file to a data structure" do
     yaml_file = tmpfilename ('yamlfile')
     File.open(yaml_file, 'w') do |fh|
