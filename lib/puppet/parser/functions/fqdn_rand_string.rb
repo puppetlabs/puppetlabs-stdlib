@@ -15,8 +15,8 @@ Puppet::Parser::Functions::newfunction(
   `undef` or an empty string.") do |args|
     raise(ArgumentError, "fqdn_rand_string(): wrong number of arguments (0 for 1)") if args.size == 0
     Puppet::Parser::Functions.function('is_integer')
-    raise(ArgumentError, "fqdn_rand_base64(): first argument must be a positive integer") unless function_is_integer([args[0]]) and args[0].to_i > 0
-    raise(ArgumentError, "fqdn_rand_base64(): second argument must be undef or a string") unless args[1].nil? or args[1].is_a? String
+    raise(ArgumentError, "fqdn_rand_string(): first argument must be a positive integer") unless function_is_integer([args[0]]) and args[0].to_i > 0
+    raise(ArgumentError, "fqdn_rand_string(): second argument must be undef or a string") unless args[1].nil? or args[1].is_a? String
 
     Puppet::Parser::Functions.function('fqdn_rand')
 
