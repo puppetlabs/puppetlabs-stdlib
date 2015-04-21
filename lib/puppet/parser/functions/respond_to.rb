@@ -17,15 +17,15 @@ EOS
   if args[0] =~ /^(?i:class)$/
     type, title, params = args
     raise ArgumentError, 'Must specify a class name' unless title
-    raise ArgumentError, 'Must specify a parameter' unless params
     resource = find_hostclass(title)
   else
     title, params = args
     type = 'resource'
-    raise ArgumentError, 'Must specify a parameter' unless params
+    raise ArgumentError, 'Must specify a resource type' unless title
     resource = find_resource_type(title) || find_definition(title)
   end
 
+  raise ArgumentError, 'Must specify parameter(s)' unless params
   raise ArgumentError, "The #{title} #{type} could not be found" if resource.nil?
 
   params = [params] unless params.is_a?(Array)
