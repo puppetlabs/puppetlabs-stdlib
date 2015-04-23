@@ -43,7 +43,7 @@ describe Puppet::Parser::Functions.function(:validate_integer) do
 
       it "should not compile when #{the_number} is a bare word" do
         Puppet[:code] = "validate_integer(#{the_number})"
-        expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /to be an Integer/)
+        expect { scope.compiler.compile }.to raise_error
       end
     end
 
@@ -117,7 +117,7 @@ describe Puppet::Parser::Functions.function(:validate_integer) do
  
       it "should not compile when a non-Integer maximum #{the_max} bare word is passed" do
         Puppet[:code] = "validate_integer(1,#{the_max})"
-        expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /to be unset or an Integer/)
+        expect { scope.compiler.compile }.to raise_error
       end
     end
 
@@ -212,7 +212,7 @@ describe Puppet::Parser::Functions.function(:validate_integer) do
  
       it "should not compile when a non-Integer minimum #{the_min} bare word is passed" do
         Puppet[:code] = "validate_integer(1,#{max},#{the_min})"
-        expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /to be unset or an Integer/)
+        expect { scope.compiler.compile }.to raise_error
       end
     end
   end

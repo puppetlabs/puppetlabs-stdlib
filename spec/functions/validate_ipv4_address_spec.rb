@@ -39,9 +39,7 @@ describe Puppet::Parser::Functions.function(:validate_ipv4_address) do
     describe "when given numbers" do
       it "should not compile" do
         Puppet[:code] = "validate_ipv4_address(1, 2)"
-        expect {
-          scope.compiler.compile
-        }.to raise_error(Puppet::ParseError, /is not a valid IPv4 address/)
+        expect { scope.compiler.compile }.to raise_error
       end
     end
 
