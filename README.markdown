@@ -97,6 +97,23 @@ If you want to use a standardized set of run stages for Puppet, `include stdlib`
  * `name`: An arbitrary name used as the identity of the resource.
  * `path`: The file in which Puppet will ensure the line specified by the line parameter.
 
+* `http_conn_validator`: This resource ensures a service (remote or not) is actually up and running before moving onward with the catalog application. Puppet will block until an http connection can be made. If no connection are possible after a certain amount of time this resource will fail.
+
+  ```
+  http_conn_validator { 'mysql' :
+    server   => '192.168.0.42',
+    port     => '80',
+    test_url => '/',
+  }
+  ```
+
+  * `server` : An IP or array of IP address of the server to check. Required.
+  * `port` : The port one want to ensure a process is listening on. Required.
+  * `use_ssl` : Whether the connection will be attempted using https. Optional. Default to false.
+  * `test_url' : The URL path to test. Optional. Default to '/'.
+  * `timeout` : Number of second before timint out. Optional.
+
+
 ### Functions
 
 #### `abs`
