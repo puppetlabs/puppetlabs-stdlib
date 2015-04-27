@@ -97,6 +97,26 @@ If you want to use a standardized set of run stages for Puppet, `include stdlib`
  * `name`: An arbitrary name used as the identity of the resource.
  * `path`: The file in which Puppet will ensure the line specified by the line parameter.
 
+* `tcp_conn_validator`: This resource ensures a service (remote or not) is actually up and running before moving onward with the catalog application. Puppet will block until the tcp connection can be made. If no connection are possible after a certain amount of time this resource will fail.
+
+  ```
+  tcp_conn_validator { 'mysql' :
+    server => '192.168.0.42',
+    port   => '3306',
+  }
+  ```
+
+To validate the same service running on differents nodes one can do :
+
+  ```
+  $array_of_service = ['ip1:3306', '[::1]:3306', 'ip2:3306']
+  tcp_conn_validator { $array_of_service : }
+  ```
+
+  * `server` : An IP or array of IP address of the server to check. Required.
+  * `port` : The port one want to ensure a process is listening on. Required.
+  * `timeout` : Number of second before timing out. Optional.
+
 ### Functions
 
 #### `abs`
