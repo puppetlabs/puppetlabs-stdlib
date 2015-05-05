@@ -17,9 +17,7 @@ require 'puppet_spec/fixtures'
 require 'puppet_spec/matchers'
 require 'puppet_spec/database'
 require 'monkey_patches/alias_should_to_must'
-require 'mocha/setup'
-
-
+require 'mocha/api'
 
 RSpec.configure do |config|
   config.before :each do
