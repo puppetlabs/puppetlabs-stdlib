@@ -38,6 +38,8 @@ Puppet::Parser::Functions::newfunction(
     password = args[0]
     return nil if password.nil? or password.empty?
 
+    salt = "$#{hash_type}$#{args[2]}"
+
     # handle weak implementations of String#crypt
     if 'test'.crypt('$1$1') != '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
       # JRuby < 1.7.17
@@ -49,6 +51,6 @@ Puppet::Parser::Functions::newfunction(
         raise Puppet::ParseError, 'system does not support enhanced salts'
       end
     else
-      password.crypt("$#{hash_type}$#{args[2]}")
+      password.crypt(salt)
     end
 end
