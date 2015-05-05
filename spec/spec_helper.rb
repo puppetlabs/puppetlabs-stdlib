@@ -17,9 +17,7 @@ require 'puppet_spec/fixtures'
 require 'puppet_spec/matchers'
 require 'puppet_spec/database'
 require 'monkey_patches/alias_should_to_must'
-require 'mocha/setup'
-
-
+require 'mocha/api'
 
 RSpec.configure do |config|
   config.before :each do
@@ -27,8 +25,9 @@ RSpec.configure do |config|
     # test cases.  This requires each example group to explicitly load the
     # facts being exercised with something like
     # Facter.collection.loader.load(:ipaddress)
-    Facter::Util::Loader.any_instance.stubs(:load_all)
     Facter.clear
     Facter.clear_messages
+
+    Puppet[:parser] = 'future' if ENV['FUTURE_PARSER'] == 'yes'
   end
 end
