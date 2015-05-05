@@ -25,7 +25,6 @@ RSpec.configure do |config|
     # test cases.  This requires each example group to explicitly load the
     # facts being exercised with something like
     # Facter.collection.loader.load(:ipaddress)
-    Facter::Util::Loader.any_instance.stubs(:load_all)
     Facter.clear
     Facter.clear_messages
 
