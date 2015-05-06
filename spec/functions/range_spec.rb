@@ -68,6 +68,13 @@ describe "the range function" do
     end
   end
 
+  describe 'with a ruby-like range' do
+    it "returns a number range" do
+      result = scope.function_range(["1..4"])
+      expect(result).to eq [1,2,3,4]
+    end
+  end
+
   describe 'with a numeric range' do
     it "returns a range of numbers" do
       expected = (1..10).to_a

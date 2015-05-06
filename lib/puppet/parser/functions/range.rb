@@ -47,7 +47,7 @@ Will return: [0,2,4,6,8]
 
       type = '..' # Use the simplest type of Range available in Ruby
 
-    else # arguments.size == 0
+    else # arguments.size == 1
       value = arguments[0]
 
       if m = value.match(/^(\w+)(\.\.\.?|\-)(\w+)$/)
@@ -55,7 +55,7 @@ Will return: [0,2,4,6,8]
         stop  = m[3]
 
         type = m[2]
-
+        step = 1
       elsif value.match(/^.+$/)
         raise(Puppet::ParseError, "range(): Unable to compute range " +
           "from the value: #{value}")
@@ -78,7 +78,7 @@ Will return: [0,2,4,6,8]
       when '...'         then (start ... stop) # Exclusive of last element
     end
 
-    result = range.step(step).collect { |i| i }
+    result = range.step(step).to_a
 
     return result
   end
