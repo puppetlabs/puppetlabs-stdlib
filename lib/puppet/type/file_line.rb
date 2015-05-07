@@ -62,6 +62,11 @@ Puppet::Type.newtype(:file_line) do
     end
   end
 
+  newparam(:replace) do
+    desc 'Add the line but do nothing if match exists'
+    newvalues(true, false)
+  end
+
   # Autorequire the file resource if it's being managed
   autorequire(:file) do
     self[:path]
