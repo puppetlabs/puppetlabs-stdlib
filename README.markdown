@@ -640,7 +640,7 @@ This function removes leading and trailing whitespace from a string or from ever
 
 #### `suffix`
 
-This function applies a suffix to all elements in an array. For example, `suffix(['a','b','c'], 'p')` returns ['ap','bp','cp']. *Type*: rvalue
+This function applies a suffix to all elements in an array or to the keys in a hash. For example, `suffix(['a','b','c'], 'p')` returns ['ap','bp','cp'], and `suffix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'ap'=>'b','bp'=>'c','cp'=>'d'}. *Type*: rvalue
 
 #### `swapcase`
 
@@ -829,7 +829,7 @@ Validates that all passed values are hash data structures. Abort catalog compila
 #### `validate_integer`
 
 Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
-    
+
   The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
 
   The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
@@ -1036,7 +1036,3 @@ To report or research a bug with any part of this module, please go to
 ##Contributors
 
 The list of contributors can be found at: https://github.com/puppetlabs/puppetlabs-stdlib/graphs/contributors
-
-
-
-
