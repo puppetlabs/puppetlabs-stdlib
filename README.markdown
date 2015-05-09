@@ -682,7 +682,21 @@ Converts an object, array or hash of objects that respond to upcase to uppercase
 
 #### `uriescape`
 
-Urlencodes a string or array of strings. Requires either a single string or an array as an input. *Type*: rvalue
+Escapes whole-URL strings (single string or an array of strings) for use as double-quoted arguments to shell commands and HTML attributes by URL-encoding unsafe characters like space, double-quote, octothorpe, and curly braces.
+
+This function is ideal for sanitizing untrusted whole-URL string inputs to prevent command or HTML injection without destroying their validity. In other words, a safe URL passed to this function will be unchanged, in contrast to the `url_encode` function, which will turn a valid URL into a completely inert string containing only alphanums and percents.
+
+Question mark, ampersand, and equals are not URL-encoded by this function. See `url_encode` for encoding arbitrary strings (including other URLs) as URL query string parameter values.
+
+Requires either a single string or an array as an input. *Type*: rvalue
+
+#### `url_encode`
+
+Percent-encode any URI-significant/illegal characters in a string or array of strings.
+
+Passing a whole-URL string to this function will return an encoded string which can then be interpolated, as-is, into another URL string as a parameter value, but which will not be useful by itself in applications until it has been URL-unencoded.
+
+Requires either a single string or an array as an input. *Type*: rvalue
 
 #### `validate_absolute_path`
 
