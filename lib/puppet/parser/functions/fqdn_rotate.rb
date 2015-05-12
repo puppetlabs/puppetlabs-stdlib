@@ -39,9 +39,9 @@ Rotates an array a random number of times based on a nodes fqdn.
       if defined?(Random) == 'constant' && Random.class == Class
         offset = Random.new(seed).rand(elements)
       else
-        srand(seed)
+        old_seed = srand(seed)
         offset = rand(elements)
-        srand()
+        srand(old_seed)
       end
     end
     offset.times {
