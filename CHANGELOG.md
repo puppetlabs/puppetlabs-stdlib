@@ -12,7 +12,7 @@ Adds functions and function argument abilities, and improves compatibility with 
 - `validate_absolute_path()` can now take an array
 - `validate_cmd()` can now use % in the command to embed the validation file argument in the string
 - MODULES-1473: deprecate `type()` function in favor of `type3x()`
-- MODULES-1473: Add `type_of()` to give better time information on future parser
+- MODULES-1473: Add `type_of()` to give better type information on future parser
 - Deprecate `private()` for `assert_private()` due to future parser
 - Adds `ceiling()` to take the ceiling of a number
 - Adds `fqdn_rand_string()` to generate random string based on fqdn
