@@ -62,6 +62,11 @@ describe Puppet::Parser::Functions.function(:validate_numeric) do
       expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /to be a Numeric or Array/)
     end
 
+    it "should not compile when a Hash is passed in an Array" do
+      Puppet[:code] = "validate_numeric([{ 1 => 2 }])"
+      expect { scope.compiler.compile }.to raise_error(Puppet::ParseError, /to be a Numeric/)
+    end
+
     it "should not compile when an explicitly undef variable is passed" do
       Puppet[:code] = <<-'ENDofPUPPETcode'
         $foo = undef
