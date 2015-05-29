@@ -11,7 +11,7 @@ Rotates an array a random number of times based on a nodes fqdn.
     raise(Puppet::ParseError, "fqdn_rotate(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)") if arguments.size < 1
 
-    value = arguments[0]
+    value = arguments.shift
     require 'digest/md5'
 
     unless value.is_a?(Array) || value.is_a?(String)
