@@ -61,20 +61,22 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   def handle_create_with_after
     regex = Regexp.new(resource[:after])
     count = count_matches(regex)
-    case count
-    when 1 # find the line to put our line after
-      File.open(resource[:path], 'w') do |fh|
-        lines.each do |l|
-          fh.puts(l)
-          if regex.match(l) then
-            fh.puts(resource[:line])
-          end
+
+    if count > 1 && resource[:multiple].to_s != 'true'
+      raise Puppet::Error, "#{count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
+    end
+
+    File.open(resource[:path], 'w') do |fh|
+      lines.each do |l|
+        fh.puts(l)
+        if regex.match(l) then
+          fh.puts(resource[:line])
         end
       end
-    when 0 # append the line to the end of the file
+    end
+
+    if (count == 0) # append the line to the end of the file
       append_line
-    else
-      raise Puppet::Error, "#{count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
     end
   end
 
