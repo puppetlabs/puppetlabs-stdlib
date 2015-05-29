@@ -96,8 +96,8 @@ All parameters are optional, unless otherwise noted.
 * `ensure`: Ensures whether the resource is present. Valid options: 'present', 'absent'. Default: 'present'.
 * `line`: **Required.** Sets the line to be added to the file located by the `path` parameter. Valid options: String. Default: Undefined.
 * `match`: Specifies a regular expression to run against existing lines in the file; if a match is found, it is replaced rather than adding a new line. Valid options: String containing a regex. Default: Undefined.
-* `multiple`: Determines if `match` can change multiple lines. If set to false, an exception will be raised if more than one line matches. Valid options: 'true', 'false'. Default: Undefined.
-* `name`: Sets the name to use as the identity of the resource. This is necessary if you want the resource namevar to differ from the supplied `title` of the resource. Valid options: String. Default: Undefined. 
+* `multiple`: Determines if `match` and/or `after` can change multiple lines. If set to false, an exception will be raised if more than one line matches. Valid options: 'true', 'false'. Default: Undefined.
+* `name`: Sets the name to use as the identity of the resource. This is necessary if you want the resource namevar to differ from the supplied `title` of the resource. Valid options: String. Default: Undefined.
 * `path`: **Required.** Defines the file in which Puppet will ensure the line specified by `line`. Must be an absolute path to the file.
 
 
