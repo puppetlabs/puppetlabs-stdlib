@@ -1,6 +1,7 @@
 ---
 sudo: false
 language: ruby
+cache: bundler
 bundler_args: --without system_tests
 script: "bundle exec rake validate && bundle exec rake lint && bundle exec rake spec SPEC_OPTS='--color --format documentation'"
 matrix:
