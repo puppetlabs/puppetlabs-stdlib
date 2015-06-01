@@ -17,6 +17,7 @@ group :development, :unit_tests do
   gem 'mocha',                   :require => false
   gem 'puppetlabs_spec_helper',  :require => false
   gem 'puppet-lint',             :require => false
+  gem 'metadata-json-lint',      :require => false
   gem 'pry',                     :require => false
   gem 'simplecov',               :require => false
 end
