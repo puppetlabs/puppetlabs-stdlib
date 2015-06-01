@@ -19,6 +19,9 @@ require 'puppet_spec/database'
 require 'monkey_patches/alias_should_to_must'
 require 'mocha/api'
 
+# hack to enable all the expect syntax (like allow_any_instance_of) in rspec-puppet examples
+RSpec::Mocks::Syntax.enable_expect(RSpec::Puppet::ManifestMatchers)
+
 RSpec.configure do |config|
   config.before :each do
     # Ensure that we don't accidentally cache facts and environment between
@@ -29,5 +32,12 @@ RSpec.configure do |config|
     Facter.clear_messages
 
     Puppet[:parser] = 'future' if ENV['FUTURE_PARSER'] == 'yes'
+
+    RSpec::Mocks.setup
+  end
+
+  config.after :each do
+    RSpec::Mocks.verify
+    RSpec::Mocks.teardown
   end
 end
