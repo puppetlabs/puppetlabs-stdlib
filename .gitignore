@@ -1,7 +1,10 @@
 /pkg/
 /Gemfile.lock
 /vendor/
-/spec/fixtures/
+/spec/fixtures/manifests/*
+/spec/fixtures/modules/*
+!/spec/fixtures/modules/stdlib
+!/spec/fixtures/modules/stdlib/*
 /.vagrant/
 /.bundle/
 /coverage/
