@@ -44,7 +44,7 @@ would return: false
     end
 
     if arguments[1].is_a? String or arguments[1].is_a? Fixnum
-      item = Array(arguments[1])
+      item = [arguments[1]]
     else
       item = arguments[1]
     end
