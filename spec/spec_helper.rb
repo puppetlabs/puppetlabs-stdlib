@@ -23,6 +23,10 @@ require 'mocha/api'
 RSpec::Mocks::Syntax.enable_expect(RSpec::Puppet::ManifestMatchers)
 
 RSpec.configure do |config|
+  config.add_setting :puppet_future
+  #config.puppet_future = (ENV['FUTURE_PARSER'] == 'yes' or Puppet.version.to_f >= 4.0)
+  config.puppet_future = Puppet.version.to_f >= 4.0
+
   config.before :each do
     # Ensure that we don't accidentally cache facts and environment between
     # test cases.  This requires each example group to explicitly load the
