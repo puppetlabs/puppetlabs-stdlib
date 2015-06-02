@@ -79,6 +79,44 @@ describe provider_class do
         @provider.create
         expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo=blah\nfoo2\nfoo=baz")
       end
+      it 'using unless with no match' do
+        @resource = Puppet::Type::File_line.new(
+          {
+            :name      => 'foo',
+            :path      => @tmpfile,
+            :line      => 'foo = \\1.bar',
+            :match     => '^foo\s*=(.*)$',
+            :unless    => 'blah.bar',
+            :no_append => true,
+          }
+        )
+        @provider = provider_class.new(@resource)
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo=blah\nfoo2")
+        end
+        expect(@provider.exists?).to be_nil
+        @provider.create
+        expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = blah.bar\nfoo2")
+      end
+      it 'using unless with match' do
+        @resource = Puppet::Type::File_line.new(
+          {
+            :name      => 'foo',
+            :path      => @tmpfile,
+            :line      => 'foo = \\1.bar',
+            :match     => '^foo\s*=(.*)$',
+            :unless    => 'blah.bar',
+            :no_append => true,
+          }
+        )
+        @provider = provider_class.new(@resource)
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo = blah.bar\nfoo2")
+        end
+        expect(@provider.exists?).to be_nil
+        @provider.create
+        expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = blah.bar\nfoo2")
+      end
     end
   end
 
