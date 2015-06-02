@@ -36,7 +36,7 @@ describe 'fqdn_rotate function', :unless => UNSUPPORTED_PLATFORMS.include?(fact(
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/fqdn_rotate is \["c", "d", "a", "b"\]/)
+        expect(r.stdout).to match(/fqdn_rotate is \["d", "a", "b", "c"\]/)
       end
     end
   end

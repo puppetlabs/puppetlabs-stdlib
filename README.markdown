@@ -259,7 +259,20 @@ fqdn_rand_string(10, '', 'custom seed')
 
 #### `fqdn_rotate`
 
-Rotates an array a random number of times, based on a node's fqdn. *Type*: rvalue.
+Rotates an array or string a random number of times, combining the `$fqdn` fact and an optional seed for repeatable randomness.
+
+*Usage:*
+~~~
+fqdn_rotate(VALUE, [SEED])
+~~~
+*Examples:*
+~~~
+fqdn_rotate(['a', 'b', 'c', 'd'])
+fqdn_rotate('abcd')
+fqdn_rotate([1, 2, 3], 'custom seed')
+~~~
+
+*Type*: rvalue.
 
 #### `get_module_path`
 
