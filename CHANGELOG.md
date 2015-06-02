@@ -90,7 +90,7 @@ backwards-compatible with the stdlib 3 series. It adds two new functions, one bu
 
 #### Features
 - New `bool2str()` function
-- New `camalcase()` function
+- New `camelcase()` function
 
 #### Bugfixes
 - Fix `has_interface_with()` when interfaces fact is nil
