@@ -31,7 +31,7 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
     unless Puppet.features.augeas?
-      raise Puppet::ParseError, ("validate_augeas(): this function requires the augeas feature. See http://projects.puppetlabs.com/projects/puppet/wiki/Puppet_Augeas#Pre-requisites for how to activate it.")
+      raise Puppet::ParseError, ("validate_augeas(): this function requires the augeas feature. See http://docs.puppetlabs.com/guides/augeas.html#pre-requisites for how to activate it.")
     end
 
     if (args.length < 2) or (args.length > 4) then

@@ -1,11 +1,4 @@
-require 'fileutils'
-require 'tempfile'
-
-require 'puppet/util/diff'
-
 Puppet::Type.type(:file_line).provide(:ruby) do
-  include Puppet::Util::Diff
-  
   def exists?
     lines.find do |line|
       line.chomp == resource[:line].chomp
@@ -13,7 +6,6 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def create
-    create_temporary_file
     if resource[:match]
       handle_create_with_match
     elsif resource[:after]
@@ -21,7 +13,6 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     else
       append_line
     end
-    sync
   end
 
   def destroy
@@ -42,8 +33,8 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def handle_create_with_match()
-    regex        = resource[:match]  ? Regexp.new(resource[:match]) : nil
-    regex_after  = resource[:after]  ? Regexp.new(resource[:after]) : nil
+    regex        = resource[:match] ? Regexp.new(resource[:match]) : nil
+    regex_after  = resource[:after] ? Regexp.new(resource[:after]) : nil
     regex_unless = resource[:unless] ? Regexp.new(resource[:unless]) : nil
     match_count  = count_matches(regex)
 
@@ -56,19 +47,19 @@ Puppet::Type.type(:file_line).provide(:ruby) do
         if regex.match(l)
             if regex_unless
                 unless regex_unless.match(l)
-                    write_to_temporary(l.sub(regex, resource[:line]))
+                    fh.puts(l.sub(regex, resource[:line]))
                 else
-                    write_to_temporary(l)
+                    fh.puts(l)
                 end
             else
-                write_to_temporary(l.sub(regex, resource[:line]))
+                fh.puts(l.sub(regex, resource[:line]))
             end
         else
-            write_to_temporary(l)
+            fh.puts(l)
         end
         if (match_count == 0 and regex_after)
           if regex_after.match(l)
-            write_to_temporary(resource[:line])
+            fh.puts(resource[:line])
             match_count += 1 #Increment match_count to indicate that the new line has been inserted.
           end
         end
@@ -76,7 +67,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
 
       if (match_count == 0)
         if resource[:no_append].to_s != 'true'
-          write_to_temporary(resource[:line])
+          fh.puts(resource[:line])
         end
       end
     end
@@ -85,20 +76,22 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   def handle_create_with_after
     regex = Regexp.new(resource[:after])
     count = count_matches(regex)
-    case count
-    when 1 # find the line to put our line after
-      File.open(resource[:path], 'w') do |fh|
-        lines.each do |l|
-          write_to_temporary(l)
-          if regex.match(l) then
-            write_to_temporary(resource[:line])
-          end
+
+    if count > 1 && resource[:multiple].to_s != 'true'
+      raise Puppet::Error, "#{count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
+    end
+
+    File.open(resource[:path], 'w') do |fh|
+      lines.each do |l|
+        fh.puts(l)
+        if regex.match(l) then
+          fh.puts(resource[:line])
         end
       end
-    when 0 # append the line to the end of the file
+    end
+
+    if (count == 0) # append the line to the end of the file
       append_line
-    else
-      raise Puppet::Error, "#{count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
     end
   end
 
@@ -113,44 +106,9 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   def append_line
     File.open(resource[:path], 'w') do |fh|
       lines.each do |l|
-        write_to_temporary(l)
+        fh.puts(l)
       end
-      write_to_temporary resource[:line]
-    end
-  end
-
-  def create_temporary_file
-    @temfile = nil
-    begin
-      @tempfile = Tempfile.new("puppet-file")
-    rescue SystemCallError => e
-      raise Puppet::ParseError, "can not create temporary file: #{e.message}"
-    end
-    #return @tempfile.open
-  end
-
-  def sync
-    @tempfile.close(false)
-    if Puppet[:show_diff] and resource.show_diff?
-        show_diff
-    end
-    begin
-      FileUtils.cp(@tempfile.path, resource[:path])
-    rescue SystemCallError => e
-      raise Puppet::ParseError, "can not copy #{@tempfile.path} to #{resource[:path]}: #{e.message}"
-    end
-    @tempfile.unlink
-  end
-
-  def show_diff
-    send @resource[:loglevel], "\n" + diff(resource[:path], @tempfile.path)
-  end
-
-  def write_to_temporary(line)
-    begin
-      @tempfile.puts(line)
-    rescue SystemCallError => e
-      raise Puppet::ParseError, "can not write #{line} into #{@tempfile.path}: #{e.message}"
+      fh.puts resource[:line]
     end
   end
 end
