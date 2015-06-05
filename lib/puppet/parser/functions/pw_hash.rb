@@ -38,19 +38,19 @@ Puppet::Parser::Functions::newfunction(
     password = args[0]
     return nil if password.nil? or password.empty?
 
+    salt = "$#{hash_type}$#{args[2]}"
+
     # handle weak implementations of String#crypt
     if 'test'.crypt('$1$1') != '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
       # JRuby < 1.7.17
       if RUBY_PLATFORM == 'java'
-        # override String#crypt for password variable
-        def password.crypt(salt)
-          # puppetserver bundles Apache Commons Codec
-          org.apache.commons.codec.digest.Crypt.crypt(self.to_java_bytes, salt)
-        end
+        # puppetserver bundles Apache Commons Codec
+        org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
       else
         # MS Windows and other systems that don't support enhanced salts
         raise Puppet::ParseError, 'system does not support enhanced salts'
       end
+    else
+      password.crypt(salt)
     end
-    password.crypt("$#{hash_type}$#{args[2]}")
 end

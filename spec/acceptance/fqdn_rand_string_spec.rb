@@ -39,6 +39,19 @@ describe 'fqdn_rand_string function', :unless => UNSUPPORTED_PLATFORMS.include?(
         expect(r.stdout).to match(/fqdn_rand_string is "7oDp0KOr1b"/)
       end
     end
+    it 'generates random alphanumeric strings with custom charsets' do
+      shell("echo fqdn=fakehost.localdomain > '#{facts_d}/fqdn.txt'")
+      pp = <<-eos
+      $l = 10
+      $c = '0123456789'
+      $o = fqdn_rand_string($l, $c)
+      notice(inline_template('fqdn_rand_string is <%= @o.inspect %>'))
+      eos
+
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stdout).to match(/fqdn_rand_string is "7203048515"/)
+      end
+    end
     it 'generates random alphanumeric strings with custom seeds' do
       shell("echo fqdn=fakehost.localdomain > '#{facts_d}/fqdn.txt'")
       pp = <<-eos
@@ -50,6 +63,20 @@ describe 'fqdn_rand_string function', :unless => UNSUPPORTED_PLATFORMS.include?(
 
       apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(/fqdn_rand_string is "3HS4mbuI3E"/)
+      end
+    end
+    it 'generates random alphanumeric strings with custom charsets and seeds' do
+      shell("echo fqdn=fakehost.localdomain > '#{facts_d}/fqdn.txt'")
+      pp = <<-eos
+      $l = 10
+      $c = '0123456789'
+      $s = 'seed'
+      $o = fqdn_rand_string($l, $c, $s)
+      notice(inline_template('fqdn_rand_string is <%= @o.inspect %>'))
+      eos
+
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stdout).to match(/fqdn_rand_string is "3104058232"/)
       end
     end
   end

@@ -201,7 +201,7 @@ describe provider_class do
         end
       end
 
-      context 'with two lines matching the after expression' do
+      context 'with multiple lines matching the after expression' do
         before :each do
           File.open(@tmpfile, 'w') do |fh|
             fh.write("foo1\nfoo = blah\nfoo2\nfoo1\nfoo = baz")
@@ -210,6 +210,22 @@ describe provider_class do
 
         it 'errors out stating "One or no line must match the pattern"' do
           expect { provider.create }.to raise_error(Puppet::Error, /One or no line must match the pattern/)
+        end
+
+        it 'adds the line after all lines matching the after expression' do
+          @resource = Puppet::Type::File_line.new(
+            {
+              :name     => 'foo',
+              :path     => @tmpfile,
+              :line     => 'inserted = line',
+              :after    => '^foo1$',
+              :multiple => true,
+            }
+          )
+          @provider = provider_class.new(@resource)
+          expect(@provider.exists?).to be_nil
+          @provider.create
+          expect(File.read(@tmpfile).chomp).to eql("foo1\ninserted = line\nfoo = blah\nfoo2\nfoo1\ninserted = line\nfoo = baz")
         end
       end
 

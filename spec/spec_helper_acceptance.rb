@@ -33,7 +33,7 @@ RSpec.configure do |c|
 
   # Configure all nodes in nodeset
   c.before :suite do
-    if ENV['FUTURE_PARSER'] == 'true'
+    if ENV['FUTURE_PARSER'] == 'yes'
       default[:default_apply_opts] ||= {}
       default[:default_apply_opts].merge!({:parser => 'future'})
     end

@@ -13,9 +13,12 @@ end
 group :development, :unit_tests do
   gem 'rake', '~> 10.1.0',       :require => false
   gem 'rspec', '~> 3.1.0',       :require => false
-  gem 'rspec-puppet',            :require => false
+  gem 'rspec-puppet', '~> 2.2',  :require => false
+  gem 'mocha',                   :require => false
+  # keep for its rake task for now
   gem 'puppetlabs_spec_helper',  :require => false
   gem 'puppet-lint',             :require => false
+  gem 'metadata-json-lint',      :require => false
   gem 'pry',                     :require => false
   gem 'simplecov',               :require => false
 end
