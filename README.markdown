@@ -320,6 +320,13 @@ This is useful if the namespace itself is stored in a string:
   # Equivalent to $bar = $site::data::bar
   ~~~
 
+  Also takes a second argument to provide a default if the lookup fails
+
+  ```
+  $bar = getvar('doesnt_exist::bar', 'bars_default')
+  # $bar will be bars_default
+  ``` 
+
 *Type*: rvalue.
 
 #### `grep`
