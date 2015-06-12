@@ -16,13 +16,6 @@ describe 'getvar' do
 
     it { is_expected.to run.with_params('site::data::foo').and_return('baz') }
     it { is_expected.to run.with_params('::site::data::foo').and_return('baz') }
-
-    context 'with strict variable checking', :if => RSpec.configuration.strict_variables do
-      it { is_expected.to run.with_params('::site::data::bar').and_raise_error(ArgumentError, /undefined_variable/) }
-    end
-
-    context 'without strict variable checking', :unless => RSpec.configuration.strict_variables do
-      it { is_expected.to run.with_params('::site::data::bar').and_return(nil) }
-    end
+    it { is_expected.to run.with_params('::site::data::bar').and_return(nil) }
   end
 end
