@@ -206,6 +206,10 @@ Converts the case of a string or of all strings in an array to lowercase. *Type*
 
 Returns 'true' if the variable is empty. *Type*: rvalue.
 
+#### `ensure_latest`
+
+Takes a list of packages and only installs them if they don't already exist. It optionally takes a hash as a second parameter to be passed as the third argument to the `ensure_resource()` function. By contrast to the `ensure_packages()` function, this function installs packages with `ensure=>'latest'` by default. *Type*: statement.
+
 #### `ensure_packages`
 
 Takes a list of packages and only installs them if they don't already exist. It optionally takes a hash as a second parameter to be passed as the third argument to the `ensure_resource()` function. *Type*: statement.
