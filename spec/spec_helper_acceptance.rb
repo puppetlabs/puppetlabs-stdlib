@@ -43,7 +43,9 @@ RSpec.configure do |c|
 end
 
 def is_future_parser_enabled?
-  if default[:default_apply_opts]
+  if default[:type] == 'aio'
+    return true
+  elsif default[:default_apply_opts]
     return default[:default_apply_opts][:parser] == 'future'
   end
   return false
