@@ -10,7 +10,7 @@ describe 'validate_slength' do
     it { is_expected.to run.with_params('', -1).and_raise_error(Puppet::ParseError, /second argument to be a positive Numeric/) }
     it { is_expected.to run.with_params('', 1, '').and_raise_error(Puppet::ParseError, /third argument to be unset or a positive Numeric/) }
     it { is_expected.to run.with_params('', 1, -1).and_raise_error(Puppet::ParseError, /third argument to be unset or a positive Numeric/) }
-    it { is_expected.to run.with_params('', 1, 2).and_raise_error(Puppet::ParseError, /argument to be larger than third argument/) }
+    it { is_expected.to run.with_params('', 1, 2).and_raise_error(Puppet::ParseError, /argument to be equal to or larger than third argument/) }
   end
 
   context "with a maximum length of 10" do
