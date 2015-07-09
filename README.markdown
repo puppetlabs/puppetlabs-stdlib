@@ -938,13 +938,14 @@ test, and the second argument should be a stringified regular expression (withou
 
 #### `validate_slength`
 
-Validates that the first argument is a string (or an array of strings), and is less than or equal to the length of the second argument. It fails if the first argument is not a string or array of strings, or if arg 2 is not convertable to a number.
+Validates that the first argument is a string (or an array of strings), and is less than or equal to the length of the second argument. It fails if the first argument is not a string or array of strings, or if arg 2 is not convertable to a number.  Optionally, a minimum string length can be given as the third argument.
 
   The following values pass:
 
   ~~~
   validate_slength("discombobulate",17)
   validate_slength(["discombobulate","moo"],17)
+  validate_slength(["discombobulate","moo"],17,3)
   ~~~
 
   The following values fail:
@@ -952,6 +953,7 @@ Validates that the first argument is a string (or an array of strings), and is l
   ~~~
   validate_slength("discombobulate",1)
   validate_slength(["discombobulate","thermometer"],5)
+  validate_slength(["discombobulate","moo"],17,10)
   ~~~
 
 *Type*: statement.
