@@ -1021,6 +1021,7 @@ Versions | Puppet 2.6 | Puppet 2.7 | Puppet 3.x | Puppet 4.x |
 **stdlib 2.x**  | **yes** | **yes** | no | no
 **stdlib 3.x**  | no    | **yes**  | **yes** | no
 **stdlib 4.x**  | no    | **yes**  | **yes** | no
+**stdlib 4.6+**  | no    | **yes**  | **yes** | **yes**
 **stdlib 5.x**  | no    | no  | **yes**  | **yes**
 
 **stdlib 5.x**: When released, stdlib 5.x will drop support for Puppet 2.7.x. Please see [this discussion](https://github.com/puppetlabs/puppetlabs-stdlib/pull/176#issuecomment-30251414).
