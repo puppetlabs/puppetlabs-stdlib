@@ -449,6 +449,17 @@ Loads a YAML file containing an array, string, or hash, and returns the data in 
 
 *Type*: rvalue.
 
+#### `load_module_metadata`
+
+Loads the metadata.json of a target module. Can be used to determine module version and authorship for dynamic support of modules.
+
+  ~~~
+  $metadata = load_module_metadata('archive')
+  notify { $metadata['author']: }
+  ~~~
+
+*Type*: rvalue.
+
 #### `lstrip`
 
 Strips spaces to the left of a string. *Type*: rvalue.
