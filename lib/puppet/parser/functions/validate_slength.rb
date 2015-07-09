@@ -43,9 +43,7 @@ module Puppet::Parser::Functions
       min_length = 0
     end
 
-    if min_length > max_length
-      raise Puppet::ParseError, "validate_slength(): Expected second argument to be equal to or larger than third argument"
-    end
+    raise Puppet::ParseError, "validate_slength(): Expected second argument to be equal to or larger than third argument" unless max_length >= min_length
 
     validator = lambda do |str|
       unless str.length <= max_length and str.length >= min_length
