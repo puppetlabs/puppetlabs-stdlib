@@ -32,9 +32,10 @@ group :system_tests do
   if beaker_rspec_version
     gem 'beaker-rspec', *location_for(beaker_rspec_version)
   else
-    gem 'beaker-rspec',  :require => false
+    gem 'beaker-rspec', :require => false
   end
-  gem 'serverspec',    :require => false
+  gem 'serverspec', :require => false
+  gem 'beaker-puppet_install_helper', :require => false
 end
 
 facterversion = ENV['GEM_FACTER_VERSION'] || ENV['FACTER_GEM_VERSION']
