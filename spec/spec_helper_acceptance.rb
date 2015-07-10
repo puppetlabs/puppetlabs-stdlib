@@ -1,28 +1,10 @@
 #! /usr/bin/env ruby -S rspec
 require 'beaker-rspec'
+require 'beaker/puppet_install_helper'
 
 UNSUPPORTED_PLATFORMS = []
 
-unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
-  foss_opts = {
-    :default_action => 'gem_install',
-    :version        => (ENV['PUPPET_VERSION'] || '3.8.1'),
-  }
-
-  if default.is_pe?; then install_pe; else install_puppet( foss_opts ); end
-
-  hosts.each do |host|
-    if host['platform'] !~ /windows/i
-      if host.is_pe?
-        on host, 'mkdir -p /etc/puppetlabs/facter/facts.d'
-      else
-        on host, "/bin/touch #{host['puppetpath']}/hiera.yaml"
-        on host, "mkdir -p #{host['distmoduledir']}"
-        on host, 'mkdir -p /etc/facter/facts.d'
-      end
-    end
-  end
-end
+run_puppet_install_helper
 
 RSpec.configure do |c|
   # Project root
