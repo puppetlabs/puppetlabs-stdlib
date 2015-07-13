@@ -212,7 +212,7 @@ Takes a list of packages and only installs them if they don't already exist. It 
 
 #### `ensure_resource`
 
-Takes a resource type, title, and a list of attributes that describe a resource.
+Takes a resource type, title, and a hash of attributes that describe the resource(s).
 
 ~~~
 user { 'dan':
