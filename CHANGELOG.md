@@ -1,3 +1,32 @@
+##2015-06-22 - Supported Release 4.7.0
+###Summary
+
+Adds Solaris 12 support along with improved Puppet 4 support. There are significant test improvements, and some minor fixes.
+
+####Features
+- Add support for Solaris 12
+
+####Bugfixes
+- Fix for AIO Puppet 4
+- Fix time for ruby 1.8.7
+- Specify rspec-puppet version
+- range() fix for typeerror and missing functionality
+- Fix pw_hash() on JRuby < 1.7.17
+- fqdn_rand_string: fix argument error message
+- catch and rescue from looking up non-existent facts
+- Use puppet_install_helper, for Puppet 4
+
+####Improvements
+- Enforce support for Puppet 4 testing
+- fqdn_rotate/fqdn_rand_string acceptance tests and implementation
+- Simplify mac address regex
+- validate_integer, validate_numeric: explicitely reject hashes in arrays
+- Readme edits
+- Remove all the pops stuff for rspec-puppet
+- Sync via modulesync
+- Add validate_slength optional 3rd arg
+- Move tests directory to examples directory
+
 ##2015-04-14 - Supported Release 4.6.0
 ###Summary
 
