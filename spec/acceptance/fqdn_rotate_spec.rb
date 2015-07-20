@@ -4,7 +4,8 @@ require 'spec_helper_acceptance'
 describe 'fqdn_rotate function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
   describe 'success' do
     let(:facts_d) do
-      if fact('is_pe', '--puppet') == "true"
+      puppet_version = (on default, puppet('--version')).output.chomp
+      if puppet_version < '4.0.0' && fact('is_pe', '--puppet') == "true"
         if fact('osfamily') =~ /windows/i
           if fact('kernelmajversion').to_f < 6.0
             'C:/Documents and Settings/All Users/Application Data/PuppetLabs/facter/facts.d'
