@@ -578,7 +578,7 @@ Randomizes the order of a string or array elements. *Type*: rvalue.
 
 #### `size`
 
-Returns the number of elements in a string or an array. *Type*: rvalue.
+Returns the number of elements in a string, an array or a hash. *Type*: rvalue.
 
 #### `sort`
 

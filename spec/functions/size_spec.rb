@@ -8,14 +8,17 @@ describe 'size' do
     is_expected.to run.with_params([], 'extra').and_raise_error(Puppet::ParseError, /wrong number of arguments/i)
   }
   it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, /Unknown type given/) }
-  it { is_expected.to run.with_params({}).and_raise_error(Puppet::ParseError, /Unknown type given/) }
   it { is_expected.to run.with_params(true).and_raise_error(Puppet::ParseError, /Unknown type given/) }
-  it { is_expected.to run.with_params('1').and_raise_error(Puppet::ParseError, /Requires either string or array to work/) }
-  it { is_expected.to run.with_params('1.0').and_raise_error(Puppet::ParseError, /Requires either string or array to work/) }
+  it { is_expected.to run.with_params('1').and_raise_error(Puppet::ParseError, /Requires either string, array or hash to work/) }
+  it { is_expected.to run.with_params('1.0').and_raise_error(Puppet::ParseError, /Requires either string, array or hash to work/) }
   it { is_expected.to run.with_params([]).and_return(0) }
   it { is_expected.to run.with_params(['a']).and_return(1) }
   it { is_expected.to run.with_params(['one', 'two', 'three']).and_return(3) }
   it { is_expected.to run.with_params(['one', 'two', 'three', 'four']).and_return(4) }
+
+  it { is_expected.to run.with_params({}).and_return(0) }
+  it { is_expected.to run.with_params({'1' => '2'}).and_return(1) }
+  it { is_expected.to run.with_params({'1' => '2', '4' => '4'}).and_return(2) }
 
   it { is_expected.to run.with_params('').and_return(0) }
   it { is_expected.to run.with_params('a').and_return(1) }
