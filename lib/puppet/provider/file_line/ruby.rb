@@ -33,9 +33,10 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def handle_create_with_match()
-    regex = resource[:match] ? Regexp.new(resource[:match]) : nil
-    regex_after = resource[:after] ? Regexp.new(resource[:after]) : nil
-    match_count = count_matches(regex)
+    regex        = resource[:match] ? Regexp.new(resource[:match]) : nil
+    regex_after  = resource[:after] ? Regexp.new(resource[:after]) : nil
+    regex_unless = resource[:unless] ? Regexp.new(resource[:unless]) : nil
+    match_count  = count_matches(regex)
 
     if match_count > 1 && resource[:multiple].to_s != 'true'
      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
@@ -43,7 +44,19 @@ Puppet::Type.type(:file_line).provide(:ruby) do
 
     File.open(resource[:path], 'w') do |fh|
       lines.each do |l|
-        fh.puts(regex.match(l) ? resource[:line] : l)
+        if regex.match(l)
+            if regex_unless
+                unless regex_unless.match(l)
+                    fh.puts(l.sub(regex, resource[:line]))
+                else
+                    fh.puts(l)
+                end
+            else
+                fh.puts(l.sub(regex, resource[:line]))
+            end
+        else
+            fh.puts(l)
+        end
         if (match_count == 0 and regex_after)
           if regex_after.match(l)
             fh.puts(resource[:line])
@@ -53,7 +66,9 @@ Puppet::Type.type(:file_line).provide(:ruby) do
       end
 
       if (match_count == 0)
-        fh.puts(resource[:line])
+        if resource[:no_append].to_s != 'true'
+          fh.puts(resource[:line])
+        end
       end
     end
   end

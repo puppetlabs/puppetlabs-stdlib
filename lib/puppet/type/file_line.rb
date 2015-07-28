@@ -1,3 +1,5 @@
+require 'puppet/parameter/boolean'
+
 Puppet::Type.newtype(:file_line) do
 
   desc <<-EOT
@@ -33,6 +35,20 @@ Puppet::Type.newtype(:file_line) do
 
     In this code example match will look for a line beginning with export 
     followed by HTTP_PROXY and replace it with the value in line.
+
+    Match Example with capturing regex:
+
+        file_line { 'hosts.allow':
+          ensure    => present,
+          path      => '/etc/hosts.allow',
+          line      => "mysqld: \\1 10.11.24.0/255.255.255.0",
+          match     => '^mysqld: (.*)$',
+          unless    => '10.11.24.0/255.255.255.0',
+          no_append => true,
+        }
+
+    In this code example match will add a subnet to existing mysql
+    authorization if subnet not presents in file hosts.allow.
 
     **Autorequires:** If Puppet is managing the file that will contain the line
     being managed, the file_line resource will autorequire that file.
@@ -78,6 +94,16 @@ Puppet::Type.newtype(:file_line) do
     end
   end
 
+  newparam(:no_append) do
+    desc 'An optional value to determine if parameter "line" is appended or not at the end' + 
+         ' of file if no line matches the regex.'
+    newvalues(true, false)
+  end
+
+  newparam(:unless) do
+    desc 'An optional ruby regular expression, "Match" will be appplied only if "line" parameter not match "unless" parameter.'
+  end
+
   # Autorequire the file resource if it's being managed
   autorequire(:file) do
     self[:path]
@@ -87,5 +113,15 @@ Puppet::Type.newtype(:file_line) do
     unless self[:line] and self[:path]
       raise(Puppet::Error, "Both line and path are required attributes")
     end
+  end
+
+  newparam(:show_diff, :boolean => true, :parent => Puppet::Parameter::Boolean) do
+    desc "Whether to display differences when the file changes, defaulting to
+        true.  This parameter is useful for files that may contain passwords or
+        other secret data, which might otherwise be included in Puppet reports or
+        other insecure outputs.  If the global `show_diff` setting
+        is false, then no diffs will be shown even if this parameter is true."
+
+    defaultto :true
   end
 end
