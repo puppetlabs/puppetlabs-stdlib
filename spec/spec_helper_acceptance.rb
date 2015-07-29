@@ -1,6 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'beaker-rspec'
 require 'beaker/puppet_install_helper'
+require 'rubygems'
 
 UNSUPPORTED_PLATFORMS = []
 
@@ -31,4 +32,38 @@ def is_future_parser_enabled?
     return default[:default_apply_opts][:parser] == 'future'
   end
   return false
+end
+
+RSpec.shared_context "with faked facts" do
+  let(:facts_d) do
+    puppet_version = (on default, puppet('--version')).output.chomp
+    if Gem::Version(puppet_version) < Gem::Version('4.0.0') && fact('is_pe', '--puppet') == "true"
+      if fact('osfamily') =~ /windows/i
+        if fact('kernelmajversion').to_f < 6.0
+          'C:/Documents and Settings/All Users/Application Data/PuppetLabs/facter/facts.d'
+        else
+          'C:/ProgramData/PuppetLabs/facter/facts.d'
+        end
+      else
+        '/etc/puppetlabs/facter/facts.d'
+      end
+    else
+      '/etc/facter/facts.d'
+    end
+  end
+
+  before :each do
+    #No need to create on windows, PE creates by default
+    if fact('osfamily') !~ /windows/i
+      shell("mkdir -p '#{facts_d}'")
+    end
+  end
+
+  after :each do
+    shell("rm -f '#{facts_d}/fqdn.txt'")
+  end
+
+  def fake_fact(name, value)
+    shell("echo #{name}=#{value} > '#{facts_d}/#{name}.txt'")
+  end
 end
