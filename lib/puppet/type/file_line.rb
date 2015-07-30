@@ -1,3 +1,4 @@
+require 'puppet/parameter/boolean'
 Puppet::Type.newtype(:file_line) do
 
   desc <<-EOT
@@ -76,6 +77,11 @@ Puppet::Type.newtype(:file_line) do
         raise(Puppet::Error, "File paths must be fully qualified, not '#{value}'")
       end
     end
+  end
+
+  newparam(:replace, :boolean => true, :parent => Puppet::Parameter::Boolean) do
+    desc 'If true, replace line that matches. If false, do not write line if a match is found'
+    defaultto true
   end
 
   # Autorequire the file resource if it's being managed

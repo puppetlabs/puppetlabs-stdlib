@@ -36,7 +36,58 @@ describe provider_class do
       expect(File.read(tmpfile).chomp).to eq('foo')
     end
   end
+  context 'when using replace' do
+    before :each do
+      # TODO: these should be ported over to use the PuppetLabs spec_helper
+      #  file fixtures once the following pull request has been merged:
+      # https://github.com/puppetlabs/puppetlabs-stdlib/pull/73/files
+      tmp = Tempfile.new('tmp')
+      @tmpfile = tmp.path
+      tmp.close!
+      @resource = Puppet::Type::File_line.new(
+        {
+          :name    => 'foo',
+          :path    => @tmpfile,
+          :line    => 'foo = bar',
+          :match   => '^foo\s*=.*$',
+          :replace => false,
+        }
+      )
+      @provider = provider_class.new(@resource)
+    end
 
+    it 'should not replace the matching line' do
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo=blah\nfoo2\nfoo3")
+      end
+      expect(@provider.exists?).to be_truthy
+      @provider.create
+      expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo=blah\nfoo2\nfoo3")
+    end
+
+    it 'should append the line if no matches are found' do
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo2")
+      end
+      expect(@provider.exists?).to be_nil
+      @provider.create
+      expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo2\nfoo = bar")
+    end
+
+    it 'should raise an error with invalid values' do
+      expect {
+        @resource = Puppet::Type::File_line.new(
+          {
+            :name     => 'foo',
+            :path     => @tmpfile,
+            :line     => 'foo = bar',
+            :match    => '^foo\s*=.*$',
+            :replace  => 'asgadga',
+          }
+        )
+      }.to raise_error(Puppet::Error, /Invalid value "asgadga"\. Valid values are true, false, yes, no\./)
+    end
+  end
   context "when matching" do
     before :each do
       # TODO: these should be ported over to use the PuppetLabs spec_helper
