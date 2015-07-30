@@ -99,6 +99,7 @@ All parameters are optional, unless otherwise noted.
 * `multiple`: Determines if `match` and/or `after` can change multiple lines. If set to false, an exception will be raised if more than one line matches. Valid options: 'true', 'false'. Default: Undefined.
 * `name`: Sets the name to use as the identity of the resource. This is necessary if you want the resource namevar to differ from the supplied `title` of the resource. Valid options: String. Default: Undefined.
 * `path`: **Required.** Defines the file in which Puppet will ensure the line specified by `line`. Must be an absolute path to the file.
+* `replace`: Defines whether the resource will overwrite an existing line that matches the `match` parameter. If set to false and a line is found matching the `match` param, the line will not be placed in the file. Valid options: true, false, yes, no. Default: true
 
 
 ### Functions
