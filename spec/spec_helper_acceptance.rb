@@ -1,7 +1,6 @@
 #! /usr/bin/env ruby -S rspec
 require 'beaker-rspec'
 require 'beaker/puppet_install_helper'
-require 'rubygems'
 
 UNSUPPORTED_PLATFORMS = []
 
@@ -37,7 +36,7 @@ end
 RSpec.shared_context "with faked facts" do
   let(:facts_d) do
     puppet_version = (on default, puppet('--version')).output.chomp
-    if Gem::Version(puppet_version) < Gem::Version('4.0.0') && fact('is_pe', '--puppet') == "true"
+    if Puppet::Util::Package.versioncmp(puppet_version, '4.0.0') < 0 && fact('is_pe', '--puppet') == "true"
       if fact('osfamily') =~ /windows/i
         if fact('kernelmajversion').to_f < 6.0
           'C:/Documents and Settings/All Users/Application Data/PuppetLabs/facter/facts.d'
