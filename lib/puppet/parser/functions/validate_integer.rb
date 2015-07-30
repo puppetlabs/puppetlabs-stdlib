@@ -49,7 +49,7 @@ module Puppet::Parser::Functions
 
     Plus all of the above, but any combination of values passed as strings ('false' or "false").
     Plus all of the above, but with incorrect combinations of negative integer values.
-    Plus all of the above, but with non-integer crap in arrays or maximum / minimum argument.
+    Plus all of the above, but with non-integer items in arrays or maximum / minimum argument.
 
     ENDHEREDOC
 
