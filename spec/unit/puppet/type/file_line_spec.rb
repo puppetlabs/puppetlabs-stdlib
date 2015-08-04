@@ -50,7 +50,7 @@ describe Puppet::Type.type(:file_line) do
     expect(file_line[:ensure]).to eq :present
   end
   it 'should default to replace => true' do
-    expect(file_line[:replace]).to eq true
+    expect(file_line[:replace]).to eq :true
   end
 
   it "should autorequire the file it manages" do

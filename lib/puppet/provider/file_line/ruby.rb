@@ -1,6 +1,6 @@
 Puppet::Type.type(:file_line).provide(:ruby) do
   def exists?
-    if !resource[:replace] and count_matches(match_regex) > 0
+    if resource[:replace].to_s != 'true' and count_matches(match_regex) > 0
       true
     else
       lines.find do |line|
@@ -10,7 +10,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def create
-    unless !resource[:replace] and count_matches(match_regex) > 0
+    unless resource[:replace].to_s != 'true' and count_matches(match_regex) > 0
       if resource[:match]
         handle_create_with_match
       elsif resource[:after]
