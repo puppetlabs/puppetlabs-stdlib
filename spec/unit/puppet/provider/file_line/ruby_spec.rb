@@ -85,7 +85,7 @@ describe provider_class do
             :replace  => 'asgadga',
           }
         )
-      }.to raise_error(Puppet::Error, /Invalid value "asgadga"\. Valid values are true, false, yes, no\./)
+      }.to raise_error(Puppet::Error, /Invalid value "asgadga"\. Valid values are true, false\./)
     end
   end
   context "when matching" do

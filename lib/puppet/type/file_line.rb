@@ -1,4 +1,3 @@
-require 'puppet/parameter/boolean'
 Puppet::Type.newtype(:file_line) do
 
   desc <<-EOT
@@ -79,8 +78,9 @@ Puppet::Type.newtype(:file_line) do
     end
   end
 
-  newparam(:replace, :boolean => true, :parent => Puppet::Parameter::Boolean) do
+  newparam(:replace) do
     desc 'If true, replace line that matches. If false, do not write line if a match is found'
+    newvalues(true, false)
     defaultto true
   end
 
