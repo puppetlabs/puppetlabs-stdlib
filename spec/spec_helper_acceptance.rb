@@ -43,9 +43,6 @@ RSpec.shared_context "with faked facts" do
         'C:/ProgramData/PuppetLabs/facter/facts.d'
       end
     elsif fact('is_pe', '--puppet') == "true"
-        '/etc/puppetlabs/facter/facts.d'
-      end
-    elsif Puppet::Util::Package.versioncmp(puppet_version, '4.0.0') < 0 and fact('is_pe', '--puppet') == "true"
       '/etc/puppetlabs/facter/facts.d'
     else
       '/etc/facter/facts.d'
