@@ -35,13 +35,14 @@ end
 
 RSpec.shared_context "with faked facts" do
   let(:facts_d) do
+    puppet_version = (on default, puppet('--version')).output.chomp
     if fact('osfamily') =~ /windows/i
       if fact('kernelmajversion').to_f < 6.0
         'C:/Documents and Settings/All Users/Application Data/PuppetLabs/facter/facts.d'
       else
         'C:/ProgramData/PuppetLabs/facter/facts.d'
       end
-    elsif fact('is_pe', '--puppet') == "true"
+    elsif Puppet::Util::Package.versioncmp(puppet_version, '4.0.0') < 0 and fact('is_pe', '--puppet') == "true"
       '/etc/puppetlabs/facter/facts.d'
     else
       '/etc/facter/facts.d'
