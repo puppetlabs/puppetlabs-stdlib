@@ -1,3 +1,16 @@
+## 2015-08-10 - Supported Release 4.8.0
+### Summary
+This release adds a function for reading metadata.json from any module, and expands file\_line's abilities.
+
+#### Features
+- New parameter `replace` on `file_line`
+- New function `load_module_metadata()` to load metadata.json and return the content as a hash.
+- Added hash support to `size()`
+
+#### Bugfixes
+- Fix various docs typos
+- Fix `file_line` resource on puppet < 3.3
+
 ##2015-06-22 - Supported Release 4.7.0
 ###Summary
 
