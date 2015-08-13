@@ -34,6 +34,20 @@ Puppet::Type.newtype(:file_line) do
     In this code example match will look for a line beginning with export 
     followed by HTTP_PROXY and replace it with the value in line.
 
+    Match Example With `ensure => absent`:
+
+        file_line { 'bashrc_proxy':
+          ensure            => absent,
+          path              => '/etc/bashrc',
+          line              => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+          match             => '^export\ HTTP_PROXY\=',
+          match_for_absence => true,
+        }
+
+    In this code example match will look for a line beginning with export
+    followed by HTTP_PROXY and delete it.  If multiple lines match, an
+    error will be raised unless the `multiple => true` parameter is set.
+
     **Autorequires:** If Puppet is managing the file that will contain the line
     being managed, the file_line resource will autorequire that file.
 
@@ -53,6 +67,14 @@ Puppet::Type.newtype(:file_line) do
          ' If a match is found, we replace that line rather than adding a new line.' +
          ' A regex comparisson is performed against the line value and if it does not' +
          ' match an exception will be raised. '
+  end
+
+  newparam(:match_for_absence) do
+    desc 'An optional value to determine if match should be applied when ensure => absent.' +
+         ' If set to true and match is set, the line that matches match will be deleted.' +
+         ' If set to false (the default), match is ignored when ensure => absent.'
+    newvalues(true, false)
+    defaultto false
   end
 
   newparam(:multiple) do

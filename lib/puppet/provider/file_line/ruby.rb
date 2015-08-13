@@ -22,9 +22,10 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def destroy
-    local_lines = lines
-    File.open(resource[:path],'w') do |fh|
-      fh.write(local_lines.reject{|l| l.chomp == resource[:line] }.join(''))
+    if resource[:match_for_absence].to_s == 'true' and resource[:match]
+      handle_destroy_with_match
+    else
+      handle_destroy_line
     end
   end
 
@@ -91,6 +92,25 @@ Puppet::Type.type(:file_line).provide(:ruby) do
 
   def count_matches(regex)
     lines.select{|l| l.match(regex)}.size
+  end
+
+  def handle_destroy_with_match
+    match_count = count_matches(match_regex)
+    if match_count > 1 && resource[:multiple].to_s != 'true'
+     raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
+    end
+
+    local_lines = lines
+    File.open(resource[:path],'w') do |fh|
+      fh.write(local_lines.reject{|l| match_regex.match(l) }.join(''))
+    end
+  end
+
+  def handle_destroy_line
+    local_lines = lines
+    File.open(resource[:path],'w') do |fh|
+      fh.write(local_lines.reject{|l| l.chomp == resource[:line] }.join(''))
+    end
   end
 
   ##
