@@ -1,3 +1,16 @@
+##2015-08-13 - Release 4.8.1
+###Summary
+
+Adds some new functions.
+
+####Features
+- Add new functions: `dos2unix` and `unix2dos`
+
+####Bugfixes
+- n/a
+
+####Improvements
+- n/a
 ## 2015-08-10 - Supported Release 4.8.0
 ### Summary
 This release adds a function for reading metadata.json from any module, and expands file\_line's abilities.
