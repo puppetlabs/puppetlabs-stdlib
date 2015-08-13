@@ -201,7 +201,7 @@ Returns the `dirname` of a path. For example, `dirname('/path/to/a/file.ext')` r
 
 #### `dos2unix`
 
-Returns the Unix version of the given string. Very useful when using a File resource with a cross-platform template.
+Returns the Unix version of the given string. Very useful when using a File resource with a cross-platform template. *Type*: rvalue.
 
 ~~~
 file{$config_file:
@@ -712,7 +712,7 @@ Removes duplicates from strings and arrays. For example, `unique("aabbcc")` retu
 
 #### `unix2dos`
 
-Returns the DOS version of the given string. Very useful when using a File resource with a cross-platform template.
+Returns the DOS version of the given string. Very useful when using a File resource with a cross-platform template. *Type*: rvalue.
 
 ~~~
 file{$config_file:
