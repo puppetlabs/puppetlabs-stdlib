@@ -1,3 +1,17 @@
+##2015-06-22 - Supported Release 4.7.1
+###Summary
+
+Adds some new functions.
+
+####Features
+- Add new functions: `dos2unix` and `unix2dos`
+
+####Bugfixes
+- n/a
+
+####Improvements
+- n/a
+
 ##2015-06-22 - Supported Release 4.7.0
 ###Summary
 
