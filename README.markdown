@@ -67,7 +67,23 @@ The `stdlib::stages` class declares various run stages for deploying infrastruct
 
 #### Public Classes
 
-  The stdlib class has no parameters.
+* `stdlib`: The stdlib class has no parameters.
+
+* `stdlib::hash_resources`: Takes a single 'resources' parameter to create multiple resources in the catalogue. They can be defined types, built-in resources, or other classes.  An example with an ENC's YAML:
+
+  ~~~
+  ---
+  classes:
+    stdlib::hash_resources:
+      resources:
+        file:
+          /tmp/foo:
+            ensure: present
+            content: test
+          /tmp/bar:
+            ensure: present
+            content: test
+  ~~~
 
 #### Private Classes
 
@@ -471,7 +487,7 @@ Returns the highest value of all arguments. Requires at least one argument. *Typ
 
 #### `member`
 
-This function determines if a variable is a member of an array. The variable can be either a string, array, or fixnum. For example, `member(['a','b'], 'b')` and `member(['a','b','c'], ['b','c'])` return 'true', while `member(['a','b'], 'c')` and `member(['a','b','c'], ['c','d'])` return 'false'. *Note*: This function does not support nested arrays. If the first argument contains nested arrays, it will not recurse through them. 
+This function determines if a variable is a member of an array. The variable can be either a string, array, or fixnum. For example, `member(['a','b'], 'b')` and `member(['a','b','c'], ['b','c'])` return 'true', while `member(['a','b'], 'c')` and `member(['a','b','c'], ['c','d'])` return 'false'. *Note*: This function does not support nested arrays. If the first argument contains nested arrays, it will not recurse through them.
 
 *Type*: rvalue.
 
@@ -519,10 +535,10 @@ From a list of values, returns the first value that is not undefined or an empty
 
 #### `prefix`
 
-Applies a prefix to all elements in an array, or to the keys in a hash.  
-For example: 
+Applies a prefix to all elements in an array, or to the keys in a hash.
+For example:
 * `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc']
-* `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}.  
+* `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}.
 
 *Type*: rvalue.
 
@@ -1002,7 +1018,7 @@ Instead, use:
 
 #### `values`
 
-Returns the values of a given hash. For example, given `$hash = {'a'=1, 'b'=2, 'c'=3} values($hash)` returns [1,2,3]. 
+Returns the values of a given hash. For example, given `$hash = {'a'=1, 'b'=2, 'c'=3} values($hash)` returns [1,2,3].
 
 *Type*: rvalue.
 
