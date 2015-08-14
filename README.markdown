@@ -199,6 +199,19 @@ Returns the difference between two arrays. The returned array is a copy of the o
 
 Returns the `dirname` of a path. For example, `dirname('/path/to/a/file.ext')` returns '/path/to/a'. *Type*: rvalue.
 
+#### `dos2unix`
+
+Returns the Unix version of the given string. Very useful when using a File resource with a cross-platform template. *Type*: rvalue.
+
+~~~
+file{$config_file:
+  ensure  => file,
+  content => dos2unix(template('my_module/settings.conf.erb')),
+}
+~~~
+
+See also [unix2dos](#unix2dos).
+
 #### `downcase`
 
 Converts the case of a string or of all strings in an array to lowercase. *Type*: rvalue.
@@ -471,7 +484,7 @@ Returns the highest value of all arguments. Requires at least one argument. *Typ
 
 #### `member`
 
-This function determines if a variable is a member of an array. The variable can be either a string, array, or fixnum. For example, `member(['a','b'], 'b')` and `member(['a','b','c'], ['b','c'])` return 'true', while `member(['a','b'], 'c')` and `member(['a','b','c'], ['c','d'])` return 'false'. *Note*: This function does not support nested arrays. If the first argument contains nested arrays, it will not recurse through them. 
+This function determines if a variable is a member of an array. The variable can be either a string, array, or fixnum. For example, `member(['a','b'], 'b')` and `member(['a','b','c'], ['b','c'])` return 'true', while `member(['a','b'], 'c')` and `member(['a','b','c'], ['c','d'])` return 'false'. *Note*: This function does not support nested arrays. If the first argument contains nested arrays, it will not recurse through them.
 
 *Type*: rvalue.
 
@@ -520,7 +533,7 @@ From a list of values, returns the first value that is not undefined or an empty
 #### `prefix`
 
 Applies a prefix to all elements in an array, or to the keys in a hash.  
-For example: 
+For example:
 * `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc']
 * `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}.  
 
@@ -696,6 +709,19 @@ Returns a union of two arrays, without duplicates. For example, `union(["a","b",
 #### `unique`
 
 Removes duplicates from strings and arrays. For example, `unique("aabbcc")` returns 'abc', and `unique(["a","a","b","b","c","c"])` returns ["a","b","c"]. *Type*: rvalue.
+
+#### `unix2dos`
+
+Returns the DOS version of the given string. Very useful when using a File resource with a cross-platform template. *Type*: rvalue.
+
+~~~
+file{$config_file:
+  ensure  => file,
+  content => unix2dos(template('my_module/settings.conf.erb')),
+}
+~~~
+
+See also [dos2unix](#dos2unix).
 
 #### `upcase`
 
@@ -1002,7 +1028,7 @@ Instead, use:
 
 #### `values`
 
-Returns the values of a given hash. For example, given `$hash = {'a'=1, 'b'=2, 'c'=3} values($hash)` returns [1,2,3]. 
+Returns the values of a given hash. For example, given `$hash = {'a'=1, 'b'=2, 'c'=3} values($hash)` returns [1,2,3].
 
 *Type*: rvalue.
 
@@ -1048,7 +1074,3 @@ To report or research a bug with any part of this module, please go to
 ##Contributors
 
 The list of contributors can be found at: https://github.com/puppetlabs/puppetlabs-stdlib/graphs/contributors
-
-
-
-
