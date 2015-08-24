@@ -704,7 +704,7 @@ Returns the literal type when passed a value. Requires the new parser. Useful fo
 
 #### `union`
 
-Returns a union of two arrays, without duplicates. For example, `union(["a","b","c"],["b","c","d"])` returns ["a","b","c","d"].
+Returns a union of two or more arrays, without duplicates. For example, `union(["a","b","c"],["b","c","d"])` returns ["a","b","c","d"].
 
 #### `unique`
 
