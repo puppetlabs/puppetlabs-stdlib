@@ -32,6 +32,6 @@ module Puppet::Parser::Functions
         result = Base64.decode64(args[1])
     end
 
-    return result
+    return result.chomp
   end
 end
