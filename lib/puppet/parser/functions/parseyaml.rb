@@ -3,21 +3,20 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:parseyaml, :type => :rvalue, :doc => <<-EOS
+  newfunction(:parseyaml, :type => :rvalue, :arity => -2, :doc => <<-EOS
 This function accepts YAML as a string and converts it into the correct
 Puppet structure.
+
+The optional second argument can be used to pass a default value that will
+be returned if the parsing of YAML string have failed.
     EOS
   ) do |arguments|
 
-    if (arguments.size != 1) then
-      raise(Puppet::ParseError, "parseyaml(): Wrong number of arguments "+
-        "given #{arguments.size} for 1")
-    end
-
     require 'yaml'
 
-    YAML::load(arguments[0])
-
+    data = YAML::load(arguments[0])
+    data = arguments[1] unless data
+    data
   end
 end
 
