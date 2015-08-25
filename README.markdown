@@ -532,10 +532,10 @@ From a list of values, returns the first value that is not undefined or an empty
 
 #### `prefix`
 
-Applies a prefix to all elements in an array, or to the keys in a hash.  
+Applies a prefix to all elements in an array, or to the keys in a hash.
 For example:
 * `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc']
-* `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}.  
+* `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}.
 
 *Type*: rvalue.
 
@@ -572,6 +572,8 @@ The second argument to this function is which type of hash to use. It will be co
 |SHA-512 (recommended)|6        |
 
 The third argument to this function is the salt to use.
+
+*Type*: rvalue.
 
 **Note:** this uses the Puppet master's implementation of crypt(3). If your environment contains several different operating systems, ensure that they are compatible before using this function.
 
@@ -704,7 +706,7 @@ Returns the literal type when passed a value. Requires the new parser. Useful fo
 
 #### `union`
 
-Returns a union of two or more arrays, without duplicates. For example, `union(["a","b","c"],["b","c","d"])` returns ["a","b","c","d"].
+Returns a union of two or more arrays, without duplicates. For example, `union(["a","b","c"],["b","c","d"])` returns ["a","b","c","d"]. *Type*: rvalue.
 
 #### `unique`
 
