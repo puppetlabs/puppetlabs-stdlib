@@ -155,6 +155,12 @@ Appends the contents of multiple arrays onto the first array given. For example:
   * `concat(['1','2','3'],'4',['5','6','7'])` returns ['1','2','3','4','5','6','7'].
   *Type*: rvalue.
 
+#### `convert_base`
+
+Converts a given integer or base 10 string representing an integer to a specified base, as a string. For example:
+  * `convert_base(5, 2)` results in: '101'
+  * `convert_base('254', '16')` results in: 'fe'
+
 #### `count`
 
 If called with only an array, it counts the number of elements that are **not** nil/undef. If called with a second argument, counts the number of elements in an array that matches the second argument. *Type*: rvalue.
