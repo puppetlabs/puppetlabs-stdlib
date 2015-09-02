@@ -3,13 +3,13 @@ require 'spec_helper_acceptance'
 
 describe 'try_get_value function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
   describe 'success' do
-    it 'try_get_valuees a value' do
+    it 'gets a value' do
       pp = <<-EOS
       $data = {
         'a' => { 'b' => 'passing'}
       }
 
-      $tests = try_get_value($a, 'a/b')
+      $tests = try_get_value($data, 'a/b')
       notice(inline_template('tests are <%= @tests.inspect %>'))
       EOS
 
@@ -25,11 +25,11 @@ describe 'try_get_value function', :unless => UNSUPPORTED_PLATFORMS.include?(fac
         'a' => { 'b' => 'passing'}
       }
 
-      $tests = try_get_value($a, 'c/d', 'using the default value')
+      $tests = try_get_value($data, 'c/d', 'using the default value')
       notice(inline_template('tests are <%= @tests.inspect %>'))
       EOS
 
-      apply_manifest(pp, :expect_failures => true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(/using the default value/)
       end
     end
