@@ -10,13 +10,13 @@ describe 'str2bool' do
   it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError, /Unknown type of boolean given/) }
 
   describe 'when testing values that mean "true"' do
-    [ '1', 't', 'y', 'true', 'yes', true ].each do |value|
+    [ 'TRUE','1', 't', 'y', 'true', 'yes', true ].each do |value|
       it { is_expected.to run.with_params(value).and_return(true) }
     end
   end
 
   describe 'when testing values that mean "false"' do
-    [ '', '0', 'f', 'n', 'false', 'no', false, 'undef', 'undefined' ].each do |value|
+    [ 'FALSE','', '0', 'f', 'n', 'false', 'no', false, 'undef', 'undefined' ].each do |value|
       it { is_expected.to run.with_params(value).and_return(false) }
     end
   end
