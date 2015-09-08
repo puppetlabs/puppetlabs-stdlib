@@ -706,12 +706,18 @@ Converts the argument into bytes, for example "4 kB" becomes "4096". Takes a sin
 
 *Type*: rvalue.
 
-Looks up into a complex structure of arrays and hashes and returns a value
-or the default value if nothing was found.
+Looks up into a complex structure of arrays and hashes to extract a value by
+its path in the structure. The path is a string of hash keys or array indexes
+starting with zero, separated by the path separator character (default "/").
+The function will go down the structure by each path component and will try to
+return the value at the end of the path.
 
-Key can contain slashes to describe path components. The function will go down
-the structure and try to extract the required value.
+In addition to the required "path" argument the function accepts the default
+argument. It will be returned if the path is not correct, no value was found or
+a any other error have occurred. And the last argument can set the path
+separator character.
 
+```ruby
 $data = {
   'a' => {
     'b' => [
@@ -722,19 +728,28 @@ $data = {
   }
 }
 
+$value = try_get_value($data, 'a/b/2')
+# $value = 'b3'
+
+# with all possible options
 $value = try_get_value($data, 'a/b/2', 'not_found', '/')
-=> $value = 'b3'
+# $value = 'b3'
 
-a -> first hash key
-b -> second hash key
-2 -> array index starting with 0
+# using the default value
+$value = try_get_value($data, 'a/b/c/d', 'not_found')
+# $value = 'not_found'
 
-not_found -> (optional) will be returned if there is no value or the path did not match. Defaults to nil.
-/ -> (optional) path delimiter. Defaults to '/'.
+# using custom separator
+$value = try_get_value($data, 'a|b', [], '|')
+# $value = ['b1','b2','b3']
+```
 
-In addition to the required "key" argument, "try_get_value" accepts default
-argument. It will be returned if no value was found or a path component is
-missing. And the fourth argument can set a variable path separator.
+1. **$data** The data structure we are working with.
+2. **'a/b/2'** The path string.
+3. **'not_found'** The default value. It will be returned if nothing is found.
+   (optional, defaults to *undef*)
+4. **'/'** The path separator character.
+   (optional, defaults to *'/'*)
 
 #### `type3x`
 
