@@ -623,7 +623,7 @@ Returns a new string where runs of the same character that occur in this set are
 
 #### `str2bool`
 
-Converts a string to a boolean. This attempts to convert strings that contain values such as '1', 't', 'y', and 'yes' to 'true' and strings that contain values such as '0', 'f', 'n', and 'no' to 'false'. *Type*: rvalue.
+Converts a string to a boolean regardless of case. This attempts to convert strings that contain values such as '1', 't', 'y', 'Y', 'YES','yes', and 'TRUE' to 'true' and strings that contain values such as '0', 'f','F', 'N','n', 'NO','FALSE', and 'no' to 'false'. *Type*: rvalue.  
 
 #### `str2saltedsha512`
 
