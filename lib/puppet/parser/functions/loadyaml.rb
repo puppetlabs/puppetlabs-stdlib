@@ -13,12 +13,22 @@ module Puppet::Parser::Functions
       raise Puppet::ParseError, ("loadyaml(): wrong number of arguments (#{args.length}; must be 1)")
     end
 
-    if File.exists?(args[0]) then
-      YAML.load_file(args[0])
+    if Puppet::Util.absolute_path?(args[0])
+      file = args[0]
     else
-      warning("Can't load " + args[0] + ". File does not exist!")
-      nil
+      if args[0] == "" || Puppet::Util.absolute_path?(args[0])
+        file = nil
+      else
+        path, module_file = args[0].split(File::SEPARATOR, 2)
+        mod = self.compiler.environment.module(path)
+        if module_file && mod
+          file = mod.file(module_file)
+        else
+          file = nil
+        end
+      end
     end
+    YAML.load_file(file)
 
   end
 
