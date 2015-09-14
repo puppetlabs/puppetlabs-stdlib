@@ -9,17 +9,17 @@ if ENV["FUTURE_PARSER"] == 'yes'
 end
 
 if Puppet.version.to_f >= 4.0
-  describe 'type_of' do
+  describe 'is_a' do
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params().and_raise_error(ArgumentError) }
     it { is_expected.to run.with_params('', '').and_raise_error(ArgumentError) }
 
-    it 'gives the type of a string' do
-      expect(subject.call({}, 'hello world')).to be_kind_of(Puppet::Pops::Types::PStringType)
+    it 'succeeds when comparing a string and a string' do
+      is_expected.to run.with_params('hello world', String).and_return(true)
     end
 
-    it 'gives the type of an integer' do
-      expect(subject.call({}, 5)).to be_kind_of(Puppet::Pops::Types::PIntegerType)
+    it 'fails when comparing an integer and a string' do
+      is_expected.to run.with_params(5, String).and_return(false)
     end
   end
 end
