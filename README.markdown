@@ -403,6 +403,29 @@ Converts an array into a hash. For example, `hash(['a',1,'b',2,'c',3])` returns 
 
 Returns an array an intersection of two. For example, `intersection(["a","b","c"],["b","c","d"])` returns ["b","c"]. *Type*: rvalue.
 
+#### `is_a`
+
+Boolean check to determine whether a variable is of a given data type. This is equivalent to the `=~` type checks.
+
+  ~~~
+  foo = 3
+  $bar = [1,2,3]
+  $baz = 'A string!'
+
+  if $foo.is_a(Integer) {
+    notify  { 'foo!': }
+  }
+  if $bar.is_a(Array) {
+    notify { 'bar!': }
+  }
+  if $baz.is_a(String) {
+    notify { 'baz!': }
+  }
+  ~~~
+
+See the documentation for "The Puppet Type System" for more information about types.
+See the `assert_type()` function for flexible ways to assert the type of a value.
+
 #### `is_array`
 
 Returns 'true' if the variable passed to this function is an array. *Type*: rvalue.
