@@ -521,10 +521,12 @@ Converts a number or a string representation of a number into a true boolean. Ze
 #### `parsejson`
 
 Converts a string of JSON into the correct Puppet structure. *Type*: rvalue.
+The optional second argument will be returned if the data was not correct.
 
 #### `parseyaml`
 
 Converts a string of YAML into the correct Puppet structure. *Type*: rvalue.
+The optional second argument will be returned if the data was not correct.
 
 #### `pick`
 
