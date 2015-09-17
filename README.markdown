@@ -541,6 +541,33 @@ Returns the lowest value of all arguments. Requires at least one argument. *Type
 
 Converts a number or a string representation of a number into a true boolean. Zero or anything non-numeric becomes 'false'. Numbers greater than 0 become 'true'. *Type*: rvalue.
 
+#### `parents`
+
+Returns an array containing the parent directories of a given absolute pathname. Very useful when using the file resource to avoid the Puppet error `Cannot create /xxx/yyy; parent directory /xxx does not exist`. *Type*: rvalue.
+
+Sample usage:
+~~~
+
+file {parents($install_dir):
+  ensure => directory,
+} ->
+
+file {$install_dir:
+  ensure => directory,
+}
+
+~~~
+
+Condensed form:
+~~~
+
+file {[ parents($install_dir), $install_dir ]:
+  ensure => directory,
+}
+
+~~~
+
+
 #### `parsejson`
 
 Converts a string of JSON into the correct Puppet structure. *Type*: rvalue.
