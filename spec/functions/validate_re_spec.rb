@@ -41,6 +41,21 @@ describe 'validate_re' do
       it { is_expected.to run.with_params('notone', '^one').and_raise_error(Puppet::ParseError, /does not match/) }
       it { is_expected.to run.with_params('notone', [ '^one', '^two' ]).and_raise_error(Puppet::ParseError, /does not match/) }
       it { is_expected.to run.with_params('notone', [ '^one', '^two' ], 'custom error').and_raise_error(Puppet::ParseError, /custom error/) }
+
+      describe 'non-string inputs' do
+        [
+          1,             # Fixnum
+          3.14,          # Float
+          nil,           # NilClass
+          true,          # TrueClass
+          false,         # FalseClass
+          ["10"],        # Array
+          :key,          # Symbol
+          {:key=>"val"}, # Hash
+        ].each do |input|
+          it { is_expected.to run.with_params(input, '.*').and_raise_error(Puppet::ParseError, /needs to be a String/) }
+        end
+      end
     end
   end
 end
