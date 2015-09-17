@@ -1054,6 +1054,13 @@ test, and the second argument should be a stringified regular expression (withou
   validate_re($::puppetversion, '^2.7', 'The $puppetversion fact value does not match 2.7')
   ~~~
 
+  Note: Compilation will also abort, if the first argument is not a String. Always use
+  quotes to force stringification:
+
+  ~~~
+  validate_re("${::operatingsystemmajrelease}", '^[57]$')
+  ~~~
+
 *Type*: statement.
 
 #### `validate_slength`
