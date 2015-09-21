@@ -21,12 +21,24 @@ describe 'parsejson function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('o
     it 'raises error on incorrect json' do
       pp = <<-EOS
       $a = '{"hunter": "washere", "tests": "passing",}'
-      $ao = parsejson($a, {'tests' => 'using the default value'})
+      $ao = parsejson($a, 'tests are using the default value')
       notice(inline_template('a is <%= @ao.inspect %>'))
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/tests are "using the default value"/)
+        expect(r.stdout).to match(/tests are using the default value/)
+      end
+    end
+
+    it 'raises error on incorrect json' do
+      pp = <<-EOS
+      $a = '{"hunter": "washere", "tests": "passing",}'
+      $ao = parsejson($a)
+      notice(inline_template('a is <%= @ao.inspect %>'))
+      EOS
+
+      apply_manifest(pp, :expect_failures => true) do |r|
+        expect(r.stderr).to match(/expected next name/)
       end
     end
 

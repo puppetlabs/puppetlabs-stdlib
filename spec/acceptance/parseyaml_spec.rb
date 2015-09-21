@@ -31,6 +31,20 @@ describe 'parseyaml function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('o
       end
     end
 
+    it 'raises error on incorrect yaml' do
+      pp = <<-EOS
+      $a = "---\nhunter: washere\ntests: passing\n:"
+      $o = parseyaml($a)
+      $tests = $o['tests']
+      notice(inline_template('tests are <%= @tests.inspect %>'))
+      EOS
+
+      apply_manifest(pp, :expect_failures => true) do |r|
+        expect(r.stderr).to match(/(syntax error|did not find expected key)/)
+      end
+    end
+
+
     it 'raises error on incorrect number of arguments' do
       pp = <<-EOS
       $o = parseyaml()

@@ -41,10 +41,10 @@ describe 'parsejson' do
 
   end
 
-  context 'with incorrect YAML data' do
-    it 'should return "nil" if a default value should be returned but is not provided' do
+  context 'with incorrect JSON data' do
+    it 'should raise an error with invalid JSON and no default' do
       is_expected.to run.with_params('').
-                         and_return(nil)
+                         and_raise_error(PSON::ParserError)
     end
 
     it 'should support a structure for a default value' do
