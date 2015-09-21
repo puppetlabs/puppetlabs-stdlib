@@ -40,12 +40,21 @@ describe 'parseyaml' do
 
   end
 
-  context 'with incorrect YAML data' do
-    it 'should return "nil" if a default value should be returned but is not provided' do
-      is_expected.to run.with_params('').
-                         and_return(nil)
+  context 'on a modern ruby', :unless => RUBY_VERSION == '1.8.7' do
+    it 'should raise an error with invalid YAML and no default' do
+      is_expected.to run.with_params('["one"').
+                         and_raise_error(Psych::SyntaxError)
+    end
+  end
+
+    context 'when running on ruby 1.8.7, which does not have Psych', :if => RUBY_VERSION == '1.8.7' do
+      it 'should raise an error with invalid YAML and no default' do
+        is_expected.to run.with_params('["one"').
+          and_raise_error(ArgumentError)
+      end
     end
 
+  context 'with incorrect YAML data' do
     it 'should support a structure for a default value' do
       is_expected.to run.with_params('', {'a' => '1'}).
                          and_return({'a' => '1'})

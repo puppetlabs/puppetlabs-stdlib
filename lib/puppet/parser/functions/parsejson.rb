@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:parsejson, :type => :rvalue, :arity => -2, :doc => <<-EOS
+  newfunction(:parsejson, :type => :rvalue, :doc => <<-EOS
 This function accepts JSON as a string and converts it into the correct
 Puppet structure.
 
@@ -15,8 +15,12 @@ be returned if the parsing of YAML string have failed.
 
     begin
       PSON::load(arguments[0]) || arguments[1]
-    rescue Exception
-      arguments[1]
+    rescue Exception => e
+      if arguments[1]
+        arguments[1]
+      else
+        raise e
+      end
     end
 
   end
