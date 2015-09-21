@@ -33,9 +33,13 @@ def is_future_parser_enabled?
   return false
 end
 
+def get_puppet_version
+  (on default, puppet('--version')).output.chomp
+end
+
 RSpec.shared_context "with faked facts" do
   let(:facts_d) do
-    puppet_version = (on default, puppet('--version')).output.chomp
+    puppet_version = get_puppet_version
     if fact('osfamily') =~ /windows/i
       if fact('kernelmajversion').to_f < 6.0
         'C:/Documents and Settings/All Users/Application Data/PuppetLabs/facter/facts.d'
