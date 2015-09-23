@@ -224,7 +224,7 @@ Converts the case of a string or of all strings in an array to lowercase. *Type*
 
 #### `empty`
 
-Returns 'true' if the variable is empty. *Type*: rvalue.
+Returns true if the argument is an array or hash that contains no elements, or an empty string. *Type*: rvalue.
 
 #### `ensure_packages`
 
