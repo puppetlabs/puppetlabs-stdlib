@@ -7,6 +7,9 @@
 #
 # Caveats:
 #
+require 'puppet/type'
+require 'puppet/type/service'
+
 Facter.add(:service_provider) do
   setcode do
     Puppet::Type.type(:service).newservice(:name => 'dummy')[:provider].to_s
