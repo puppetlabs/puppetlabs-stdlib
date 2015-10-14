@@ -76,18 +76,56 @@ The `stdlib::stages` class declares various run stages for deploying infrastruct
 ### Types
 
 #### `file_line`
- Ensures that a given line, including whitespace at the beginning and end, is contained within a file. If the line is not contained in the given file, Puppet will add the line. Multiple resources can be declared to manage multiple lines in the same file. You can also use `match` to replace existing lines.
 
-  ~~~
-  file_line { 'sudo_rule':
-    path => '/etc/sudoers',
-    line => '%sudo ALL=(ALL) ALL',
-  }
-  file_line { 'sudo_rule_nopw':
-    path => '/etc/sudoers',
-    line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
-  }
-  ~~~
+Ensures that a given line is contained within a file.  The implementation
+matches the full line, including whitespace at the beginning and end.  If
+the line is not contained in the given file, Puppet will append the line to
+the end of the file to ensure the desired state.  Multiple resources may
+be declared to manage multiple lines in the same file.
+
+Example:
+
+    file_line { 'sudo_rule':
+      path => '/etc/sudoers',
+      line => '%sudo ALL=(ALL) ALL',
+    }
+
+    file_line { 'sudo_rule_nopw':
+      path => '/etc/sudoers',
+      line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
+    }
+
+In this example, Puppet will ensure both of the specified lines are
+contained in the file /etc/sudoers.
+
+Match Example:
+
+    file_line { 'bashrc_proxy':
+      ensure => present,
+      path   => '/etc/bashrc',
+      line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+      match  => '^export\ HTTP_PROXY\=',
+    }
+
+In this code example match will look for a line beginning with export
+followed by HTTP_PROXY and replace it with the value in line.
+
+Match Example With `ensure => absent`:
+
+    file_line { 'bashrc_proxy':
+      ensure            => absent,
+      path              => '/etc/bashrc',
+      line              => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+      match             => '^export\ HTTP_PROXY\=',
+      match_for_absence => true,
+    }
+
+In this code example match will look for a line beginning with export
+followed by HTTP_PROXY and delete it.  If multiple lines match, an
+error will be raised unless the `multiple => true` parameter is set.
+
+**Autorequires:** If Puppet is managing the file that will contain the line
+being managed, the file_line resource will autorequire that file.
 
 ##### Parameters
 All parameters are optional, unless otherwise noted.
@@ -95,12 +133,12 @@ All parameters are optional, unless otherwise noted.
 * `after`: Specifies the line after which Puppet will add any new lines. (Existing lines are added in place.) Valid options: String. Default: Undefined.
 * `ensure`: Ensures whether the resource is present. Valid options: 'present', 'absent'. Default: 'present'.
 * `line`: **Required.** Sets the line to be added to the file located by the `path` parameter. Valid options: String. Default: Undefined.
-* `match`: Specifies a regular expression to run against existing lines in the file; if a match is found, it is replaced rather than adding a new line. Valid options: String containing a regex. Default: Undefined.
+* `match`: Specifies a regular expression to run against existing lines in the file; if a match is found, it is replaced rather than adding a new line. A regex comparison is performed against the line value and if it does not match an exception will be raised. Valid options: String containing a regex. Default: Undefined.
+* `match_for_absence`: An optional value to determine if match should be applied when `ensure => absent`. If set to true and match is set, the line that matches match will be deleted. If set to false (the default), match is ignored when `ensure => absent` and the value of `line` is used instead. Default: false.
 * `multiple`: Determines if `match` and/or `after` can change multiple lines. If set to false, an exception will be raised if more than one line matches. Valid options: 'true', 'false'. Default: Undefined.
 * `name`: Sets the name to use as the identity of the resource. This is necessary if you want the resource namevar to differ from the supplied `title` of the resource. Valid options: String. Default: Undefined.
 * `path`: **Required.** Defines the file in which Puppet will ensure the line specified by `line`. Must be an absolute path to the file.
 * `replace`: Defines whether the resource will overwrite an existing line that matches the `match` parameter. If set to false and a line is found matching the `match` param, the line will not be placed in the file. Valid options: true, false, yes, no. Default: true
-
 
 ### Functions
 
@@ -405,7 +443,7 @@ Returns an array an intersection of two. For example, `intersection(["a","b","c"
 
 #### `is_a`
 
-Boolean check to determine whether a variable is of a given data type. This is equivalent to the `=~` type checks. This function is only available in Puppet 4, or when using the "future" parser. 
+Boolean check to determine whether a variable is of a given data type. This is equivalent to the `=~` type checks. This function is only available in Puppet 4, or when using the "future" parser.
 
   ~~~
   foo = 3
