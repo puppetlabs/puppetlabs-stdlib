@@ -539,6 +539,15 @@ Loads the metadata.json of a target module. Can be used to determine module vers
   notify { $metadata['author']: }
   ~~~
 
+If you do not want to fail the catalog compilation if the metadata file for a module is not present:
+
+  ~~~
+  $metadata = load_module_metadata('mysql', true)
+  if empty($metadata) {
+    notify { "This module does not have a metadata.json file.": }
+  }
+  ~~~
+
 *Type*: rvalue.
 
 #### `lstrip`
