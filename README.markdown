@@ -170,6 +170,22 @@ Converts a boolean to a number. Converts values:
   * 'true', 't', '1', 'y', and 'yes' to 1.
   Requires a single boolean or string as an input. *Type*: rvalue.
 
+#### `bool2str`
+
+Converts a boolean to a string using optionally supplied arguments. The optional
+second and third arguments represent what true and false will be converted to
+respectively. If only one argument is given, it will be converted from a boolean
+to a string containing 'true' or 'false'.
+
+*Examples:*
+~~~
+bool2str(true)                    => 'true'
+bool2str(true, 'yes', 'no')       => 'yes'
+bool2str(false, 't', 'f')         => 'f'
+~~~
+
+Requires a single boolean as input. *Type*: rvalue.
+
 #### `capitalize`
 
 Capitalizes the first letter of a string or array of strings. Requires either a single string or an array as an input. *Type*: rvalue.
