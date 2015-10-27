@@ -188,7 +188,7 @@ Requires a single boolean as input. *Type*: rvalue.
 
 #### `capitalize`
 
-Capitalizes the first letter of a string or array of strings. Requires either a single string or an array as an input. *Type*: rvalue.
+Capitalizes the first character of a string or array of strings, and lower-cases the remaining characters of each string. Requires either a single string or an array as an input. *Type*: rvalue.
 
 #### `ceiling`
 
