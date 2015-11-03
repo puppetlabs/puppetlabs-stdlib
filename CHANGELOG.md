@@ -349,7 +349,7 @@ This is a supported release
 
  * Add an ensure\_packages function. (8a8c09e)
 
-##### 2012-11-23 - Erik DalÃƒÂ©n <dalen@spotify.com> - 3.2.0
+##### 2012-11-23 - Erik Dalén <dalen@spotify.com> - 3.2.0
 
  * (#17797) min() and max() functions (9954133)
 
@@ -446,7 +446,7 @@ This is a supported release
 
  * Add support for a 'match' parameter to file\_line (a06c0d8)
 
-##### 2012-08-07 - Erik DalÃƒÂ©n <dalen@spotify.com> - 2.4.0
+##### 2012-08-07 - Erik Dalén <dalen@spotify.com> - 2.4.0
 
  * (#15872) Add to\_bytes function (247b69c)
 
