@@ -624,6 +624,10 @@ From a list of values, returns the first value that is not undefined or an empty
 
 *Type*: rvalue.
 
+#### `pick_default`
+
+Will return the first value in a list of values. Contrary to the 'pick()' function, the 'pick_default()' does not fail if all arguments are empty. This allows it to use an empty value as default. *Type*: rvalue.
+
 #### `prefix`
 
 Applies a prefix to all elements in an array, or to the keys in a hash.
