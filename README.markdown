@@ -1079,6 +1079,39 @@ Validates that the first argument is an integer (or an array of integers). Abort
 
   *Type*: statement.
 
+#### `validate_ip_address`
+
+Validates that argument is an IP address, regardless of it is an IPv4 or an IPv6
+address. It validates as well IP address with netmask. It must be an String, as
+well.
+
+The following values will pass:
+
+  ~~~
+  validate_ip_address('0.0.0.0')
+  validate_ip_address('8.8.8.8')
+  validate_ip_address('127.0.0.1')
+  validate_ip_address('194.232.104.150')
+  validate_ip_address('3ffe:0505:0002::')
+  validate_ip_address('::1/64')
+  validate_ip_address('fe80::a00:27ff:fe94:44d6/64')
+  validate_ip_address('8.8.8.8/32')
+  ~~~
+
+The following values will fail, causing compilation to abort:
+
+  ~~~
+  validate_ip_address(1)
+  validate_ip_address(true)
+  validate_ip_address(0.0.0.256)
+  validate_ip_address('::1', {})
+  validate_ip_address('0.0.0.0.0')
+  validate_ip_address('3.3.3')
+  validate_ip_address('23.43.9.22/64')
+  validate_ip_address('260.2.32.43')
+  ~~~
+
+
 #### `validate_numeric`
 
 Validates that the first argument is a numeric value (or an array of numeric values). Aborts catalog compilation if any of the checks fail.
