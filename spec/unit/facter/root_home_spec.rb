@@ -58,7 +58,7 @@ describe 'root_home', :type => :fact do
     sample_lsuser = File.read(fixtures('lsuser','root'))
 
     it "should return /root" do
-      Facter::Util::Resolution.stubs(:exec).with("lsuser -C -a home root").returns(sample_lsuser)
+      Facter::Util::Resolution.stubs(:exec).with("lsuser -c -a home root").returns(sample_lsuser)
       expect(Facter.fact(:root_home).value).to eq(expected_root_home)
     end
   end
