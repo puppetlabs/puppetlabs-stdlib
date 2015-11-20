@@ -11,8 +11,14 @@ def location_for(place, fake_version = nil)
 end
 
 group :development, :unit_tests do
+  # rspec must be v2 for ruby 1.8.7
+  if RUBY_VERSION >= '1.8.7' and RUBY_VERSION < '1.9'
+    gem 'rspec', '~> 2.0'
+  else
+    gem 'rspec', '~> 3.1.0',     :require => false
+  end
+
   gem 'rake', '~> 10.1.0',       :require => false
-  gem 'rspec', '~> 3.1.0',       :require => false
   gem 'rspec-puppet', '~> 2.2',  :require => false
   gem 'mocha',                   :require => false
   # keep for its rake task for now
