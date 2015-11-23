@@ -1182,6 +1182,22 @@ Instead, use:
 
 *Type*: statement.
 
+#### `validate_x509_rsa_key_pair`
+
+Validates a PEM-formatted X.509 certificate and private key using OpenSSL.
+Verifies that the certficate's signature was created from the supplied key.
+
+Fails catalog compilation if any value fails this check.
+
+Takes two arguments, the first argument must be a X.509 certificate and the
+second must be an RSA private key:
+
+  ~~~
+  validate_x509_rsa_key_pair($cert, $key)
+  ~~~
+
+*Type*: statement.
+
 #### `values`
 
 Returns the values of a given hash. For example, given `$hash = {'a'=1, 'b'=2, 'c'=3} values($hash)` returns [1,2,3].
