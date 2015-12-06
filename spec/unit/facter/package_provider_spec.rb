@@ -7,8 +7,11 @@ describe 'package_provider', :type => :fact do
   before { Facter.clear }
   after { Facter.clear }
 
+
   context "darwin" do
     it "should return pkgdmg" do
+      Facter.fact(:pe_version).stubs(:value).returns(nil)
+      Facter.fact(:puppetversion).stubs(:value).returns(nil)
       provider = Puppet::Type.type(:package).provider(:pkgdmg)
       Puppet::Type.type(:package).stubs(:defaultprovider).returns provider
 
