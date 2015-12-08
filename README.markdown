@@ -697,6 +697,12 @@ Reverses the order of a string or array. *Type*: rvalue.
 
 Strips spaces to the right of the string. *Type*: rvalue.
 
+#### `seeded_rand`
+
+Takes an integer max value and a string seed value and returns a
+repeatable random integer smaller than max.  Like `fqdn_rand`, but
+this does not add node specific data to the seed.  *Type*: rvalue.
+
 #### `shuffle`
 
 Randomizes the order of a string or array elements. *Type*: rvalue.
