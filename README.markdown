@@ -474,6 +474,10 @@ Boolean check to determine whether a variable is of a given data type. This is e
 See the [the Puppet type system](https://docs.puppetlabs.com/references/latest/type.html#about-resource-types) for more information about types.
 See the [`assert_type()`](https://docs.puppetlabs.com/references/latest/function.html#asserttype) function for flexible ways to assert the type of a value.
 
+#### `is_absolute_path`
+
+Returns 'true' if the given path is absolute. *Type*: rvalue.
+
 #### `is_array`
 
 Returns 'true' if the variable passed to this function is an array. *Type*: rvalue.
