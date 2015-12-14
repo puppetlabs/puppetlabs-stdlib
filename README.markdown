@@ -77,11 +77,7 @@ The `stdlib::stages` class declares various run stages for deploying infrastruct
 
 #### `file_line`
 
-Ensures that a given line is contained within a file. The implementation
-matches the full line, including whitespace at the beginning and end. If
-the line is not contained in the given file, Puppet appends the line to
-the end of the file to ensure the desired state.  Multiple resources can
-be declared to manage multiple lines in the same file.
+Ensures that a given line is contained within a file. The implementation matches the full line, including whitespace at the beginning and end. If the line is not contained in the given file, Puppet appends the line to the end of the file to ensure the desired state.  Multiple resources can be declared to manage multiple lines in the same file.
 
 Example:
 
@@ -610,13 +606,11 @@ Converts a number or a string representation of a number into a true boolean. Ze
 
 #### `parsejson`
 
-Converts a string of JSON into the correct Puppet structure. *Type*: rvalue.
-The optional second argument is returned if the data was not correct.
+Converts a string of JSON into the correct Puppet structure. *Type*: rvalue. The optional second argument is returned if the data was not correct.
 
 #### `parseyaml`
 
-Converts a string of YAML into the correct Puppet structure. *Type*: rvalue.
-The optional second argument is returned if the data was not correct.
+Converts a string of YAML into the correct Puppet structure. *Type*: rvalue. The optional second argument is returned if the data was not correct.
 
 #### `pick`
 
@@ -703,9 +697,7 @@ Strips spaces to the right of the string. *Type*: rvalue.
 
 #### `seeded_rand`
 
-Takes an integer max value and a string seed value and returns a
-repeatable random integer smaller than max. Like `fqdn_rand`, but
-does not add node specific data to the seed.  *Type*: rvalue.
+Takes an integer max value and a string seed value and returns a repeatable random integer smaller than max. Like `fqdn_rand`, but does not add node specific data to the seed.  *Type*: rvalue.
 
 #### `shuffle`
 
@@ -808,15 +800,9 @@ Converts the argument into bytes, for example "4 kB" becomes "4096". Takes a sin
 
 *Type*: rvalue.
 
-Retrieves a value within multiple layers of hashes and arrays via a string containing a path. The path is a string of hash keys or array indexes
-starting with zero, separated by the path separator character (default "/").
-The function goes through the structure by each path component and tries to
-return the value at the end of the path.
+Retrieves a value within multiple layers of hashes and arrays via a string containing a path. The path is a string of hash keys or array indexes starting with zero, separated by the path separator character (default "/"). The function goes through the structure by each path component and tries to return the value at the end of the path.
 
-In addition to the required path argument, the function accepts the default
-argument. It is returned if the path is not correct, if no value was found, or
-if any other error has occurred. The last argument can set the path
-separator character.
+In addition to the required path argument, the function accepts the default argument. It is returned if the path is not correct, if no value was found, or if any other error has occurred. The last argument can set the path separator character.
 
 ~~~ruby
 $data = {
