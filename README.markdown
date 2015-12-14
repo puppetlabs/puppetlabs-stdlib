@@ -91,8 +91,7 @@ Example:
       line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
     }
 
-In this example, Puppet ensures that both of the specified lines are
-contained in the file `/etc/sudoers`.
+In this example, Puppet ensures that both of the specified lines are contained in the file `/etc/sudoers`.
 
 Match Example:
 
@@ -103,8 +102,7 @@ Match Example:
       match  => '^export\ HTTP_PROXY\=',
     }
 
-In this code example, `match` looks for a line beginning with export
-followed by HTTP_PROXY and replaces it with the value in line.
+In this code example, `match` looks for a line beginning with export followed by HTTP_PROXY and replaces it with the value in line.
 
 Match Example With `ensure => absent`:
 
@@ -120,8 +118,7 @@ In this code example, `match` looks for a line beginning with export
 followed by HTTP_PROXY and delete it.  If multiple lines match, an
 error will be raised unless the `multiple => true` parameter is set.
 
-**Autorequires:** If Puppet is managing the file that contains the line
-being managed, the `file_line` resource autorequires that file.
+**Autorequires:** If Puppet is managing the file that contains the line being managed, the `file_line` resource autorequires that file.
 
 ##### Parameters
 
@@ -169,10 +166,7 @@ Converts a boolean to a number. Converts values:
 
 #### `bool2str`
 
-Converts a boolean to a string using optionally supplied arguments. The optional
-second and third arguments represent what true and false are converted to
-respectively. If only one argument is given, it is converted from a boolean
-to a string containing 'true' or 'false'.
+Converts a boolean to a string using optionally supplied arguments. The optional second and third arguments represent what true and false are converted to respectively. If only one argument is given, it is converted from a boolean to a string containing 'true' or 'false'.
 
 *Examples:*
 ~~~
