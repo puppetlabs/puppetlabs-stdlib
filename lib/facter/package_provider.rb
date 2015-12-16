@@ -12,10 +12,20 @@ require 'puppet/type/package'
 
 Facter.add(:package_provider) do
   setcode do
-    if Gem::Version.new(Facter.value(:puppetversion)) >= Gem::Version.new('3.6')
-      Puppet::Type.type(:package).newpackage(:name => 'dummy', :allow_virtual => 'true')[:provider].to_s
+    # if puppet enterprise is install use pe_version instead of puppetversion
+    if Facter.value(:pe_version) != nil
+      if Gem::Version.new(Facter.value(:pe_version)) >= Gem::Version.new('3.6')
+        Puppet::Type.type(:package).newpackage(:name => 'dummy', :allow_virtual => 'true')[:provider].to_s
+      else
+        Puppet::Type.type(:package).newpackage(:name => 'dummy')[:provider].to_s
+      end
     else
-      Puppet::Type.type(:package).newpackage(:name => 'dummy')[:provider].to_s
+      if Gem::Version.new(Facter.value(:puppetversion)) >= Gem::Version.new('3.6')
+        Puppet::Type.type(:package).newpackage(:name => 'dummy', :allow_virtual => 'true')[:provider].to_s
+      else
+        Puppet::Type.type(:package).newpackage(:name => 'dummy')[:provider].to_s
+      end
     end
+
   end
 end
