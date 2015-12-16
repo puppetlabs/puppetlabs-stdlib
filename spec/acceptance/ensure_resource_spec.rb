@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'ensure_resource function', :unless => fact('osfamily') =~ /windows/i do
+describe 'ensure_resource function', :unless => fact('osfamily') =~ /(windows|Suse)/i do
   describe 'success' do
     it 'ensure_resource a package' do
       apply_manifest('package { "rake": ensure => absent, provider => "gem", }')

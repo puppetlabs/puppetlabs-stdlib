@@ -8,7 +8,7 @@
 # contains a cache TTL.  For foo.sh store the ttl as just
 # a number in foo.sh.ttl
 #
-# The cache is stored in /tmp/facts_cache.yaml as a mode
+# The cache is stored in $libdir/facts_dot_d.cache as a mode
 # 600 file and will have the end result of not calling your
 # fact scripts more often than is needed
 

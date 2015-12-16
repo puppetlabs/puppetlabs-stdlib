@@ -8,7 +8,7 @@ module Puppet::Parser::Functions
 
     $my_ip = "1.2.3.4"
     validate_ipv4_address($my_ip)
-    validate_bool("8.8.8.8", "172.16.0.1", $my_ip)
+    validate_ipv4_address("8.8.8.8", "172.16.0.1", $my_ip)
 
     The following values will fail, causing compilation to abort:
 
