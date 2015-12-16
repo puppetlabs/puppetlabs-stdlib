@@ -40,28 +40,10 @@ module Puppet::Parser::Functions
       unless arg.is_a?(Array) then
         candidates = Array.new(1,arg)
       end
-      # iterate over all pathes within the candidates array
+      # iterate over all paths within the candidates array
       candidates.each do |path|
-        # This logic was borrowed from
-        # [lib/puppet/file_serving/base.rb](https://github.com/puppetlabs/puppet/blob/master/lib/puppet/file_serving/base.rb)
-        # Puppet 2.7 and beyond will have Puppet::Util.absolute_path? Fall back to a back-ported implementation otherwise.
-        if Puppet::Util.respond_to?(:absolute_path?) then
-          unless Puppet::Util.absolute_path?(path, :posix) or Puppet::Util.absolute_path?(path, :windows)
-            raise Puppet::ParseError, ("#{path.inspect} is not an absolute path.")
-          end
-        else
-          # This code back-ported from 2.7.x's lib/puppet/util.rb Puppet::Util.absolute_path?
-          # Determine in a platform-specific way whether a path is absolute. This
-          # defaults to the local platform if none is specified.
-          # Escape once for the string literal, and once for the regex.
-          slash = '[\\\\/]'
-          name = '[^\\\\/]+'
-          regexes = {
-            :windows => %r!^(([A-Z]:#{slash})|(#{slash}#{slash}#{name}#{slash}#{name})|(#{slash}#{slash}\?#{slash}#{name}))!i,
-            :posix => %r!^/!,
-          }
-          rval = (!!(path =~ regexes[:posix])) || (!!(path =~ regexes[:windows]))
-          rval or raise Puppet::ParseError, ("#{path.inspect} is not an absolute path.")
+        unless function_is_absolute_path([path])
+          raise Puppet::ParseError, ("#{path.inspect} is not an absolute path.")
         end
       end
     end
