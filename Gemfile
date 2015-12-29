@@ -23,7 +23,7 @@ group :development, :unit_tests do
   gem 'mocha',                   :require => false
   # keep for its rake task for now
   gem 'puppetlabs_spec_helper',  :require => false
-  gem 'puppet-lint',             :require => false
+  gem 'puppet-lint', :git => 'https://github.com/rodjek/puppet-lint.git', :require => false
   gem 'metadata-json-lint',      :require => false
   gem 'pry',                     :require => false
   gem 'simplecov',               :require => false
