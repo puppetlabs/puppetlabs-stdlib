@@ -1,3 +1,17 @@
+## Supported Release 4.11.0
+###Summary
+
+Provides a new parser validate_absolute_paths, a fix to the is_package_provider fact and a test improvement.
+
+####Features
+-  Adds new parser called is_absolute_path
+
+####Bugfixes
+-  Allow package_provider fact to resolve on PE 3.x
+
+####Improvements
+- ensures that the test passes independently of changes to rubygems for ensure_resource
+
 ##2015-12-15 - Supported Release 4.10.0
 ###Summary
 
