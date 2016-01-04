@@ -193,6 +193,14 @@ Removes the record separator from the end of a string or an array of strings; fo
 
 Returns a new string with the last character removed. If the string ends with '\r\n', both characters are removed. Applying `chop` to an empty string returns an empty string. If you want to merely remove record separators, then you should use the `chomp` function. Requires a string or an array of strings as input. *Type*: rvalue.
 
+#### `clamp`
+
+Keeps value within the range [Min, X, Max] by sort based on integer value (order of params doesn't matter). Takes strings, arrays or numerics. Strings are converted and compared numerically. Arrays of values are flattened into a list for further handling. For example:
+  * `clamp('24', [575, 187])` returns 187.
+  * `clamp(16, 88, 661)` returns 88.
+  * `clamp([4, 3, '99'])` returns 4.
+  *Type*: rvalue.
+
 #### `concat`
 
 Appends the contents of multiple arrays onto the first array given. For example:
