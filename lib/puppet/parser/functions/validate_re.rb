@@ -23,16 +23,23 @@ module Puppet::Parser::Functions
 
         validate_re($::puppetversion, '^2.7', 'The $puppetversion fact value does not match 2.7')
 
+    Note: Compilation will also abort, if the first argument is not a String. Always use
+    quotes to force stringification:
+
+        validate_re("${::operatingsystemmajrelease}", '^[57]$')
+
     ENDHEREDOC
     if (args.length < 2) or (args.length > 3) then
-      raise Puppet::ParseError, ("validate_re(): wrong number of arguments (#{args.length}; must be 2 or 3)")
+      raise Puppet::ParseError, "validate_re(): wrong number of arguments (#{args.length}; must be 2 or 3)"
     end
+
+    raise Puppet::ParseError, "validate_re(): input needs to be a String, not a #{args[0].class}" unless args[0].is_a? String
 
     msg = args[2] || "validate_re(): #{args[0].inspect} does not match #{args[1].inspect}"
 
     # We're using a flattened array here because we can't call String#any? in
     # Ruby 1.9 like we can in Ruby 1.8
-    raise Puppet::ParseError, (msg) unless [args[1]].flatten.any? do |re_str|
+    raise Puppet::ParseError, msg unless [args[1]].flatten.any? do |re_str|
       args[0] =~ Regexp.compile(re_str)
     end
 

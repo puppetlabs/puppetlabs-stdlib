@@ -4,6 +4,7 @@ module Puppet::Parser::Functions
 
     Converts a given integer or string representing an integer to a specified base, as a string.
 
+
     Usage:
 
       $binary_repr = convert_base(5, 2)  # $binary_repr is now set to "101"
@@ -11,7 +12,6 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
 
-    raise Puppet::ParseError, ("convert_base(): Wrong number of arguments (#{args.length}; must be = 2)") unless args.length == 2
     raise Puppet::ParseError, ("convert_base(): First argument must be either a string or an integer") unless (args[0].is_a?(Integer) or args[0].is_a?(String))
     raise Puppet::ParseError, ("convert_base(): Second argument must be either a string or an integer") unless (args[1].is_a?(Integer) or args[1].is_a?(String))
 
@@ -28,6 +28,8 @@ module Puppet::Parser::Functions
 
     number_to_convert = number_to_convert.to_i()
     new_base = new_base.to_i()
+
+    raise Puppet::ParseError, ("convert_base(): base must be at least 2 and must not be greater than 36") unless new_base >= 2 and new_base <= 36
 
     return number_to_convert.to_s(new_base)
   end

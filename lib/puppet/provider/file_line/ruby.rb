@@ -1,24 +1,31 @@
 Puppet::Type.type(:file_line).provide(:ruby) do
   def exists?
-    lines.find do |line|
-      line.chomp == resource[:line].chomp
+    if resource[:replace].to_s != 'true' and count_matches(match_regex) > 0
+      true
+    else
+      lines.find do |line|
+        line.chomp == resource[:line].chomp
+      end
     end
   end
 
   def create
-    if resource[:match]
-      handle_create_with_match
-    elsif resource[:after]
-      handle_create_with_after
-    else
-      append_line
+    unless resource[:replace].to_s != 'true' and count_matches(match_regex) > 0
+      if resource[:match]
+        handle_create_with_match
+      elsif resource[:after]
+        handle_create_with_after
+      else
+        append_line
+      end
     end
   end
 
   def destroy
-    local_lines = lines
-    File.open(resource[:path],'w') do |fh|
-      fh.write(local_lines.reject{|l| l.chomp == resource[:line] }.join(''))
+    if resource[:match_for_absence].to_s == 'true' and resource[:match]
+      handle_destroy_with_match
+    else
+      handle_destroy_line
     end
   end
 
@@ -32,15 +39,27 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     @lines ||= File.readlines(resource[:path])
   end
 
+  def match_regex
+    resource[:match] ? Regexp.new(resource[:match]) : nil
+  end
+
   def handle_create_with_match()
-    regex = resource[:match] ? Regexp.new(resource[:match]) : nil
-    match_count = count_matches(regex)
+    regex_after = resource[:after] ? Regexp.new(resource[:after]) : nil
+    match_count = count_matches(match_regex)
+
     if match_count > 1 && resource[:multiple].to_s != 'true'
      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
     end
+
     File.open(resource[:path], 'w') do |fh|
       lines.each do |l|
-        fh.puts(regex.match(l) ? resource[:line] : l)
+        fh.puts(match_regex.match(l) ? resource[:line] : l)
+        if (match_count == 0 and regex_after)
+          if regex_after.match(l)
+            fh.puts(resource[:line])
+            match_count += 1 #Increment match_count to indicate that the new line has been inserted.
+          end
+        end
       end
 
       if (match_count == 0)
@@ -52,20 +71,22 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   def handle_create_with_after
     regex = Regexp.new(resource[:after])
     count = count_matches(regex)
-    case count
-    when 1 # find the line to put our line after
-      File.open(resource[:path], 'w') do |fh|
-        lines.each do |l|
-          fh.puts(l)
-          if regex.match(l) then
-            fh.puts(resource[:line])
-          end
+
+    if count > 1 && resource[:multiple].to_s != 'true'
+      raise Puppet::Error, "#{count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
+    end
+
+    File.open(resource[:path], 'w') do |fh|
+      lines.each do |l|
+        fh.puts(l)
+        if regex.match(l) then
+          fh.puts(resource[:line])
         end
       end
-    when 0 # append the line to the end of the file
+    end
+
+    if (count == 0) # append the line to the end of the file
       append_line
-    else
-      raise Puppet::Error, "#{count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
     end
   end
 
@@ -73,12 +94,34 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     lines.select{|l| l.match(regex)}.size
   end
 
+  def handle_destroy_with_match
+    match_count = count_matches(match_regex)
+    if match_count > 1 && resource[:multiple].to_s != 'true'
+     raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
+    end
+
+    local_lines = lines
+    File.open(resource[:path],'w') do |fh|
+      fh.write(local_lines.reject{|l| match_regex.match(l) }.join(''))
+    end
+  end
+
+  def handle_destroy_line
+    local_lines = lines
+    File.open(resource[:path],'w') do |fh|
+      fh.write(local_lines.reject{|l| l.chomp == resource[:line] }.join(''))
+    end
+  end
+
   ##
   # append the line to the file.
   #
   # @api private
   def append_line
-    File.open(resource[:path], 'a') do |fh|
+    File.open(resource[:path], 'w') do |fh|
+      lines.each do |l|
+        fh.puts(l)
+      end
       fh.puts resource[:line]
     end
   end
