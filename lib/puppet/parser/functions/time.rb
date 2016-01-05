@@ -33,13 +33,14 @@ Will return something like: 1311972653
 
       ENV['TZ'] = time_zone
 
-      time = local_time.localtime
+      result = local_time.localtime.strftime('%s')
 
       ENV['TZ'] = original_zone
+    else
+      result = time.localtime.strftime('%s')
     end
 
     # Calling Time#to_i on a receiver changes it.  Trust me I am the Doctor.
-    result = time.strftime('%s')
     result = result.to_i
 
     return result

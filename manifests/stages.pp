@@ -26,7 +26,7 @@
 # Sample Usage:
 #
 #  node default {
-#    include stdlib
+#    include ::stdlib
 #    class { java: stage => 'runtime' }
 #  }
 #
