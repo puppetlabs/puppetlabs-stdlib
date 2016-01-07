@@ -1,10 +1,11 @@
 ## Supported Release 4.11.0
 ###Summary
 
-Provides a new parser validate_absolute_paths, a fix to the is_package_provider fact and a test improvement.
+Provides a validate_absolute_paths and Debian 8 support. There is a fix to the is_package_provider fact and a test improvement.
 
 ####Features
 -  Adds new parser called is_absolute_path
+-  Supports Debian 8
 
 ####Bugfixes
 -  Allow package_provider fact to resolve on PE 3.x
