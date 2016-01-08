@@ -126,10 +126,6 @@ EOS
   end
 
   context 'bad input' do
-    describe 'valid but indented certificate, valid key' do
-      it { is_expected.to run.with_params(valid_cert_but_indented, valid_key).and_raise_error(Puppet::ParseError, /Not a valid x509 certificate/) }
-    end
-
     describe 'valid certificate, valid but indented key' do
       it { is_expected.to run.with_params(valid_cert, valid_key_but_indented).and_raise_error(Puppet::ParseError, /Not a valid RSA key/) }
     end
@@ -138,12 +134,16 @@ EOS
       it { is_expected.to run.with_params(valid_cert, malformed_key).and_raise_error(Puppet::ParseError, /Not a valid RSA key/) }
     end
 
-    describe 'malformed certificate, valid key' do
-      it { is_expected.to run.with_params(malformed_cert, valid_key).and_raise_error(Puppet::ParseError, /Not a valid x509 certificate/) }
-    end
-
     describe 'valid certificate, bad key' do
       it { is_expected.to run.with_params(valid_cert, bad_key).and_raise_error(Puppet::ParseError, /Not a valid RSA key/) }
+    end
+
+    describe 'valid but indented certificate, valid key' do
+      it { is_expected.to run.with_params(valid_cert_but_indented, valid_key).and_raise_error(Puppet::ParseError, /Not a valid x509 certificate/) }
+    end
+
+    describe 'malformed certificate, valid key' do
+      it { is_expected.to run.with_params(malformed_cert, valid_key).and_raise_error(Puppet::ParseError, /Not a valid x509 certificate/) }
     end
 
     describe 'bad certificate, valid key' do
