@@ -97,6 +97,14 @@ EOS
     valid_key.gsub(/^/, '  ')
   end
 
+  let(:malformed_cert) do
+    truncate_middle(valid_cert)
+  end
+
+  let(:malformed_key) do
+    truncate_middle(valid_key)
+  end
+
   let(:bad_cert) do
     'foo'
   end
@@ -126,6 +134,14 @@ EOS
       it { is_expected.to run.with_params(valid_cert, valid_key_but_indented).and_raise_error(Puppet::ParseError, /Not a valid RSA key/) }
     end
 
+    describe 'valid certificate, malformed key' do
+      it { is_expected.to run.with_params(valid_cert, malformed_key).and_raise_error(Puppet::ParseError, /Not a valid RSA key/) }
+    end
+
+    describe 'malformed certificate, valid key' do
+      it { is_expected.to run.with_params(malformed_cert, valid_key).and_raise_error(Puppet::ParseError, /Not a valid x509 certificate/) }
+    end
+
     describe 'valid certificate, bad key' do
       it { is_expected.to run.with_params(valid_cert, bad_key).and_raise_error(Puppet::ParseError, /Not a valid RSA key/) }
     end
@@ -150,5 +166,15 @@ EOS
       it { is_expected.to run.with_params(1, "bar").and_raise_error(Puppet::ParseError, /is not a string/) }
       it { is_expected.to run.with_params("baz", true).and_raise_error(Puppet::ParseError, /is not a string/) }
     end
+  end
+
+  def truncate_middle(string)
+    chars_to_truncate = 48
+    middle = (string.length / 2).floor
+    start_pos = middle - (chars_to_truncate / 2)
+    end_pos = middle + (chars_to_truncate / 2)
+
+    string[start_pos...end_pos] = ''
+    return string
   end
 end
