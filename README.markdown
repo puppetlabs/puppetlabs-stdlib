@@ -518,6 +518,14 @@ Returns 'true' if the variable returned to this string is an integer. *Type*: rv
 
 Returns 'true' if the string passed to this function is a valid IP address. *Type*: rvalue.
 
+#### `is_ipv6_address`
+
+Returns 'true' if the string passed to this function is a valid IPv6 address. *Type*: rvalue.
+
+#### `is_ipv4_address`
+
+Returns 'true' if the string passed to this function is a valid IPv4 address. *Type*: rvalue.
+
 #### `is_mac_address`
 
 Returns 'true' if the string passed to this function is a valid MAC address. *Type*: rvalue.
