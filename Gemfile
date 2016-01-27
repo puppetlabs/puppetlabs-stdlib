@@ -23,7 +23,19 @@ group :development, :unit_tests do
   gem 'mocha',                   :require => false
   # keep for its rake task for now
   gem 'puppetlabs_spec_helper',  :require => false
-  gem 'puppet-lint',             :require => false
+  gem 'puppet-lint', :git => 'https://github.com/rodjek/puppet-lint.git', :require => false
+  gem 'puppet-lint-absolute_classname-check', :require => false
+  gem 'puppet-lint-alias-check', :require => false
+  gem 'puppet-lint-empty_string-check', :require => false
+  gem 'puppet-lint-file_ensure-check', :require => false
+  gem 'puppet-lint-file_source_rights-check', :require => false
+  gem 'puppet-lint-fileserver-check', :require => false
+  gem 'puppet-lint-leading_zero-check', :require => false
+  gem 'puppet-lint-spaceship_operator_without_tag-check', :require => false
+  gem 'puppet-lint-trailing_comma-check', :require => false
+  gem 'puppet-lint-undef_in_function-check', :require => false
+  gem 'puppet-lint-unquoted_string-check', :require => false
+  gem 'puppet-lint-variable_contains_upcase', :require => false
   gem 'metadata-json-lint',      :require => false
   gem 'pry',                     :require => false
   gem 'simplecov',               :require => false
