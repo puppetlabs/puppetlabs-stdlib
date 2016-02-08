@@ -4,6 +4,8 @@ module Puppet::Parser::Functions
       :type => :rvalue,
       :arity => -2,
       :doc => <<-eos
+DEPRECATED: this function is deprecated, please use dig() instead.
+
 Looks up into a complex structure of arrays and hashes and returns a value
 or the default value if nothing was found.
 
@@ -35,43 +37,17 @@ argument. It will be returned if no value was found or a path component is
 missing. And the fourth argument can set a variable path separator.
   eos
   ) do |args|
-    path_lookup = lambda do |data, path, default|
-      debug "Try_get_value: #{path.inspect} from: #{data.inspect}"
-      if data.nil?
-        debug "Try_get_value: no data, return default: #{default.inspect}"
-        break default
-      end
-      unless path.is_a? Array
-        debug "Try_get_value: wrong path, return default: #{default.inspect}"
-        break default
-      end
-      unless path.any?
-        debug "Try_get_value: value found, return data: #{data.inspect}"
-        break data
-      end
-      unless data.is_a? Hash or data.is_a? Array
-        debug "Try_get_value: incorrect data, return default: #{default.inspect}"
-        break default
-      end
-
-      key = path.shift
-      if data.is_a? Array
-        begin
-          key = Integer key
-        rescue ArgumentError
-          debug "Try_get_value: non-numeric path for an array, return default: #{default.inspect}"
-          break default
-        end
-      end
-      path_lookup.call data[key], path, default
-    end
-
+    warning("try_get_value() DEPRECATED: this function is deprecated, please use dig() instead.")
     data = args[0]
     path = args[1] || ''
     default = args[2]
-    separator = args[3] || '/'
 
-    path = path.split separator
-    path_lookup.call data, path, default
+    if !(data.is_a?(Hash) || data.is_a?(Array)) || path == ''
+      return default || data
+    end
+
+    separator = args[3] || '/'
+    path = path.split(separator).map{ |key| key =~ /^\d+$/ ? key.to_i : key }
+    function_dig([data, path, default])
   end
 end

@@ -254,6 +254,42 @@ Deletes all instances of the undef value from an array or hash. For example, `$h
 
 Returns the difference between two arrays. The returned array is a copy of the original array, removing any items that also appear in the second array. For example, `difference(["a","b","c"],["b","c","d"])` returns ["a"]. *Type*: rvalue.
 
+#### `dig`
+
+*Type*: rvalue.
+
+Retrieves a value within multiple layers of hashes and arrays via an array of keys containing a path. The function goes through the structure by each path component and tries to return the value at the end of the path.
+
+In addition to the required path argument, the function accepts the default argument. It is returned if the path is not correct, if no value was found, or if any other error has occurred.
+
+~~~ruby
+$data = {
+  'a' => {
+    'b' => [
+      'b1',
+      'b2',
+      'b3',
+    ]
+  }
+}
+
+$value = dig($data, ['a', 'b', 2])
+# $value = 'b3'
+
+# with all possible options
+$value = dig($data, ['a', 'b', 2], 'not_found')
+# $value = 'b3'
+
+# using the default value
+$value = dig($data, ['a', 'b', 'c', 'd'], 'not_found')
+# $value = 'not_found'
+~~~
+
+1. **$data** The data structure we are working with.
+2. **['a', 'b', 2]** The path array.
+3. **'not_found'** The default value. It will be returned if nothing is found.
+   (optional, defaults to *undef*)
+
 #### `dirname`
 
 Returns the `dirname` of a path. For example, `dirname('/path/to/a/file.ext')` returns '/path/to/a'. *Type*: rvalue.
@@ -805,6 +841,8 @@ Converts the argument into bytes, for example "4 kB" becomes "4096". Takes a sin
 #### `try_get_value`
 
 *Type*: rvalue.
+
+DEPRECATED: replaced by `dig()`.
 
 Retrieves a value within multiple layers of hashes and arrays via a string containing a path. The path is a string of hash keys or array indexes starting with zero, separated by the path separator character (default "/"). The function goes through the structure by each path component and tries to return the value at the end of the path.
 
