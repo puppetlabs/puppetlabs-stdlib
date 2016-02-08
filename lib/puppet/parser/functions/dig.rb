@@ -24,7 +24,7 @@ default value if path can't be looked up.
                                 "given #{path.class.name}")
     end
 
-    path.each { |key| hash = hash[key] rescue nil }
+    path.each { |key| break unless hash; hash = hash[key] rescue nil }
 
     hash.nil? ? default : hash
   end
