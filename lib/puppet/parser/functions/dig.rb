@@ -24,9 +24,8 @@ default value if path can't be looked up.
                                 "given #{path.class.name}")
     end
 
-    path.each { |key| break unless hash; hash = hash[key] rescue nil }
-
-    hash.nil? ? default : hash
+    value = path.reduce(hash) { |h, k| h[k] if h.is_a?(Hash) }
+    value.nil? ? default : value
   end
 end
 
