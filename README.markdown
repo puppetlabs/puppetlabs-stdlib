@@ -146,7 +146,36 @@ Converts any object to an array containing that object. Empty argument lists are
 
 #### `base64`
 
-Converts a string to and from base64 encoding. Requires an action ('encode', 'decode') and either a plain or base64-encoded string. *Type*: rvalue.
+Converts a string to and from base64 encoding.
+Requires an `action` ('encode', 'decode') and either a plain or base64-encoded `string`,
+and an optional `method` ('default', 'strict', 'urlsafe')
+
+for backward compatibility, `metohd` will be set as `default` if not specified.
+
+*Examples:*
+~~~
+base64('encode', 'hello')
+base64('encode', 'hello', 'default')
+# return: "aGVsbG8=\n"
+
+base64('encode', 'hello', 'strict')
+# return: "aGVsbG8="
+
+base64('decode', 'aGVsbG8=')
+base64('decode', 'aGVsbG8=\n')
+base64('decode', 'aGVsbG8=', 'default')
+base64('decode', 'aGVsbG8=\n', 'default')
+base64('decode', 'aGVsbG8=', 'strict')
+# return: "hello"
+
+base64('encode', 'https://puppetlabs.com', 'urlsafe')
+# return: "aHR0cHM6Ly9wdXBwZXRsYWJzLmNvbQ=="
+
+base64('decode', 'aHR0cHM6Ly9wdXBwZXRsYWJzLmNvbQ==', 'urlsafe')
+# return: "https://puppetlabs.com"
+~~~
+
+*Type*: rvalue.
 
 #### `basename`
 
