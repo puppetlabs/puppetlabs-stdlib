@@ -17,18 +17,29 @@ third argument to the ensure_resource() function.
       raise(Puppet::ParseError, 'ensure_packages(): Requires second argument to be a Hash')
     end
 
-    packages = Array(arguments[0])
+    if arguments[0].is_a?(Hash)
+      if arguments[1]
+        defaults = { 'ensure' => 'present' }.merge(arguments[1])
+      else
+        defaults = { 'ensure' => 'present' }
+      end
 
-    if arguments[1]
-      defaults = { 'ensure' => 'present' }.merge(arguments[1])
+      Puppet::Parser::Functions.function(:ensure_resources)
+      function_ensure_resources(['package', Hash(arguments[0]), defaults ])
     else
-      defaults = { 'ensure' => 'present' }
-    end
+      packages = Array(arguments[0])
 
-    Puppet::Parser::Functions.function(:ensure_resource)
-    packages.each { |package_name|
-      function_ensure_resource(['package', package_name, defaults ])
+      if arguments[1]
+        defaults = { 'ensure' => 'present' }.merge(arguments[1])
+      else
+        defaults = { 'ensure' => 'present' }
+      end
+
+      Puppet::Parser::Functions.function(:ensure_resource)
+      packages.each { |package_name|
+        function_ensure_resource(['package', package_name, defaults ])
     }
+    end
   end
 end
 

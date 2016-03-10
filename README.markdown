@@ -346,7 +346,15 @@ Returns true if the argument is an array or hash that contains no elements, or a
 
 #### `ensure_packages`
 
-Takes a list of packages and only installs them if they don't already exist. It optionally takes a hash as a second parameter to be passed as the third argument to the `ensure_resource()` function. *Type*: statement.
+Takes a list of packages array/hash and only installs them if they don't already exist. It optionally takes a hash as a second parameter to be passed as the third argument to the `ensure_resource()` or `ensure_resources()` function. *Type*: statement.
+
+For Array:
+
+    ensure_packages(['ksh','openssl'], {'ensure' => 'present'})
+
+For Hash:
+
+    ensure_packages({'ksh' => { enure => '20120801-1' } ,  'mypackage' => { source => '/tmp/myrpm-1.0.0.x86_64.rpm', provider => "rpm" }}, {'ensure' => 'present'})
 
 #### `ensure_resource`
 
@@ -370,7 +378,37 @@ An array of resources can also be passed in, and each will be created with the t
 
 *Type*: statement.
 
-#### `flatten`
+#### `ensure_resources`
+
+Takes a resource type, title (only hash), and a hash of attributes that describe the resource(s).
+
+~~~
+user { 'dan':
+  gid => 'mygroup',
+  ensure => present,
+}
+
+ensure_resources($user)
+~~~
+
+An hash of resources should be passed in and each will be created with the type and parameters specified if it doesn't already exist:
+
+    ensure_resources('user', {'dan' => { gid => 'mygroup', uid => '600' } ,  'alex' => { gid => 'mygroup' }}, {'ensure' => 'present'})
+
+From Hiera Backend:
+
+~~~
+userlist:
+dan:
+  gid: 'mygroup'
+uid: '600'
+alex:
+gid: 'mygroup'
+
+ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
+~~~
+
+### `flatten`
 
 Flattens deeply nested arrays and returns a single flat array as a result. For example, `flatten(['a', ['b', ['c']]])` returns ['a','b','c']. *Type*: rvalue.
 
