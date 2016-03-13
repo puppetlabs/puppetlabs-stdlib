@@ -344,6 +344,11 @@ Converts the case of a string or of all strings in an array to lowercase. *Type*
 
 Returns true if the argument is an array or hash that contains no elements, or an empty string. Returns false when the argument is a numerical value. *Type*: rvalue.
 
+#### `enclose_ipv6`
+
+Takes an array of ip addresses and encloses the ipv6 addresses with square
+brackets. *Type*: rvalue.
+
 #### `ensure_packages`
 
 Takes a list of packages and only installs them if they don't already exist. It optionally takes a hash as a second parameter to be passed as the third argument to the `ensure_resource()` function. *Type*: statement.
