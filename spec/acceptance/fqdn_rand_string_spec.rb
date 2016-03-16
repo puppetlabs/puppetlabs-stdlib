@@ -17,7 +17,7 @@ describe 'fqdn_rand_string function', :unless => UNSUPPORTED_PLATFORMS.include?(
         eos
 
         apply_manifest(pp, :catch_failures => true) do |r|
-          expect(r.stdout).to match(/fqdn_rand_string is "7oDp0KOr1b"/)
+          expect(r.stdout).to match(/fqdn_rand_string is "(7oDp0KOr1b|9Acvnhkt4J)"/)
         end
       end
       it 'generates random alphanumeric strings with custom charsets' do
@@ -29,7 +29,7 @@ describe 'fqdn_rand_string function', :unless => UNSUPPORTED_PLATFORMS.include?(
         eos
 
         apply_manifest(pp, :catch_failures => true) do |r|
-          expect(r.stdout).to match(/fqdn_rand_string is "7203048515"/)
+          expect(r.stdout).to match(/fqdn_rand_string is "(7203048515|2383756694)"/)
         end
       end
       it 'generates random alphanumeric strings with custom seeds' do
@@ -41,7 +41,7 @@ describe 'fqdn_rand_string function', :unless => UNSUPPORTED_PLATFORMS.include?(
         eos
 
         apply_manifest(pp, :catch_failures => true) do |r|
-          expect(r.stdout).to match(/fqdn_rand_string is "3HS4mbuI3E"/)
+          expect(r.stdout).to match(/fqdn_rand_string is "(3HS4mbuI3E|1jJtAMs94d)"/)
         end
       end
       it 'generates random alphanumeric strings with custom charsets and seeds' do
@@ -54,7 +54,7 @@ describe 'fqdn_rand_string function', :unless => UNSUPPORTED_PLATFORMS.include?(
         eos
 
         apply_manifest(pp, :catch_failures => true) do |r|
-          expect(r.stdout).to match(/fqdn_rand_string is "3104058232"/)
+          expect(r.stdout).to match(/fqdn_rand_string is "(3104058232|7100592312)"/)
         end
       end
     end
