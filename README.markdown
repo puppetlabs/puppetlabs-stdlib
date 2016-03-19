@@ -821,6 +821,17 @@ Strips spaces to the right of the string. *Type*: rvalue.
 
 Takes an integer max value and a string seed value and returns a repeatable random integer smaller than max. Like `fqdn_rand`, but does not add node specific data to the seed.  *Type*: rvalue.
 
+#### `shell_escape`
+
+Escapes a string so that it can be safely used in a Bourne shell command line. Note that the resulting string should be used unquoted and is not intended for use in double quotes nor in single quotes. This function behaves the same as ruby's `Shellwords.shellescape()` function, also see the [ruby documentation](http://ruby-doc.org/stdlib-2.3.0/libdoc/shellwords/rdoc/Shellwords.html#method-c-shellescape).
+
+*Example:*
+~~~
+shell_escape('foo b"ar') => 'foo\ b\"ar'
+~~~
+
+*Type*: rvalue.
+
 #### `shuffle`
 
 Randomizes the order of a string or array elements. *Type*: rvalue.
