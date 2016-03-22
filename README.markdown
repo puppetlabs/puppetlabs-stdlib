@@ -904,7 +904,12 @@ Removes leading and trailing whitespace from a string or from every string insid
 
 #### `suffix`
 
-Applies a suffix to all elements in an array. For example, `suffix(['a','b','c'], 'p')` returns ['ap','bp','cp']. *Type*: rvalue.
+Applies a suffix to all elements in an array, or to the keys in a hash.
+For example:
+* `suffix(['a','b','c'], 'p')` returns ['ap','bp','cp']
+* `suffix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'ap'=>'b','bp'=>'c','cp'=>'d'}.
+
+*Type*: rvalue.
 
 #### `swapcase`
 
