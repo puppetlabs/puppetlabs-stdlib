@@ -844,6 +844,17 @@ shell_join(['foo bar', 'ba"z']) => 'foo\ bar ba\"z'
 
 *Type*: rvalue.
 
+#### `shell_split`
+
+Splits a string into an array of tokens in the same way the Bourne shell does. This function behaves the same as ruby's `Shellwords.shellsplit()` function, also see the [ruby documentation](http://ruby-doc.org/stdlib-2.3.0/libdoc/shellwords/rdoc/Shellwords.html#method-c-shellsplit).
+
+*Example:*
+~~~
+shell_split('foo\ bar ba\"z') => ['foo bar', 'ba"z']
+~~~
+
+*Type*: rvalue.
+
 #### `shuffle`
 
 Randomizes the order of a string or array elements. *Type*: rvalue.
