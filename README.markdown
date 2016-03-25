@@ -832,6 +832,18 @@ shell_escape('foo b"ar') => 'foo\ b\"ar'
 
 *Type*: rvalue.
 
+#### `shell_join`
+
+Builds a command line string from the given array of strings. Each array item is escaped for Bourne shell. All items are
+then joined together, with a single space in between. This function behaves the same as ruby's `Shellwords.shelljoin()` function, also see the [ruby documentation](http://ruby-doc.org/stdlib-2.3.0/libdoc/shellwords/rdoc/Shellwords.html#method-c-shelljoin).
+
+*Example:*
+~~~
+shell_join(['foo bar', 'ba"z']) => 'foo\ bar ba\"z'
+~~~
+
+*Type*: rvalue.
+
 #### `shuffle`
 
 Randomizes the order of a string or array elements. *Type*: rvalue.
