@@ -111,8 +111,13 @@ Puppet::Type.newtype(:file_line) do
   end
 
   validate do
-    unless self[:line] and self[:path]
-      raise(Puppet::Error, "Both line and path are required attributes")
+    unless self[:line]
+      unless (self[:ensure].to_s == 'absent') and (self[:match_for_absence].to_s == 'true') and self[:match]
+        raise(Puppet::Error, "line is a required attribute")
+      end
+    end
+    unless self[:path]
+      raise(Puppet::Error, "path is a required attribute")
     end
   end
 end
