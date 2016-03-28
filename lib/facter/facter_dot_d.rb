@@ -48,7 +48,7 @@ class Facter::Util::DotD
         end
       end
     end
-  rescue Exception => e
+  rescue StandardError => e
     Facter.warn("Failed to handle #{file} as text facts: #{e.class}: #{e}")
   end
 
@@ -65,7 +65,7 @@ class Facter::Util::DotD
         setcode { v }
       end
     end
-  rescue Exception => e
+  rescue StandardError => e
     Facter.warn("Failed to handle #{file} as json facts: #{e.class}: #{e}")
   end
 
@@ -77,7 +77,7 @@ class Facter::Util::DotD
         setcode { v }
       end
     end
-  rescue Exception => e
+  rescue StandardError => e
     Facter.warn("Failed to handle #{file} as yaml facts: #{e.class}: #{e}")
   end
 
@@ -106,7 +106,7 @@ class Facter::Util::DotD
         end
       end
     end
-  rescue Exception => e
+  rescue StandardError => e
     Facter.warn("Failed to handle #{file} as script facts: #{e.class}: #{e}")
     Facter.debug(e.backtrace.join("\n\t"))
   end
