@@ -29,7 +29,7 @@ Would return: {'a'=>1,'b'=>2,'c'=>3}
       # This is to make it compatible with older version of Ruby ...
       array  = array.flatten
       result = Hash[*array]
-    rescue Exception
+    rescue StandardError
       raise(Puppet::ParseError, 'hash(): Unable to compute ' +
         'hash from array given')
     end
