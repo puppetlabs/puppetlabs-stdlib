@@ -398,7 +398,7 @@ describe provider_class do
       expect(File.read(@tmpfile)).to eql("foo1\nfoo2\n")
     end
 
-    it 'should ignore the match if match_for_absense is not specified' do
+    it 'should ignore the match if match_for_absence is not specified' do
       @resource = Puppet::Type::File_line.new(
         {
           :name     => 'foo',
@@ -416,7 +416,7 @@ describe provider_class do
       expect(File.read(@tmpfile)).to eql("foo1\nfoo\n")
     end
 
-    it 'should ignore the match if match_for_absense is false' do
+    it 'should ignore the match if match_for_absence is false' do
       @resource = Puppet::Type::File_line.new(
         {
           :name              => 'foo',
