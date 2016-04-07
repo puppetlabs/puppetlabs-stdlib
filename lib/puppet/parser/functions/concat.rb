@@ -31,7 +31,7 @@ Would result in:
     arguments.shift
 
     arguments.each do |x|
-      result = result + Array(x)
+      result = result + (x.is_a?(Array) ? x : [x])
     end
 
     return result
