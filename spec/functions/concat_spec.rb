@@ -11,6 +11,7 @@ describe 'concat' do
   it { is_expected.to run.with_params(['1','2','3'],[['4','5'],'6']).and_return(['1','2','3',['4','5'],'6']) }
   it { is_expected.to run.with_params(['1','2'],['3','4'],['5','6']).and_return(['1','2','3','4','5','6']) }
   it { is_expected.to run.with_params(['1','2'],'3','4',['5','6']).and_return(['1','2','3','4','5','6']) }
+  it { is_expected.to run.with_params([{"a" => "b"}], {"c" => "d", "e" => "f"}).and_return([{"a" => "b"}, {"c" => "d", "e" => "f"}]) }
 
   it "should leave the original array intact" do
     argument1 = ['1','2','3']
