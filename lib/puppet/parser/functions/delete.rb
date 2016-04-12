@@ -2,8 +2,6 @@
 # delete.rb
 #
 
-# TODO(Krzysztof Wilczynski): We need to add support for regular expression ...
-
 module Puppet::Parser::Functions
   newfunction(:delete, :type => :rvalue, :doc => <<-EOS
 Deletes all instances of a given element from an array, substring from a
@@ -34,7 +32,7 @@ string, or key from a hash.
     Array(arguments[1]).each do |item|
       case collection
         when Array, Hash
-          collection.delete item
+          collection.delete_if { |coll_item| coll_item =~ %r{#{item}} }
         when String
           collection.gsub! item, ''
         else
