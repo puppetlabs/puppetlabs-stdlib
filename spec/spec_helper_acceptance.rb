@@ -25,7 +25,7 @@ RSpec.configure do |c|
 end
 
 def is_future_parser_enabled?
-  if default[:type] == 'aio'
+  if default[:type] == 'aio' || ENV['PUPPET_INSTALL_TYPE'] == 'agent'
     return true
   elsif default[:default_apply_opts]
     return default[:default_apply_opts][:parser] == 'future'
