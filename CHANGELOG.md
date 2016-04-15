@@ -1,7 +1,7 @@
 ## Supported Release 4.12.0
 ###Summary
 
-This release provides several new functions, bugfixes, and some documentation updates.
+This release provides several new functions, bugfixes, modulesync changes, and some documentation updates.
 
 ####Features
 - Adds `clamp`. This function keeps values within a specified range.
@@ -10,12 +10,19 @@ This release provides several new functions, bugfixes, and some documentation up
 - Extends the `base64` support to fit `rfc2045` and `rfc4648`.
 - Adds `is_ipv6_address` and `is_ipv4_address`. These functions validate the specified ipv4 or ipv6 addresses.
 - Adds `enclose_ipv6`. This function encloses IPv6 addresses in square brackets.
-- Adds `ensure_resources`. This function takes a list of resources and creates them if they don't exist.
+- Adds `ensure_resources`. This function takes a list of resources and creates them if they do not exist.
 - Extends `suffix` to support applying a suffix to keys in a hash.
+- Apply modulesync changes.
+- Add validate_email_address function.
+- Add support for regular expressions to delete.
 
 ####Bugfixes
 - Fixes `fqdn_rand_string` tests, since Puppet 4.4.0 and later have a higher `fqdn_rand` ceiling.
 - (MODULES-3152) Adds a check to `package_provider` to prevent failures if Gem is not installed.
+- Fixes to README.md.
+- Fixes catch StandardError rather than the gratuitous Exception
+- Fixes file_line attribute validation.
+- Fixes concat with Hash arguments.
 
 ## Supported Release 4.11.0
 ###Summary
