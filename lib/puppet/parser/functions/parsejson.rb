@@ -15,7 +15,7 @@ be returned if the parsing of YAML string have failed.
 
     begin
       PSON::load(arguments[0]) || arguments[1]
-    rescue Exception => e
+    rescue StandardError => e
       if arguments[1]
         arguments[1]
       else

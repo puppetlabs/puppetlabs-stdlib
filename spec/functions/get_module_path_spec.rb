@@ -5,11 +5,7 @@ describe 'get_module_path' do
   it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /Wrong number of arguments, expects one/) }
   it { is_expected.to run.with_params('one', 'two').and_raise_error(Puppet::ParseError, /Wrong number of arguments, expects one/) }
   it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(Puppet::ParseError, /Wrong number of arguments, expects one/) }
-  if Puppet.version.to_f >= 4.0
-    it { is_expected.to run.with_params('one').and_raise_error(Puppet::Environments::EnvironmentNotFound, /Could not find a directory environment/) }
-  else
-    it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError, /Could not find module/) }
-  end
+  it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError, /Could not find module/) }
 
   class StubModule
     attr_reader :path
