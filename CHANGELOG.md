@@ -14,7 +14,6 @@ This release provides several new functions, bugfixes, modulesync changes, and s
 - Extends `suffix` to support applying a suffix to keys in a hash.
 - Apply modulesync changes.
 - Add validate_email_address function.
-- Add support for regular expressions to delete.
 
 ####Bugfixes
 - Fixes `fqdn_rand_string` tests, since Puppet 4.4.0 and later have a higher `fqdn_rand` ceiling.

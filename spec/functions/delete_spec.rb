@@ -13,6 +13,7 @@ describe 'delete' do
     it { is_expected.to run.with_params(['two'], 'two').and_return([]) }
     it { is_expected.to run.with_params(['two', 'two'], 'two').and_return([]) }
     it { is_expected.to run.with_params(['one', 'two', 'three'], 'four').and_return(['one', 'two', 'three']) }
+    it { is_expected.to run.with_params(['one', 'two', 'three'], 'e').and_return(['one', 'two', 'three']) }
     it { is_expected.to run.with_params(['one', 'two', 'three'], 'two').and_return(['one', 'three']) }
     it { is_expected.to run.with_params(['two', 'one', 'two', 'three', 'two'], 'two').and_return(['one', 'three']) }
     it { is_expected.to run.with_params(['one', 'two', 'three', 'two'], ['one', 'two']).and_return(['three']) }
