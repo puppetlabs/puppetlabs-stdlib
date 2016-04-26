@@ -660,10 +660,40 @@ Returns the keys of a hash as an array. *Type*: rvalue.
 
 #### `loadyaml`
 
-Loads a YAML file containing an array, string, or hash, and returns the data in the corresponding native data type. For example:
+Loads a YAML file containing an array, string, or hash, and returns the data in the corresponding native data type.
+
+For example:
 
   ~~~
   $myhash = loadyaml('/etc/puppet/data/myhash.yaml')
+  ~~~
+
+The second parameter will be returned if the file was not found or could not be parsed.
+
+For example:
+
+  ~~~
+  $myhash = loadyaml('no-file.yaml', {'default'=>'value'})
+  ~~~
+
+*Type*: rvalue.
+
+#### `loadjson`
+
+Loads a JSON file containing an array, string, or hash, and returns the data in the corresponding native data type.
+
+For example:
+
+  ~~~
+  $myhash = loadjson('/etc/puppet/data/myhash.json')
+  ~~~
+
+The second parameter will be returned if the file was not found or could not be parsed.
+
+For example:
+
+  ~~~
+  $myhash = loadjson('no-file.json', {'default'=>'value'})
   ~~~
 
 *Type*: rvalue.
