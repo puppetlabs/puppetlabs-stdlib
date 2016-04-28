@@ -146,11 +146,9 @@ Converts any object to an array containing that object. Empty argument lists are
 
 #### `base64`
 
-Converts a string to and from base64 encoding.
-Requires an `action` ('encode', 'decode') and either a plain or base64-encoded `string`,
-and an optional `method` ('default', 'strict', 'urlsafe')
+Converts a string to and from base64 encoding. Requires an `action` ('encode', 'decode') and either a plain or base64-encoded `string`, and an optional `method` ('default', 'strict', 'urlsafe')
 
-for backward compatibility, `metohd` will be set as `default` if not specified.
+For backward compatibility, `method` will be set as `default` if not specified.
 
 *Examples:*
 ~~~
@@ -346,8 +344,7 @@ Returns true if the argument is an array or hash that contains no elements, or a
 
 #### `enclose_ipv6`
 
-Takes an array of ip addresses and encloses the ipv6 addresses with square
-brackets. *Type*: rvalue.
+Takes an array of ip addresses and encloses the ipv6 addresses with square brackets. *Type*: rvalue.
 
 #### `ensure_packages`
 
