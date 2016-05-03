@@ -146,11 +146,9 @@ Converts any object to an array containing that object. Empty argument lists are
 
 #### `base64`
 
-Converts a string to and from base64 encoding.
-Requires an `action` ('encode', 'decode') and either a plain or base64-encoded `string`,
-and an optional `method` ('default', 'strict', 'urlsafe')
+Converts a string to and from base64 encoding. Requires an `action` ('encode', 'decode') and either a plain or base64-encoded `string`, and an optional `method` ('default', 'strict', 'urlsafe')
 
-for backward compatibility, `metohd` will be set as `default` if not specified.
+For backward compatibility, `method` will be set as `default` if not specified.
 
 *Examples:*
 ~~~
@@ -265,7 +263,7 @@ Takes a resource reference and an optional hash of attributes. Returns 'true' if
 
 #### `delete`
 
-Deletes all instances of a given element from an array, substring from a string, or key from a hash. Arrays and hashes may also match on regular expressions. For example, `delete(['a','b','c','b'], 'b')` returns ['a','c']; `delete('abracadabra', 'bra')` returns 'acada'. `delete({'a' => 1,'b' => 2,'c' => 3},['b','c'])` returns {'a'=> 1}, `delete(['abf', 'ab', 'ac'], '^ab.*')` returns ['ac']. *Type*: rvalue.
+Deletes all instances of a given element from an array, substring from a string, or key from a hash. For example, `delete(['a','b','c','b'], 'b')` returns ['a','c']; `delete('abracadabra', 'bra')` returns 'acada'. `delete({'a' => 1,'b' => 2,'c' => 3},['b','c'])` returns {'a'=> 1}. *Type*: rvalue.
 
 #### `delete_at`
 
@@ -346,8 +344,7 @@ Returns true if the argument is an array or hash that contains no elements, or a
 
 #### `enclose_ipv6`
 
-Takes an array of ip addresses and encloses the ipv6 addresses with square
-brackets. *Type*: rvalue.
+Takes an array of ip addresses and encloses the ipv6 addresses with square brackets. *Type*: rvalue.
 
 #### `ensure_packages`
 

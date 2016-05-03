@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_email_address, type: :rvalue, doc: <<-EOS
+  newfunction(:is_email_address, :type => :rvalue, :doc => <<-EOS
 Returns true if the string passed to this function is a valid email address.
     EOS
              ) do |arguments|
