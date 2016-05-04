@@ -263,7 +263,11 @@ Takes a resource reference and an optional hash of attributes. Returns 'true' if
 
 #### `delete`
 
-Deletes all instances of a given element from an array, substring from a string, or key from a hash. For example, `delete(['a','b','c','b'], 'b')` returns ['a','c']; `delete('abracadabra', 'bra')` returns 'acada'. `delete({'a' => 1,'b' => 2,'c' => 3},['b','c'])` returns {'a'=> 1}. *Type*: rvalue.
+Deletes all instances of a given element from an array, substring from a string, or key from a hash. Arrays and hashes may also match on regular expressions by providing a full regular expression.
+
+For example, `delete(['a','b','c','b'], 'b')` returns ['a','c']; `delete('abracadabra', 'bra')` returns 'acada'. `delete({'a' => 1,'b' => 2,'c' => 3},['b','c'])` returns {'a'=> 1}, `delete(['abf', 'ab', 'ac'], '^ab.*')` returns ['ac']. `delete(['ab', 'b'], 'b')` returns ['ab'].
+
+*Type*: rvalue.
 
 #### `delete_at`
 
