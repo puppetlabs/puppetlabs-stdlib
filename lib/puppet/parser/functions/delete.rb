@@ -20,12 +20,6 @@ string, or key from a hash.
 
     delete('abracadabra', 'bra')
     Would return: 'acada'
-
-    delete(['abracadabra'], '^.*bra.*$')
-    Would return: []
-
-    delete(['abracadabra'], '^.*jimbob.*$')
-    Would return: ['abracadabra']
   EOS
   ) do |arguments|
 
@@ -36,7 +30,7 @@ string, or key from a hash.
     Array(arguments[1]).each do |item|
       case collection
         when Array, Hash
-          collection.reject! { |coll_item| (coll_item =~ %r{\b#{item}\b}) }
+          collection.delete item
         when String
           collection.gsub! item, ''
         else
