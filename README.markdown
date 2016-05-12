@@ -705,6 +705,40 @@ Strips spaces to the right of the string. *Type*: rvalue.
 
 Takes an integer max value and a string seed value and returns a repeatable random integer smaller than max. Like `fqdn_rand`, but does not add node specific data to the seed.  *Type*: rvalue.
 
+#### `shell_escape`
+
+Escapes a string so that it can be safely used in a Bourne shell command line. Note that the resulting string should be used unquoted and is not intended for use in double quotes nor in single quotes. This function behaves the same as ruby's `Shellwords.shellescape()` function, also see the [ruby documentation](http://ruby-doc.org/stdlib-2.3.0/libdoc/shellwords/rdoc/Shellwords.html#method-c-shellescape).
+
+*Example:*
+~~~
+shell_escape('foo b"ar') => 'foo\ b\"ar'
+~~~
+
+*Type*: rvalue.
+
+#### `shell_join`
+
+Builds a command line string from the given array of strings. Each array item is escaped for Bourne shell. All items are
+then joined together, with a single space in between. This function behaves the same as ruby's `Shellwords.shelljoin()` function, also see the [ruby documentation](http://ruby-doc.org/stdlib-2.3.0/libdoc/shellwords/rdoc/Shellwords.html#method-c-shelljoin).
+
+*Example:*
+~~~
+shell_join(['foo bar', 'ba"z']) => 'foo\ bar ba\"z'
+~~~
+
+*Type*: rvalue.
+
+#### `shell_split`
+
+Splits a string into an array of tokens in the same way the Bourne shell does. This function behaves the same as ruby's `Shellwords.shellsplit()` function, also see the [ruby documentation](http://ruby-doc.org/stdlib-2.3.0/libdoc/shellwords/rdoc/Shellwords.html#method-c-shellsplit).
+
+*Example:*
+~~~
+shell_split('foo\ bar ba\"z') => ['foo bar', 'ba"z']
+~~~
+
+*Type*: rvalue.
+
 #### `shuffle`
 
 Randomizes the order of a string or array elements. *Type*: rvalue.
