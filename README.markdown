@@ -189,6 +189,10 @@ Returns the smallest integer greater than or equal to the argument. Takes a sing
 
 Removes the record separator from the end of a string or an array of strings; for example, 'hello\n' becomes 'hello'. Requires a single string or array as an input. *Type*: rvalue.
 
+#### `clientcert_rand`
+
+Very similar to fqdn_rand, generates a random Integer number greater than or equal to 0 and less than MAX, combining the `$clientcert` fact and the value of SEED for repeatable randomness. This is useful for situations where the fqdn fact is not guaranteed to remain stable across Puppet runs. *Type*: rvalue.
+
 #### `chop`
 
 Returns a new string with the last character removed. If the string ends with '\r\n', both characters are removed. Applying `chop` to an empty string returns an empty string. If you want to merely remove record separators, then you should use the `chomp` function. Requires a string or an array of strings as input. *Type*: rvalue.
