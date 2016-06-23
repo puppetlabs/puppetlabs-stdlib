@@ -13,6 +13,8 @@ def location_for(place, version = nil)
 end
 
 group :development, :unit_tests do
+  gem 'pry'
+  gem 'puppet-lint', git: 'https://github.com/rodjek/puppet-lint.git'
   gem 'json',                      :require => false
   gem 'metadata-json-lint',        :require => false
   gem 'puppet_facts',              :require => false

@@ -12,4 +12,6 @@ describe 'is_bool' do
   it { is_expected.to run.with_params([true]).and_return(false) }
   it { is_expected.to run.with_params('true').and_return(false) }
   it { is_expected.to run.with_params('false').and_return(false) }
+  it { is_expected.to run.with_params(:true).and_return(false) }
+  it { is_expected.to run.with_params(:false).and_return(false) }
 end
