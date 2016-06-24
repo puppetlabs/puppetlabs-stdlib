@@ -2,7 +2,7 @@ module Puppet::Parser::Functions
 
   newfunction(:validate_numeric, :doc => <<-'ENDHEREDOC') do |args|
     Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
-    
+
     The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
 
     The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
@@ -68,12 +68,15 @@ module Puppet::Parser::Functions
     # if this is an array, handle it.
     case input
     when Array
+      notice("#{input.inspect} is an Array, but passes validate_numeric")
       # check every element of the array
       input.each_with_index do |arg, pos|
         begin
           raise TypeError if arg.is_a?(Hash)
-          arg = Float(arg.to_s)
-          validator.call(arg)
+          validator.call(Float(arg.to_s))
+          unless Puppet::Pops::Types::TypeCalculator.instance?(Puppet::Pops::Types::TypeParser.new.parse('Numeric'), arg)
+            notice("element at array position #{pos} (#{arg.inspect}) is not Numeric, but passes validate_numeric")
+          end
         rescue TypeError, ArgumentError
           raise Puppet::ParseError, "validate_numeric(): Expected element at array position #{pos} to be a Numeric, got #{arg.class}"
         end
@@ -84,8 +87,10 @@ module Puppet::Parser::Functions
     # check the input. this will also fail any stuff other than pure, shiny integers
     else
       begin
-        input = Float(input.to_s)
-        validator.call(input)
+        validator.call(Float(input.to_s))
+        unless Puppet::Pops::Types::TypeCalculator.instance?(Puppet::Pops::Types::TypeParser.new.parse('Numeric'), input)
+          notice("#{input.inspect} is not Numeric, but passes validate_numeric")
+        end
       rescue TypeError, ArgumentError
         raise Puppet::ParseError, "validate_numeric(): Expected first argument to be a Numeric or Array, got #{input.class}"
       end

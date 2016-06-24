@@ -65,6 +65,9 @@ Valid examples:
     #  value.match(numeric_hex) or
     #  value.match(numeric_oct)
     ))
+      unless Puppet::Pops::Types::TypeCalculator.instance?(Puppet::Pops::Types::TypeParser.new.parse('Numeric'), value)
+        notice("#{value.inspect} is not Numeric, but passes is_numeric")
+      end
       return true
     else
       return false
