@@ -2,10 +2,13 @@
 pkg/
 Gemfile.lock
 vendor/
-spec/fixtures/
+spec/fixtures/manifests/site.pp
+spec/fixtures/modules/*
+!spec/fixtures/modules/test
 .vagrant/
 .bundle/
 coverage/
 log/
 .idea/
 *.iml
+tmp/
