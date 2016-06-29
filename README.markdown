@@ -124,7 +124,7 @@ error will be raised unless the `multiple => true` parameter is set.
 
 All parameters are optional, unless otherwise noted.
 
-* `after`: Specifies the line after which Puppet adds any new lines. (Existing lines are added in place.) Valid options: String. Default: Undefined.
+* `after`: Specifies the line after which Puppet adds any new lines using a regular expression. (Existing lines are added in place.) Valid options: String containing a regex. Default: Undefined.
 * `ensure`: Ensures whether the resource is present. Valid options: 'present', 'absent'. Default: 'present'.
 * `line`: **Required.** Sets the line to be added to the file located by the `path` parameter. Valid options: String. Default: Undefined.
 * `match`: Specifies a regular expression to run against existing lines in the file; if a match is found, it is replaced rather than adding a new line. A regex comparison is performed against the line value, and if it does not match, an exception is raised. Valid options: String containing a regex. Default: Undefined.
