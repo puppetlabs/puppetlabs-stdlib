@@ -23,4 +23,13 @@ describe 'defined_with_params' do
     it { is_expected.to run.with_params('User[dan]', {'ensure' => 'present', 'managehome' => false}).and_return(true) }
     it { is_expected.to run.with_params('User[dan]', {'ensure' => 'absent', 'managehome' => false}).and_return(false) }
   end
+
+  describe 'when passing undef values' do
+    let :pre_condition do
+      'file { "/tmp/a": }'
+    end
+
+    it { is_expected.to run.with_params('File[/tmp/a]', {}).and_return(true) }
+    it { is_expected.to run.with_params('File[/tmp/a]', { 'owner' => :undef }).and_return(true) }
+  end
 end

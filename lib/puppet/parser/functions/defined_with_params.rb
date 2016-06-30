@@ -26,7 +26,7 @@ ENDOFDOC
   ret = false
   if resource = findresource(reference.to_s)
     matches = params.collect do |key, value|
-      resource[key] == value
+      resource[key] == (value.eql?(:undef) ? nil : value)  # eql? avoids bugs caused by monkeypatching in puppet
     end
     ret = params.empty? || !matches.include?(false)
   end

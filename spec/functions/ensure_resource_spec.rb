@@ -28,6 +28,13 @@ describe 'ensure_resource' do
       it { expect(lambda { catalogue }).to contain_user('username2').without_ensure }
     end
 
+    describe 'after running ensure_resource("user", "username1", { "gid" => undef })' do
+      before { subject.call(['User', 'username1', { "gid" => :undef }]) }
+
+      # this lambda is required due to strangeness within rspec-puppet's expectation handling
+      it { expect(lambda { catalogue }).to contain_user('username1').with_ensure('present') }
+    end
+
     describe 'after running ensure_resource("user", ["username1", "username2"], {})' do
       before { subject.call(['User', ['username1', 'username2'], {}]) }
 
