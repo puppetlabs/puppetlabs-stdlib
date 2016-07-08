@@ -295,6 +295,8 @@ Returns the difference between two arrays. The returned array is a copy of the o
 
 #### `dig`
 
+DEPRECATED: This function has been replaced in Puppet 4.5.0, use dig44() for backwards compatibility or use the new version.
+
 *Type*: rvalue.
 
 Retrieves a value within multiple layers of hashes and arrays via an array of keys containing a path. The function goes through the structure by each path component and tries to return the value at the end of the path.
@@ -321,6 +323,42 @@ $value = dig($data, ['a', 'b', 2], 'not_found')
 
 # using the default value
 $value = dig($data, ['a', 'b', 'c', 'd'], 'not_found')
+# $value = 'not_found'
+~~~
+
+1. **$data** The data structure we are working with.
+2. **['a', 'b', 2]** The path array.
+3. **'not_found'** The default value. It will be returned if nothing is found.
+   (optional, defaults to *undef*)
+
+#### `dig44`
+
+*Type*: rvalue.
+
+Retrieves a value within multiple layers of hashes and arrays via an array of keys containing a path. The function goes through the structure by each path component and tries to return the value at the end of the path.
+
+In addition to the required path argument, the function accepts the default argument. It is returned if the path is not correct, if no value was found, or if any other error has occurred.
+
+~~~ruby
+$data = {
+  'a' => {
+    'b' => [
+      'b1',
+      'b2',
+      'b3',
+    ]
+  }
+}
+
+$value = dig44($data, ['a', 'b', 2])
+# $value = 'b3'
+
+# with all possible options
+$value = dig44($data, ['a', 'b', 2], 'not_found')
+# $value = 'b3'
+
+# using the default value
+$value = dig44($data, ['a', 'b', 'c', 'd'], 'not_found')
 # $value = 'not_found'
 ~~~
 

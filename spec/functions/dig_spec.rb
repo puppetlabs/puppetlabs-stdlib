@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe 'dig' do
-  it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError) }
-  it { is_expected.to run.with_params('bad', []).and_raise_error(Puppet::ParseError) }
-  it { is_expected.to run.with_params({}, 'bad').and_raise_error(Puppet::ParseError) }
 
-  it { is_expected.to run.with_params({}, []).and_return({}) }
-  it { is_expected.to run.with_params({"a" => "b"}, ["a"]).and_return("b") }
-  it { is_expected.to run.with_params({"a" => {"b" => "c"}}, ["a", "b"]).and_return("c") }
-  it { is_expected.to run.with_params({}, ["a", "b"], "d").and_return("d") }
-  it { is_expected.to run.with_params({"a" => false}, ["a"]).and_return(false) }
+  it "should exist" do
+    expect(Puppet::Parser::Functions.function("dig")).to eq("function_dig")
+  end
+
+  it "should give a deprecation warning when called" do
+    scope.expects(:warning).with("dig() DEPRECATED: This function has been replaced in Puppet 4.5.0, please use dig44() for backwards compatibility or use the new version.")
+    scope.function_dig([{}, []])
+  end
 end
