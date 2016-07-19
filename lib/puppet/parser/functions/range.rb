@@ -25,8 +25,8 @@ integers automatically)
 Will return: ["a","b","c"]
 
     range("host01", "host10")
-
 Will return: ["host01", "host02", ..., "host09", "host10"]
+NB Be explicit in including trailing zeros. Otherwise the underlying ruby function will fail.
 
 Passing a third argument will cause the generated range to step by that
 interval, e.g.

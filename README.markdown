@@ -881,6 +881,7 @@ The third argument to this function is the salt to use.
 Extrapolates a range as an array when given in the form of '(start, stop)'. For example, `range("0", "9")` returns [0,1,2,3,4,5,6,7,8,9]. Zero-padded strings are converted to integers automatically, so `range("00", "09")` returns [0,1,2,3,4,5,6,7,8,9].
 
 Non-integer strings are accepted; `range("a", "c")` returns ["a","b","c"], and `range("host01", "host10")` returns ["host01", "host02", ..., "host09", "host10"].
+NB Be explicit in including trailing zeros. Otherwise the underlying ruby function will fail.
 
 Passing a third argument will cause the generated range to step by that interval, e.g. `range("0", "9", "2")` returns ["0","2","4","6","8"].
 
