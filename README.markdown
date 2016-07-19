@@ -245,6 +245,19 @@ Converts a given integer or base 10 string representing an integer to a specifie
 
 If called with only an array, it counts the number of elements that are **not** nil/undef. If called with a second argument, counts the number of elements in an array that matches the second argument. *Type*: rvalue.
 
+#### `deep_merge`
+
+Recursively merges two or more hashes together and returns the resulting hash.
+  $hash1 = {'one' => 1, 'two' => 2, 'three' => { 'four' => 4 } }
+  $hash2 = {'two' => 'dos', 'three' => { 'five' => 5 } }
+  $merged_hash = deep_merge($hash1, $hash2)
+
+The resulting hash is equivalent to:
+  $merged_hash = { 'one' => 1, 'two' => 'dos', 'three' => { 'four' => 4, 'five' => 5 } }
+
+When there is a duplicate key that is a hash, they are recursively merged. When there is a duplicate key that is not a hash, the key in the rightmost hash will "win.".
+*Type*: rvalue, rvalue.
+
 #### `defined_with_params`
 
 Takes a resource reference and an optional hash of attributes. Returns 'true' if a resource with the specified attributes has already been added to the catalog. Returns 'false' otherwise.
