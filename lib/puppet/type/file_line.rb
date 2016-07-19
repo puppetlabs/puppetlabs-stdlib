@@ -83,7 +83,8 @@ Puppet::Type.newtype(:file_line) do
   end
 
   newparam(:after) do
-    desc 'An optional value used to specify the line after which we will add any new lines. (Existing lines are added in place)'
+    desc 'An optional value used to specify the line after which we will add any new lines. (Existing lines are added in place)' +
+         ' This is also takes a regex.'
   end
 
   newparam(:line) do
