@@ -21,7 +21,7 @@ like: 0, F,f, N,n, false, FALSE, no to 'false'.
     end
 
     unless string.is_a?(String)
-      raise(Puppet::ParseError, 'str2bool(): Requires either ' +
+      raise(Puppet::ParseError, 'str2bool(): Requires ' +
         'string to work with')
     end
 
