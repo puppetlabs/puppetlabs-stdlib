@@ -15,6 +15,8 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
 
+    function_deprecation([:puppet_3_type_check, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Numeric. There is further documentation for validate_legacy function in the README.'])
+
     # tell the user we need at least one, and optionally up to two other parameters
     raise Puppet::ParseError, "validate_numeric(): Wrong number of arguments; must be 1, 2 or 3, got #{args.length}" unless args.length > 0 and args.length < 4
 
