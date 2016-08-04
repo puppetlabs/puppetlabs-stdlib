@@ -900,6 +900,10 @@ Passing a third argument will cause the generated range to step by that interval
 
 *Type*: rvalue.
 
+#### `regexpescape`
+
+Regexp escape a string or array of strings. Requires either a single string or an array as an input. *Type*: rvalue.
+
 #### `reject`
 
 Searches through an array and rejects all elements that match the provided regular expression. For example, `reject(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['bbb','ccc']. *Type*: rvalue.
