@@ -468,11 +468,11 @@ From Hiera Backend:
 
 ~~~
 userlist:
-dan:
-  gid: 'mygroup'
-uid: '600'
-alex:
-gid: 'mygroup'
+  dan:
+    gid: 'mygroup'
+    uid: '600'
+  alex:
+    gid: 'mygroup'
 
 ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
 ~~~
