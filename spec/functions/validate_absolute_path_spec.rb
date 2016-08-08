@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe 'validate_absolute_path' do
+  # Checking for deprecation warning
+  it 'should display a single deprecation' do
+    # called twice because validate_absolute_path calls is_absolute_path
+    scope.expects(:warn).with(includes('This method is deprecated')).twice
+    is_expected.to run.with_params('c:/')
+  end
+
   describe 'signature validation' do
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }

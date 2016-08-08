@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe 'is_bool' do
   it { is_expected.not_to eq(nil) }
+  # Checking for deprecation warning
+  it 'should display a single deprecation' do
+    scope.expects(:warn).with(includes('This method is deprecated'))
+    is_expected.to run.with_params(true)
+  end
   it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
   it { is_expected.to run.with_params(true, false).and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
   it { is_expected.to run.with_params(true).and_return(true) }
