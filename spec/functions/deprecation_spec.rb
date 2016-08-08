@@ -1,13 +1,5 @@
 require 'spec_helper'
 
-if ENV["FUTURE_PARSER"] == 'yes'
-  describe 'deprecation' do
-    pending 'teach rspec-puppet to load future-only functions under 3.7.5' do
-      it { is_expected.not_to eq(nil) }
-    end
-  end
-end
-
 if Puppet.version.to_f >= 4.0
   describe 'deprecation' do
     before(:each) {
@@ -47,5 +39,15 @@ if Puppet.version.to_f >= 4.0
       # this is to reset the strict variable to default
       Puppet.settings[:strict] = :warning
     }
+  end
+else
+  describe 'deprecation' do
+    it { is_expected.not_to eq(nil) }
+    it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
+
+    it 'should display a single warning' do
+      scope.expects(:warn).with(includes('heelo'))
+      is_expected.to run.with_params('key', 'heelo')
+    end
   end
 end

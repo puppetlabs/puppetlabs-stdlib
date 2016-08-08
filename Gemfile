@@ -16,7 +16,7 @@ group :development, :unit_tests do
   gem 'metadata-json-lint',             :require => false
   gem 'puppet_facts',                   :require => false
   gem 'puppet-blacksmith', '>= 3.4.0',  :require => false
-  gem 'puppetlabs_spec_helper',         :require => false
+  gem 'puppetlabs_spec_helper',         :git => 'git://github.com/puppetlabs/puppetlabs_spec_helper.git', :ref => '157a7fd', :require => false
   gem 'rspec-puppet', '>= 2.3.2',       :require => false
   gem 'simplecov',                      :require => false
 end
@@ -32,6 +32,8 @@ end
 # json_pure 2.0.2 added a requirement on ruby >= 2. We pin to json_pure 2.0.1
 # if using ruby 1.x
 gem 'json_pure', '<=2.0.1', :require => false if RUBY_VERSION =~ /^1\./
+# rubocop 0.42.0 requires ruby >=2
+gem 'rubocop', '0.41.2', :require => false if RUBY_VERSION =~ /^1\./
 
 gem 'facter', *location_for(ENV['FACTER_GEM_VERSION'])
 gem 'puppet', *location_for(ENV['PUPPET_GEM_VERSION'])
