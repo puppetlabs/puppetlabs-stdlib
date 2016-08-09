@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe 'validate_bool' do
+  # Checking for deprecation warning
+  it 'should display a single deprecation' do
+    #called twice, because validate_bool calls is_bool
+    scope.expects(:warn).with(includes('This method is deprecated')).twice
+    is_expected.to run.with_params(true)
+  end
+
   describe 'signature validation' do
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }

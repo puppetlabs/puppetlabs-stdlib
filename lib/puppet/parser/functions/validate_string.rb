@@ -23,6 +23,8 @@ module Puppet::Parser::Functions
     
     ENDHEREDOC
 
+    function_deprecation([:puppet_3_type_check, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::String. There is further documentation for validate_legacy function in the README.'])
+
     unless args.length > 0 then
       raise Puppet::ParseError, ("validate_string(): wrong number of arguments (#{args.length}; must be > 0)")
     end
