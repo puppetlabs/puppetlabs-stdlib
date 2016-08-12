@@ -28,7 +28,7 @@ ENDOFDOC
   return '' if param.empty?
 
   if resource = findresource(reference.to_s)
-    return resource[param] if resource[param]
+    return resource[param] if resource[param].class != NilClass
   end
 
   return ''
