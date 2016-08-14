@@ -1368,6 +1368,17 @@ The following values will fail, causing compilation to abort:
   ~~~
 
 
+#### `validate_legacy`
+
+Validates a value against both a specified type and a deprecated validation function. Silently passes if both pass, errors if one validation passes and the other does not, fails if both validations return false.
+Arguments include the type to check the value against, the full name of the previous validation function, the value itself to be checked, and an unspecified amount of arguments needed for the previous validation function.
+
+Example:
+
+  ~~~
+  validate_legacy("Optional[String]", "validate_re", "Value to be validated", ["."])
+  ~~~
+
 #### `validate_numeric`
 
 Validates that the first argument is a numeric value (or an array of numeric values). Aborts catalog compilation if any of the checks fail.
