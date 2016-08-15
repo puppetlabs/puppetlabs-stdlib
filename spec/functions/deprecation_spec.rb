@@ -46,7 +46,7 @@ else
     it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
 
     it 'should display a single warning' do
-      scope.expects(:warn).with(includes('heelo'))
+      scope.expects(:warning).with(includes('heelo'))
       is_expected.to run.with_params('key', 'heelo')
     end
   end

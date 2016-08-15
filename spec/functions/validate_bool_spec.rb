@@ -4,7 +4,7 @@ describe 'validate_bool' do
   # Checking for deprecation warning
   it 'should display a single deprecation' do
     #called twice, because validate_bool calls is_bool
-    scope.expects(:warn).with(includes('This method is deprecated')).twice
+    scope.expects(:warning).with(includes('This method is deprecated')).twice
     is_expected.to run.with_params(true)
   end
 

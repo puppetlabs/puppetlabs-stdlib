@@ -5,7 +5,7 @@ describe 'validate_array' do
     it { is_expected.not_to eq(nil) }
     # Checking for deprecation warning
     it 'should display a single deprecation' do
-      scope.expects(:warn).with(includes('This method is deprecated'))
+      scope.expects(:warning).with(includes('This method is deprecated'))
       is_expected.to run.with_params([])
     end
     it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
