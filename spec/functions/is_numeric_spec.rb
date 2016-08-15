@@ -5,7 +5,7 @@ describe 'is_numeric' do
 
   # Checking for deprecation warning
   it 'should display a single deprecation' do
-    scope.expects(:warn).with(includes('This method is deprecated'))
+    scope.expects(:warning).with(includes('This method is deprecated'))
     is_expected.to run.with_params(3)
   end
 

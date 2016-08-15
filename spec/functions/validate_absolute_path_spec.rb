@@ -4,7 +4,7 @@ describe 'validate_absolute_path' do
   # Checking for deprecation warning
   it 'should display a single deprecation' do
     # called twice because validate_absolute_path calls is_absolute_path
-    scope.expects(:warn).with(includes('This method is deprecated')).twice
+    scope.expects(:warning).with(includes('This method is deprecated')).twice
     is_expected.to run.with_params('c:/')
   end
 

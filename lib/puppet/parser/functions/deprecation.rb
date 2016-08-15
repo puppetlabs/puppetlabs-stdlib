@@ -10,6 +10,6 @@ EOS
     key = arguments[0]
     message = arguments[1]
 
-    warn("deprecation. #{key}. #{message}")
+    warning("deprecation. #{key}. #{message}")
   end
 end
