@@ -30,8 +30,6 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
 
-    function_deprecation([:puppet_3_type_check, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Re. There is further documentation for validate_legacy function in the README.'])
-
     if (args.length < 2) or (args.length > 3) then
       raise Puppet::ParseError, "validate_re(): wrong number of arguments (#{args.length}; must be 2 or 3)"
     end
