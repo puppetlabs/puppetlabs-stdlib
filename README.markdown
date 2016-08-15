@@ -1370,6 +1370,61 @@ The following values will fail, causing compilation to abort:
 
 #### `validate_legacy`
 
+This function supports updating modules to upgrade from Puppet 3 style argument validation (using the stdlib `validate_*` functions) to Puppet 4 data types, without breaking the world.
+
+##### For module users
+
+You are probably here, because you're receiving loads of deprecation warnings about `validate_*` functions. If you're still on Puppet 3, use the options described in [`deprecation`](#deprecation) to silence the messages for now, and avoid upgrading to module versions which already have dropped Puppet 3 support. If you're already running Puppet 4 (shipped in Puppet Enterprise 2015.2 or later), please read on to understand the required steps to fix those issues.
+
+The `validate_*` functions were the only way on Puppet 3 to easily check the types of class and define arguments. Additionally some of the functions provided additional helpers like [validate_numeric](#validate_numeric), which would not only allow numbers, but also arrays of numbers. Puppet 4 now allows much better defined type checking using [data types](https://docs.puppet.com/puppet/latest/reference/lang_data.html), without such surprises. To avoid breaking the world for people depending on those surprises, `validate_legacy` provides a way to make those edge-cases visible, and assist people with getting onto the clearer Puppet 4 syntax.
+
+Depending on the current state of development of the modules you use and the data you feed them, you'll encounter different messages:
+
+* "Notice: Accepting previously invalid value for target type '<type>'": Nothing to worry, you're already using values allowed by the new type, that would have been invalid by the old validation function. This is informational only.
+* "Warning: This method is deprecated, please use the stdlib validate_legacy function": The module you're using hasn't yet upgraded to validate_legacy, use the options from [deprecation()](#deprecation) to silence the warnings for now, or submit a patch with you module's developer. See below for details.
+* "Warning: validate_legacy(<function>) expected <type> value, got <actual type>": Your code is passing a value to the module that was accepted by the Puppet v3 style validation, but that will not be accepted by the next version of the module. Most often this can be fixed by removing quotes from numbers, or booleans.
+* "Error: Evaluation Error: Error while evaluating a Resource Statement, Evaluation Error: Error while evaluating a Function Call, validate_legacy(<function>) expected <type> value, got <actual type>": Your code is passing a value that is not acceptable to either the new, or the old style validation.
+
+
+
+
+##### For module developers
+
+Many `validate_*` functions have surprising holes in their validation. For example, [validate_numeric](#validate_numeric) would not only allow numbers, but also arrays of numbers, or strings that look like numbers, without giving you any control over the specifics. Contrast that to Puppet 4 [data types](https://docs.puppet.com/puppet/latest/reference/lang_data.html) which allow you to choose between `Numeric`, `Array[Numeric]`, or `Optional[Numeric]`. To get from here to there, without leaving your users behind, the validate_legacy function will provide you with a tool to make this migration as painless as possible.
+
+To start out, for each parameter of your classes and defines, you'll have to decide on a new Puppet 4 data type to use. In most cases the new data type will allow a different set of values than the original `validate_*` function (which is the point of the whole exercise). The situation then looks like this:
+
+|              | `validate_` pass | `validate_` fail |
+| matches type | pass             | pass, notice     |
+| fails type   | pass, deprecated | fail             |
+
+The code after the validation will still have to deal with all possible values for now, but users of your code can now change their manifests to only pass values that will match the new type.
+
+To effect those checks, given a class like this:
+~~~
+class example($value) {
+  validate_numeric($value)
+~~~
+which should only accept numbers, the resulting validation code looks like this:
+~~~
+class example(
+  Variant[Stdlib::Compat::Numeric, Numeric] $value
+) {
+  validate_legacy(Numeric, 'validate_numeric', $value)
+~~~
+
+The type of `$value` is defined as `Variant[Stdlib::Compat::Numeric, Numeric]`, which will allow any `Numeric` (the new type), and all values previously accepted by validate_numeric (through `Stdlib::Compat::Numeric`). For each `validate_*` function in stdlib, there is a matching `Stdlib::Compat::*` type that will allow the appropriate set of values through. See the documentation in the `types/` directory in the stdlib source code for caveats.
+
+The call to `validate_legacy` will take care of triggering the correct log or fail message for you. It requires the new type, the previous validation function name, and all arguments to that function.
+
+If you were previously still supporting Puppet 3, this is a breaking change. You'll need to update your `metadata.json` to not support Puppet 3 anymore in the `requirements` section, and bump the major version of your module. This should still pass all previously existing tests your module has. Do not forget to add more tests for the newly possible values. This is also a good time to start calling [`deprecation()`](#deprecation) for all parameters you always wanted to get rid of, or add additional constraints on your parameters.
+
+After releasing this version, you can at any time release another breaking change release where you remove all compat types, and all calls to `validate_legacy`. At this time you can also go through your code and remove all leftovers dealing with the previously possible values.
+
+At all times note in the CHANGELOG and the README at what stage of the process your modules currently are.
+
+##### Reference
+
 Validates a value against both a specified type and a deprecated validation function. Silently passes if both pass, errors if one validation passes and the other does not, fails if both validations return false.
 Arguments include the type to check the value against, the full name of the previous validation function, the value itself to be checked, and an unspecified amount of arguments needed for the previous validation function.
 
