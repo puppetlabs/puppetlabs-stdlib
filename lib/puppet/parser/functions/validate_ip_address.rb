@@ -23,6 +23,8 @@ module Puppet::Parser::Functions
     require "ipaddr"
     rescuable_exceptions = [ ArgumentError ]
 
+    function_deprecation([:puppet_3_type_check, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Ip_address. There is further documentation for validate_legacy function in the README.'])
+
     if defined?(IPAddr::InvalidAddressError)
       rescuable_exceptions << IPAddr::InvalidAddressError
     end

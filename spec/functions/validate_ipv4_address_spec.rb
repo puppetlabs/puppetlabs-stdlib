@@ -5,6 +5,11 @@ describe 'validate_ipv4_address' do
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
 
+    it 'should display a single deprecation' do
+      scope.expects(:warning).with(includes('This method is deprecated'))
+      is_expected.to run.with_params('1.1.1.1')
+    end
+
     describe 'valid inputs' do
       it { is_expected.to run.with_params('0.0.0.0') }
       it { is_expected.to run.with_params('8.8.8.8') }
