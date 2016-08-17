@@ -20,4 +20,9 @@ describe 'is_ip_address' do
   it { is_expected.to run.with_params(1).and_return(false) }
   it { is_expected.to run.with_params({}).and_return(false) }
   it { is_expected.to run.with_params([]).and_return(false) }
+  # Checking for deprecation warning
+  it 'should display a single deprecation' do
+    scope.expects(:warning).with(includes('This method is deprecated'))
+    is_expected.to run.with_params('1.1.1.1')
+  end
 end

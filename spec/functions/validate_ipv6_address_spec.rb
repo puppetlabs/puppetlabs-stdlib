@@ -10,6 +10,10 @@ describe 'validate_ipv6_address' do
       it { is_expected.to run.with_params('3ffe:0505:0002::', '3ffe:0505:0002::2') }
       it { is_expected.to run.with_params('::1/64') }
       it { is_expected.to run.with_params('fe80::a00:27ff:fe94:44d6/64') }
+      it 'should display a single deprecation' do
+        scope.expects(:warning).with(includes('This method is deprecated'))
+        is_expected.to run.with_params('3ffe:0505:0002::')
+      end
     end
 
     describe 'invalid inputs' do

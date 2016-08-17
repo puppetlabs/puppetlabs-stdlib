@@ -19,6 +19,8 @@ module Puppet::Parser::Functions
     ENDHEREDOC
   ) do |args|
 
+    function_deprecation([:puppet_3_type_check, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Ipv6. There is further documentation for validate_legacy function in the README.'])
+
     require "ipaddr"
     rescuable_exceptions = [ ArgumentError ]
 
