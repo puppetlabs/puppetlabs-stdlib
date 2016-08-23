@@ -9,7 +9,9 @@ EOS
 
     key = arguments[0]
     message = arguments[1]
-
-    warning("deprecation. #{key}. #{message}")
+    
+    if ENV['STDLIB_LOG_DEPRECATIONS'] == "true"
+      warning("deprecation. #{key}. #{message}")
+    end
   end
 end

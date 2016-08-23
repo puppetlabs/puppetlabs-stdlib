@@ -42,6 +42,10 @@ if Puppet.version.to_f >= 4.0
   end
 else
   describe 'deprecation' do
+    after(:context) do
+      ENV.delete('STDLIB_LOG_DEPRECATIONS')
+    end
+    ENV['STDLIB_LOG_DEPRECATIONS'] = "true"
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
 
