@@ -1,19 +1,29 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
-require 'shellwords'
 
 describe 'deprecation function' do
-  before :each do
-    FileUtils.rm_rf '/tmp/deprecation'
+
+  if fact('operatingsystem') == 'windows'
+    test_file = 'C:/deprecation'
+    else
+    test_file = "/tmp/deprecation"
+  end
+
+  # It seems that Windows needs everything to be on one line when using puppet apply -e, otherwise the manifests would be in an easier format
+  add_file_manifest = "\"deprecation('key', 'message') file { '#{test_file}': ensure => present, content => 'test', }\""
+  remove_file_manifest = "file { '#{test_file}': ensure => absent }"
+
+  before :all do
+    apply_manifest(remove_file_manifest)
   end
 
   context 'with --strict=error', if: get_puppet_version =~ /^4/ do
     before :all do
-      pp = <<-EOS
-      deprecation('key', 'message')
-      file { '/tmp/deprecation': ensure => present }
-      EOS
-      @result = on(default, puppet('apply', '--strict=error', '-e', Shellwords.shellescape(pp)), acceptable_exit_codes: (0...256))
+      @result = on(default, puppet('apply', '--strict=error', '-e', add_file_manifest), acceptable_exit_codes: (0...256))
+    end
+
+    after :all do
+      apply_manifest(remove_file_manifest)
     end
 
     it "should return an error" do
@@ -24,18 +34,18 @@ describe 'deprecation function' do
       expect(@result.stderr).to match(/deprecation. key. message/)
     end
 
-    describe file('/tmp/deprecation') do
-      it { is_expected.not_to exist }
+    describe file("#{test_file}") do
+      it { is_expected.not_to be_file }
     end
   end
 
   context 'with --strict=warning', if: get_puppet_version =~ /^4/ do
     before :all do
-      pp = <<-EOS
-      deprecation('key', 'message')
-      file { '/tmp/deprecation': ensure => present }
-      EOS
-      @result = on(default, puppet('apply', '--strict=warning', '-e', Shellwords.shellescape(pp)), acceptable_exit_codes: (0...256))
+      @result = on(default, puppet('apply', '--strict=warning', '-e', add_file_manifest), acceptable_exit_codes: (0...256))
+    end
+
+    after :all do
+      apply_manifest(remove_file_manifest)
     end
 
     it "should not return an error" do
@@ -46,18 +56,18 @@ describe 'deprecation function' do
       expect(@result.stderr).to match(/Warning: message/)
     end
 
-    describe file('/tmp/deprecation') do
-      it { is_expected.to exist }
+    describe file("#{test_file}") do
+      it { is_expected.to be_file }
     end
   end
 
   context 'with --strict=off', if: get_puppet_version =~ /^4/ do
     before :all do
-      pp = <<-EOS
-      deprecation('key', 'message')
-      file { '/tmp/deprecation': ensure => present }
-      EOS
-      @result = on(default, puppet('apply', '--strict=off', '-e', Shellwords.shellescape(pp)), acceptable_exit_codes: (0...256))
+      @result = on(default, puppet('apply', '--strict=off', '-e', add_file_manifest), acceptable_exit_codes: (0...256))
+    end
+
+    after :all do
+      apply_manifest(remove_file_manifest)
     end
 
     it "should not return an error" do
@@ -68,8 +78,8 @@ describe 'deprecation function' do
       expect(@result.stderr).not_to match(/Warning: message/)
     end
 
-    describe file('/tmp/deprecation') do
-      it { is_expected.to exist }
+    describe file("#{test_file}") do
+      it { is_expected.to be_file }
     end
   end
 end
