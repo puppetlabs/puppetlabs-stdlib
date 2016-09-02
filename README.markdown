@@ -1395,6 +1395,7 @@ Many `validate_*` functions have surprising holes in their validation. For examp
 To start out, for each parameter of your classes and defines, you'll have to decide on a new Puppet 4 data type to use. In most cases the new data type will allow a different set of values than the original `validate_*` function (which is the point of the whole exercise). The situation then looks like this:
 
 |              | `validate_` pass | `validate_` fail |
+| ------------ | ---------------- | ---------------- |
 | matches type | pass             | pass, notice     |
 | fails type   | pass, deprecated | fail             |
 
