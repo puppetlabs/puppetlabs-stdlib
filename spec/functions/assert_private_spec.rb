@@ -5,31 +5,26 @@ describe 'assert_private' do
     it "should not fail" do
       scope.expects(:lookupvar).with('module_name').returns('foo')
       scope.expects(:lookupvar).with('caller_module_name').returns('foo')
-      expect {
-        subject.call []
-      }.not_to raise_error
-    end
-  end
 
-  context "with an explicit failure message" do
-    it "prints the failure message on error" do
-      scope.expects(:lookupvar).with('module_name').returns('foo')
-      scope.expects(:lookupvar).with('caller_module_name').returns('bar')
-      expect {
-        subject.call ['failure message!']
-      }.to raise_error Puppet::ParseError, /failure message!/
+      is_expected.to run.with_params()
     end
   end
 
   context "when called from private class" do
-    it "should fail with a class error message" do
+    before :each do
       scope.expects(:lookupvar).with('module_name').returns('foo')
       scope.expects(:lookupvar).with('caller_module_name').returns('bar')
+    end
+
+    it "should fail with a class error message" do
       scope.source.expects(:name).returns('foo::baz')
       scope.source.expects(:type).returns('hostclass')
-      expect {
-        subject.call []
-      }.to raise_error Puppet::ParseError, /Class foo::baz is private/
+
+      is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /Class foo::baz is private/)
+    end
+
+    context "with an explicit failure message" do
+      it { is_expected.to run.with_params('failure message!').and_raise_error(Puppet::ParseError, /failure message!/) }
     end
   end
 
@@ -39,9 +34,8 @@ describe 'assert_private' do
       scope.expects(:lookupvar).with('caller_module_name').returns('bar')
       scope.source.expects(:name).returns('foo::baz')
       scope.source.expects(:type).returns('definition')
-      expect {
-        subject.call []
-      }.to raise_error Puppet::ParseError, /Definition foo::baz is private/
+
+      is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /Definition foo::baz is private/)
     end
   end
 end
