@@ -15,7 +15,7 @@ Puppet::Functions.create_function(:deprecation) do
     when :error
       fail("deprecation. #{key}. #{message}")
     else
-      Puppet.warn_once('deprecation', key, message)
+      Puppet.deprecation_warning(message, key)
     end
   end
 end

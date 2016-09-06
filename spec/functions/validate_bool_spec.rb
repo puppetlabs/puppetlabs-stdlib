@@ -1,9 +1,14 @@
 require 'spec_helper'
 
 describe 'validate_bool' do
+  after(:context) do
+    ENV.delete('STDLIB_LOG_DEPRECATIONS')
+  end
+
   # Checking for deprecation warning
   it 'should display a single deprecation' do
     #called twice, because validate_bool calls is_bool
+    ENV['STDLIB_LOG_DEPRECATIONS'] = "true"
     scope.expects(:warning).with(includes('This method is deprecated')).twice
     is_expected.to run.with_params(true)
   end

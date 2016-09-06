@@ -1,8 +1,13 @@
 require 'spec_helper'
 
 describe 'validate_string' do
+  after(:context) do
+    ENV.delete('STDLIB_LOG_DEPRECATIONS')
+  end
+  
   # Checking for deprecation warning
   it 'should display a single deprecation' do
+    ENV['STDLIB_LOG_DEPRECATIONS'] = "true"
     scope.expects(:warning).with(includes('This method is deprecated'))
     is_expected.to run.with_params('', '')
   end
