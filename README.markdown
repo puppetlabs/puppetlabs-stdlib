@@ -304,7 +304,7 @@ Deletes all instances of the undef value from an array or hash. For example, `$h
 
 #### `deprecation`
 
-Function to print deprecation warnings, Logs a warning once for a given key. The uniqueness key - can appear once. The msg is the message text including any positional information that is formatted by the user/caller of the method  It is affected by the puppet setting 'strict', which can be set to :error (outputs as an error message), :off (no message / error is displayed) and :warning (default, outputs a warning)  *Type*: String, String.
+A function to print deprecation warnings, logs a warning once for a given key. The uniqueness key - can appear once. The msg is the message text including any positional information that is formatted by the user/caller of the method. It is affected by the puppet setting 'strict', which can be set to :error (outputs as an error message), :off (no message / error is displayed) and :warning (default, outputs a warning). In Puppet version less than 4.0 an environment variable can be set to decide whether or not to log deprecation warnings (ENV[STDLIB_LOG_DEPRECATION]). If this environment variable is set to true, the functions will log a warning. *Type*: String, String.
 
 #### `difference`
 
