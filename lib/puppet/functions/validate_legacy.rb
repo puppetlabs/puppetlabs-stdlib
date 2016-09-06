@@ -28,8 +28,10 @@ Puppet::Functions.create_function(:validate_legacy, Puppet::Functions::InternalF
         Puppet.warn("Accepting previously invalid value for target_type '#{target_type}'")
       end
     else
+      caller_infos = caller.first.split(":")
       inferred_type = Puppet::Pops::Types::TypeCalculator.infer_set(value)
-      error_msg = Puppet::Pops::Types::TypeMismatchDescriber.new.describe_mismatch(previous_validation, target_type, inferred_type)
+      message = Puppet::Pops::Types::TypeMismatchDescriber.new.describe_mismatch(previous_validation, target_type, inferred_type)
+      error_msg = "#{message} : #{caller_infos[0]} : #{caller_infos[1]}"
       if previous_validation(previous_validation, value, *prev_args)
         Puppet.warn(error_msg)
       else
