@@ -21,7 +21,7 @@ group :development, :unit_tests do
   gem 'puppet_facts'
   gem 'puppet-blacksmith', '>= 3.4.0'
   gem 'puppetlabs_spec_helper', '>= 1.2.1'
-  gem 'rspec-puppet', '>= 2.3.2'
+  gem 'rspec-puppet', '>= 2.3.2', :git => 'https://github.com/rodjek/rspec-puppet.git', :branch => 'fb27c533e2664057fba4b73d0bd902a946abfce0'
   gem 'rspec-puppet-facts'
   gem 'simplecov'
   gem 'parallel_tests'

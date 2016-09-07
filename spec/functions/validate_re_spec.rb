@@ -28,22 +28,6 @@ describe 'validate_re' do
     end
 
     describe 'invalid inputs' do
-      it {
-        pending('should implement stricter type checking')
-        is_expected.to run.with_params([], '').and_raise_error(Puppet::ParseError, /is not a String/)
-      }
-      it {
-        pending('should implement stricter type checking')
-        is_expected.to run.with_params('', {}).and_raise_error(Puppet::ParseError, /is not an Array/)
-      }
-      it {
-        pending('should implement stricter type checking')
-        is_expected.to run.with_params('', '', []).and_raise_error(Puppet::ParseError, /is not a String/)
-      }
-      it {
-        pending('should implement stricter type checking')
-        is_expected.to run.with_params(nil, nil).and_raise_error(Puppet::ParseError, /is not a String/)
-      }
       it { is_expected.to run.with_params('', []).and_raise_error(Puppet::ParseError, /does not match/) }
       it { is_expected.to run.with_params('one', 'two').and_raise_error(Puppet::ParseError, /does not match/) }
       it { is_expected.to run.with_params('', 'two').and_raise_error(Puppet::ParseError, /does not match/) }
