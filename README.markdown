@@ -1437,7 +1437,7 @@ Example:
 
 #### `validate_numeric`
 
-Validates that the first argument is a numeric value (or an array of numeric values). Aborts catalog compilation if any of the checks fail.
+Validates that the first argument is a numeric value (or an array or string of numeric values). Aborts catalog compilation if any of the checks fail.
 
   The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
 
