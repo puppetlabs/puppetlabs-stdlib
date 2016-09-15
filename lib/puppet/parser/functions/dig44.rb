@@ -1,5 +1,5 @@
-#		
-# dig44.rb		
+#
+# dig44.rb
 #
 
 module Puppet::Parser::Functions
