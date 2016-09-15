@@ -20,14 +20,14 @@ describe 'validate_bool function', :unless => UNSUPPORTED_PLATFORMS.include?(fac
 
       apply_manifest(pp, :catch_failures => true)
     end
-    it 'validates a non-bool' do
-      {
-        %{validate_bool('true')}  => "String",
-        %{validate_bool('false')} => "String",
-        %{validate_bool([true])}  => "Array",
-        %{validate_bool(undef)}   => "String",
-      }.each do |pp,type|
-        expect(apply_manifest(pp, :expect_failures => true).stderr).to match(/a #{type}/)
+    [
+      %{validate_bool('true')},
+      %{validate_bool('false')},
+      %{validate_bool([true])},
+      %{validate_bool(undef)}
+    ].each do |pp|
+      it "rejects #{pp.inspect}" do
+        expect(apply_manifest(pp, :expect_failures => true).stderr).to match(/is not a boolean\.  It looks to be a/)
       end
     end
   end
