@@ -20,14 +20,14 @@ describe 'validate_array function', :unless => UNSUPPORTED_PLATFORMS.include?(fa
 
       apply_manifest(pp, :catch_failures => true)
     end
-    it 'validates a non-array' do
-      {
-        %{validate_array({'a' => 'hash' })} => "Hash",
-        %{validate_array('string')}         => "String",
-        %{validate_array(false)}            => "FalseClass",
-        %{validate_array(undef)}            => "String"
-      }.each do |pp,type|
-        expect(apply_manifest(pp, :expect_failures => true).stderr).to match(/a #{type}/)
+    [
+      %{validate_array({'a' => 'hash' })},
+      %{validate_array('string')},
+      %{validate_array(false)},
+      %{validate_array(undef)}
+    ].each do |pp|
+      it "rejects #{pp.inspect}" do
+        expect(apply_manifest(pp, :expect_failures => true).stderr).to match(/is not an Array\.  It looks to be a/)
       end
     end
   end
