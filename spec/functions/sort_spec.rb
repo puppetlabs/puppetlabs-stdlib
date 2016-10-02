@@ -21,4 +21,9 @@ describe 'sort' do
     it { is_expected.to run.with_params('a').and_return('a') }
     it { is_expected.to run.with_params('cbda').and_return('abcd') }
   end
+  context 'when called with a hash' do
+    it { is_expected.to run.with_params({ 'c' => 1, 'a' => 2 }).and_return({ 'a' => 2, 'c' => 1}) }
+    it { is_expected.to run.with_params({ 'c' => 1, 5 => 2 }).and_raise_error(Puppet::ParseError, /mixed key types/) }
+    it { is_expected.to run.with_params({ 'c' => 1, 'a' => 2, 'b' => { 'i' => 'am', 'because' => 'we are'}  }).and_return({ 'a' => 2, 'b' => { 'because' => 'we are', 'i' => 'am' }, 'c' => 1}) }
+  end
 end

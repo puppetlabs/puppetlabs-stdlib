@@ -964,7 +964,7 @@ Returns the number of elements in a string, an array or a hash. *Type*: rvalue.
 
 #### `sort`
 
-Sorts strings and arrays lexically. *Type*: rvalue.
+Sorts strings, arrays and hashes (recursively) lexically. It cannot sort hashes with keys of different types since they are not comparable. *Type*: rvalue.
 
 #### `squeeze`
 
