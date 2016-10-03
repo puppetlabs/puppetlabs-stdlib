@@ -42,7 +42,7 @@ if Puppet.version.to_f >= 4.0
   end
 else
   describe 'deprecation' do
-    after(:context) do
+    after(:all) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end
     ENV['STDLIB_LOG_DEPRECATIONS'] = "true"

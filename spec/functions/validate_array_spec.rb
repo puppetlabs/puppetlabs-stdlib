@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'validate_array' do
 
   describe 'signature validation' do
-    after(:context) do
+    after(:all) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end
     it { is_expected.not_to eq(nil) }

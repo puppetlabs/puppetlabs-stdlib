@@ -33,7 +33,7 @@ describe 'is_ip_address' do
       scope.expects(:warning).with(includes('This method is deprecated')).never
       is_expected.to run.with_params('1.2.3.4').and_return(true)
     end
-    after(:context) do 
+    after(:all) do 
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end
   end

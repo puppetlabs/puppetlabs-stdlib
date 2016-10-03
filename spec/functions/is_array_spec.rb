@@ -18,7 +18,7 @@ describe 'is_array' do
   it { is_expected.to run.with_params(1).and_return(false) }
   it { is_expected.to run.with_params({}).and_return(false) }
   context 'Checking for deprecation warning' do
-    after(:context) do
+    after(:all) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end 
     # Checking for deprecation warning, which should only be provoked when the env variable for it is set.

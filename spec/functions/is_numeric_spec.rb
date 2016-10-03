@@ -29,7 +29,7 @@ describe 'is_numeric' do
   it { is_expected.to run.with_params(' - 1234').and_return(false) }
 
   context 'Checking for deprecation warning' do
-    after(:context) do
+    after(:all) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end
     # Checking for deprecation warning, which should only be provoked when the env variable for it is set.

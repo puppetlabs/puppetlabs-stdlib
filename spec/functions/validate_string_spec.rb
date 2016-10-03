@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'validate_string' do
-  after(:context) do
+  after(:all) do
     ENV.delete('STDLIB_LOG_DEPRECATIONS')
   end
   

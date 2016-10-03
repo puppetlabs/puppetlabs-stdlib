@@ -22,7 +22,7 @@ describe 'validate_ip_address' do
     it { is_expected.to run.with_params('fe80::a00:27ff:fe94:44d6/64') }
 
     context 'Checking for deprecation warning', if: Puppet.version.to_f < 4.0 do
-      after(:context) do
+      after(:all) do
         ENV.delete('STDLIB_LOG_DEPRECATIONS')
       end
       # Checking for deprecation warning, which should only be provoked when the env variable for it is set.
