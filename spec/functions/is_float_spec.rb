@@ -23,7 +23,7 @@ describe 'is_float' do
   end
 
   context 'Checking for deprecation warning' do
-    after(:context) do
+    after(:all) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end
     # Checking for deprecation warning, which should only be provoked when the env variable for it is set.

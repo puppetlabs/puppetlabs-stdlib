@@ -12,7 +12,7 @@ describe 'is_ipv6_address' do
   it { is_expected.to run.with_params('one').and_return(false) }
 
   context 'Checking for deprecation warning', if: Puppet.version.to_f < 4.0 do
-    after(:context) do
+    after(:all) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end
     # Checking for deprecation warning, which should only be provoked when the env variable for it is set.

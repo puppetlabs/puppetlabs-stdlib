@@ -6,7 +6,7 @@ describe 'validate_hash' do
     it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
 
     describe 'check for deprecation warning' do
-      after(:context) do
+      after(:all) do
         ENV.delete('STDLIB_LOG_DEPRECATIONS')
       end
       # Checking for deprecation warning
