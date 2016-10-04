@@ -95,6 +95,17 @@ describe 'is_string function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('o
         expect(r.stdout).to match(/Notice: output correct/)
       end
     end
+    it 'is_strings undef' do
+      pp = <<-EOS
+      $a = undef
+      $o = is_string($a)
+      notice(inline_template('is_string is <%= @o.inspect %>'))
+      EOS
+
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stdout).to match(/is_string is true/)
+      end
+    end
   end
   describe 'failure' do
     it 'handles improper argument counts'

@@ -20,6 +20,13 @@ describe 'validate_string function', :unless => UNSUPPORTED_PLATFORMS.include?(f
 
       apply_manifest(pp, :catch_failures => true)
     end
+    it 'validates undef' do
+      pp = <<-EOS
+      validate_string(undef)
+      EOS
+
+      apply_manifest(pp, :catch_failures => true)
+    end
     it 'validates a non-string' do
       {
         %{validate_string({ 'a' => 'hash' })} => "Hash",
