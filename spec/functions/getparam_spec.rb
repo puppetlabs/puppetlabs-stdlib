@@ -22,9 +22,6 @@ describe 'getparam' do
     it { is_expected.to run.with_params('User[one]', 'ensure').and_return('present') }
     it { is_expected.to run.with_params('User[two]', 'ensure').and_return('') }
     it { is_expected.to run.with_params('User[one]', 'shell').and_return('/bin/sh') }
-    it {
-      pending("both rspec-puppet as well as the function do the wrong thing here.")
-      is_expected.to run.with_params('User[one]', 'managehome').and_return(false)
-    }
+    it { is_expected.to run.with_params('User[one]', 'managehome').and_return(false) }
   end
 end
