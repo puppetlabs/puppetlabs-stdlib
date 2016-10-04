@@ -6,6 +6,7 @@ if Puppet.version.to_f >= 4.0
       [
         '',
         'one',
+        nil,
       ].each do |value|
         describe value.inspect do
           let(:params) {{ value: value }}
@@ -23,7 +24,7 @@ if Puppet.version.to_f >= 4.0
       ].each do |value|
         describe value.inspect do
           let(:params) {{ value: value }}
-          it { is_expected.to compile.and_raise_error(/parameter 'value' expects a Stdlib::Compat::String = String/) }
+          it { is_expected.to compile.and_raise_error(/parameter 'value' expects a String/) }
         end
       end
     end

@@ -18,6 +18,7 @@ describe 'validate_string' do
 
     describe 'valid inputs' do
       it { is_expected.to run.with_params('') }
+      it { is_expected.to run.with_params(nil) }
       it { is_expected.to run.with_params('one') }
       it { is_expected.to run.with_params('one', 'two') }
     end

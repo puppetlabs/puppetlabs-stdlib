@@ -30,7 +30,7 @@ module Puppet::Parser::Functions
     end
 
     args.each do |arg|
-      unless arg.is_a?(String)
+      unless arg.is_a?(String) || arg.nil?
         raise Puppet::ParseError, ("#{arg.inspect} is not a string.  It looks to be a #{arg.class}")
       end
     end
