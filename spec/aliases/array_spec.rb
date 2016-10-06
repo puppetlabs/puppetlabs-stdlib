@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-if Puppet.version.to_f >= 4.0
+if Puppet.version.to_f >= 4.5
   describe 'test::array', type: :class do
     describe 'accepts arrays' do
       [
