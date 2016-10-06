@@ -71,7 +71,8 @@ Puppet::Type.newtype(:file_line) do
   newparam(:match_for_absence) do
     desc 'An optional value to determine if match should be applied when ensure => absent.' +
          ' If set to true and match is set, the line that matches match will be deleted.' +
-         ' If set to false (the default), match is ignored when ensure => absent.'
+         ' If set to false (the default), match is ignored when ensure => absent.' +
+         ' When `ensure => present`, match_for_absence is ignored.'
     newvalues(true, false)
     defaultto false
   end
