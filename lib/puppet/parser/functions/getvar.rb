@@ -21,8 +21,10 @@ module Puppet::Parser::Functions
 
     begin
       catch(:undefined_variable) do
-        self.lookupvar("#{args[0]}")
+        return self.lookupvar("#{args[0]}")
       end
+      
+      nil # throw was caught
     rescue Puppet::ParseError # Eat the exception if strict_variables = true is set
     end
 
