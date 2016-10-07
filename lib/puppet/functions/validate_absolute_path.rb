@@ -1,3 +1,10 @@
-require 'puppet_x/puppetlabs/stdlib/deprecation_gen'
-PuppetX::Puppetlabs::Stdlib.deprecation_gen("validate_absolute_path", "Stdlib::Compat::Absolute_Path")
-# Puppet::Functions.create_function
+Puppet::Functions.create_function(:validate_absolute_path, Puppet::Functions::InternalFunction) do
+  dispatch :deprecation_gen do
+    scope_param
+    optional_repeated_param 'Any', :args
+  end
+  def deprecation_gen(scope, *args)
+    call_function('deprecation', 'puppet_3_type_check', "This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Absolute_Path. There is further documentation for validate_legacy function in the README.")
+    scope.send("function_validate_absolute_path", args)
+  end
+end
