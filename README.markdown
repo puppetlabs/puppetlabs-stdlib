@@ -22,7 +22,7 @@ This module provides a standard library of resources for the development of Pupp
  * Facts
  * Functions
  * Defined resource types
- * Types
+ * Data Types
  * Providers
 
 > *Note:* As of version 3.7, Puppet Enterprise no longer includes the stdlib module. If you're running Puppet Enterprise, you should install the most recent release of stdlib for compatibility with Puppet modules.
@@ -73,7 +73,7 @@ The `stdlib::stages` class declares various run stages for deploying infrastruct
 
 * `stdlib::stages`: Manages a standard set of run stages for Puppet. It is managed by the stdlib class and should not be declared independently.
 
-### Types
+### Resource Types
 
 #### `file_line`
 
@@ -133,6 +133,46 @@ All parameters are optional, unless otherwise noted.
 * `name`: Sets the name to use as the identity of the resource. This is necessary if you want the resource namevar to differ from the supplied `title` of the resource. Valid options: String. Default: Undefined.
 * `path`: **Required.** Defines the file in which Puppet will ensure the line specified by `line`. Must be an absolute path to the file.
 * `replace`: Defines whether the resource will overwrite an existing line that matches the `match` parameter. If set to false and a line is found matching the `match` param, the line will not be placed in the file. Valid options: true, false, yes, no. Default: true
+
+### Data Types
+
+#### `absolutepath`
+
+A strict absolute path type. Uses a Variant of Unixpath and Windowspath types.
+
+Acceptable input examples:    /usr2/username/bin:/usr/local/bin:/usr/bin:.
+                              C:\\WINDOWS\\System32
+
+#### `httpsurl`
+
+Matches https URLs.
+Acceptable input example:     https://hello.com
+Unacceptable input example:   httds://notquiteright.org
+
+#### `httpurl`
+
+Matches both https and http URLs.
+
+Acceptable input example:     https://hello.com
+                              http://hello.com
+Unacceptable input example:   httds://notquiteright.org
+
+#### `unixpath`
+
+Matches paths on Unix type Operating Systems.
+
+Acceptable input example:     /usr2/username/bin:/usr/local/bin:/usr/bin:.
+                              /var/tmp
+Unacceptable input example:   C:/whatever
+
+#### `windowspath`
+
+Matches paths on Windows Operating systems.
+
+Acceptable input example:     C:\\WINDOWS\\System32
+                              C:\\
+                              \\\\host\\windows
+Unacceptable input example:   /usr2/username/bin:/usr/local/bin:/usr/bin:.
 
 ### Functions
 
@@ -1372,7 +1412,7 @@ The following values will fail, causing compilation to abort:
 
 Validates a value against both a specified type and a deprecated validation function. Silently passes if both pass, errors if only one validation passes, and fails if both validations return false.
 
-Accepts arguments for: 
+Accepts arguments for:
 * the type to check the value against,
 * the full name of the previous validation function,
 * the value to be checked,
@@ -1430,7 +1470,7 @@ class example(
   validate_legacy(Numeric, 'validate_numeric', $value)
 ~~~
 
-Here, the type of `$value` is defined as `Variant[Stdlib::Compat::Numeric, Numeric]`, which allows any `Numeric` (the new type), as well as all values previously accepted by `validate_numeric` (through `Stdlib::Compat::Numeric`). 
+Here, the type of `$value` is defined as `Variant[Stdlib::Compat::Numeric, Numeric]`, which allows any `Numeric` (the new type), as well as all values previously accepted by `validate_numeric` (through `Stdlib::Compat::Numeric`).
 
 The call to `validate_legacy` takes care of triggering the correct log or fail message for you. It requires the new type, the previous validation function name, and all arguments to that function.
 

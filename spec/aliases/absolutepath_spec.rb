@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 if Puppet.version.to_f >= 4.5
-  describe 'test::absolute_path', type: :class do
-    describe 'valid paths handling' do
+  describe 'test::absolutepath', type: :class do
+    describe 'valid handling' do
       %w{
+        /usr2/username/bin:/usr/local/bin:/usr/bin:.
         C:/
         C:\\
         C:\\WINDOWS\\System32
@@ -12,7 +13,6 @@ if Puppet.version.to_f >= 4.5
         X:\\foo\\bar
         \\\\host\\windows
         //host/windows
-        /
         /var/tmp
         /var/opt/../lib/puppet
       }.each do |value|
@@ -32,31 +32,18 @@ if Puppet.version.to_f >= 4.5
           { 'foo' => 'bar' },
           { },
           '',
+          "*/Users//nope",
+          "\\Users/hc/wksp/stdlib",
+          "C:noslashes",
+          "\\var\\tmp"
         ].each do |value|
           describe value.inspect do
             let(:params) {{ value: value }}
-            it { is_expected.to compile.and_raise_error(/parameter 'value' expects a match for Stdlib::Compat::Absolute_path/) }
+            it { is_expected.to compile.and_raise_error(/parameter 'value' expects a match for Variant/) }
           end
         end
       end
 
-      context 'relative paths' do
-        %w{
-          relative1
-          .
-          ..
-          ./foo
-          ../foo
-          etc/puppetlabs/puppet
-          opt/puppet/bin
-          relative\\windows
-        }.each do |value|
-          describe value.inspect do
-            let(:params) {{ value: value }}
-            it { is_expected.to compile.and_raise_error(/parameter 'value' expects a match for Stdlib::Compat::Absolute_path/) }
-          end
-        end
-      end
     end
   end
 end
