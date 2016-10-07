@@ -4,7 +4,11 @@ Puppet::Type.type(:file_line).provide(:ruby) do
       true
     else
       lines.find do |line|
-        line.chomp == resource[:line].chomp
+        if resource[:ensure].to_s == 'absent' and resource[:match_for_absence].to_s == 'true'
+          line.chomp =~ Regexp.new(resource[:match])
+        else
+          line.chomp == resource[:line].chomp
+        end
       end
     end
   end

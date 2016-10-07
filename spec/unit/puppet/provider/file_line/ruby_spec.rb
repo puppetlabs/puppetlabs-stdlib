@@ -363,6 +363,13 @@ describe provider_class do
       @provider = provider_class.new(@resource)
     end
 
+    it 'should find a line to match' do
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo\nfoo2")
+      end
+      expect(@provider.exists?).to be_truthy
+    end
+
     it 'should remove one line if it matches' do
       File.open(@tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2")
