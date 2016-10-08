@@ -11,9 +11,7 @@ EOS
     message = arguments[1]
     
     if ENV['STDLIB_LOG_DEPRECATIONS'] == "true"
-      caller_infos = caller.first.split(":")
-      err_message = "#{message} : #{caller_infos[0]} : #{caller_infos[1]}"
-      warning("deprecation. #{key}. #{err_message}")
+      warning("deprecation. #{key}. #{message}")
     end
   end
 end
