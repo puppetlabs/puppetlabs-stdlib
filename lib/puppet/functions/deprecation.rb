@@ -15,7 +15,9 @@ Puppet::Functions.create_function(:deprecation) do
     when :error
       fail("deprecation. #{key}. #{message}")
     else
-      Puppet.deprecation_warning(message, key)
+      unless ENV['STDLIB_LOG_DEPRECATIONS'] == 'false'
+        Puppet.deprecation_warning(message, key)
+      end
     end
   end
 end
