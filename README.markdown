@@ -344,7 +344,20 @@ Deletes all instances of the undef value from an array or hash. For example, `$h
 
 #### `deprecation`
 
-Prints deprecation warnings and logs a warning once for a given key. The uniqueness key - can appear once. The msg is the message text, including any positional information that is formatted by the user or caller of the method. The Puppet setting 'strict' affects this function. Set 'strict' to :error to output an error message, :off to output no message or error, or :warning (default) to output a warning. In Puppet versions lower than 4.0, you can set an environment variable to decide whether or not to log deprecation warnings (`ENV[STDLIB_LOG_DEPRECATION]`). If this environment variable is set to true, the functions log a warning. *Type*: String, String.
+Prints deprecation warnings and logs a warning once for a given key:
+
+```
+deprecation(key, message)
+```
+
+* key: to keep the number of messages low, during the lifetime of a puppet process, only one message per key is logged.
+* message: the text to be logged.
+
+The Puppet settings '[disable_warnings](https://docs.puppet.com/puppet/latest/reference/configuration.html#disablewarnings)', '[max_deprecations](https://docs.puppet.com/puppet/latest/reference/configuration.html#maxdeprecations)', and '[strict](https://docs.puppet.com/puppet/latest/reference/configuration.html#strict)' affect this function. Set 'strict' to `error` to fail immediately with the deprecation message, `off` to output emit no messages at all, or `warning` (default) to log all warnings.
+
+Additionally you can set the environment variable `STDLIB_LOG_DEPRECATION` to decide whether or not to log deprecation warnings: if this environment variable is set to `true`, the functions log a warning, if it is set to `false`, no warnings are logged. If no value is set at all, Puppet 4 will emit warnings, while Puppet 3 will not. Using this setting is especially useful for automated tests to avoid flooding your logs before you are ready to migrate.
+
+*Type*: String, String.
 
 #### `difference`
 
