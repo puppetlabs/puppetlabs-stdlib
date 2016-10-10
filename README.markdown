@@ -1,6 +1,6 @@
-#stdlib
+# stdlib
 
-####Table of Contents
+#### Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
@@ -10,11 +10,11 @@
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
-##Overview
+## Overview
 
 Adds a standard library of resources for Puppet modules.
 
-##Module Description
+## Module Description
 
 This module provides a standard library of resources for the development of Puppet modules. Puppet modules make heavy use of this standard library. The stdlib module adds the following resources to Puppet:
 
@@ -27,11 +27,11 @@ This module provides a standard library of resources for the development of Pupp
 
 > *Note:* As of version 3.7, Puppet Enterprise no longer includes the stdlib module. If you're running Puppet Enterprise, you should install the most recent release of stdlib for compatibility with Puppet modules.
 
-##Setup
+## Setup
 
 Installing the stdlib module adds the functions, facts, and resources of this standard library to Puppet.
 
-##Usage
+## Usage
 
 After you've installed stdlib, all of its functions, facts, and resources are available for module use or development.
 
@@ -136,20 +136,23 @@ All parameters are optional, unless otherwise noted.
 
 ### Data Types
 
-#### `absolutepath`
+#### `Stdlib::Absolutepath`
 
 A strict absolute path type. Uses a Variant of Unixpath and Windowspath types.
 
-Acceptable input examples:    /usr2/username/bin:/usr/local/bin:/usr/bin:.
+Acceptable input examples:    /var/log
+                              /usr2/username/bin:/usr/local/bin:/usr/bin:.
                               C:\\WINDOWS\\System32
+Unacceptable input example:   ../relative_path
 
-#### `httpsurl`
+#### `Stdlib::Httpsurl`
 
 Matches https URLs.
+
 Acceptable input example:     https://hello.com
 Unacceptable input example:   httds://notquiteright.org
 
-#### `httpurl`
+#### `Stdlib::Httpurl`
 
 Matches both https and http URLs.
 
@@ -157,7 +160,7 @@ Acceptable input example:     https://hello.com
                               http://hello.com
 Unacceptable input example:   httds://notquiteright.org
 
-#### `unixpath`
+#### `Stdlib::Unixpath`
 
 Matches paths on Unix type Operating Systems.
 
@@ -165,7 +168,7 @@ Acceptable input example:     /usr2/username/bin:/usr/local/bin:/usr/bin:.
                               /var/tmp
 Unacceptable input example:   C:/whatever
 
-#### `windowspath`
+#### `Stdlib::Windowspath`
 
 Matches paths on Windows Operating systems.
 
@@ -1439,6 +1442,8 @@ validate_legacy("Optional[String]", "validate_re", "Value to be validated", ["."
 
 This function supports updating modules from Puppet 3 style argument validation (using the stdlib `validate_*` functions) to Puppet 4 data types, without breaking functionality for those depending on Puppet 3 style validation.
 
+> Note: This function relies on internal APIs from Puppet 4.4.0 (PE 2016.1) onwards, and doesn't work on earlier versions.
+
 ##### For module users
 
 If you are running Puppet 4 and receiving deprecation warnings about `validate_*` functions, the `validate_legacy` function can help you find and resolve the deprecated code.
@@ -1656,7 +1661,7 @@ Versions | Puppet 2.6 | Puppet 2.7 | Puppet 3.x | Puppet 4.x |
 Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide](https://docs.puppetlabs.com/forge/contributing.html).
 
 To report or research a bug with any part of this module, please go to
-[http://tickets.puppetlabs.com/browse/PUP](http://tickets.puppetlabs.com/browse/PUP).
+[http://tickets.puppetlabs.com/browse/MODULES](http://tickets.puppetlabs.com/browse/MODULES).
 
 ## Contributors
 
