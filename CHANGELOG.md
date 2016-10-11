@@ -1,3 +1,50 @@
+## Supported Release 4.13.0
+### Summary
+
+This version of stdlib deprecates a whole host of functions, and provides stepping stones to move to Puppet 4 type validations. Be sure to check out the new `deprecation()` and `validate_legacy()` functions to migrate off the deprecated v3-style data validations.
+
+Many thanks to all community contributors: bob, Dmitry Ilyin, Dominic Cleal, Joris, Joseph Yaworski, Loic Antoine-Gombeaud, Maksym Melnychok, Michiel Brandenburg, Nate Potter, Romain Tartière, Stephen Benjamin, and Steve Moore, as well as anyone contributing in the code review process and by submitting issues.
+
+Special thanks to [Voxpupuli's](https://voxpupuli.org/) Igor Galić for donating the puppet-tea types to kickstart this part of stdlib.
+
+
+#### Deprecations
+* `validate_absolute_path`, `validate_array`, `validate_bool`, `validate_hash`, `validate_integer`, `validate_ip_address`, `validate_ipv4_address`, `validate_ipv6_address`, `validate_numeric`, `validate_re`, `validate_slength`, `validate_string`, and their `is_` counter parts are now deprecated on Puppet 4. See the `validate_legacy()` description in the README for help on migrating away from those functions.
+* The `dig` function is provided by core puppet since 4.5.0 with slightly different calling convention. The stdlib version can still be accessed as `dig44` for now.
+
+
+#### Features
+* Add Puppet 4 data types for Unix, and Windows paths, and URLs.
+* Add `deprecation` function to warn users of functionality that will be removed soon.
+* Add `validate_legacy` function to help with migrating to Puppet 4 data types.
+
+* Add `any2bool` function, a combination of of `string2bool` and `num2bool`.
+* Add `delete_regex` function to delete array elements matching a regular expression.
+* Add `puppet_environmentpath` fact to expose the `environmentpath` setting.
+* Add `regexpescape` function to safely insert arbitrary strings into regular expressions.
+* Add `shell_escape`, `shell_join`, and `shell_split` functions for safer working with shell scripts..
+
+* The `delete` function now also accepts regular expressions as search term.
+* The `loadyaml` function now accepts a default value, which is returned when there is an error loading the file.
+
+#### Bugfixes
+* Fix `file_line.match_for_absence` implementation and description to actually work. (MODULES-3590)
+* Fix `getparam` so that it can now also return `false`. (MODULES-3933)
+* Fix the fixture setup for testing and adjust `load_module_metadata` and `loadjson` tests.
+* Fix `defined_with_params` to handle `undef` correctly on all puppet versions. (PUP-6422, MODULES-3543)
+* Fix `file_line.path` validation to use puppet's built in `absolute_path?` matcher.
+
+#### Minor Improvements
+* README changes: improved descriptions of `deep_merge`, `delete`, `ensure_packages`, `file_line.after`, `range`, and `validate_numeric`.
+* The `getvar` function now returns nil in all situations where the variable is not found.
+* Update the `dig44` function with better `undef`, `nil`, and `false` handling.
+* Better wording on `str2bool` argument validation error message.
+
+
+### Known issues
+* The `validate_legacy` function relies on internal APIs from Puppet 4.4.0 (PE 2016.1) onwards, and doesn't work on earlier versions.
+* Puppet 4.5.0 (PE 2016.2) has a number of improvements around data types - especially error handling - that make working with them much nicer.
+
 ## Supported Release 4.12.0
 ###Summary
 
