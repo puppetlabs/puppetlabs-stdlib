@@ -1,9 +1,11 @@
 ## Supported Release 4.13.1
 ### Summary
 
-This bugfix release improves the user experience around function deprecations by emitting one warning per function(-name) instead of only one deprecation overall. This allows users to identify all deprecated functions used in one agent run, with less back-and-forth.
+This bugfix release addresses the `undefined method 'optional_repeated_param'` error messages seen by users of puppet 3.7.
 
-This release also adds additional Puppet 4 overrides for the `is_` counterparts of the deprecated functions to emit the deprecations warnings in all cases.
+It also improves the user experience around function deprecations by emitting one warning per function(-name) instead of only one deprecation overall. This allows users to identify all deprecated functions used in one agent run, with less back-and-forth.
+
+Finally, this release adds additional Puppet 4 overrides for the `is_` counterparts of the deprecated functions to emit the deprecations warnings in all cases.
 
 ## Supported Release 4.13.0
 ### Summary

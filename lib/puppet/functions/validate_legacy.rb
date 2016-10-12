@@ -1,20 +1,26 @@
-Puppet::Functions.create_function(:validate_legacy, Puppet::Functions::InternalFunction) do
+Puppet::Functions.create_function(:validate_legacy) do
   # The function checks a value against both the target_type (new) and the previous_validation function (old).
 
   dispatch :validate_legacy do
-    scope_param
+    param 'Any', :scope
     param 'Type', :target_type
     param 'String', :function_name
     param 'Any', :value
-    optional_repeated_param 'Any', :args
+    repeated_param 'Any', :args
   end
 
   dispatch :validate_legacy_s do
-    scope_param
+    param 'Any', :scope
     param 'String', :type_string
     param 'String', :function_name
     param 'Any', :value
-    optional_repeated_param 'Any', :args
+    repeated_param 'Any', :args
+  end
+
+  # Workaround PUP-4438 (fixed: https://github.com/puppetlabs/puppet/commit/e01c4dc924cd963ff6630008a5200fc6a2023b08#diff-c937cc584953271bb3d3b3c2cb141790R221) to support puppet < 4.1.0 and puppet < 3.8.1.
+  def call(scope, *args)
+    manipulated_args = [scope] + args
+    self.class.dispatcher.dispatch(self, scope, manipulated_args)
   end
 
   def validate_legacy_s(scope, type_string, *args)
