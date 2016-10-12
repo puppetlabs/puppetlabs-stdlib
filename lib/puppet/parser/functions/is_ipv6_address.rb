@@ -8,7 +8,7 @@ Returns true if the string passed to this function is a valid IPv6 address.
     EOS
   ) do |arguments|
 
-    function_deprecation([:puppet_3_type_check, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Ipv6. There is further documentation for validate_legacy function in the README.'])
+    function_deprecation([:is_ipv6_address, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Ipv6. There is further documentation for validate_legacy function in the README.'])
 
     require 'ipaddr'
 
