@@ -5,7 +5,13 @@ This bugfix release addresses the `undefined method 'optional_repeated_param'` e
 
 It also improves the user experience around function deprecations by emitting one warning per function(-name) instead of only one deprecation overall. This allows users to identify all deprecated functions used in one agent run, with less back-and-forth.
 
-Finally, this release adds additional Puppet 4 overrides for the `is_` counterparts of the deprecated functions to emit the deprecations warnings in all cases.
+#### Bugfixes
+
+* Emit deprecations warnings for each function, instead of once per process. (MODULES-3961)
+* Use a universally available API for the v4 deprecation stubs of `is_*` and `validate_*`. (MODULES-3962)
+* Make `getvar()` compatible to ruby 1.8.7. (MODULES-3969)
+* Add v4 deprecation stubs for the `is_` counterparts of the deprecated functions to emit the deprecations warnings in all cases.
+
 
 ## Supported Release 4.13.0
 ### Summary
