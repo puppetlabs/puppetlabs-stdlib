@@ -7,6 +7,7 @@ if Puppet.version.to_f >= 4.5
         '224.0.0.0',
         '255.255.255.255',
         '0.0.0.0',
+        '10.10.10.10',
         '192.88.99.0'
       ].each do |value|
         describe value.inspect do
@@ -20,6 +21,9 @@ if Puppet.version.to_f >= 4.5
         'nope',
         '77',
         '4.4.4',
+        '9999.9999.9999.9999',
+        '10.010.10.10',
+        '192.168.256.1',
         '2001:0db8:85a3:0000:0000:8a2e:0370:73342001:0db8:85a3:0000:0000:8a2e:0370:7334'
       ].each do |value|
         describe value.inspect do

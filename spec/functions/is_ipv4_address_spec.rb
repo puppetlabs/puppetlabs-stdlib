@@ -7,6 +7,10 @@ describe 'is_ipv4_address' do
   it { is_expected.to run.with_params('1.2.3.4').and_return(true) }
   it { is_expected.to run.with_params('1.2.3.255').and_return(true) }
   it { is_expected.to run.with_params('1.2.3').and_return(false) }
+  it { is_expected.to run.with_params('10.10.10.10').and_return(true) }
+  it { is_expected.to run.with_params('10.010.10.10').and_return(false) }
+  it { is_expected.to run.with_params('9999.9999.9999.9999').and_return(false) }
+  it { is_expected.to run.with_params('192.168.256.1').and_return(false) }
   it { is_expected.to run.with_params('1.2.3.4.5').and_return(false) }
   it { is_expected.to run.with_params('').and_return(false) }
   it { is_expected.to run.with_params('one').and_return(false) }
