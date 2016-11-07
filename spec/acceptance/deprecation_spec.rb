@@ -31,7 +31,7 @@ describe 'deprecation function' do
     end
 
     it "should show the error message" do
-      expect(@result.stderr).to match(/deprecation. key. message/)
+      expect(@result.stderr).to match(/deprecation. key. message at/)
     end
 
     describe file("#{test_file}") do
@@ -53,7 +53,7 @@ describe 'deprecation function' do
     end
 
     it "should show the error message" do
-      expect(@result.stderr).to match(/Warning: message/)
+      expect(@result.stderr).to match(/Warning: message at /)
     end
 
     describe file("#{test_file}") do
