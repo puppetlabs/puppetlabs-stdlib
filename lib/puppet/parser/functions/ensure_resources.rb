@@ -36,7 +36,7 @@ ENDOFDOC
   params ||= {}
 
   if title.is_a?(Hash)
-    resource_hash = Hash(title)
+    resource_hash = title.dup
     resources = resource_hash.keys
 
     Puppet::Parser::Functions.function(:ensure_resource)
