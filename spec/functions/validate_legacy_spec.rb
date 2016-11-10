@@ -28,7 +28,7 @@ if Puppet.version.to_f >= 4.0
     describe 'when failing the type assertion and passing the previous validation' do
       before do
         scope.expects(:function_validate_foo).with(['5']).once
-        subject.func.expects(:call_function).with('deprecation', 'validate_legacy', includes('expected an Integer value')).once
+        subject.func.expects(:call_function).with('deprecation', 'validate_legacy', includes('Integer')).once
       end
       it 'passes with a deprecation message' do
         is_expected.to run.with_params('Integer', 'validate_foo', '5')
@@ -38,7 +38,7 @@ if Puppet.version.to_f >= 4.0
     describe 'when failing the type assertion and failing the previous validation' do
       before do
         scope.expects(:function_validate_foo).with(['5']).raises(Puppet::ParseError, 'foo').once
-        subject.func.expects(:call_function).with('fail', includes('expected an Integer value')).once
+        subject.func.expects(:call_function).with('fail', includes('Integer')).once
       end
       it 'fails with a helpful message' do
         is_expected.to run.with_params('Integer', 'validate_foo', '5')
