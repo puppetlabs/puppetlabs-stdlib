@@ -772,7 +772,9 @@ Joins an array into a string using a separator. For example, `join(['a','b','c']
 
 #### `join_keys_to_values`
 
-Joins each key of a hash to that key's corresponding value with a separator. Keys and values are cast to strings. The return value is an array in which each element is one joined key/value pair. For example, `join_keys_to_values({'a'=>1,'b'=>2}, " is ")` results in ["a is 1","b is 2"]. *Type*: rvalue.
+Joins each key of a hash to that key's corresponding value with a separator. Keys are cast to strings.
+If values are arrays, multiple keys are added for each element.
+The return value is an array in which each element is one joined key/value pair. For example, `join_keys_to_values({'a'=>1,'b'=>[2,3]}, " is ")` results in ["a is 1","b is 2","b is 3"]. *Type*: rvalue.
 
 #### `keys`
 
