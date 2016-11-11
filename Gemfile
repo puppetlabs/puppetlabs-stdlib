@@ -21,10 +21,9 @@ group :development, :unit_tests do
   gem 'puppet_facts'
   gem 'puppet-blacksmith', '>= 3.4.0'
   gem 'puppetlabs_spec_helper', '>= 1.2.1'
-  gem 'rspec-puppet', '>= 2.3.2', :git => 'https://github.com/rodjek/rspec-puppet.git', :branch => 'fb27c533e2664057fba4b73d0bd902a946abfce0'
-  # the newly released mocha 1.2.0 causes hangs during spec testing. See MODULES-3958 for a long-term solution
-  gem 'mocha', '< 1.2.0'
+  gem 'rspec-puppet', '>= 2.3.2'
   gem 'rspec-puppet-facts'
+  gem 'mocha', '< 1.2.0'
   gem 'simplecov'
   gem 'parallel_tests', '< 2.10.0' if RUBY_VERSION < '2.0.0'
   gem 'parallel_tests' if RUBY_VERSION >= '2.0.0'
@@ -36,6 +35,7 @@ end
 group :system_tests do
   gem 'beaker', *location_from_env('BEAKER_VERSION', []) if RUBY_VERSION >= '2.3.0'
   gem 'beaker', *location_from_env('BEAKER_VERSION', ['< 3']) if RUBY_VERSION < '2.3.0'
+  gem 'beaker-pe' if RUBY_VERSION >= '2.3.0'
   gem 'beaker-rspec', *location_from_env('BEAKER_RSPEC_VERSION', ['>= 3.4'])
   gem 'serverspec'
   gem 'beaker-puppet_install_helper'
