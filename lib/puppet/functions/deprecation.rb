@@ -8,6 +8,12 @@ Puppet::Functions.create_function(:deprecation) do
   end
 
   def deprecation(key, message)
+    if defined? Puppet::Pops::PuppetStack.stacktrace()
+      stacktrace = Puppet::Pops::PuppetStack.stacktrace()
+      file = stacktrace[0]
+      line = stacktrace[1]
+      message = "#{message} at #{file}:#{line}"
+    end
     # depending on configuration setting of strict
     case Puppet.settings[:strict]
     when :off
