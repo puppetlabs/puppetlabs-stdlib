@@ -41,11 +41,14 @@ if Puppet.version.to_f >= 4.0
     }
   end
 else
+  # Puppet version < 4 will use these tests.
   describe 'deprecation' do
     after(:all) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end
-    ENV['STDLIB_LOG_DEPRECATIONS'] = "true"
+    before(:all) do
+      ENV['STDLIB_LOG_DEPRECATIONS'] = "true"
+    end
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
 

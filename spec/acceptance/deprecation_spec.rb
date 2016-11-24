@@ -82,4 +82,21 @@ describe 'deprecation function' do
       it { is_expected.to be_file }
     end
   end
+
+  context 'puppet 3 test', if: get_puppet_version =~ /^3/ do
+    before :all do
+      @result = on(default, puppet('apply', '--parser=future', '-e', add_file_manifest), acceptable_exit_codes: (0...256))
+    end
+    after :all do
+      apply_manifest(remove_file_manifest)
+    end
+
+    it "should return a deprecation error" do
+      expect(@result.stderr).to match(/Warning: message/)
+    end
+    it "should pass without error" do
+      expect(@result.exit_code).to eq(0)
+    end
+  end
+
 end
