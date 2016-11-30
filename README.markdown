@@ -1190,6 +1190,8 @@ Returns a string description of the type when passed a value. Type can be a stri
 
 #### `type_of`
 
+This function is provided for backwards compatibility but is generally not preferred over the built-in [type() function](https://docs.puppet.com/puppet/latest/reference/function.html#type) provided by Puppet.
+
 Returns the literal type when passed a value. Requires the new parser. Useful for comparison of types with `<=` such as in `if type_of($some_value) <= Array[String] { ... }` (which is equivalent to `if $some_value =~ Array[String] { ... }`) *Type*: rvalue.
 
 #### `union`
