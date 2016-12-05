@@ -1,4 +1,4 @@
-## Supported Release 4.13.2
+## Supported Release 4.14.0
 ### Summary
 
 Adds several new features and updates, especially around refining the deprecation and validate_legacy functions. Also includes a Gemfile update around an issue with parallel_tests dependancy for different versions of Ruby.
