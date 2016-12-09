@@ -25,7 +25,7 @@ third argument to the ensure_resource() function.
       end
 
       Puppet::Parser::Functions.function(:ensure_resources)
-      function_ensure_resources(['package', Hash(arguments[0]), defaults ])
+      function_ensure_resources(['package', arguments[0].dup, defaults ])
     else
       packages = Array(arguments[0])
 

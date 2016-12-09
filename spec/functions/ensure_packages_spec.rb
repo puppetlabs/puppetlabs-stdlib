@@ -33,4 +33,12 @@ describe 'ensure_packages' do
       it { expect(lambda { catalogue }).to contain_package('facter').with_ensure('present').with_provider("gem") }
     end
   end
+
+  context 'given hash of packages' do
+    before { subject.call([{"foo" => { "provider" => "rpm" }, "bar" => { "provider" => "gem" }}, { "ensure" => "present"}]) }
+
+    # this lambda is required due to strangeness within rspec-puppet's expectation handling
+    it { expect(lambda { catalogue }).to contain_package('foo').with({'provider' => 'rpm', 'ensure' => 'present'}) }
+    it { expect(lambda { catalogue }).to contain_package('bar').with({'provider' => 'gem', 'ensure' => 'present'}) }
+  end
 end
