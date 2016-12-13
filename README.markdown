@@ -578,6 +578,15 @@ fqdn_rotate([1, 2, 3], 'custom seed')
 
 *Type*: rvalue.
 
+#### `fqdn_uuid`
+
+Returns a rfc4122 valid version 5 UUID based on an FQDN string under the DNS namespace
+
+  * fqdn_uuid('puppetlabs.com') returns '9c70320f-6815-5fc5-ab0f-debe68bf764c'
+  * fqdn_uuid('google.com') returns '64ee70a4-8cc1-5d25-abf2-dea6c79a09c8'
+
+*Type*: rvalue.
+
 #### `get_module_path`
 
 Returns the absolute path of the specified module for the current environment.
