@@ -944,6 +944,20 @@ For example:
 
 *Type*: rvalue.
 
+#### `pry`
+
+This function invokes a pry debugging session in the current scope object. This is useful for debugging manifest code at specific points during a compilation. Should only be used when running `puppet apply` or running a puppet master in the foreground. This requires the `pry` gem to be installed in puppet's rubygems.
+
+*Examples:*
+```puppet
+pry()
+```
+Once in a pry session, some interesting commands:
+
+* Run `catalog` to see the contents currently compiling catalog
+* Run `cd catalog` and `ls` to see catalog methods and instance variables
+* Run `@resource_table` to see the current catalog resource table
+
 #### `assert_private`
 
 Sets the current class or definition as private. Calling the class or definition from outside the current module will fail.
