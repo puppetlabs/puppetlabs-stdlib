@@ -1079,7 +1079,7 @@ Returns a new string where runs of the same character that occur in this set are
 
 #### `str2bool`
 
-Converts certain strings to a boolean. This attempts to convert strings that contain the values '1', 't', 'y', or 'yes' to true. Strings that contain values '0', 'f', 'n', or 'no', or that are an empty string or undefined are converted to false. Any other value causes an error. *Type*: rvalue.
+Converts certain strings to a boolean. This attempts to convert strings that contain the values '1', 'true', 't', 'y', or 'yes' to true. Strings that contain values '0', 'false', 'f', 'n', or 'no', or that are an empty string or undefined are converted to false. Any other value causes an error. These checks are case insensitive.  *Type*: rvalue.
 
 #### `str2saltedsha512`
 
