@@ -33,3 +33,11 @@ Facter.add(:puppet_environmentpath) do
     end
   end
 end
+
+Facter.add(:puppet_server) do
+  setcode do
+    Facter::Util::PuppetSettings.with_puppet do
+      Puppet[:server]
+    end
+  end
+end
