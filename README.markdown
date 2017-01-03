@@ -469,6 +469,10 @@ Returns true if the argument is an array or hash that contains no elements, or a
 
 Takes an array of ip addresses and encloses the ipv6 addresses with square brackets. *Type*: rvalue.
 
+#### `ensure_latest`
+
+Takes a list of packages and only installs them if they don't already exist. It optionally takes a hash as a second parameter to be passed as the third argument to the `ensure_resource()` function. By contrast to the `ensure_packages()` function, this function installs packages with `ensure=>'latest'` by default. *Type*: statement.
+
 #### `ensure_packages`
 
 Takes a list of packages array/hash and only installs them if they don't already exist. It optionally takes a hash as a second parameter to be passed as the third argument to the `ensure_resource()` or `ensure_resources()` function. *Type*: statement.
