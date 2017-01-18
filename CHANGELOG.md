@@ -1,3 +1,19 @@
+## Supported Release 4.15.0
+### Summary
+
+This release introduces multiple new functions, a new fact and the addition of Ubuntu Xenial support. Also includes a bugfix and documentation update.
+
+#### Features
+- Addition of puppet_server fact to return agents server.
+- Addition of a pry function.
+- Addition of tests for ensure_resources.
+- Addition of FQDN UUID generation function.
+- Addition of Ubuntu Xenial to OS Support.
+
+####Bugfixes
+- Ensure_packages now works with Ruby < 2.0.
+- Updated the documentation of str2bool function.
+
 ## Supported Release 4.14.0
 ### Summary
 
