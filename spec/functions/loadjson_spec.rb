@@ -6,15 +6,18 @@ describe 'loadjson' do
 
   describe "when calling with valid arguments" do
     before :each do
-      if RSpec.configuration.puppet_future
-        allow(File).to receive(:read).with(/\/stdlib\/metadata.json/, {:encoding=>"utf-8"}).and_return('{"name": "puppetlabs-stdlib"}')
-      else
-        allow(File).to receive(:read).with(/\/stdlib\/metadata.json/).and_return('{"name": "puppetlabs-stdlib"}')
-      end
+      allow(File).to receive(:read).with(/\/stdlib\/metadata.json/, {:encoding=>"utf-8"}).and_return('{"name": "puppetlabs-stdlib"}')
+      allow(File).to receive(:read).with(/\/stdlib\/metadata.json/).and_return('{"name": "puppetlabs-stdlib"}')
     end
 
     context 'when a non-existing file is specified' do
-      let(:filename) { '/tmp/doesnotexist' }
+      let(:filename) {
+        if Puppet::Util::Platform.windows?
+          'C:/tmp/doesnotexist'
+        else
+          '/tmp/doesnotexist'
+        end
+      }
       before {
         allow(File).to receive(:exists?).with(filename).and_return(false).once
         allow(PSON).to receive(:load).never
@@ -23,7 +26,13 @@ describe 'loadjson' do
     end
 
     context 'when an existing file is specified' do
-      let(:filename) { '/tmp/doesexist' }
+      let(:filename) {
+        if Puppet::Util::Platform.windows?
+          'C:/tmp/doesexist'
+        else
+          '/tmp/doesexist'
+        end
+      }
       let(:data) { { 'key' => 'value' } }
       let(:json) { '{"key":"value"}' }
       before {
@@ -36,7 +45,13 @@ describe 'loadjson' do
     end
 
     context 'when the file could not be parsed' do
-      let(:filename) { '/tmp/doesexist' }
+      let(:filename) {
+        if Puppet::Util::Platform.windows?
+          'C:/tmp/doesexist'
+        else
+          '/tmp/doesexist'
+        end
+      }
       let(:json) { '{"key":"value"}' }
       before {
         allow(File).to receive(:exists?).with(filename).and_return(true).once

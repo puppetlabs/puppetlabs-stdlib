@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-if Puppet.version.to_f >= 4.0
+if Puppet.version.to_f >= 4.4
   describe 'validate_legacy' do
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
