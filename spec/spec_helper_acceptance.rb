@@ -1,15 +1,16 @@
 #! /usr/bin/env ruby -S rspec
 require 'beaker-rspec'
 require 'beaker/puppet_install_helper'
+require 'beaker/module_install_helper'
 
 UNSUPPORTED_PLATFORMS = []
 
 run_puppet_install_helper
+install_ca_certs unless ENV['PUPPET_INSTALL_TYPE'] =~ /pe/i
+install_module_on(hosts)
+install_module_dependencies_on(hosts)
 
 RSpec.configure do |c|
-  # Project root
-  proj_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-
   # Readable test descriptions
   c.formatter = :documentation
 
@@ -19,8 +20,6 @@ RSpec.configure do |c|
       default[:default_apply_opts] ||= {}
       default[:default_apply_opts].merge!({:parser => 'future'})
     end
-
-    copy_root_module_to(default, :source => proj_root, :module_name => 'stdlib')
   end
 end
 
