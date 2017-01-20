@@ -20,7 +20,7 @@ RSpec.configure do |c|
       default[:default_apply_opts].merge!({:parser => 'future'})
     end
 
-    copy_root_module_to(default, :source => proj_root, :module_name => 'stdlib')
+    copy_root_module_to(default, :source => proj_root, :module_name => 'stdlib', :protocol => 'rsync')
   end
 end
 
