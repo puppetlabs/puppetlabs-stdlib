@@ -1,4 +1,6 @@
 ---
+NOTICE:
+  unmanaged: true
 .gitignore:
   paths:
     - '!spec/fixtures/'
