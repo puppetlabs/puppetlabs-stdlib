@@ -115,6 +115,18 @@ file_line { 'bashrc_proxy':
 
 In the example above, `match` looks for a line beginning with 'export' followed by 'HTTP_PROXY' and replaces it with the value in line.
 
+Match Example:
+
+    file_line { 'bashrc_proxy':
+      ensure             => present,
+      path               => '/etc/bashrc',
+      line               => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+      match              => '^export\ HTTP_PROXY\=',
+      append_on_no_match => false,
+    }
+
+In this code example, `match` looks for a line beginning with export followed by HTTP_PROXY and replaces it with the value in line. If a match is not found, then no changes are made to the file.
+
 Match Example with `ensure => absent`:
 
 ```puppet

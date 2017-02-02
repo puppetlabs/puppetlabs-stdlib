@@ -58,7 +58,7 @@ Puppet::Type.newtype(:file_line) do
           encoding => "iso-8859-1",
         }
 
-    Files with special characters that are not valid UTF-8 will give the 
+    Files with special characters that are not valid UTF-8 will give the
     error message "invalid byte sequence in UTF-8".  In this case, determine
     the correct file encoding and specify the correct encoding using the
     encoding attribute, the value of which needs to be a valid Ruby character
@@ -134,6 +134,12 @@ Puppet::Type.newtype(:file_line) do
   newparam(:encoding) do
     desc 'For files that are not UTF-8 encoded, specify encoding such as iso-8859-1'
     defaultto 'UTF-8'
+  end
+
+  newparam(:append_on_no_match) do
+    desc 'If true, append line if match is not found. If false, do not append line if a match is not found'
+    newvalues(true, false)
+    defaultto true
   end
 
   # Autorequire the file resource if it's being managed
