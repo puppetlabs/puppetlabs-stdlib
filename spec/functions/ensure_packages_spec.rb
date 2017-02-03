@@ -41,4 +41,16 @@ describe 'ensure_packages' do
     it { expect(lambda { catalogue }).to contain_package('foo').with({'provider' => 'rpm', 'ensure' => 'present'}) }
     it { expect(lambda { catalogue }).to contain_package('bar').with({'provider' => 'gem', 'ensure' => 'present'}) }
   end
+
+  context 'given a catalog with "package { puppet: ensure => present }"' do
+    let(:pre_condition) { 'package { puppet: ensure => present }' }
+
+    describe 'after running ensure_package("puppet", { "ensure" => "installed" })' do
+      before { subject.call(['puppet', { "ensure" => "installed" }]) }
+
+      # this lambda is required due to strangeness within rspec-puppet's expectation handling
+      it { expect(lambda { catalogue }).to contain_package('puppet').with_ensure('present') }
+    end
+  end
+
 end
