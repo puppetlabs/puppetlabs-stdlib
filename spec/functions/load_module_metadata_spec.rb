@@ -7,8 +7,8 @@ describe 'load_module_metadata' do
 
   describe "when calling with valid arguments" do
     before :each do
-      allow(File).to receive(:read).with(/\/stdlib\/metadata.json/, {:encoding=>"utf-8"}).and_return('{"name": "puppetlabs-stdlib"}')
-      allow(File).to receive(:read).with(/\/stdlib\/metadata.json/).and_return('{"name": "puppetlabs-stdlib"}')
+      allow(File).to receive(:read).with(/\/(stdlib|test)\/metadata.json/, {:encoding=>"utf-8"}).and_return('{"name": "puppetlabs-stdlib"}')
+      allow(File).to receive(:read).with(/\/(stdlib|test)\/metadata.json/).and_return('{"name": "puppetlabs-stdlib"}')
     end
     it "should json parse the file" do
       if Puppet::Util::Platform.windows?
