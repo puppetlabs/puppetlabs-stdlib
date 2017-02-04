@@ -635,6 +635,17 @@ This is useful if the namespace itself is stored in a string:
 
 *Type*: rvalue.
 
+#### `glob`
+
+Dir#glob wrapper that accepts a string or an array of strings of path patterns.
+Returns an array of strings of matched paths.
+
+  ~~~
+  $confs = glob(['/etc/**/*.conf', '/opt/**/*.conf'])
+  ~~~
+
+*Type*: rvalue.
+
 #### `grep`
 
 Searches through an array and returns any elements that match the provided regular expression. For example, `grep(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['aaa','aaaddd']. *Type*: rvalue.
