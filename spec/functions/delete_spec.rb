@@ -19,6 +19,7 @@ describe 'delete' do
     it { is_expected.to run.with_params(['one', 'two', 'three'], 'two').and_return(['one', 'three']) }
     it { is_expected.to run.with_params(['two', 'one', 'two', 'three', 'two'], 'two').and_return(['one', 'three']) }
     it { is_expected.to run.with_params(['one', 'two', 'three', 'two'], ['one', 'two']).and_return(['three']) }
+    it { is_expected.to run.with_params(['ồאּẻ', 'ŧẅơ', 'ŧңŗё℮', 'ŧẅơ'], ['ồאּẻ', 'ŧẅơ']).and_return(['ŧңŗё℮']) }
   end
 
   describe 'deleting from a string' do
@@ -30,7 +31,8 @@ describe 'delete' do
     it { is_expected.to run.with_params('barfoobar', 'bar').and_return('foo') }
     it { is_expected.to run.with_params('foobarbabarz', 'bar').and_return('foobaz') }
     it { is_expected.to run.with_params('foobarbabarz', ['foo', 'bar']).and_return('baz') }
-    # this is so sick
+    it { is_expected.to run.with_params('ƒōōβậяβậβậяź', ['ƒōō', 'βậя']).and_return('βậź') }
+
     it { is_expected.to run.with_params('barfoobar', ['barbar', 'foo']).and_return('barbar') }
     it { is_expected.to run.with_params('barfoobar', ['foo', 'barbar']).and_return('') }
   end
@@ -46,6 +48,10 @@ describe 'delete' do
     it { is_expected.to run \
       .with_params({'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3'}, ['key1', 'key2']) \
       .and_return( {'key3' => 'value3'})
+    }
+    it { is_expected.to run \
+      .with_params({'ĸəұ1' => 'νãŀủĕ1', 'ĸəұ2' => 'νãŀủĕ2', 'ĸəұ3' => 'νãŀủĕ3'}, ['ĸəұ1', 'ĸəұ2']) \
+      .and_return( {'ĸəұ3' => 'νãŀủĕ3'})
     }
   end
 
