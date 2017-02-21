@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'capitalize function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'capitalize function' do
   describe 'success' do
     it 'should capitalize the first letter of a string' do
       pp = <<-EOS

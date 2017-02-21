@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'member function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'member function' do
   shared_examples 'item found' do
     it 'should output correctly' do
       apply_manifest(pp, :catch_failures => true) do |r|

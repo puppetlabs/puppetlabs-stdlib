@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'is_numeric function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'is_numeric function' do
   describe 'success' do
     it 'is_numerics arrays' do
       pp = <<-EOS

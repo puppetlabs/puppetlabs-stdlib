@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'str2saltedsha512 function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'str2saltedsha512 function' do
   describe 'success' do
     it 'works with "y"' do
       pp = <<-EOS

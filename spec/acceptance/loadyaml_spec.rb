@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 
 tmpdir = default.tmpdir('stdlib')
 
-describe 'loadyaml function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'loadyaml function' do
   describe 'success' do
     it 'loadyamls array of values' do
       shell("echo '---

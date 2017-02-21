@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'fqdn_rand_string function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'fqdn_rand_string function' do
   describe 'success' do
     include_context "with faked facts"
     context "when the FQDN is 'fakehost.localdomain'" do

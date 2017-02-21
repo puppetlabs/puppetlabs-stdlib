@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'base64 function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'base64 function' do
   describe 'success' do
     it 'should encode then decode a string' do
       pp = <<-EOS

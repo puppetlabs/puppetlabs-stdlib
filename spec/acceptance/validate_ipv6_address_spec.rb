@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'validate_ipv6_address function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'validate_ipv6_address function' do
   describe 'success' do
     it 'validates a single argument' do
       pp = <<-EOS

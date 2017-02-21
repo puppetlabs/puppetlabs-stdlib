@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'try_get_value function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'try_get_value function' do
   describe 'success' do
     it 'gets a value' do
       pp = <<-EOS

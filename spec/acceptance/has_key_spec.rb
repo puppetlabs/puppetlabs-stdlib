@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'has_key function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'has_key function' do
   describe 'success' do
     it 'has_keys in hashes' do
       pp = <<-EOS
