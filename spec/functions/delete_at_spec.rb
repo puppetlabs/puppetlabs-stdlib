@@ -18,6 +18,8 @@ describe 'delete_at' do
   it { is_expected.to run.with_params([0, 1, 2], 1).and_return([0, 2]) }
   it { is_expected.to run.with_params([0, 1, 2], -1).and_return([0, 1]) }
   it { is_expected.to run.with_params([0, 1, 2], -4).and_return([0, 1, 2]) }
+  it { is_expected.to run.with_params(["ƒờở", "βāř", "ьầż"], 1).and_return(["ƒờở", "ьầż"]) }
+
 
   it "should leave the original array intact" do
     argument = [1, 2, 3]
