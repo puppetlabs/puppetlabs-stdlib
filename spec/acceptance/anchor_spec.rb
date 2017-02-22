@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'anchor type', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'anchor type' do
   describe 'success' do
     it 'should effect proper chaining of resources' do
       pp = <<-EOS

@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'fqdn_rotate function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'fqdn_rotate function' do
   describe 'success' do
     include_context "with faked facts"
     context "when the FQDN is 'fakehost.localdomain'" do

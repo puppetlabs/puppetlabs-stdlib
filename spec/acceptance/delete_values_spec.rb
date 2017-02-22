@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'delete_values function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'delete_values function' do
   describe 'success' do
     it 'should delete elements of the hash' do
       pp = <<-EOS

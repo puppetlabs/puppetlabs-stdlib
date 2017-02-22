@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 
 tmpdir = default.tmpdir('stdlib')
 
-describe 'loadjson function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'loadjson function' do
   describe 'success' do
     it 'loadjsons array of values' do
       shell("echo '{\"aaa\":1,\"bbb\":2,\"ccc\":3,\"ddd\":4}' > #{tmpdir}/testjson.json")

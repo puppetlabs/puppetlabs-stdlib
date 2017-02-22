@@ -2,7 +2,7 @@
 require 'spec_helper_acceptance'
 
 if get_puppet_version =~ /^4/
-  describe 'is_a function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+  describe 'is_a function' do
     it 'should match a string' do
       pp = <<-EOS
       if 'hello world'.is_a(String) {

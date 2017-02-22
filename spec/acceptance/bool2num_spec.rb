@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'bool2num function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'bool2num function' do
   describe 'success' do
     ['false', 'f', '0', 'n', 'no'].each do |bool|
       it "should convert a given boolean, #{bool}, to 0" do

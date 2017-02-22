@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'validate_augeas function', :unless => ((UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem'))) or (fact('osfamily') == 'windows')) do
+describe 'validate_augeas function', :unless => (fact('osfamily') == 'windows') do
   describe 'prep' do
     it 'installs augeas for tests'
   end
