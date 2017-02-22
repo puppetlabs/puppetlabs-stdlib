@@ -20,6 +20,7 @@ describe 'fqdn_rand_string' do
   it { is_expected.to run.with_params(100, '').and_return(default_charset) }
   it { is_expected.to run.with_params(100, 'a').and_return(/\Aa{100}\z/) }
   it { is_expected.to run.with_params(100, 'ab').and_return(/\A[ab]{100}\z/) }
+  it { is_expected.to run.with_params(100, 'ãβ').and_return(/\A[ãβ]{100}\z/) }
 
   it "provides the same 'random' value on subsequent calls for the same host" do
     expect(fqdn_rand_string(10)).to eql(fqdn_rand_string(10))

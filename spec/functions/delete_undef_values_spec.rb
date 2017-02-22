@@ -16,6 +16,7 @@ describe 'delete_undef_values' do
         end
         it { is_expected.to run.with_params([undef_value]).and_return([]) }
         it { is_expected.to run.with_params(['one',undef_value,'two','three']).and_return(['one','two','three']) }
+        it { is_expected.to run.with_params(['ớņέ',undef_value,'ŧשּׁō','ŧħґëə']).and_return(['ớņέ','ŧשּׁō','ŧħґëə']) }
       end
 
       it "should leave the original argument intact" do

@@ -11,6 +11,7 @@ describe 'prefix' do
   it { is_expected.to run.with_params([], 2).and_raise_error(Puppet::ParseError, /expected second argument to be a String/) }
   it { is_expected.to run.with_params([]).and_return([]) }
   it { is_expected.to run.with_params(['one', 2]).and_return(['one', '2']) }
+  it { is_expected.to run.with_params(['ớņệ', 2]).and_return(['ớņệ', '2']) }
   it { is_expected.to run.with_params([], '').and_return([]) }
   it { is_expected.to run.with_params([''], '').and_return(['']) }
   it { is_expected.to run.with_params(['one'], 'pre').and_return(['preone']) }

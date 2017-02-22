@@ -16,4 +16,5 @@ describe 'reject' do
   it { is_expected.to run.with_params([], 'two').and_return([]) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], 'two').and_return(['one', 'three']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], 't(wo|hree)').and_return(['one']) }
+  it { is_expected.to run.with_params(['όŉệ', 'ţщồ', 'ţңяέέ'], 'ţ(щồ|ңяέέ)').and_return(['όŉệ']) }
 end

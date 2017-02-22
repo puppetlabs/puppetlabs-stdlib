@@ -16,4 +16,5 @@ describe 'grep' do
   it { is_expected.to run.with_params([], 'two').and_return([]) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], 'two').and_return(['two']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], 't(wo|hree)').and_return(['two', 'three']) }
+  it { is_expected.to run.with_params(['ờאּê', 'ţשּׂỡ', 'ţһŗəè'], 'ţ(שּׂỡ|һŗəè)').and_return(['ţשּׂỡ', 'ţһŗəè']) }
 end

@@ -14,6 +14,7 @@ describe 'intersection' do
   it { is_expected.to run.with_params(['one'], []).and_return([]) }
   it { is_expected.to run.with_params(['one'], ['one']).and_return(['one']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], ['two', 'three']).and_return(['two', 'three']) }
+  it { is_expected.to run.with_params(['ōŋể', 'ŧשợ', 'ţђŕẽё'], ['ŧשợ', 'ţђŕẽё']).and_return(['ŧשợ', 'ţђŕẽё']) }
   it { is_expected.to run.with_params(['one', 'two', 'two', 'three'], ['two', 'three']).and_return(['two', 'three']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], ['two', 'two', 'three']).and_return(['two', 'three']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], ['two', 'three', 'four']).and_return(['two', 'three']) }
