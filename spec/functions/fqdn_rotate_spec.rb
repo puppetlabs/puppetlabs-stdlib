@@ -7,6 +7,7 @@ describe 'fqdn_rotate' do
   it { is_expected.to run.with_params({}).and_raise_error(Puppet::ParseError, /Requires either array or string to work with/) }
   it { is_expected.to run.with_params('').and_return('') }
   it { is_expected.to run.with_params('a').and_return('a') }
+  it { is_expected.to run.with_params('ã').and_return('ã') }
 
   it { is_expected.to run.with_params([]).and_return([]) }
   it { is_expected.to run.with_params(['a']).and_return(['a']) }

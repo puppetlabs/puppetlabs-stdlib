@@ -15,6 +15,8 @@ describe 'suffix' do
   it { is_expected.to run.with_params([''], '').and_return(['']) }
   it { is_expected.to run.with_params(['one'], 'post').and_return(['onepost']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], 'post').and_return(['onepost', 'twopost', 'threepost']) }
+  it { is_expected.to run.with_params(['ỗńέ', 'ťשׂǿ', 'ŧҺř℮ə'], 'рổŝţ').and_return(['ỗńέрổŝţ', 'ťשׂǿрổŝţ', 'ŧҺř℮əрổŝţ']) }
+
   it {
     is_expected.to run.with_params({}).and_return({})
   }

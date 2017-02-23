@@ -11,4 +11,5 @@ describe 'flatten' do
   it { is_expected.to run.with_params([['one']]).and_return(['one']) }
   it { is_expected.to run.with_params(["a","b","c","d","e","f","g"]).and_return(["a","b","c","d","e","f","g"]) }
   it { is_expected.to run.with_params([["a","b",["c",["d","e"],"f","g"]]]).and_return(["a","b","c","d","e","f","g"]) }
+  it { is_expected.to run.with_params(["ã","β",["ĉ",["đ","ẽ","ƒ","ġ"]]]).and_return(["ã","β","ĉ","đ","ẽ","ƒ","ġ"]) }
 end

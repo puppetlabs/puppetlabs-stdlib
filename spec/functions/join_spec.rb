@@ -16,4 +16,5 @@ describe 'join' do
   it { is_expected.to run.with_params(['one'], ':').and_return('one') }
   it { is_expected.to run.with_params(['one', 'two', 'three']).and_return('onetwothree') }
   it { is_expected.to run.with_params(['one', 'two', 'three'], ':').and_return('one:two:three') }
+  it { is_expected.to run.with_params(['ōŋể', 'ŧשợ', 'ţђŕẽё'], ':').and_return('ōŋể:ŧשợ:ţђŕẽё') }
 end

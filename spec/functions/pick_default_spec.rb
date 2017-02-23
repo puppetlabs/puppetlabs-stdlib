@@ -5,6 +5,7 @@ describe 'pick_default' do
   it { is_expected.to run.with_params().and_raise_error(Puppet::Error, /Must receive at least one argument/) }
 
   it { is_expected.to run.with_params('one', 'two').and_return('one') }
+  it { is_expected.to run.with_params('ớņệ', 'ťωơ').and_return('ớņệ') }
   it { is_expected.to run.with_params('', 'two').and_return('two') }
   it { is_expected.to run.with_params(:undef, 'two').and_return('two') }
   it { is_expected.to run.with_params(:undefined, 'two').and_return('two') }
@@ -13,6 +14,7 @@ describe 'pick_default' do
   [ '', :undef, :undefined, nil, {}, [], 1, 'default' ].each do |value|
     describe "when providing #{value.inspect} as default" do
       it { is_expected.to run.with_params('one', value).and_return('one') }
+      it { is_expected.to run.with_params('ớņệ', value).and_return('ớņệ') }
       it { is_expected.to run.with_params([], value).and_return([]) }
       it { is_expected.to run.with_params({}, value).and_return({}) }
       it { is_expected.to run.with_params(value, value).and_return(value) }
