@@ -48,6 +48,22 @@ Puppet::Type.newtype(:file_line) do
     followed by HTTP_PROXY and delete it.  If multiple lines match, an
     error will be raised unless the `multiple => true` parameter is set.
 
+    Encoding example:
+
+        file_line { "XScreenSaver":
+          ensure   => present,
+          path     => '/root/XScreenSaver'
+          line     => "*lock: 10:00:00",
+          match    => '^*lock:',
+          encoding => "iso-8859-1",
+        }
+
+    Files with special characters that are not valid UTF-8 will give the 
+    error message "invalid byte sequence in UTF-8".  In this case, determine
+    the correct file encoding and specify the correct encoding using the
+    encoding attribute, the value of which needs to be a valid Ruby character
+    encoding.
+
     **Autorequires:** If Puppet is managing the file that will contain the line
     being managed, the file_line resource will autorequire that file.
   EOT
@@ -105,6 +121,11 @@ Puppet::Type.newtype(:file_line) do
     desc 'If true, replace line that matches. If false, do not write line if a match is found'
     newvalues(true, false)
     defaultto true
+  end
+
+  newparam(:encoding) do
+    desc 'For files that are not UTF-8 encoded, specify encoding such as iso-8859-1'
+    defaultto 'UTF-8'
   end
 
   # Autorequire the file resource if it's being managed
