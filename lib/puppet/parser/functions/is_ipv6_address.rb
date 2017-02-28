@@ -13,8 +13,7 @@ Returns true if the string passed to this function is a valid IPv6 address.
     require 'ipaddr'
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_ipv6_address(): Wrong number of arguments "+
-        "given #{arguments.size} for 1")
+      raise(Puppet::ParseError, "is_ipv6_address(): Wrong number of arguments given #{arguments.size} for 1")
     end
 
     begin

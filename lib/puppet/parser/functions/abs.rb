@@ -9,8 +9,7 @@ module Puppet::Parser::Functions
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "abs(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, "abs(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
 
@@ -21,8 +20,7 @@ module Puppet::Parser::Functions
       elsif value.match(/^-?\d+$/)
         value = value.to_i
       else
-        raise(Puppet::ParseError, 'abs(): Requires float or ' +
-          'integer to work with')
+        raise(Puppet::ParseError, 'abs(): Requires float or integer to work with')
       end
     end
 

@@ -12,8 +12,7 @@ This function behaves the same as ruby's Shellwords.shellsplit() function
   EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "shell_split(): Wrong number of arguments " +
-        "given (#{arguments.size} for 1)") if arguments.size != 1
+    raise(Puppet::ParseError, "shell_split(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     string = arguments[0].to_s
 

@@ -8,15 +8,13 @@ Converts the case of a string or all strings in an array to camel case.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "camelcase(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, "camelcase(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
     klass = value.class
 
     unless [Array, String].include?(klass)
-      raise(Puppet::ParseError, 'camelcase(): Requires either ' +
-        'array or string to work with')
+      raise(Puppet::ParseError, 'camelcase(): Requires either array or string to work with')
     end
 
     if value.is_a?(Array)

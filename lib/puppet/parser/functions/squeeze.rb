@@ -9,8 +9,7 @@ Returns a new string where runs of the same character that occur in this set are
   ) do |arguments|
 
     if ((arguments.size != 2) and (arguments.size != 1)) then
-      raise(Puppet::ParseError, "squeeze(): Wrong number of arguments "+
-        "given #{arguments.size} for 2 or 1")
+      raise(Puppet::ParseError, "squeeze(): Wrong number of arguments given #{arguments.size} for 2 or 1")
     end
 
     item = arguments[0]

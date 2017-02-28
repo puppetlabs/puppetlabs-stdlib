@@ -10,8 +10,7 @@ become true.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "num2bool(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size != 1
+    raise(Puppet::ParseError, "num2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     number = arguments[0]
 

@@ -9,8 +9,7 @@ module Puppet::Parser::Functions
     EOS
   ) do |args|
 
-    raise(Puppet::ParseError, "assert_private(): Wrong number of arguments "+
-      "given (#{args.size}}) for 0 or 1)") if args.size > 1
+    raise(Puppet::ParseError, "assert_private(): Wrong number of arguments given (#{args.size}}) for 0 or 1)") if args.size > 1
 
     scope = self
     if scope.lookupvar('module_name') != scope.lookupvar('caller_module_name')

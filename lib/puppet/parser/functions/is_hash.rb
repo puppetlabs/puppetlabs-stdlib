@@ -8,8 +8,7 @@ Returns true if the variable passed to this function is a hash.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "is_hash(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size != 1
+    raise(Puppet::ParseError, "is_hash(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     type = arguments[0]
 

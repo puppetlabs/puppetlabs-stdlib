@@ -7,8 +7,7 @@ module Puppet::Parser::Functions
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "to_bytes(): Wrong number of arguments " +
-          "given (#{arguments.size} for 1)") if arguments.size != 1
+    raise(Puppet::ParseError, "to_bytes(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     arg = arguments[0]
 

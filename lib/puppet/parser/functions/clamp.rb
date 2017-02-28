@@ -10,8 +10,7 @@ module Puppet::Parser::Functions
 
     args.flatten!
 
-    raise(Puppet::ParseError, 'clamp(): Wrong number of arguments, ' +
-          'need three to clamp') if args.size != 3
+    raise(Puppet::ParseError, 'clamp(): Wrong number of arguments, need three to clamp') if args.size != 3
 
     # check values out
     args.each do |value|
