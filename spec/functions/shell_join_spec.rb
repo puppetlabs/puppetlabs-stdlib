@@ -15,6 +15,11 @@ describe 'shell_join' do
     it { is_expected.to run.with_params(['foo', 'bar baz']).and_return('foo bar\ baz') }
     it { is_expected.to run.with_params(['~`!@#$', '%^&*()_+-=', '[]\{}|;\':"', ',./<>?'])
                             .and_return('\~\`\!@\#\$ \%\^\&\*\(\)_\+-\= \[\]\\\\\{\}\|\;\\\':\" ,./\<\>\?') }
+
+  context 'should run with UTF8 and double byte characters' do
+      it { is_expected.to run.with_params(['μťƒ', '8',  'ŧĕχť']).and_return('\\μ\\ť\\ƒ 8 \\ŧ\\ĕ\\χ\\ť') }
+      it { is_expected.to run.with_params(['スペー', 'スを含むテ', ' キスト']).and_return('\\ス\\ペ\\ー \\ス\\を\\含\\む\\テ \\ \\キ\\ス\\ト') }
+    end
   end
 
   describe 'stringification' do

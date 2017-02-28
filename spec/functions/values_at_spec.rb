@@ -30,6 +30,11 @@ describe 'values_at' do
     it { is_expected.to run.with_params([0, 1, 2], 3).and_raise_error(Puppet::ParseError, /index exceeds array size/) }
   end
 
+  context 'when requesting a single item using UTF8 and double byte characters' do
+    it { is_expected.to run.with_params(['ẩ', 'β', 'с', 'ď'], 0).and_return(['ẩ']) }
+    it { is_expected.to run.with_params(['文', '字', 'の', '値'], 2).and_return(['の']) }
+  end
+
   context 'when requesting multiple items' do
     it { is_expected.to run.with_params([0, 1, 2], [1, -1]).and_raise_error(Puppet::ParseError, /Unknown format of given index/) }
     it { is_expected.to run.with_params([0, 1, 2], [0, 2]).and_return([0, 2]) }
