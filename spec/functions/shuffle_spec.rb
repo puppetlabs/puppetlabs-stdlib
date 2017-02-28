@@ -26,6 +26,11 @@ describe 'shuffle' do
     it { is_expected.to run.with_params('abc').and_return('bac') }
     it { is_expected.to run.with_params('abcd').and_return('dcba') }
 
+    context 'should run with UTF8 and double byte characters' do
+      it { is_expected.to run.with_params('ůţƒ8 ŧέχŧ şŧґíńģ').and_return('ģńş ůχţέƒŧí8ґŧŧ ') }
+      it { is_expected.to run.with_params('日本語の文字列').and_return('字本日語文列の') }
+    end
+
     context 'when using a class extending String' do
       it { is_expected.to run.with_params(AlsoString.new('asdfghjkl')).and_return('lkhdsfajg') }
     end

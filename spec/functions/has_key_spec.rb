@@ -12,4 +12,9 @@ describe 'has_key' do
   it { is_expected.to run.with_params({ 'key' => 'value' }, "key").and_return(true) }
   it { is_expected.to run.with_params({}, "key").and_return(false) }
   it { is_expected.to run.with_params({ 'key' => 'value'}, "not a key").and_return(false) }
+
+  context 'should run with UTF8 and double byte characters' do
+    it { is_expected.to run.with_params({ 'κéỳ ' => '٧ậļųể' }, "κéỳ ").and_return(true) }
+    it { is_expected.to run.with_params({ 'キー' => '٧ậļųể' }, "キー").and_return(true) }
+  end
 end

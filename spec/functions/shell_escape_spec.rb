@@ -19,4 +19,9 @@ describe 'shell_escape' do
     it { is_expected.to run.with_params('~`!@#$%^&*()_+-=[]\{}|;\':",./<>?')
            .and_return('\~\`\!@\#\$\%\^\&\*\(\)_\+-\=\[\]\\\\\{\}\|\;\\\':\",./\<\>\?') }
   end
+
+  context 'should run with UTF8 and double byte characters' do
+      it { is_expected.to run.with_params('スペー スを含むテ  キスト').and_return('\\ス\\ペ\\ー\\ \\ス\\を\\含\\む\\テ\\ \\ \\キ\\ス\\ト') }
+      it { is_expected.to run.with_params('μťƒ 8  ŧĕχť').and_return('\\μ\\ť\\ƒ\\ 8\\ \\ \\ŧ\\ĕ\\χ\\ť') }
+  end
 end

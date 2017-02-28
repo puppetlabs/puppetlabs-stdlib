@@ -21,5 +21,10 @@ if Puppet.version.to_f >= 4.0
     it 'fails when comparing an integer and a string' do
       is_expected.to run.with_params(5, String).and_return(false)
     end
+
+    it 'suceeds when comparing an UTF8 and double byte characters' do
+      is_expected.to run.with_params('このテキスト', String).and_return(true)
+      is_expected.to run.with_params('ŧћịś ŧêχŧ', String).and_return(true)
+    end
   end
 end

@@ -52,4 +52,8 @@ describe 'deep_merge' do
     expect(argument1).to eq(original1)
     expect(argument2).to eq(original2)
   end
+
+  context 'should run with UTF8 and double byte characters' do
+    it { is_expected.to run.with_params({'ĸέỹ1' => 'ϋǻļủë1'}, {'この文字列' => '万' }).and_return({'ĸέỹ1' => 'ϋǻļủë1', 'この文字列' => '万'}) }
+  end
 end
