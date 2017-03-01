@@ -12,7 +12,7 @@ describe 'type function' do
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/type is Tuple\[String, String, String, String\]/)
+        expect(r.stdout).to match(/type is Tuple\[String.*, String.*, String.*, String.*\]/)
       end
     end
     it 'types strings' do
