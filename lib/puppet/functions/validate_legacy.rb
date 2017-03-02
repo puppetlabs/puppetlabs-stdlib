@@ -33,7 +33,7 @@ Puppet::Functions.create_function(:validate_legacy) do
       if previous_validation(scope, function_name, value, *prev_args)
         # Silently passes
       else
-        Puppet.notice("Accepting previously invalid value for target type '#{target_type}'")
+        Puppet.notice(_("Accepting previously invalid value for target type '#{target_type}'"))
       end
     else
       inferred_type = Puppet::Pops::Types::TypeCalculator.infer_set(value)

@@ -9,7 +9,7 @@ Puppet::Functions.create_function(:validate_ip_address) do
     self.class.dispatcher.dispatch(self, scope, manipulated_args)
   end
   def deprecation_gen(scope, *args)
-    call_function('deprecation', 'validate_ip_address', "This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Ip_Address. There is further documentation for validate_legacy function in the README.")
+    call_function('deprecation', 'validate_ip_address', _("This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Ip_Address. There is further documentation for validate_legacy function in the README."))
     scope.send("function_validate_ip_address", args)
   end
 end

@@ -9,7 +9,7 @@ Puppet::Functions.create_function(:is_numeric) do
     self.class.dispatcher.dispatch(self, scope, manipulated_args)
   end
   def deprecation_gen(scope, *args)
-    call_function('deprecation', 'is_numeric', "This method is deprecated, please use match expressions with Stdlib::Compat::Numeric instead. They are described at https://docs.puppet.com/puppet/latest/reference/lang_data_type.html#match-expressions.")
+    call_function('deprecation', 'is_numeric', _("This method is deprecated, please use match expressions with Stdlib::Compat::Numeric instead. They are described at https://docs.puppet.com/puppet/latest/reference/lang_data_type.html#match-expressions."))
     scope.send("function_is_numeric", args)
   end
 end

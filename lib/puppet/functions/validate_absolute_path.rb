@@ -9,7 +9,7 @@ Puppet::Functions.create_function(:validate_absolute_path) do
     self.class.dispatcher.dispatch(self, scope, manipulated_args)
   end
   def deprecation_gen(scope, *args)
-    call_function('deprecation', 'validate_absolute_path', "This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Absolute_Path. There is further documentation for validate_legacy function in the README.")
+    call_function('deprecation', 'validate_absolute_path', _("This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Absolute_Path. There is further documentation for validate_legacy function in the README."))
     scope.send("function_validate_absolute_path", args)
   end
 end
