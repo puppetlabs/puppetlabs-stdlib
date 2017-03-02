@@ -3,17 +3,17 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:lstrip, :type => :rvalue, :doc => <<-EOS
+  newfunction(:lstrip, :type => :rvalue, :doc => _(<<-EOS)
 Strips leading spaces to the left of a string.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "lstrip(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, _("lstrip(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size < 1
 
     value = arguments[0]
 
     unless value.is_a?(Array) || value.is_a?(String)
-      raise(Puppet::ParseError, 'lstrip(): Requires either array or string to work with')
+      raise(Puppet::ParseError, _('lstrip(): Requires either array or string to work with'))
     end
 
     if value.is_a?(Array)

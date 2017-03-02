@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:any2bool, :type => :rvalue, :doc => <<-EOS
+  newfunction(:any2bool, :type => :rvalue, :doc => _(<<-EOS)
 This converts 'anything' to a boolean. In practise it does the following:
 
 * Strings such as Y,y,1,T,t,TRUE,yes,'true' will return true
@@ -15,7 +15,7 @@ This converts 'anything' to a boolean. In practise it does the following:
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "any2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, _("any2bool(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size < 1
 
     # If argument is already Boolean, return it
     if !!arguments[0] == arguments[0]

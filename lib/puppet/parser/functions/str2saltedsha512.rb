@@ -4,7 +4,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:str2saltedsha512, :type => :rvalue, :doc => <<-EOS
+  newfunction(:str2saltedsha512, :type => :rvalue, :doc => _(<<-EOS)
 This converts a string to a salted-SHA512 password hash (which is used for
 OS X versions >= 10.7). Given any simple string, you will get a hex version
 of a salted-SHA512 password hash that can be inserted into your Puppet
@@ -13,12 +13,12 @@ manifests as a valid password attribute.
   ) do |arguments|
     require 'digest/sha2'
 
-    raise(Puppet::ParseError, "str2saltedsha512(): Wrong number of arguments passed (#{arguments.size} but we require 1)") if arguments.size != 1
+    raise(Puppet::ParseError, _("str2saltedsha512(): Wrong number of arguments passed (#{arguments.size} but we require 1)")) if arguments.size != 1
 
     password = arguments[0]
 
     unless password.is_a?(String)
-      raise(Puppet::ParseError, "str2saltedsha512(): Requires a String argument, you passed: #{password.class}")
+      raise(Puppet::ParseError, _("str2saltedsha512(): Requires a String argument, you passed: #{password.class}"))
     end
 
     seedint    = rand(2**31 - 1)

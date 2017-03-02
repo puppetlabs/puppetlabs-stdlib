@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:prefix, :type => :rvalue, :doc => <<-EOS
+  newfunction(:prefix, :type => :rvalue, :doc => _(<<-EOS)
 This function applies a prefix to all elements in an array or a hash.
 
 *Examples:*
@@ -15,19 +15,19 @@ Will return: ['pa','pb','pc']
   ) do |arguments|
 
     # Technically we support two arguments but only first is mandatory ...
-    raise(Puppet::ParseError, "prefix(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, _("prefix(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size < 1
 
     enumerable = arguments[0]
 
     unless enumerable.is_a?(Array) or enumerable.is_a?(Hash)
-      raise Puppet::ParseError, "prefix(): expected first argument to be an Array or a Hash, got #{enumerable.inspect}"
+      raise Puppet::ParseError, _("prefix(): expected first argument to be an Array or a Hash, got #{enumerable.inspect}")
     end
 
     prefix = arguments[1] if arguments[1]
 
     if prefix
       unless prefix.is_a?(String)
-        raise Puppet::ParseError, "prefix(): expected second argument to be a String, got #{prefix.inspect}"
+        raise Puppet::ParseError, _("prefix(): expected second argument to be a String, got #{prefix.inspect}")
       end
     end
 

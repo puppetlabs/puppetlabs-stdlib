@@ -2,7 +2,7 @@ require 'puppet/util/execution'
 require 'tempfile'
 
 module Puppet::Parser::Functions
-  newfunction(:validate_cmd, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_cmd, :doc => _(<<-'ENDHEREDOC')) do |args|
     Perform validation of a string with an external command.
     The first argument of this function should be a string to
     test, and the second argument should be a path to a test command
@@ -25,10 +25,10 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
     if (args.length < 2) or (args.length > 3) then
-      raise Puppet::ParseError, ("validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)")
+      raise Puppet::ParseError, (_("validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)"))
     end
 
-    msg = args[2] || "validate_cmd(): failed to validate content with command #{args[1].inspect}"
+    msg = args[2] || _("validate_cmd(): failed to validate content with command #{args[1].inspect}")
 
     content = args[0]
     checkscript = args[1]

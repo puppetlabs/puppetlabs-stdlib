@@ -1,6 +1,6 @@
 module Puppet::Parser::Functions
 
-  newfunction(:validate_integer, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_integer, :doc => _(<<-'ENDHEREDOC')) do |args|
     Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
 
     The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
@@ -56,7 +56,7 @@ module Puppet::Parser::Functions
     function_deprecation([:validate_integer, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.'])
 
     # tell the user we need at least one, and optionally up to two other parameters
-    raise Puppet::ParseError, "validate_integer(): Wrong number of arguments; must be 1, 2 or 3, got #{args.length}" unless args.length > 0 and args.length < 4
+    raise Puppet::ParseError, _("validate_integer(): Wrong number of arguments; must be 1, 2 or 3, got #{args.length}") unless args.length > 0 and args.length < 4
 
     input, max, min = *args
 
@@ -70,7 +70,7 @@ module Puppet::Parser::Functions
         begin
           max = Integer(max)
         rescue TypeError, ArgumentError
-          raise Puppet::ParseError, "validate_integer(): Expected second argument to be unset or an Integer, got #{max}:#{max.class}"
+          raise Puppet::ParseError, _("validate_integer(): Expected second argument to be unset or an Integer, got #{max}:#{max.class}")
         end
       end
     else
@@ -82,7 +82,7 @@ module Puppet::Parser::Functions
       begin
         min = Integer(min.to_s)
       rescue TypeError, ArgumentError
-        raise Puppet::ParseError, "validate_integer(): Expected third argument to be unset or an Integer, got #{min}:#{min.class}"
+        raise Puppet::ParseError, _("validate_integer(): Expected third argument to be unset or an Integer, got #{min}:#{min.class}")
       end
     else
       min = nil
@@ -90,18 +90,18 @@ module Puppet::Parser::Functions
 
     # ensure that min < max
     if min and max and min > max
-      raise Puppet::ParseError, "validate_integer(): Expected second argument to be larger than third argument, got #{max} < #{min}"
+      raise Puppet::ParseError, _("validate_integer(): Expected second argument to be larger than third argument, got #{max} < #{min}")
     end
 
     # create lamba validator function
     validator = lambda do |num|
       # check input < max
       if max and num > max
-        raise Puppet::ParseError, "validate_integer(): Expected #{input.inspect} to be smaller or equal to #{max}, got #{input.inspect}."
+        raise Puppet::ParseError, _("validate_integer(): Expected #{input.inspect} to be smaller or equal to #{max}, got #{input.inspect}.")
       end
       # check input > min (this will only be checked if no exception has been raised before)
       if min and num < min
-        raise Puppet::ParseError, "validate_integer(): Expected #{input.inspect} to be greater or equal to #{min}, got #{input.inspect}."
+        raise Puppet::ParseError, _("validate_integer(): Expected #{input.inspect} to be greater or equal to #{min}, got #{input.inspect}.")
       end
     end
 
@@ -115,19 +115,19 @@ module Puppet::Parser::Functions
           arg = Integer(arg.to_s)
           validator.call(arg)
         rescue TypeError, ArgumentError
-          raise Puppet::ParseError, "validate_integer(): Expected element at array position #{pos} to be an Integer, got #{arg.class}"
+          raise Puppet::ParseError, _("validate_integer(): Expected element at array position #{pos} to be an Integer, got #{arg.class}")
         end
       end
     # for the sake of compatibility with ruby 1.8, we need extra handling of hashes
     when Hash
-      raise Puppet::ParseError, "validate_integer(): Expected first argument to be an Integer or Array, got #{input.class}"
+      raise Puppet::ParseError, _("validate_integer(): Expected first argument to be an Integer or Array, got #{input.class}")
     # check the input. this will also fail any stuff other than pure, shiny integers
     else
       begin
         input = Integer(input.to_s)
         validator.call(input)
       rescue TypeError, ArgumentError
-        raise Puppet::ParseError, "validate_integer(): Expected first argument to be an Integer or Array, got #{input.class}"
+        raise Puppet::ParseError, _("validate_integer(): Expected first argument to be an Integer or Array, got #{input.class}")
       end
     end
   end

@@ -1,6 +1,6 @@
 module Puppet::Parser::Functions
 
-  newfunction(:validate_ipv4_address, :doc => <<-ENDHEREDOC
+  newfunction(:validate_ipv4_address, :doc => _(<<-ENDHEREDOC)
     Validate that all values passed are valid IPv4 addresses.
     Fail compilation if any value fails this check.
 
@@ -28,20 +28,20 @@ module Puppet::Parser::Functions
     end
 
     unless args.length > 0 then
-      raise Puppet::ParseError, ("validate_ipv4_address(): wrong number of arguments (#{args.length}; must be > 0)")
+      raise Puppet::ParseError, (_("validate_ipv4_address(): wrong number of arguments (#{args.length}; must be > 0)"))
     end
 
     args.each do |arg|
       unless arg.is_a?(String)
-        raise Puppet::ParseError, "#{arg.inspect} is not a string."
+        raise Puppet::ParseError, _("#{arg.inspect} is not a string.")
       end
 
       begin
         unless IPAddr.new(arg).ipv4?
-          raise Puppet::ParseError, "#{arg.inspect} is not a valid IPv4 address."
+          raise Puppet::ParseError, _("#{arg.inspect} is not a valid IPv4 address.")
         end
       rescue *rescuable_exceptions
-        raise Puppet::ParseError, "#{arg.inspect} is not a valid IPv4 address."
+        raise Puppet::ParseError, _("#{arg.inspect} is not a valid IPv4 address.")
       end
     end
 

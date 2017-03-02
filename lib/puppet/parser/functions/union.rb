@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:union, :type => :rvalue, :doc => <<-EOS
+  newfunction(:union, :type => :rvalue, :doc => _(<<-EOS)
 This function returns a union of two or more arrays.
 
 *Examples:*
@@ -15,10 +15,10 @@ Would return: ["a","b","c","d"]
   ) do |arguments|
 
     # Check that 2 or more arguments have been given ...
-    raise(Puppet::ParseError, "union(): Wrong number of arguments given (#{arguments.size} for < 2)") if arguments.size < 2
+    raise(Puppet::ParseError, _("union(): Wrong number of arguments given (#{arguments.size} for < 2)")) if arguments.size < 2
 
     arguments.each do |argument|
-      raise(Puppet::ParseError, 'union(): Every parameter must be an array') unless argument.is_a?(Array)
+      raise(Puppet::ParseError, _('union(): Every parameter must be an array')) unless argument.is_a?(Array)
     end
 
     arguments.reduce(:|)

@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:join, :type => :rvalue, :doc => <<-EOS
+  newfunction(:join, :type => :rvalue, :doc => _(<<-EOS)
 This function joins an array into a string using a separator.
 
 *Examples:*
@@ -15,19 +15,19 @@ Would result in: "a,b,c"
   ) do |arguments|
 
     # Technically we support two arguments but only first is mandatory ...
-    raise(Puppet::ParseError, "join(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, _("join(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size < 1
 
     array = arguments[0]
 
     unless array.is_a?(Array)
-      raise(Puppet::ParseError, 'join(): Requires array to work with')
+      raise(Puppet::ParseError, _('join(): Requires array to work with'))
     end
 
     suffix = arguments[1] if arguments[1]
 
     if suffix
       unless suffix.is_a?(String)
-        raise(Puppet::ParseError, 'join(): Requires string to work with')
+        raise(Puppet::ParseError, _('join(): Requires string to work with'))
       end
     end
 

@@ -4,7 +4,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:upcase, :type => :rvalue, :doc => <<-EOS
+  newfunction(:upcase, :type => :rvalue, :doc => _(<<-EOS)
 Converts a string or an array of strings to uppercase.
 
 *Examples:*
@@ -17,12 +17,12 @@ Will return:
   EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "upcase(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
+    raise(Puppet::ParseError, _("upcase(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size != 1
 
     value = arguments[0]
 
     unless value.is_a?(Array) || value.is_a?(Hash) || value.respond_to?(:upcase)
-      raise(Puppet::ParseError, 'upcase(): Requires an array, hash or object that responds to upcase in order to work')
+      raise(Puppet::ParseError, _('upcase(): Requires an array, hash or object that responds to upcase in order to work'))
     end
 
     if value.is_a?(Array)

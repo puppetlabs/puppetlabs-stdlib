@@ -2,7 +2,7 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:ensure_resources,
                                       :type => :statement,
-                                      :doc => <<-'ENDOFDOC'
+                                      :doc => _(<<-'ENDOFDOC')
 Takes a resource type, title (only hash), and a list of attributes that describe a
 resource.
 
@@ -31,8 +31,8 @@ ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
 ENDOFDOC
 ) do |vals|
   type, title, params = vals
-  raise(ArgumentError, 'Must specify a type') unless type
-  raise(ArgumentError, 'Must specify a title') unless title
+  raise(ArgumentError, _('Must specify a type')) unless type
+  raise(ArgumentError, _('Must specify a title')) unless title
   params ||= {}
 
   if title.is_a?(Hash)
@@ -49,6 +49,6 @@ ENDOFDOC
     function_ensure_resource([ type, resource_name, params_merged ])
     }
   else
-       raise(Puppet::ParseError, 'ensure_resources(): Requires second argument to be a Hash')
+       raise(Puppet::ParseError, _('ensure_resources(): Requires second argument to be a Hash'))
   end
 end

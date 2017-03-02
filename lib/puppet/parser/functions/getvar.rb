@@ -1,6 +1,6 @@
 module Puppet::Parser::Functions
 
-  newfunction(:getvar, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:getvar, :type => :rvalue, :doc => _(<<-'ENDHEREDOC')) do |args|
     Lookup a variable in a remote namespace.
 
     For example:
@@ -16,7 +16,7 @@ module Puppet::Parser::Functions
     ENDHEREDOC
 
     unless args.length == 1
-      raise Puppet::ParseError, ("getvar(): wrong number of arguments (#{args.length}; must be 1)")
+      raise Puppet::ParseError, (_("getvar(): wrong number of arguments (#{args.length}; must be 1)"))
     end
 
     begin

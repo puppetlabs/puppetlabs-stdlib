@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:values_at, :type => :rvalue, :doc => <<-EOS
+  newfunction(:values_at, :type => :rvalue, :doc => _(<<-EOS)
 Finds value inside an array based on location.
 
 The first argument is the array you want to analyze, and the second element can
@@ -29,18 +29,18 @@ Would return ['a','c','d'].
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "values_at(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
+    raise(Puppet::ParseError, _("values_at(): Wrong number of arguments given (#{arguments.size} for 2)")) if arguments.size < 2
 
     array = arguments.shift
 
     unless array.is_a?(Array)
-      raise(Puppet::ParseError, 'values_at(): Requires array to work with')
+      raise(Puppet::ParseError, _('values_at(): Requires array to work with'))
     end
 
     indices = [arguments.shift].flatten() # Get them all ... Pokemon ...
 
     if not indices or indices.empty?
-      raise(Puppet::ParseError, 'values_at(): You must provide at least one positive index to collect')
+      raise(Puppet::ParseError, _('values_at(): You must provide at least one positive index to collect'))
     end
 
     result       = []
@@ -55,9 +55,9 @@ Would return ['a','c','d'].
         type = m[2]
 
         if start > stop
-          raise(Puppet::ParseError, 'values_at(): Stop index in given indices range is smaller than the start index')
+          raise(Puppet::ParseError, _('values_at(): Stop index in given indices range is smaller than the start index'))
         elsif stop > array.size - 1 # First element is at index 0 is it not?
-          raise(Puppet::ParseError, 'values_at(): Stop index in given indices range exceeds array size')
+          raise(Puppet::ParseError, _('values_at(): Stop index in given indices range exceeds array size'))
         end
 
         range = case type
@@ -69,14 +69,14 @@ Would return ['a','c','d'].
       else
         # Only positive numbers allowed in this case ...
         if not i.match(/^\d+$/)
-          raise(Puppet::ParseError, 'values_at(): Unknown format of given index')
+          raise(Puppet::ParseError, _('values_at(): Unknown format of given index'))
         end
 
         # In Puppet numbers are often string-encoded ...
         i = i.to_i
 
         if i > array.size - 1 # Same story.  First element is at index 0 ...
-          raise(Puppet::ParseError, 'values_at(): Given index exceeds array size')
+          raise(Puppet::ParseError, _('values_at(): Given index exceeds array size'))
         end
 
         indices_list << i

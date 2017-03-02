@@ -1,17 +1,17 @@
 module Puppet::Parser::Functions
-  newfunction(:basename, :type => :rvalue, :doc => <<-EOS
+  newfunction(:basename, :type => :rvalue, :doc => _(<<-EOS)
     Strips directory (and optional suffix) from a filename
     EOS
   ) do |arguments|
 
     if arguments.size < 1 then
-      raise(Puppet::ParseError, "basename(): No arguments given")
+      raise(Puppet::ParseError, _("basename(): No arguments given"))
     elsif arguments.size > 2 then
-      raise(Puppet::ParseError, "basename(): Too many arguments given (#{arguments.size})")
+      raise(Puppet::ParseError, _("basename(): Too many arguments given (#{arguments.size})"))
     else
 
       unless arguments[0].is_a?(String)
-        raise(Puppet::ParseError, 'basename(): Requires string as first argument')
+        raise(Puppet::ParseError, _('basename(): Requires string as first argument'))
       end
 
       if arguments.size == 1 then
@@ -19,7 +19,7 @@ module Puppet::Parser::Functions
       elsif arguments.size == 2 then
 
         unless arguments[1].is_a?(String)
-          raise(Puppet::ParseError, 'basename(): Requires string as second argument')
+          raise(Puppet::ParseError, _('basename(): Requires string as second argument'))
         end
 
         rv = File.basename(arguments[0], arguments[1])

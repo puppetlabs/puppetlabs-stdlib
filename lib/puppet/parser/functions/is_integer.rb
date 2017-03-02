@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_integer, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_integer, :type => :rvalue, :doc => _(<<-EOS)
 Returns true if the variable passed to this function is an Integer or
 a decimal (base 10) integer in String form. The string may
 start with a '-' (minus). A value of '0' is allowed, but a leading '0' digit may not
@@ -13,10 +13,10 @@ If given any other argument `false` is returned.
     EOS
   ) do |arguments|
 
-    function_deprecation([:is_integer, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.'])
+    function_deprecation([:is_integer, _('This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.')])
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_integer(): Wrong number of arguments given #{arguments.size} for 1")
+      raise(Puppet::ParseError, _("is_integer(): Wrong number of arguments given #{arguments.size} for 1"))
     end
 
     value = arguments[0]

@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:type3x, :type => :rvalue, :doc => <<-EOS
+  newfunction(:type3x, :type => :rvalue, :doc => _(<<-EOS)
 DEPRECATED: This function will be removed when puppet 3 support is dropped; please migrate to the new parser's typing system.
 
 Returns the type when passed a value. Type can be one of:
@@ -16,14 +16,14 @@ Returns the type when passed a value. Type can be one of:
 * boolean
     EOS
   ) do |args|
-    raise(Puppet::ParseError, "type3x(): Wrong number of arguments given (#{args.size} for 1)") if args.size < 1
+    raise(Puppet::ParseError, _("type3x(): Wrong number of arguments given (#{args.size} for 1)")) if args.size < 1
 
     value = args[0]
 
     klass = value.class
 
     if not [TrueClass, FalseClass, Array, Bignum, Fixnum, Float, Hash, String].include?(klass)
-      raise(Puppet::ParseError, 'type3x(): Unknown type')
+      raise(Puppet::ParseError, _('type3x(): Unknown type'))
     end
 
     klass = klass.to_s # Ugly ...

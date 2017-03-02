@@ -3,7 +3,7 @@ module Puppet::Parser::Functions
       :try_get_value,
       :type => :rvalue,
       :arity => -2,
-      :doc => <<-eos
+      :doc => _(<<-eos)
 DEPRECATED: this function is deprecated, please use dig() instead.
 
 Looks up into a complex structure of arrays and hashes and returns a value
@@ -37,7 +37,7 @@ argument. It will be returned if no value was found or a path component is
 missing. And the fourth argument can set a variable path separator.
   eos
   ) do |args|
-    warning("try_get_value() DEPRECATED: this function is deprecated, please use dig() instead.")
+    warning(_("try_get_value() DEPRECATED: this function is deprecated, please use dig() instead."))
     data = args[0]
     path = args[1] || ''
     default = args[2]
