@@ -25,6 +25,18 @@ describe 'dig44' do
     }
   end
 
+  let(:utf8_data) do
+    {
+        'ẵ' => {
+            'в' => [
+                '©',
+                'ĝ',
+                'に',
+            ]
+        }
+    }
+  end
+
   context 'single values' do
     it 'should exist' do
       is_expected.not_to be_nil
@@ -100,6 +112,20 @@ describe 'dig44' do
     it 'should return "nil" if value is not found and no default value is provided' do
       is_expected.to run.with_params(data, %w(a 1)).and_return(nil)
     end
+  end
 
+  context 'Internationalization (i18N) values' do
+
+    it 'should be able to return a unicode character' do
+      is_expected.to run.with_params(utf8_data, ['ẵ', 'в', 0]).and_return('©')
+    end
+
+    it 'should be able to return a utf8 character' do
+      is_expected.to run.with_params(utf8_data, ['ẵ', 'в', 1]).and_return('ĝ')
+    end
+
+    it 'should be able to return a double byte character' do
+      is_expected.to run.with_params(utf8_data, ['ẵ', 'в', 2]).and_return('に')
+    end
   end
 end

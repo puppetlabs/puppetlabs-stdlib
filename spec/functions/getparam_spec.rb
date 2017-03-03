@@ -24,4 +24,12 @@ describe 'getparam' do
     it { is_expected.to run.with_params('User[one]', 'shell').and_return('/bin/sh') }
     it { is_expected.to run.with_params('User[one]', 'managehome').and_return(false) }
   end
+
+  describe 'when compared against a user resource with UTF8 and double byte params' do
+    let(:pre_condition) { 'user { ["三", "ƒốưř"]: ensure => present }' }
+
+    it { is_expected.to run.with_params('User[三]', 'ensure').and_return('present') }
+    it { is_expected.to run.with_params('User[ƒốưř]', 'ensure').and_return('present') }
+
+  end
 end

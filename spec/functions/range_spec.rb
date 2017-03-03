@@ -79,6 +79,14 @@ describe 'range' do
     it { is_expected.to run.with_params('01', '04').and_return([1, 2, 3, 4]) }
   end
 
+  context 'with prefixed numbers as utf8 strings as bounds' do
+    it { is_expected.to run.with_params('ħөŝŧ01', 'ħөŝŧ04').and_return(['ħөŝŧ01', 'ħөŝŧ02', 'ħөŝŧ03', 'ħөŝŧ04']) }
+  end
+
+  context 'with prefixed numbers as double byte character strings as bounds' do
+    it { is_expected.to run.with_params('ホスト01', 'ホスト04').and_return(['ホスト01', 'ホスト02', 'ホスト03', 'ホスト04']) }
+  end
+
   context 'with dash-range syntax' do
     it { is_expected.to run.with_params('4-1').and_return([]) }
     it { is_expected.to run.with_params('1-1').and_return([1]) }

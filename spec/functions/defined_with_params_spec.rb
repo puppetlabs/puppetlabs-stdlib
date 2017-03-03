@@ -11,6 +11,11 @@ describe 'defined_with_params' do
     it { is_expected.to run.with_params('User[dan]', {}).and_return(true) }
     it { is_expected.to run.with_params('User[bob]', {}).and_return(false) }
     it { is_expected.to run.with_params('User[dan]', {'foo' => 'bar'}).and_return(false) }
+
+    context 'should run with UTF8 and double byte characters' do
+      it { is_expected.to run.with_params('User[ĵĭмოү]', {}).and_return(false) }
+      it { is_expected.to run.with_params('User[ポーラ]', {}).and_return(false) }
+    end
   end
 
   describe 'when compared against a resource with attributes' do
