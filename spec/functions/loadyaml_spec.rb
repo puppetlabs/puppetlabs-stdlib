@@ -11,11 +11,13 @@ describe 'loadyaml' do
       YAML.expects(:load_file).never
     }
     it { is_expected.to run.with_params(filename, {'default' => 'value'}).and_return({'default' => 'value'}) }
+    it { is_expected.to run.with_params(filename, {'đẽƒằưļŧ' => '٧ẵłựέ'}).and_return({'đẽƒằưļŧ' => '٧ẵłựέ'}) }
+    it { is_expected.to run.with_params(filename, {'デフォルト' => '値'}).and_return({'デフォルト' => '値'}) }
   end
 
   context 'when an existing file is specified' do
     let(:filename) { '/tmp/doesexist' }
-    let(:data) { { 'key' => 'value' } }
+    let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値'} }
     before {
       File.expects(:exists?).with(filename).returns(true).once
       YAML.expects(:load_file).with(filename).returns(data).once

@@ -23,6 +23,8 @@ describe 'loadjson' do
         allow(PSON).to receive(:load).never
       }
       it { is_expected.to run.with_params(filename, {'default' => 'value'}).and_return({'default' => 'value'}) }
+      it { is_expected.to run.with_params(filename, {'đẽƒằưļŧ' => '٧ẵłựέ'}).and_return({'đẽƒằưļŧ' => '٧ẵłựέ'}) }
+      it { is_expected.to run.with_params(filename, {'デフォルト' => '値'}).and_return({'デフォルト' => '値'}) }
     end
 
     context 'when an existing file is specified' do
@@ -33,8 +35,8 @@ describe 'loadjson' do
           '/tmp/doesexist'
         end
       }
-      let(:data) { { 'key' => 'value' } }
-      let(:json) { '{"key":"value"}' }
+      let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値'} }
+      let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
       before {
         allow(File).to receive(:exists?).with(filename).and_return(true).once
         allow(File).to receive(:read).with(filename).and_return(json).once

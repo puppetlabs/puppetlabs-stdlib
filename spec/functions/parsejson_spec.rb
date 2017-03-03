@@ -12,12 +12,12 @@ describe 'parsejson' do
 
   context 'with correct JSON data' do
 
-    it 'should be able to parse a JSON data with a Hash' do
+    it 'should be able to parse JSON data with a Hash' do
       is_expected.to run.with_params('{"a":"1","b":"2"}').
                          and_return({'a'=>'1', 'b'=>'2'})
     end
 
-    it 'should be able to parse a JSON data with an Array' do
+    it 'should be able to parse JSON data with an Array' do
       is_expected.to run.with_params('["a","b","c"]').
                          and_return(['a', 'b', 'c'])
     end
@@ -29,9 +29,14 @@ describe 'parsejson' do
                          and_return({})
     end
 
-    it 'should be able to parse a JSON data with a mixed structure' do
+    it 'should be able to parse JSON data with a mixed structure' do
       is_expected.to run.with_params('{"a":"1","b":2,"c":{"d":[true,false]}}').
                          and_return({'a' =>'1', 'b' => 2, 'c' => { 'd' => [true, false] } })
+    end
+
+    it 'should be able to parse JSON data with a UTF8 and double byte characters' do
+      is_expected.to run.with_params('{"×":"これ","ý":"記号","です":{"©":["Á","ß"]}}').
+          and_return({'×' =>'これ', 'ý' => '記号', 'です' => { '©' => ['Á', 'ß'] } })
     end
 
     it 'should not return the default value if the data was parsed correctly' do

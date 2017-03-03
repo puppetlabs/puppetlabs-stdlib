@@ -16,4 +16,9 @@ describe 'keys' do
     result = subject.call([{ 'key1' => 'value1', 'key2' => 'value2' }])
     expect(result).to match_array(['key1', 'key2'])
   end
+
+  it 'should run with UTF8 and double byte characters' do
+    result = subject.call([{ 'ҝểү' => '√ẳŀμệ', 'キー' => '値' }])
+    expect(result).to match_array(['ҝểү', 'キー'])
+  end
 end

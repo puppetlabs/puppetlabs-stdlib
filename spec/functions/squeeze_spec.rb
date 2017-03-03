@@ -16,6 +16,12 @@ describe 'squeeze' do
     it { is_expected.to run.with_params('aaaaaaaaabbbbbbbbbbcccccccccc', 'b-c').and_return('aaaaaaaaabc') }
   end
 
+  context 'should run with UTF8 and double byte characters' do
+    it { is_expected.to run.with_params('ậậậậậậậậậậậậậậậậậậậậ').and_return('ậ') }
+    it { is_expected.to run.with_params('語語語語語語語', '語').and_return('語') }
+    it { is_expected.to run.with_params('ậậậậậậậậậậậậậậậậậ語語語語©©©©©', '©').and_return('ậậậậậậậậậậậậậậậậậ語語語語©') }
+  end
+
   context 'when squeezing values in an array' do
     it {
       is_expected.to run \
