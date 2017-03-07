@@ -10,6 +10,8 @@ if Puppet.version.to_f >= 4.5
         X:/foo/bar
         X:\\foo\\bar
         \\\\host\\windows
+        X:/var/ůťƒ8
+        X:/var/ネット
       }.each do |value|
         describe value.inspect do
           let(:params) {{ value: value }}
@@ -30,7 +32,9 @@ if Puppet.version.to_f >= 4.5
           "httds://notquiteright.org",
           "/usr2/username/bin:/usr/local/bin:/usr/bin:.",
           "C;//notright/here",
-          "C:noslashes"
+          "C:noslashes",
+          "C:ネット",
+          "C:ůťƒ8"
         ].each do |value|
           describe value.inspect do
             let(:params) {{ value: value }}
@@ -38,7 +42,6 @@ if Puppet.version.to_f >= 4.5
           end
         end
       end
-
     end
   end
 end

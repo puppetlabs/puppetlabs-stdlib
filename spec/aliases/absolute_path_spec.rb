@@ -15,6 +15,8 @@ if Puppet.version.to_f >= 4.5
         /
         /var/tmp
         /var/opt/../lib/puppet
+        /var/ůťƒ8
+        /var/ネット
       }.each do |value|
         describe value.inspect do
           let(:params) {{ value: value }}
@@ -50,6 +52,8 @@ if Puppet.version.to_f >= 4.5
           etc/puppetlabs/puppet
           opt/puppet/bin
           relative\\windows
+          \var\ůťƒ8
+          \var\ネット
         }.each do |value|
           describe value.inspect do
             let(:params) {{ value: value }}

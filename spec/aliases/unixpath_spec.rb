@@ -7,6 +7,8 @@ if Puppet.version.to_f >= 4.5
         /usr2/username/bin:/usr/local/bin:/usr/bin:.
         /var/tmp
         /Users/helencampbell/workspace/puppetlabs-stdlib
+        /var/ůťƒ8
+        /var/ネット
       }.each do |value|
         describe value.inspect do
           let(:params) {{ value: value }}
@@ -27,7 +29,9 @@ if Puppet.version.to_f >= 4.5
           "C:/whatever",
           "\\var\\tmp",
           "\\Users/hc/wksp/stdlib",
-          "*/Users//nope"
+          "*/Users//nope",
+          "var\ůťƒ8",
+          "var\ネット"
         ].each do |value|
           describe value.inspect do
             let(:params) {{ value: value }}
