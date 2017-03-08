@@ -47,6 +47,24 @@ describe Puppet::Type.type(:file_line) do
           :match  => '^\s*foo=.*$'
       )}.not_to raise_error
   end
+  it 'should accept utf8 characters' do
+    expect {
+      Puppet::Type.type(:file_line).new(
+          :name   => 'ƒồỗ',
+          :path   => my_path,
+          :line   => 'ƒồỗ=ьåя',
+          :match  => '^ьåя=βļάħ$'
+      )}.not_to raise_error
+  end
+  it 'should accept double byte characters' do
+    expect {
+      Puppet::Type.type(:file_line).new(
+          :name   => 'フーバー',
+          :path   => my_path,
+          :line   => 'この=それ',
+          :match  => '^この=ああ$'
+      )}.not_to raise_error
+  end
   it 'should accept posix filenames' do
     file_line[:path] = tmp_path
     expect(file_line[:path]).to eq(tmp_path)
