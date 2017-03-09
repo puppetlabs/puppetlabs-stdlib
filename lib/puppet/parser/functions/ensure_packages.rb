@@ -37,7 +37,9 @@ third argument to the ensure_resource() function.
 
       Puppet::Parser::Functions.function(:ensure_resource)
       packages.each { |package_name|
+      if !findresource("Package[#{package_name}]")
         function_ensure_resource(['package', package_name, defaults ])
+      end
     }
     end
   end
