@@ -69,7 +69,12 @@ describe Puppet::Type.type(:file_line) do
   it 'should default to replace => true' do
     expect(file_line[:replace]).to eq :true
   end
-
+  it 'should default to encoding => UTF-8' do
+    expect(file_line[:encoding]).to eq 'UTF-8'
+  end
+  it 'should accept encoding => iso-8859-1' do
+    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :ensure => :present, :encoding => 'iso-8859-1', :line => 'bar') }.not_to raise_error
+  end
   it "should autorequire the file it manages" do
     catalog = Puppet::Resource::Catalog.new
     file = Puppet::Type.type(:file).new(:name => tmp_path)

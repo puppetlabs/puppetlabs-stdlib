@@ -118,6 +118,22 @@ In this code example, `match` looks for a line beginning with export
 followed by HTTP_PROXY and delete it.  If multiple lines match, an
 error will be raised unless the `multiple => true` parameter is set.
 
+Encoding example:
+
+    file_line { "XScreenSaver":
+      ensure   => present,
+      path     => '/root/XScreenSaver'
+      line     => "*lock: 10:00:00",
+      match    => '^*lock:',
+      encoding => "iso-8859-1",
+    }
+
+Files with special characters that are not valid UTF-8 will give the 
+error message "invalid byte sequence in UTF-8".  In this case, determine
+the correct file encoding and specify the correct encoding using the
+encoding attribute, the value of which needs to be a valid Ruby character
+encoding.
+
 **Autorequires:** If Puppet is managing the file that contains the line being managed, the `file_line` resource autorequires that file.
 
 ##### Parameters
