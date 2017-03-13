@@ -13,6 +13,8 @@ Returns the number of elements in a string, an array or a hash
 
     item = arguments[0]
 
+    function_deprecation([:size, 'This method is going to be deprecated, please use the stdlib length function.'])
+
     if item.is_a?(String)
 
       begin
