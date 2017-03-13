@@ -15,8 +15,7 @@ This converts 'anything' to a boolean. In practise it does the following:
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "any2bool(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, "any2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
 
     # If argument is already Boolean, return it
     if !!arguments[0] == arguments[0]

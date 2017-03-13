@@ -13,8 +13,7 @@ This function behaves the same as ruby's Shellwords.shelljoin() function
   EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "shell_join(): Wrong number of arguments " +
-        "given (#{arguments.size} for 1)") if arguments.size != 1
+    raise(Puppet::ParseError, "shell_join(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     array = arguments[0]
 

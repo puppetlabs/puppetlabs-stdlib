@@ -18,8 +18,7 @@ Would return:
   ) do |arguments|
 
     if (arguments.size != 2) then
-      raise(Puppet::ParseError, "grep(): Wrong number of arguments "+
-        "given #{arguments.size} for 2")
+      raise(Puppet::ParseError, "grep(): Wrong number of arguments given #{arguments.size} for 2")
     end
 
     a = arguments[0]

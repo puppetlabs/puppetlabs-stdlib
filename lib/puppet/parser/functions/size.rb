@@ -8,8 +8,7 @@ Returns the number of elements in a string, an array or a hash
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "size(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, "size(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
 
     item = arguments[0]
 
@@ -26,8 +25,7 @@ Returns the number of elements in a string, an array or a hash
         #
         Float(item)
 
-        raise(Puppet::ParseError, 'size(): Requires either ' +
-          'string, array or hash to work with')
+        raise(Puppet::ParseError, 'size(): Requires either string, array or hash to work with')
 
       rescue ArgumentError
         result = item.size

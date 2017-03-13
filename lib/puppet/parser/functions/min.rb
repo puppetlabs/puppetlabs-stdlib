@@ -5,8 +5,7 @@ module Puppet::Parser::Functions
     EOS
   ) do |args|
 
-    raise(Puppet::ParseError, "min(): Wrong number of arguments " +
-          "need at least one") if args.size == 0
+    raise(Puppet::ParseError, "min(): Wrong number of arguments need at least one") if args.size == 0
 
     # Sometimes we get numbers as numerics and sometimes as strings.
     # We try to compare them as numbers when possible

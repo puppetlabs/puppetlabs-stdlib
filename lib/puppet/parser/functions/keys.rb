@@ -8,8 +8,7 @@ Returns the keys of a hash as an array.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "keys(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, "keys(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
 
     hash = arguments[0]
 

@@ -8,14 +8,12 @@ Strips leading spaces to the right of the string.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "rstrip(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, "rstrip(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
 
     value = arguments[0]
 
     unless value.is_a?(Array) || value.is_a?(String)
-      raise(Puppet::ParseError, 'rstrip(): Requires either ' +
-        'array or string to work with')
+      raise(Puppet::ParseError, 'rstrip(): Requires either array or string to work with')
     end
 
     if value.is_a?(Array)

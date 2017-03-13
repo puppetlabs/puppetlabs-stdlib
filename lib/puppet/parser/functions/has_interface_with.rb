@@ -19,8 +19,7 @@ has_interface_with("lo")                        => true
     EOS
   ) do |args|
 
-    raise(Puppet::ParseError, "has_interface_with(): Wrong number of arguments " +
-          "given (#{args.size} for 1 or 2)") if args.size < 1 or args.size > 2
+    raise(Puppet::ParseError, "has_interface_with(): Wrong number of arguments given (#{args.size} for 1 or 2)") if args.size < 1 or args.size > 2
 
     interfaces = lookupvar('interfaces')
 

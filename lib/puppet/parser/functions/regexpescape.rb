@@ -7,14 +7,12 @@ module Puppet::Parser::Functions
     Requires either a single string or an array as an input.
     EOS
   ) do |arguments| # rubocop:disable Style/ClosingParenthesisIndentation
-    raise(Puppet::ParseError, 'regexpescape(): Wrong number of arguments ' \
-      "given (#{arguments.size} for 1)") if arguments.empty?
+    raise(Puppet::ParseError, "regexpescape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
 
     unless value.is_a?(Array) || value.is_a?(String)
-      raise(Puppet::ParseError, 'regexpescape(): Requires either ' \
-        'array or string to work with')
+      raise(Puppet::ParseError, 'regexpescape(): Requires either array or string to work with')
     end
 
     result = if value.is_a?(Array)

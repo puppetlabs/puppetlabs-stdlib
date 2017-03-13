@@ -14,8 +14,7 @@ Would return: ['a','c']
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "delete_at(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size < 2
+    raise(Puppet::ParseError, "delete_at(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments[0]
 
@@ -26,8 +25,7 @@ Would return: ['a','c']
     index = arguments[1]
 
     if index.is_a?(String) and not index.match(/^\d+$/)
-      raise(Puppet::ParseError, 'delete_at(): You must provide ' +
-        'non-negative numeric index')
+      raise(Puppet::ParseError, 'delete_at(): You must provide non-negative numeric index')
     end
 
     result = array.clone
@@ -36,8 +34,7 @@ Would return: ['a','c']
     index = index.to_i
 
     if index > result.size - 1 # First element is at index 0 is it not?
-      raise(Puppet::ParseError, 'delete_at(): Given index ' +
-        'exceeds size of array given')
+      raise(Puppet::ParseError, 'delete_at(): Given index exceeds size of array given')
     end
 
     result.delete_at(index) # We ignore the element that got deleted ...
