@@ -831,6 +831,10 @@ The return value is an array in which each element is one joined key/value pair.
 
 Returns the keys of a hash as an array. *Type*: rvalue.
 
+#### `length`
+
+Returns the length of a given string, array or hash. To eventually replace the deprecated size() function as can handle the new type functionality introduced in Puppet 4. *Type*: rvalue.
+
 #### `loadyaml`
 
 Loads a YAML file containing an array, string, or hash, and returns the data in the corresponding native data type.
@@ -1083,7 +1087,7 @@ Randomizes the order of a string or array elements. *Type*: rvalue.
 
 #### `size`
 
-Returns the number of elements in a string, an array or a hash. *Type*: rvalue.
+Returns the number of elements in a string, an array or a hash. May get confused around Puppet 4 type values and as such is to be deprecated in the next release and replaced with the new stdlib length function. *Type*: rvalue.
 
 #### `sort`
 
