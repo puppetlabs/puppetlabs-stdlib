@@ -1,3 +1,4 @@
+require 'unicode'
 #
 #  capitalize.rb
 #
@@ -21,9 +22,9 @@ module Puppet::Parser::Functions
 
     if value.is_a?(Array)
       # Numbers in Puppet are often string-encoded which is troublesome ...
-      result = value.collect { |i| i.is_a?(String) ? i.capitalize : i }
+      result = value.collect { |i| i.is_a?(String) ? Unicode::capitalize(i) : i }
     else
-      result = value.capitalize
+      result = Unicode::capitalize(value)
     end
 
     return result
