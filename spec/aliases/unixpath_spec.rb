@@ -9,6 +9,8 @@ if Puppet.version.to_f >= 4.5
         /Users/helencampbell/workspace/puppetlabs-stdlib
         /var/ůťƒ8
         /var/ネット
+        /var//tmp
+        /var/../tmp
       }.each do |value|
         describe value.inspect do
           let(:params) {{ value: value }}
