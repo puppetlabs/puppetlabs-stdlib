@@ -15,6 +15,7 @@ if Puppet.version.to_f >= 4.5
         //host/windows
         /var/tmp
         /var/opt/../lib/puppet
+        /var/opt//lib/puppet
       }.each do |value|
         describe value.inspect do
           let(:params) {{ value: value }}
