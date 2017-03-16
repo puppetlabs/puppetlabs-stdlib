@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-if Puppet.version.to_f >= 4.5
+if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
   describe 'test::ipv6', type: :class do
     describe 'accepts ipv6 addresses' do
       [
