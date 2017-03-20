@@ -1,3 +1,26 @@
+## Supported Release 4.16.0
+### Summary
+
+This release sees a massive update to all unit tests to test UTF8 characters. There are also multiple cleanups in preparation for internationalization. Alongside this, improvements to ipv6 support, a new length function compatible with Puppet 4, and an update to path types. Also contains multiple bug fixes around functionality and tests.
+
+#### Features
+- Addition of coverage in all unit tests for functions, data and resource types for UTF8 for i18n.
+- All strings within the readme and functions that are split over two lines have been combined in preparation for i18n parser/decorator.
+- Improvement on the ipv6 support for type - Improves regex to catch some valid (but lesser known) ipv6 strings, mostly those which are a mix of ipv6 strings and embedded ipv6 numbers.
+- Adds a new parameter `encoding` to allow non UTF-8 files to specify a file encoding. This prevents receiving the error message "invalid byte sequence in UTF-8" when special characters that are not UTF-8 encoded appear in the input stream, such as the copyright symbol.
+- Addition of the new length function. Returns the length of a given string, array or hash. To eventually replace the deprecated size() function as can handle the new type functionality introduced in Puppet 4.
+- Permit double slash in absolute/Unix path types.
+
+#### Bugfixes
+- Fix unsupported data type error with rspec-puppet master.
+- Now allows test module metadata.json to be read by Puppet.
+- Fix acceptance test failure "Hiera is not a class".
+- Removal of unsupported platforms and future parser setting in acceptance tests.
+- Regex for tuple checking has been loosened.
+- Ensure_packages function - Now only tries to apply the resource if not defined.
+- (MODULES-4528) Use versioncmp to check Puppet version for 4.10.x compat.
+- Adds comments to warn for UTF8 incompatibility of the functions that may not be compatible with UTF8 with Ruby < 2.4.0.
+
 ## Supported Release 4.15.0
 ### Summary
 
