@@ -1118,7 +1118,7 @@ Returns the number of elements in a string, an array or a hash. May get confused
 
 #### `sort`
 
-Sorts strings and arrays lexically. *Type*: rvalue.
+Sorts strings, arrays and hashes (recursively) lexically. It cannot sort hashes with keys of different types since they are not comparable. *Type*: rvalue.
 
 *Please note:* This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible. To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 
