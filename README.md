@@ -301,6 +301,24 @@ Unacceptable input example:
 ../relative_path
 ```
 
+#### `Stdlib::Ensure::Service`
+
+Matches acceptable ensure values for service resources.
+
+Acceptable input examples:    
+
+```shell
+stopped
+running
+```
+
+Unacceptable input example:   
+
+```shell
+true
+false
+```
+
 #### `Stdlib::Httpsurl`
 
 Matches HTTPS URLs.
