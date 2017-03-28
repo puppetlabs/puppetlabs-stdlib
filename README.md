@@ -1509,6 +1509,10 @@ For example, `reject(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['bbb','ccc']
 
 Reverses the order of a string or array.
 
+#### `stdlib::round`
+
+ Rounds a number to the nearest integer
+
 *Type*: rvalue.
 
 #### `rstrip`
