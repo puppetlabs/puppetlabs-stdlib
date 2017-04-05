@@ -2,12 +2,18 @@
 
 #### Table of Contents
 
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with stdlib](#setup)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+1. [Module Description - What the module does and why it is useful](#module-description)
+1. [Setup - The basics of getting started with stdlib](#setup)
+1. [Usage - Configuration options and additional functionality](#usage)
+1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+    1. [Classes](#classes)
+    1. [Defined Types](#defined-types)
+    1. [Data Types](#data-types)
+    1. [Facts](#facts)
+    1. [Functions](#functions)
+1. [Limitations - OS compatibility, etc.](#limitations)
+1. [Development - Guide for contributing to the module](#development)
+1. [Contributors](#contributors)
 
 
 ## Module Description
@@ -323,7 +329,7 @@ Unacceptable input example:
 
 ### Facts
 
-####`package_provider`
+#### `package_provider`
 
 Returns the default provider Puppet uses to manage packages on this system.
 
