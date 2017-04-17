@@ -1389,6 +1389,33 @@ Converts a number or a string representation of a number into a true Boolean. Ze
 
 *Type*: rvalue.
 
+#### `parents`
+
+Returns an array containing the parent directories of a given absolute pathname. Very useful when using the file resource to avoid the Puppet error `Cannot create /xxx/yyy; parent directory /xxx does not exist`. *Type*: rvalue.
+
+Sample usage:
+~~~
+
+file {parents($install_dir):
+  ensure => directory,
+} ->
+
+file {$install_dir:
+  ensure => directory,
+}
+
+~~~
+
+Condensed form:
+~~~
+
+file {[ parents($install_dir), $install_dir ]:
+  ensure => directory,
+}
+
+~~~
+
+
 #### `parsejson`
 
 Converts a string of JSON into the correct Puppet structure (as a hash, array, string, integer, or a combination of such).
