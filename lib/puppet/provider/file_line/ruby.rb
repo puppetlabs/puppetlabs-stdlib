@@ -40,7 +40,12 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     #  file; for now assuming that this type is only used on
     #  small-ish config files that can fit into memory without
     #  too much trouble.
-    @lines ||= File.readlines(resource[:path], :encoding => resource[:encoding])
+    begin
+      @lines ||= File.readlines(resource[:path], :encoding => resource[:encoding])
+    rescue TypeError => e
+      # Ruby 1.8 doesn't support open_args
+      @lines ||= File.readlines(resource[:path])
+    end
   end
 
   def match_regex
