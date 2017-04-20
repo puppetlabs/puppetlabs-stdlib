@@ -375,6 +375,23 @@ Determines the root home directory, which depends on your operating system. Gene
 
 Returns the default provider Puppet uses to manage services on this system
 
+* `http_conn_validator`: This resource ensures a service (remote or not) is actually up and running before moving onward with the catalog application. Puppet will block until an http connection can be made. If no connection are possible after a certain amount of time this resource will fail.
+
+  ```
+  http_conn_validator { 'mysql' :
+    server   => '192.168.0.42',
+    port     => '80',
+    test_url => '/',
+  }
+  ```
+
+  * `server` : An IP or array of IP address of the server to check. Required.
+  * `port` : The port one want to ensure a process is listening on. Required.
+  * `use_ssl` : Whether the connection will be attempted using https. Optional. Default to false.
+  * `test_url' : The URL path to test. Optional. Default to '/'.
+  * `timeout` : Number of second before timint out. Optional.
+
+
 ### Functions
 
 #### `abs`
