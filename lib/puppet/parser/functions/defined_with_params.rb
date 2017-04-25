@@ -24,7 +24,25 @@ ENDOFDOC
     params = {}
   end
   ret = false
-  if resource = findresource(reference.to_s)
+
+  if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
+    # Workaround for PE-20308
+    if reference.is_a?(String)
+      type_name, title = Puppet::Resource.type_and_title(reference, nil)
+      type = Puppet::Type.type(type_name)
+    elsif reference.is_a?(Puppet::Resource)
+      type = reference.resource_type
+      title = reference.title
+    else
+      raise(ArgumentError, "Reference is not understood: '#{reference.class}'")
+    end
+    #end workaround
+  else
+    type = reference.to_s
+    title = nil
+  end
+
+  if resource = findresource(type, title)
     matches = params.collect do |key, value|
       # eql? avoids bugs caused by monkeypatching in puppet
       resource_is_undef = resource[key].eql?(:undef) || resource[key].nil?
