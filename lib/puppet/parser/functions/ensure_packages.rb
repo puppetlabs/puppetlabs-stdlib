@@ -36,6 +36,7 @@ third argument to the ensure_resource() function.
 
       Puppet::Parser::Functions.function(:ensure_resource)
       packages.each { |package_name|
+      raise(Puppet::ParseError, 'ensure_packages(): Empty String provided for package name') if package_name.length == 0
       if !findresource("Package[#{package_name}]")
         function_ensure_resource(['package', package_name, defaults ])
       end
