@@ -45,7 +45,7 @@ describe 'defined_with_params' do
     context 'reference' do
       it { is_expected.to run.with_params(Puppet::Resource.new('User[dan]'), {}).and_return(true) }
     end
-    if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
+    if Puppet::Util::Package.versioncmp(Puppet.version, '4.6.0') >= 0
       context 'array' do
         it 'fails' do
           expect {
