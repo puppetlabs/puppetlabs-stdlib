@@ -37,4 +37,22 @@ describe 'defined_with_params' do
     it { is_expected.to run.with_params('File[/tmp/a]', {}).and_return(true) }
     it { is_expected.to run.with_params('File[/tmp/a]', { 'ensure' => 'present', 'owner' => :undef }).and_return(true) }
   end
+
+  describe 'when the reference is a' do
+    let :pre_condition do
+      'user { "dan": }'
+    end
+    context 'reference' do
+      it { is_expected.to run.with_params(Puppet::Resource.new('User[dan]'), {}).and_return(true) }
+    end
+    if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
+      context 'array' do
+        it 'fails' do
+          expect {
+            subject.call([['User[dan]'], {}])
+          }.to raise_error ArgumentError, /not understood: 'Array'/
+        end
+      end
+    end
+  end
 end
