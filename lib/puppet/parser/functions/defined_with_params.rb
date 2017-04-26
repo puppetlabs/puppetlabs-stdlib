@@ -25,7 +25,7 @@ ENDOFDOC
   end
   ret = false
 
-  if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
+  if Puppet::Util::Package.versioncmp(Puppet.version, '4.6.0') >= 0
     # Workaround for PE-20308
     if reference.is_a?(String)
       type_name, title = Puppet::Resource.type_and_title(reference, nil)
