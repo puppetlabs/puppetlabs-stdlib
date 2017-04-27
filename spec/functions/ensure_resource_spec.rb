@@ -38,6 +38,13 @@ describe 'ensure_resource' do
       it { expect(lambda { catalogue }).to contain_user('username1').with_ensure('present') }
       it { expect(lambda { catalogue }).to contain_user('username1').without_gid }
     end
+
+    describe 'after running ensure_resource("test::deftype", "foo", {})' do
+      before { subject.call(['test::deftype', 'foo', {}]) }
+
+      # this lambda is required due to strangeness within rspec-puppet's expectation handling
+      it { expect(lambda { catalogue }).to contain_test__deftype('foo').without_ensure }
+    end
   end
 
   context 'given a catalog with UTF8 chars' do
@@ -112,6 +119,17 @@ describe 'ensure_resource' do
         .with_params('User', 'username1', { 'ensure' => 'present', 'shell' => true }) \
         .and_raise_error(Puppet::Resource::Catalog::DuplicateResourceError, /User\[username1\] is already declared/)
       }
+    end
+  end
+
+  context 'given a catalog with "test::deftype { foo: }"' do
+    let(:pre_condition) { 'test::deftype { "foo": }' }
+
+    describe 'after running ensure_resource("test::deftype", "foo", {})' do
+      before { subject.call(['test::deftype', 'foo', {}]) }
+
+      # this lambda is required due to strangeness within rspec-puppet's expectation handling
+      it { expect(lambda { catalogue }).to contain_test__deftype('foo').without_ensure }
     end
   end
 end
