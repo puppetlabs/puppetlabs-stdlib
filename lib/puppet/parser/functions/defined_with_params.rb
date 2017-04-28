@@ -29,7 +29,7 @@ ENDOFDOC
     # Workaround for PE-20308
     if reference.is_a?(String)
       type_name, title = Puppet::Resource.type_and_title(reference, nil)
-      type = Puppet::Type.type(type_name)
+      type = Puppet::Pops::Evaluator::Runtime3ResourceSupport.find_resource_type_or_class(find_global_scope, type_name)
     elsif reference.is_a?(Puppet::Resource)
       type = reference.resource_type
       title = reference.title
