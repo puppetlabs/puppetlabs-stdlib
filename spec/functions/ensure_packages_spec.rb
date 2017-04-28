@@ -34,6 +34,14 @@ describe 'ensure_packages' do
     end
   end
 
+  context 'given an empty packages array' do
+    let(:pre_condition) { 'notify { "hi": } -> Package <| |>; $somearray = ["vim",""]; ensure_packages($somearray)' }
+
+    describe 'after running ensure_package(["vim", ""])' do
+      it { expect { catalogue }.to raise_error(Puppet::ParseError, /Empty String provided/) }
+    end
+  end
+
   context 'given hash of packages' do
     before { subject.call([{"foo" => { "provider" => "rpm" }, "bar" => { "provider" => "gem" }}, { "ensure" => "present"}]) }
     before { subject.call([{"パッケージ" => { "ensure" => "absent"}}]) }
