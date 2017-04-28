@@ -1,3 +1,15 @@
+## Supported Release 4.17.0
+### Summary
+This release adds a new function `glob()` for expanding file lists. Also works around an issue that appeared in puppet 4.6.0 involving types being declared multiple times.
+
+### Added
+- `glob()` function
+
+### Fixed
+- Occasional duplicate type definitions when using `defined_with_params()`
+- `file_line` encoding issue on ruby 1.8 (unsupported)
+- Huge readme refresh
+
 ## Supported Release 4.16.0
 ### Summary
 
