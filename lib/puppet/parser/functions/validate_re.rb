@@ -45,6 +45,8 @@ module Puppet::Parser::Functions
     raise Puppet::ParseError, msg unless [args[1]].flatten.any? do |re_str|
       args[0] =~ Regexp.compile(re_str)
     end
+    # If we got this far it's all fine
+    true
 
   end
 end
