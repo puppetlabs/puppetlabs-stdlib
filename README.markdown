@@ -63,12 +63,12 @@ node default {
 
 ## Reference
 
-* [Public classes][]
-* [Private classes][]
-* [Defined types][]
-* [Data types][]
-* [Facts][]
-* [Functions][]
+* [Public classes](#public-classes)
+* [Private classes](#private-classes)
+* [Defined types](#defined-types)
+* [Data types](#data-types)
+* [Facts](#facts)
+* [Functions](#functions)
 
 ### Classes
 
@@ -791,7 +791,7 @@ Returns the `dirname` of a path. For example, `dirname('/path/to/a/file.ext')` r
 Returns the Unix version of the given string. Very useful when using a File resource with a cross-platform template.
 
 ```puppet
-file{$config_file:
+file { $config_file:
   ensure  => file,
   content => dos2unix(template('my_module/settings.conf.erb')),
 }
@@ -1799,7 +1799,7 @@ Returns the DOS version of a given string. Useful when using a File resource wit
 *Type*: rvalue.
 
 ```puppet
-file{$config_file:
+file { $config_file:
   ensure  => file,
   content => unix2dos(template('my_module/settings.conf.erb')),
 }
