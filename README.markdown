@@ -778,7 +778,7 @@ $value = dig44($data, ['a', 'b', 'c', 'd'], 'not_found')
 1. **$data** The data structure we are working with.
 2. **['a', 'b', 2]** The path array.
 3. **'not_found'** The default value. It will be returned if nothing is found.
-   (optional, defaults to *`undef`*)
+   (optional, defaults to `undef`)
 
 #### `dirname`
 
