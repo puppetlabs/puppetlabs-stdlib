@@ -2,6 +2,8 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   def exists?
     if resource[:replace].to_s != 'true' and count_matches(match_regex) > 0
       true
+    elsif resource[:replace].to_s != 'false' and count_matches(match_regex) > 1 and resource[:multiple].to_s != 'false'
+      false
     else
       lines.find do |line|
         if resource[:ensure].to_s == 'absent' and resource[:match_for_absence].to_s == 'true'
