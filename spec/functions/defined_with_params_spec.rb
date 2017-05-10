@@ -55,4 +55,14 @@ describe 'defined_with_params' do
       end
     end
   end
+
+  describe 'when passed a defined type' do
+    let :pre_condition do
+      'test::deftype { "foo": }'
+    end
+    it { is_expected.to run.with_params('Test::Deftype[foo]', {}).and_return(true) }
+    it { is_expected.to run.with_params('Test::Deftype[bar]', {}).and_return(false) }
+    it { is_expected.to run.with_params(Puppet::Resource.new('Test::Deftype[foo]'), {}).and_return(true) }
+    it { is_expected.to run.with_params(Puppet::Resource.new('Test::Deftype[bar]'), {}).and_return(false) }
+  end
 end
