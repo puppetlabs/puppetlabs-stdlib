@@ -26,10 +26,6 @@ describe 'length' do
   it { is_expected.to run.with_params('āβćđ').and_return(4) }
 
   context 'when using a class extending String' do
-    it 'should call its size method' do
-      value = AlsoString.new('asdfghjkl')
-      value.expects(:length).returns('foo')
-      expect(subject).to run.with_params(value).and_return('foo')
-    end
+    it { is_expected.to run.with_params(AlsoString.new('asdfghjkl')).and_return(9) }
   end
 end
