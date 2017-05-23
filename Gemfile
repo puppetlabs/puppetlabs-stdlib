@@ -61,6 +61,7 @@ gem 'puppet', *location_for(ENV['PUPPET_GEM_VERSION'])
 gem 'facter', *location_for(ENV['FACTER_GEM_VERSION']) if ENV['FACTER_GEM_VERSION']
 gem 'hiera', *location_for(ENV['HIERA_GEM_VERSION']) if ENV['HIERA_GEM_VERSION']
 
+gem 'unicode'
 
 # Evaluate Gemfile.local if it exists
 if File.exists? "#{__FILE__}.local"

@@ -7,9 +7,13 @@ describe 'capitalize' do
   it { is_expected.to run.with_params("one").and_return("One") }
   it { is_expected.to run.with_params("one two").and_return("One two") }
   it { is_expected.to run.with_params("ONE TWO").and_return("One two") }
+  it { is_expected.to run.with_params("čǻρίţāŀіşè").and_return("Čǻρίţāŀіşè") }
+  it { is_expected.to run.with_params("čǻρίţāŀіşè ŧĥĩš").and_return("Čǻρίţāŀіşè ŧĥĩš") }
+  it { is_expected.to run.with_params("こねこ").and_return("こねこ") }
 
   it { is_expected.to run.with_params(AlsoString.new("one")).and_return("One") }
   it { is_expected.to run.with_params([]).and_return([]) }
   it { is_expected.to run.with_params(["one", "two"]).and_return(["One", "Two"]) }
+  it { is_expected.to run.with_params(["čǻρίţāŀіşè", "ŧĥĩš"]).and_return(["Čǻρίţāŀіşè", "Ŧĥĩš"]) }
   it { is_expected.to run.with_params(["one", 1, "two"]).and_return(["One", 1, "Two"]) }
 end
