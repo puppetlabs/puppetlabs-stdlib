@@ -145,89 +145,89 @@ Files with special characters that are not valid UTF-8 give the error message "I
 
 **Autorequires:** If Puppet is managing the file that contains the line being managed, the `file_line` resource autorequires that file.
 
-##### Parameters
+**Parameters**
 
 All parameters are optional, unless otherwise noted.
 
-* `after`
+##### `after`
 
-  Specifies the line after which Puppet adds any new lines using a regular expression. (Existing lines are added in place.)
+Specifies the line after which Puppet adds any new lines using a regular expression. (Existing lines are added in place.)
 
-  Values: String containing a regex.
-  
-  Default value: `undef`.
-  
-* `encoding`
-  
-  Specifies the correct file encoding.
+Values: String containing a regex.
 
-  Values: String specifying a valid Ruby character encoding.
-  
-  Default: 'UTF-8'.
+Default value: `undef`.
 
-* `ensure`: Specifies whether the resource is present.
+##### `encoding`
 
-  Values: 'present', 'absent'.
-  
-  Default value: 'present'.
-  
-* `line`
+Specifies the correct file encoding.
 
-  **Required.**
-  
-  Sets the line to be added to the file located by the `path` parameter.
-    
-  Values: String.
-  
-* `match`
+Values: String specifying a valid Ruby character encoding.
 
-  Specifies a regular expression to compare against existing lines in the file; if a match is found, it is replaced rather than adding a new line. A regex comparison is performed against the line value, and if it does not match, an exception is raised.
-  
-  Values: String containing a regex.
-  
-  Default value: `undef`.
-  
+Default: 'UTF-8'.
 
-* `match_for_absence`
+##### `ensure`: Specifies whether the resource is present.
 
-  Specifies whether a match should be applied when `ensure => absent`. If set to `true` and match is set, the line that matches is deleted. If set to `false` (the default), match is ignored when `ensure => absent` and the value of `line` is used instead. Ignored when `ensure => present`.
-  
-  Boolean.
-  
-  Default value: `false`.
-  
-* `multiple`
+Values: 'present', 'absent'.
 
-  Specifies whether `match` and `after` can change multiple lines. If set to `false`, an exception is raised if more than one line matches.
-  
-  Values: `true`, `false`.
-  
-  Default value: `false`.
-  
-  
-* `name`
+Default value: 'present'.
 
-  Specifies the name to use as the identity of the resource. If you want the resource namevar to differ from the supplied `title` of the resource, specify it with `name`. 
-  
-  Values: String.
-  
-  Default value: The value of the title.
-  
-* `path`
+##### `line`
 
-  **Required.**
-  
-  Specifies the file in which Puppet ensures the line specified by `line`. 
-  
-  Value: String specifying an absolute path to the file.
-  
-* `replace`
+**Required.**
 
-  Specifies whether the resource overwrites an existing line that matches the `match` parameter. If set to `false` and a line is found matching the `match` parameter, the line is not placed in the file.
+Sets the line to be added to the file located by the `path` parameter.
+
+Values: String.
   
-  Boolean.
-  
-  Default value: `true`.
+##### `match`
+
+Specifies a regular expression to compare against existing lines in the file; if a match is found, it is replaced rather than adding a new line. A regex comparison is performed against the line value, and if it does not match, an exception is raised.
+
+Values: String containing a regex.
+
+Default value: `undef`.
+
+
+##### `match_for_absence`
+
+Specifies whether a match should be applied when `ensure => absent`. If set to `true` and match is set, the line that matches is deleted. If set to `false` (the default), match is ignored when `ensure => absent` and the value of `line` is used instead. Ignored when `ensure => present`.
+
+Boolean.
+
+Default value: `false`.
+
+##### `multiple`
+
+Specifies whether `match` and `after` can change multiple lines. If set to `false`, an exception is raised if more than one line matches.
+
+Values: `true`, `false`.
+
+Default value: `false`.
+
+
+##### `name`
+
+Specifies the name to use as the identity of the resource. If you want the resource namevar to differ from the supplied `title` of the resource, specify it with `name`. 
+
+Values: String.
+
+Default value: The value of the title.
+
+##### `path`
+
+**Required.**
+
+Specifies the file in which Puppet ensures the line specified by `line`. 
+
+Value: String specifying an absolute path to the file.
+
+##### `replace`
+
+Specifies whether the resource overwrites an existing line that matches the `match` parameter. If set to `false` and a line is found matching the `match` parameter, the line is not placed in the file.
+
+Boolean.
+
+Default value: `true`.
 
 ### Data types
 
@@ -895,7 +895,7 @@ userlist:
 ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
 ```
 
-### `flatten`
+#### `flatten`
 
 Flattens deeply nested arrays and returns a single flat array as a result.
 
