@@ -20,7 +20,7 @@ module Puppet::Parser::Functions
   ) do |arguments|
 
     unless arguments.size == 1 or arguments.size == 3
-      raise(Puppet::ParseError, _("bool2str(): Wrong number of arguments given (#{arguments.size} for 3)"))
+      raise(Puppet::ParseError, _("bool2str(): Wrong number of arguments given (%{num_args} for 3)") % { num_args: arguments.size })
     end
 
     value = arguments[0]

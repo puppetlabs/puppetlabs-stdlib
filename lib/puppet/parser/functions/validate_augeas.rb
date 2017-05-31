@@ -35,10 +35,10 @@ module Puppet::Parser::Functions
     end
 
     if (args.length < 2) or (args.length > 4) then
-      raise Puppet::ParseError, (_("validate_augeas(): wrong number of arguments (#{args.length}; must be 2, 3, or 4)"))
+      raise Puppet::ParseError, (_("validate_augeas(): wrong number of arguments (%{num_args}; must be 2, 3, or 4)") % { num_args: args.length })
     end
 
-    msg = args[3] || _("validate_augeas(): Failed to validate content against #{args[1].inspect}")
+    msg = args[3] || _("validate_augeas(): Failed to validate content against %{val}") % { val: args[1].inspect }
 
     require 'augeas'
     aug = Augeas::open(nil, nil, Augeas::NO_MODL_AUTOLOAD)
@@ -64,7 +64,7 @@ module Puppet::Parser::Functions
 
       unless aug.match("/augeas/files#{tmpfile.path}//error").empty?
         error = aug.get("/augeas/files#{tmpfile.path}//error/message")
-        msg += _(" with error: #{error}")
+        msg += _(" with error: %{error}") % { error: error }
         raise Puppet::ParseError, (msg)
       end
 
@@ -72,7 +72,7 @@ module Puppet::Parser::Functions
       tests = args[2] || []
       aug.defvar('file', "/files#{tmpfile.path}")
       tests.each do |t|
-        msg += _(" testing path #{t}")
+        msg += _(" testing path %{test}") % { test: t }
         raise Puppet::ParseError, (msg) unless aug.match(t).empty?
       end
     ensure

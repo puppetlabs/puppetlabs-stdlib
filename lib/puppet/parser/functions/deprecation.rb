@@ -4,13 +4,13 @@ module Puppet::Parser::Functions
 EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, _("deprecation: Wrong number of arguments given (#{arguments.size} for 2)")) unless arguments.size == 2
+    raise(Puppet::ParseError, _("deprecation: Wrong number of arguments given (%{num_args} for 2)") % { num_args: arguments.size }) unless arguments.size == 2
 
     key = arguments[0]
     message = arguments[1]
 
     if ENV['STDLIB_LOG_DEPRECATIONS'] == "true"
-      warning(_("deprecation. #{key}. #{message}"))
+      warning(_("deprecation. %{key}. %{message}") % { key: key, message: message })
     end
   end
 end

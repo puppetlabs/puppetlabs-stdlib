@@ -11,12 +11,12 @@ Would return: {'a'=>'A','c'=>'C','B'=>'D'}
       EOS
     ) do |arguments|
 
-    raise(Puppet::ParseError, _("delete_values(): Wrong number of arguments given (#{arguments.size} of 2)")) if arguments.size != 2
+    raise(Puppet::ParseError, _("delete_values(): Wrong number of arguments given (%{num_args} of 2)") % { num_args: arguments.size, }) if arguments.size != 2
 
     hash, item = arguments
 
     if not hash.is_a?(Hash)
-      raise(TypeError, _("delete_values(): First argument must be a Hash. Given an argument of class #{hash.class}."))
+      raise(TypeError, _("delete_values(): First argument must be a Hash. Given an argument of class %{arg_class}.") % { arg_class: hash.class, })
     end
     hash.dup.delete_if { |key, val| item == val }
   end

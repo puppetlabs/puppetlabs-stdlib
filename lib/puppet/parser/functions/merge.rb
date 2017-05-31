@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
     ENDHEREDOC
 
     if args.length < 2
-      raise Puppet::ParseError, (_("merge(): wrong number of arguments (#{args.length}; must be at least 2)"))
+      raise Puppet::ParseError, (_("merge(): wrong number of arguments (%{num_args}; must be at least 2)") % { num_args: args.length, })
     end
 
     # The hash we accumulate into
@@ -24,7 +24,7 @@ module Puppet::Parser::Functions
     args.each do |arg|
       next if arg.is_a? String and arg.empty? # empty string is synonym for puppet's undef
       unless arg.is_a?(Hash)
-        raise Puppet::ParseError, _("merge: unexpected argument type #{arg.class}, only expects hash arguments")
+        raise Puppet::ParseError, _("merge: unexpected argument type %{arg_class}, only expects hash arguments") % { arg_class: arg.class, }
       end
       accumulator.merge!(arg)
     end

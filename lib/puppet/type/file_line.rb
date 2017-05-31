@@ -120,7 +120,7 @@ Puppet::Type.newtype(:file_line) do
     desc _('The file Puppet will ensure contains the line specified by the line parameter.')
     validate do |value|
       unless Puppet::Util.absolute_path?(value)
-        raise Puppet::Error, _("File paths must be fully qualified, not '#{value}'")
+        raise Puppet::Error, _("File paths must be fully qualified, not '%{value}'") % { value: value, }
       end
     end
   end

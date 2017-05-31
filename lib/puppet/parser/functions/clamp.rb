@@ -16,9 +16,9 @@ module Puppet::Parser::Functions
     args.each do |value|
       case [value.class]
         when [String]
-          raise(Puppet::ParseError, _("clamp(): Required explicit numeric (#{value}:String)")) unless value =~ /^\d+$/
+          raise(Puppet::ParseError, _("clamp(): Required explicit numeric (%{value}:String)") % { value: value, }) unless value =~ /^\d+$/
         when [Hash]
-          raise(Puppet::ParseError, _("clamp(): The Hash type is not allowed (#{value})"))
+          raise(Puppet::ParseError, _("clamp(): The Hash type is not allowed (%{value})") % { value: value, })
       end
     end
 

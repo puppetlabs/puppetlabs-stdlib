@@ -40,7 +40,7 @@ module Puppet::Parser::Functions
     elsif args.length == 1
       fqdn = args[0]
     else
-      raise(ArgumentError, _("fqdn_uuid: Too many arguments given (#{args.length})"))
+      raise(ArgumentError, _("fqdn_uuid: Too many arguments given (%{num_args})") % { num_args: args.length, })
     end
 
     # Code lovingly taken from

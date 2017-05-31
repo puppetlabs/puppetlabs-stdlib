@@ -15,7 +15,7 @@ Puppet::Parser::Functions.newfunction(
   result will be the same every time unless its hostname changes.) Adding
   a SEED can be useful if you need more than one unrelated rotation.")) do |args|
 
-    raise(Puppet::ParseError, _("fqdn_rotate(): Wrong number of arguments given (#{args.size} for 1)")) if args.size < 1
+    raise(Puppet::ParseError, _("fqdn_rotate(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: args.size }) if args.size < 1
 
     value = args.shift
     require 'digest/md5'

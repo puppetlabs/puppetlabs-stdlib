@@ -8,7 +8,7 @@ module Puppet::Parser::Functions
       raise(Puppet::ParseError, _("dirname(): No arguments given"))
     end
     if arguments.size > 1 then
-      raise(Puppet::ParseError, _("dirname(): Too many arguments given (#{arguments.size})"))
+      raise(Puppet::ParseError, _("dirname(): Too many arguments given (%{num_args})") % { num_args: arguments.size })
     end
     unless arguments[0].is_a?(String)
       raise(Puppet::ParseError, _('dirname(): Requires string as argument'))

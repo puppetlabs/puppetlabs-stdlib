@@ -8,7 +8,7 @@ Returns true if the string passed to this function is a valid email address.
     EOS
              ) do |arguments|
     if arguments.size != 1
-      raise(Puppet::ParseError, _("is_email_address(): Wrong number of arguments given #{arguments.size} for 1"))
+      raise(Puppet::ParseError, _("is_email_address(): Wrong number of arguments given %{num_args} for 1") % { num_args: arguments.size, })
     end
 
     # Taken from http://emailregex.com/ (simpler regex)

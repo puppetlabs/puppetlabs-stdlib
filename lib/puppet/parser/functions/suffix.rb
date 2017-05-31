@@ -16,19 +16,19 @@ Will return: ['ap','bp','cp']
   ) do |arguments|
 
     # Technically we support two arguments but only first is mandatory ...
-    raise(Puppet::ParseError, _("suffix(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size < 1
+    raise(Puppet::ParseError, _("suffix(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size }) if arguments.size < 1
 
     enumerable = arguments[0]
 
     unless enumerable.is_a?(Array) or enumerable.is_a?(Hash)
-      raise Puppet::ParseError, _("suffix(): expected first argument to be an Array or a Hash, got #{enumerable.inspect}")
+      raise Puppet::ParseError, _("suffix(): expected first argument to be an Array or a Hash, got %{enum_inspect}") % { enum_inspect: enumerable.inspect }
     end
 
     suffix = arguments[1] if arguments[1]
 
     if suffix
       unless suffix.is_a? String
-        raise Puppet::ParseError, _("suffix(): expected second argument to be a String, got #{suffix.inspect}")
+        raise Puppet::ParseError, _("suffix(): expected second argument to be a String, got %{suffix_inspect}") % { suffix_inspect: suffix.inspect }
       end
     end
 

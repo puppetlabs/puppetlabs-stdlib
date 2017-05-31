@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
       if allow_empty_metadata
         metadata = {}
       else
-        raise(Puppet::ParseError, _("load_module_metadata(): No metadata.json file for module #{mod}"))
+        raise(Puppet::ParseError, _("load_module_metadata(): No metadata.json file for module %{mod}") % { mod: mod, })
       end
     end
 

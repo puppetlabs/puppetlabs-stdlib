@@ -18,7 +18,7 @@ Will return something like: 1311972653
     time_zone = arguments[0] if arguments[0]
 
     if (arguments.size != 0) and (arguments.size != 1) then
-      raise(Puppet::ParseError, _("time(): Wrong number of arguments given #{arguments.size} for 0 or 1"))
+      raise(Puppet::ParseError, _("time(): Wrong number of arguments given (%{num_args} for 0 or 1)") % { num_args: arguments.size, })
     end
 
     time = Time.new

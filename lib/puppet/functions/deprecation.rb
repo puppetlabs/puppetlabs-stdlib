@@ -12,14 +12,14 @@ Puppet::Functions.create_function(:deprecation) do
       stacktrace = Puppet::Pops::PuppetStack.stacktrace()
       file = stacktrace[0]
       line = stacktrace[1]
-      message = _("#{message} at #{file}:#{line}")
+      message = _("%{message} at %{file}:%{line}") % { message: message, file: file, line: line }
     end
     # depending on configuration setting of strict
     case Puppet.settings[:strict]
     when :off
       # do nothing
     when :error
-      fail(_("deprecation. #{key}. #{message}"))
+      fail(_("deprecation. %{key}. %{message}") % { key: key, message: message })
     else
       unless ENV['STDLIB_LOG_DEPRECATIONS'] == 'false'
         Puppet.deprecation_warning(message, key)

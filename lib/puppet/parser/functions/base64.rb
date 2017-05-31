@@ -21,7 +21,7 @@ module Puppet::Parser::Functions
 
     require 'base64'
 
-    raise Puppet::ParseError, (_("base64(): Wrong number of arguments (#{args.length}; must be >= 2)")) unless args.length >= 2
+    raise Puppet::ParseError, (_("base64(): Wrong number of arguments (%{num_args}; must be >= 2)") % { num_args: args.length }) unless args.length >= 2
 
     actions = ['encode','decode']
 

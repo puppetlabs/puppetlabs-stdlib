@@ -25,7 +25,7 @@ For example:
         end
       end
     else
-      warning(_("Can't load '#{args[0]}' File does not exist!"))
+      warning(_("Can't load '%{file}' File does not exist!") % { file: args[0], })
       args[1]
     end
 

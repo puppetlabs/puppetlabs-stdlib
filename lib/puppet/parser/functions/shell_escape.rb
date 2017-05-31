@@ -15,7 +15,7 @@ This function behaves the same as ruby's Shellwords.shellescape() function.
   EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, _("shell_escape(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size != 1
+    raise(Puppet::ParseError, _("shell_escape(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size }) if arguments.size != 1
 
     # explicit conversion to string is required for ruby 1.9
     string = arguments[0].to_s

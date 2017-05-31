@@ -29,7 +29,7 @@ Would return ['a','c','d'].
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, _("values_at(): Wrong number of arguments given (#{arguments.size} for 2)")) if arguments.size < 2
+    raise(Puppet::ParseError, _("values_at(): Wrong number of arguments given (%{num_args} for 2)") % { num_args: arguments.size, }) if arguments.size < 2
 
     array = arguments.shift
 

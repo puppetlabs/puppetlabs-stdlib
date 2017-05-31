@@ -51,6 +51,6 @@ ENDOFDOC
     end
     ret = params.empty? || !matches.include?(false)
   end
-  Puppet.debug(_("Resource #{reference} was not determined to be defined"))
+  Puppet.debug(_("Resource %{reference} was not determined to be defined") % { reference: reference, })
   ret
 end

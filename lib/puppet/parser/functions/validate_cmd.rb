@@ -25,10 +25,10 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
     if (args.length < 2) or (args.length > 3) then
-      raise Puppet::ParseError, (_("validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)"))
+      raise Puppet::ParseError, (_("validate_cmd(): wrong number of arguments (%{num_args}; must be 2 or 3)") % { num_args: args.length })
     end
 
-    msg = args[2] || _("validate_cmd(): failed to validate content with command #{args[1].inspect}")
+    msg = args[2] || _("validate_cmd(): failed to validate content with command %{command}") % { command: args[1].inspect }
 
     content = args[0]
     checkscript = args[1]

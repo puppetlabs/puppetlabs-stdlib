@@ -18,25 +18,25 @@ module Puppet::Parser::Functions
 
     unless args.length == NUM_ARGS then
       raise Puppet::ParseError,
-        (_("validate_x509_rsa_key_pair(): wrong number of arguments (#{args.length}; must be #{NUM_ARGS})"))
+        (_("validate_x509_rsa_key_pair(): wrong number of arguments (%{num_args}; must be %{required})") % { num_args: args.length, required: NUM_ARGS })
     end
 
     args.each do |arg|
       unless arg.is_a?(String)
-        raise Puppet::ParseError, _("#{arg.inspect} is not a string.")
+        raise Puppet::ParseError, _("%{val} is not a string.") % { val: arg.inspect }
       end
     end
 
     begin
       cert = OpenSSL::X509::Certificate.new(args[0])
     rescue OpenSSL::X509::CertificateError => e
-      raise Puppet::ParseError, _("Not a valid x509 certificate: #{e}")
+      raise Puppet::ParseError, _("Not a valid x509 certificate: %{e}") % { e: e }
     end
 
     begin
       key = OpenSSL::PKey::RSA.new(args[1])
     rescue OpenSSL::PKey::RSAError => e
-      raise Puppet::ParseError, _("Not a valid RSA key: #{e}")
+      raise Puppet::ParseError, _("Not a valid RSA key: %{e}") % { e: e }
     end
 
     unless cert.verify(key)

@@ -28,20 +28,20 @@ module Puppet::Parser::Functions
     end
 
     unless args.length > 0 then
-      raise Puppet::ParseError, (_("validate_ipv4_address(): wrong number of arguments (#{args.length}; must be > 0)"))
+      raise Puppet::ParseError, (_("validate_ipv4_address(): wrong number of arguments (%{num_args}; must be > 0)") % { num_args: args.length, })
     end
 
     args.each do |arg|
       unless arg.is_a?(String)
-        raise Puppet::ParseError, _("#{arg.inspect} is not a string.")
+        raise Puppet::ParseError, _("%{arg} is not a string.") % { arg: arg.inspect, }
       end
 
       begin
         unless IPAddr.new(arg).ipv4?
-          raise Puppet::ParseError, _("#{arg.inspect} is not a valid IPv4 address.")
+          raise Puppet::ParseError, _("%{arg} is not a valid IPv4 address.") % { arg: arg.inspect, }
         end
       rescue *rescuable_exceptions
-        raise Puppet::ParseError, _("#{arg.inspect} is not a valid IPv4 address.")
+        raise Puppet::ParseError, _("%{arg} is not a valid IPv4 address.") % { arg: arg.inspect, }
       end
     end
 

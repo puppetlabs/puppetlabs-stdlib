@@ -16,10 +16,10 @@ module Puppet::Parser::Functions
     ENDHEREDOC
 
     unless args.length == 2
-      raise Puppet::ParseError, (_("has_key(): wrong number of arguments (#{args.length}; must be 2)"))
+      raise Puppet::ParseError, (_("has_key(): wrong number of arguments (%{num_args}; must be 2)") % { num_args: args.length, })
     end
     unless args[0].is_a?(Hash)
-      raise Puppet::ParseError, _("has_key(): expects the first argument to be a hash, got #{args[0].inspect} which is of type #{args[0].class}")
+      raise Puppet::ParseError, _("has_key(): expects the first argument to be a hash, got %{val} which is of type %{arg_class}") % { val: args[0].inspect, arg_class: args[0].class, }
     end
     args[0].has_key?(args[1])
 

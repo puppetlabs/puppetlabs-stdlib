@@ -18,7 +18,7 @@ EOS
 
     if (args.size != 2)
       raise Puppet::ParseError,
-        _("reject(): Wrong number of arguments given #{args.size} for 2")
+        _("reject(): Wrong number of arguments given %{num_args} for 2") % { num_args: args.size, }
     end
 
     ary = args[0]

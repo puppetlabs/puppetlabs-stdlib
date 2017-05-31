@@ -9,7 +9,7 @@ Returns true if the string passed to this function is a syntactically correct do
   ) do |arguments|
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, _("is_domain_name(): Wrong number of arguments given #{arguments.size} for 1"))
+      raise(Puppet::ParseError, _("is_domain_name(): Wrong number of arguments given %{num_args} for 1") % { num_args: arguments.size, })
     end
 
     # Only allow string types

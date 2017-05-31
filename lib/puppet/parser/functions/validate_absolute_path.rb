@@ -32,7 +32,7 @@ module Puppet::Parser::Functions
     require 'puppet/util'
 
     unless args.length > 0 then
-      raise Puppet::ParseError, (_("validate_absolute_path(): wrong number of arguments (#{args.length}; must be > 0)"))
+      raise Puppet::ParseError, (_("validate_absolute_path(): wrong number of arguments (%{num_args}; must be > 0)") % { num_args: args.length })
     end
 
     args.each do |arg|
@@ -46,7 +46,7 @@ module Puppet::Parser::Functions
       # iterate over all paths within the candidates array
       candidates.each do |path|
         unless function_is_absolute_path([path])
-          raise Puppet::ParseError, (_("#{path.inspect} is not an absolute path."))
+          raise Puppet::ParseError, (_("%{val} is not an absolute path.") % { val: path.inspect })
         end
       end
     end

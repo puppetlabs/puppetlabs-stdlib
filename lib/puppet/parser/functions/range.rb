@@ -56,9 +56,9 @@ Will return: [0,2,4,6,8]
         type = m[2]
         step = 1
       elsif value.match(/^.+$/)
-        raise(Puppet::ParseError, _("range(): Unable to compute range from the value: #{value}"))
+        raise(Puppet::ParseError, _("range(): Unable to compute range from the value: %{value}") % { value: value, })
       else
-        raise(Puppet::ParseError, _("range(): Unknown range format: #{value}"))
+        raise(Puppet::ParseError, _("range(): Unknown range format: %{value}") % { value: value, })
       end
     end
 

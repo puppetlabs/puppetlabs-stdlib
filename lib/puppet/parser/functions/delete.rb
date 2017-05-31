@@ -23,7 +23,7 @@ string, or key from a hash.
   EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, _("delete(): Wrong number of arguments given #{arguments.size} for 2")) unless arguments.size == 2
+    raise(Puppet::ParseError, _("delete(): Wrong number of arguments given %{num_args} for 2") % { num_args: arguments.size, }) unless arguments.size == 2
 
     collection = arguments[0].dup
     Array(arguments[1]).each do |item|
@@ -33,7 +33,7 @@ string, or key from a hash.
         when String
           collection.gsub! item, ''
         else
-          raise(TypeError, _("delete(): First argument must be an Array, String, or Hash. Given an argument of class #{collection.class}."))
+          raise(TypeError, _("delete(): First argument must be an Array, String, or Hash. Given an argument of class %{arg_class}.") % { arg_class: collection.class, })
       end
     end
     collection

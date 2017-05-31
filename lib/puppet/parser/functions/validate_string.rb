@@ -26,13 +26,13 @@ module Puppet::Parser::Functions
     function_deprecation([:validate_string, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::String. There is further documentation for validate_legacy function in the README.'])
 
     unless args.length > 0 then
-      raise Puppet::ParseError, (_("validate_string(): wrong number of arguments (#{args.length}; must be > 0)"))
+      raise Puppet::ParseError, (_("validate_string(): wrong number of arguments (%{num_args}; must be > 0)") % { num_args: args.length })
     end
 
     args.each do |arg|
       # when called through the v4 API shim, undef gets translated to nil
       unless arg.is_a?(String) || arg.nil?
-        raise Puppet::ParseError, (_("#{arg.inspect} is not a string.  It looks to be a #{arg.class}"))
+        raise Puppet::ParseError, (_("%{val} is not a string.  It looks to be a %{arg_class}") % { val: arg.inspect, arg_class: arg.class })
       end
     end
 

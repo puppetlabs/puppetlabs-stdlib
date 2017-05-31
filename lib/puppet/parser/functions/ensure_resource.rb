@@ -36,9 +36,9 @@ ENDOFDOC
   items.each do |item|
     Puppet::Parser::Functions.function(:defined_with_params)
     if function_defined_with_params(["#{type}[#{item}]", params])
-      Puppet.debug(_("Resource #{type}[#{item}] with params #{params} not created because it already exists"))
+      Puppet.debug(_("Resource %{type}[%{item}] with params %{params} not created because it already exists") % { type: type, item: item, params: params })
     else
-      Puppet.debug(_("Create new resource #{type}[#{item}] with params #{params}"))
+      Puppet.debug(_("Create new resource %{type}[%{item}] with params %{params}") % { type: type, item: item, params: params })
       Puppet::Parser::Functions.function(:create_resources)
       function_create_resources([type.capitalize, { item => params }])
     end

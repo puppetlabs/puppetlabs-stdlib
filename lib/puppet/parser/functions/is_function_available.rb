@@ -11,7 +11,7 @@ true if the function exists, false if not.
   ) do |arguments|
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, _("is_function_available?(): Wrong number of arguments given #{arguments.size} for 1"))
+      raise(Puppet::ParseError, _("is_function_available?(): Wrong number of arguments given %{num_args} for 1") % { num_args: arguments.size })
     end
 
     # Only allow String types

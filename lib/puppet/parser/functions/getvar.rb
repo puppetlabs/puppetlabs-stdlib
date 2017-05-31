@@ -16,7 +16,7 @@ module Puppet::Parser::Functions
     ENDHEREDOC
 
     unless args.length == 1
-      raise Puppet::ParseError, (_("getvar(): wrong number of arguments (#{args.length}; must be 1)"))
+      raise Puppet::ParseError, (_("getvar(): wrong number of arguments (%{num_args}; must be 1)") % { num_args: args.length })
     end
 
     begin

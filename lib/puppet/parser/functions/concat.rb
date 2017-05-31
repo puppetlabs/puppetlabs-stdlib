@@ -17,7 +17,7 @@ Would result in:
   ) do |arguments|
 
     # Check that more than 2 arguments have been given ...
-    raise(Puppet::ParseError, _("concat(): Wrong number of arguments given (#{arguments.size} for < 2)")) if arguments.size < 2
+    raise(Puppet::ParseError, _("concat(): Wrong number of arguments given (%{num_args} for < 2)") % { num_args: arguments.size, }) if arguments.size < 2
 
     a = arguments[0]
 

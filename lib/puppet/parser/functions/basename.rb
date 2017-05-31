@@ -7,7 +7,7 @@ module Puppet::Parser::Functions
     if arguments.size < 1 then
       raise(Puppet::ParseError, _("basename(): No arguments given"))
     elsif arguments.size > 2 then
-      raise(Puppet::ParseError, _("basename(): Too many arguments given (#{arguments.size})"))
+      raise(Puppet::ParseError, _("basename(): Too many arguments given (%{num_args})") % { num_args: arguments.size })
     else
 
       unless arguments[0].is_a?(String)

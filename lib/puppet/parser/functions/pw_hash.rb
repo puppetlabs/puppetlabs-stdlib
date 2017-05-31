@@ -26,14 +26,14 @@ Puppet::Parser::Functions::newfunction(
   Note: this uses the Puppet Master's implementation of crypt(3). If your
   environment contains several different operating systems, ensure that they
   are compatible before using this function.")) do |args|
-    raise ArgumentError, _("pw_hash(): wrong number of arguments (#{args.size} for 3)") if args.size != 3
+    raise ArgumentError, _("pw_hash(): wrong number of arguments (%{num_args} for 3)") % { num_args: args.size, } if args.size != 3
     raise ArgumentError, _("pw_hash(): first argument must be a string") unless args[0].is_a? String or args[0].nil?
     raise ArgumentError, _("pw_hash(): second argument must be a string") unless args[1].is_a? String
     hashes = { 'md5'     => '1',
                'sha-256' => '5',
                'sha-512' => '6' }
     hash_type = hashes[args[1].downcase]
-    raise ArgumentError, _("pw_hash(): #{args[1]} is not a valid hash type") if hash_type.nil?
+    raise ArgumentError, _("pw_hash(): %{val} is not a valid hash type") % { val: args[1], } if hash_type.nil?
     raise ArgumentError, _("pw_hash(): third argument must be a string") unless args[2].is_a? String
     raise ArgumentError, _("pw_hash(): third argument must not be empty") if args[2].empty?
     raise ArgumentError, _("pw_hash(): characters in salt must be in the set [a-zA-Z0-9./]") unless args[2].match(/\A[a-zA-Z0-9.\/]+\z/)

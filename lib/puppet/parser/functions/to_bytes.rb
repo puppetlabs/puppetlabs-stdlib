@@ -7,7 +7,7 @@ module Puppet::Parser::Functions
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, _("to_bytes(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size != 1
+    raise(Puppet::ParseError, _("to_bytes(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size }) if arguments.size != 1
 
     arg = arguments[0]
 
@@ -24,7 +24,7 @@ module Puppet::Parser::Functions
     when 'T' then return (value*(1<<40)).to_i
     when 'P' then return (value*(1<<50)).to_i
     when 'E' then return (value*(1<<60)).to_i
-    else raise Puppet::ParseError, _("to_bytes(): Unknown prefix #{prefix}")
+    else raise Puppet::ParseError, _("to_bytes(): Unknown prefix %{prefix}") % { prefix: prefix }
     end
   end
 end

@@ -10,7 +10,7 @@ become true.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, _("num2bool(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size != 1
+    raise(Puppet::ParseError, _("num2bool(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size }) if arguments.size != 1
 
     number = arguments[0]
 
@@ -21,13 +21,13 @@ become true.
       begin
         number = Float(number)
       rescue ArgumentError => ex
-        raise(Puppet::ParseError, _("num2bool(): '#{number}' does not look like a number: #{ex.message}"))
+        raise(Puppet::ParseError, _("num2bool(): '%{number}' does not look like a number: %{error_msg}") % { number: number, error_msg: ex.message })
       end
     else
       begin
         number = number.to_s
       rescue NoMethodError => ex
-        raise(Puppet::ParseError, _("num2bool(): Unable to parse argument: #{ex.message}"))
+        raise(Puppet::ParseError, _("num2bool(): Unable to parse argument: %{error_msg}") % { error_msg: ex.message })
       end
     end
 

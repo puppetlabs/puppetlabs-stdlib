@@ -23,7 +23,7 @@ module Puppet::Parser::Functions
 
     function_deprecation([:validate_slength, 'This method is deprecated, please use the stdlib validate_legacy function, with String[]. There is further documentation for validate_legacy function in the README.'])
 
-    raise Puppet::ParseError, _("validate_slength(): Wrong number of arguments (#{args.length}; must be 2 or 3)") unless args.length == 2 or args.length == 3
+    raise Puppet::ParseError, _("validate_slength(): Wrong number of arguments (%{num_args}; must be 2 or 3)") % { num_args: args.length } unless args.length == 2 or args.length == 3
 
     input, max_length, min_length = *args
 
@@ -31,7 +31,7 @@ module Puppet::Parser::Functions
       max_length = Integer(max_length)
       raise ArgumentError if max_length <= 0
     rescue ArgumentError, TypeError
-      raise Puppet::ParseError, _("validate_slength(): Expected second argument to be a positive Numeric, got #{max_length}:#{max_length.class}")
+      raise Puppet::ParseError, _("validate_slength(): Expected second argument to be a positive Numeric, got %{max_length}:%{max_class}") % { max_length: max_length, max_class: max_length.class }
     end
 
     if min_length
@@ -39,7 +39,7 @@ module Puppet::Parser::Functions
         min_length = Integer(min_length)
         raise ArgumentError if min_length < 0
     rescue ArgumentError, TypeError
-        raise Puppet::ParseError, _("validate_slength(): Expected third argument to be unset or a positive Numeric, got #{min_length}:#{min_length.class}")
+        raise Puppet::ParseError, _("validate_slength(): Expected third argument to be unset or a positive Numeric, got %{min_length}:%{min_class}") % { min_length: min_length, min_class: min_length.class }
       end
     else
       min_length = 0
@@ -49,7 +49,7 @@ module Puppet::Parser::Functions
 
     validator = lambda do |str|
       unless str.length <= max_length and str.length >= min_length
-        raise Puppet::ParseError, _("validate_slength(): Expected length of #{input.inspect} to be between #{min_length} and #{max_length}, was #{input.length}")
+        raise Puppet::ParseError, _("validate_slength(): Expected length of %{val} to be between %{min_length} and %{max_length}, was %{length}") % { val: input.inspect, min_length: min_length, max_length: max_length, length: input.length }
       end
     end
 
@@ -61,11 +61,11 @@ module Puppet::Parser::Functions
         if arg.is_a? String
           validator.call(arg)
         else
-          raise Puppet::ParseError, _("validate_slength(): Expected element at array position #{pos} to be a String, got #{arg.class}")
+          raise Puppet::ParseError, _("validate_slength(): Expected element at array position %{pos} to be a String, got %{arg_class}") % { pos: pos, arg_class: arg.class }
         end
       end
     else
-      raise Puppet::ParseError, _("validate_slength(): Expected first argument to be a String or Array, got #{input.class}")
+      raise Puppet::ParseError, _("validate_slength(): Expected first argument to be a String or Array, got %{arg_class}") % { arg_class: input.class }
     end
   end
 end

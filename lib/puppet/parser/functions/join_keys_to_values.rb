@@ -23,19 +23,19 @@ Would result in: ["a is 1","b is 2","b is 3"]
 
     # Validate the number of arguments.
     if arguments.size != 2
-      raise(Puppet::ParseError, _("join_keys_to_values(): Takes exactly two arguments, but #{arguments.size} given."))
+      raise(Puppet::ParseError, _("join_keys_to_values(): Takes exactly two arguments, but %{num_args} given.") % { num_args: arguments.size, })
     end
 
     # Validate the first argument.
     hash = arguments[0]
     if not hash.is_a?(Hash)
-      raise(TypeError, _("join_keys_to_values(): The first argument must be a hash, but a #{hash.class} was given."))
+      raise(TypeError, _("join_keys_to_values(): The first argument must be a hash, but a %{arg_class} was given.") % { arg_class: hash.class, })
     end
 
     # Validate the second argument.
     separator = arguments[1]
     if not separator.is_a?(String)
-      raise(TypeError, _("join_keys_to_values(): The second argument must be a string, but a #{separator.class} was given."))
+      raise(TypeError, _("join_keys_to_values(): The second argument must be a string, but a %{arg_class} was given.") % { arg_class: separator.class, })
     end
 
     # Join the keys to their values.

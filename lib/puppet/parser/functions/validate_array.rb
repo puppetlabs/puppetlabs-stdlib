@@ -21,12 +21,12 @@ module Puppet::Parser::Functions
     function_deprecation([:validate_array, _('This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Array. There is further documentation for validate_legacy function in the README.')])
 
     unless args.length > 0 then
-      raise Puppet::ParseError, (_("validate_array(): wrong number of arguments (#{args.length}; must be > 0)"))
+      raise Puppet::ParseError, (_("validate_array(): wrong number of arguments (%{num_args}; must be > 0)") % { num_args: args.length })
     end
 
     args.each do |arg|
       unless arg.is_a?(Array)
-        raise Puppet::ParseError, (_("#{arg.inspect} is not an Array.  It looks to be a #{arg.class}"))
+        raise Puppet::ParseError, (_("%{arg_val} is not an Array.  It looks to be a %{arg_class}") % { arg_val: arg.inspect, arg_class: arg.class })
       end
     end
 

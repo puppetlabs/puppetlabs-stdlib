@@ -10,7 +10,7 @@ Sorts strings and arrays lexically.
   ) do |arguments|
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, _("sort(): Wrong number of arguments given #{arguments.size} for 1"))
+      raise(Puppet::ParseError, _("sort(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size })
     end
 
     value = arguments[0]

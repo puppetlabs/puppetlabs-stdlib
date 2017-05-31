@@ -7,7 +7,7 @@ module Puppet::Parser::Functions
     Requires either a single string or an array as an input.
     EOS
   ) do |arguments| # rubocop:disable Style/ClosingParenthesisIndentation
-    raise(Puppet::ParseError, _("regexpescape(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.empty?
+    raise(Puppet::ParseError, _("regexpescape(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size }) if arguments.empty?
 
     value = arguments[0]
 

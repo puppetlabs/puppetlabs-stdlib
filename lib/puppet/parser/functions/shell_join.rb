@@ -13,11 +13,11 @@ This function behaves the same as ruby's Shellwords.shelljoin() function
   EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, _("shell_join(): Wrong number of arguments given (#{arguments.size} for 1)")) if arguments.size != 1
+    raise(Puppet::ParseError, _("shell_join(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size, }) if arguments.size != 1
 
     array = arguments[0]
 
-    raise Puppet::ParseError, (_("First argument is not an Array: #{array.inspect}")) unless array.is_a?(Array)
+    raise Puppet::ParseError, (_("First argument is not an Array: %{arg_inspect}") % { arg_inspect: array.inspect, }) unless array.is_a?(Array)
 
     # explicit conversion to string is required for ruby 1.9
     array = array.map { |item| item.to_s }
