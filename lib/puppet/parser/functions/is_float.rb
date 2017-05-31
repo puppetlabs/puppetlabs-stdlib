@@ -8,9 +8,10 @@ Returns true if the variable passed to this function is a float.
     EOS
   ) do |arguments|
 
+    function_deprecation([:is_float, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Float. There is further documentation for validate_legacy function in the README.'])
+
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_float(): Wrong number of arguments "+
-        "given #{arguments.size} for 1")
+      raise(Puppet::ParseError, "is_float(): Wrong number of arguments given #{arguments.size} for 1")
     end
 
     value = arguments[0]

@@ -17,8 +17,7 @@ Would result in:
   ) do |arguments|
 
     # Check that more than 2 arguments have been given ...
-    raise(Puppet::ParseError, "concat(): Wrong number of arguments " +
-      "given (#{arguments.size} for < 2)") if arguments.size < 2
+    raise(Puppet::ParseError, "concat(): Wrong number of arguments given (#{arguments.size} for < 2)") if arguments.size < 2
 
     a = arguments[0]
 
@@ -31,7 +30,7 @@ Would result in:
     arguments.shift
 
     arguments.each do |x|
-      result = result + Array(x)
+      result = result + (x.is_a?(Array) ? x : [x])
     end
 
     return result

@@ -15,8 +15,7 @@ This function returns an array of the intersection of two.
   ) do |arguments|
 
     # Two arguments are required
-    raise(Puppet::ParseError, "intersection(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size != 2
+    raise(Puppet::ParseError, "intersection(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size != 2
 
     first = arguments[0]
     second = arguments[1]

@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'is_string function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'is_string function' do
   describe 'success' do
     it 'is_strings arrays' do
       pp = <<-EOS
@@ -93,6 +93,17 @@ describe 'is_string function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('o
 
       apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(/Notice: output correct/)
+      end
+    end
+    it 'is_strings undef' do
+      pp = <<-EOS
+      $a = undef
+      $o = is_string($a)
+      notice(inline_template('is_string is <%= @o.inspect %>'))
+      EOS
+
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stdout).to match(/is_string is true/)
       end
     end
   end

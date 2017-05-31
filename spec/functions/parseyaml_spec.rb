@@ -18,19 +18,24 @@ describe 'parseyaml' do
                          and_return('just a string')
     end
 
-    it 'should be able to parse a YAML data with a Hash' do
+    it 'should be able to parse YAML data with a Hash' do
       is_expected.to run.with_params("---\na: '1'\nb: '2'\n").
                          and_return({'a' => '1', 'b' => '2'})
     end
 
-    it 'should be able to parse a YAML data with an Array' do
+    it 'should be able to parse YAML data with an Array' do
       is_expected.to run.with_params("---\n- a\n- b\n- c\n").
                          and_return(['a', 'b', 'c'])
     end
 
-    it 'should be able to parse a YAML data with a mixed structure' do
+    it 'should be able to parse YAML data with a mixed structure' do
       is_expected.to run.with_params("---\na: '1'\nb: 2\nc:\n  d:\n  - :a\n  - true\n  - false\n").
                          and_return({'a' => '1', 'b' => 2, 'c' => {'d' => [:a, true, false]}})
+    end
+
+    it 'should be able to parse YAML data with a UTF8 and double byte characters' do
+      is_expected.to run.with_params("---\na: ×\nこれ: 記号\nです:\n  ©:\n  - Á\n  - ß\n").
+          and_return({"a"=>"×", "これ"=>"記号", "です"=>{"©"=>["Á", "ß"]} })
     end
 
     it 'should not return the default value if the data was parsed correctly' do

@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'has_ip_address function', :unless => ((UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem'))) or (fact('osfamily') == 'windows') or (fact('osfamily') == 'AIX')) do
+describe 'has_ip_address function', :unless => ((fact('osfamily') == 'windows') or (fact('osfamily') == 'AIX')) do
   describe 'success' do
     it 'has_ip_address existing ipaddress' do
       pp = <<-EOS

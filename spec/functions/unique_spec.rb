@@ -17,11 +17,13 @@ describe 'unique' do
     it { is_expected.to run.with_params([]).and_return([]) }
     it { is_expected.to run.with_params(['a']).and_return(['a']) }
     it { is_expected.to run.with_params(['a', 'b', 'a']).and_return(['a', 'b']) }
+    it { is_expected.to run.with_params(['ã', 'ъ', 'ã']).and_return(['ã', 'ъ']) }
   end
 
   context 'when called with a string' do
     it { is_expected.to run.with_params('').and_return('') }
     it { is_expected.to run.with_params('a').and_return('a') }
     it { is_expected.to run.with_params('aaba').and_return('ab') }
+    it { is_expected.to run.with_params('ããъã').and_return('ãъ') }
   end
 end

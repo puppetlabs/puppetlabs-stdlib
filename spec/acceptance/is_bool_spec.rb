@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'is_bool function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'is_bool function' do
   describe 'success' do
     it 'is_bools arrays' do
       pp = <<-EOS

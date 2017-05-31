@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'shuffle function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'shuffle function' do
   describe 'success' do
     it 'shuffles arrays' do
       pp = <<-EOS

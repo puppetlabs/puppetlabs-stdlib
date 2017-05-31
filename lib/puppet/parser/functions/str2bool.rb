@@ -10,8 +10,7 @@ like: 0, F,f, N,n, false, FALSE, no to 'false'.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "str2bool(): Wrong number of arguments " +
-      "given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, "str2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
 
     string = arguments[0]
 
@@ -21,8 +20,7 @@ like: 0, F,f, N,n, false, FALSE, no to 'false'.
     end
 
     unless string.is_a?(String)
-      raise(Puppet::ParseError, 'str2bool(): Requires either ' +
-        'string to work with')
+      raise(Puppet::ParseError, 'str2bool(): Requires string to work with')
     end
 
     # We consider all the yes, no, y, n and so on too ...

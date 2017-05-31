@@ -1,9 +1,20 @@
 ---
-.travis.yml:
-  script: "\"bundle exec rake validate && bundle exec rake lint && bundle exec rake spec SPEC_OPTS='--color --format documentation'\""
-Rakefile:
+NOTICE:
   unmanaged: true
-Gemfile:
-  unmanaged: true
+.gitignore:
+  paths:
+    - '!spec/fixtures/'
+    - 'spec/fixtures/manifests/site.pp'
+    - 'spec/fixtures/modules/*'
+
 spec/spec_helper.rb:
-  unmanaged: true
+  allow_deprecations: true
+
+.travis.yml:
+  extras:
+    - rvm: 2.1.9
+      env: PUPPET_GEM_VERSION="~> 4.6.0"
+      bundler_args: --without system_tests
+    - rvm: 2.1.9
+      env: PUPPET_GEM_VERSION="~> 4.7.0"
+      bundler_args: --without system_tests

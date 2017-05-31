@@ -8,12 +8,12 @@ module Puppet::Parser::Functions
     $my_ip = "1.2.3.4"
     validate_ip_address($my_ip)
     validate_ip_address("8.8.8.8", "172.16.0.1", $my_ip)
-    
+
     $my_ip = "3ffe:505:2"
     validate_ip_address(1)
     validate_ip_address($my_ip)
     validate_ip_address("fe80::baf6:b1ff:fe19:7507", $my_ip)
-   
+
     The following values will fail, causing compilation to abort:
     $some_array = [ 1, true, false, "garbage string", "3ffe:505:2" ]
     validate_ip_address($some_array)
@@ -22,6 +22,8 @@ module Puppet::Parser::Functions
 
     require "ipaddr"
     rescuable_exceptions = [ ArgumentError ]
+
+    function_deprecation([:validate_ip_address, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Ip_address. There is further documentation for validate_legacy function in the README.'])
 
     if defined?(IPAddr::InvalidAddressError)
       rescuable_exceptions << IPAddr::InvalidAddressError

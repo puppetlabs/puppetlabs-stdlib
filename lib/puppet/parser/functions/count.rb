@@ -7,8 +7,7 @@ If called with only an array it counts the number of elements that are not nil/u
   ) do |args|
 
     if (args.size > 2) then
-      raise(ArgumentError, "count(): Wrong number of arguments "+
-        "given #{args.size} for 1 or 2.")
+      raise(ArgumentError, "count(): Wrong number of arguments given #{args.size} for 1 or 2.")
     end
 
     collection, item = args

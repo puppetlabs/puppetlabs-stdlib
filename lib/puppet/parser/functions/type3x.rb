@@ -16,8 +16,7 @@ Returns the type when passed a value. Type can be one of:
 * boolean
     EOS
   ) do |args|
-    raise(Puppet::ParseError, "type3x(): Wrong number of arguments " +
-      "given (#{args.size} for 1)") if args.size < 1
+    raise(Puppet::ParseError, "type3x(): Wrong number of arguments given (#{args.size} for 1)") if args.size < 1
 
     value = args[0]
 

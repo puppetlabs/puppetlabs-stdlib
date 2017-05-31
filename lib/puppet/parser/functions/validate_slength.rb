@@ -21,6 +21,8 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
 
+    function_deprecation([:validate_slength, 'This method is deprecated, please use the stdlib validate_legacy function, with String[]. There is further documentation for validate_legacy function in the README.'])
+
     raise Puppet::ParseError, "validate_slength(): Wrong number of arguments (#{args.length}; must be 2 or 3)" unless args.length == 2 or args.length == 3
 
     input, max_length, min_length = *args

@@ -22,6 +22,7 @@ describe 'rstrip' do
   it { is_expected.to run.with_params('one ').and_return('one') }
   it { is_expected.to run.with_params(' one ').and_return(' one') }
   it { is_expected.to run.with_params('     one ').and_return('     one') }
+  it { is_expected.to run.with_params(' ǿňè    ').and_return(' ǿňè') }
   it { is_expected.to run.with_params("\tone ").and_return("\tone") }
   it { is_expected.to run.with_params("\t one ").and_return("\t one") }
   it { is_expected.to run.with_params("one\t").and_return('one') }

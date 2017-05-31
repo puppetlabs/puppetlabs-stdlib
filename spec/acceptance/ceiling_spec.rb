@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'ceiling function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'ceiling function' do
   describe 'success' do
     it 'ceilings floats' do
       pp = <<-EOS

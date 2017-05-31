@@ -13,9 +13,10 @@ If given any other argument `false` is returned.
     EOS
   ) do |arguments|
 
+    function_deprecation([:is_integer, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.'])
+
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_integer(): Wrong number of arguments "+
-        "given #{arguments.size} for 1")
+      raise(Puppet::ParseError, "is_integer(): Wrong number of arguments given #{arguments.size} for 1")
     end
 
     value = arguments[0]

@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'validate_string function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'validate_string function' do
   describe 'success' do
     it 'validates a single argument' do
       pp = <<-EOS
@@ -16,6 +16,13 @@ describe 'validate_string function', :unless => UNSUPPORTED_PLATFORMS.include?(f
       $one = 'string'
       $two = 'also string'
       validate_string($one,$two)
+      EOS
+
+      apply_manifest(pp, :catch_failures => true)
+    end
+    it 'validates undef' do
+      pp = <<-EOS
+      validate_string(undef)
       EOS
 
       apply_manifest(pp, :catch_failures => true)

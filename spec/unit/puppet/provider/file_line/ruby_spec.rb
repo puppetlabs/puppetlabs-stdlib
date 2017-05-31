@@ -363,6 +363,13 @@ describe provider_class do
       @provider = provider_class.new(@resource)
     end
 
+    it 'should find a line to match' do
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo\nfoo2")
+      end
+      expect(@provider.exists?).to be_truthy
+    end
+
     it 'should remove one line if it matches' do
       File.open(@tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2")
@@ -398,7 +405,7 @@ describe provider_class do
       expect(File.read(@tmpfile)).to eql("foo1\nfoo2\n")
     end
 
-    it 'should ignore the match if match_for_absense is not specified' do
+    it 'should ignore the match if match_for_absence is not specified' do
       @resource = Puppet::Type::File_line.new(
         {
           :name     => 'foo',
@@ -416,7 +423,7 @@ describe provider_class do
       expect(File.read(@tmpfile)).to eql("foo1\nfoo\n")
     end
 
-    it 'should ignore the match if match_for_absense is false' do
+    it 'should ignore the match if match_for_absence is false' do
       @resource = Puppet::Type::File_line.new(
         {
           :name              => 'foo',

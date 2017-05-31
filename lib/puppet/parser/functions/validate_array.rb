@@ -18,6 +18,8 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
 
+    function_deprecation([:validate_array, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Array. There is further documentation for validate_legacy function in the README.'])
+
     unless args.length > 0 then
       raise Puppet::ParseError, ("validate_array(): wrong number of arguments (#{args.length}; must be > 0)")
     end

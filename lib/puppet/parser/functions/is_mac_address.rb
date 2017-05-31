@@ -9,8 +9,7 @@ Returns true if the string passed to this function is a valid mac address.
   ) do |arguments|
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_mac_address(): Wrong number of arguments "+
-        "given #{arguments.size} for 1")
+      raise(Puppet::ParseError, "is_mac_address(): Wrong number of arguments given #{arguments.size} for 1")
     end
 
     mac = arguments[0]

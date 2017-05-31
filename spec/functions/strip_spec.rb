@@ -30,5 +30,6 @@ describe 'strip' do
   it { is_expected.to run.with_params("\tone \t").and_return('one') }
   it { is_expected.to run.with_params("\t one \t").and_return('one') }
   it { is_expected.to run.with_params(' o n e ').and_return('o n e') }
+  it { is_expected.to run.with_params('      ỏŋέ  ').and_return('ỏŋέ') }
   it { is_expected.to run.with_params(AlsoString.new(' one ')).and_return('one') }
 end

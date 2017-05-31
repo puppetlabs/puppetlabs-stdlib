@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'validate_cmd function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'validate_cmd function' do
   describe 'success' do
     it 'validates a true command' do
       pp = <<-EOS

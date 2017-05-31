@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'num2bool function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'num2bool function' do
   describe 'success' do
     it 'bools positive numbers and numeric strings as true' do
       pp = <<-EOS

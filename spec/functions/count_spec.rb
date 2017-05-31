@@ -15,4 +15,9 @@ describe 'count' do
   it { is_expected.to run.with_params(["one", nil, "two"]).and_return(2) }
   it { is_expected.to run.with_params(["one", "", "two"]).and_return(2) }
   it { is_expected.to run.with_params(["one", :undef, "two"]).and_return(2) }
+
+  it { is_expected.to run.with_params(["ổņ℮", "ŧщộ", "three"]).and_return(3) }
+  it { is_expected.to run.with_params(["ổņ℮", "ŧщộ", "ŧщộ"], "ŧщộ").and_return(2) }
+  it { is_expected.to run.with_params(["ổņ℮", nil, "ŧщộ"]).and_return(2) }
+  it { is_expected.to run.with_params(["ổņ℮", :undef, "ŧщộ"]).and_return(2) }
 end

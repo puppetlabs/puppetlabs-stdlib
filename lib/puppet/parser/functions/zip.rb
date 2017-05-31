@@ -17,8 +17,7 @@ Would result in:
   ) do |arguments|
 
     # Technically we support three arguments but only first is mandatory ...
-    raise(Puppet::ParseError, "zip(): Wrong number of arguments " +
-      "given (#{arguments.size} for 2)") if arguments.size < 2
+    raise(Puppet::ParseError, "zip(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     a = arguments[0]
     b = arguments[1]

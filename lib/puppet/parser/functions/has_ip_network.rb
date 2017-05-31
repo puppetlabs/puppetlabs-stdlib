@@ -11,8 +11,7 @@ This function iterates through the 'interfaces' fact and checks the
     EOS
   ) do |args|
 
-    raise(Puppet::ParseError, "has_ip_network(): Wrong number of arguments " +
-          "given (#{args.size} for 1)") if args.size != 1
+    raise(Puppet::ParseError, "has_ip_network(): Wrong number of arguments given (#{args.size} for 1)") if args.size != 1
 
     Puppet::Parser::Functions.autoloader.load(:has_interface_with) \
       unless Puppet::Parser::Functions.autoloader.loaded?(:has_interface_with)

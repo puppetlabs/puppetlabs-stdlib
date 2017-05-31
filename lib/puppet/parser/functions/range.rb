@@ -25,8 +25,8 @@ integers automatically)
 Will return: ["a","b","c"]
 
     range("host01", "host10")
-
 Will return: ["host01", "host02", ..., "host09", "host10"]
+NB Be explicit in including trailing zeros. Otherwise the underlying ruby function will fail.
 
 Passing a third argument will cause the generated range to step by that
 interval, e.g.
@@ -37,8 +37,7 @@ Will return: [0,2,4,6,8]
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, 'range(): Wrong number of ' +
-      'arguments given (0 for 1)') if arguments.size == 0
+    raise(Puppet::ParseError, 'range(): Wrong number of arguments given (0 for 1)') if arguments.size == 0
 
     if arguments.size > 1
       start = arguments[0]
@@ -57,8 +56,7 @@ Will return: [0,2,4,6,8]
         type = m[2]
         step = 1
       elsif value.match(/^.+$/)
-        raise(Puppet::ParseError, "range(): Unable to compute range " +
-          "from the value: #{value}")
+        raise(Puppet::ParseError, "range(): Unable to compute range from the value: #{value}")
       else
         raise(Puppet::ParseError, "range(): Unknown range format: #{value}")
       end

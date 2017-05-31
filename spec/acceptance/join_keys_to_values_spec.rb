@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'join_keys_to_values function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'join_keys_to_values function' do
   describe 'success' do
     it 'join_keys_to_valuess hashes' do
       pp = <<-EOS

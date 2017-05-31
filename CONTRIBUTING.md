@@ -43,7 +43,7 @@ Checklist (and a short version for the impatient)
 
       - Make sure you have a [GitHub account](https://github.com/join)
 
-      - [Create a ticket](https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa), or [watch the ticket](https://tickets.puppetlabs.com/browse/) you are patching for.
+      - [Create a ticket](https://tickets.puppet.com/secure/CreateIssue!default.jspa), or [watch the ticket](https://tickets.puppet.com/browse/) you are patching for.
 
     * Preferred method:
 
@@ -208,13 +208,10 @@ review.
 Additional Resources
 ====================
 
-* [Getting additional help](http://puppetlabs.com/community/get-help)
+* [Getting additional help](http://puppet.com/community/get-help)
 
-* [Writing tests](http://projects.puppetlabs.com/projects/puppet/wiki/Development_Writing_Tests)
-
-* [Patchwork](https://patchwork.puppetlabs.com)
+* [Writing tests](https://docs.puppet.com/guides/module_guides/bgtm.html#step-three-module-testing)
 
 * [General GitHub documentation](http://help.github.com/)
 
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
-

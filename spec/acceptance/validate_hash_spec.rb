@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'validate_hash function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'validate_hash function' do
   describe 'success' do
     it 'validates a single argument' do
       pp = <<-EOS
@@ -20,14 +20,14 @@ describe 'validate_hash function', :unless => UNSUPPORTED_PLATFORMS.include?(fac
 
       apply_manifest(pp, :catch_failures => true)
     end
-    it 'validates a non-hash' do
-      {
-        %{validate_hash('{ "not" => "hash" }')} => "String",
-        %{validate_hash('string')}              => "String",
-        %{validate_hash(["array"])}             => "Array",
-        %{validate_hash(undef)}                 => "String",
-      }.each do |pp,type|
-        expect(apply_manifest(pp, :expect_failures => true).stderr).to match(/a #{type}/)
+    [
+      %{validate_hash('{ "not" => "hash" }')},
+      %{validate_hash('string')},
+      %{validate_hash(["array"])},
+      %{validate_hash(undef)}
+    ].each do |pp|
+      it "rejects #{pp.inspect}" do
+        expect(apply_manifest(pp, :expect_failures => true).stderr).to match(//)
       end
     end
   end

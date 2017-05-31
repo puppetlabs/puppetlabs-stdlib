@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'difference function', :unless => UNSUPPORTED_PLATFORMS.include?(fact('operatingsystem')) do
+describe 'difference function' do
   describe 'success' do
     it 'returns non-duplicates in the first array' do
       pp = <<-EOS
