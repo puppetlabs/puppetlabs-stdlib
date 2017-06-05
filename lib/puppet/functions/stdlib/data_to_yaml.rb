@@ -1,6 +1,6 @@
 require 'yaml'
 
-Puppet::Functions.create_function(:'stdlib::to_yaml') do
+Puppet::Functions.create_function(:'stdlib::data_to_yaml') do
   dispatch :to_yaml do
     param 'Hash', :hash_or_array
   end
