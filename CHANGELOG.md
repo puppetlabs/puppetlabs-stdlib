@@ -1,3 +1,13 @@
+## Supported Release 4.17.1
+### Summary
+
+Small release to address a bug (PUP-7650). Also pushes the Puppet version compatibility to 4.7.0.
+
+#### Bugfixes
+- (MODULES-5095) Workaround for PUP-7650
+- (FM-6197) Formatting fixes for file_line resource
+
+
 ## Supported Release 4.17.0
 ### Summary
 This release adds support for internationalization. It also contains Japanese translations for the README, summary and description of the metadata.json and major cleanups in the README. Additional folders have been introduced called locales and readmes where translation files can be found. A number of features and bug fixes are also included in this release. It also adds a new function `glob()` for expanding file lists. Also works around an issue that appeared in puppet 4.6.0 involving types being declared multiple times.
