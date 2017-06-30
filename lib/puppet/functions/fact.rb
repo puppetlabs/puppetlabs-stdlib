@@ -18,22 +18,27 @@ Puppet::Functions.create_function(:fact) do
     param 'String', :fact_name
   end
 
-  def to_dot_syntax(array_path)
-    array_path.map do |string|
-      string.include?('.') ? %Q{"#{string}"} : string
-    end.join('.')
+  dispatch :alternative do
+    param 'Hash',   :fact_hash
+    param 'String', :fact_name
   end
 
   def fact(fact_name)
-    facts = closure_scope['facts']
+    dot_dig(closure_scope['facts'], fact_name)
+  end
 
+  def alternative(alternative_hash, fact_name)
+    dot_dig(alternative_hash, fact_name)
+  end
+
+  def dot_dig(fact_hash, fact_name)
     # Transform the dot-notation string into an array of paths to walk. Make
     # sure to correctly extract double-quoted values containing dots as single
     # elements in the path.
     path = fact_name.scan(/([^."]+)|(?:")([^"]+)(?:")/).map {|x| x.compact.first }
 
     walked_path = []
-    path.reduce(facts) do |d, k|
+    path.reduce(fact_hash) do |d, k|
       return nil if d.nil? || k.nil?
 
       case
@@ -54,5 +59,11 @@ Puppet::Functions.create_function(:fact) do
       walked_path << k
       result
     end
+  end
+
+  def to_dot_syntax(array_path)
+    array_path.map do |string|
+      string.include?('.') ? %Q{"#{string}"} : string
+    end.join('.')
   end
 end
