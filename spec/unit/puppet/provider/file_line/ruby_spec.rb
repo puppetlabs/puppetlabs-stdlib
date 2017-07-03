@@ -29,7 +29,7 @@ describe provider_class do
       File.open(tmpfile, 'w') do |fh|
         fh.write('foo1')
       end
-      expect(provider.exists?).to be_nil
+      expect(provider.exists?).to eql (false)
     end
     it 'should append to an existing file when creating' do
       provider.create
@@ -69,7 +69,7 @@ describe provider_class do
       File.open(@tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo2")
       end
-      expect(@provider.exists?).to be_nil
+      expect(@provider.exists?).to eql (false)
       @provider.create
       expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo2\nfoo = bar")
     end
@@ -112,7 +112,7 @@ describe provider_class do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz")
         end
-        expect(@provider.exists?).to be_nil
+        expect(@provider.exists?).to eql(false)
         expect { @provider.create }.to raise_error(Puppet::Error, /More than one line.*matches/)
         expect(File.read(@tmpfile)).to eql("foo1\nfoo=blah\nfoo2\nfoo=baz")
       end
@@ -131,9 +131,28 @@ describe provider_class do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz")
         end
-        expect(@provider.exists?).to be_nil
+        expect(@provider.exists?).to eql(false)
         @provider.create
         expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2\nfoo = bar")
+      end
+
+      it 'should replace all lines that match, even when some lines are correct' do
+        @resource = Puppet::Type::File_line.new(
+          {
+            :name     => 'neil',
+            :path     => @tmpfile,
+            :line     => "\thard\tcore\t0\n",
+            :match    => '^[ \t]hard[ \t]+core[ \t]+.*',
+            :multiple => true,
+          }
+        )
+        @provider = provider_class.new(@resource)
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("\thard\tcore\t90\n\thard\tcore\t0\n")
+        end
+        expect(@provider.exists?).to eql(false)
+        @provider.create
+        expect(File.read(@tmpfile).chomp).to eql("\thard\tcore\t0\n\thard\tcore\t0")
       end
 
       it 'should raise an error with invalid values' do
@@ -154,7 +173,7 @@ describe provider_class do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo=blah\nfoo2")
         end
-        expect(@provider.exists?).to be_nil
+        expect(@provider.exists?).to eql(false)
         @provider.create
         expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2")
       end
@@ -162,7 +181,7 @@ describe provider_class do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo2")
         end
-        expect(@provider.exists?).to be_nil
+        expect(@provider.exists?).to eql(false)
         @provider.create
         expect(File.read(@tmpfile)).to eql("foo1\nfoo2\nfoo = bar\n")
       end
@@ -170,7 +189,7 @@ describe provider_class do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo = bar\nfoo2")
         end
-        expect(@provider.exists?).to be_truthy
+        expect(@provider.exists?).to eql(false)
         @provider.create
         expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2")
       end
@@ -274,7 +293,7 @@ describe provider_class do
             }
           )
           @provider = provider_class.new(@resource)
-          expect(@provider.exists?).to be_nil
+          expect(@provider.exists?).to eql (false) 
           @provider.create
           expect(File.read(@tmpfile).chomp).to eql("foo1\ninserted = line\nfoo = blah\nfoo2\nfoo1\ninserted = line\nfoo = baz")
         end
@@ -367,7 +386,7 @@ describe provider_class do
       File.open(@tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2")
       end
-      expect(@provider.exists?).to be_truthy
+      expect(@provider.exists?).to be_nil
     end
 
     it 'should remove one line if it matches' do
