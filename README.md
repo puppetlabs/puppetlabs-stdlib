@@ -178,7 +178,7 @@ Default value: 'present'.
 Sets the line to be added to the file located by the `path` parameter.
 
 Values: String.
-  
+
 ##### `match`
 
 Specifies a regular expression to compare against existing lines in the file; if a match is found, it is replaced rather than adding a new line. A regex comparison is performed against the line value, and if it does not match, an exception is raised.
@@ -207,7 +207,7 @@ Default value: `false`.
 
 ##### `name`
 
-Specifies the name to use as the identity of the resource. If you want the resource namevar to differ from the supplied `title` of the resource, specify it with `name`. 
+Specifies the name to use as the identity of the resource. If you want the resource namevar to differ from the supplied `title` of the resource, specify it with `name`.
 
 Values: String.
 
@@ -217,7 +217,7 @@ Default value: The value of the title.
 
 **Required.**
 
-Specifies the file in which Puppet ensures the line specified by `line`. 
+Specifies the file in which Puppet ensures the line specified by `line`.
 
 Value: String specifying an absolute path to the file.
 
@@ -311,7 +311,7 @@ C:/whatever
 
 Matches paths on Windows operating systems.
 
-Acceptable input example: 
+Acceptable input example:
 
 ```shell
 C:\\WINDOWS\\System32
@@ -468,9 +468,9 @@ Converts a Boolean to a number. Converts values:
 
 * `false`, 'f', '0', 'n', and 'no' to 0.
 * `true`, 't', '1', 'y', and 'yes' to 1.
-  
+
   Argument: a single Boolean or string as an input.
-  
+
   *Type*: rvalue.
 
 #### `bool2str`
@@ -538,8 +538,8 @@ Keeps value within the range [Min, X, Max] by sort based on integer value (param
   * `clamp('24', [575, 187])` returns 187.
   * `clamp(16, 88, 661)` returns 88.
   * `clamp([4, 3, '99'])` returns 4.
-  
-Arguments: strings, arrays, or numerics. 
+
+Arguments: strings, arrays, or numerics.
 
 *Type*: rvalue.
 
@@ -690,7 +690,7 @@ Other settings in Puppet affect the stdlib `deprecation` function:
   Specifies whether or not to log deprecation warnings. This is especially useful for automated tests to avoid flooding your logs before you are ready to migrate.
 
   This variable is Boolean, with the following effects:
-  
+
   * `true`: Functions log a warning.
   * `false`: No warnings are logged.
   * No value set: Puppet 4 emits warnings, but Puppet 3 does not.
@@ -1253,7 +1253,7 @@ Joins an array into a string using a separator. For example, `join(['a','b','c']
 
 #### `join_keys_to_values`
 
-Joins each key of a hash to that key's corresponding value with a separator, returning the result as strings. 
+Joins each key of a hash to that key's corresponding value with a separator, returning the result as strings.
 
 If a value is an array, the key is prefixed to each element. The return value is a flattened array.
 
@@ -1407,7 +1407,7 @@ Arguments:
 * The YAML string to convert, as a first argument.
 * Optionally, the result to return if conversion fails, as a second error.
 
-*Type*: rvalue. 
+*Type*: rvalue.
 
 #### `pick`
 
@@ -1696,7 +1696,7 @@ For example, `time()` returns something like '1311972653'.
 
 Converts the argument into bytes.
 
-For example, "4 kB" becomes "4096". 
+For example, "4 kB" becomes "4096".
 
 Arguments: A single string.
 
@@ -1708,7 +1708,7 @@ Arguments: A single string.
 
 Retrieves a value within multiple layers of hashes and arrays.
 
-Arguments: 
+Arguments:
 
 * A string containing a path, as the first argument. Provide this argument as a string of hash keys or array indexes starting with zero and separated by the path separator character (default "/"). This function goes through the structure by each path component and tries to return the value at the end of the path.
 
@@ -1819,7 +1819,7 @@ For example, `upcase('abcd')` returns 'ABCD'.
 
 #### `uriescape`
 
-URLEncodes a string or array of strings. 
+URLEncodes a string or array of strings.
 
 Arguments: Either a single string or an array of strings.
 
@@ -1915,7 +1915,7 @@ validate_augeas($sudoerscontent, 'Sudoers.lns', [], 'Failed to validate sudoers 
 
 **Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
 
-Validates that all passed values are either `true` or `false`. 
+Validates that all passed values are either `true` or `false`.
 Terminates catalog compilation if any value fails this check.
 
 The following values pass:
@@ -1992,7 +1992,7 @@ Arguments:
 
 * An integer or an array of integers, as the first argument.
 * Optionally, a maximum, as the second argument. (All elements of) the first argument must be equal to or less than this maximum.
-* Optionally, a minimum, as the third argument. (All elements of) the first argument must be equal to or greater than than this maximum. 
+* Optionally, a minimum, as the third argument. (All elements of) the first argument must be equal to or greater than than this maximum.
 
 This function fails if the first argument is not an integer or array of integers, or if the second or third arguments are not convertable to an integer. However, if (and only if) a minimum is given, the second argument may be an empty string or `undef`, which serves as a placeholder to ensure the minimum check.
 
@@ -2046,7 +2046,7 @@ validate_integer(1, 3, true)
 
 **Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
 
-Validates that the argument is an IP address, regardless of whether it is an IPv4 or an IPv6 address. It also validates IP address with netmask. 
+Validates that the argument is an IP address, regardless of whether it is an IPv4 or an IPv6 address. It also validates IP address with netmask.
 
 Arguments: A string specifying an IP address.
 
@@ -2117,7 +2117,7 @@ The deprecation messages you get can vary, depending on the modules and data tha
 
 The `validate_legacy` function helps you move from Puppet 3 style validation to Puppet 4 validation without breaking functionality your module's users depend on.
 
-Moving to Puppet 4 type validation allows much better defined type checking using [data types](https://docs.puppet.com/puppet/latest/reference/lang_data.html). Many of Puppet 3's `validate_*` functions have surprising holes in their validation. For example, [validate_numeric](#validate_numeric) allows not only numbers, but also arrays of numbers or strings that look like numbers, without giving you any control over the specifics. 
+Moving to Puppet 4 type validation allows much better defined type checking using [data types](https://docs.puppet.com/puppet/latest/reference/lang_data.html). Many of Puppet 3's `validate_*` functions have surprising holes in their validation. For example, [validate_numeric](#validate_numeric) allows not only numbers, but also arrays of numbers or strings that look like numbers, without giving you any control over the specifics.
 
 For each parameter of your classes and defined types, choose a new Puppet 4 data type to use. In most cases, the new data type allows a different set of values than the original `validate_*` function. The situation then looks like this:
 
