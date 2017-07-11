@@ -4,7 +4,7 @@ describe 'merge' do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
   it { is_expected.to run.with_params({}, 'two').and_raise_error(Puppet::ParseError, /unexpected argument type String/) }
-  it { is_expected.to run.with_params({}, 1).and_raise_error(Puppet::ParseError, /unexpected argument type Fixnum/) }
+  it { is_expected.to run.with_params({}, 1).and_raise_error(Puppet::ParseError, /unexpected argument type (Fixnum|Integer)/) }
   it {
     pending 'should not special case this'
     is_expected.to run.with_params({}).and_return({})
