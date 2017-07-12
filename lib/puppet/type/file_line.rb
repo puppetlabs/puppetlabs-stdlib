@@ -104,8 +104,16 @@ Puppet::Type.newtype(:file_line) do
          ' This is also takes a regex.'
   end
 
-  newparam(:line) do
+  # The line property never changes; the type only ever performs a create() or
+  # destroy(). line is a property in order to allow it to correctly handle
+  # Sensitive type values. Because it is a property which will never change,
+  # it should never be considered out of sync.
+  newproperty(:line) do
     desc 'The line to be appended to the file or used to replace matches found by the match attribute.'
+
+    def retrieve
+      @resource[:line]
+    end
   end
 
   newparam(:path) do
