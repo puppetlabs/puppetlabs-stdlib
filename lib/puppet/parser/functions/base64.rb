@@ -3,7 +3,7 @@
 
 module Puppet::Parser::Functions
 
-  newfunction(:base64, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:base64, :type => :rvalue, :doc => _(<<-'ENDHEREDOC')) do |args|
 
     Base64 encode or decode a string based on the command and the string submitted
 
@@ -21,16 +21,16 @@ module Puppet::Parser::Functions
 
     require 'base64'
 
-    raise Puppet::ParseError, ("base64(): Wrong number of arguments (#{args.length}; must be >= 2)") unless args.length >= 2
+    raise Puppet::ParseError, (_("base64(): Wrong number of arguments (%{num_args}; must be >= 2)") % { num_args: args.length }) unless args.length >= 2
 
     actions = ['encode','decode']
 
     unless actions.include?(args[0])
-      raise Puppet::ParseError, ("base64(): the first argument must be one of 'encode' or 'decode'")
+      raise Puppet::ParseError, (_("base64(): the first argument must be one of 'encode' or 'decode'"))
     end
 
     unless args[1].is_a?(String)
-      raise Puppet::ParseError, ("base64(): the second argument must be a string to base64")
+      raise Puppet::ParseError, (_("base64(): the second argument must be a string to base64"))
     end
 
     method = ['default','strict','urlsafe']
@@ -42,7 +42,7 @@ module Puppet::Parser::Functions
     end
 
     unless method.include?(chosenMethod)
-      raise Puppet::ParseError, ("base64(): the third argument must be one of 'default', 'strict', or 'urlsafe'")
+      raise Puppet::ParseError, (_("base64(): the third argument must be one of 'default', 'strict', or 'urlsafe'"))
     end
 
     case args[0]

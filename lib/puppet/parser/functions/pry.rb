@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:pry, :type => :statement, :doc => <<-EOS
+  newfunction(:pry, :type => :statement, :doc => _(<<-EOS)
 This function invokes a pry debugging session in the current scope object. This is useful for debugging manifest code at specific points during a compilation.
 
 *Examples:*
@@ -14,7 +14,7 @@ This function invokes a pry debugging session in the current scope object. This 
     begin
       require 'pry'
     rescue LoadError
-      raise(Puppet::Error, "pry(): Requires the 'pry' rubygem to use, but it was not found")
+      raise(Puppet::Error, _("pry(): Requires the 'pry' rubygem to use, but it was not found"))
     end
     #
     ## Run `catalog` to see the contents currently compiling catalog
@@ -24,7 +24,7 @@ This function invokes a pry debugging session in the current scope object. This 
     if $stdout.isatty
       binding.pry # rubocop:disable Lint/Debugger
     else
-      Puppet.warning 'pry(): cowardly refusing to start the debugger on a daemonized master'
+      Puppet.warning _('pry(): cowardly refusing to start the debugger on a daemonized master')
     end
   end
 end

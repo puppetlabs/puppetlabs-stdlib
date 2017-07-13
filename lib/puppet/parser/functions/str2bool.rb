@@ -3,14 +3,14 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:str2bool, :type => :rvalue, :doc => <<-EOS
+  newfunction(:str2bool, :type => :rvalue, :doc => _(<<-EOS)
 This converts a string to a boolean. This attempt to convert strings that
 contain things like: Y,y, 1, T,t, TRUE,true to 'true' and strings that contain things
 like: 0, F,f, N,n, false, FALSE, no to 'false'.
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "str2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, _("str2bool(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size }) if arguments.size < 1
 
     string = arguments[0]
 
@@ -20,7 +20,7 @@ like: 0, F,f, N,n, false, FALSE, no to 'false'.
     end
 
     unless string.is_a?(String)
-      raise(Puppet::ParseError, 'str2bool(): Requires string to work with')
+      raise(Puppet::ParseError, _('str2bool(): Requires string to work with'))
     end
 
     # We consider all the yes, no, y, n and so on too ...
@@ -34,7 +34,7 @@ like: 0, F,f, N,n, false, FALSE, no to 'false'.
       when /^(0|f|n|false|no)$/i  then false
       when /^(undef|undefined)$/ then false # This is not likely to happen ...
       else
-        raise(Puppet::ParseError, 'str2bool(): Unknown type of boolean given')
+        raise(Puppet::ParseError, _('str2bool(): Unknown type of boolean given'))
     end
 
     return result

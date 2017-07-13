@@ -1,7 +1,7 @@
 require 'digest/sha1'
 
 module Puppet::Parser::Functions
-  newfunction(:fqdn_uuid, :type => :rvalue, :doc => <<-END) do |args|
+  newfunction(:fqdn_uuid, :type => :rvalue, :doc => _(<<-END)) do |args|
 
     Creates a UUID based on a given string, assumed to be the FQDN
 
@@ -36,11 +36,11 @@ module Puppet::Parser::Functions
     END
 
     if args.length == 0
-      raise(ArgumentError, "fqdn_uuid: No arguments given")
+      raise(ArgumentError, _("fqdn_uuid: No arguments given"))
     elsif args.length == 1
       fqdn = args[0]
     else
-      raise(ArgumentError, "fqdn_uuid: Too many arguments given (#{args.length})")
+      raise(ArgumentError, _("fqdn_uuid: Too many arguments given (%{num_args})") % { num_args: args.length, })
     end
 
     # Code lovingly taken from

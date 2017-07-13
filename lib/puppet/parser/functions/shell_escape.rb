@@ -5,7 +5,7 @@
 require 'shellwords'
 
 module Puppet::Parser::Functions
-  newfunction(:shell_escape, :type => :rvalue, :doc => <<-EOS
+  newfunction(:shell_escape, :type => :rvalue, :doc => _(<<-EOS)
 Escapes a string so that it can be safely used in a Bourne shell command line.
 
 Note that the resulting string should be used unquoted and is not intended for use in double quotes nor in single
@@ -15,7 +15,7 @@ This function behaves the same as ruby's Shellwords.shellescape() function.
   EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "shell_escape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
+    raise(Puppet::ParseError, _("shell_escape(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size }) if arguments.size != 1
 
     # explicit conversion to string is required for ruby 1.9
     string = arguments[0].to_s

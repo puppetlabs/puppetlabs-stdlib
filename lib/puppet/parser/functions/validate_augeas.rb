@@ -1,7 +1,7 @@
 require 'tempfile'
 
 module Puppet::Parser::Functions
-  newfunction(:validate_augeas, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_augeas, :doc => _(<<-'ENDHEREDOC')) do |args|
     Perform validation of a string using an Augeas lens
     The first argument of this function should be a string to
     test, and the second argument should be the name of the Augeas lens to use.
@@ -31,14 +31,14 @@ module Puppet::Parser::Functions
 
     ENDHEREDOC
     unless Puppet.features.augeas?
-      raise Puppet::ParseError, ("validate_augeas(): this function requires the augeas feature. See http://docs.puppetlabs.com/guides/augeas.html#pre-requisites for how to activate it.")
+      raise Puppet::ParseError, (_("validate_augeas(): this function requires the augeas feature. See http://docs.puppetlabs.com/guides/augeas.html#pre-requisites for how to activate it."))
     end
 
     if (args.length < 2) or (args.length > 4) then
-      raise Puppet::ParseError, ("validate_augeas(): wrong number of arguments (#{args.length}; must be 2, 3, or 4)")
+      raise Puppet::ParseError, (_("validate_augeas(): wrong number of arguments (%{num_args}; must be 2, 3, or 4)") % { num_args: args.length })
     end
 
-    msg = args[3] || "validate_augeas(): Failed to validate content against #{args[1].inspect}"
+    msg = args[3] || _("validate_augeas(): Failed to validate content against %{val}") % { val: args[1].inspect }
 
     require 'augeas'
     aug = Augeas::open(nil, nil, Augeas::NO_MODL_AUTOLOAD)
@@ -64,7 +64,7 @@ module Puppet::Parser::Functions
 
       unless aug.match("/augeas/files#{tmpfile.path}//error").empty?
         error = aug.get("/augeas/files#{tmpfile.path}//error/message")
-        msg += " with error: #{error}"
+        msg += _(" with error: %{error}") % { error: error }
         raise Puppet::ParseError, (msg)
       end
 
@@ -72,7 +72,7 @@ module Puppet::Parser::Functions
       tests = args[2] || []
       aug.defvar('file', "/files#{tmpfile.path}")
       tests.each do |t|
-        msg += " testing path #{t}"
+        msg += _(" testing path %{test}") % { test: t }
         raise Puppet::ParseError, (msg) unless aug.match(t).empty?
       end
     ensure

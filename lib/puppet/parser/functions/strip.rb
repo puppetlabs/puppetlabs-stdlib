@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:strip, :type => :rvalue, :doc => <<-EOS
+  newfunction(:strip, :type => :rvalue, :doc => _(<<-EOS)
 This function removes leading and trailing whitespace from a string or from
 every string inside an array.
 
@@ -15,12 +15,12 @@ Would result in: "aaa"
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "strip(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, _("strip(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size }) if arguments.size < 1
 
     value = arguments[0]
 
     unless value.is_a?(Array) || value.is_a?(String)
-      raise(Puppet::ParseError, 'strip(): Requires either array or string to work with')
+      raise(Puppet::ParseError, _('strip(): Requires either array or string to work with'))
     end
 
     if value.is_a?(Array)

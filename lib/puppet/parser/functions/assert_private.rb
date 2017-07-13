@@ -3,13 +3,13 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:assert_private, :doc => <<-'EOS'
+  newfunction(:assert_private, :doc => _(<<-'EOS')
     Sets the current class or definition as private.
     Calling the class or definition from outside the current module will fail.
     EOS
   ) do |args|
 
-    raise(Puppet::ParseError, "assert_private(): Wrong number of arguments given (#{args.size}}) for 0 or 1)") if args.size > 1
+    raise(Puppet::ParseError, _("assert_private(): Wrong number of arguments given (%{num_args}) for 0 or 1)") % { num_args: args.size }) if args.size > 1
 
     scope = self
     if scope.lookupvar('module_name') != scope.lookupvar('caller_module_name')
@@ -20,7 +20,7 @@ module Puppet::Parser::Functions
         manifest_name = scope.source.name
         manifest_type = scope.source.type
         message = (manifest_type.to_s == 'hostclass') ? 'Class' : 'Definition'
-        message += " #{manifest_name} is private"
+        message += _(" %{manifest_name} is private") % { manifest_name: manifest_name }
       end
       raise(Puppet::ParseError, message)
     end

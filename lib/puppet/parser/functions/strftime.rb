@@ -4,7 +4,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:strftime, :type => :rvalue, :doc => <<-EOS
+  newfunction(:strftime, :type => :rvalue, :doc => _(<<-EOS)
 This function returns formatted time.
 
 *Examples:*
@@ -72,11 +72,11 @@ To return the date:
   ) do |arguments|
 
     # Technically we support two arguments but only first is mandatory ...
-    raise(Puppet::ParseError, "strftime(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, _("strftime(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size, }) if arguments.size < 1
 
     format = arguments[0]
 
-    raise(Puppet::ParseError, 'strftime(): You must provide format for evaluation') if format.empty?
+    raise(Puppet::ParseError, _('strftime(): You must provide format for evaluation')) if format.empty?
 
     # The Time Zone argument is optional ...
     time_zone = arguments[1] if arguments[1]

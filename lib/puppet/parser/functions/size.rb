@@ -3,12 +3,12 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:size, :type => :rvalue, :doc => <<-EOS
+  newfunction(:size, :type => :rvalue, :doc => _(<<-EOS)
 Returns the number of elements in a string, an array or a hash
     EOS
   ) do |arguments|
 
-    raise(Puppet::ParseError, "size(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size < 1
+    raise(Puppet::ParseError, _("size(): Wrong number of arguments given (%{num_args} for 1)") % { num_args: arguments.size, }) if arguments.size < 1
 
     item = arguments[0]
 
@@ -27,7 +27,7 @@ Returns the number of elements in a string, an array or a hash
         #
         Float(item)
 
-        raise(Puppet::ParseError, 'size(): Requires either string, array or hash to work with')
+        raise(Puppet::ParseError, _('size(): Requires either string, array or hash to work with'))
 
       rescue ArgumentError
         result = item.size
@@ -36,7 +36,7 @@ Returns the number of elements in a string, an array or a hash
     elsif item.is_a?(Array) || item.is_a?(Hash)
       result = item.size
     else
-      raise(Puppet::ParseError, 'size(): Unknown type given')
+      raise(Puppet::ParseError, _('size(): Unknown type given'))
     end
 
     return result

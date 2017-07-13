@@ -3,13 +3,13 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:squeeze, :type => :rvalue, :doc => <<-EOS
+  newfunction(:squeeze, :type => :rvalue, :doc => _(<<-EOS)
 Returns a new string where runs of the same character that occur in this set are replaced by a single character.
     EOS
   ) do |arguments|
 
     if ((arguments.size != 2) and (arguments.size != 1)) then
-      raise(Puppet::ParseError, "squeeze(): Wrong number of arguments given #{arguments.size} for 2 or 1")
+      raise(Puppet::ParseError, _("squeeze(): Wrong number of arguments given (%{num_args} for 2 or 1)") % { num_args: arguments.size })
     end
 
     item = arguments[0]

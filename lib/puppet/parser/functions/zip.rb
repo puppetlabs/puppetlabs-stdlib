@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:zip, :type => :rvalue, :doc => <<-EOS
+  newfunction(:zip, :type => :rvalue, :doc => _(<<-EOS)
 Takes one element from first array and merges corresponding elements from second array. This generates a sequence of n-element arrays, where n is one more than the count of arguments.
 
 *Example:*
@@ -17,13 +17,13 @@ Would result in:
   ) do |arguments|
 
     # Technically we support three arguments but only first is mandatory ...
-    raise(Puppet::ParseError, "zip(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
+    raise(Puppet::ParseError, _("zip(): Wrong number of arguments given (%{num_args} for 2)") % { num_args: arguments.size }) if arguments.size < 2
 
     a = arguments[0]
     b = arguments[1]
 
     unless a.is_a?(Array) and b.is_a?(Array)
-      raise(Puppet::ParseError, 'zip(): Requires array to work with')
+      raise(Puppet::ParseError, _('zip(): Requires array to work with'))
     end
 
     flatten = function_str2bool([arguments[2]]) if arguments[2]

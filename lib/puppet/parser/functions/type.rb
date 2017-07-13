@@ -3,12 +3,12 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:type, :type => :rvalue, :doc => <<-EOS
+  newfunction(:type, :type => :rvalue, :doc => _(<<-EOS)
   DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.
     EOS
   ) do |args|
 
-    warning("type() DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.")
+    warning(_("type() DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system."))
     if ! Puppet::Parser::Functions.autoloader.loaded?(:type3x)
       Puppet::Parser::Functions.autoloader.load(:type3x)
     end

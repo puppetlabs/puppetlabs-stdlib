@@ -62,7 +62,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     match_count = count_matches(match_regex)
 
     if match_count > 1 && resource[:multiple].to_s != 'true'
-     raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
+     raise Puppet::Error, _("More than one line in file '%{file_path}' matches pattern '%{pattern}'") % { file_path: resource[:path], pattern: resource[:match] }
     end
 
     File.open(resource[:path], 'w') do |fh|
@@ -87,7 +87,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     count = count_matches(regex)
 
     if count > 1 && resource[:multiple].to_s != 'true'
-      raise Puppet::Error, "#{count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'.  One or no line must match the pattern."
+      raise Puppet::Error, _("%{count} lines match pattern '%{pattern}' in file '%{file_path}'.  One or no line must match the pattern.") % { count: count, pattern: resource[:after], file_path: resource[:path] }
     end
 
     File.open(resource[:path], 'w') do |fh|
@@ -111,7 +111,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   def handle_destroy_with_match
     match_count = count_matches(match_regex)
     if match_count > 1 && resource[:multiple].to_s != 'true'
-     raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
+     raise Puppet::Error, _("More than one line in file '%{file_path}' matches pattern '%{pattern}'") % { file_path: resource[:path], pattern: resource[:match] }
     end
 
     local_lines = lines

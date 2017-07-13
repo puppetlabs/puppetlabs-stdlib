@@ -1,5 +1,5 @@
 module Puppet::Parser::Functions
-  newfunction(:is_absolute_path, :type => :rvalue, :arity => 1, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:is_absolute_path, :type => :rvalue, :arity => 1, :doc => _(<<-'ENDHEREDOC')) do |args|
     Returns boolean true if the string represents an absolute path in the filesystem.  This function works
     for windows and unix style paths.
 
@@ -23,7 +23,7 @@ module Puppet::Parser::Functions
         is_absolute_path($undefined)
 
   ENDHEREDOC
-    function_deprecation([:is_absolute_path, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Absolute_path. There is further documentation for validate_legacy function in the README.'])
+    function_deprecation([:is_absolute_path, _('This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Absolute_path. There is further documentation for validate_legacy function in the README.')])
     require 'puppet/util'
 
     path = args[0]

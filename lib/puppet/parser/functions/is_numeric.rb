@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_numeric, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_numeric, :type => :rvalue, :doc => _(<<-EOS)
 Returns true if the given argument is a Numeric (Integer or Float),
 or a String containing either a valid integer in decimal base 10 form, or
 a valid floating point string representation.
@@ -24,10 +24,10 @@ Valid examples:
     EOS
   ) do |arguments|
 
-    function_deprecation([:is_numeric, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Numeric. There is further documentation for validate_legacy function in the README.'])
+    function_deprecation([:is_numeric, _('This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Numeric. There is further documentation for validate_legacy function in the README.')])
 
     if (arguments.size != 1) then
-      raise(Puppet::ParseError, "is_numeric(): Wrong number of arguments given #{arguments.size} for 1")
+      raise(Puppet::ParseError, _("is_numeric(): Wrong number of arguments given %{num_args} for 1") % { num_args: arguments.size })
     end
 
     value = arguments[0]

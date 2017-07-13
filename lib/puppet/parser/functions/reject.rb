@@ -3,7 +3,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:reject, :type => :rvalue, :doc => <<-EOS) do |args|
+  newfunction(:reject, :type => :rvalue, :doc => _(<<-EOS)) do |args|
 This function searches through an array and rejects all elements that match
 the provided regular expression.
 
@@ -18,7 +18,7 @@ EOS
 
     if (args.size != 2)
       raise Puppet::ParseError,
-        "reject(): Wrong number of arguments given #{args.size} for 2"
+        _("reject(): Wrong number of arguments given %{num_args} for 2") % { num_args: args.size, }
     end
 
     ary = args[0]

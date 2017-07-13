@@ -5,7 +5,7 @@ Puppet::Parser::Functions::newfunction(
   :pw_hash,
   :type => :rvalue,
   :arity => 3,
-  :doc => "Hashes a password using the crypt function. Provides a hash
+  :doc => _("Hashes a password using the crypt function. Provides a hash
   usable on most POSIX systems.
 
   The first argument to this function is the password to hash. If it is
@@ -25,18 +25,18 @@ Puppet::Parser::Functions::newfunction(
 
   Note: this uses the Puppet Master's implementation of crypt(3). If your
   environment contains several different operating systems, ensure that they
-  are compatible before using this function.") do |args|
-    raise ArgumentError, "pw_hash(): wrong number of arguments (#{args.size} for 3)" if args.size != 3
-    raise ArgumentError, "pw_hash(): first argument must be a string" unless args[0].is_a? String or args[0].nil?
-    raise ArgumentError, "pw_hash(): second argument must be a string" unless args[1].is_a? String
+  are compatible before using this function.")) do |args|
+    raise ArgumentError, _("pw_hash(): wrong number of arguments (%{num_args} for 3)") % { num_args: args.size, } if args.size != 3
+    raise ArgumentError, _("pw_hash(): first argument must be a string") unless args[0].is_a? String or args[0].nil?
+    raise ArgumentError, _("pw_hash(): second argument must be a string") unless args[1].is_a? String
     hashes = { 'md5'     => '1',
                'sha-256' => '5',
                'sha-512' => '6' }
     hash_type = hashes[args[1].downcase]
-    raise ArgumentError, "pw_hash(): #{args[1]} is not a valid hash type" if hash_type.nil?
-    raise ArgumentError, "pw_hash(): third argument must be a string" unless args[2].is_a? String
-    raise ArgumentError, "pw_hash(): third argument must not be empty" if args[2].empty?
-    raise ArgumentError, "pw_hash(): characters in salt must be in the set [a-zA-Z0-9./]" unless args[2].match(/\A[a-zA-Z0-9.\/]+\z/)
+    raise ArgumentError, _("pw_hash(): %{val} is not a valid hash type") % { val: args[1], } if hash_type.nil?
+    raise ArgumentError, _("pw_hash(): third argument must be a string") unless args[2].is_a? String
+    raise ArgumentError, _("pw_hash(): third argument must not be empty") if args[2].empty?
+    raise ArgumentError, _("pw_hash(): characters in salt must be in the set [a-zA-Z0-9./]") unless args[2].match(/\A[a-zA-Z0-9.\/]+\z/)
 
     password = args[0]
     return nil if password.nil? or password.empty?
@@ -51,7 +51,7 @@ Puppet::Parser::Functions::newfunction(
         org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
       else
         # MS Windows and other systems that don't support enhanced salts
-        raise Puppet::ParseError, 'system does not support enhanced salts'
+        raise Puppet::ParseError, _('system does not support enhanced salts')
       end
     else
       password.crypt(salt)

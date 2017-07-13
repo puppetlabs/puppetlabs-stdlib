@@ -7,7 +7,7 @@ module Puppet::Parser::Functions
       :dig44,
       :type => :rvalue,
       :arity => -2,
-      :doc => <<-eos
+      :doc => _(<<-eos)
 DEPRECATED: This function has been replaced in puppet 4.5.0.
 
 Looks up into a complex structure of arrays and hashes and returns a value
@@ -42,16 +42,16 @@ missing. And the fourth argument can set a variable path separator.
   eos
   ) do |arguments|
     # Two arguments are required
-    raise(Puppet::ParseError, "dig44(): Wrong number of arguments given (#{arguments.size} for at least 2)") if arguments.size < 2
+    raise(Puppet::ParseError, _("dig44(): Wrong number of arguments given (%{num_args} for at least 2)") % { num_args: arguments.size }) if arguments.size < 2
 
     data, path, default = *arguments
 
     unless data.is_a?(Hash) or data.is_a?(Array)
-      raise(Puppet::ParseError, "dig44(): first argument must be a hash or an array, given #{data.class.name}")
+      raise(Puppet::ParseError, _("dig44(): first argument must be a hash or an array, given %{arg_class}") % { arg_class: data.class.name })
     end
 
     unless path.is_a? Array
-      raise(Puppet::ParseError, "dig44(): second argument must be an array, given #{path.class.name}")
+      raise(Puppet::ParseError, _("dig44(): second argument must be an array, given %{arg_class}") % { arg_class: path.class.name })
     end
 
     value = path.reduce(data) do |structure, key|

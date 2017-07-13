@@ -1,5 +1,5 @@
 module Puppet::Parser::Functions
-  newfunction(:validate_re, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_re, :doc => _(<<-'ENDHEREDOC')) do |args|
     Perform simple validation of a string against one or more regular
     expressions. The first argument of this function should be a string to
     test, and the second argument should be a stringified regular expression
@@ -33,12 +33,12 @@ module Puppet::Parser::Functions
     function_deprecation([:validate_re, 'This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Re. There is further documentation for validate_legacy function in the README.'])
 
     if (args.length < 2) or (args.length > 3) then
-      raise Puppet::ParseError, "validate_re(): wrong number of arguments (#{args.length}; must be 2 or 3)"
+      raise Puppet::ParseError, _("validate_re(): wrong number of arguments (%{num_args}; must be 2 or 3)") % { num_args: args.length, }
     end
 
-    raise Puppet::ParseError, "validate_re(): input needs to be a String, not a #{args[0].class}" unless args[0].is_a? String
+    raise Puppet::ParseError, _("validate_re(): input needs to be a String, not a %{arg_class}") % { arg_class: args[0].class, } unless args[0].is_a? String
 
-    msg = args[2] || "validate_re(): #{args[0].inspect} does not match #{args[1].inspect}"
+    msg = args[2] || _("validate_re(): %{string} does not match %{regex}") % { string: args[0].inspect, regex: args[1].inspect, }
 
     # We're using a flattened array here because we can't call String#any? in
     # Ruby 1.9 like we can in Ruby 1.8

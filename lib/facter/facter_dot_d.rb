@@ -49,7 +49,7 @@ class Facter::Util::DotD
       end
     end
   rescue StandardError => e
-    Facter.warn("Failed to handle #{file} as text facts: #{e.class}: #{e}")
+    Facter.warn(_("Failed to handle %{file} as text facts: %{error_class}: %{error}") % { file: file, error_class: e.class, error: e, })
   end
 
   def json_parser(file)
@@ -66,7 +66,7 @@ class Facter::Util::DotD
       end
     end
   rescue StandardError => e
-    Facter.warn("Failed to handle #{file} as json facts: #{e.class}: #{e}")
+    Facter.warn(_("Failed to handle %{file} as json facts: %{error_class}: %{error}") % { file: file, error_class: e.class, error: e, })
   end
 
   def yaml_parser(file)
@@ -78,7 +78,7 @@ class Facter::Util::DotD
       end
     end
   rescue StandardError => e
-    Facter.warn("Failed to handle #{file} as yaml facts: #{e.class}: #{e}")
+    Facter.warn(_("Failed to handle %{file} as yaml facts: %{error_class}: %{error}") % { file: file, error_class: e.class, error: e, })
   end
 
   def script_parser(file)
@@ -89,12 +89,12 @@ class Facter::Util::DotD
       result = Facter::Util::Resolution.exec(file)
 
       if ttl > 0
-        Facter.debug("Updating cache for #{file}")
+        Facter.debug(_("Updating cache for %{file}") % { file: file, })
         cache_store(file, result)
         cache_save!
       end
     else
-      Facter.debug("Using cached data for #{file}")
+      Facter.debug(_("Using cached data for %{file}") % { file: file, })
     end
 
     result.split("\n").each do |line|
@@ -107,7 +107,7 @@ class Facter::Util::DotD
       end
     end
   rescue StandardError => e
-    Facter.warn("Failed to handle #{file} as script facts: #{e.class}: #{e}")
+    Facter.warn(_("Failed to handle %{file} as script facts: %{error_class}: %{error}") % { file: file, error_class: e.class, error: e, })
     Facter.debug(e.backtrace.join("\n\t"))
   end
 
@@ -173,7 +173,7 @@ class Facter::Util::DotD
       parser = "#{type}_parser"
 
       if respond_to?("#{type}_parser")
-        Facter.debug("Parsing #{fact} using #{parser}")
+        Facter.debug(_("Parsing %{fact} using %{parser}") % { fact: fact, parser: parser, })
 
         send(parser, fact)
       end
