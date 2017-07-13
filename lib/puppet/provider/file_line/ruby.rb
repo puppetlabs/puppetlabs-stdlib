@@ -1,18 +1,21 @@
 Puppet::Type.type(:file_line).provide(:ruby) do
   def exists?
-    found = true
-    if resource[:replace].to_s != 'true' and count_matches(match_regex) > 0
-      found = true
+    found = false
+    lines_count = 0
+    lines.each do |line|
+      found = line.chomp == resource[:line]
+      if found
+        lines_count += 1
+      end
+    end
+    if resource[:match] == nil
+      found = lines_count > 0
     else
-      lines.find do |line|
-        if resource[:ensure].to_s == 'absent' and resource[:match_for_absence].to_s == 'true'
-          found = line.chomp =~ Regexp.new(resource[:match])
-        else
-          found = line.chomp == resource[:line].chomp
-        end
-        if found == false then
-          break
-        end
+      match_count = count_matches(match_regex)
+      if resource[:replace].to_s == 'true'
+        found = lines_count > 0 && lines_count == match_count
+      else
+        found = match_count > 0
       end
     end
     found
