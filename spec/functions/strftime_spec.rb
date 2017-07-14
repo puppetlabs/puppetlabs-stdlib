@@ -14,9 +14,9 @@ describe 'strftime' do
     expect(result.to_i).to(be > 1311953157)
   end
 
-  it "using %s should be lower then 1.5 trillion" do
+  it "using %s should be greater than 1.5 trillion" do
     result = scope.function_strftime(["%s"])
-    expect(result.to_i).to(be < 1500000000)
+    expect(result.to_i).to(be > 1500000000)
   end
 
   it "should return a date when given %Y-%m-%d" do

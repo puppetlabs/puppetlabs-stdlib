@@ -40,7 +40,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
         ].each do |value|
           describe value.inspect do
             let(:params) {{ value: value }}
-            it { is_expected.to compile.and_raise_error(/parameter 'value' expects a match for Variant/) }
+            it { is_expected.to compile.and_raise_error(/parameter 'value' expects a match for.*Variant/) }
           end
         end
       end

@@ -20,7 +20,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
       [ true, 'true', false, 'false', 'iAmAString', '1test', '1 test', 'test 1', 'test 1 test', {}, { 'key' => 'value' }, { 1=> 2 }, '', :undef , 'x', 3, '3', -3, '-3'].each do |value|
         describe value.inspect do
           let(:params) {{ value: value }}
-          it { is_expected.to compile.and_raise_error(/parameter 'value' expects a value of type Float or Pattern(\[.*\]+)?/) }
+          it { is_expected.to compile.and_raise_error(/parameter 'value' expects.*Float.*Pattern/) }
         end
       end
     end
