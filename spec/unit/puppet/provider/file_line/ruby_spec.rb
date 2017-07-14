@@ -190,7 +190,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
         File.open(@tmpfile, 'w') do |fh|
           fh.write("foo1\nfoo = bar\nfoo2")
         end
-        expect(@provider.exists?).to eql(false)
+        expect(@provider.exists?).to eql(true)
         @provider.create
         expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2")
       end
@@ -387,7 +387,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       File.open(@tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2")
       end
-      expect(@provider.exists?).to be_nil
+      expect(@provider.exists?).to eql (true)
     end
 
     it 'should remove one line if it matches' do
