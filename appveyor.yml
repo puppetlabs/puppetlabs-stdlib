@@ -42,7 +42,7 @@ build: off
 test_script:
 - bundle exec puppet -V
 - ruby -v
-- bundle exec rake spec SPEC_OPTS='--format documentation'
+- bundle exec rake release_checks SPEC_OPTS='--format documentation'
 notifications:
 - provider: Email
   to:
