@@ -895,6 +895,31 @@ userlist:
 ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
 ```
 
+#### `fact`
+
+Return the value of a given fact. Supports the use of dot-notation for referring to structured facts. If a fact requested does not exist, returns Undef.
+
+Example usage:
+
+```puppet
+fact('kernel')
+fact('osfamily')
+fact('os.architecture')
+```
+
+Array indexing:
+
+```puppet
+$first_processor  = fact('processors.models.0')
+$second_processor = fact('processors.models.1')
+```
+
+Fact containing a "." in the fact name:
+
+```puppet
+fact('vmware."VRA.version"')
+```
+
 #### `flatten`
 
 Flattens deeply nested arrays and returns a single flat array as a result.
