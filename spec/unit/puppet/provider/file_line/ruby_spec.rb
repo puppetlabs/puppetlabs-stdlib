@@ -194,6 +194,24 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
         @provider.create
         expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2")
       end
+
+      it 'should not add line after no matches found' do
+        @resource = Puppet::Type::File_line.new(
+          {
+            :name               => 'foo',
+            :path               => @tmpfile,
+            :line               => 'inserted = line',
+            :match              => '^foo3$',
+            :append_on_no_match => false,
+          }
+        )
+        @provider = provider_class.new(@resource)
+        File.open(@tmpfile, 'w') do |fh|
+          fh.write("foo1\nfoo = blah\nfoo2\nfoo = baz")
+        end
+        expect(@provider.exists?).to be true
+        expect(File.read(@tmpfile).chomp).to eql("foo1\nfoo = blah\nfoo2\nfoo = baz")
+      end
     end
 
     describe 'using after' do
