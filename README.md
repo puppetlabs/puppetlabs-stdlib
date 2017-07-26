@@ -289,6 +289,10 @@ Unacceptable input example:
 httds://notquiteright.org
 ```
 
+#### `Stdlib::MAC`
+
+Matches MAC addresses defined in [RFC5342](https://tools.ietf.org/html/rfc5342).
+
 #### `Stdlib::Unixpath`
 
 Matches paths on Unix operating systems.
