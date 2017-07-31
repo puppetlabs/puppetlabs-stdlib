@@ -2003,6 +2003,32 @@ validate_cmd($haproxycontent, '/usr/sbin/haproxy -f % -c', 'Haproxy failed to va
 
 *Type*: statement.
 
+#### `validate_domain_name`
+
+**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+
+Validate that all values passed are syntactically correct domain names. Aborts catalog compilation if any value fails this check.
+
+The following values pass:
+
+~~~
+$my_domain_name = 'server.domain.tld'
+validate_domain_name($my_domain_name)
+validate_domain_name('domain.tld', 'puppet.com', $my_domain_name)
+~~~
+
+The following values fail, causing compilation to abort:
+
+~~~
+validate_domain_name(1)
+validate_domain_name(true)
+validate_domain_name('invalid domain')
+validate_domain_name('-foo.example.com')
+validate_domain_name('www.example.2com')
+~~~
+
+*Type*: statement.
+
 #### `validate_hash`
 
 **Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
