@@ -1208,6 +1208,13 @@ Returns `true` if the string passed to this function is a syntactically correct 
 
 *Type*: rvalue.
 
+#### `is_email_address`
+
+Returns true if the string passed to this function is a valid email address.
+
+*Type*: rvalue.
+
+
 #### `is_float`
 
 **Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
@@ -2025,6 +2032,27 @@ validate_domain_name(true)
 validate_domain_name('invalid domain')
 validate_domain_name('-foo.example.com')
 validate_domain_name('www.example.2com')
+~~~
+
+*Type*: statement.
+
+#### `validate_email_address`
+
+Validate that all values passed are valid email addresses. Fail compilation if any value fails this check.
+
+The following values will pass:
+
+~~~
+$my_email = "waldo@gmail.com"
+validate_email_address($my_email)
+validate_email_address("bob@gmail.com", "alice@gmail.com", $my_email)
+~~~
+
+The following values will fail, causing compilation to abort:
+
+~~~
+$some_array = [ 'bad_email@/d/efdf.com' ]
+validate_email_address($some_array)
 ~~~
 
 *Type*: statement.
