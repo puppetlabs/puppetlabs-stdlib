@@ -3,10 +3,10 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
-## Supported Release 4.17.2
+## Supported Release 4.18.0
 ### Summary
 
-Patch release that reverts the Puppet version requirement lower bound to again include Puppet 2.7+.
+Small release that reverts the Puppet version requirement lower bound to again include Puppet 2.7+ and bumps the upper bound to now include Puppet 5.
 
 #### Fixed
 - Reverts lower bound of Puppet requirement to 2.7.20
