@@ -27,6 +27,13 @@ Puppet::Parser::Functions::newfunction(
   environment contains several different operating systems, ensure that they
   are compatible before using this function.") do |args|
     raise ArgumentError, "pw_hash(): wrong number of arguments (#{args.size} for 3)" if args.size != 3
+    args.map! do |arg|
+      if arg.is_a? Puppet::Pops::Types::PSensitiveType::Sensitive
+        arg.unwrap
+      else
+        arg
+      end
+    end
     raise ArgumentError, "pw_hash(): first argument must be a string" unless args[0].is_a? String or args[0].nil?
     raise ArgumentError, "pw_hash(): second argument must be a string" unless args[1].is_a? String
     hashes = { 'md5'     => '1',

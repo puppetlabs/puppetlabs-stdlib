@@ -11,6 +11,8 @@ describe 'is_integer' do
   it { is_expected.to run.with_params('3').and_return(true) }
   it { is_expected.to run.with_params(-3).and_return(true) }
   it { is_expected.to run.with_params('-3').and_return(true) }
+  it { is_expected.to run.with_params("123\nfoo").and_return(true) }
+  it { is_expected.to run.with_params("foo\n123").and_return(true) }
 
   it { is_expected.to run.with_params(3.7).and_return(false) }
   it { is_expected.to run.with_params('3.7').and_return(false) }
@@ -24,6 +26,7 @@ describe 'is_integer' do
   it { is_expected.to run.with_params(true).and_return(false) }
   it { is_expected.to run.with_params(false).and_return(false) }
   it { is_expected.to run.with_params('0001234').and_return(false) }
+  it { is_expected.to run.with_params("foo\nbar").and_return(false) }
 
   context 'Checking for deprecation warning' do
     after(:all) do

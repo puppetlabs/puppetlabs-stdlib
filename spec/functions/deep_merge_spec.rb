@@ -4,7 +4,7 @@ describe 'deep_merge' do
   it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
   it { is_expected.to run.with_params({ 'key' => 'value' }).and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
   it { is_expected.to run.with_params({}, '2').and_raise_error(Puppet::ParseError, /unexpected argument type String/) }
-  it { is_expected.to run.with_params({}, 2).and_raise_error(Puppet::ParseError, /unexpected argument type Fixnum/) }
+  it { is_expected.to run.with_params({}, 2).and_raise_error(Puppet::ParseError, /unexpected argument/) }
   it { is_expected.to run.with_params({}, '').and_return({}) }
   it { is_expected.to run.with_params({}, {}).and_return({}) }
   it { is_expected.to run.with_params({}, {}, {}).and_return({}) }

@@ -19,6 +19,9 @@ third argument to the ensure_resource() function.
     if arguments[0].is_a?(Hash)
       if arguments[1]
         defaults = { 'ensure' => 'present' }.merge(arguments[1])
+        if defaults['ensure'] == 'installed'
+          defaults['ensure'] = 'present'
+        end
       else
         defaults = { 'ensure' => 'present' }
       end
@@ -30,6 +33,9 @@ third argument to the ensure_resource() function.
 
       if arguments[1]
         defaults = { 'ensure' => 'present' }.merge(arguments[1])
+        if defaults['ensure'] == 'installed'
+          defaults['ensure'] = 'present'
+        end
       else
         defaults = { 'ensure' => 'present' }
       end
