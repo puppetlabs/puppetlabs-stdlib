@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
+## Supported Release 4.19.0
+### Summary
+
+This release adds new functions and better documentation/fixes for existing functions with a noteworthy fix for file_line.
+
+#### Added
+- Add validate_domain_name function
+- Add the round function
+- Add type for MAC address
+- Add support for sensitive data type to pw_hash ([MODULES-4908](https://tickets.puppet.com/browse/MODULES-4908))
+- Add new function, fact() (FACT-932)
+
+#### Fixed
+- Fixes for the file_line provider ([MODULES-5003](https://tickets.puppet.com/browse/MODULES-5003)) 
+- Add documentation for email functions ([MODULES-5382](https://tickets.puppet.com/browse/MODULES-5382)) 
+- unique function is deprecated for puppet version > 5. (FM-6239) 
+- Fix headers in CHANGELOG.md so that headers render correctly
+- ensure_packages, converge ensure values 'present' and 'installed'
+
+#### Changed
+- Removes listed support for EOL Ubuntu versions
+
 ## Supported Release 4.18.0
 ### Summary
 
