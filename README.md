@@ -1754,6 +1754,30 @@ Arguments: A single string.
 
 *Type*: rvalue.
 
+#### `to_json`
+
+Converts input into a JSON String.
+
+For example, `{ "key" => "value" }` becomes `{"key":"value"}`.
+
+*Type*: rvalue.
+
+#### `to_json_pretty`
+
+Converts input into a pretty JSON String.
+
+For example, `{ "key" => "value" }` becomes `{\n  \"key\": \"value\"\n}`.
+
+*Type*: rvalue.
+
+#### `to_yaml`
+
+Converts input into a YAML String.
+
+For example, `{ "key" => "value" }` becomes `"---\nkey: value\n"`.
+
+*Type*: rvalue.
+
 #### `try_get_value`
 
 **DEPRECATED:** replaced by `dig()`.
