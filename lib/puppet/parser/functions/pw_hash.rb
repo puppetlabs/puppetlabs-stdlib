@@ -28,7 +28,7 @@ Puppet::Parser::Functions::newfunction(
   are compatible before using this function.") do |args|
     raise ArgumentError, "pw_hash(): wrong number of arguments (#{args.size} for 3)" if args.size != 3
     args.map! do |arg|
-      if arg.is_a? Puppet::Pops::Types::PSensitiveType::Sensitive
+      if (defined? Puppet::Pops::Types::PSensitiveType::Sensitive) && (arg.is_a? Puppet::Pops::Types::PSensitiveType::Sensitive)
         arg.unwrap
       else
         arg
