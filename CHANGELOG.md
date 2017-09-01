@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
+## Supported Release 4.20.0
+### Summary
+
+This release adds new functions and updated README translations.
+
+#### Added
+- `to_json`, `to_json_pretty`, and `to_yaml` functions
+- new Japanese README translations
+
+#### Fixed
+- compatibility issue with older versions of Puppet and the `pw_hash` function ([MODULES-5546](https://tickets.puppet.com/browse/MODULES-5546))
+
+#### Removed
+- support for EOL platform Debian 6 (Squeeze)
+
 ## Supported Release 4.19.0
 ### Summary
 
