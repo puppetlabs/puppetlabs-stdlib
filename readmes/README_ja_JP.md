@@ -485,9 +485,9 @@ base64('decode', 'aHR0cHM6Ly9wdXBwZXRsYWJzLmNvbQ==', 'urlsafe')
 * `false`、'f'、'0'、'n'、'no'を0に変換します。
 * `true`、't'、'1'、'y'、'yes'を1に変換します。
 
-  引数: インプットとして、単一のブーリアンまたは文字列。
+引数: インプットとして、単一のブーリアンまたは文字列。
 
-  *タイプ*: 右辺値
+*タイプ*: 右辺値
 
 #### `bool2str`
 
@@ -1751,6 +1751,30 @@ OS Xバージョン10.7以上で使用されるソルト付きSHA512パスワー
 たとえば、"4 kB"は"4096"になります。
 
 引数: 単一の文字列。
+
+*タイプ*: 右辺値
+
+#### `to_json`
+
+Converts input into a JSON String.
+
+For example, `{ "key" => "value" }` becomes `{"key":"value"}`.
+
+*タイプ*: 右辺値
+
+#### `to_json_pretty`
+
+Converts input into a pretty JSON String.
+
+For example, `{ "key" => "value" }` becomes `{\n  \"key\": \"value\"\n}`.
+
+*タイプ*: 右辺値
+
+#### `to_yaml`
+
+Converts input into a YAML String.
+
+For example, `{ "key" => "value" }` becomes `"---\nkey: value\n"`.
 
 *タイプ*: 右辺値
 
