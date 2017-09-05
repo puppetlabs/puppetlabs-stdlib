@@ -485,9 +485,9 @@ Converts a Boolean to a number. Converts values:
 * `false`, 'f', '0', 'n', and 'no' to 0.
 * `true`, 't', '1', 'y', and 'yes' to 1.
 
-  Argument: a single Boolean or string as an input.
+Argument: a single Boolean or string as an input.
 
-  *Type*: rvalue.
+*Type*: rvalue.
 
 #### `bool2str`
 
