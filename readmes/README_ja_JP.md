@@ -1756,25 +1756,25 @@ OS Xバージョン10.7以上で使用されるソルト付きSHA512パスワー
 
 #### `to_json`
 
-Converts input into a JSON String.
+入力値をJSON形式の文字列に変換します。
 
-For example, `{ "key" => "value" }` becomes `{"key":"value"}`.
+例えば、`{ "key" => "value" }`は`{"key":"value"}`になります。
 
 *タイプ*: 右辺値
 
 #### `to_json_pretty`
 
-Converts input into a pretty JSON String.
+入力値を整形されたJSON形式の文字列に変換します。
 
-For example, `{ "key" => "value" }` becomes `{\n  \"key\": \"value\"\n}`.
+例えば、`{ "key" => "value" }`は`{\n  \"key\": \"value\"\n}`になります。
 
 *タイプ*: 右辺値
 
 #### `to_yaml`
 
-Converts input into a YAML String.
+入力値をYAML形式の文字列に変換します。
 
-For example, `{ "key" => "value" }` becomes `"---\nkey: value\n"`.
+例えば、`{ "key" => "value" }`は`"---\nkey: value\n"`になります。
 
 *タイプ*: 右辺値
 
