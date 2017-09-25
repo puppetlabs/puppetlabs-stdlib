@@ -3,7 +3,7 @@ Puppet::Functions.create_function(:length) do
   dispatch :length do
     param 'Variant[String,Array,Hash]', :value
   end
-  def	length(value)
+  def length(value)
     if value.is_a?(String)
       result = value.length
     elsif value.is_a?(Array) || value.is_a?(Hash)
