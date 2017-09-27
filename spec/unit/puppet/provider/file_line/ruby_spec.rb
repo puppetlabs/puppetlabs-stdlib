@@ -202,7 +202,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
             :path               => @tmpfile,
             :line               => 'inserted = line',
             :match              => '^foo3$',
-            :append_on_no_match => false,
+            :append             => false,
           }
         )
         @provider = provider_class.new(@resource)

@@ -80,11 +80,11 @@ The `stdlib` class has no parameters.
 
 * `stdlib::stages`: Manages a standard set of run stages for Puppet.
 
-### Defined types
+### Custom types
 
 #### `file_line`
 
-Ensures that a given line is contained within a file. The implementation matches the full line, including whitespace at the beginning and end. If the line is not contained in the given file, Puppet appends the line to the end of the file to ensure the desired state. Multiple resources can be declared to manage multiple lines in the same file.
+Ensures that a given line is contained within a file. The implementation matches the full line, including whitespace at the beginning and end. If the line is not contained in the given file, Puppet will append the line (`append` defaults to `true`) to the end of the file to ensure the desired state. Multiple resources can be declared to manage multiple lines in the same file.
 
 Example:
 
@@ -122,10 +122,10 @@ Match Example:
       path               => '/etc/bashrc',
       line               => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
       match              => '^export\ HTTP_PROXY\=',
-      append_on_no_match => false,
+      append             => false
     }
 
-In this code example, `match` looks for a line beginning with export followed by HTTP_PROXY and replaces it with the value in line. If a match is not found, then no changes are made to the file.
+In the example above, `match` looks for a line beginning with export followed by HTTP_PROXY and replaces it with the value in line. If a match is not found, then nothing happens.
 
 Match Example with `ensure => absent`:
 
@@ -238,6 +238,16 @@ Value: String specifying an absolute path to the file.
 Specifies whether the resource overwrites an existing line that matches the `match` parameter. If set to `false` and a line is found matching the `match` parameter, the line is not placed in the file.
 
 Boolean.
+
+Default value: `true`.
+
+##### `append`
+
+Specifies whether or not the line is appended to the end of the file when no match is found.
+
+Boolean.
+
+Values: `true`, `false`
 
 Default value: `true`.
 

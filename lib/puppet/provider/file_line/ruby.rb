@@ -12,7 +12,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
       found = lines_count > 0
     else
       match_count = count_matches(new_match_regex)
-      if resource[:append_on_no_match].to_s == 'false'
+      if resource[:append].to_s == 'false' && match_count == 0
         found = true
       elsif resource[:replace].to_s == 'true'
         found = lines_count > 0 && lines_count == match_count
