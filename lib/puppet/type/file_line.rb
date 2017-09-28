@@ -136,7 +136,7 @@ Puppet::Type.newtype(:file_line) do
     defaultto 'UTF-8'
   end
 
-  newparam(:append_on_no_match) do
+  newparam(:append) do
     desc 'If true, append line if match is not found. If false, do not append line if a match is not found'
     newvalues(true, false)
     defaultto true
