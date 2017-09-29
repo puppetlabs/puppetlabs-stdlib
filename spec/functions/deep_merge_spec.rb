@@ -42,6 +42,13 @@ describe 'deep_merge' do
     }
   end
 
+  describe 'when arguments have arrays' do
+    it { is_expected.to run \
+      .with_params({'key1' => ['value1', 'value2']}, {'key1' => ['value3', 'value4']}) \
+      .and_return( {'key1' => ['value1', 'value2', 'value3', 'value4']})
+    }
+  end
+
   it 'should not change the original hashes' do
     argument1 = { 'key1' => 'value1' }
     original1 = argument1.dup
