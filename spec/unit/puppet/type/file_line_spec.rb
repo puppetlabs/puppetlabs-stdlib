@@ -78,6 +78,9 @@ describe Puppet::Type.type(:file_line) do
   it 'should not require that a line is specified when matching for absence' do
     expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error
   end
+  it 'although if a line is specified anyway when matching for absence it still works and the line is silently ignored' do
+    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :line => 'i_am_irrelevant', :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error
+  end
   it 'should require that a file is specified' do
     expect { Puppet::Type.type(:file_line).new(:name => 'foo', :line => 'path') }.to raise_error(Puppet::Error, /path is a required attribute/)
   end
