@@ -337,7 +337,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
   end
 
-  context "when removing" do
+  context "when removing with a line" do
     before :each do
       # TODO: these should be ported over to use the PuppetLabs spec_helper
       #  file fixtures once the following pull request has been merged:
@@ -378,6 +378,23 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       @provider.destroy
       expect(File.read(@tmpfile)).to eql("foo1\nfoo2\n")
     end
+
+    it 'example in the docs' do
+      @resource = Puppet::Type::File_line.new(
+        {
+          :name   => 'bashrc_proxy',
+          :ensure => 'absent',
+          :path   => @tmpfile,
+          :line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+        }
+      )
+      @provider = provider_class.new(@resource)
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo2\nexport HTTP_PROXY=http://squid.puppetlabs.vm:3128\nfoo4\n")
+      end
+      @provider.destroy
+      expect(File.read(@tmpfile)).to eql("foo1\nfoo2\nfoo4\n")
+    end
   end
 
   context "when removing with a match" do
@@ -409,6 +426,41 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     it 'should remove one line if it matches' do
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo\nfoo2")
+      end
+      @provider.destroy
+      expect(File.read(@tmpfile)).to eql("foo1\nfoo2")
+    end
+
+    it 'the line parameter is actually not used at all but is silently ignored if here' do
+      @resource = Puppet::Type::File_line.new(
+        {
+          :name              => 'foo',
+          :path              => @tmpfile,
+          :line              => 'supercalifragilisticexpialidocious',
+          :ensure            => 'absent',
+          :match             => 'o$',
+          :match_for_absence => true,
+        }
+      )
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo\nfoo2")
+      end
+      @provider.destroy
+      expect(File.read(@tmpfile)).to eql("foo1\nfoo2")
+    end
+
+    it 'and may not be here and does not need to be here' do
+      @resource = Puppet::Type::File_line.new(
+        {
+          :name              => 'foo',
+          :path              => @tmpfile,
+          :ensure            => 'absent',
+          :match             => 'o$',
+          :match_for_absence => true,
+        }
+      )
       File.open(@tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2")
       end
@@ -480,6 +532,41 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       expect(File.read(@tmpfile)).to eql("foo1\nfoo\n")
     end
 
-  end
+    it 'example in the docs' do
+      @resource = Puppet::Type::File_line.new(
+        {
+          :name              => 'bashrc_proxy',
+          :ensure            => 'absent',
+          :path              => @tmpfile,
+          :line              => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+          :match             => '^export\ HTTP_PROXY\=',
+          :match_for_absence => true,
+        }
+      )
+      @provider = provider_class.new(@resource)
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo2\nexport HTTP_PROXY=foo\nfoo4\n")
+      end
+      @provider.destroy
+      expect(File.read(@tmpfile)).to eql("foo1\nfoo2\nfoo4\n")
+    end
 
+    it 'example in the docs showing line is redundant' do
+      @resource = Puppet::Type::File_line.new(
+        {
+          :name              => 'bashrc_proxy',
+          :ensure            => 'absent',
+          :path              => @tmpfile,
+          :match             => '^export\ HTTP_PROXY\=',
+          :match_for_absence => true,
+        }
+      )
+      @provider = provider_class.new(@resource)
+      File.open(@tmpfile, 'w') do |fh|
+        fh.write("foo1\nfoo2\nexport HTTP_PROXY=foo\nfoo4\n")
+      end
+      @provider.destroy
+      expect(File.read(@tmpfile)).to eql("foo1\nfoo2\nfoo4\n")
+    end
+  end
 end

@@ -117,29 +117,55 @@ In the example above, `match` looks for a line beginning with 'export' followed 
 
 Match Example:
 
-    file_line { 'bashrc_proxy':
-      ensure             => present,
-      path               => '/etc/bashrc',
-      line               => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
-      match              => '^export\ HTTP_PROXY\=',
-      append_on_no_match => false,
-    }
+```puppet
+file_line { 'bashrc_proxy':
+  ensure             => present,
+  path               => '/etc/bashrc',
+  line               => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+  match              => '^export\ HTTP_PROXY\=',
+  append_on_no_match => false,
+}
+```
 
 In this code example, `match` looks for a line beginning with export followed by HTTP_PROXY and replaces it with the value in line. If a match is not found, then no changes are made to the file.
 
-Match Example with `ensure => absent`:
+Examples With `ensure => absent`:
+
+This type has two behaviors when `ensure => absent` is set.
+
+One possibility is to set `match => ...` and `match_for_absence => true`,
+as in the following example:
 
 ```puppet
 file_line { 'bashrc_proxy':
   ensure            => absent,
   path              => '/etc/bashrc',
-  line              => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
   match             => '^export\ HTTP_PROXY\=',
   match_for_absence => true,
 }
 ```
 
-In the example above, `match` looks for a line beginning with 'export' followed by 'HTTP_PROXY' and deletes it. If multiple lines match, an error is raised, unless the `multiple => true` parameter is set.
+In this code example match will look for a line beginning with export
+followed by HTTP_PROXY and delete it.  If multiple lines match, an
+error will be raised unless the `multiple => true` parameter is set.
+
+Note that the `line => ...` parameter would be accepted *but ignored* in
+the above example.
+
+The second way of using `ensure => absent` is to specify a `line => ...`,
+and no match:
+
+```puppet
+file_line { 'bashrc_proxy':
+  ensure => absent,
+  path   => '/etc/bashrc',
+  line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+}
+```
+
+Note that when ensuring lines are absent this way, the default behavior
+this time is to always remove all lines matching, and this behavior
+can't be disabled.
 
 Encoding example:
 
