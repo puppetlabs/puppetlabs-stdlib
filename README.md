@@ -1649,6 +1649,24 @@ Returns the number of elements in a string, an array or a hash. This function wi
 
 *Type*: rvalue.
 
+#### `sprintf_hash`
+
+Perform printf-style formatting with named references of text.
+
+The first paameter is format string describing how the rest of the parameters in the hash
+should be formatted. See the documentation for the `Kernel::sprintf` function in Ruby for
+all the details.
+
+*Example:*
+
+```puppet
+$output = sprintf_hash('String: %<foo>s / number converted to binary: %<number>b',
+                       { 'foo' => 'a string', 'number' => 5 })
+# $output = 'String: a string / number converted to binary: 101'
+```
+
+*Type*: rvalue
+
 #### `sort`
 
 Sorts strings and arrays lexically.
