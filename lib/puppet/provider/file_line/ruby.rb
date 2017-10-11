@@ -12,12 +12,50 @@ Puppet::Type.type(:file_line).provide(:ruby) do
       found = lines_count > 0
     else
       match_count = count_matches(new_match_regex)
-      if resource[:append_on_no_match].to_s == 'false'
-        found = true
-      elsif resource[:replace].to_s == 'true'
-        found = lines_count > 0 && lines_count == match_count
+      if resource[:ensure] == :present
+        if match_count == 0
+          if lines_count == 0
+            if resource[:append_on_no_match].to_s == 'false'
+              found = true # lies, but gets the job done
+            else
+              found = false
+            end
+          else
+            found = true
+          end
+        else
+          if resource[:replace_all_matches_not_matching_line].to_s == 'true'
+            found = false # maybe lies, but knows there's still work to do
+          else
+            if lines_count == 0
+              if resource[:replace].to_s == 'false'
+                found = true
+              else
+                found = false
+              end
+            else
+              found = true
+            end
+          end
+        end
       else
-        found = match_count > 0
+        if match_count == 0
+          if lines_count == 0
+            found = false
+          else
+            found = true
+          end
+        else
+          if lines_count == 0
+            if resource[:match_for_absence].to_s == 'true'
+              found = true # found matches, not lines
+            else
+              found = false
+            end
+          else
+            found = true
+          end
+        end
       end
     end
     found
@@ -68,7 +106,13 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def count_matches(regex)
-    lines.select{ |line| line.match(regex) }.size
+    lines.select do |line|
+      if resource[:replace_all_matches_not_matching_line].to_s == 'true'
+        line.match(regex) unless line.chomp == resource[:line]
+      else
+        line.match(regex)
+      end
+    end.size
   end
 
   def handle_create_with_match()
@@ -140,8 +184,9 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def handle_append_line
+    local_lines = lines
     File.open(resource[:path],'w') do |fh|
-      lines.each do |line|
+      local_lines.each do |line|
         fh.puts(line)
       end
       fh.puts(resource[:line])
