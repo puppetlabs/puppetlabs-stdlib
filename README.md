@@ -219,7 +219,7 @@ Values: String.
 
 ##### `match`
 
-Specifies a regular expression to compare against existing lines in the file; if a match is found, it is replaced rather than adding a new line. A regex comparison is performed against the line value, and if it does not match, an exception is raised.
+Specifies a regular expression to compare against existing lines in the file; if a match is found, it is replaced rather than adding a new line.
 
 Values: String containing a regex.
 
@@ -236,7 +236,7 @@ Default value: `false`.
 
 ##### `multiple`
 
-Specifies whether `match` and `after` can change multiple lines. If set to `false`, an exception is raised if more than one line matches.
+Specifies whether `match` and `after` can change multiple lines. If set to `false`, allows file\_line to replace only one line and raises an error if more than one will be replaced. If set to `true`, allows file\_line to replace one or more lines.
 
 Values: `true`, `false`.
 
@@ -261,11 +261,19 @@ Value: String specifying an absolute path to the file.
 
 ##### `replace`
 
-Specifies whether the resource overwrites an existing line that matches the `match` parameter. If set to `false` and a line is found matching the `match` parameter, the line is not placed in the file.
+Specifies whether the resource overwrites an existing line that matches the `match` parameter when `line` does not otherwise exist.
+
+If set to `false` and a line is found matching the `match` parameter, the line is not placed in the file.
 
 Boolean.
 
 Default value: `true`.
+
+##### `replace_all_matches_not_matching_line`
+
+Replace all lines matched by `match` parameter, even if `line` already exists in the file.
+
+Default value: `false`.
 
 ### Data types
 

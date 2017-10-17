@@ -151,6 +151,13 @@ Puppet::Type.newtype(:file_line) do
     defaultto true
   end
 
+  newparam(:replace_all_matches_not_matching_line) do
+    desc 'Configures the behavior of replacing all lines in a file which match the `match` parameter regular expression, regardless of whether the specified line is already present in the file.'
+
+    newvalues(true, false)
+    defaultto false
+  end
+
   newparam(:encoding) do
     desc 'For files that are not UTF-8 encoded, specify encoding such as iso-8859-1'
     defaultto 'UTF-8'
@@ -168,6 +175,12 @@ Puppet::Type.newtype(:file_line) do
   end
 
   validate do
+    if self[:replace_all_matches_not_matching_line].to_s == 'true' and self[:multiple].to_s == 'false'
+      raise(Puppet::Error, "multiple must be true when replace_all_matches_not_matching_line is true")
+    end
+    if self[:replace_all_matches_not_matching_line].to_s == 'true' and self[:replace].to_s == 'false'
+      raise(Puppet::Error, "replace must be true when replace_all_matches_not_matching_line is true")
+    end
     unless self[:line]
       unless (self[:ensure].to_s == 'absent') and (self[:match_for_absence].to_s == 'true') and self[:match]
         raise(Puppet::Error, "line is a required attribute")
