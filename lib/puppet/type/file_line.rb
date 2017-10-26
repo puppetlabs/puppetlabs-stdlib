@@ -72,7 +72,7 @@ Puppet::Type.newtype(:file_line) do
 
         file_line { "XScreenSaver":
           ensure   => present,
-          path     => '/root/XScreenSaver'
+          path     => '/root/XScreenSaver',
           line     => "*lock: 10:00:00",
           match    => '^*lock:',
           encoding => "iso-8859-1",
