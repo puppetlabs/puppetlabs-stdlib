@@ -11,7 +11,6 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "4",
         "5",
         "6",
         "7"
@@ -20,7 +19,6 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "4",
         "5",
         "6",
         "7"
@@ -29,7 +27,6 @@
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "4",
         "5",
         "6",
         "7"
@@ -38,7 +35,6 @@
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
-        "4",
         "5",
         "6",
         "7"
@@ -47,7 +43,6 @@
     {
       "operatingsystem": "SLES",
       "operatingsystemrelease": [
-        "10 SP4",
         "11 SP1",
         "12"
       ]
@@ -56,7 +51,8 @@
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
         "7",
-        "8"
+        "8",
+        "9"
       ]
     },
     {
@@ -76,8 +72,6 @@
     {
       "operatingsystem": "Windows",
       "operatingsystemrelease": [
-        "Server 2003",
-        "Server 2003 R2",
         "Server 2008",
         "Server 2008 R2",
         "Server 2012",
