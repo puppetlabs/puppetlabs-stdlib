@@ -1179,6 +1179,15 @@ For example, `hash(['a',1,'b',2,'c',3])` returns {'a'=>1,'b'=>2,'c'=>3}.
 
 *Type*: rvalue.
 
+
+#### `ifelse`
+
+Shorthand version for if-else: this maps to the ruby tenary operator.
+
+For example, `ifelse(4 > 0, 'positive', 'negative')` returns `'positive'`.
+
+*Type*: rvalue.
+
 #### `intersection`
 
 Returns an array an intersection of two.
