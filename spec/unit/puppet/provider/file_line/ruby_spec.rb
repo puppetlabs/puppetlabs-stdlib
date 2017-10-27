@@ -663,9 +663,11 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
           :match_for_absence => true,
         }
       )
+      @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2")
       end
+      expect(@provider.exists?).to eql (true)
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo2")
     end
@@ -680,9 +682,11 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
           :match_for_absence => true,
         }
       )
+      @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2")
       end
+      expect(@provider.exists?).to eql (true)
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo2")
     end
@@ -710,6 +714,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       File.open(tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2\nfoo\nfoo")
       end
+      expect(@provider.exists?).to eql (true)
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo2\n")
     end
@@ -728,6 +733,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       File.open(tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2")
       end
+      expect(@provider.exists?).to eql (true)
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo\n")
     end
@@ -747,6 +753,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       File.open(tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo\nfoo2")
       end
+      expect(@provider.exists?).to eql (true)
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo\n")
     end
@@ -766,6 +773,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       File.open(tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo2\nexport HTTP_PROXY=foo\nfoo4\n")
       end
+      expect(@provider.exists?).to eql (true)
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo2\nfoo4\n")
     end
@@ -784,6 +792,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       File.open(tmpfile, 'w') do |fh|
         fh.write("foo1\nfoo2\nexport HTTP_PROXY=foo\nfoo4\n")
       end
+      expect(@provider.exists?).to eql (true)
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo2\nfoo4\n")
     end
