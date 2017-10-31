@@ -11,7 +11,8 @@ module Puppet::Parser::Functions
         # $merged_hash = { 'one' => 1, 'two' => 'dos', 'three' => { 'four' => 4, 'five' => 5 } }
 
     When there is a duplicate key that is a hash, they are recursively merged.
-    When there is a duplicate key that is not a hash, the key in the rightmost hash will "win."
+    When there is a duplicate key that is an array, they are merged without duplications.
+    When there is a duplicate key that is not a hash or an array, the key in the rightmost hash will "win."
 
     ENDHEREDOC
 
@@ -23,6 +24,8 @@ module Puppet::Parser::Functions
       hash1.merge(hash2) do |key,old_value,new_value|
         if old_value.is_a?(Hash) && new_value.is_a?(Hash)
           deep_merge.call(old_value, new_value)
+        elsif old_value.is_a?(Array) && new_value.is_a?(Array)
+          old_value | new_value
         else
           new_value
         end
