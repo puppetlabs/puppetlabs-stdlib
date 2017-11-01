@@ -117,29 +117,49 @@ file_line { 'bashrc_proxy':
 
 マッチ例:
 
-    file_line { 'bashrc_proxy':
-      ensure             => present,
-      path               => '/etc/bashrc',
-      line               => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
-      match              => '^export\ HTTP_PROXY\=',
-      append_on_no_match => false,
-    }
+```puppet
+file_line { 'bashrc_proxy':
+  ensure             => present,
+  path               => '/etc/bashrc',
+  line               => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+  match              => '^export\ HTTP_PROXY\=',
+  append_on_no_match => false,
+}
+```
 
-このコードの例では、`match`によってexportで始まりHTTP_PROXYが続く行が検索され、その行が行内の値に置き換えられます。マッチするものが見つからない場合、ファイルは変更されません。
+このコードの例では、`match`によってexportで始まり'HTTP_PROXY'が続く行が検索され、その行が行内の値に置き換えられます。マッチするものが見つからない場合、ファイルは変更されません。
 
- `ensure => absent`を用いたマッチ例:
+ `ensure => absent`の例:
+
+`ensure => absent`を設定する場合に、このタイプの動作には2通りがあります。
+
+1つは`match => ...`と`match_for_absence => true`の設定です。`match`により、'export'で始まり'HTTP_PROXY'と続く行が探され、その行が削除されます。複数の行がマッチし、`multiple => true`パラメータが設定されていない場合は、エラーが生じます。
+
+この例で`line => ...`パラメータは承認されますが無視されます。
+
+例:
 
 ```puppet
 file_line { 'bashrc_proxy':
   ensure            => absent,
   path              => '/etc/bashrc',
-  line              => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
   match             => '^export\ HTTP_PROXY\=',
   match_for_absence => true,
 }
 ```
 
-上の例では、`match`により、'export'で始まり'HTTP_PROXY'と続く行が探され、その行が削除されます。複数の行がマッチし、`multiple => true`パラメータが設定されていない場合は、エラーが生じます。
+`ensure => absent`を設定する場合のもう1つの動作は、`line => ...`の指定と一致なしです。行が存在しないことを確認した場合のデフォルトの動作では、マッチするすべての行を削除します。この動作を無効にすることはできません。
+
+例:
+
+```puppet
+file_line { 'bashrc_proxy':
+  ensure => absent,
+  path   => '/etc/bashrc',
+  line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+}
+```
+
 
 エンコード例:
 
@@ -193,7 +213,7 @@ file_line { "XScreenSaver":
 
 ##### `match`
 
-ファイル内の既存の行と比較する正規表現を指定します。マッチが見つかった場合、新規の行を追加するかわりに、置き換えられます。正規表現の比較は行の値に照らして行われ、マッチしない場合は、例外が発生します。
+ファイル内の既存の行と比較する正規表現を指定します。マッチが見つかった場合、新規の行を追加する代わりに、置き換えられます。
 
 値: 正規表現を含む文字列
 
@@ -210,7 +230,7 @@ file_line { "XScreenSaver":
 
 ##### `multiple`
 
-`match`および`after`により複数の行を変更できるかどうかを指定します。`false`に設定すると、複数の行がマッチする場合に例外が発生します。
+`match`および`after`により複数の行を変更できるかどうかを指定します。`false`に設定すると、file_lineは1つの行のみ置き換えることができますが、複数の行を置き換えようとするとエラーが発生します。`true`に設定すると、file_lineは1つまたは複数の行を置き換えることができます。
 
 値: `true`、`false`
 
@@ -235,11 +255,19 @@ file_line { "XScreenSaver":
 
 ##### `replace`
 
-`match`パラメータとマッチする既存の行を上書きするかどうかを指定します。`false`に設定すると、`match`パラメータにマッチする行が見つかった場合、その行はファイルに配置されません。
+`match`パラメータとマッチする既存の行をリソースで上書きするかどうかを指定します。`false`に設定すると、`match`パラメータにマッチする行が見つかった場合、その行はファイルに配置されません。
+
+`false`に設定すると、`match`パラメータにマッチする行が見つかった場合、その行はファイルに配置されません。
 
 ブーリアン
 
 デフォルト値: `true`
+
+##### `replace_all_matches_not_matching_line`
+
+`line`がファイルにすでに存在する場合でも、`match`パラメータに一致するすべての行が置き換えられます。
+
+デフォルト値: `false`
 
 ### データタイプ
 
@@ -2214,7 +2242,7 @@ validate_ip_address('260.2.32.43')
 例:
 
 ```puppet
-validate_legacy("Optional[String]", "validate_re", "Value to be validated", ["."])
+validate_legacy('Optional[String]', 'validate_re', 'Value to be validated', ["."])
 ```
 
 この関数は、Puppet 3形式の引数確認(stdlibの`validate_*`関数を使用)からPuppet 4データタイプへのモジュールのアップデートに対応しており、Puppet 3形式の確認に頼っている場合も機能性が中断することはありません。
