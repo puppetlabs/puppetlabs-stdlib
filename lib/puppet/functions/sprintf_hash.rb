@@ -19,7 +19,8 @@ Puppet::Functions.create_function(:sprintf_hash) do
   dispatch :sprintf_hash do
     param 'String', :format
     param 'Hash', :arguments
-    return_type 'String'
+    # Disabled for now. This gives issues on puppet 4.7.1.
+    # return_type 'String'
   end
 
   def sprintf_hash(format, arguments)
