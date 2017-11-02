@@ -357,6 +357,30 @@ Unacceptable input example:
 C:/whatever
 ```
 
+#### `Stdlib::Filemode`
+
+Matches valid four digit modes in octal format.
+
+Acceptable input examples:
+
+```shell
+0644
+```
+
+```shell
+1777
+```
+
+Unacceptable input examples:
+
+```shell
+644
+```
+
+```shell
+0999
+```
+
 #### `Stdlib::Windowspath`
 
 Matches paths on Windows operating systems.
