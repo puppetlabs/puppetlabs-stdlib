@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
+## Supported Release 4.21.0
+### Summary
+
+This is a small feature release that includes a revamped, albeit backwards-compatible file_line type.
+
+#### Added
+- `replace_all_matches_not_matching_line` parameter in file_line
+- additional tests and documentation for file_line
+
+#### Removed
+- duplicate spec test for absolute_path
+
+#### Fixed
+- Unixpath type to allow "/" as valid path
+- file_line behavior that caused infinite appending of `line` to a file ([MODULES-5651](https://tickets.puppet.com/browse/MODULES-5651))
+
 ## Supported Release 4.20.0
 ### Summary
 

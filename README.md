@@ -127,14 +127,17 @@ file_line { 'bashrc_proxy':
 }
 ```
 
-In this code example, `match` looks for a line beginning with export followed by HTTP_PROXY and replaces it with the value in line. If a match is not found, then no changes are made to the file.
+In this code example, `match` looks for a line beginning with export followed by 'HTTP_PROXY' and replaces it with the value in line. If a match is not found, then no changes are made to the file.
 
-Examples With `ensure => absent`:
+Examples of `ensure => absent`:
 
 This type has two behaviors when `ensure => absent` is set.
 
-One possibility is to set `match => ...` and `match_for_absence => true`,
-as in the following example:
+The first is to set `match => ...` and `match_for_absence => true`. Match looks for a line beginning with 'export', followed by 'HTTP_PROXY', and then deletes it. If multiple lines match, an error is raised unless the `multiple => true` parameter is set.
+
+The `line => ...` parameter in this example would be accepted but ignored.
+
+For example:
 
 ```puppet
 file_line { 'bashrc_proxy':
@@ -145,15 +148,9 @@ file_line { 'bashrc_proxy':
 }
 ```
 
-In this code example match will look for a line beginning with export
-followed by HTTP_PROXY and delete it.  If multiple lines match, an
-error will be raised unless the `multiple => true` parameter is set.
+The second way of using `ensure => absent` is to specify a `line => ...` and no match. When ensuring lines are absent, the default behavior is to remove all lines matching. This behavior can't be disabled.
 
-Note that the `line => ...` parameter would be accepted *but ignored* in
-the above example.
-
-The second way of using `ensure => absent` is to specify a `line => ...`,
-and no match:
+For example:
 
 ```puppet
 file_line { 'bashrc_proxy':
@@ -163,9 +160,6 @@ file_line { 'bashrc_proxy':
 }
 ```
 
-Note that when ensuring lines are absent this way, the default behavior
-this time is to always remove all lines matching, and this behavior
-can't be disabled.
 
 Encoding example:
 
@@ -236,7 +230,7 @@ Default value: `false`.
 
 ##### `multiple`
 
-Specifies whether `match` and `after` can change multiple lines. If set to `false`, allows file\_line to replace only one line and raises an error if more than one will be replaced. If set to `true`, allows file\_line to replace one or more lines.
+Specifies whether `match` and `after` can change multiple lines. If set to `false`, allows file_line to replace only one line and raises an error if more than one will be replaced. If set to `true`, allows file_line to replace one or more lines.
 
 Values: `true`, `false`.
 
@@ -271,7 +265,7 @@ Default value: `true`.
 
 ##### `replace_all_matches_not_matching_line`
 
-Replace all lines matched by `match` parameter, even if `line` already exists in the file.
+Replaces all lines matched by `match` parameter, even if `line` already exists in the file.
 
 Default value: `false`.
 
