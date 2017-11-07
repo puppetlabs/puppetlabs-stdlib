@@ -8,68 +8,54 @@ Puppet::Type.type(:file_line).provide(:ruby) do
         lines_count += 1
       end
     end
-    if resource[:match] == nil
-      found = lines_count > 0
-    else
-      match_count = count_matches(new_match_regex)
-      if resource[:ensure] == :present
-        if match_count == 0
-          if lines_count == 0
-            if resource[:append_on_no_match].to_s == 'false'
-              found = true # lies, but gets the job done
-            else
-              found = false
-            end
-          else
-            found = true
-          end
-        else
-          if resource[:replace_all_matches_not_matching_line].to_s == 'true'
-            found = false # maybe lies, but knows there's still work to do
-          else
-            if lines_count == 0
-              if resource[:replace].to_s == 'false'
-                found = true
+    return found = lines_count > 0 if resource[:match].nil?
+
+    match_count = count_matches(new_match_regex)
+    found = if resource[:ensure] == :present
+              if match_count.zero?
+                if lines_count.zero? && resource[:append_on_no_match].to_s == 'false'
+                  true # lies, but gets the job done
+                elsif lines_count.zero? && resource[:append_on_no_match].to_s != 'false'
+                  false
+                else
+                  true
+                end
+              elsif resource[:replace_all_matches_not_matching_line].to_s == 'true'
+                false # maybe lies, but knows there's still work to do
+              elsif lines_count.zero?
+                if resource[:replace].to_s == 'false'
+                  true
+                else
+                  false
+                end
               else
-                found = false
+                true
+              end
+            elsif match_count.zero?
+              if lines_count.zero?
+                false
+              else
+                true
+              end
+            elsif lines_count.zero?
+              if resource[:match_for_absence].to_s == 'true'
+                true # found matches, not lines
+              else
+                false
               end
             else
-              found = true
+              true
             end
-          end
-        end
-      else
-        if match_count == 0
-          if lines_count == 0
-            found = false
-          else
-            found = true
-          end
-        else
-          if lines_count == 0
-            if resource[:match_for_absence].to_s == 'true'
-              found = true # found matches, not lines
-            else
-              found = false
-            end
-          else
-            found = true
-          end
-        end
-      end
-    end
-    found
   end
 
   def create
-    unless resource[:replace].to_s != 'true' && count_matches(new_match_regex) > 0
-      if resource[:match]
-        handle_create_with_match
-      elsif resource[:after]
-        handle_create_with_after
-      else
-        handle_append_line
-      end
+    return if resource[:replace].to_s != 'true' && count_matches(new_match_regex) > 0
+    if resource[:match]
+      handle_create_with_match
+    elsif resource[:after]
+      handle_create_with_after
+    else
+      handle_append_line
     end
   end
 
@@ -89,12 +75,11 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     #  file; for now assuming that this type is only used on
     #  small-ish config files that can fit into memory without
     #  too much trouble.
-    begin
-      @lines ||= File.readlines(resource[:path], :encoding => resource[:encoding])
-    rescue TypeError => e
-      # Ruby 1.8 doesn't support open_args
-      @lines ||= File.readlines(resource[:path])
-    end
+
+    @lines ||= File.readlines(resource[:path], encoding: resource[:encoding])
+  rescue TypeError => _e
+    # Ruby 1.8 doesn't support open_args
+    @lines ||= File.readlines(resource[:path])
   end
 
   def new_after_regex
@@ -106,36 +91,35 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def count_matches(regex)
-    lines.select do |line|
+    lines.select { |line|
       if resource[:replace_all_matches_not_matching_line].to_s == 'true'
         line.match(regex) unless line.chomp == resource[:line]
       else
         line.match(regex)
       end
-    end.size
+    }.size
   end
 
-  def handle_create_with_match()
+  def handle_create_with_match
     after_regex = new_after_regex
     match_regex = new_match_regex
     match_count = count_matches(new_match_regex)
 
     if match_count > 1 && resource[:multiple].to_s != 'true'
-     raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
+      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
     end
 
     File.open(resource[:path], 'w') do |fh|
       lines.each do |line|
         fh.puts(match_regex.match(line) ? resource[:line] : line)
-        if match_count == 0 && after_regex
-          if after_regex.match(line)
-            fh.puts(resource[:line])
-            match_count += 1 # Increment match_count to indicate that the new line has been inserted.
-          end
+        next unless match_count.zero? && after_regex
+        if after_regex.match(line)
+          fh.puts(resource[:line])
+          match_count += 1 # Increment match_count to indicate that the new line has been inserted.
         end
       end
 
-      if (match_count == 0)
+      if match_count.zero?
         fh.puts(resource[:line])
       end
     end
@@ -149,7 +133,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
       raise Puppet::Error, "#{after_count} lines match pattern '#{resource[:after]}' in file '#{resource[:path]}'. One or no line must match the pattern."
     end
 
-    File.open(resource[:path],'w') do |fh|
+    File.open(resource[:path], 'w') do |fh|
       lines.each do |line|
         fh.puts(line)
         if after_regex.match(line)
@@ -157,7 +141,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
         end
       end
 
-      if (after_count == 0)
+      if after_count.zero?
         fh.puts(resource[:line])
       end
     end
@@ -167,25 +151,25 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     match_regex = new_match_regex
     match_count = count_matches(match_regex)
     if match_count > 1 && resource[:multiple].to_s != 'true'
-     raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
+      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
     end
 
     local_lines = lines
-    File.open(resource[:path],'w') do |fh|
-      fh.write(local_lines.reject{ |line| match_regex.match(line) }.join(''))
+    File.open(resource[:path], 'w') do |fh|
+      fh.write(local_lines.reject { |line| match_regex.match(line) }.join(''))
     end
   end
 
   def handle_destroy_line
     local_lines = lines
-    File.open(resource[:path],'w') do |fh|
-      fh.write(local_lines.reject{ |line| line.chomp == resource[:line] }.join(''))
+    File.open(resource[:path], 'w') do |fh|
+      fh.write(local_lines.reject { |line| line.chomp == resource[:line] }.join(''))
     end
   end
 
   def handle_append_line
     local_lines = lines
-    File.open(resource[:path],'w') do |fh|
+    File.open(resource[:path], 'w') do |fh|
       local_lines.each do |line|
         fh.puts(line)
       end

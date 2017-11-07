@@ -18,3 +18,5 @@ spec/spec_helper.rb:
     - rvm: 2.1.9
       env: PUPPET_GEM_VERSION="~> 4.7.0"
       bundler_args: --without system_tests
+  - rvm: 2.1.9
+    script: bundle exec rake rubocop

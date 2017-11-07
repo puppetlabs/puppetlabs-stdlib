@@ -5,12 +5,13 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     describe 'accepts hashes' do
       [
         {},
-        {'one' => "two"},
-        {'wan' => 3},
-        {'001' => "helly"},
+        { 'one' => 'two' },
+        { 'wan' => 3 },
+        { '001' => 'helly' },
       ].each do |value|
         describe value.inspect do
-          let(:params) {{ value: value }}
+          let(:params) { { value: value } }
+
           it { is_expected.to compile }
         end
       end
@@ -23,8 +24,9 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
         [],
       ].each do |value|
         describe value.inspect do
-          let(:params) {{ value: value }}
-          it { is_expected.to compile.and_raise_error(/parameter 'value' expects a Stdlib::Compat::Hash/) }
+          let(:params) { { value: value } }
+
+          it { is_expected.to compile.and_raise_error(%r{parameter 'value' expects a Stdlib::Compat::Hash}) }
         end
       end
     end

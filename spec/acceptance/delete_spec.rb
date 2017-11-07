@@ -2,17 +2,16 @@
 require 'spec_helper_acceptance'
 
 describe 'delete function' do
-  describe 'success' do
-    it 'should delete elements of the array' do
-      pp = <<-EOS
+  pp = <<-EOS
       $output = delete(['a','b','c','b'], 'b')
       if $output == ['a','c'] {
         notify { 'output correct': }
       }
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/Notice: output correct/)
+  EOS
+  describe 'success' do
+    it 'deletes elements of the array' do
+      apply_manifest(pp, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
   end

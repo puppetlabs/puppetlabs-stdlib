@@ -3,18 +3,17 @@ require 'spec_helper_acceptance'
 
 describe 'hash function' do
   describe 'success' do
-    it 'hashs arrays' do
-      pp = <<-EOS
+    pp = <<-EOS
       $a = ['aaa','bbb','bbb','ccc','ddd','eee']
       $b = { 'aaa' => 'bbb', 'bbb' => 'ccc', 'ddd' => 'eee' }
       $o = hash($a)
       if $o == $b {
         notify { 'output correct': }
       }
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/Notice: output correct/)
+    EOS
+    it 'hashs arrays' do
+      apply_manifest(pp, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
     it 'handles odd-length arrays'

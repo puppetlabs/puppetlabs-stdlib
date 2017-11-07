@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe 'validate_x509_rsa_key_pair' do
-
+  # rubocop:disable Lint/IndentHeredoc : Heredoc's are meant to be indented in this way
   let(:valid_cert) do
-  <<EOS
+    <<EOS
 -----BEGIN CERTIFICATE-----
 MIIC9jCCAeCgAwIBAgIRAK11n3X7aypJ7FPM8UFyAeowCwYJKoZIhvcNAQELMBIx
 EDAOBgNVBAoTB0FjbWUgQ28wHhcNMTUxMTIzMjIzOTU4WhcNMTYxMTIyMjIzOTU4
@@ -26,7 +26,7 @@ EOS
   end
 
   let(:valid_key) do
-  <<EOS
+    <<EOS
 -----BEGIN RSA PRIVATE KEY-----
 MIIEogIBAAKCAQEAz9bY/piKahD10AiJSfbI2A8NG5UwRz0r9T/WfvNVdhgrsGFg
 NQjvpUoZnNJpQIHBbgMOiXqfATFjJl5FjEkSf7GUHohlGVls9MX2JmVvknzsiitd
@@ -58,7 +58,7 @@ EOS
   end
 
   let(:another_valid_key) do
-  <<EOS
+    <<EOS
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAoISxYJBTPAeAzFnm+lE/ljLlmGal2Xr3vwZKkvJiuKA/m4QJ
 0ZNdtkBSDOVuG2dXVv6W4sChRtsCdvuVe7bjTYvlU8TWM3VEJDL9l9cRXScxxlKQ
@@ -88,13 +88,14 @@ zJ13E5z9MKKO8nkGBqrRfjJa8Xhxk4HKNFuzHEet5lvNE7IKCF4YQRb0ZBhnb/78
 -----END RSA PRIVATE KEY-----
 EOS
   end
+  # rubocop:enable Layout/IndentHeredoc
 
   let(:valid_cert_but_indented) do
-    valid_cert.gsub(/^/, '  ')
+    valid_cert.gsub(%r{^}, '  ')
   end
 
   let(:valid_key_but_indented) do
-    valid_key.gsub(/^/, '  ')
+    valid_key.gsub(%r{^}, '  ')
   end
 
   let(:malformed_cert) do
@@ -115,8 +116,8 @@ EOS
 
   context 'function signature validation' do
     it { is_expected.not_to eq(nil) }
-    it { is_expected.to run.with_params().and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
-    it { is_expected.to run.with_params(0, 1, 2, 3).and_raise_error(Puppet::ParseError, /wrong number of arguments/i) }
+    it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
+    it { is_expected.to run.with_params(0, 1, 2, 3).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   end
 
   context 'valid input' do
@@ -127,44 +128,44 @@ EOS
 
   context 'bad input' do
     describe 'valid certificate, valid but indented key' do
-      it { is_expected.to run.with_params(valid_cert, valid_key_but_indented).and_raise_error(Puppet::ParseError, /Not a valid RSA key/) }
+      it { is_expected.to run.with_params(valid_cert, valid_key_but_indented).and_raise_error(Puppet::ParseError, %r{Not a valid RSA key}) }
     end
 
     describe 'valid certificate, malformed key' do
-      it { is_expected.to run.with_params(valid_cert, malformed_key).and_raise_error(Puppet::ParseError, /Not a valid RSA key/) }
+      it { is_expected.to run.with_params(valid_cert, malformed_key).and_raise_error(Puppet::ParseError, %r{Not a valid RSA key}) }
     end
 
     describe 'valid certificate, bad key' do
-      it { is_expected.to run.with_params(valid_cert, bad_key).and_raise_error(Puppet::ParseError, /Not a valid RSA key/) }
+      it { is_expected.to run.with_params(valid_cert, bad_key).and_raise_error(Puppet::ParseError, %r{Not a valid RSA key}) }
     end
 
     describe 'valid but indented certificate, valid key' do
-      it { is_expected.to run.with_params(valid_cert_but_indented, valid_key).and_raise_error(Puppet::ParseError, /Not a valid x509 certificate/) }
+      it { is_expected.to run.with_params(valid_cert_but_indented, valid_key).and_raise_error(Puppet::ParseError, %r{Not a valid x509 certificate}) }
     end
 
     describe 'malformed certificate, valid key' do
-      it { is_expected.to run.with_params(malformed_cert, valid_key).and_raise_error(Puppet::ParseError, /Not a valid x509 certificate/) }
+      it { is_expected.to run.with_params(malformed_cert, valid_key).and_raise_error(Puppet::ParseError, %r{Not a valid x509 certificate}) }
     end
 
     describe 'bad certificate, valid key' do
-      it { is_expected.to run.with_params(bad_cert, valid_key).and_raise_error(Puppet::ParseError, /Not a valid x509 certificate/) }
+      it { is_expected.to run.with_params(bad_cert, valid_key).and_raise_error(Puppet::ParseError, %r{Not a valid x509 certificate}) }
     end
 
     describe 'validate certificate and key; certficate not signed by key' do
-      it { is_expected.to run.with_params(valid_cert, another_valid_key).and_raise_error(Puppet::ParseError, /Certificate signature does not match supplied key/) }
+      it { is_expected.to run.with_params(valid_cert, another_valid_key).and_raise_error(Puppet::ParseError, %r{Certificate signature does not match supplied key}) }
     end
 
     describe 'valid cert and key but arguments in wrong order' do
-      it { is_expected.to run.with_params(valid_key, valid_cert).and_raise_error(Puppet::ParseError, /Not a valid x509 certificate/) }
+      it { is_expected.to run.with_params(valid_key, valid_cert).and_raise_error(Puppet::ParseError, %r{Not a valid x509 certificate}) }
     end
 
     describe 'non-string arguments' do
-      it { is_expected.to run.with_params({}, {}).and_raise_error(Puppet::ParseError, /is not a string/) }
-      it { is_expected.to run.with_params(1, 1).and_raise_error(Puppet::ParseError, /is not a string/) }
-      it { is_expected.to run.with_params(true, true).and_raise_error(Puppet::ParseError, /is not a string/) }
-      it { is_expected.to run.with_params("foo", {}).and_raise_error(Puppet::ParseError, /is not a string/) }
-      it { is_expected.to run.with_params(1, "bar").and_raise_error(Puppet::ParseError, /is not a string/) }
-      it { is_expected.to run.with_params("baz", true).and_raise_error(Puppet::ParseError, /is not a string/) }
+      it { is_expected.to run.with_params({}, {}).and_raise_error(Puppet::ParseError, %r{is not a string}) }
+      it { is_expected.to run.with_params(1, 1).and_raise_error(Puppet::ParseError, %r{is not a string}) }
+      it { is_expected.to run.with_params(true, true).and_raise_error(Puppet::ParseError, %r{is not a string}) }
+      it { is_expected.to run.with_params('foo', {}).and_raise_error(Puppet::ParseError, %r{is not a string}) }
+      it { is_expected.to run.with_params(1, 'bar').and_raise_error(Puppet::ParseError, %r{is not a string}) }
+      it { is_expected.to run.with_params('baz', true).and_raise_error(Puppet::ParseError, %r{is not a string}) }
     end
   end
 
@@ -175,6 +176,6 @@ EOS
     end_pos = middle + (chars_to_truncate / 2)
 
     string[start_pos...end_pos] = ''
-    return string
+    string
   end
 end

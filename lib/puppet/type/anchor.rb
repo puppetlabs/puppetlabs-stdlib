@@ -35,7 +35,7 @@ Puppet::Type.newtype(:anchor) do
   ENDOFDESC
 
   newparam :name do
-    desc "The name of the anchor resource."
+    desc 'The name of the anchor resource.'
   end
 
   def refresh

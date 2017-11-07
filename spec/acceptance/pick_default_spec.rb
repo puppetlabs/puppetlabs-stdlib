@@ -3,51 +3,49 @@ require 'spec_helper_acceptance'
 
 describe 'pick_default function' do
   describe 'success' do
-    it 'pick_defaults a default value' do
-      pp = <<-EOS
+    pp1 = <<-EOS
       $a = undef
       $o = pick_default($a, 'default')
       notice(inline_template('picked is <%= @o.inspect %>'))
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/picked is "default"/)
+    EOS
+    it 'pick_defaults a default value' do
+      apply_manifest(pp1, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{picked is "default"})
       end
     end
-    it 'pick_defaults with no value' do
-      pp = <<-EOS
+
+    pp2 = <<-EOS
       $a = undef
       $b = undef
       $o = pick_default($a,$b)
       notice(inline_template('picked is <%= @o.inspect %>'))
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/picked is ""/)
+    EOS
+    it 'pick_defaults with no value' do
+      apply_manifest(pp2, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{picked is ""})
       end
     end
-    it 'pick_defaults the first set value' do
-      pp = <<-EOS
+
+    pp3 = <<-EOS
       $a = "something"
       $b = "long"
       $o = pick_default($a, $b, 'default')
       notice(inline_template('picked is <%= @o.inspect %>'))
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/picked is "something"/)
+    EOS
+    it 'pick_defaults the first set value' do
+      apply_manifest(pp3, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{picked is "something"})
       end
     end
   end
   describe 'failure' do
-    it 'raises error with no values' do
-      pp = <<-EOS
+    pp4 = <<-EOS
       $o = pick_default()
       notice(inline_template('picked is <%= @o.inspect %>'))
-      EOS
-
-      apply_manifest(pp, :expect_failures => true) do |r|
-        expect(r.stderr).to match(/Must receive at least one argument/)
+    EOS
+    it 'raises error with no values' do
+      apply_manifest(pp4, expect_failures: true) do |r|
+        expect(r.stderr).to match(%r{Must receive at least one argument})
       end
     end
   end
