@@ -413,6 +413,58 @@ Unacceptable input example:
 /usr2/username/bin:/usr/local/bin:/usr/bin:.
 ```
 
+#### `Stdlib::Fqdn`
+
+Matches paths on fully quallified domain name
+
+Acceptable input example:
+
+```shell
+localhost
+
+example.com
+
+www.example.com
+```
+
+Unacceptable input example:
+
+```shell
+'www www.example.com'
+
+2001:DB8::1
+```
+
+#### `Stdlib::Host`
+
+Matches a valid host which could be a valid ipv4, ipv6 or fqdn
+
+Acceptable input example:
+
+```shell
+localhost
+
+example.com
+
+www.example.com
+
+2001:0db8::1
+
+192.0.2.1
+```
+
+Unacceptable input example:
+
+```shell
+'www www.example.com'
+
+2001:0d8
+
+%.example.com
+
+bob@example.com
+```
+
 ### Facts
 
 #### `package_provider`
