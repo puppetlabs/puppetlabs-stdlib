@@ -1697,7 +1697,7 @@ Returns the number of elements in a string, an array or a hash. This function wi
 
 Perform printf-style formatting with named references of text.
 
-The first paameter is format string describing how the rest of the parameters in the hash
+The first parameter is format string describing how the rest of the parameters in the hash
 should be formatted. See the documentation for the `Kernel::sprintf` function in Ruby for
 all the details.
 
