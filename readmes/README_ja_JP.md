@@ -295,6 +295,24 @@ C:\\WINDOWS\\System32
 ../relative_path
 ```
 
+#### `Stdlib::Ensure::Service`
+
+サービスリソースの使用可能なensure値と一致します。
+
+使用可能なインプット例:    
+
+```shell
+停止済み
+実行中
+```
+
+使用不可能なインプット例:   
+
+```shell
+true
+false
+```
+
 #### `Stdlib::Httpsurl`
 
 HTTPS URLに一致します。
@@ -349,6 +367,30 @@ Unixオペレーティングシステムのパスに一致します。
 
 ```shell
 C:/whatever
+```
+
+#### `Stdlib::Filemode`
+
+８進数で有効な4桁モードと一致します。
+
+使用可能なインプット例:
+
+```shell
+0644
+```
+
+```shell
+1777
+```
+
+使用不可能なインプット例:
+
+```shell
+644
+```
+
+```shell
+0999
 ```
 
 #### `Stdlib::Windowspath`
@@ -1650,6 +1692,22 @@ shell_split('foo\ bar ba\"z') => ['foo bar', 'ba"z']
 文字列、配列、ハッシュの要素数を返します。この関数は、今後のリリースでは廃止されます。Puppet 4では、`length`関数を使用してください。
 
 *タイプ*: 右辺値
+
+#### `sprintf_hash`
+
+名前が指定されたテキストのリファレンスでprintfスタイルのフォーマットを実行します。
+
+最初のパラメータは、ハッシュ内での残りのパラメータのフォーマット方法を記述するフォーマット文字列です。詳細については、Rubyの`Kernel::sprintf`機能のマニュアルを参照してください。
+
+例:
+
+```puppet
+$output = sprintf_hash('String: %<foo>s / number converted to binary: %<number>b',
+                       { 'foo' => 'a string', 'number' => 5 })
+# $output = 'String: a string / number converted to binary: 101'
+```
+
+*Type*: rvalue
 
 #### `sort`
 
