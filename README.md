@@ -1695,13 +1695,11 @@ Returns the number of elements in a string, an array or a hash. This function wi
 
 #### `sprintf_hash`
 
-Perform printf-style formatting with named references of text.
+Performs printf-style formatting with named references of text.
 
-The first parameter is format string describing how the rest of the parameters in the hash
-should be formatted. See the documentation for the `Kernel::sprintf` function in Ruby for
-all the details.
+The first parameter is a format string describing how to format the rest of the parameters in the hash. See Ruby documentation for [`Kernel::sprintf`](https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-sprintf) for details about this function.
 
-*Example:*
+For example:
 
 ```puppet
 $output = sprintf_hash('String: %<foo>s / number converted to binary: %<number>b',
