@@ -3,8 +3,7 @@ require 'spec_helper_acceptance'
 
 describe 'get_module_path function' do
   describe 'success' do
-    it 'get_module_paths dne' do
-      pp = <<-EOS
+    pp = <<-EOS
       $a = $::is_pe ? {
         'true'  => '/etc/puppetlabs/puppet/modules/dne',
         'false' => '/etc/puppet/modules/dne',
@@ -15,9 +14,9 @@ describe 'get_module_path function' do
       } else {
         notify { "failed; module path is '$o'": }
       }
-      EOS
-
-      apply_manifest(pp, :expect_failures => true)
+    EOS
+    it 'get_module_paths dne' do
+      apply_manifest(pp, expect_failures: true)
     end
   end
   describe 'failure' do

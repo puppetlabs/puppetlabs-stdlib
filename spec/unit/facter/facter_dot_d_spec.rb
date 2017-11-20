@@ -2,8 +2,7 @@
 require 'spec_helper'
 require 'facter/facter_dot_d'
 
-describe Facter::Util::DotD do
-
+describe Facter::Util::DotD do # rubocop:disable RSpec/FilePath : Spec path is as it should be
   context 'returns a simple fact' do
     before :each do
       Facter.stubs(:version).returns('1.6.1')
@@ -12,7 +11,7 @@ describe Facter::Util::DotD do
       subject.create
     end
 
-    it 'should return successfully' do
+    it 'returns successfully' do
       expect(Facter.fact(:fake_fact).value).to eq('fake fact')
     end
   end
@@ -25,7 +24,7 @@ describe Facter::Util::DotD do
       subject.create
     end
 
-    it 'should return successfully' do
+    it 'returns successfully' do
       expect(Facter.fact(:foo).value).to eq('1+1=2')
     end
   end

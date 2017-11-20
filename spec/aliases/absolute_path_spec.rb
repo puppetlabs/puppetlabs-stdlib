@@ -3,7 +3,7 @@ require 'spec_helper'
 if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
   describe 'test::absolute_path', type: :class do
     describe 'valid paths handling' do
-      %w{
+      %w[
         C:/
         C:\\
         C:\\WINDOWS\\System32
@@ -18,9 +18,10 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
         /var/opt//lib/puppet
         /var/ůťƒ8
         /var/ネット
-      }.each do |value|
+      ].each do |value|
         describe value.inspect do
-          let(:params) {{ value: value }}
+          let(:params) { { value: value } }
+
           it { is_expected.to compile }
         end
       end
@@ -30,21 +31,22 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
       context 'garbage inputs' do
         [
           nil,
-          [ nil ],
-          [ nil, nil ],
+          [nil],
+          [nil, nil],
           { 'foo' => 'bar' },
-          { },
+          {},
           '',
         ].each do |value|
           describe value.inspect do
-            let(:params) {{ value: value }}
-            it { is_expected.to compile.and_raise_error(/parameter 'value' expects a match for Stdlib::Compat::Absolute_path/) }
+            let(:params) { { value: value } }
+
+            it { is_expected.to compile.and_raise_error(%r{parameter 'value' expects a match for Stdlib::Compat::Absolute_path}) }
           end
         end
       end
 
       context 'relative paths' do
-        %w{
+        %w[
           relative1
           .
           ..
@@ -55,10 +57,11 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
           relative\\windows
           \var\ůťƒ8
           \var\ネット
-        }.each do |value|
+        ].each do |value|
           describe value.inspect do
-            let(:params) {{ value: value }}
-            it { is_expected.to compile.and_raise_error(/parameter 'value' expects a match for Stdlib::Compat::Absolute_path/) }
+            let(:params) { { value: value } }
+
+            it { is_expected.to compile.and_raise_error(%r{parameter 'value' expects a match for Stdlib::Compat::Absolute_path}) }
           end
         end
       end

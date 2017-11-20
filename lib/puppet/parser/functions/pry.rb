@@ -1,16 +1,15 @@
 #
 # pry.rb
 #
-
 module Puppet::Parser::Functions
-  newfunction(:pry, :type => :statement, :doc => <<-EOS
-This function invokes a pry debugging session in the current scope object. This is useful for debugging manifest code at specific points during a compilation.
+  newfunction(:pry, type: :statement, doc: <<-EOS
+    This function invokes a pry debugging session in the current scope object. This is useful for debugging manifest code at specific points during a compilation.
 
-*Examples:*
+    *Examples:*
 
-    pry()
+        pry()
     EOS
-  ) do |arguments|
+             ) do |arguments|
     begin
       require 'pry'
     rescue LoadError

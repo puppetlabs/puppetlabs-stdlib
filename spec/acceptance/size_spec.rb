@@ -3,48 +3,47 @@ require 'spec_helper_acceptance'
 
 describe 'size function' do
   describe 'success' do
-    it 'single string size' do
-      pp = <<-EOS
+    pp1 = <<-EOS
       $a = 'discombobulate'
       $o = size($a)
       notice(inline_template('size is <%= @o.inspect %>'))
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/size is 14/)
+    EOS
+    it 'single string size' do
+      apply_manifest(pp1, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{size is 14})
       end
     end
-    it 'with empty string' do
-      pp = <<-EOS
+
+    pp2 = <<-EOS
       $a = ''
       $o = size($a)
       notice(inline_template('size is <%= @o.inspect %>'))
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/size is 0/)
+    EOS
+    it 'with empty string' do
+      apply_manifest(pp2, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{size is 0})
       end
     end
-    it 'with undef' do
-      pp = <<-EOS
+
+    pp3 = <<-EOS
       $a = undef
       $o = size($a)
       notice(inline_template('size is <%= @o.inspect %>'))
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/size is 0/)
+    EOS
+    it 'with undef' do
+      apply_manifest(pp3, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{size is 0})
       end
     end
-    it 'strings in array' do
-      pp = <<-EOS
+
+    pp4 = <<-EOS
       $a = ['discombobulate', 'moo']
       $o = size($a)
       notice(inline_template('size is <%= @o.inspect %>'))
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/size is 2/)
+    EOS
+    it 'strings in array' do
+      apply_manifest(pp4, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{size is 2})
       end
     end
   end

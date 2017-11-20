@@ -27,6 +27,7 @@ describe 'sprintf_hash' do
   end
 
   it 'prints formats with name placeholders' do
-    is_expected.to run.with_params('string %<foo>s and integer %<bar>b', 'foo' => '_foo_', 'bar' => 5).and_return('string _foo_ and integer 101')
+    is_expected.to run.with_params('string %<foo>s and integer %<bar>b', 'foo' => '_foo_', 'bar' => 5) # rubocop:disable Style/FormatStringToken : Template tokens needed for purposes of test
+                      .and_return('string _foo_ and integer 101')
   end
 end

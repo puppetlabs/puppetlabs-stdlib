@@ -3,14 +3,13 @@ require 'spec_helper_acceptance'
 
 describe 'min function' do
   describe 'success' do
-    it 'mins arrays' do
-      pp = <<-EOS
+    pp = <<-EOS
       $o = min("the","public","art","galleries")
       notice(inline_template('min is <%= @o.inspect %>'))
-      EOS
-
-      apply_manifest(pp, :catch_failures => true) do |r|
-        expect(r.stdout).to match(/min is "art"/)
+    EOS
+    it 'mins arrays' do
+      apply_manifest(pp, catch_failures: true) do |r|
+        expect(r.stdout).to match(%r{min is "art"})
       end
     end
   end

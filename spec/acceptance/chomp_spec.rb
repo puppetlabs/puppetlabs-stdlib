@@ -3,8 +3,7 @@ require 'spec_helper_acceptance'
 
 describe 'chomp function' do
   describe 'success' do
-    it 'should eat the newline' do
-      pp = <<-EOS
+    pp = <<-EOS
       $input = "test\n"
       if size($input) != 5 {
         fail("Size of ${input} is not 5.")
@@ -13,9 +12,9 @@ describe 'chomp function' do
       if size($output) != 4 {
         fail("Size of ${input} is not 4.")
       }
-      EOS
-
-      apply_manifest(pp, :catch_failures => true)
+    EOS
+    it 'eats the newline' do
+      apply_manifest(pp, catch_failures: true)
     end
   end
 end

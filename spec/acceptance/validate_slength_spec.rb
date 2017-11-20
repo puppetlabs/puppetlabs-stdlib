@@ -3,61 +3,60 @@ require 'spec_helper_acceptance'
 
 describe 'validate_slength function' do
   describe 'success' do
-    it 'validates a single string max' do
-      pp = <<-EOS
+    pp1 = <<-EOS
       $one = 'discombobulate'
       $two = 17
       validate_slength($one,$two)
-      EOS
-
-      apply_manifest(pp, :catch_failures => true)
+    EOS
+    it 'validates a single string max' do
+      apply_manifest(pp1, catch_failures: true)
     end
-    it 'validates multiple string maxes' do
-      pp = <<-EOS
+
+    pp2 = <<-EOS
       $one = ['discombobulate', 'moo']
       $two = 17
       validate_slength($one,$two)
-      EOS
-
-      apply_manifest(pp, :catch_failures => true)
+    EOS
+    it 'validates multiple string maxes' do
+      apply_manifest(pp2, catch_failures: true)
     end
-    it 'validates min/max of  strings in array' do
-      pp = <<-EOS
+
+    pp3 = <<-EOS
       $one = ['discombobulate', 'moo']
       $two = 17
       $three = 3
       validate_slength($one,$two,$three)
-      EOS
-
-      apply_manifest(pp, :catch_failures => true)
+    EOS
+    it 'validates min/max of  strings in array' do
+      apply_manifest(pp3, catch_failures: true)
     end
-    it 'validates a single string max of incorrect length' do
-      pp = <<-EOS
+
+    pp4 = <<-EOS
       $one = 'discombobulate'
       $two = 1
       validate_slength($one,$two)
-      EOS
-
-      apply_manifest(pp, :expect_failures => true)
+    EOS
+    it 'validates a single string max of incorrect length' do
+      apply_manifest(pp4, expect_failures: true)
     end
-    it 'validates multiple string maxes of incorrect length' do
-      pp = <<-EOS
+
+    pp5 = <<-EOS
       $one = ['discombobulate', 'moo']
       $two = 3
       validate_slength($one,$two)
-      EOS
-
-      apply_manifest(pp, :expect_failures => true)
+    EOS
+    it 'validates multiple string maxes of incorrect length' do
+      apply_manifest(pp5, expect_failures: true)
     end
-    it 'validates multiple strings min/maxes of incorrect length' do
-      pp = <<-EOS
+
+    pp6 = <<-EOS
       $one = ['discombobulate', 'moo']
       $two = 17
       $three = 10
       validate_slength($one,$two,$three)
-      EOS
-
-      apply_manifest(pp, :expect_failures => true)
+    EOS
+    it 'validates multiple strings min/maxes of incorrect length' do
+      apply_manifest(pp6, expect_failures: true)
     end
   end
   describe 'failure' do
