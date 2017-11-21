@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
+## Supported Release 4.23.0
+### Summary
+
+This release is in order to implement Rubocop changes throughout the module.
+
+#### Added
+- Standard and translated readme's have been updated.
+- Rubocop has been implemented in the module and a wide variety of changes have been made to the code.
+- Modulesync changes have been merged into the code.
+
+#### Fixed
+- Minor fix to the readme.
+
 ## Supported Release 4.22.0
 ### Summary
 
