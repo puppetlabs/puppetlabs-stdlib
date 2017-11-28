@@ -2,5 +2,5 @@
 class test::filemode (
   Stdlib::Filemode $value,
 ) {
-  notice("Success")
+  notice('Success')
 }

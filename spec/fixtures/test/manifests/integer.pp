@@ -3,6 +3,6 @@ class test::integer(
   Stdlib::Compat::Integer $value,
   ) {
 
-    notice("Success")
+    notice('Success')
 
 }

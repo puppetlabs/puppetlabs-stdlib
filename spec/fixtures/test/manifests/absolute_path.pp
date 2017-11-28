@@ -2,5 +2,5 @@
 class test::absolute_path(
   Stdlib::Compat::Absolute_path $value,
   ) {
-    notice("Success")
+    notice('Success')
 }

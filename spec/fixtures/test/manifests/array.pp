@@ -3,6 +3,6 @@ class test::array(
   Stdlib::Compat::Array $value,
   ) {
 
-    notice("Success")
+    notice('Success')
 
 }

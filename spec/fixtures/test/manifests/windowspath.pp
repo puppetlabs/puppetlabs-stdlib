@@ -2,5 +2,5 @@
 class test::windowspath(
     Stdlib::Windowspath $value,
     ) {
-  notice("Success")
+  notice('Success')
 }

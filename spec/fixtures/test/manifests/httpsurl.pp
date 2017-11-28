@@ -2,5 +2,5 @@
 class test::httpsurl(
     Stdlib::HTTPSUrl $value,
     ) {
-  notice("Success")
+  notice('Success')
 }

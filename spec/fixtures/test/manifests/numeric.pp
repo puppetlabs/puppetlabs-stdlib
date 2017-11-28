@@ -3,6 +3,6 @@ class test::numeric(
   Stdlib::Compat::Numeric $value,
   ) {
 
-    notice("Success")
+    notice('Success')
 
 }

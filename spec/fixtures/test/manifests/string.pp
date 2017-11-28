@@ -3,6 +3,6 @@ class test::string(
   Stdlib::Compat::String $value,
   ) {
 
-    notice("Success")
+    notice('Success')
 
 }

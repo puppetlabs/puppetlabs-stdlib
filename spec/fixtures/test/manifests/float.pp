@@ -3,6 +3,6 @@ class test::float(
   Stdlib::Compat::Float $value,
   ) {
 
-    notice("Success")
+    notice('Success')
 
 }

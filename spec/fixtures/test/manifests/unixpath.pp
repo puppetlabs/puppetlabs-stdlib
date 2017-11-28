@@ -2,5 +2,5 @@
 class test::unixpath(
     Stdlib::Unixpath $value,
     ) {
-  notice("Success")
+  notice('Success')
 }

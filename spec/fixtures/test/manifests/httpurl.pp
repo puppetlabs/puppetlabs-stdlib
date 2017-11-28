@@ -2,5 +2,5 @@
 class test::httpurl(
     Stdlib::HTTPUrl $value,
     ) {
-  notice("Success")
+  notice('Success')
 }

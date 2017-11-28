@@ -2,5 +2,5 @@
 class test::ipv4(
   Stdlib::Compat::Ipv4 $value,
   ) {
-    notice("Success")
+    notice('Success')
   }

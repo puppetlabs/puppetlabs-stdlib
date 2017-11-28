@@ -3,6 +3,6 @@ class test::bool(
   Stdlib::Compat::Bool $value,
   ) {
 
-    notice("Success")
+    notice('Success')
 
 }

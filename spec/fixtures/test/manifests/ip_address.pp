@@ -2,5 +2,5 @@
 class test::ip_address(
   Stdlib::Compat::Ip_address $value,
   ) {
-    notice("Success")
+    notice('Success')
   }

@@ -3,6 +3,6 @@ class test::hash(
     Stdlib::Compat::Hash $value,
     ) {
 
-  notice("Success")
+  notice('Success')
 
 }

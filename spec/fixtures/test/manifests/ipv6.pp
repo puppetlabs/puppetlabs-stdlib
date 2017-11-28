@@ -2,5 +2,5 @@
 class test::ipv6(
   Stdlib::Compat::Ipv6 $value,
   ) {
-  notice("Success")
+  notice('Success')
 }
