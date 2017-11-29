@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
-  describe 'test::ip_address', type: :class do
+  describe 'Stdlib::Compat::Ip_address' do
     describe 'accepts ipv4 and ipv6 addresses' do
       [
         '224.0.0.0',
@@ -12,9 +12,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
         'fa76:8765:34ac:0823:ab76:eee9:0987:1111',
       ].each do |value|
         describe value.inspect do
-          let(:params) { { value: value } }
-
-          it { is_expected.to compile }
+          it { is_expected.to allow_value(value) }
         end
       end
     end
@@ -26,9 +24,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
         '2001:0db8:85a3:000000:0000:8a2e:0370:7334',
       ].each do |value|
         describe value.inspect do
-          let(:params) { { value: value } }
-
-          it { is_expected.to compile.and_raise_error(%r{parameter 'value' expects a match for}) }
+          it { is_expected.not_to allow_value(value) }
         end
       end
     end
