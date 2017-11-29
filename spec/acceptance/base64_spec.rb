@@ -9,7 +9,7 @@ describe 'base64 function' do
       notify { $decodestring: }
     EOS
     it 'encodes then decode a string' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{thestring})
       end
     end

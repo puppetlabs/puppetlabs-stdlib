@@ -1,8 +1,8 @@
 Puppet::Parser::Functions.newfunction(
   :fqdn_rand_string,
-  arity: -2,
-  type: :rvalue,
-  doc: "Usage: `fqdn_rand_string(LENGTH, [CHARSET], [SEED])`. LENGTH is
+  :arity => -2,
+  :type => :rvalue,
+  :doc => "Usage: `fqdn_rand_string(LENGTH, [CHARSET], [SEED])`. LENGTH is
   required and must be a positive integer. CHARSET is optional and may be
   `undef` or a string. SEED is optional and may be any number or string.
 

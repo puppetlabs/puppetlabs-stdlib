@@ -9,7 +9,7 @@ describe 'keys function' do
       notice(inline_template('keys is <%= @o.sort.inspect %>'))
     EOS
     it 'keyss hashes' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{keys is \["aaa", "ccc"\]})
       end
     end

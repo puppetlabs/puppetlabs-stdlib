@@ -2,7 +2,7 @@
 # zip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:zip, type: :rvalue, doc: <<-EOS
+  newfunction(:zip, :type => :rvalue, :doc => <<-EOS
     Takes one element from first array and merges corresponding elements from second array. This generates a sequence of n-element arrays, where n is one more than the count of arguments.
 
     *Example:*

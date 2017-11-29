@@ -2,7 +2,7 @@
 # reverse.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:reverse, type: :rvalue, doc: <<-EOS
+  newfunction(:reverse, :type => :rvalue, :doc => <<-EOS
     Reverses the order of a string or array.
     EOS
              ) do |arguments|

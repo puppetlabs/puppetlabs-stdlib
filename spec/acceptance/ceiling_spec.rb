@@ -12,7 +12,7 @@ describe 'ceiling function' do
       }
     EOS
     it 'ceilings floats' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -26,7 +26,7 @@ describe 'ceiling function' do
       }
     EOS
     it 'ceilings integers' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output is correct})
       end
     end

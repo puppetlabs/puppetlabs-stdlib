@@ -8,7 +8,7 @@ describe 'min function' do
       notice(inline_template('min is <%= @o.inspect %>'))
     EOS
     it 'mins arrays' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{min is "art"})
       end
     end

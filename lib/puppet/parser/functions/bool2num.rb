@@ -2,7 +2,7 @@
 # bool2num.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:bool2num, type: :rvalue, doc: <<-EOS
+  newfunction(:bool2num, :type => :rvalue, :doc => <<-EOS
     Converts a boolean to a number. Converts the values:
       false, f, 0, n, and no to 0
       true, t, 1, y, and yes to 1

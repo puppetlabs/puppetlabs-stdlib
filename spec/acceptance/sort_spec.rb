@@ -10,7 +10,7 @@ describe 'sort function' do
       notice(inline_template('sort is <%= @o.inspect %>'))
     EOS
     it 'sorts arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{sort is \["art", "galleries", "public", "the"\]})
       end
     end
@@ -21,7 +21,7 @@ describe 'sort function' do
       notice(inline_template('sort is <%= @o.inspect %>'))
     EOS
     it 'sorts strings' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{sort is "    '-abcdefghijklmnopqrstuvwxyz"})
       end
     end

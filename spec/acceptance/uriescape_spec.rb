@@ -9,7 +9,7 @@ describe 'uriescape function' do
       notice(inline_template('uriescape is <%= @o.inspect %>'))
     EOS
     it 'uriescape strings' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{uriescape is ":\/\?%23\[\]@!\$&'\(\)\*\+,;=%20%22%7B%7D"})
       end
     end

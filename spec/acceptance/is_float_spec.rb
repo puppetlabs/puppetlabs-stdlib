@@ -9,7 +9,7 @@ describe 'is_float function' do
       notice(inline_template('is_float is <%= @o.inspect %>'))
     EOS
     it 'is_floats arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_float is false})
       end
     end
@@ -20,7 +20,7 @@ describe 'is_float function' do
       notice(inline_template('is_float is <%= @o.inspect %>'))
     EOS
     it 'is_floats true' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_float is false})
       end
     end
@@ -34,7 +34,7 @@ describe 'is_float function' do
       }
     EOS
     it 'is_floats strings' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -48,7 +48,7 @@ describe 'is_float function' do
       }
     EOS
     it 'is_floats floats' do
-      apply_manifest(pp4, catch_failures: true) do |r|
+      apply_manifest(pp4, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -62,7 +62,7 @@ describe 'is_float function' do
       }
     EOS
     it 'is_floats integers' do
-      apply_manifest(pp5, catch_failures: true) do |r|
+      apply_manifest(pp5, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -73,7 +73,7 @@ describe 'is_float function' do
       notice(inline_template('is_float is <%= @o.inspect %>'))
     EOS
     it 'is_floats hashes' do
-      apply_manifest(pp6, catch_failures: true) do |r|
+      apply_manifest(pp6, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_float is false})
       end
     end

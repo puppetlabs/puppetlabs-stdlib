@@ -2,7 +2,7 @@
 # basename.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:basename, type: :rvalue, doc: <<-EOS
+  newfunction(:basename, :type => :rvalue, :doc => <<-EOS
     Strips directory (and optional suffix) from a filename
     EOS
              ) do |arguments|

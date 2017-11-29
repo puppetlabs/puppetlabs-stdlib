@@ -2,7 +2,7 @@
 # assert_private.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:assert_private, doc: <<-'EOS'
+  newfunction(:assert_private, :doc => <<-'EOS'
     Sets the current class or definition as private.
     Calling the class or definition from outside the current module will fail.
     EOS

@@ -10,7 +10,7 @@ describe 'values_at function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'returns a specific value' do
-      expect(apply_manifest(pp1, catch_failures: true).stdout).to match(%r{\["b"\]})
+      expect(apply_manifest(pp1, :catch_failures => true).stdout).to match(%r{\["b"\]})
     end
 
     pp2 = <<-EOS
@@ -21,7 +21,7 @@ describe 'values_at function' do
     EOS
     it 'returns a specific negative index value' do
       pending("negative numbers don't work")
-      expect(apply_manifest(pp2, catch_failures: true).stdout).to match(%r{\["e"\]})
+      expect(apply_manifest(pp2, :catch_failures => true).stdout).to match(%r{\["e"\]})
     end
 
     pp3 = <<-EOS
@@ -31,7 +31,7 @@ describe 'values_at function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'returns a range of values' do
-      expect(apply_manifest(pp3, catch_failures: true).stdout).to match(%r{\["b", "c", "d"\]})
+      expect(apply_manifest(pp3, :catch_failures => true).stdout).to match(%r{\["b", "c", "d"\]})
     end
 
     pp4 = <<-EOS
@@ -41,7 +41,7 @@ describe 'values_at function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'returns a negative specific value and range of values' do
-      expect(apply_manifest(pp4, catch_failures: true).stdout).to match(%r{\["b", "c", "d", "a"\]})
+      expect(apply_manifest(pp4, :catch_failures => true).stdout).to match(%r{\["b", "c", "d", "a"\]})
     end
   end
 
@@ -52,7 +52,7 @@ describe 'values_at function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'handles improper number of arguments' do
-      expect(apply_manifest(pp5, expect_failures: true).stderr).to match(%r{Wrong number of arguments})
+      expect(apply_manifest(pp5, :expect_failures => true).stderr).to match(%r{Wrong number of arguments})
     end
 
     pp6 = <<-EOS
@@ -62,7 +62,7 @@ describe 'values_at function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'handles non-indicies arguments' do
-      expect(apply_manifest(pp6, expect_failures: true).stderr).to match(%r{at least one positive index})
+      expect(apply_manifest(pp6, :expect_failures => true).stderr).to match(%r{at least one positive index})
     end
 
     it 'detects index ranges smaller than the start range'

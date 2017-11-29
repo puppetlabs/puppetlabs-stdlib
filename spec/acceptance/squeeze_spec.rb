@@ -10,7 +10,7 @@ describe 'squeeze function' do
       notice(inline_template('squeeze is <%= @o.inspect %>'))
     EOS
     it 'squeezes arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{squeeze is \["wales", "laparohysterosalpingophorectomy", "br", "godeship"\]})
       end
     end
@@ -22,7 +22,7 @@ describe 'squeeze function' do
       notice(inline_template('squeeze is <%= @o.inspect %>'))
     EOS
     it 'squeezes strings' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{squeeze is "wales laparohysterosalpingophorectomy br godeship"})
       end
     end
@@ -33,7 +33,7 @@ describe 'squeeze function' do
       notice(inline_template('squeeze is <%= @o.inspect %>'))
     EOS
     it 'squeezes strings with an argument' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{squeeze is "counteship ducheship governeship hosteship"})
       end
     end

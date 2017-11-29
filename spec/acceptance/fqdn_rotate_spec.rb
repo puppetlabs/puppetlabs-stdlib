@@ -15,7 +15,7 @@ describe 'fqdn_rotate function' do
         notice(inline_template('fqdn_rotate is <%= @o.inspect %>'))
       EOS
       it 'rotates arrays' do
-        apply_manifest(pp1, catch_failures: true) do |r|
+        apply_manifest(pp1, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{fqdn_rotate is \["d", "a", "b", "c"\]})
         end
       end
@@ -27,7 +27,7 @@ describe 'fqdn_rotate function' do
         notice(inline_template('fqdn_rotate is <%= @o.inspect %>'))
       EOS
       it 'rotates arrays with custom seeds' do
-        apply_manifest(pp2, catch_failures: true) do |r|
+        apply_manifest(pp2, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{fqdn_rotate is \["c", "d", "a", "b"\]})
         end
       end
@@ -38,7 +38,7 @@ describe 'fqdn_rotate function' do
         notice(inline_template('fqdn_rotate is <%= @o.inspect %>'))
       EOS
       it 'rotates strings' do
-        apply_manifest(pp3, catch_failures: true) do |r|
+        apply_manifest(pp3, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{fqdn_rotate is "dabc"})
         end
       end
@@ -50,7 +50,7 @@ describe 'fqdn_rotate function' do
         notice(inline_template('fqdn_rotate is <%= @o.inspect %>'))
       EOS
       it 'rotates strings with custom seeds' do
-        apply_manifest(pp4, catch_failures: true) do |r|
+        apply_manifest(pp4, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{fqdn_rotate is "cdab"})
         end
       end

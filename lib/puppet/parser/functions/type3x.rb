@@ -2,7 +2,7 @@
 # type3x.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:type3x, type: :rvalue, doc: <<-EOS
+  newfunction(:type3x, :type => :rvalue, :doc => <<-EOS
     DEPRECATED: This function will be removed when puppet 3 support is dropped; please migrate to the new parser's typing system.
 
     Returns the type when passed a value. Type can be one of:

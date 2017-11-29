@@ -2,7 +2,7 @@
 # validate_absolute_path.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_absolute_path, doc: <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_absolute_path, :doc => <<-'ENDHEREDOC') do |args|
     Validate the string represents an absolute path in the filesystem.  This function works
     for windows and unix style paths.
 

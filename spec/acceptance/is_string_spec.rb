@@ -12,7 +12,7 @@ describe 'is_string function' do
       }
     EOS
     it 'is_strings arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -26,7 +26,7 @@ describe 'is_string function' do
       }
     EOS
     it 'is_strings true' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -37,7 +37,7 @@ describe 'is_string function' do
       notice(inline_template('is_string is <%= @o.inspect %>'))
     EOS
     it 'is_strings strings' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_string is true})
       end
     end
@@ -48,7 +48,7 @@ describe 'is_string function' do
       notice(inline_template('is_string is <%= @o.inspect %>'))
     EOS
     it 'is_strings number strings' do
-      apply_manifest(pp4, catch_failures: true) do |r|
+      apply_manifest(pp4, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_string is false})
       end
     end
@@ -62,7 +62,7 @@ describe 'is_string function' do
       }
     EOS
     it 'is_strings floats' do
-      apply_manifest(pp5, catch_failures: true) do |r|
+      apply_manifest(pp5, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -76,7 +76,7 @@ describe 'is_string function' do
       }
     EOS
     it 'is_strings integers' do
-      apply_manifest(pp6, catch_failures: true) do |r|
+      apply_manifest(pp6, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -90,7 +90,7 @@ describe 'is_string function' do
       }
     EOS
     it 'is_strings hashes' do
-      apply_manifest(pp7, catch_failures: true) do |r|
+      apply_manifest(pp7, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -101,7 +101,7 @@ describe 'is_string function' do
       notice(inline_template('is_string is <%= @o.inspect %>'))
     EOS
     it 'is_strings undef' do
-      apply_manifest(pp8, catch_failures: true) do |r|
+      apply_manifest(pp8, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_string is true})
       end
     end

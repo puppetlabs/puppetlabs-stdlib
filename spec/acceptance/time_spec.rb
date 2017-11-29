@@ -8,7 +8,7 @@ describe 'time function' do
       notice(inline_template('time is <%= @o.inspect %>'))
     EOS
     it 'gives the time' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         m = r.stdout.match(%r{time is (\d+)\D})
         # When I wrote this test
         expect(Integer(m[1])).to be > 1_398_894_170
@@ -20,7 +20,7 @@ describe 'time function' do
       notice(inline_template('time is <%= @o.inspect %>'))
     EOS
     it 'takes a timezone argument' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         m = r.stdout.match(%r{time is (\d+)\D})
         expect(Integer(m[1])).to be > 1_398_894_170
       end

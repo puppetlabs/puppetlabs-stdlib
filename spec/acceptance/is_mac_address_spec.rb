@@ -12,7 +12,7 @@ describe 'is_mac_address function' do
       }
     EOS
     it 'is_mac_addresss a mac' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -26,7 +26,7 @@ describe 'is_mac_address function' do
       }
     EOS
     it 'is_mac_addresss a mac out of range' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end

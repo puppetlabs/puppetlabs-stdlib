@@ -10,7 +10,7 @@ describe 'lstrip function' do
       notice(inline_template('lstrip is <%= @o.inspect %>'))
     EOS
     it 'lstrips arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{lstrip is \["the   ", "public   ", "art", "galleries   "\]})
       end
     end
@@ -21,7 +21,7 @@ describe 'lstrip function' do
       notice(inline_template('lstrip is <%= @o.inspect %>'))
     EOS
     it 'lstrips strings' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{lstrip is "blowzy night-frumps vex'd jack q   "})
       end
     end

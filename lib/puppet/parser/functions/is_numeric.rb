@@ -2,7 +2,7 @@
 # is_numeric.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_numeric, type: :rvalue, doc: <<-EOS
+  newfunction(:is_numeric, :type => :rvalue, :doc => <<-EOS
     Returns true if the given argument is a Numeric (Integer or Float),
     or a String containing either a valid integer in decimal base 10 form, or
     a valid floating point string representation.

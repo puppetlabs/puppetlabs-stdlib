@@ -13,7 +13,7 @@ describe 'deep_merge function' do
       }
     EOS
     it 'deeps merge two hashes' do
-      apply_manifest(pp, catch_failures: true)
+      apply_manifest(pp, :catch_failures => true)
     end
   end
 end

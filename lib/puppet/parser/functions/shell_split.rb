@@ -3,7 +3,7 @@ require 'shellwords'
 # shell_split.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:shell_split, type: :rvalue, doc: <<-EOS
+  newfunction(:shell_split, :type => :rvalue, :doc => <<-EOS
     Splits a string into an array of tokens in the same way the Bourne shell does.
 
     This function behaves the same as ruby's Shellwords.shellsplit() function

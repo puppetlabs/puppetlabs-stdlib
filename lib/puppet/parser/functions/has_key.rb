@@ -2,7 +2,7 @@
 # has_key.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:has_key, type: :rvalue, doc: <<-'ENDHEREDOC') do |args|
+  newfunction(:has_key, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
     Determine if a hash has a certain key value.
 
     Example:

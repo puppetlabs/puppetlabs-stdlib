@@ -10,7 +10,7 @@ describe 'parseyaml function' do
       notice(inline_template('tests are <%= @tests.inspect %>'))
     EOS
     it 'parses valid yaml' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{tests are "passing"})
       end
     end
@@ -24,7 +24,7 @@ describe 'parseyaml function' do
       notice(inline_template('tests are <%= @tests.inspect %>'))
     EOS
     it 'returns the default value on incorrect yaml' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{tests are "using the default value"})
       end
     end
@@ -36,7 +36,7 @@ describe 'parseyaml function' do
       notice(inline_template('tests are <%= @tests.inspect %>'))
     EOS
     it 'raises error on incorrect yaml' do
-      apply_manifest(pp3, expect_failures: true) do |r|
+      apply_manifest(pp3, :expect_failures => true) do |r|
         expect(r.stderr).to match(%r{(syntax error|did not find expected key)})
       end
     end
@@ -45,7 +45,7 @@ describe 'parseyaml function' do
       $o = parseyaml()
     EOS
     it 'raises error on incorrect number of arguments' do
-      apply_manifest(pp4, expect_failures: true) do |r|
+      apply_manifest(pp4, :expect_failures => true) do |r|
         expect(r.stderr).to match(%r{wrong number of arguments}i)
       end
     end

@@ -3,9 +3,9 @@
 #
 Puppet::Parser::Functions.newfunction(
   :seeded_rand,
-  arity: 2,
-  type: :rvalue,
-  doc: <<-EOS
+  :arity => 2,
+  :type => :rvalue,
+  :doc => <<-EOS
     Usage: `seeded_rand(MAX, SEED)`. MAX must be a positive integer; SEED is any string.
 
     Generates a random whole number greater than or equal to 0 and less

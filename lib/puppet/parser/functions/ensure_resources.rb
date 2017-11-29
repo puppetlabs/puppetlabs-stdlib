@@ -1,8 +1,8 @@
 require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:ensure_resources,
-                                      type: :statement,
-                                      doc: <<-'ENDOFDOC'
+                                      :type => :statement,
+                                      :doc => <<-'ENDOFDOC'
     Takes a resource type, title (only hash), and a list of attributes that describe a
     resource.
 

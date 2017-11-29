@@ -4,7 +4,7 @@ require 'spec_helper_acceptance'
 describe 'member function' do
   shared_examples 'item found' do
     it 'outputs correctly' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -20,7 +20,7 @@ describe 'member function' do
       }
     EOS
     it 'members arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end

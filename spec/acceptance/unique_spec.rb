@@ -9,7 +9,7 @@ describe 'unique function' do
       notice(inline_template('unique is <%= @o.inspect %>'))
     EOS
     it 'uniques arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{unique is \["wallless", "brrr", "goddessship"\]})
       end
     end
@@ -20,7 +20,7 @@ describe 'unique function' do
       notice(inline_template('unique is <%= @o.inspect %>'))
     EOS
     it 'uniques strings' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{unique is "wales prohytingcmbd"})
       end
     end

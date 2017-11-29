@@ -16,7 +16,7 @@ describe 'num2bool function' do
     EOS
     regex_array_true = [%r{a is true}, %r{b is true}, %r{c is true}]
     it 'bools positive numbers and numeric strings as true' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         regex_array_true.each do |i|
           expect(r.stdout).to match(i)
         end
@@ -36,7 +36,7 @@ describe 'num2bool function' do
     EOS
     regex_array_false = [%r{a is false}, %r{b is false}, %r{c is false}]
     it 'bools negative numbers as false' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         regex_array_false.each do |i|
           expect(r.stdout).to match(i)
         end
@@ -51,7 +51,7 @@ describe 'num2bool function' do
       notice(inline_template('a is <%= @ao.inspect %>'))
     EOS
     it 'fails on words' do
-      expect(apply_manifest(pp3, expect_failures: true).stderr).to match(%r{not look like a number})
+      expect(apply_manifest(pp3, :expect_failures => true).stderr).to match(%r{not look like a number})
     end
 
     pp4 = <<-EOS
@@ -60,7 +60,7 @@ describe 'num2bool function' do
       notice(inline_template('b is <%= @bo.inspect %>'))
     EOS
     it 'fails on numberwords' do
-      expect(apply_manifest(pp4, expect_failures: true).stderr).to match(%r{not look like a number})
+      expect(apply_manifest(pp4, :expect_failures => true).stderr).to match(%r{not look like a number})
     end
 
     pp5 = <<-EOS # rubocop:disable Lint/UselessAssignment
@@ -71,7 +71,7 @@ describe 'num2bool function' do
     it 'fails on non-numeric/strings' do
       pending "The function will call .to_s.to_i on anything not a Numeric or
       String, and results in 0. Is this intended?"
-      expect(apply_manifest(pp5(expect_failures: true)).stderr).to match(%r{Unable to parse})
+      expect(apply_manifest(pp5(:expect_failures => true)).stderr).to match(%r{Unable to parse})
     end
   end
 end

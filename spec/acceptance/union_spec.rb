@@ -12,7 +12,7 @@ describe 'union function' do
       notice(inline_template('union is <%= @o.inspect %>'))
     EOS
     it 'unions arrays' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{union is \["the", "public", "art", "galleries"\]})
       end
     end

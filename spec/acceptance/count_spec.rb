@@ -9,7 +9,7 @@ describe 'count function' do
       notify { "$output": }
     EOS
     it 'counts elements in an array' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: 4})
       end
     end
@@ -20,7 +20,7 @@ describe 'count function' do
       notify { "$output": }
     EOS
     it 'counts elements in an array that match a second argument' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: 3})
       end
     end

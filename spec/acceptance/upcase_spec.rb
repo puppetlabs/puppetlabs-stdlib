@@ -9,7 +9,7 @@ describe 'upcase function' do
       notice(inline_template('upcase is <%= @o.inspect %>'))
     EOS
     it 'upcases arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{upcase is \["WALLLESS", "LAPAROHYSTEROSALPINGOOOPHORECTOMY", "BRRR", "GODDESSSHIP"\]})
       end
     end
@@ -20,7 +20,7 @@ describe 'upcase function' do
       notice(inline_template('upcase is <%= @o.inspect %>'))
     EOS
     it 'upcases strings' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{upcase is "WALLLESS LAPAROHYSTEROSALPINGOOOPHORECTOMY BRRR GODDESSSHIP"})
       end
     end

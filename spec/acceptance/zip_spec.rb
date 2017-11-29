@@ -10,7 +10,7 @@ describe 'zip function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'zips two arrays of numbers together' do
-      expect(apply_manifest(pp1, catch_failures: true).stdout).to match(%r{\[\[1, 5\], \[2, 6\], \[3, 7\], \[4, 8\]\]})
+      expect(apply_manifest(pp1, :catch_failures => true).stdout).to match(%r{\[\[1, 5\], \[2, 6\], \[3, 7\], \[4, 8\]\]})
     end
 
     pp2 = <<-EOS
@@ -20,7 +20,7 @@ describe 'zip function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'zips two arrays of numbers & bools together' do
-      expect(apply_manifest(pp2, catch_failures: true).stdout).to match(%r{\[\[1, true\], \[2, true\], \["three", false\], \[4, false\]\]})
+      expect(apply_manifest(pp2, :catch_failures => true).stdout).to match(%r{\[\[1, true\], \[2, true\], \["three", false\], \[4, false\]\]})
     end
 
     # XXX This only tests the argument `true`, even though the following are valid:
@@ -34,7 +34,7 @@ describe 'zip function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'zips two arrays of numbers together and flattens them' do
-      expect(apply_manifest(pp3, catch_failures: true).stdout).to match(%r{\[1, 5, 2, 6, 3, 7, 4, 8\]})
+      expect(apply_manifest(pp3, :catch_failures => true).stdout).to match(%r{\[1, 5, 2, 6, 3, 7, 4, 8\]})
     end
 
     # XXX Is this expected behavior?
@@ -45,7 +45,7 @@ describe 'zip function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'handles unmatched length' do
-      expect(apply_manifest(pp4, catch_failures: true).stdout).to match(%r{\[\[1, 5\], \[2, 6\]\]})
+      expect(apply_manifest(pp4, :catch_failures => true).stdout).to match(%r{\[\[1, 5\], \[2, 6\]\]})
     end
   end
 
@@ -56,7 +56,7 @@ describe 'zip function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'handles improper number of arguments' do
-      expect(apply_manifest(pp5, expect_failures: true).stderr).to match(%r{Wrong number of arguments})
+      expect(apply_manifest(pp5, :expect_failures => true).stderr).to match(%r{Wrong number of arguments})
     end
 
     pp6 = <<-EOS
@@ -66,7 +66,7 @@ describe 'zip function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'handles improper argument types' do
-      expect(apply_manifest(pp6, expect_failures: true).stderr).to match(%r{Requires array})
+      expect(apply_manifest(pp6, :expect_failures => true).stderr).to match(%r{Requires array})
     end
   end
 end

@@ -10,7 +10,7 @@ describe 'reverse function' do
       notice(inline_template('reverse is <%= @o.inspect %>'))
     EOS
     it 'reverses strings' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{reverse is "seirellag tra cilbup eht"})
       end
     end

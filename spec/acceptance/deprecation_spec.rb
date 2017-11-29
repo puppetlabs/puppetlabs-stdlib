@@ -16,8 +16,8 @@ describe 'deprecation function' do
     apply_manifest(remove_file_manifest)
   end
 
-  context 'with --strict=error', if: return_puppet_version =~ %r{^4} do
-    let(:result) { on(default, puppet('apply', '--strict=error', '-e', add_file_manifest), acceptable_exit_codes: (0...256)) }
+  context 'with --strict=error', :if => return_puppet_version =~ %r{^4} do
+    let(:result) { on(default, puppet('apply', '--strict=error', '-e', add_file_manifest), :acceptable_exit_codes => (0...256)) }
 
     after :all do
       apply_manifest(remove_file_manifest)
@@ -36,8 +36,8 @@ describe 'deprecation function' do
     end
   end
 
-  context 'with --strict=warning', if: return_puppet_version =~ %r{^4} do
-    let(:result) { on(default, puppet('apply', '--strict=warning', '-e', add_file_manifest), acceptable_exit_codes: (0...256)) }
+  context 'with --strict=warning', :if => return_puppet_version =~ %r{^4} do
+    let(:result) { on(default, puppet('apply', '--strict=warning', '-e', add_file_manifest), :acceptable_exit_codes => (0...256)) }
 
     after :all do
       apply_manifest(remove_file_manifest)
@@ -56,8 +56,8 @@ describe 'deprecation function' do
     end
   end
 
-  context 'with --strict=off', if: return_puppet_version =~ %r{^4} do
-    let(:result) { on(default, puppet('apply', '--strict=off', '-e', add_file_manifest), acceptable_exit_codes: (0...256)) }
+  context 'with --strict=off', :if => return_puppet_version =~ %r{^4} do
+    let(:result) { on(default, puppet('apply', '--strict=off', '-e', add_file_manifest), :acceptable_exit_codes => (0...256)) }
 
     after :all do
       apply_manifest(remove_file_manifest)
@@ -76,8 +76,8 @@ describe 'deprecation function' do
     end
   end
 
-  context 'puppet 3 test', if: return_puppet_version =~ %r{^3} do
-    let(:result) { on(default, puppet('apply', '--parser=future', '-e', add_file_manifest), acceptable_exit_codes: (0...256)) }
+  context 'puppet 3 test', :if => return_puppet_version =~ %r{^3} do
+    let(:result) { on(default, puppet('apply', '--parser=future', '-e', add_file_manifest), :acceptable_exit_codes => (0...256)) }
 
     after :all do
       apply_manifest(remove_file_manifest)

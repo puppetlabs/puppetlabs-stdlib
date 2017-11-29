@@ -15,7 +15,7 @@ describe 'loadjson function' do
     EOS
     regex_array = [%r{loadjson\[aaa\] is 1}, %r{loadjson\[bbb\] is 2}, %r{loadjson\[ccc\] is 3}, %r{loadjson\[ddd\] is 4}]
     it 'loadjsons array of values' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         regex_array.each do |i|
           expect(r.stdout).to match(i)
         end
@@ -27,7 +27,7 @@ describe 'loadjson function' do
       notice(inline_template('loadjson[default] is <%= @o["default"].inspect %>'))
     EOS
     it 'returns the default value if there is no file to load' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{loadjson\[default\] is "value"})
       end
     end
@@ -38,7 +38,7 @@ describe 'loadjson function' do
       notice(inline_template('loadjson[default] is <%= @o["default"].inspect %>'))
     EOS
     it 'returns the default value if the file was parsed with an error' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{loadjson\[default\] is "value"})
       end
     end

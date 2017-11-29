@@ -19,7 +19,7 @@ describe 'validate_absolute_path function' do
         validate_absolute_path($one)
       EOS
       it "validates a single argument #{path}" do
-        apply_manifest(pp, catch_failures: true)
+        apply_manifest(pp, :catch_failures => true)
       end
     end
   end

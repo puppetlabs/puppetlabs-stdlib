@@ -2,7 +2,7 @@
 #  chomp.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:chomp, type: :rvalue, doc: <<-'EOS'
+  newfunction(:chomp, :type => :rvalue, :doc => <<-'EOS'
     Removes the record separator from the end of a string or an array of
     strings, for example `hello\n` becomes `hello`.
     Requires a single string or array as an input.

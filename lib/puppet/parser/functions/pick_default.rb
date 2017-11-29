@@ -2,7 +2,7 @@
 # pick_default.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:pick_default, type: :rvalue, doc: <<-EOS
+  newfunction(:pick_default, :type => :rvalue, :doc => <<-EOS
     This function is similar to a coalesce function in SQL in that it will return
     the first value in a list of values that is not undefined or an empty string
     (two things in Puppet that will return a boolean false value). If no value is

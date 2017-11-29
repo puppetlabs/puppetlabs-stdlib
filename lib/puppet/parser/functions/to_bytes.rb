@@ -2,7 +2,7 @@
 # to_bytes.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:to_bytes, type: :rvalue, doc: <<-EOS
+  newfunction(:to_bytes, :type => :rvalue, :doc => <<-EOS
     Converts the argument into bytes, for example 4 kB becomes 4096.
     Takes a single string value as an argument.
     These conversions reflect a layperson's understanding of

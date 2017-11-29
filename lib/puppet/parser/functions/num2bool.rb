@@ -2,7 +2,7 @@
 # num2bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:num2bool, type: :rvalue, doc: <<-EOS
+  newfunction(:num2bool, :type => :rvalue, :doc => <<-EOS
     This function converts a number or a string representation of a number into a
     true boolean. Zero or anything non-numeric becomes false. Numbers higher then 0
     become true.

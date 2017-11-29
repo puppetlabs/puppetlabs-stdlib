@@ -2,7 +2,7 @@
 # has_ip_network
 #
 module Puppet::Parser::Functions
-  newfunction(:has_ip_network, type: :rvalue, doc: <<-EOS
+  newfunction(:has_ip_network, :type => :rvalue, :doc => <<-EOS
     Returns true if the client has an IP address within the requested network.
 
     This function iterates through the 'interfaces' fact and checks the

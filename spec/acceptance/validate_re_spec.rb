@@ -9,7 +9,7 @@ describe 'validate_re function' do
       validate_re($one,$two)
     EOS
     it 'validates a string' do
-      apply_manifest(pp1, catch_failures: true)
+      apply_manifest(pp1, :catch_failures => true)
     end
 
     pp2 = <<-EOS
@@ -18,7 +18,7 @@ describe 'validate_re function' do
       validate_re($one,$two)
     EOS
     it 'validates an array' do
-      apply_manifest(pp2, catch_failures: true)
+      apply_manifest(pp2, :catch_failures => true)
     end
 
     pp3 = <<-EOS
@@ -27,7 +27,7 @@ describe 'validate_re function' do
       validate_re($one,$two)
     EOS
     it 'validates a failed array' do
-      apply_manifest(pp3, expect_failures: true)
+      apply_manifest(pp3, :expect_failures => true)
     end
 
     pp4 = <<-EOS
@@ -36,7 +36,7 @@ describe 'validate_re function' do
       validate_re($one,$two,"The $puppetversion fact does not match 2.7")
     EOS
     it 'validates a failed array with a custom error message' do
-      expect(apply_manifest(pp4, expect_failures: true).stderr).to match(%r{does not match})
+      expect(apply_manifest(pp4, :expect_failures => true).stderr).to match(%r{does not match})
     end
   end
 

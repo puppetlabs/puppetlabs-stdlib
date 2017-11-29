@@ -2,7 +2,7 @@
 # min.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:min, type: :rvalue, doc: <<-EOS
+  newfunction(:min, :type => :rvalue, :doc => <<-EOS
     Returns the lowest value of all arguments.
     Requires at least one argument.
     EOS

@@ -13,7 +13,7 @@ describe 'has_key function' do
       }
     EOS
     it 'has_keys in hashes' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -28,7 +28,7 @@ describe 'has_key function' do
       }
     EOS
     it 'has_keys not in hashes' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end

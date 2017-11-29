@@ -12,7 +12,7 @@ describe 'try_get_value function' do
       notice(inline_template('tests are <%= @tests.inspect %>'))
     EOS
     it 'gets a value' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{tests are "passing"})
       end
     end
@@ -28,7 +28,7 @@ describe 'try_get_value function' do
       notice(inline_template('tests are <%= @tests.inspect %>'))
     EOS
     it 'uses a default value' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{using the default value})
       end
     end
@@ -37,7 +37,7 @@ describe 'try_get_value function' do
       $o = try_get_value()
     EOS
     it 'raises error on incorrect number of arguments' do
-      apply_manifest(pp, expect_failures: true) do |r|
+      apply_manifest(pp, :expect_failures => true) do |r|
         expect(r.stderr).to match(%r{wrong number of arguments}i)
       end
     end

@@ -9,7 +9,7 @@ describe 'pick function' do
       notice(inline_template('picked is <%= @o.inspect %>'))
     EOS
     it 'picks a default value' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{picked is "default"})
       end
     end
@@ -21,7 +21,7 @@ describe 'pick function' do
       notice(inline_template('picked is <%= @o.inspect %>'))
     EOS
     it 'picks the first set value' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{picked is "something"})
       end
     end
@@ -35,7 +35,7 @@ describe 'pick function' do
       notice(inline_template('picked is <%= @o.inspect %>'))
     EOS
     it 'raises error with all undef values' do
-      apply_manifest(pp3, expect_failures: true) do |r|
+      apply_manifest(pp3, :expect_failures => true) do |r|
         expect(r.stderr).to match(%r{must receive at least one non empty value})
       end
     end

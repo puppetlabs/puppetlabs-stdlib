@@ -2,7 +2,7 @@
 # empty.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:empty, type: :rvalue, doc: <<-EOS
+  newfunction(:empty, :type => :rvalue, :doc => <<-EOS
     Returns true if the variable is empty.
   EOS
              ) do |arguments|

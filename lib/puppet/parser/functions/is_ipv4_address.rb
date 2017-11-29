@@ -2,7 +2,7 @@
 # is_ipv4_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_ipv4_address, type: :rvalue, doc: <<-EOS
+  newfunction(:is_ipv4_address, :type => :rvalue, :doc => <<-EOS
     Returns true if the string passed to this function is a valid IPv4 address.
     EOS
              ) do |arguments|

@@ -9,7 +9,7 @@ describe 'size function' do
       notice(inline_template('size is <%= @o.inspect %>'))
     EOS
     it 'single string size' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{size is 14})
       end
     end
@@ -20,7 +20,7 @@ describe 'size function' do
       notice(inline_template('size is <%= @o.inspect %>'))
     EOS
     it 'with empty string' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{size is 0})
       end
     end
@@ -31,7 +31,7 @@ describe 'size function' do
       notice(inline_template('size is <%= @o.inspect %>'))
     EOS
     it 'with undef' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{size is 0})
       end
     end
@@ -42,7 +42,7 @@ describe 'size function' do
       notice(inline_template('size is <%= @o.inspect %>'))
     EOS
     it 'strings in array' do
-      apply_manifest(pp4, catch_failures: true) do |r|
+      apply_manifest(pp4, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{size is 2})
       end
     end

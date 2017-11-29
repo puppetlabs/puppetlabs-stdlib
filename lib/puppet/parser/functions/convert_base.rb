@@ -2,7 +2,7 @@
 # convert_base.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:convert_base, type: :rvalue, arity: 2, doc: <<-'ENDHEREDOC') do |args|
+  newfunction(:convert_base, :type => :rvalue, :arity => 2, :doc => <<-'ENDHEREDOC') do |args|
     Converts a given integer or base 10 string representing an integer to a specified base, as a string.
 
     Usage:

@@ -46,7 +46,7 @@ RSpec.shared_context 'with faked facts' do
   end
 
   after :each do
-    shell("rm -f '#{facts_d}/fqdn.txt'", acceptable_exit_codes: [0, 1])
+    shell("rm -f '#{facts_d}/fqdn.txt'", :acceptable_exit_codes => [0, 1])
   end
 
   def fake_fact(name, value)

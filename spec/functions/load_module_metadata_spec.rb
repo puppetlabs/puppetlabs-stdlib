@@ -7,13 +7,13 @@ describe 'load_module_metadata' do
 
   describe 'when calling with valid arguments' do
     before :each do
-      allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}, encoding: 'utf-8').and_return('{"name": "puppetlabs-stdlib"}')
+      allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}, :encoding => 'utf-8').and_return('{"name": "puppetlabs-stdlib"}')
       allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}).and_return('{"name": "puppetlabs-stdlib"}')
     end
 
     context 'when calling with valid utf8 and double byte character arguments' do
       before :each do
-        allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}, encoding: 'utf-8').and_return('{"ĭďèŉţĩƒіểя": "ċơņťęאּť ỡƒ ţħíš -
+        allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}, :encoding => 'utf-8').and_return('{"ĭďèŉţĩƒіểя": "ċơņťęאּť ỡƒ ţħíš -
 この文字"}')
         allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}).and_return('{"ĭďèŉţĩƒіểя": "ċơņťęאּť ỡƒ ţħíš -
 この文字"}')

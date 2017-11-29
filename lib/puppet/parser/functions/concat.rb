@@ -2,7 +2,7 @@
 # concat.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:concat, type: :rvalue, doc: <<-EOS
+  newfunction(:concat, :type => :rvalue, :doc => <<-EOS
     Appends the contents of multiple arrays into array 1.
 
     *Example:*

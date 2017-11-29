@@ -8,7 +8,7 @@ describe 'validate_array function' do
       validate_array($one)
     EOS
     it 'validates a single argument' do
-      apply_manifest(pp1, catch_failures: true)
+      apply_manifest(pp1, :catch_failures => true)
     end
 
     pp2 = <<-EOS
@@ -17,7 +17,7 @@ describe 'validate_array function' do
       validate_array($one,$two)
     EOS
     it 'validates an multiple arguments' do
-      apply_manifest(pp2, catch_failures: true)
+      apply_manifest(pp2, :catch_failures => true)
     end
     [
       %{validate_array({'a' => 'hash' })},
@@ -26,7 +26,7 @@ describe 'validate_array function' do
       %{validate_array(undef)},
     ].each do |pp|
       it "rejects #{pp.inspect}" do
-        expect(apply_manifest(pp, expect_failures: true).stderr).to match(%r{is not an Array\.  It looks to be a})
+        expect(apply_manifest(pp, :expect_failures => true).stderr).to match(%r{is not an Array\.  It looks to be a})
       end
     end
   end

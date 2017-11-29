@@ -8,7 +8,7 @@ describe 'prefix function' do
       notice(inline_template('prefix is <%= @o.inspect %>'))
     EOS
     it 'prefixes array of values' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{prefix is \["pa", "pb", "pc"\]})
       end
     end
@@ -18,7 +18,7 @@ describe 'prefix function' do
       notice(inline_template('prefix is <%= @o.inspect %>'))
     EOS
     it 'prefixs with empty array' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{prefix is \[\]})
       end
     end
@@ -28,7 +28,7 @@ describe 'prefix function' do
       notice(inline_template('prefix is <%= @o.inspect %>'))
     EOS
     it 'prefixs array of values with undef' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{prefix is \["a", "b", "c"\]})
       end
     end

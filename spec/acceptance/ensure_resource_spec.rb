@@ -10,7 +10,7 @@ describe 'ensure_resource function' do
     it 'ensures a resource already declared' do
       apply_manifest('')
 
-      apply_manifest(pp1, expect_changes: true)
+      apply_manifest(pp1, :expect_changes => true)
     end
 
     pp2 = <<-EOS
@@ -19,7 +19,7 @@ describe 'ensure_resource function' do
     it 'ensures a undeclared resource' do
       apply_manifest('')
 
-      apply_manifest(pp2, expect_changes: true)
+      apply_manifest(pp2, :expect_changes => true)
     end
     it 'takes defaults arguments'
   end

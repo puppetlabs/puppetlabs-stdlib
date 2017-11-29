@@ -4,9 +4,9 @@
 module Puppet::Parser::Functions
   newfunction(
     :dig44,
-    type: :rvalue,
-    arity: -2,
-    doc: <<-eos
+    :type => :rvalue,
+    :arity => -2,
+    :doc => <<-eos
     DEPRECATED: This function has been replaced in puppet 4.5.0.
 
     Looks up into a complex structure of arrays and hashes and returns a value
