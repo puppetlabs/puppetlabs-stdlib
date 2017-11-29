@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
-  describe 'test::unixpath', type: :class do
+  describe 'Stdlib::Unixpath' do
     describe 'valid handling' do
       %w[
         /usr2/username/bin:/usr/local/bin:/usr/bin:.
@@ -13,9 +13,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
         /var/../tmp
       ].each do |value|
         describe value.inspect do
-          let(:params) { { value: value } }
-
-          it { is_expected.to compile }
+          it { is_expected.to allow_value(value) }
         end
       end
     end
@@ -37,9 +35,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
           "var\ネット",
         ].each do |value|
           describe value.inspect do
-            let(:params) { { value: value } }
-
-            it { is_expected.to compile.and_raise_error(%r{parameter 'value' expects a match for Stdlib::Unixpath}) }
+            it { is_expected.not_to allow_value(value) }
           end
         end
       end
