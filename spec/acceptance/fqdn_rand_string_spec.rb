@@ -15,7 +15,7 @@ describe 'fqdn_rand_string function' do
         notice(inline_template('fqdn_rand_string is <%= @o.inspect %>'))
       eos
       it 'generates random alphanumeric strings' do
-        apply_manifest(pp1, catch_failures: true) do |r|
+        apply_manifest(pp1, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{fqdn_rand_string is "(7oDp0KOr1b|9Acvnhkt4J)"})
         end
       end
@@ -27,7 +27,7 @@ describe 'fqdn_rand_string function' do
         notice(inline_template('fqdn_rand_string is <%= @o.inspect %>'))
       eos
       it 'generates random alphanumeric strings with custom charsets' do
-        apply_manifest(pp2, catch_failures: true) do |r|
+        apply_manifest(pp2, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{fqdn_rand_string is "(7203048515|2383756694)"})
         end
       end
@@ -39,7 +39,7 @@ describe 'fqdn_rand_string function' do
         notice(inline_template('fqdn_rand_string is <%= @o.inspect %>'))
       eos
       it 'generates random alphanumeric strings with custom seeds' do
-        apply_manifest(pp3, catch_failures: true) do |r|
+        apply_manifest(pp3, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{fqdn_rand_string is "(3HS4mbuI3E|1jJtAMs94d)"})
         end
       end
@@ -52,7 +52,7 @@ describe 'fqdn_rand_string function' do
         notice(inline_template('fqdn_rand_string is <%= @o.inspect %>'))
       eos
       it 'generates random alphanumeric strings with custom charsets and seeds' do
-        apply_manifest(pp4, catch_failures: true) do |r|
+        apply_manifest(pp4, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{fqdn_rand_string is "(3104058232|7100592312)"})
         end
       end

@@ -8,7 +8,7 @@ describe 'to_bytes function' do
       notice(inline_template('to_bytes is <%= @o.inspect %>'))
     EOS
     it 'converts kB to B' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         m = r.stdout.match(%r{to_bytes is (\d+)\D})
         expect(m[1]).to eq('4096')
       end

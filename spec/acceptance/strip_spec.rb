@@ -10,7 +10,7 @@ describe 'strip function' do
       notice(inline_template('strip is <%= @o.inspect %>'))
     EOS
     it 'strips arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{strip is \["the", "public", "art", "galleries"\]})
       end
     end
@@ -21,7 +21,7 @@ describe 'strip function' do
       notice(inline_template('strip is <%= @o.inspect %>'))
     EOS
     it 'strips strings' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{strip is "blowzy night-frumps vex'd jack q"})
       end
     end

@@ -9,7 +9,7 @@ describe 'validate_slength function' do
       validate_slength($one,$two)
     EOS
     it 'validates a single string max' do
-      apply_manifest(pp1, catch_failures: true)
+      apply_manifest(pp1, :catch_failures => true)
     end
 
     pp2 = <<-EOS
@@ -18,7 +18,7 @@ describe 'validate_slength function' do
       validate_slength($one,$two)
     EOS
     it 'validates multiple string maxes' do
-      apply_manifest(pp2, catch_failures: true)
+      apply_manifest(pp2, :catch_failures => true)
     end
 
     pp3 = <<-EOS
@@ -28,7 +28,7 @@ describe 'validate_slength function' do
       validate_slength($one,$two,$three)
     EOS
     it 'validates min/max of  strings in array' do
-      apply_manifest(pp3, catch_failures: true)
+      apply_manifest(pp3, :catch_failures => true)
     end
 
     pp4 = <<-EOS
@@ -37,7 +37,7 @@ describe 'validate_slength function' do
       validate_slength($one,$two)
     EOS
     it 'validates a single string max of incorrect length' do
-      apply_manifest(pp4, expect_failures: true)
+      apply_manifest(pp4, :expect_failures => true)
     end
 
     pp5 = <<-EOS
@@ -46,7 +46,7 @@ describe 'validate_slength function' do
       validate_slength($one,$two)
     EOS
     it 'validates multiple string maxes of incorrect length' do
-      apply_manifest(pp5, expect_failures: true)
+      apply_manifest(pp5, :expect_failures => true)
     end
 
     pp6 = <<-EOS
@@ -56,7 +56,7 @@ describe 'validate_slength function' do
       validate_slength($one,$two,$three)
     EOS
     it 'validates multiple strings min/maxes of incorrect length' do
-      apply_manifest(pp6, expect_failures: true)
+      apply_manifest(pp6, :expect_failures => true)
     end
   end
   describe 'failure' do

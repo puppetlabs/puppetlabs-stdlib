@@ -16,7 +16,7 @@ describe 'get_module_path function' do
       }
     EOS
     it 'get_module_paths dne' do
-      apply_manifest(pp, expect_failures: true)
+      apply_manifest(pp, :expect_failures => true)
     end
   end
   describe 'failure' do

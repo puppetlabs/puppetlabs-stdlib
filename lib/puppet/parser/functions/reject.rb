@@ -2,7 +2,7 @@
 # reject.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:reject, type: :rvalue, doc: <<-EOS) do |args|
+  newfunction(:reject, :type => :rvalue, :doc => <<-EOS) do |args|
     This function searches through an array and rejects all elements that match
     the provided regular expression.
 

@@ -21,7 +21,7 @@ describe 'is_ip_address' do
   it { is_expected.to run.with_params({}).and_return(false) }
   it { is_expected.to run.with_params([]).and_return(false) }
 
-  context 'Checking for deprecation warning', if: Puppet.version.to_f < 4.0 do
+  context 'Checking for deprecation warning', :if => Puppet.version.to_f < 4.0 do
     # Checking for deprecation warning, which should only be provoked when the env variable for it is set.
     it 'displays a single deprecation' do
       ENV['STDLIB_LOG_DEPRECATIONS'] = 'true'

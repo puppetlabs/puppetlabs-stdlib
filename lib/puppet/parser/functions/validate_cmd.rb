@@ -5,7 +5,7 @@ require 'tempfile'
 # validate_cmd.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_cmd, doc: <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_cmd, :doc => <<-'ENDHEREDOC') do |args|
     Perform validation of a string with an external command.
     The first argument of this function should be a string to
     test, and the second argument should be a path to a test command

@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
-describe 'validate_augeas function', unless: (fact('osfamily') == 'windows') do
+describe 'validate_augeas function', :unless => (fact('osfamily') == 'windows') do
   describe 'prep' do
     it 'installs augeas for tests'
   end
@@ -17,7 +17,7 @@ describe 'validate_augeas function', unless: (fact('osfamily') == 'windows') do
           validate_augeas($line, $lens)
         EOS
         it "validates a single argument for #{lens}" do
-          apply_manifest(pp1, catch_failures: true)
+          apply_manifest(pp1, :catch_failures => true)
         end
       end
     end
@@ -33,7 +33,7 @@ describe 'validate_augeas function', unless: (fact('osfamily') == 'windows') do
         validate_augeas($line, $lens, $restriction, "my custom failure message")
       EOS
       it 'validates a restricted value' do
-        expect(apply_manifest(pp2, expect_failures: true).stderr).to match(%r{my custom failure message})
+        expect(apply_manifest(pp2, :expect_failures => true).stderr).to match(%r{my custom failure message})
       end
     end
 
@@ -48,7 +48,7 @@ describe 'validate_augeas function', unless: (fact('osfamily') == 'windows') do
           validate_augeas($line, $lens)
         EOS
         it "validates a single argument for #{lens}" do
-          apply_manifest(pp3, expect_failures: true)
+          apply_manifest(pp3, :expect_failures => true)
         end
       end
     end

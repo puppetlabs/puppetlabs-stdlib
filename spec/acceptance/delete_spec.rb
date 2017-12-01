@@ -10,7 +10,7 @@ describe 'delete function' do
   EOS
   describe 'success' do
     it 'deletes elements of the array' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end

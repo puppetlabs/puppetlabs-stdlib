@@ -2,7 +2,7 @@
 # count.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:count, type: :rvalue, arity: -2, doc: <<-EOS
+  newfunction(:count, :type => :rvalue, :arity => -2, :doc => <<-EOS
     Takes an array as first argument and an optional second argument.
     Count the number of elements in array that matches second argument.
     If called with only an array it counts the number of elements that are not nil/undef.

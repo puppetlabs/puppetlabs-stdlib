@@ -3,7 +3,7 @@
 #  Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible. To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 #
 module Puppet::Parser::Functions
-  newfunction(:delete_regex, type: :rvalue, doc: <<-EOS
+  newfunction(:delete_regex, :type => :rvalue, :doc => <<-EOS
     deletes all instances of a given element that match a regular expression
     from an array or key from a hash. Multiple regular expressions are assumed
     to be matched as an OR.

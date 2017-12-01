@@ -2,7 +2,7 @@
 # getvar.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:getvar, type: :rvalue, doc: <<-'ENDHEREDOC') do |args|
+  newfunction(:getvar, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
     Lookup a variable in a remote namespace.
 
     For example:

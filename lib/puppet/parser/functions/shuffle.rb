@@ -2,7 +2,7 @@
 # shuffle.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:shuffle, type: :rvalue, doc: <<-EOS
+  newfunction(:shuffle, :type => :rvalue, :doc => <<-EOS
     Randomizes the order of a string or array elements.
   EOS
              ) do |arguments|

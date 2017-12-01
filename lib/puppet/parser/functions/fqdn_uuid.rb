@@ -3,7 +3,7 @@ require 'digest/sha1'
 # fqdn_uuid.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:fqdn_uuid, type: :rvalue, doc: <<-END) do |args|
+  newfunction(:fqdn_uuid, :type => :rvalue, :doc => <<-END) do |args|
     Creates a UUID based on a given string, assumed to be the FQDN
 
     For example, to generate a UUID based on the FQDN of a system:

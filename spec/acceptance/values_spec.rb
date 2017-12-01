@@ -13,7 +13,7 @@ describe 'values function' do
       notice(inline_template('<%= @output.sort.inspect %>'))
     EOS
     it 'returns an array of values' do
-      expect(apply_manifest(pp1, catch_failures: true).stdout).to match(%r{\[1, 2, 3\]})
+      expect(apply_manifest(pp1, :catch_failures => true).stdout).to match(%r{\[1, 2, 3\]})
     end
   end
 
@@ -24,7 +24,7 @@ describe 'values function' do
       notice(inline_template('<%= @output.inspect %>'))
     EOS
     it 'handles non-hash arguments' do
-      expect(apply_manifest(pp2, expect_failures: true).stderr).to match(%r{Requires hash})
+      expect(apply_manifest(pp2, :expect_failures => true).stderr).to match(%r{Requires hash})
     end
   end
 end

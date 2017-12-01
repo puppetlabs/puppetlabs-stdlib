@@ -17,7 +17,7 @@ describe 'anchor type' do
       include anchorrefresh
     EOS
     it 'effects proper chaining of resources' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Anchor\[final\]: Triggered 'refresh'})
       end
     end

@@ -2,7 +2,7 @@
 # type.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:type, type: :rvalue, doc: <<-EOS
+  newfunction(:type, :type => :rvalue, :doc => <<-EOS
     DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.
   EOS
              ) do |args|

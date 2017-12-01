@@ -13,7 +13,7 @@ describe 'merge function' do
     EOS
     regex_array = [%r{merge\[one\]   is ("1"|1)}, %r{merge\[two\]   is "dos"}, %r{merge\[three\] is {"five"=>("5"|5)}}]
     it 'merges two hashes' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         regex_array.each do |i|
           expect(r.stdout).to match(i)
         end

@@ -2,7 +2,7 @@
 # loadyaml.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:loadyaml, type: :rvalue, arity: -2, doc: <<-'ENDHEREDOC') do |args|
+  newfunction(:loadyaml, :type => :rvalue, :arity => -2, :doc => <<-'ENDHEREDOC') do |args|
     Load a YAML file containing an array, string, or hash, and return the data
     in the corresponding native data type.
     The second parameter is the default value. It will be returned if the file

@@ -8,7 +8,7 @@ describe 'validate_ipv4_address function' do
       validate_ipv4_address($one)
     EOS
     it 'validates a single argument' do
-      apply_manifest(pp1, catch_failures: true)
+      apply_manifest(pp1, :catch_failures => true)
     end
 
     pp2 = <<-EOS
@@ -17,7 +17,7 @@ describe 'validate_ipv4_address function' do
       validate_ipv4_address($one,$two)
     EOS
     it 'validates an multiple arguments' do
-      apply_manifest(pp2, catch_failures: true)
+      apply_manifest(pp2, :catch_failures => true)
     end
   end
   describe 'failure' do

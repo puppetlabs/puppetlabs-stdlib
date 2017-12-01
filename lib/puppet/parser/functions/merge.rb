@@ -2,7 +2,7 @@
 # merge.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:merge, type: :rvalue, doc: <<-'ENDHEREDOC') do |args|
+  newfunction(:merge, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
     Merges two or more hashes together and returns the resulting hash.
 
     For example:

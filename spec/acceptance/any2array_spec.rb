@@ -10,7 +10,7 @@ describe 'any2array function' do
       notify { "Output: ${output}": }
     EOS
     it 'creates an empty array' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: Output: })
       end
     end
@@ -22,7 +22,7 @@ describe 'any2array function' do
       notify { "Output: ${output}": }
     EOS
     it 'leaves arrays modified' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: Output: (\[|)array(,\s|)test(\]|)})
       end
     end
@@ -38,7 +38,7 @@ describe 'any2array function' do
       notify { "Output: ${output}": }
     EOS
     it 'turns a hash into an array' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: Output: (\[|)test(,\s|)array(\]|)})
       end
     end

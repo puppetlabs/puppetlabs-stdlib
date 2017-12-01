@@ -8,7 +8,7 @@ describe 'strftime function' do
       notice(inline_template('strftime is <%= @o.inspect %>'))
     EOS
     it 'gives the Century' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{strftime is "20"})
       end
     end

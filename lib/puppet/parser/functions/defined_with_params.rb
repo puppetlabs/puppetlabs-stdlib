@@ -2,8 +2,8 @@
 require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:defined_with_params,
-                                      type: :rvalue,
-                                      doc: <<-'ENDOFDOC'
+                                      :type => :rvalue,
+                                      :doc => <<-'ENDOFDOC'
     Takes a resource reference and an optional hash of attributes.
 
     Returns true if a resource with the specified attributes has already been added

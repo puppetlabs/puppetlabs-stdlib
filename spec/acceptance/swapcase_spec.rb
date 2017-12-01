@@ -8,7 +8,7 @@ describe 'swapcase function' do
       notice(inline_template('swapcase is <%= @o.inspect %>'))
     EOS
     it 'works with strings' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{swapcase is "AbCd"})
       end
     end

@@ -2,7 +2,7 @@
 # values_at.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:values_at, type: :rvalue, doc: <<-EOS
+  newfunction(:values_at, :type => :rvalue, :doc => <<-EOS
     Finds value inside an array based on location.
 
     The first argument is the array you want to analyze, and the second element can

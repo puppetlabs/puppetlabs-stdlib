@@ -10,7 +10,7 @@ describe 'join_keys_to_values function' do
       notice(inline_template('join_keys_to_values is <%= @o.sort.inspect %>'))
     EOS
     it 'join_keys_to_valuess hashes' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{join_keys_to_values is \["aaa:bbb", "ccc:ddd"\]})
       end
     end

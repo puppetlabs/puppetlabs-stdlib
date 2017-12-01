@@ -2,7 +2,7 @@
 # validate_ipv4_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_ipv4_address, doc: <<-ENDHEREDOC
+  newfunction(:validate_ipv4_address, :doc => <<-ENDHEREDOC
     Validate that all values passed are valid IPv4 addresses.
     Fail compilation if any value fails this check.
 

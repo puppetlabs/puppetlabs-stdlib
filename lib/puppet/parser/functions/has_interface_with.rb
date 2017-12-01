@@ -2,7 +2,7 @@
 # has_interface_with
 #
 module Puppet::Parser::Functions
-  newfunction(:has_interface_with, type: :rvalue, doc: <<-EOS
+  newfunction(:has_interface_with, :type => :rvalue, :doc => <<-EOS
     Returns boolean based on kind and value:
       * macaddress
       * netmask

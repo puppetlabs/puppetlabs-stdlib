@@ -2,7 +2,7 @@
 # any2bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:any2bool, type: :rvalue, doc: <<-EOS
+  newfunction(:any2bool, :type => :rvalue, :doc => <<-EOS
     This converts 'anything' to a boolean. In practise it does the following:
 
     * Strings such as Y,y,1,T,t,TRUE,yes,'true' will return true

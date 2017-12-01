@@ -9,7 +9,7 @@ describe 'capitalize function' do
         notify { $output: }
     EOS
     it 'capitalizes the first letter of a string' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: This is a string})
       end
     end
@@ -21,7 +21,7 @@ describe 'capitalize function' do
     EOS
     regex_array = [%r{Notice: This}, %r{Notice: Is}, %r{Notice: A}, %r{Notice: String}]
     it 'capitalizes the first letter of an array of strings' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         regex_array.each do |i|
           expect(r.stdout).to match(i)
         end

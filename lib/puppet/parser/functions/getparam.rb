@@ -2,8 +2,8 @@
 require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:getparam,
-                                      type: :rvalue,
-                                      doc: <<-'ENDOFDOC'
+                                      :type => :rvalue,
+                                      :doc => <<-'ENDOFDOC'
     Takes a resource reference and name of the parameter and
     returns value of resource's parameter.
 

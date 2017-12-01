@@ -12,7 +12,7 @@ describe 'is_integer function' do
       }
     EOS
     it 'is_integers arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -26,7 +26,7 @@ describe 'is_integer function' do
       }
     EOS
     it 'is_integers true' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -40,7 +40,7 @@ describe 'is_integer function' do
       }
     EOS
     it 'is_integers strings' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -54,7 +54,7 @@ describe 'is_integer function' do
       }
     EOS
     it 'is_integers floats' do
-      apply_manifest(pp4, catch_failures: true) do |r|
+      apply_manifest(pp4, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -68,7 +68,7 @@ describe 'is_integer function' do
       }
     EOS
     it 'is_integers integers' do
-      apply_manifest(pp5, catch_failures: true) do |r|
+      apply_manifest(pp5, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -82,7 +82,7 @@ describe 'is_integer function' do
       }
     EOS
     it 'is_integers hashes' do
-      apply_manifest(pp6, catch_failures: true) do |r|
+      apply_manifest(pp6, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end

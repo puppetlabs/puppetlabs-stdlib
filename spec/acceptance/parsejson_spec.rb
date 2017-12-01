@@ -10,7 +10,7 @@ describe 'parsejson function' do
       notice(inline_template('tests are <%= @tests.inspect %>'))
     EOS
     it 'parses valid json' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{tests are "passing"})
       end
     end
@@ -23,7 +23,7 @@ describe 'parsejson function' do
       notice(inline_template('a is <%= @ao.inspect %>'))
     EOS
     it 'raises error on incorrect json - default value is used' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{tests are using the default value})
       end
     end
@@ -34,7 +34,7 @@ describe 'parsejson function' do
       notice(inline_template('a is <%= @ao.inspect %>'))
     EOS
     it 'raises error on incorrect json' do
-      apply_manifest(pp3, expect_failures: true) do |r|
+      apply_manifest(pp3, :expect_failures => true) do |r|
         expect(r.stderr).to match(%r{expected next name})
       end
     end
@@ -43,7 +43,7 @@ describe 'parsejson function' do
       $o = parsejson()
     EOS
     it 'raises error on incorrect number of arguments' do
-      apply_manifest(pp4, expect_failures: true) do |r|
+      apply_manifest(pp4, :expect_failures => true) do |r|
         expect(r.stderr).to match(%r{wrong number of arguments}i)
       end
     end

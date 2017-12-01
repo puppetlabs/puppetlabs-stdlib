@@ -2,7 +2,7 @@
 # delete_values.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:delete_values, type: :rvalue, doc: <<-EOS
+  newfunction(:delete_values, :type => :rvalue, :doc => <<-EOS
     Deletes all instances of a given value from a hash.
 
     *Examples:*

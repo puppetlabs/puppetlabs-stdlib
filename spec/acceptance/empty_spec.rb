@@ -12,7 +12,7 @@ describe 'empty function' do
       }
     EOS
     it 'recognizes empty strings' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -26,7 +26,7 @@ describe 'empty function' do
       }
     EOS
     it 'recognizes non-empty strings' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -40,7 +40,7 @@ describe 'empty function' do
       }
     EOS
     it 'handles numerical values' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end

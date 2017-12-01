@@ -2,7 +2,7 @@
 # hash.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:hash, type: :rvalue, doc: <<-EOS
+  newfunction(:hash, :type => :rvalue, :doc => <<-EOS
     This function converts an array into a hash.
 
     *Examples:*

@@ -11,7 +11,7 @@ describe 'getparam function' do
       notice(inline_template('getparam is <%= @o.inspect %>'))
     EOS
     it 'getparam a notify' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{getparam is "custom rspec message"})
       end
     end

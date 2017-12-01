@@ -4,7 +4,7 @@
 # member.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:member, type: :rvalue, doc: <<-EOS
+  newfunction(:member, :type => :rvalue, :doc => <<-EOS
     This function determines if a variable is a member of an array.
     The variable can be a string, fixnum, or array.
 

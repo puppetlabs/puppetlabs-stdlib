@@ -2,7 +2,7 @@
 # get_module_path.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:get_module_path, type: :rvalue, doc: <<-EOT
+  newfunction(:get_module_path, :type => :rvalue, :doc => <<-EOT
     Returns the absolute path of the specified module for the current
     environment.
 

@@ -2,7 +2,7 @@
 # any2array.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:any2array, type: :rvalue, doc: <<-EOS
+  newfunction(:any2array, :type => :rvalue, :doc => <<-EOS
     This converts any object to an array containing that object. Empty argument
     lists are converted to an empty array. Arrays are left untouched. Hashes are
     converted to arrays of alternating keys and values.

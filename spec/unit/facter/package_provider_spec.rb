@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'puppet/type'
 require 'puppet/type/package'
 
-describe 'package_provider', type: :fact do
+describe 'package_provider', :type => :fact do
   before(:each) { Facter.clear }
   after(:each) { Facter.clear }
 

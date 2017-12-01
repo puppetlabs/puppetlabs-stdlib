@@ -14,7 +14,7 @@ describe 'chomp function' do
       }
     EOS
     it 'eats the newline' do
-      apply_manifest(pp, catch_failures: true)
+      apply_manifest(pp, :catch_failures => true)
     end
   end
 end

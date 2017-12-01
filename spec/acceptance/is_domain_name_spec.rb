@@ -9,7 +9,7 @@ describe 'is_domain_name function' do
       notice(inline_template('is_domain_name is <%= @o.inspect %>'))
     EOS
     it 'is_domain_names arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_domain_name is false})
       end
     end
@@ -20,7 +20,7 @@ describe 'is_domain_name function' do
       notice(inline_template('is_domain_name is <%= @o.inspect %>'))
     EOS
     it 'is_domain_names true' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_domain_name is false})
       end
     end
@@ -31,7 +31,7 @@ describe 'is_domain_name function' do
       notice(inline_template('is_domain_name is <%= @o.inspect %>'))
     EOS
     it 'is_domain_names false' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_domain_name is false})
       end
     end
@@ -45,7 +45,7 @@ describe 'is_domain_name function' do
       }
     EOS
     it 'is_domain_names strings with hyphens' do
-      apply_manifest(pp4, catch_failures: true) do |r|
+      apply_manifest(pp4, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -59,7 +59,7 @@ describe 'is_domain_name function' do
       }
     EOS
     it 'is_domain_names strings beginning with hyphens' do
-      apply_manifest(pp5, catch_failures: true) do |r|
+      apply_manifest(pp5, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -70,7 +70,7 @@ describe 'is_domain_name function' do
       notice(inline_template('is_domain_name is <%= @o.inspect %>'))
     EOS
     it 'is_domain_names hashes' do
-      apply_manifest(pp6, catch_failures: true) do |r|
+      apply_manifest(pp6, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{is_domain_name is false})
       end
     end

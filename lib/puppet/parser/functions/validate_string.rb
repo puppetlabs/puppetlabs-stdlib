@@ -2,7 +2,7 @@
 # validate_String.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_string, doc: <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_string, :doc => <<-'ENDHEREDOC') do |args|
     Validate that all passed values are string data structures. Abort catalog
     compilation if any value fails this check.
 

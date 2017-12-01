@@ -2,7 +2,7 @@
 # floor.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:floor, type: :rvalue, doc: <<-EOS
+  newfunction(:floor, :type => :rvalue, :doc => <<-EOS
     Returns the largest integer less or equal to the argument.
     Takes a single numeric value as an argument.
     EOS

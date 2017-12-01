@@ -9,7 +9,7 @@ describe 'pick_default function' do
       notice(inline_template('picked is <%= @o.inspect %>'))
     EOS
     it 'pick_defaults a default value' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{picked is "default"})
       end
     end
@@ -21,7 +21,7 @@ describe 'pick_default function' do
       notice(inline_template('picked is <%= @o.inspect %>'))
     EOS
     it 'pick_defaults with no value' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{picked is ""})
       end
     end
@@ -33,7 +33,7 @@ describe 'pick_default function' do
       notice(inline_template('picked is <%= @o.inspect %>'))
     EOS
     it 'pick_defaults the first set value' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{picked is "something"})
       end
     end
@@ -44,7 +44,7 @@ describe 'pick_default function' do
       notice(inline_template('picked is <%= @o.inspect %>'))
     EOS
     it 'raises error with no values' do
-      apply_manifest(pp4, expect_failures: true) do |r|
+      apply_manifest(pp4, :expect_failures => true) do |r|
         expect(r.stderr).to match(%r{Must receive at least one argument})
       end
     end

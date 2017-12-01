@@ -3,7 +3,7 @@ require 'shellwords'
 # shell_escape.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:shell_escape, type: :rvalue, doc: <<-EOS
+  newfunction(:shell_escape, :type => :rvalue, :doc => <<-EOS
     Escapes a string so that it can be safely used in a Bourne shell command line.
 
     Note that the resulting string should be used unquoted and is not intended for use in double quotes nor in single

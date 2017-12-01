@@ -2,7 +2,7 @@
 # validate_interger.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_integer, doc: <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_integer, :doc => <<-'ENDHEREDOC') do |args|
     Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
 
     The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.

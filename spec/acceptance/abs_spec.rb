@@ -9,7 +9,7 @@ describe 'abs function' do
       notify { "$output": }
     EOS
     it 'accepts a string' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: 34.56})
       end
     end
@@ -20,7 +20,7 @@ describe 'abs function' do
       notify { "$output": }
     EOS
     it 'accepts a float' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: 35.46})
       end
     end

@@ -2,7 +2,7 @@
 # dig.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:dig, type: :rvalue, doc: <<-EOS
+  newfunction(:dig, :type => :rvalue, :doc => <<-EOS
     DEPRECATED: This function has been replaced in Puppet 4.5.0, please use dig44() for backwards compatibility or use the new version.
     EOS
              ) do |arguments|

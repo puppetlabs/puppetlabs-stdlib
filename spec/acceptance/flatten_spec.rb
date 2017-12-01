@@ -12,7 +12,7 @@ describe 'flatten function' do
       }
     EOS
     it 'flattens arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
@@ -26,7 +26,7 @@ describe 'flatten function' do
       }
     EOS
     it 'does not affect flat arrays' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end

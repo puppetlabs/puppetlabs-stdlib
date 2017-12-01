@@ -10,7 +10,7 @@ describe 'bool2num function' do
         notify { "$output": }
       EOS
       it "should convert a given boolean, #{bool}, to 0" do
-        apply_manifest(pp1, catch_failures: true) do |r|
+        apply_manifest(pp1, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{Notice: 0})
         end
       end
@@ -23,7 +23,7 @@ describe 'bool2num function' do
         notify { "$output": }
       EOS
       it "should convert a given boolean, #{bool}, to 1" do
-        apply_manifest(pp2, catch_failures: true) do |r|
+        apply_manifest(pp2, :catch_failures => true) do |r|
           expect(r.stdout).to match(%r{Notice: 1})
         end
       end

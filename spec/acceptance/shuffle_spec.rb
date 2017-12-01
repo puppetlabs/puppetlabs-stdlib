@@ -10,7 +10,7 @@ describe 'shuffle function' do
       notice(inline_template('shuffle is <%= @o.inspect %>'))
     EOS
     it 'shuffles arrays' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).not_to match(%r{shuffle is \["1", "2", "3", "4", "5", "6", "7", "8", "the", "public", "art", "galleries"\]})
       end
     end
@@ -21,7 +21,7 @@ describe 'shuffle function' do
       notice(inline_template('shuffle is <%= @o.inspect %>'))
     EOS
     it 'shuffles strings' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).not_to match(%r{shuffle is "blowzy night-frumps vex'd jack q"})
       end
     end

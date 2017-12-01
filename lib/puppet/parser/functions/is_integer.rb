@@ -2,7 +2,7 @@
 # is_integer.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_integer, type: :rvalue, doc: <<-EOS
+  newfunction(:is_integer, :type => :rvalue, :doc => <<-EOS
     Returns true if the variable passed to this function is an Integer or
     a decimal (base 10) integer in String form. The string may
     start with a '-' (minus). A value of '0' is allowed, but a leading '0' digit may not

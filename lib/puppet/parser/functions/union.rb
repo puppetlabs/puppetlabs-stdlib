@@ -2,7 +2,7 @@
 # union.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:union, type: :rvalue, doc: <<-EOS
+  newfunction(:union, :type => :rvalue, :doc => <<-EOS
     This function returns a union of two or more arrays.
 
     *Examples:*

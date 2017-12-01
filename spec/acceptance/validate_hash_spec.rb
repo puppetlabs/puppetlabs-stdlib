@@ -8,7 +8,7 @@ describe 'validate_hash function' do
       validate_hash($one)
     EOS
     it 'validates a single argument' do
-      apply_manifest(pp1, catch_failures: true)
+      apply_manifest(pp1, :catch_failures => true)
     end
 
     pp2 = <<-EOS
@@ -17,7 +17,7 @@ describe 'validate_hash function' do
       validate_hash($one,$two)
     EOS
     it 'validates an multiple arguments' do
-      apply_manifest(pp2, catch_failures: true)
+      apply_manifest(pp2, :catch_failures => true)
     end
 
     [
@@ -27,7 +27,7 @@ describe 'validate_hash function' do
       %{validate_hash(undef)},
     ].each do |pp3|
       it "rejects #{pp3.inspect}" do
-        expect(apply_manifest(pp3, expect_failures: true).stderr).to match(%r{})
+        expect(apply_manifest(pp3, :expect_failures => true).stderr).to match(%r{})
       end
     end
   end

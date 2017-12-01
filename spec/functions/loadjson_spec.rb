@@ -6,7 +6,7 @@ describe 'loadjson' do
 
   describe 'when calling with valid arguments' do
     before :each do
-      allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}, encoding: 'utf-8').and_return('{"name": "puppetlabs-stdlib"}')
+      allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}, :encoding => 'utf-8').and_return('{"name": "puppetlabs-stdlib"}')
       allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}).and_return('{"name": "puppetlabs-stdlib"}')
     end
 

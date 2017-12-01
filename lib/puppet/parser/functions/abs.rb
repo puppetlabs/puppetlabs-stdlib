@@ -2,7 +2,7 @@
 # abs.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:abs, type: :rvalue, doc: <<-EOS
+  newfunction(:abs, :type => :rvalue, :doc => <<-EOS
     Returns the absolute value of a number, for example -34.56 becomes
     34.56. Takes a single integer and float value as an argument.
     EOS

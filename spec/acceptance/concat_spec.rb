@@ -11,7 +11,7 @@ describe 'concat function' do
       }
     EOS
     it 'concats one array to another' do
-      apply_manifest(pp1, catch_failures: true)
+      apply_manifest(pp1, :catch_failures => true)
     end
 
     pp2 = <<-EOS
@@ -22,7 +22,7 @@ describe 'concat function' do
       }
     EOS
     it 'concats arrays and primitives to array' do
-      apply_manifest(pp2, catch_failures: true)
+      apply_manifest(pp2, :catch_failures => true)
     end
 
     pp3 = <<-EOS
@@ -33,7 +33,7 @@ describe 'concat function' do
       }
     EOS
     it 'concats multiple arrays to one' do
-      apply_manifest(pp3, catch_failures: true)
+      apply_manifest(pp3, :catch_failures => true)
     end
 
     pp4 = <<-EOS
@@ -47,7 +47,7 @@ describe 'concat function' do
       }
     EOS
     it 'concats hash arguments' do
-      apply_manifest(pp4, catch_failures: true)
+      apply_manifest(pp4, :catch_failures => true)
     end
   end
 end

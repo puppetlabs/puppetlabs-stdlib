@@ -8,7 +8,7 @@ describe 'max function' do
       notice(inline_template('max is <%= @o.inspect %>'))
     EOS
     it 'maxs arrays' do
-      apply_manifest(pp, catch_failures: true) do |r|
+      apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{max is "the"})
       end
     end

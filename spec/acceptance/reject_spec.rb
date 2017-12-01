@@ -8,7 +8,7 @@ describe 'reject function' do
       notice(inline_template('reject is <%= @o.inspect %>'))
     EOS
     it 'rejects array of values' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{reject is \["bbb", "ccc"\]})
       end
     end
@@ -18,7 +18,7 @@ describe 'reject function' do
       notice(inline_template('reject is <%= @o.inspect %>'))
     EOS
     it 'rejects with empty array' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{reject is \[\]})
       end
     end
@@ -28,7 +28,7 @@ describe 'reject function' do
       notice(inline_template('reject is <%= @o.inspect %>'))
     EOS
     it 'rejects array of values with undef' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{reject is \[\]})
       end
     end

@@ -2,7 +2,7 @@
 #  lstrip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:lstrip, type: :rvalue, doc: <<-EOS
+  newfunction(:lstrip, :type => :rvalue, :doc => <<-EOS
     Strips leading spaces to the left of a string.
     EOS
              ) do |arguments|

@@ -1,6 +1,6 @@
 # Custom Puppet function to convert unix to dos format
 module Puppet::Parser::Functions
-  newfunction(:unix2dos, type: :rvalue, arity: 1, doc: <<-EOS
+  newfunction(:unix2dos, :type => :rvalue, :arity => 1, :doc => <<-EOS
     Returns the DOS version of the given string.
     Takes a single string argument.
     EOS

@@ -3,8 +3,8 @@
 #
 Puppet::Parser::Functions.newfunction(
   :fqdn_rotate,
-  type: :rvalue,
-  doc: "Usage: `fqdn_rotate(VALUE, [SEED])`. VALUE is required and
+  :type => :rvalue,
+  :doc => "Usage: `fqdn_rotate(VALUE, [SEED])`. VALUE is required and
   must be an array or a string. SEED is optional and may be any number
   or string.
 

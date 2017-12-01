@@ -2,7 +2,7 @@
 # delete_at.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:delete_at, type: :rvalue, doc: <<-EOS
+  newfunction(:delete_at, :type => :rvalue, :doc => <<-EOS
     Deletes a determined indexed value from an array.
 
     *Examples:*

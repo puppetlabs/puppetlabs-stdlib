@@ -2,7 +2,7 @@
 # is_bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_bool, type: :rvalue, doc: <<-EOS
+  newfunction(:is_bool, :type => :rvalue, :doc => <<-EOS
     Returns true if the variable passed to this function is a boolean.
     EOS
              ) do |arguments|

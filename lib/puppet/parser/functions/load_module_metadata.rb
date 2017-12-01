@@ -2,7 +2,7 @@
 # load_module_metadata.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:load_module_metadata, type: :rvalue, doc: <<-EOT
+  newfunction(:load_module_metadata, :type => :rvalue, :doc => <<-EOT
     This function loads the metadata of a given module.
   EOT
              ) do |args|

@@ -8,7 +8,7 @@ describe 'suffix function' do
       notice(inline_template('suffix is <%= @o.inspect %>'))
     EOS
     it 'suffixes array of values' do
-      apply_manifest(pp1, catch_failures: true) do |r|
+      apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{suffix is \["ap", "bp", "cp"\]})
       end
     end
@@ -18,7 +18,7 @@ describe 'suffix function' do
       notice(inline_template('suffix is <%= @o.inspect %>'))
     EOS
     it 'suffixs with empty array' do
-      apply_manifest(pp2, catch_failures: true) do |r|
+      apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{suffix is \[\]})
       end
     end
@@ -28,7 +28,7 @@ describe 'suffix function' do
       notice(inline_template('suffix is <%= @o.inspect %>'))
     EOS
     it 'suffixs array of values with undef' do
-      apply_manifest(pp3, catch_failures: true) do |r|
+      apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{suffix is \["a", "b", "c"\]})
       end
     end
