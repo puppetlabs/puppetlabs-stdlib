@@ -6,10 +6,8 @@ NOTICE:
     - '!spec/fixtures/'
     - 'spec/fixtures/manifests/site.pp'
     - 'spec/fixtures/modules/*'
-
 spec/spec_helper.rb:
   allow_deprecations: true
-
 .travis.yml:
   extras:
     - rvm: 2.1.9
@@ -20,3 +18,5 @@ spec/spec_helper.rb:
       bundler_args: --without system_tests
     - rvm: 2.1.9
       script: bundle exec rake rubocop
+.rubocop.yml:
+  unmanaged: true
