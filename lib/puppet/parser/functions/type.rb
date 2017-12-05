@@ -11,7 +11,7 @@ module Puppet::Parser::Functions
     unless Puppet::Parser::Functions.autoloader.loaded?(:type3x)
       Puppet::Parser::Functions.autoloader.load(:type3x)
     end
-    function_type3x(args + [false])
+    function_type3x(args)
   end
 end
 

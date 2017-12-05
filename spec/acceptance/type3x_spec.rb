@@ -18,9 +18,9 @@ describe 'type3x function' do
   end
 
   describe 'failure' do
-    pp_fail = <<-EOS
+    pp_fail = <<-MANIFEST
       type3x('one','two')
-    EOS
+    MANIFEST
     it 'handles improper number of arguments' do
       expect(apply_manifest(pp_fail, :expect_failures => true).stderr).to match(%r{Wrong number of arguments})
     end
