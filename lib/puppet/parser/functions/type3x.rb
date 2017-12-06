@@ -15,13 +15,13 @@ module Puppet::Parser::Functions
     * boolean
   DOC
              ) do |args|
-    raise(Puppet::ParseError, "type3x(): Wrong number of arguments given (#{args.size} for 1)") if args.empty?
+    raise(Puppet::ParseError, "type3x(): Wrong number of arguments given (#{args.size} for 1)") unless args.size == 1
 
     value = args[0]
 
     klass = value.class
 
-    unless [TrueClass, FalseClass, Array, Integer, Integer, Float, Hash, String].include?(klass)
+    unless [TrueClass, FalseClass, Array, Bignum, Fixnum, Float, Hash, String].include?(klass) # rubocop:disable Lint/UnifiedInteger
       raise(Puppet::ParseError, 'type3x(): Unknown type')
     end
 
