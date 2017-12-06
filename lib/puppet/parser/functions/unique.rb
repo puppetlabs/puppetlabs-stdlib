@@ -2,7 +2,7 @@
 # unique.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:unique, :type => :rvalue, :doc => <<-EOS
+  newfunction(:unique, :type => :rvalue, :doc => <<-DOC
     This function will remove duplicates from strings and arrays.
 
     *Examples:*
@@ -20,7 +20,7 @@ module Puppet::Parser::Functions
     This returns:
 
         ["a","b","c"]
-    EOS
+    DOC
              ) do |arguments|
 
     if Puppet::Util::Package.versioncmp(Puppet.version, '5.0.0') >= 0

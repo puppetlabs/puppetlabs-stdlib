@@ -26,7 +26,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     end
 
     describe 'invalid path handling' do
-      context 'garbage inputs' do
+      context 'with garbage inputs' do
         [
           nil,
           [nil],
@@ -41,7 +41,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
         end
       end
 
-      context 'relative paths' do
+      context 'with relative paths' do
         %w[
           relative1
           .

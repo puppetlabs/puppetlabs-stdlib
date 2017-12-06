@@ -36,7 +36,7 @@ describe 'dig44' do
     }
   end
 
-  context 'single values' do
+  context 'with single values' do
     it 'exists' do
       is_expected.not_to be_nil
     end
@@ -78,7 +78,7 @@ describe 'dig44' do
     end
   end
 
-  context 'structure values' do
+  context 'with structured values' do
     it 'is able to extract a deeply nested hash value' do
       is_expected.to run.with_params(data, %w[a g], 'default').and_return('2')
     end
@@ -112,7 +112,7 @@ describe 'dig44' do
     end
   end
 
-  context 'Internationalization (i18N) values' do
+  context 'with internationalization (i18N) values' do
     it 'is able to return a unicode character' do
       is_expected.to run.with_params(utf8_data, ['ẵ', 'в', 0]).and_return('©')
     end

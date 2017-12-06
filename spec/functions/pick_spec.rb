@@ -10,7 +10,7 @@ describe 'pick' do
   it { is_expected.to run.with_params(:undefined, 'two').and_return('two') }
   it { is_expected.to run.with_params(nil, 'two').and_return('two') }
 
-  context 'should run with UTF8 and double byte characters' do
+  context 'with UTF8 and double byte characters' do
     it { is_expected.to run.with_params(nil, 'このテキスト').and_return('このテキスト') }
     it { is_expected.to run.with_params('', 'ŝẳмрłề џţƒ8 ţẽ×ť', 'このテキスト').and_return('ŝẳмрłề џţƒ8 ţẽ×ť') }
   end

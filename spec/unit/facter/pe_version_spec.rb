@@ -15,7 +15,7 @@ describe 'PE Version specs' do
     end
   end
 
-  context 'When puppetversion is nil' do
+  context 'when puppetversion is nil' do
     before :each do
       Facter.fact(:puppetversion).stubs(:value).returns(nil)
     end
@@ -29,7 +29,7 @@ describe 'PE Version specs' do
     end
   end
 
-  context 'If PE is installed' do
+  context 'when PE is installed' do
     %w[2.6.1 2.10.300].each do |version|
       puppetversion = "2.7.19 (Puppet Enterprise #{version})"
       context "puppetversion => #{puppetversion}" do
@@ -62,7 +62,7 @@ describe 'PE Version specs' do
     end
   end
 
-  context 'When PE is not installed' do
+  context 'when PE is not installed' do
     before :each do
       Facter.fact(:puppetversion).stubs(:value).returns('2.7.19')
     end

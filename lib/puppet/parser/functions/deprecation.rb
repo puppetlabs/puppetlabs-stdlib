@@ -2,9 +2,9 @@
 # deprecation.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:deprecation, :doc => <<-EOS
+  newfunction(:deprecation, :doc => <<-DOC
   Function to print deprecation warnings (this is the 3.X version of it), The uniqueness key - can appear once. The msg is the message text including any positional information that is formatted by the user/caller of the method.).
-EOS
+DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "deprecation: Wrong number of arguments given (#{arguments.size} for 2)") unless arguments.size == 2

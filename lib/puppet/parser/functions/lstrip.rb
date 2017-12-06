@@ -2,9 +2,9 @@
 #  lstrip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:lstrip, :type => :rvalue, :doc => <<-EOS
+  newfunction(:lstrip, :type => :rvalue, :doc => <<-DOC
     Strips leading spaces to the left of a string.
-    EOS
+    DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "lstrip(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?

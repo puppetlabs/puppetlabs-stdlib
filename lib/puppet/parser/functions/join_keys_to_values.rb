@@ -2,7 +2,7 @@
 # join.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:join_keys_to_values, :type => :rvalue, :doc => <<-EOS
+  newfunction(:join_keys_to_values, :type => :rvalue, :doc => <<-DOC
     This function joins each key of a hash to that key's corresponding value with a
     separator. Keys are cast to strings. If values are arrays, multiple keys
     are added for each element. The return value is an array in
@@ -17,7 +17,7 @@ module Puppet::Parser::Functions
         join_keys_to_values({'a'=>1,'b'=>[2,3]}, " is ")
 
     Would result in: ["a is 1","b is 2","b is 3"]
-    EOS
+    DOC
              ) do |arguments|
 
     # Validate the number of arguments.

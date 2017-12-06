@@ -2,7 +2,7 @@
 # reject.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:reject, :type => :rvalue, :doc => <<-EOS) do |args|
+  newfunction(:reject, :type => :rvalue, :doc => <<-DOC) do |args|
     This function searches through an array and rejects all elements that match
     the provided regular expression.
 
@@ -13,7 +13,7 @@ module Puppet::Parser::Functions
     Would return:
 
         ['bbb','ccc']
-EOS
+DOC
 
     if args.size != 2
       raise Puppet::ParseError,

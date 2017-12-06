@@ -3,7 +3,7 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:defined_with_params,
                                       :type => :rvalue,
-                                      :doc => <<-'ENDOFDOC'
+                                      :doc => <<-'DOC'
     Takes a resource reference and an optional hash of attributes.
 
     Returns true if a resource with the specified attributes has already been added
@@ -16,7 +16,7 @@ Puppet::Parser::Functions.newfunction(:defined_with_params,
         if ! defined_with_params(User[dan], {'ensure' => 'present' }) {
           user { 'dan': ensure => present, }
         }
-ENDOFDOC
+DOC
                                      ) do |vals|
   reference, params = vals
   raise(ArgumentError, 'Must specify a reference') unless reference

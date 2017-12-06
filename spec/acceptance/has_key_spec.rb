@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 
 describe 'has_key function' do
   describe 'success' do
-    pp1 = <<-EOS
+    pp1 = <<-DOC
       $a = { 'aaa' => 'bbb','bbb' => 'ccc','ddd' => 'eee' }
       $b = 'bbb'
       $c = true
@@ -11,14 +11,14 @@ describe 'has_key function' do
       if $o == $c {
         notify { 'output correct': }
       }
-    EOS
+    DOC
     it 'has_keys in hashes' do
       apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})
       end
     end
 
-    pp2 = <<-EOS
+    pp2 = <<-DOC
       $a = { 'aaa' => 'bbb','bbb' => 'ccc','ddd' => 'eee' }
       $b = 'ccc'
       $c = false
@@ -26,7 +26,7 @@ describe 'has_key function' do
       if $o == $c {
         notify { 'output correct': }
       }
-    EOS
+    DOC
     it 'has_keys not in hashes' do
       apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})

@@ -3,7 +3,7 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:getparam,
                                       :type => :rvalue,
-                                      :doc => <<-'ENDOFDOC'
+                                      :doc => <<-'DOC'
     Takes a resource reference and name of the parameter and
     returns value of resource's parameter.
 
@@ -19,7 +19,7 @@ Puppet::Parser::Functions.newfunction(:getparam,
         getparam(Example_resource["example_resource_instance"], "param")
 
     Would return: param_value
-  ENDOFDOC
+  DOC
                                      ) do |vals|
   reference, param = vals
   raise(ArgumentError, 'Must specify a reference') unless reference

@@ -2,9 +2,9 @@
 # is_ip_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_ip_address, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_ip_address, :type => :rvalue, :doc => <<-DOC
     Returns true if the string passed to this function is a valid IP address.
-    EOS
+    DOC
              ) do |arguments|
 
     require 'ipaddr'

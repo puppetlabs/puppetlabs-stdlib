@@ -13,7 +13,7 @@ describe 'package_provider', :type => :fact do
         Facter.stubs(:value).returns puppetversion
       end
 
-      context 'darwin' do
+      context 'when darwin' do
         it 'returns pkgdmg' do
           provider = Puppet::Type.type(:package).provider(:pkgdmg)
           Puppet::Type.type(:package).stubs(:defaultprovider).returns provider
@@ -22,7 +22,7 @@ describe 'package_provider', :type => :fact do
         end
       end
 
-      context 'centos 7' do
+      context 'when centos 7' do
         it 'returns yum' do
           provider = Puppet::Type.type(:package).provider(:yum)
           Puppet::Type.type(:package).stubs(:defaultprovider).returns provider
@@ -31,7 +31,7 @@ describe 'package_provider', :type => :fact do
         end
       end
 
-      context 'ubuntu' do
+      context 'when ubuntu' do
         it 'returns apt' do
           provider = Puppet::Type.type(:package).provider(:apt)
           Puppet::Type.type(:package).stubs(:defaultprovider).returns provider

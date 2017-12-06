@@ -15,7 +15,7 @@ describe 'ensure_resource' do
     is_expected.to run.with_params(1, 2, 3).and_raise_error(Puppet::ParseError)
   }
 
-  context 'given an empty catalog' do
+  context 'when given an empty catalog' do
     describe 'after running ensure_resource("user", "username1", {})' do
       before(:each) { subject.call(['User', 'username1', {}]) }
 
@@ -47,7 +47,7 @@ describe 'ensure_resource' do
     end
   end
 
-  context 'given a catalog with UTF8 chars' do
+  context 'when given a catalog with UTF8 chars' do
     describe 'after running ensure_resource("user", "Şắოрŀễ Ţë×ť", {})' do
       before(:each) { subject.call(['User', 'Şắოрŀễ Ţë×ť', {}]) }
 
@@ -72,7 +72,7 @@ describe 'ensure_resource' do
     end
   end
 
-  context 'given a catalog with "user { username1: ensure => present }"' do
+  context 'when given a catalog with "user { username1: ensure => present }"' do
     let(:pre_condition) { 'user { username1: ensure => present }' }
 
     describe 'after running ensure_resource("user", "username1", {})' do
@@ -124,7 +124,7 @@ describe 'ensure_resource' do
     end
   end
 
-  context 'given a catalog with "test::deftype { foo: }"' do
+  context 'when given a catalog with "test::deftype { foo: }"' do
     let(:pre_condition) { 'test::deftype { "foo": }' }
 
     describe 'after running ensure_resource("test::deftype", "foo", {})' do

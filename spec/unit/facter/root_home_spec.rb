@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'facter/root_home'
 describe 'Root Home Specs' do
   describe Facter::Util::RootHome do
-    context 'solaris' do
+    context 'when solaris' do
       let(:root_ent) { 'root:x:0:0:Super-User:/:/sbin/sh' }
       let(:expected_root_home) { '/' }
 
@@ -12,7 +12,7 @@ describe 'Root Home Specs' do
         expect(described_class.returnt_root_home).to eq(expected_root_home)
       end
     end
-    context 'linux' do
+    context 'when linux' do
       let(:root_ent) { 'root:x:0:0:root:/root:/bin/bash' }
       let(:expected_root_home) { '/root' }
 
@@ -21,7 +21,7 @@ describe 'Root Home Specs' do
         expect(described_class.returnt_root_home).to eq(expected_root_home)
       end
     end
-    context 'windows' do
+    context 'when windows' do
       before :each do
         Facter::Util::Resolution.expects(:exec).with('getent passwd root').returns(nil)
       end
@@ -35,7 +35,7 @@ describe 'Root Home Specs' do
     before(:each) { Facter.clear }
     after(:each) { Facter.clear }
 
-    context 'macosx' do
+    context 'when macosx' do
       before(:each) do
         Facter.fact(:kernel).stubs(:value).returns('Darwin')
         Facter.fact(:osfamily).stubs(:value).returns('Darwin')
@@ -50,7 +50,7 @@ describe 'Root Home Specs' do
       end
     end
 
-    context 'aix' do
+    context 'when aix' do
       before(:each) do
         Facter.fact(:kernel).stubs(:value).returns('AIX')
         Facter.fact(:osfamily).stubs(:value).returns('AIX')

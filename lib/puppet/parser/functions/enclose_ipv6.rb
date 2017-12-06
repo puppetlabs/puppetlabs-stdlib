@@ -2,9 +2,9 @@
 # enclose_ipv6.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:enclose_ipv6, :type => :rvalue, :doc => <<-EOS
+  newfunction(:enclose_ipv6, :type => :rvalue, :doc => <<-DOC
     Takes an array of ip addresses and encloses the ipv6 addresses with square brackets.
-  EOS
+  DOC
              ) do |arguments|
 
     require 'ipaddr'

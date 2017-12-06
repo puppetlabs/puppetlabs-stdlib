@@ -3,7 +3,7 @@ require 'digest/sha1'
 # fqdn_uuid.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:fqdn_uuid, :type => :rvalue, :doc => <<-END) do |args|
+  newfunction(:fqdn_uuid, :type => :rvalue, :doc => <<-DOC) do |args|
     Creates a UUID based on a given string, assumed to be the FQDN
 
     For example, to generate a UUID based on the FQDN of a system:
@@ -32,8 +32,7 @@ module Puppet::Parser::Functions
     No verification is present at the moment as whether the domain name given
     is in fact a correct fully-qualified domain name.  Therefore any arbitrary
     string and/or alpha-numeric value can subside for a domain name.
-    EOS
-  END
+    DOC
 
     raise(ArgumentError, 'fqdn_uuid: No arguments given') if args.empty?
     raise(ArgumentError, "fqdn_uuid: Too many arguments given (#{args.length})") unless args.length == 1

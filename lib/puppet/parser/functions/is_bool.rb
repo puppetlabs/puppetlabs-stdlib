@@ -2,9 +2,9 @@
 # is_bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_bool, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_bool, :type => :rvalue, :doc => <<-DOC
     Returns true if the variable passed to this function is a boolean.
-    EOS
+    DOC
              ) do |arguments|
 
     function_deprecation([:is_bool, 'This method is deprecated, please use the stdlib validate_legacy function,

@@ -2,7 +2,7 @@
 # hash.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:hash, :type => :rvalue, :doc => <<-EOS
+  newfunction(:hash, :type => :rvalue, :doc => <<-DOC
     This function converts an array into a hash.
 
     *Examples:*
@@ -10,7 +10,7 @@ module Puppet::Parser::Functions
         hash(['a',1,'b',2,'c',3])
 
     Would return: {'a'=>1,'b'=>2,'c'=>3}
-    EOS
+    DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "hash(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?

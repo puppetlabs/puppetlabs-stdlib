@@ -12,7 +12,7 @@ describe 'concat' do
   it { is_expected.to run.with_params(%w[1 2], %w[3 4], %w[5 6]).and_return(%w[1 2 3 4 5 6]) }
   it { is_expected.to run.with_params(%w[1 2], '3', '4', %w[5 6]).and_return(%w[1 2 3 4 5 6]) }
 
-  context 'should run with UTF8 and double byte characters' do
+  context 'with UTF8 and double byte characters' do
     it { is_expected.to run.with_params([{ 'a' => 'b' }], 'c' => 'd', 'e' => 'f').and_return([{ 'a' => 'b' }, { 'c' => 'd', 'e' => 'f' }]) }
     it { is_expected.to run.with_params(['ấ', 'β', '©'], %w[đ ể 文字列]).and_return(['ấ', 'β', '©', 'đ', 'ể', '文字列']) }
   end

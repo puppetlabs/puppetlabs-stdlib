@@ -2,7 +2,7 @@
 # prefix.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:prefix, :type => :rvalue, :doc => <<-EOS
+  newfunction(:prefix, :type => :rvalue, :doc => <<-DOC
     This function applies a prefix to all elements in an array or a hash.
 
     *Examples:*
@@ -10,7 +10,7 @@ module Puppet::Parser::Functions
         prefix(['a','b','c'], 'p')
 
     Will return: ['pa','pb','pc']
-    EOS
+    DOC
              ) do |arguments|
 
     # Technically we support two arguments but only first is mandatory ...

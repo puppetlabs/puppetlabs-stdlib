@@ -3,29 +3,29 @@ require 'spec_helper_acceptance'
 
 describe 'has_interface_with function', :unless => ((fact('osfamily') == 'windows') || (fact('osfamily') == 'AIX')) do
   describe 'success' do
-    pp1 = <<-EOS
+    pp1 = <<-DOC
       $a = $::ipaddress
       $o = has_interface_with('ipaddress', $a)
       notice(inline_template('has_interface_with is <%= @o.inspect %>'))
-    EOS
+    DOC
     it 'has_interface_with existing ipaddress' do
       apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{has_interface_with is true})
       end
     end
 
-    pp2 = <<-EOS
+    pp2 = <<-DOC
       $a = '128.0.0.1'
       $o = has_interface_with('ipaddress', $a)
       notice(inline_template('has_interface_with is <%= @o.inspect %>'))
-    EOS
+    DOC
     it 'has_interface_with absent ipaddress' do
       apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{has_interface_with is false})
       end
     end
 
-    pp3 = <<-EOS
+    pp3 = <<-DOC
       if $osfamily == 'Solaris' or $osfamily == 'Darwin' {
         $a = 'lo0'
       }elsif $osfamily == 'windows' {
@@ -39,7 +39,7 @@ describe 'has_interface_with function', :unless => ((fact('osfamily') == 'window
       }
       $o = has_interface_with($a)
       notice(inline_template('has_interface_with is <%= @o.inspect %>'))
-    EOS
+    DOC
     it 'has_interface_with existing interface' do
       apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{has_interface_with is true})

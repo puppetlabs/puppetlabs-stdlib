@@ -37,7 +37,7 @@ describe 'validate_absolute_path' do
   end
 
   describe 'invalid path handling' do
-    context 'garbage inputs' do
+    context 'with garbage inputs' do
       [
         nil,
         [nil],
@@ -52,7 +52,7 @@ describe 'validate_absolute_path' do
       end
     end
 
-    context 'relative paths' do
+    context 'with relative paths' do
       %w[
         relative1
         .

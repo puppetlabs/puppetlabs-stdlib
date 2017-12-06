@@ -21,7 +21,7 @@ describe 'is_float' do
     it { is_expected.to run.with_params(1).and_return(false) }
   end
 
-  context 'Checking for deprecation warning' do
+  context 'with deprecation warning' do
     after(:each) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end

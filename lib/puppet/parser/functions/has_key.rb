@@ -2,7 +2,7 @@
 # has_key.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:has_key, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:has_key, :type => :rvalue, :doc => <<-'DOC') do |args|
     Determine if a hash has a certain key value.
 
     Example:
@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
           notice('this will be printed')
         }
 
-    ENDHEREDOC
+    DOC
 
     unless args.length == 2
       raise Puppet::ParseError, "has_key(): wrong number of arguments (#{args.length}; must be 2)"

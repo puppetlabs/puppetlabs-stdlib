@@ -14,7 +14,7 @@ describe 'ensure_packages' do
   it { is_expected.to run.with_params('packagename') }
   it { is_expected.to run.with_params(%w[packagename1 packagename2]) }
 
-  context 'given a catalog with "package { puppet: ensure => absent }"' do
+  context 'when given a catalog with "package { puppet: ensure => absent }"' do
     let(:pre_condition) { 'package { puppet: ensure => absent }' }
 
     describe 'after running ensure_package("facter")' do
@@ -34,7 +34,7 @@ describe 'ensure_packages' do
     end
   end
 
-  context 'given an empty packages array' do
+  context 'when given an empty packages array' do
     let(:pre_condition) { 'notify { "hi": } -> Package <| |>; $somearray = ["vim",""]; ensure_packages($somearray)' }
 
     describe 'after running ensure_package(["vim", ""])' do
@@ -42,7 +42,7 @@ describe 'ensure_packages' do
     end
   end
 
-  context 'given hash of packages' do
+  context 'when given hash of packages' do
     before(:each) do
       subject.call([{ 'foo' => { 'provider' => 'rpm' }, 'bar' => { 'provider' => 'gem' } }, { 'ensure' => 'present' }])
       subject.call([{ 'パッケージ' => { 'ensure' => 'absent' } }])
@@ -53,13 +53,13 @@ describe 'ensure_packages' do
     it { expect(-> { catalogue }).to contain_package('foo').with('provider' => 'rpm', 'ensure' => 'present') }
     it { expect(-> { catalogue }).to contain_package('bar').with('provider' => 'gem', 'ensure' => 'present') }
 
-    context 'should run with UTF8 and double byte characters' do
+    context 'with UTF8 and double byte characters' do
       it { expect(-> { catalogue }).to contain_package('パッケージ').with('ensure' => 'absent') }
       it { expect(-> { catalogue }).to contain_package('ρǻ¢κầģẻ').with('ensure' => 'absent') }
     end
   end
 
-  context 'given a catalog with "package { puppet: ensure => present }"' do
+  context 'when given a catalog with "package { puppet: ensure => present }"' do
     let(:pre_condition) { 'package { puppet: ensure => present }' }
 
     describe 'after running ensure_package("puppet", { "ensure" => "installed" })' do

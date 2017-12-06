@@ -2,10 +2,10 @@
 # private.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:private, :doc => <<-'EOS'
+  newfunction(:private, :doc => <<-'DOC'
     DEPRECATED: Sets the current class or definition as private.
     Calling the class or definition from outside the current module will fail.
-  EOS
+  DOC
              ) do |args|
     warning("private() DEPRECATED: This function will cease to function on Puppet 4; please use assert_private() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Metrics/LineLength : Cannot shorten this line
     unless Puppet::Parser::Functions.autoloader.loaded?(:assert_private)

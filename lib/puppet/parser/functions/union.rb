@@ -2,7 +2,7 @@
 # union.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:union, :type => :rvalue, :doc => <<-EOS
+  newfunction(:union, :type => :rvalue, :doc => <<-DOC
     This function returns a union of two or more arrays.
 
     *Examples:*
@@ -10,7 +10,7 @@ module Puppet::Parser::Functions
         union(["a","b","c"],["b","c","d"])
 
     Would return: ["a","b","c","d"]
-    EOS
+    DOC
              ) do |arguments|
 
     # Check that 2 or more arguments have been given ...

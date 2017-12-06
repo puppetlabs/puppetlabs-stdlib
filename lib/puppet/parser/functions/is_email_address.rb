@@ -2,9 +2,9 @@
 # is_email_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_email_address, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_email_address, :type => :rvalue, :doc => <<-DOC
     Returns true if the string passed to this function is a valid email address.
-    EOS
+    DOC
              ) do |arguments|
     if arguments.size != 1
       raise(Puppet::ParseError, "is_email_address(): Wrong number of arguments given #{arguments.size} for 1")

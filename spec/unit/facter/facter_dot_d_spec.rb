@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'facter/facter_dot_d'
 
 describe Facter::Util::DotD do # rubocop:disable RSpec/FilePath : Spec path is as it should be
-  context 'returns a simple fact' do
+  context 'with a simple fact' do
     before :each do
       Facter.stubs(:version).returns('1.6.1')
       subject.stubs(:entries).returns(['/etc/facter/facts.d/fake_fact.txt'])
@@ -16,7 +16,7 @@ describe Facter::Util::DotD do # rubocop:disable RSpec/FilePath : Spec path is a
     end
   end
 
-  context 'returns a fact with equals signs' do
+  context 'with a fact with equals signs' do
     before :each do
       Facter.stubs(:version).returns('1.6.1')
       subject.stubs(:entries).returns(['/etc/facter/facts.d/foo.txt'])

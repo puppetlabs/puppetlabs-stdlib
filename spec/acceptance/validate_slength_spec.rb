@@ -3,58 +3,58 @@ require 'spec_helper_acceptance'
 
 describe 'validate_slength function' do
   describe 'success' do
-    pp1 = <<-EOS
+    pp1 = <<-DOC
       $one = 'discombobulate'
       $two = 17
       validate_slength($one,$two)
-    EOS
+    DOC
     it 'validates a single string max' do
       apply_manifest(pp1, :catch_failures => true)
     end
 
-    pp2 = <<-EOS
+    pp2 = <<-DOC
       $one = ['discombobulate', 'moo']
       $two = 17
       validate_slength($one,$two)
-    EOS
+    DOC
     it 'validates multiple string maxes' do
       apply_manifest(pp2, :catch_failures => true)
     end
 
-    pp3 = <<-EOS
+    pp3 = <<-DOC
       $one = ['discombobulate', 'moo']
       $two = 17
       $three = 3
       validate_slength($one,$two,$three)
-    EOS
+    DOC
     it 'validates min/max of  strings in array' do
       apply_manifest(pp3, :catch_failures => true)
     end
 
-    pp4 = <<-EOS
+    pp4 = <<-DOC
       $one = 'discombobulate'
       $two = 1
       validate_slength($one,$two)
-    EOS
+    DOC
     it 'validates a single string max of incorrect length' do
       apply_manifest(pp4, :expect_failures => true)
     end
 
-    pp5 = <<-EOS
+    pp5 = <<-DOC
       $one = ['discombobulate', 'moo']
       $two = 3
       validate_slength($one,$two)
-    EOS
+    DOC
     it 'validates multiple string maxes of incorrect length' do
       apply_manifest(pp5, :expect_failures => true)
     end
 
-    pp6 = <<-EOS
+    pp6 = <<-DOC
       $one = ['discombobulate', 'moo']
       $two = 17
       $three = 10
       validate_slength($one,$two,$three)
-    EOS
+    DOC
     it 'validates multiple strings min/maxes of incorrect length' do
       apply_manifest(pp6, :expect_failures => true)
     end

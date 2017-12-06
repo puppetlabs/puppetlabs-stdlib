@@ -2,7 +2,7 @@
 # bool2str.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:bool2str, :type => :rvalue, :doc => <<-EOS
+  newfunction(:bool2str, :type => :rvalue, :doc => <<-DOC
     Converts a boolean to a string using optionally supplied arguments. The
     optional second and third arguments represent what true and false will be
     converted to respectively. If only one argument is given, it will be
@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
     bool2str(false, 't', 'f')         => 'f'
 
     Requires a single boolean as an input.
-    EOS
+    DOC
              ) do |arguments|
 
     unless arguments.size == 1 || arguments.size == 3

@@ -2,9 +2,9 @@
 # load_module_metadata.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:load_module_metadata, :type => :rvalue, :doc => <<-EOT
+  newfunction(:load_module_metadata, :type => :rvalue, :doc => <<-DOC
     This function loads the metadata of a given module.
-  EOT
+  DOC
              ) do |args|
     raise(Puppet::ParseError, 'load_module_metadata(): Wrong number of arguments, expects one or two') unless [1, 2].include?(args.size)
     mod = args[0]

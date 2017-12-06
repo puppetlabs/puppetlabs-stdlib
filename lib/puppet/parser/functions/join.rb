@@ -2,7 +2,7 @@
 # join.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:join, :type => :rvalue, :doc => <<-EOS
+  newfunction(:join, :type => :rvalue, :doc => <<-DOC
     This function joins an array into a string using a separator.
 
     *Examples:*
@@ -10,7 +10,7 @@ module Puppet::Parser::Functions
         join(['a','b','c'], ",")
 
     Would result in: "a,b,c"
-    EOS
+    DOC
              ) do |arguments|
 
     # Technically we support two arguments but only first is mandatory ...

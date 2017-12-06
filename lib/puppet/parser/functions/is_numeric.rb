@@ -2,7 +2,7 @@
 # is_numeric.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_numeric, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_numeric, :type => :rvalue, :doc => <<-DOC
     Returns true if the given argument is a Numeric (Integer or Float),
     or a String containing either a valid integer in decimal base 10 form, or
     a valid floating point string representation.
@@ -20,7 +20,7 @@ module Puppet::Parser::Functions
       -8475
       0.2343
       -23.561e3
-    EOS
+    DOC
              ) do |arguments|
 
     function_deprecation([:is_numeric, 'This method is deprecated, please use the stdlib validate_legacy function,

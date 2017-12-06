@@ -10,13 +10,13 @@ describe 'loadyaml function' do
       bbb: 2
       ccc: 3
       ddd: 4' > #{tmpdir}/test1yaml.yaml")
-    pp1 = <<-EOS
+    pp1 = <<-DOC
       $o = loadyaml('#{tmpdir}/test1yaml.yaml')
       notice(inline_template('loadyaml[aaa] is <%= @o["aaa"].inspect %>'))
       notice(inline_template('loadyaml[bbb] is <%= @o["bbb"].inspect %>'))
       notice(inline_template('loadyaml[ccc] is <%= @o["ccc"].inspect %>'))
       notice(inline_template('loadyaml[ddd] is <%= @o["ddd"].inspect %>'))
-    EOS
+    DOC
     regex_array = [%r{loadyaml\[aaa\] is 1}, %r{loadyaml\[bbb\] is 2}, %r{loadyaml\[ccc\] is 3}, %r{loadyaml\[ddd\] is 4}]
     it 'loadyamls array of values' do
       apply_manifest(pp1, :catch_failures => true) do |r|
@@ -26,10 +26,10 @@ describe 'loadyaml function' do
       end
     end
 
-    pp2 = <<-EOS
+    pp2 = <<-DOC
       $o = loadyaml('#{tmpdir}/no-file.yaml', {'default' => 'value'})
       notice(inline_template('loadyaml[default] is <%= @o["default"].inspect %>'))
-    EOS
+    DOC
     it 'returns the default value if there is no file to load' do
       apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{loadyaml\[default\] is "value"})
@@ -37,10 +37,10 @@ describe 'loadyaml function' do
     end
 
     shell("echo '!' > #{tmpdir}/test2yaml.yaml")
-    pp3 = <<-EOS
+    pp3 = <<-DOC
       $o = loadyaml('#{tmpdir}/test2yaml.yaml', {'default' => 'value'})
       notice(inline_template('loadyaml[default] is <%= @o["default"].inspect %>'))
-    EOS
+    DOC
     it 'returns the default value if the file was parsed with an error' do
       apply_manifest(pp3, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{loadyaml\[default\] is "value"})

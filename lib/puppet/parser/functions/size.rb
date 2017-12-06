@@ -2,9 +2,9 @@
 # size.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:size, :type => :rvalue, :doc => <<-EOS
+  newfunction(:size, :type => :rvalue, :doc => <<-DOC
     Returns the number of elements in a string, an array or a hash
-  EOS
+  DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "size(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?

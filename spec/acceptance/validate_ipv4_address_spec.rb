@@ -3,19 +3,19 @@ require 'spec_helper_acceptance'
 
 describe 'validate_ipv4_address function' do
   describe 'success' do
-    pp1 = <<-EOS
+    pp1 = <<-DOC
       $one = '1.2.3.4'
       validate_ipv4_address($one)
-    EOS
+    DOC
     it 'validates a single argument' do
       apply_manifest(pp1, :catch_failures => true)
     end
 
-    pp2 = <<-EOS
+    pp2 = <<-DOC
       $one = '1.2.3.4'
       $two = '5.6.7.8'
       validate_ipv4_address($one,$two)
-    EOS
+    DOC
     it 'validates an multiple arguments' do
       apply_manifest(pp2, :catch_failures => true)
     end

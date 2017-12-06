@@ -2,13 +2,13 @@
 # get_module_path.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:get_module_path, :type => :rvalue, :doc => <<-EOT
+  newfunction(:get_module_path, :type => :rvalue, :doc => <<-DOC
     Returns the absolute path of the specified module for the current
     environment.
 
     Example:
       $module_path = get_module_path('stdlib')
-  EOT
+  DOC
              ) do |args|
     raise(Puppet::ParseError, 'get_module_path(): Wrong number of arguments, expects one') unless args.size == 1
     module_path = Puppet::Module.find(args[0], compiler.environment.to_s)

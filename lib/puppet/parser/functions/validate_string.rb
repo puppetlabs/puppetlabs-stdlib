@@ -2,7 +2,7 @@
 # validate_String.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_string, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_string, :doc => <<-'DOC') do |args|
     Validate that all passed values are string data structures. Abort catalog
     compilation if any value fails this check.
 
@@ -23,7 +23,7 @@ module Puppet::Parser::Functions
           fail('...')
         }
 
-    ENDHEREDOC
+    DOC
 
     function_deprecation([:validate_string, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::String. There is further documentation for validate_legacy function in the README.'])

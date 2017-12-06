@@ -2,7 +2,7 @@
 # has_interface_with
 #
 module Puppet::Parser::Functions
-  newfunction(:has_interface_with, :type => :rvalue, :doc => <<-EOS
+  newfunction(:has_interface_with, :type => :rvalue, :doc => <<-DOC
     Returns boolean based on kind and value:
       * macaddress
       * netmask
@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
 
     If no "kind" is given, then the presence of the interface is checked:
     has_interface_with("lo")                        => true
-    EOS
+    DOC
              ) do |args|
 
     raise(Puppet::ParseError, "has_interface_with(): Wrong number of arguments given (#{args.size} for 1 or 2)") if args.empty? || args.size > 2

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'unix2dos' do
-  context 'Checking parameter validity' do
+  context 'when checking parameter validity' do
     it { is_expected.not_to eq(nil) }
     it do
       is_expected.to run.with_params.and_raise_error(ArgumentError, %r{Wrong number of arguments})
@@ -20,7 +20,7 @@ describe 'unix2dos' do
     end
   end
 
-  context 'Converting from unix to dos format' do
+  context 'when converting from unix to dos format' do
     sample_text    = "Hello\nWorld\n"
     desired_output = "Hello\r\nWorld\r\n"
 
@@ -29,7 +29,7 @@ describe 'unix2dos' do
     end
   end
 
-  context 'Converting from dos to dos format' do
+  context 'when converting from dos to dos format' do
     sample_text    = "Hello\r\nWorld\r\n"
     desired_output = "Hello\r\nWorld\r\n"
 

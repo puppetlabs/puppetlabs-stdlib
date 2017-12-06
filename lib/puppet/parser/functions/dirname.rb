@@ -2,9 +2,9 @@
 # dirname.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:dirname, :type => :rvalue, :doc => <<-EOS
+  newfunction(:dirname, :type => :rvalue, :doc => <<-DOC
     Returns the dirname of a path.
-    EOS
+    DOC
              ) do |arguments|
 
     if arguments.empty?

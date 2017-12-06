@@ -2,12 +2,12 @@
 require 'spec_helper_acceptance'
 
 describe 'delete function' do
-  pp = <<-EOS
+  pp = <<-DOC
       $output = delete(['a','b','c','b'], 'b')
       if $output == ['a','c'] {
         notify { 'output correct': }
       }
-  EOS
+  DOC
   describe 'success' do
     it 'deletes elements of the array' do
       apply_manifest(pp, :catch_failures => true) do |r|

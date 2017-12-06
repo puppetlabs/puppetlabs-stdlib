@@ -12,7 +12,7 @@ describe 'is_bool' do
   it { is_expected.to run.with_params([true]).and_return(false) }
   it { is_expected.to run.with_params('true').and_return(false) }
   it { is_expected.to run.with_params('false').and_return(false) }
-  context 'Checking for deprecation warning' do
+  context 'with deprecation warning' do
     after(:each) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end

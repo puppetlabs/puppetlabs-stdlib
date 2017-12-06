@@ -3,19 +3,19 @@ require 'spec_helper_acceptance'
 
 describe 'validate_bool function' do
   describe 'success' do
-    pp1 = <<-EOS
+    pp1 = <<-DOC
       $one = true
       validate_bool($one)
-    EOS
+    DOC
     it 'validates a single argument' do
       apply_manifest(pp1, :catch_failures => true)
     end
 
-    pp2 = <<-EOS
+    pp2 = <<-DOC
       $one = true
       $two = false
       validate_bool($one,$two)
-    EOS
+    DOC
     it 'validates an multiple arguments' do
       apply_manifest(pp2, :catch_failures => true)
     end
