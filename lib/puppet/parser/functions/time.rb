@@ -2,7 +2,7 @@
 # time.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:time, :type => :rvalue, :doc => <<-EOS
+  newfunction(:time, :type => :rvalue, :doc => <<-DOC
     This function will return the current time since epoch as an integer.
 
     *Examples:*
@@ -10,7 +10,7 @@ module Puppet::Parser::Functions
         time()
 
     Will return something like: 1311972653
-    EOS
+    DOC
              ) do |arguments|
 
     # The Time Zone argument is optional ...

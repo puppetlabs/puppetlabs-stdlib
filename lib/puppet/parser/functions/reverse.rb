@@ -2,9 +2,9 @@
 # reverse.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:reverse, :type => :rvalue, :doc => <<-EOS
+  newfunction(:reverse, :type => :rvalue, :doc => <<-DOC
     Reverses the order of a string or array.
-    EOS
+    DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "reverse(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?

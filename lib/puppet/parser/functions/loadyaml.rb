@@ -2,7 +2,7 @@
 # loadyaml.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:loadyaml, :type => :rvalue, :arity => -2, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:loadyaml, :type => :rvalue, :arity => -2, :doc => <<-'DOC') do |args|
     Load a YAML file containing an array, string, or hash, and return the data
     in the corresponding native data type.
     The second parameter is the default value. It will be returned if the file
@@ -12,7 +12,7 @@ module Puppet::Parser::Functions
 
         $myhash = loadyaml('/etc/puppet/data/myhash.yaml')
         $myhash = loadyaml('no-file.yaml', {'default' => 'value'})
-  ENDHEREDOC
+  DOC
 
     raise ArgumentError, 'Wrong number of arguments. 1 or 2 arguments should be provided.' unless args.length >= 1
     require 'yaml'

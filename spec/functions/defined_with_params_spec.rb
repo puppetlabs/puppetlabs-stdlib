@@ -13,7 +13,7 @@ describe 'defined_with_params' do
     it { is_expected.to run.with_params('User[bob]', {}).and_return(false) }
     it { is_expected.to run.with_params('User[dan]', 'foo' => 'bar').and_return(false) }
 
-    context 'should run with UTF8 and double byte characters' do
+    context 'with UTF8 and double byte characters' do
       it { is_expected.to run.with_params('User[ĵĭмოү]', {}).and_return(false) }
       it { is_expected.to run.with_params('User[ポーラ]', {}).and_return(false) }
     end
@@ -45,11 +45,11 @@ describe 'defined_with_params' do
       'user { "dan": }'
     end
 
-    context 'reference' do
+    context 'with reference' do
       it { is_expected.to run.with_params(Puppet::Resource.new('User[dan]'), {}).and_return(true) }
     end
     if Puppet::Util::Package.versioncmp(Puppet.version, '4.6.0') >= 0
-      context 'array' do
+      context 'with array' do
         it 'fails' do
           expect {
             subject.call([['User[dan]'], {}])

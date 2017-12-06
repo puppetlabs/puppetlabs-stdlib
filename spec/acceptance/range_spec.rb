@@ -3,20 +3,20 @@ require 'spec_helper_acceptance'
 
 describe 'range function' do
   describe 'success' do
-    pp1 = <<-EOS
+    pp1 = <<-DOC
       $o = range('a','d')
       notice(inline_template('range is <%= @o.inspect %>'))
-    EOS
+    DOC
     it 'ranges letters' do
       apply_manifest(pp1, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{range is \["a", "b", "c", "d"\]})
       end
     end
 
-    pp2 = <<-EOS
+    pp2 = <<-DOC
       $o = range('a','d', '2')
       notice(inline_template('range is <%= @o.inspect %>'))
-    EOS
+    DOC
     it 'ranges letters with a step' do
       apply_manifest(pp2, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{range is \["a", "c"\]})

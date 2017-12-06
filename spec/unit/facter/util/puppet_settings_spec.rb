@@ -4,7 +4,7 @@ require 'facter/util/puppet_settings'
 
 describe Facter::Util::PuppetSettings do
   describe '#with_puppet' do
-    context 'Without Puppet loaded' do
+    context 'without Puppet loaded' do
       before(:each) do
         Module.expects(:const_get).with('Puppet').raises(NameError)
       end
@@ -17,7 +17,7 @@ describe Facter::Util::PuppetSettings do
         expect(subject.with_puppet { Puppet[:vardir] }).to be_nil
       end
     end
-    context 'With Puppet loaded' do
+    context 'with Puppet loaded' do
       module Puppet; end
       let(:vardir) { '/var/lib/puppet' }
 

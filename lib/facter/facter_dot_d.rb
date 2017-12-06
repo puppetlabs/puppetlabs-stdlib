@@ -23,7 +23,7 @@ class Facter::Util::DotD
 
   def entries
     Dir.entries(@dir).reject { |f| f =~ %r{^\.|\.ttl$} }.sort.map { |f| File.join(@dir, f) }
-  rescue
+  rescue # rubocop:disable Lint/RescueWithoutErrorClass
     []
   end
 
@@ -113,14 +113,14 @@ class Facter::Util::DotD
   def cache_save!
     cache = load_cache
     File.open(@cache_file, 'w', 0o600) { |f| f.write(YAML.dump(cache)) }
-  rescue # rubocop:disable Lint/HandleExceptions - Is meant to be suppressed
+  rescue # rubocop:disable Lint/HandleExceptions, Lint/RescueWithoutErrorClass
   end
 
   def cache_store(file, data)
     load_cache
 
     @cache[file] = { :data => data, :stored => Time.now.to_i }
-  rescue # rubocop:disable Lint/HandleExceptions - Is meant to be suppressed
+  rescue # rubocop:disable Lint/HandleExceptions, Lint/RescueWithoutErrorClass
   end
 
   def cache_lookup(file)
@@ -136,7 +136,7 @@ class Facter::Util::DotD
     return cache[file][:data] if ttl == -1
     return cache[file][:data] if (now - cache[file][:stored]) <= ttl
     return nil
-  rescue
+  rescue # rubocop:disable Lint/RescueWithoutErrorClass
     return nil
   end
 
@@ -144,21 +144,19 @@ class Facter::Util::DotD
     meta = file + '.ttl'
 
     return File.read(meta).chomp.to_i
-  rescue
+  rescue # rubocop:disable Lint/RescueWithoutErrorClass
     return 0
   end
 
   def load_cache
-    unless @cache
-      @cache = if File.exist?(@cache_file)
+    @cache ||= if File.exist?(@cache_file)
                  YAML.load_file(@cache_file)
                else
                  {}
                end
-    end
 
     return @cache
-  rescue
+  rescue # rubocop:disable Lint/RescueWithoutErrorClass
     @cache = {}
     return @cache
   end

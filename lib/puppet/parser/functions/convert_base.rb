@@ -2,7 +2,7 @@
 # convert_base.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:convert_base, :type => :rvalue, :arity => 2, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:convert_base, :type => :rvalue, :arity => 2, :doc => <<-'DOC') do |args|
     Converts a given integer or base 10 string representing an integer to a specified base, as a string.
 
     Usage:
@@ -10,7 +10,7 @@ module Puppet::Parser::Functions
       $binary_repr = convert_base(5, 2)  # $binary_repr is now set to "101"
       $hex_repr = convert_base("254", "16")  # $hex_repr is now set to "fe"
 
-    ENDHEREDOC
+    DOC
 
     raise Puppet::ParseError, 'convert_base(): First argument must be either a string or an integer' unless args[0].is_a?(Integer) || args[0].is_a?(String)
     raise Puppet::ParseError, 'convert_base(): Second argument must be either a string or an integer' unless args[1].is_a?(Integer) || args[1].is_a?(String)

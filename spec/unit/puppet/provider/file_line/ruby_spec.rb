@@ -33,14 +33,14 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   end
 
   describe 'line parameter' do
-    context 'line exists' do
+    context 'when line exists' do
       let(:content) { 'foo' }
 
       it 'detects the line' do
         expect(provider).to be_exists
       end
     end
-    context 'line does not exist' do
+    context 'when line does not exist' do
       let(:content) { 'foo bar' }
 
       it 'requests changes' do
@@ -77,7 +77,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       end
     end
 
-    context 'does not match line - line exists' do
+    context 'when does not match line - line exists' do
       let(:content) { "foo\nbar" }
 
       it 'detects the line' do
@@ -85,7 +85,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       end
     end
 
-    context 'matches line - line exists' do
+    context 'when matches line - line exists' do
       let(:params) { { :match => '^foo' } }
       let(:content) { "foo\nbar" }
 
@@ -94,7 +94,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       end
     end
 
-    context 'matches line - line does not exist' do
+    context 'when matches line - line does not exist' do
       let(:params) { { :match => '^foo' } }
       let(:content) { "foo bar\nbar" }
 

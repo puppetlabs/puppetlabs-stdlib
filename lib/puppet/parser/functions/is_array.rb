@@ -2,9 +2,9 @@
 # is_array.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_array, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_array, :type => :rvalue, :doc => <<-DOC
     Returns true if the variable passed to this function is an array.
-    EOS
+    DOC
              ) do |arguments|
 
     function_deprecation([:is_array, 'This method is deprecated, please use the stdlib validate_legacy function,

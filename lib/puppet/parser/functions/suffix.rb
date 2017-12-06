@@ -2,7 +2,7 @@
 # suffix.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:suffix, :type => :rvalue, :doc => <<-EOS
+  newfunction(:suffix, :type => :rvalue, :doc => <<-DOC
     This function applies a suffix to all elements in an array, or to the keys
     in a hash.
 
@@ -11,7 +11,7 @@ module Puppet::Parser::Functions
         suffix(['a','b','c'], 'p')
 
     Will return: ['ap','bp','cp']
-    EOS
+    DOC
              ) do |arguments|
 
     # Technically we support two arguments but only first is mandatory ...

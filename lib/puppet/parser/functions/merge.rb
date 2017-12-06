@@ -2,7 +2,7 @@
 # merge.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:merge, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:merge, :type => :rvalue, :doc => <<-'DOC') do |args|
     Merges two or more hashes together and returns the resulting hash.
 
     For example:
@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
 
     When there is a duplicate key, the key in the rightmost hash will "win."
 
-    ENDHEREDOC
+    DOC
 
     if args.length < 2
       raise Puppet::ParseError, "merge(): wrong number of arguments (#{args.length}; must be at least 2)"

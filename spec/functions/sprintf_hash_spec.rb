@@ -5,7 +5,7 @@ describe 'sprintf_hash' do
     is_expected.not_to eq(nil)
   end
 
-  context 'validate param count' do
+  context 'with param count' do
     it 'fails with no arguments' do
       is_expected.to run.with_params.and_raise_error(ArgumentError, %r{expects 2 arguments}i)
     end
@@ -17,7 +17,7 @@ describe 'sprintf_hash' do
     end
   end
 
-  context 'validate param type' do
+  context 'with param type' do
     it 'fails with wrong format type' do
       is_expected.to run.with_params(false, {}).and_raise_error(ArgumentError, %r{parameter 'format' expects a String value}i)
     end

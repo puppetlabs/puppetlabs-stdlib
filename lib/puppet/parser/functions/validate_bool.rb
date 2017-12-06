@@ -2,7 +2,7 @@
 # validate_bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_bool, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_bool, :doc => <<-'DOC') do |args|
     Validate that all passed values are either true or false. Abort catalog
     compilation if any value fails this check.
 
@@ -19,7 +19,7 @@ module Puppet::Parser::Functions
         validate_bool("true")
         validate_bool($some_array)
 
-    ENDHEREDOC
+    DOC
 
     if args.empty?
       raise Puppet::ParseError, "validate_bool(): wrong number of arguments (#{args.length}; must be > 0)"

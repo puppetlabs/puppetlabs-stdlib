@@ -2,11 +2,11 @@
 # num2bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:num2bool, :type => :rvalue, :doc => <<-EOS
+  newfunction(:num2bool, :type => :rvalue, :doc => <<-DOC
     This function converts a number or a string representation of a number into a
     true boolean. Zero or anything non-numeric becomes false. Numbers higher then 0
     become true.
-    EOS
+    DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "num2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1

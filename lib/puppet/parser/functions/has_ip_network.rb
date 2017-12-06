@@ -2,12 +2,12 @@
 # has_ip_network
 #
 module Puppet::Parser::Functions
-  newfunction(:has_ip_network, :type => :rvalue, :doc => <<-EOS
+  newfunction(:has_ip_network, :type => :rvalue, :doc => <<-DOC
     Returns true if the client has an IP address within the requested network.
 
     This function iterates through the 'interfaces' fact and checks the
     'network_IFACE' facts, performing a simple string comparision.
-    EOS
+    DOC
              ) do |args|
 
     raise(Puppet::ParseError, "has_ip_network(): Wrong number of arguments given (#{args.size} for 1)") if args.size != 1

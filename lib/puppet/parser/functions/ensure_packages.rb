@@ -2,11 +2,11 @@
 # ensure_packages.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:ensure_packages, :type => :statement, :doc => <<-EOS
+  newfunction(:ensure_packages, :type => :statement, :doc => <<-DOC
     Takes a list of packages and only installs them if they don't already exist.
     It optionally takes a hash as a second parameter that will be passed as the
     third argument to the ensure_resource() function.
-  EOS
+  DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "ensure_packages(): Wrong number of arguments given (#{arguments.size} for 1 or 2)") if arguments.size > 2 || arguments.empty?

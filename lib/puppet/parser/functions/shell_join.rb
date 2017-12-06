@@ -4,12 +4,12 @@ require 'shellwords'
 # shell_join.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:shell_join, :type => :rvalue, :doc => <<-EOS
+  newfunction(:shell_join, :type => :rvalue, :doc => <<-DOC
     Builds a command line string from the given array of strings. Each array item is escaped for Bourne shell. All items are
     then joined together, with a single space in between.
 
     This function behaves the same as ruby's Shellwords.shelljoin() function
-  EOS
+  DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "shell_join(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1

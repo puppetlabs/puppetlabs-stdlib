@@ -51,7 +51,7 @@ describe 'seeded_rand' do
     scope.function_seeded_rand([max, seed])
   end
 
-  context 'should run with UTF8 and double byte characters' do
+  context 'with UTF8 and double byte characters' do
     it { is_expected.to run.with_params(1000, 'ǿňè') }
     it { is_expected.to run.with_params(1000, '文字列') }
   end

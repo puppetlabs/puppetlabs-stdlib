@@ -2,7 +2,7 @@
 # validate_ipv7_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_ipv6_address, :doc => <<-ENDHEREDOC
+  newfunction(:validate_ipv6_address, :doc => <<-DOC
     Validate that all values passed are valid IPv6 addresses.
     Fail compilation if any value fails this check.
 
@@ -18,7 +18,7 @@ module Puppet::Parser::Functions
     $some_array = [ true, false, "garbage string", "1.2.3.4" ]
     validate_ipv6_address($some_array)
 
-    ENDHEREDOC
+    DOC
              ) do |args|
 
     function_deprecation([:validate_ipv6_address, 'This method is deprecated, please use the stdlib validate_legacy function,

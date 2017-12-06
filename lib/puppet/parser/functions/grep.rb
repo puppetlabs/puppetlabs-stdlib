@@ -2,7 +2,7 @@
 # grep.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:grep, :type => :rvalue, :doc => <<-EOS
+  newfunction(:grep, :type => :rvalue, :doc => <<-DOC
     This function searches through an array and returns any elements that match
     the provided regular expression.
 
@@ -13,7 +13,7 @@ module Puppet::Parser::Functions
     Would return:
 
         ['aaa','aaaddd']
-    EOS
+    DOC
              ) do |arguments|
 
     if arguments.size != 2

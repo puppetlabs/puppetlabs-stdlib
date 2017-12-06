@@ -2,7 +2,7 @@
 # delete_values.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:delete_values, :type => :rvalue, :doc => <<-EOS
+  newfunction(:delete_values, :type => :rvalue, :doc => <<-DOC
     Deletes all instances of a given value from a hash.
 
     *Examples:*
@@ -11,7 +11,7 @@ module Puppet::Parser::Functions
 
     Would return: {'a'=>'A','c'=>'C','B'=>'D'}
 
-      EOS
+      DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "delete_values(): Wrong number of arguments given (#{arguments.size} of 2)") if arguments.size != 2

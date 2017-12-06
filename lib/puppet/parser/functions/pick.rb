@@ -2,7 +2,7 @@
 # pick.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:pick, :type => :rvalue, :doc => <<-EOS
+  newfunction(:pick, :type => :rvalue, :doc => <<-DOC
     This function is similar to a coalesce function in SQL in that it will return
     the first value in a list of values that is not undefined or an empty string
     (two things in Puppet that will return a boolean false value). Typically,
@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
     called 'jenkins_version' (note that parameters set in the Puppet Dashboard/
     Enterprise Console are brought into Puppet as top-scope variables), and,
     failing that, will use a default value of 1.449.
-EOS
+DOC
              ) do |args|
     args = args.compact
     args.delete(:undef)

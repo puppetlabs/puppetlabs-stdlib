@@ -18,7 +18,7 @@ describe 'shell_join' do
                         .and_return('\~\`\!@\#\$ \%\^\&\*\(\)_\+-\= \[\]\\\\\{\}\|\;\\\':\" ,./\<\>\?')
     }
 
-    context 'should run with UTF8 and double byte characters' do
+    context 'with UTF8 and double byte characters' do
       it { is_expected.to run.with_params(%w[μťƒ 8 ŧĕχť]).and_return('\\μ\\ť\\ƒ 8 \\ŧ\\ĕ\\χ\\ť') }
       it { is_expected.to run.with_params(['スペー', 'スを含むテ', ' キスト']).and_return('\\ス\\ペ\\ー \\ス\\を\\含\\む\\テ \\ \\キ\\ス\\ト') }
     end

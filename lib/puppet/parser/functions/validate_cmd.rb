@@ -5,7 +5,7 @@ require 'tempfile'
 # validate_cmd.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_cmd, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_cmd, :doc => <<-'DOC') do |args|
     Perform validation of a string with an external command.
     The first argument of this function should be a string to
     test, and the second argument should be a path to a test command
@@ -26,7 +26,7 @@ module Puppet::Parser::Functions
         # % as file location
         validate_cmd($haproxycontent, '/usr/sbin/haproxy -f % -c', 'Haproxy failed to validate config content')
 
-    ENDHEREDOC
+    DOC
     if (args.length < 2) || (args.length > 3)
       raise Puppet::ParseError, "validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)"
     end

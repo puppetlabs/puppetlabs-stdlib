@@ -2,9 +2,9 @@
 #  rstrip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:rstrip, :type => :rvalue, :doc => <<-EOS
+  newfunction(:rstrip, :type => :rvalue, :doc => <<-DOC
     Strips leading spaces to the right of the string.
-    EOS
+    DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "rstrip(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?

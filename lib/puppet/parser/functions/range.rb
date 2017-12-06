@@ -3,7 +3,7 @@
 #
 # TODO(Krzysztof Wilczynski): We probably need to approach numeric values differently ...
 module Puppet::Parser::Functions
-  newfunction(:range, :type => :rvalue, :doc => <<-EOS
+  newfunction(:range, :type => :rvalue, :doc => <<-DOC
     When given range in the form of (start, stop) it will extrapolate a range as
     an array.
 
@@ -32,7 +32,7 @@ module Puppet::Parser::Functions
         range("0", "9", "2")
 
     Will return: [0,2,4,6,8]
-    EOS
+    DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, 'range(): Wrong number of arguments given (0 for 1)') if arguments.empty?

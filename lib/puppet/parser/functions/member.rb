@@ -4,7 +4,7 @@
 # member.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:member, :type => :rvalue, :doc => <<-EOS
+  newfunction(:member, :type => :rvalue, :doc => <<-DOC
     This function determines if a variable is a member of an array.
     The variable can be a string, fixnum, or array.
 
@@ -25,7 +25,7 @@ module Puppet::Parser::Functions
         member(['a', 'b', 'c'], ['d', 'b'])
 
     would return: false
-    EOS
+    DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "member(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2

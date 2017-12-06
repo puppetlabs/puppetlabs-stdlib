@@ -2,7 +2,7 @@
 # round.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:round, :type => :rvalue, :doc => <<-EOS
+  newfunction(:round, :type => :rvalue, :doc => <<-DOC
     Rounds a number to the nearest integer
 
     *Examples:*
@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
 
     returns: 2
 
-  EOS
+  DOC
              ) do |args|
 
     raise Puppet::ParseError, "round(): Wrong number of arguments given #{args.size} for 1" if args.size != 1

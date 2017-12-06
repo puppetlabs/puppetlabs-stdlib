@@ -2,9 +2,9 @@
 # is_string.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_string, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_string, :type => :rvalue, :doc => <<-DOC
     Returns true if the variable passed to this function is a string.
-    EOS
+    DOC
              ) do |arguments|
 
     function_deprecation([:is_string, 'This method is deprecated, please use the stdlib validate_legacy function,

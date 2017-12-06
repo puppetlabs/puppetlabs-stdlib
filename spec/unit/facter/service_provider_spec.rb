@@ -7,7 +7,7 @@ describe 'service_provider', :type => :fact do
   before(:each) { Facter.clear }
   after(:each) { Facter.clear }
 
-  context 'macosx' do
+  context 'when macosx' do
     it 'returns launchd' do
       provider = Puppet::Type.type(:service).provider(:launchd)
       Puppet::Type.type(:service).stubs(:defaultprovider).returns provider
@@ -16,7 +16,7 @@ describe 'service_provider', :type => :fact do
     end
   end
 
-  context 'systemd' do
+  context 'when systemd' do
     it 'returns systemd' do
       provider = Puppet::Type.type(:service).provider(:systemd)
       Puppet::Type.type(:service).stubs(:defaultprovider).returns provider
@@ -25,7 +25,7 @@ describe 'service_provider', :type => :fact do
     end
   end
 
-  context 'redhat' do
+  context 'when redhat' do
     it 'returns redhat' do
       provider = Puppet::Type.type(:service).provider(:redhat)
       Puppet::Type.type(:service).stubs(:defaultprovider).returns provider

@@ -23,11 +23,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
               elsif resource[:replace_all_matches_not_matching_line].to_s == 'true'
                 false # maybe lies, but knows there's still work to do
               elsif lines_count.zero?
-                if resource[:replace].to_s == 'false'
-                  true
-                else
-                  false
-                end
+                resource[:replace].to_s == 'false'
               else
                 true
               end
@@ -38,11 +34,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
                 true
               end
             elsif lines_count.zero?
-              if resource[:match_for_absence].to_s == 'true'
-                true # found matches, not lines
-              else
-                false
-              end
+              resource[:match_for_absence].to_s == 'true'
             else
               true
             end

@@ -18,7 +18,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     end
 
     describe 'invalid modes' do
-      context 'garbage inputs' do
+      context 'with garbage inputs' do
         [
           nil,
           [nil],

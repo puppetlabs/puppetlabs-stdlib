@@ -2,9 +2,9 @@
 # empty.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:empty, :type => :rvalue, :doc => <<-EOS
+  newfunction(:empty, :type => :rvalue, :doc => <<-DOC
     Returns true if the variable is empty.
-  EOS
+  DOC
              ) do |arguments|
 
     raise(Puppet::ParseError, "empty(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?

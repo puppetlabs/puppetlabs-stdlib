@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'validate_x509_rsa_key_pair' do
   # rubocop:disable Lint/IndentHeredoc : Heredoc's are meant to be indented in this way
   let(:valid_cert) do
-    <<EOS
+    <<DOC
 -----BEGIN CERTIFICATE-----
 MIIC9jCCAeCgAwIBAgIRAK11n3X7aypJ7FPM8UFyAeowCwYJKoZIhvcNAQELMBIx
 EDAOBgNVBAoTB0FjbWUgQ28wHhcNMTUxMTIzMjIzOTU4WhcNMTYxMTIyMjIzOTU4
@@ -22,11 +22,11 @@ IeAvBZHr4/kVXWnfo6kzCLcku1f8yE/yDEFClZe9XV1Lk/s+3YfXVtNnMJJ1giZI
 QVOe6CkmuQq+4AtIeW8aLkvlfp632jag1F77a1y+L268koKkj0hBMrtcErVQaxmq
 xym0+soR4Tk4pTIGckeFglrLxkP2JpM/yTwSEAVlmG9vgTliYKyR0uMl
 -----END CERTIFICATE-----
-EOS
+DOC
   end
 
   let(:valid_key) do
-    <<EOS
+    <<DOC
 -----BEGIN RSA PRIVATE KEY-----
 MIIEogIBAAKCAQEAz9bY/piKahD10AiJSfbI2A8NG5UwRz0r9T/WfvNVdhgrsGFg
 NQjvpUoZnNJpQIHBbgMOiXqfATFjJl5FjEkSf7GUHohlGVls9MX2JmVvknzsiitd
@@ -54,11 +54,11 @@ c7pZAoGATd9NckT0XtXLEsF3IraDivq8dP6bccX2DNfS8UeEvRRrRwpFpSRrmuGb
 jbG4yzoIX4RjQfj/z48hwhJB+cKiN9WwcPsFXtHe7v3F6BRwK0JUfrCiXad8/SGZ
 KAf7Dfqi608zBdnPWHacre2Y35gPHB00nFQOLS6u46aBNSq07YA=
 -----END RSA PRIVATE KEY-----
-EOS
+DOC
   end
 
   let(:another_valid_key) do
-    <<EOS
+    <<DOC
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAoISxYJBTPAeAzFnm+lE/ljLlmGal2Xr3vwZKkvJiuKA/m4QJ
 0ZNdtkBSDOVuG2dXVv6W4sChRtsCdvuVe7bjTYvlU8TWM3VEJDL9l9cRXScxxlKQ
@@ -86,7 +86,7 @@ B2ZXgoUCgYAGa13P0ggUf5BMJpBd8S08jKRyvZb1CDXcUCuGtk2yEx45ern9U5WY
 zJ13E5z9MKKO8nkGBqrRfjJa8Xhxk4HKNFuzHEet5lvNE7IKCF4YQRb0ZBhnb/78
 +4ZKjFki1RrWRNSw9TdvrK6qaDKgTtCTtfRVXAYQXUgq7lSFOTtL3A==
 -----END RSA PRIVATE KEY-----
-EOS
+DOC
   end
   # rubocop:enable Layout/IndentHeredoc
 
@@ -114,19 +114,19 @@ EOS
     'bar'
   end
 
-  context 'function signature validation' do
+  context 'with function signature validation' do
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
     it { is_expected.to run.with_params(0, 1, 2, 3).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   end
 
-  context 'valid input' do
+  context 'with valid input' do
     describe 'valid certificate and key' do
       it { is_expected.to run.with_params(valid_cert, valid_key) }
     end
   end
 
-  context 'bad input' do
+  context 'with bad input' do
     describe 'valid certificate, valid but indented key' do
       it { is_expected.to run.with_params(valid_cert, valid_key_but_indented).and_raise_error(Puppet::ParseError, %r{Not a valid RSA key}) }
     end

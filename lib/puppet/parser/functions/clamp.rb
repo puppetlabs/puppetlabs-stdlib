@@ -2,9 +2,9 @@
 # clamp.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:clamp, :type => :rvalue, :arity => -2, :doc => <<-EOS
+  newfunction(:clamp, :type => :rvalue, :arity => -2, :doc => <<-DOC
     Clamps value to a range.
-    EOS
+    DOC
              ) do |args|
 
     args.flatten!

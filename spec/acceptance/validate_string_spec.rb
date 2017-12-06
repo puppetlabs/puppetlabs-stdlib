@@ -3,26 +3,26 @@ require 'spec_helper_acceptance'
 
 describe 'validate_string function' do
   describe 'success' do
-    pp1 = <<-EOS
+    pp1 = <<-DOC
       $one = 'string'
       validate_string($one)
-    EOS
+    DOC
     it 'validates a single argument' do
       apply_manifest(pp1, :catch_failures => true)
     end
 
-    pp2 = <<-EOS
+    pp2 = <<-DOC
       $one = 'string'
       $two = 'also string'
       validate_string($one,$two)
-    EOS
+    DOC
     it 'validates an multiple arguments' do
       apply_manifest(pp2, :catch_failures => true)
     end
 
-    pp3 = <<-EOS
+    pp3 = <<-DOC
       validate_string(undef)
-    EOS
+    DOC
     it 'validates undef' do
       apply_manifest(pp3, :catch_failures => true)
     end

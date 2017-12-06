@@ -2,7 +2,7 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:ensure_resources,
                                       :type => :statement,
-                                      :doc => <<-'ENDOFDOC'
+                                      :doc => <<-'DOC'
     Takes a resource type, title (only hash), and a list of attributes that describe a
     resource.
 
@@ -27,7 +27,7 @@ Puppet::Parser::Functions.newfunction(:ensure_resources,
 
     Call:
     ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
-ENDOFDOC
+DOC
                                      ) do |vals|
   type, title, params = vals
   raise(ArgumentError, 'Must specify a type') unless type

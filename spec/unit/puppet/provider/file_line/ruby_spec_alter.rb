@@ -163,8 +163,8 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       provider_class.new(resource)
     end
 
-    context 'match and after set' do
-      shared_context 'resource_create' do
+    context 'when match and after set' do
+      shared_context 'when resource_create' do
         let(:match) { '^foo2$' }
         let(:after) { '^foo1$' }
         let(:resource) do

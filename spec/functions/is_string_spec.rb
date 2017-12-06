@@ -26,7 +26,7 @@ describe 'is_string' do
   it { is_expected.to run.with_params('one').and_return(true) }
   it { is_expected.to run.with_params('0001234').and_return(true) }
 
-  context 'Checking for deprecation warning' do
+  context 'with  deprecation warning' do
     after(:each) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end

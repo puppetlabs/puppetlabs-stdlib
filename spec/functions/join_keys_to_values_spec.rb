@@ -12,7 +12,7 @@ describe 'join_keys_to_values' do
   it { is_expected.to run.with_params({ 'key' => 'value' }, '').and_return(['keyvalue']) }
   it { is_expected.to run.with_params({ 'key' => 'value' }, ':').and_return(['key:value']) }
 
-  context 'should run with UTF8 and double byte characters' do
+  context 'with UTF8 and double byte characters' do
     it { is_expected.to run.with_params({ 'ҝẽγ' => '√ạĺűē' }, ':').and_return(['ҝẽγ:√ạĺűē']) }
     it { is_expected.to run.with_params({ 'ҝẽγ' => '√ạĺűē' }, '万').and_return(['ҝẽγ万√ạĺűē']) }
   end

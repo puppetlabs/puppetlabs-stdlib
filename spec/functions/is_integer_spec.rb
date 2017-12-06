@@ -27,7 +27,7 @@ describe 'is_integer' do
   it { is_expected.to run.with_params('0001234').and_return(false) }
   it { is_expected.to run.with_params("foo\nbar").and_return(false) }
 
-  context 'Checking for deprecation warning' do
+  context 'with deprecation warning' do
     after(:each) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end

@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
     :dig44,
     :type => :rvalue,
     :arity => -2,
-    :doc => <<-eos
+    :doc => <<-DOC
     DEPRECATED: This function has been replaced in puppet 4.5.0.
 
     Looks up into a complex structure of arrays and hashes and returns a value
@@ -38,7 +38,7 @@ module Puppet::Parser::Functions
     In addition to the required "key" argument, the function accepts a default
     argument. It will be returned if no value was found or a path component is
     missing. And the fourth argument can set a variable path separator.
-  eos
+  DOC
   ) do |arguments|
     # Two arguments are required
     raise(Puppet::ParseError, "dig44(): Wrong number of arguments given (#{arguments.size} for at least 2)") if arguments.size < 2
@@ -53,7 +53,7 @@ module Puppet::Parser::Functions
       if structure.is_a? Array
         begin
           key = Integer key
-        rescue
+        rescue # rubocop:disable Lint/RescueWithoutErrorClass
           break
         end
       end

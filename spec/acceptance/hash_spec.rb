@@ -3,14 +3,14 @@ require 'spec_helper_acceptance'
 
 describe 'hash function' do
   describe 'success' do
-    pp = <<-EOS
+    pp = <<-DOC
       $a = ['aaa','bbb','bbb','ccc','ddd','eee']
       $b = { 'aaa' => 'bbb', 'bbb' => 'ccc', 'ddd' => 'eee' }
       $o = hash($a)
       if $o == $b {
         notify { 'output correct': }
       }
-    EOS
+    DOC
     it 'hashs arrays' do
       apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Notice: output correct})

@@ -3,11 +3,11 @@ require 'spec_helper_acceptance'
 
 describe 'uriescape function' do
   describe 'success' do
-    pp = <<-EOS
+    pp = <<-DOC
       $a = ":/?#[]@!$&'()*+,;= \\\"{}"
       $o = uriescape($a)
       notice(inline_template('uriescape is <%= @o.inspect %>'))
-    EOS
+    DOC
     it 'uriescape strings' do
       apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{uriescape is ":\/\?%23\[\]@!\$&'\(\)\*\+,;=%20%22%7B%7D"})

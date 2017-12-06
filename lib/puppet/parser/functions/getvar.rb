@@ -2,7 +2,7 @@
 # getvar.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:getvar, :type => :rvalue, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:getvar, :type => :rvalue, :doc => <<-'DOC') do |args|
     Lookup a variable in a remote namespace.
 
     For example:
@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
         $datalocation = 'site::data'
         $bar = getvar("${datalocation}::bar")
         # Equivalent to $bar = $site::data::bar
-    ENDHEREDOC
+    DOC
 
     unless args.length == 1
       raise Puppet::ParseError, "getvar(): wrong number of arguments (#{args.length}; must be 1)"

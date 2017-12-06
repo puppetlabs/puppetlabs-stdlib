@@ -3,19 +3,19 @@ require 'spec_helper_acceptance'
 
 describe 'ensure_resource function' do
   describe 'success' do
-    pp1 = <<-EOS
+    pp1 = <<-DOC
       notify { "test": loglevel => 'err' }
       ensure_resource('notify', 'test', { 'loglevel' => 'err' })
-    EOS
+    DOC
     it 'ensures a resource already declared' do
       apply_manifest('')
 
       apply_manifest(pp1, :expect_changes => true)
     end
 
-    pp2 = <<-EOS
+    pp2 = <<-DOC
       ensure_resource('notify', 'test', { 'loglevel' => 'err' })
-    EOS
+    DOC
     it 'ensures a undeclared resource' do
       apply_manifest('')
 

@@ -10,7 +10,7 @@ describe 'is_mac_address' do
   it { is_expected.to run.with_params('').and_return(false) }
   it { is_expected.to run.with_params('one').and_return(false) }
 
-  context 'function can handle UTF8 and double byte characters' do
+  context 'with  UTF8 and double byte characters' do
     it { is_expected.to run.with_params('ƒốưř').and_return(false) }
     it { is_expected.to run.with_params('三+').and_return(false) }
   end

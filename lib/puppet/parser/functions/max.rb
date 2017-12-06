@@ -2,10 +2,10 @@
 # max.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:max, :type => :rvalue, :doc => <<-EOS
+  newfunction(:max, :type => :rvalue, :doc => <<-DOC
     Returns the highest value of all arguments.
     Requires at least one argument.
-    EOS
+    DOC
              ) do |args|
 
     raise(Puppet::ParseError, 'max(): Wrong number of arguments need at least one') if args.empty?

@@ -1,5 +1,5 @@
 Puppet::Type.newtype(:file_line) do
-  desc <<-EOT
+  desc <<-DOC
     Ensures that a given line is contained within a file.  The implementation
     matches the full line, including whitespace at the beginning and end.  If
     the line is not contained in the given file, Puppet will append the line to
@@ -85,7 +85,7 @@ Puppet::Type.newtype(:file_line) do
 
     **Autorequires:** If Puppet is managing the file that will contain the line
     being managed, the file_line resource will autorequire that file.
-  EOT
+  DOC
 
   ensurable do
     defaultvalues

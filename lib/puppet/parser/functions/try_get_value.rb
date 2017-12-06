@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
     :try_get_value,
     :type => :rvalue,
     :arity => -2,
-    :doc => <<-eos
+    :doc => <<-DOC
       DEPRECATED: this function is deprecated, please use dig() instead.
 
       Looks up into a complex structure of arrays and hashes and returns a value
@@ -38,7 +38,7 @@ module Puppet::Parser::Functions
       In addition to the required "key" argument, "try_get_value" accepts default
       argument. It will be returned if no value was found or a path component is
       missing. And the fourth argument can set a variable path separator.
-    eos
+    DOC
   ) do |args|
     warning('try_get_value() DEPRECATED: this function is deprecated, please use dig() instead.')
     data = args[0]

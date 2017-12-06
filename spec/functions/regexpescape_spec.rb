@@ -33,7 +33,7 @@ describe 'regexpescape' do
     it { is_expected.to run.with_params(['one*', 'two']).and_return(['one\*', 'two']) }
     it { is_expected.to run.with_params(['one*', 1, true, {}, 'two']).and_return(['one\*', 1, true, {}, 'two']) }
 
-    context 'should run with UTF8 and double byte characters' do
+    context 'with UTF8 and double byte characters' do
       it { is_expected.to run.with_params(['ŏŉε*']).and_return(['ŏŉε\*']) }
       it { is_expected.to run.with_params(['インターネット*']).and_return(['インターネット\*']) }
     end

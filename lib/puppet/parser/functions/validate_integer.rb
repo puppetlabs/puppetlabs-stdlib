@@ -2,7 +2,7 @@
 # validate_interger.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_integer, :doc => <<-'ENDHEREDOC') do |args|
+  newfunction(:validate_integer, :doc => <<-'DOC') do |args|
     Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
 
     The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
@@ -53,7 +53,7 @@ module Puppet::Parser::Functions
     Plus all of the above, but with incorrect combinations of negative integer values.
     Plus all of the above, but with non-integer items in arrays or maximum / minimum argument.
 
-    ENDHEREDOC
+    DOC
 
     function_deprecation([:validate_integer, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.'])
