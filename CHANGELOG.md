@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
+## Supported Release 4.24.0
+### Summary
+
+This release includes a roll up of minor changes and a new feature which provides the ability to skip undef values `to_json_pretty()`.
+We have also reverted a change that was previously made and resulted in breaking compatibility with Ruby 1.8.7.
+
+#### Added
+- Ability to skip undef values in `to_json_pretty()`.
+- Fix type3x function in stdlib ([MODULES-6216](https://tickets.puppet.com/browse/MODULES-6216))
+
+#### Changed
+- Indentation for `sync.yml` was fixed.
+- Updated type alias tests and dropped superfluous wrapper classes
+- Revert to old ruby 1.X style of hash ([MODULES-6139](https://tickets.puppet.com/browse/MODULES-6139))
+- `rubocop.yml` not managed by msync ([MODULES-6201](https://tickets.puppet.com/browse/MODULES-6201))
+
 ## Supported Release 4.23.0
 ### Summary
 
