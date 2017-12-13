@@ -5,7 +5,7 @@ describe 'private' do
     scope.expects(:warning).with("private() DEPRECATED: This function will cease to function on Puppet 4; please use assert_private() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Metrics/LineLength : unable to cut line to required length
     begin
       subject.call []
-    rescue # rubocop:disable Lint/HandleExceptions, Lint/RescueWithoutErrorClass
+    rescue # rubocop:disable Lint/HandleExceptions
       # ignore this
     end
   end

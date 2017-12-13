@@ -53,7 +53,7 @@ module Puppet::Parser::Functions
       if structure.is_a? Array
         begin
           key = Integer key
-        rescue # rubocop:disable Lint/RescueWithoutErrorClass
+        rescue
           break
         end
       end

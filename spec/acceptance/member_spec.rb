@@ -26,25 +26,27 @@ describe 'member function' do
     end
 
     describe 'members array of integers' do
-      it_behaves_like 'item found' do
-        let(:pp) do
-          <<-DOC
+      let(:pp) do
+        <<-DOC
             if member( [1,2,3,4], 4 ){
               notify { 'output correct': }
             }
-          DOC
-        end
+        DOC
+      end
+
+      it_behaves_like 'item found' do
       end
     end
     describe 'members of mixed array' do
-      it_behaves_like 'item found' do
-        let(:pp) do
-          <<-DOC
+      let(:pp) do
+        <<-DOC
             if member( ['a','4',3], 'a' ){
               notify { 'output correct': }
             }
-          DOC
-        end
+        DOC
+      end
+
+      it_behaves_like 'item found' do
       end
     end
     it 'members arrays without members'
