@@ -20,9 +20,9 @@ module Puppet::Parser::Functions
 
     result = if value.is_a?(Array)
                # Numbers in Puppet are often string-encoded which is troublesome ...
-               value.map { |i| i.is_a?(String) ? URI.escape(i) : i } # rubocop:disable Lint/UriEscapeUnescape
+               value.map { |i| i.is_a?(String) ? URI.escape(i) : i }
              else
-               URI.escape(value) # rubocop:disable Lint/UriEscapeUnescape
+               URI.escape(value)
              end
 
     return result

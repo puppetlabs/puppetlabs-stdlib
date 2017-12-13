@@ -33,7 +33,7 @@ module Puppet::Parser::Functions
 
     valid_float = begin
                     !!Float(arg) # rubocop:disable Style/DoubleNegation : Could not find a better way to check if a boolean
-                  rescue # rubocop:disable Lint/RescueWithoutErrorClass
+                  rescue
                     false
                   end
 

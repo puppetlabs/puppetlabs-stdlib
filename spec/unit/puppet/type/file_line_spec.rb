@@ -72,10 +72,10 @@ describe Puppet::Type.type(:file_line) do
     expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path) }.to raise_error(Puppet::Error, %r{line is a required attribute})
   end
   it 'does not require that a line is specified when matching for absence' do
-    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Lint/BooleanSymbol, Metrics/LineLength
+    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Metrics/LineLength
   end
   it 'although if a line is specified anyway when matching for absence it still works and the line is silently ignored' do
-    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :line => 'i_am_irrelevant', :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Lint/BooleanSymbol, Metrics/LineLength
+    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :line => 'i_am_irrelevant', :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Metrics/LineLength
   end
   it 'requires that a file is specified' do
     expect { Puppet::Type.type(:file_line).new(:name => 'foo', :line => 'path') }.to raise_error(Puppet::Error, %r{path is a required attribute})
@@ -84,7 +84,7 @@ describe Puppet::Type.type(:file_line) do
     expect(file_line[:ensure]).to eq :present
   end
   it 'defaults to replace => true' do
-    expect(file_line[:replace]).to eq :true # rubocop:disable Lint/BooleanSymbol
+    expect(file_line[:replace]).to eq :true
   end
   it 'defaults to encoding => UTF-8' do
     expect(file_line[:encoding]).to eq 'UTF-8'
