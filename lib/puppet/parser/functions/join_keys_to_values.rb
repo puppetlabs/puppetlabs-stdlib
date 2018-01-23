@@ -41,6 +41,8 @@ module Puppet::Parser::Functions
     hash.map { |k, v|
       if v.is_a?(Array)
         v.map { |va| String(k) + separator + String(va) }
+      elsif String(v) == 'undef'
+        String(k)
       else
         String(k) + separator + String(v)
       end
