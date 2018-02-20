@@ -8,15 +8,15 @@ describe 'seeded_rand_string' do
   it { is_expected.to run.with_params(1).and_raise_error(ArgumentError, %r{expects between.+got 1}i) }
   it { is_expected.to run.with_params('1', 'hello').and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer value}i) }
   it { is_expected.to run.with_params(1, 1).and_raise_error(ArgumentError, %r{parameter 'seed' expects a String value}i) }
-  it { is_expected.to run.with_params(1, 'hello', 1).and_raise_error(ArgumentError, %r{parameter 'charset' expects a value of type Undef or String}i) }
+  it { is_expected.to run.with_params(1, 'hello', 1).and_raise_error(ArgumentError, %r{parameter 'charset' expects a.+String}i) }
 
   # Test regular run
   it { is_expected.to run.with_params(100, 'hello') }
 
   # Test custom charsets
-  it { is_expected.to run.with_params(100, 'hello', 'abcd').and_return(/[a-d]{100}/) }
-  it { is_expected.to run.with_params(100, 'hello', 'abcdefgh').and_return(/[a-h]{100}/) }
-  it { is_expected.to run.with_params(100, 'hello', 'ab,|').and_return(/[ab,|]{100}/) }
+  it { is_expected.to run.with_params(100, 'hello', 'abcd').and_return(%r{[a-d]{100}}) }
+  it { is_expected.to run.with_params(100, 'hello', 'abcdefgh').and_return(%r{[a-h]{100}}) }
+  it { is_expected.to run.with_params(100, 'hello', 'ab,|').and_return(%r{[ab,|]{100}}) }
 
   # Test behavior
   it 'generates the same string with the same seed' do

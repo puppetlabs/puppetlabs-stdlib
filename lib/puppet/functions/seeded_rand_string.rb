@@ -14,7 +14,7 @@ Puppet::Functions.create_function(:seeded_rand_string) do
   dispatch :rand_string do
     param 'Integer[1]', :length
     param 'String', :seed
-    optional_param 'Optional[String[2]]', :charset
+    optional_param 'String[2]', :charset
   end
 
   def rand_string(length, seed, charset = nil)
