@@ -299,14 +299,14 @@ Unacceptable input example:
 
 Matches acceptable ensure values for service resources.
 
-Acceptable input examples:    
+Acceptable input examples:
 
 ```shell
 stopped
 running
 ```
 
-Unacceptable input example:   
+Unacceptable input example:
 
 ```shell
 true
