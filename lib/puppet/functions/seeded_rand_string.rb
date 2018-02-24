@@ -1,4 +1,4 @@
-# Generates a consistent random string of specific length based on (optionally) provided seed.
+# Generates a consistent random string of specific length based on provided seed.
 #
 # @example Generate a consistently random string of length 8 with a seed:
 #   seeded_rand_string(8, "${module_name}::redis_password")
