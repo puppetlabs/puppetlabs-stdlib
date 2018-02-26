@@ -465,6 +465,61 @@ Unacceptable input example:
 bob@example.com
 ```
 
+#### `Stdlib::Base32`
+
+Matches paths a valid base32 string
+
+Acceptable input example:
+
+```shell
+ASDASDDASD3453453
+
+asdasddasd3453453=
+
+ASDASDDASD3453453==
+
+asdasddasd3453453===
+```
+
+Unacceptable input example:
+
+```shell
+asdasd!@#$
+
+=asdasd9879876876+/
+
+asdads asdasd
+
+asdasddasd3453453=======
+```
+
+#### `Stdlib::Base64`
+
+Matches paths a valid base64 string
+
+Acceptable input example:
+
+```shell
+asdasdASDSADA342386832/746+=
+
+asdasdASDSADA34238683274/6+
+
+asdasdASDSADA3423868327/46+==
+```
+
+Unacceptable input example:
+
+```shell
+asdasd!@#$
+
+=asdasd9879876876+/
+
+asda=sd9879876876+/
+
+asdads asdasd
+```
+
+
 ### Facts
 
 #### `package_provider`
