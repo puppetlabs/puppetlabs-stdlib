@@ -299,14 +299,14 @@ Unacceptable input example:
 
 Matches acceptable ensure values for service resources.
 
-Acceptable input examples:    
+Acceptable input examples:
 
 ```shell
 stopped
 running
 ```
 
-Unacceptable input example:   
+Unacceptable input example:
 
 ```shell
 true
@@ -2644,6 +2644,10 @@ For example:
 #### `zip`
 
 Takes one element from first array given and merges corresponding elements from second array given. This generates a sequence of n-element arrays, where *n* is one more than the count of arguments. For example, `zip(['1','2','3'],['4','5','6'])` results in ["1", "4"], ["2", "5"], ["3", "6"]. *Type*: rvalue.
+
+#### `remove_duplicate_whitespace`
+
+Takes a string or an array of strings. Replaces all groups of whitespace with a single one.
 
 ## Limitations
 
