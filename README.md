@@ -491,9 +491,9 @@ Unacceptable input example:
 'https'
 ````
 
-#### `Stdlib::Port::Privileged
+#### `Stdlib::Port::Privileged`
 
-Matches a valid TCP/UDP Pivlaged port i.e. < 1024
+Matches a valid TCP/UDP Privileged port i.e. < 1024
 
 Acceptable input examples:
 
@@ -519,7 +519,7 @@ Unacceptable input example:
 
 #### `Stdlib::Port::Unprivileged`
 
-Matches a valid TCP/UDP Pivlaged port i.e. >= 1024
+Matches a valid TCP/UDP Privileged port i.e. >= 1024
 
 Acceptable input examples:
 
