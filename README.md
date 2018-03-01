@@ -463,6 +463,88 @@ Unacceptable input example:
 %.example.com
 
 bob@example.com
+
+#### `Stdlib::Port`
+
+Matches a valid TCP/UDP Port number
+
+Acceptable input examples:
+
+```shell
+80
+
+443
+
+1337
+
+65000
+```
+
+Unacceptable input example:
+
+-1
+
+65536
+
+'443'
+
+'https'
+````
+
+#### `Stdlib::Port::Privileged
+
+Matches a valid TCP/UDP Pivlaged port i.e. < 1024
+
+Acceptable input examples:
+
+```shell
+80
+
+443
+
+1023
+```
+
+Unacceptable input example:
+
+```shell
+-1
+
+1337
+
+'443'
+
+'https'
+```
+
+#### `Stdlib::Port::Unprivileged`
+
+Matches a valid TCP/UDP Pivlaged port i.e. >= 1024
+
+Acceptable input examples:
+
+```shell
+1024
+
+1337
+
+65000
+
+```
+
+Unacceptable input example:
+```shell
+-1
+
+80
+
+443
+
+1023
+
+'443'
+
+'https'
 ```
 
 #### `Stdlib::Base32`
