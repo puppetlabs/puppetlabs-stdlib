@@ -463,6 +463,7 @@ Unacceptable input example:
 %.example.com
 
 bob@example.com
+```
 
 #### `Stdlib::Port`
 
@@ -482,6 +483,7 @@ Acceptable input examples:
 
 Unacceptable input example:
 
+```shell
 -1
 
 65536
@@ -489,7 +491,7 @@ Unacceptable input example:
 '443'
 
 'https'
-````
+```
 
 #### `Stdlib::Port::Privileged
 
@@ -533,6 +535,7 @@ Acceptable input examples:
 ```
 
 Unacceptable input example:
+
 ```shell
 -1
 
