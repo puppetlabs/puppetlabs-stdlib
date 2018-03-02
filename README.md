@@ -409,8 +409,40 @@ C:\\
 
 Unacceptable input example:
 
+#### `Stdlib::Filesource`
+
+Matches paths valid values for the source parameter of the puppet file type
+
+Acceptable input example:
+
 ```shell
-/usr2/username/bin:/usr/local/bin:/usr/bin:.
+http://example.com
+
+https://example.com
+
+file:///hello/bla
+
+/usr2/username/bin
+
+C:\foo\bar
+
+/var/opt/../lib/puppet
+
+puppet:///modules/foo/bar.log
+```
+
+Unacceptable input example:
+
+```shell
+*/Users//nope
+
+\Users/hc/wksp/stdlib
+
+C:noslashes
+
+puppet:///foo/bar.log
+
+ftp://ftp.example.com
 ```
 
 #### `Stdlib::Fqdn`
