@@ -523,7 +523,7 @@ Unacceptable input example:
 '443'
 
 'https'
-````
+```
 
 #### `Stdlib::Port::Privileged`
 
@@ -567,6 +567,7 @@ Acceptable input examples:
 ```
 
 Unacceptable input example:
+
 ```shell
 -1
 
