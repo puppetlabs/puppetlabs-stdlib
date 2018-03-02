@@ -482,6 +482,7 @@ Acceptable input examples:
 
 Unacceptable input example:
 
+```shell
 -1
 
 65536
@@ -491,7 +492,7 @@ Unacceptable input example:
 'https'
 ````
 
-#### Stdlib::Port::Privileged
+#### `Stdlib::Port::Privileged`
 
 Matches a valid TCP/UDP Privileged port i.e. < 1024
 
