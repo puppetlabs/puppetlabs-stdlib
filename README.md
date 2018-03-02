@@ -463,6 +463,7 @@ Unacceptable input example:
 %.example.com
 
 bob@example.com
+```
 
 #### `Stdlib::Port`
 
