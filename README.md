@@ -705,6 +705,129 @@ Unacceptable input example:
 foobar2001:db8::1
 ```
 
+#### `Stdlib::IP::Address`
+
+Matches any IP address, including both IPv4 and IPv6 addresses. It will
+match them either with or without an address prefix as used in CIDR
+format IPv4 addresses.
+
+Examples:
+
+```
+'127.0.0.1' =~ Stdlib::IP::Address                                # true
+'8.8.4.4' =~ Stdlib::IP::Address                                  # true
+'10.1.240.4/24' =~ Stdlib::IP::Address                            # true
+'52.10.10.141' =~ Stdlib::IP::Address                             # true
+'192.168.1' =~ Stdlib::IP::Address                                # false
+'FEDC:BA98:7654:3210:FEDC:BA98:7654:3210' =~ Stdlib::IP::Address  # true
+'FF01:0:0:0:0:0:0:101' =~ Stdlib::IP::Address                     # true
+'FF01::101' =~ Stdlib::IP::Address                                # true
+'FF01:0:0:0:0:0:0:101/32' =~ Stdlib::IP::Address                  # true
+'FF01::101/60' =~ Stdlib::IP::Address                             # true
+'::' =~ Stdlib::IP::Address                                       # true
+'12AB::CD30:192.168.0.1' =~ Stdlib::IP::Address                   # true
+```
+
+#### `Stdlib::IP::Address::V4`
+
+Match any string consisting of an IPv4 address in the quad-dotted
+decimal format, with or without a CIDR prefix. It will not match any
+abbreviated form (e.g., 192.168.1) because these are poorly documented
+and inconsistently supported.
+
+Examples:
+
+```
+'127.0.0.1' =~ Stdlib::IP::Address::V4                                # true
+'8.8.4.4' =~ Stdlib::IP::Address::V4                                  # true
+'10.1.240.4/24' =~ Stdlib::IP::Address::V4                            # true
+'52.10.10.141' =~ Stdlib::IP::Address::V4                             # true
+'192.168.1' =~ Stdlib::IP::Address::V4                                # false
+'FEDC:BA98:7654:3210:FEDC:BA98:7654:3210' =~ Stdlib::IP::Address::V4  # false
+'12AB::CD30:192.168.0.1' =~ Stdlib::IP::Address::V4                   # false
+```
+
+#### `Stdlib::IP::Address::V6`
+
+Match any string consistenting of an IPv6 address in any of the
+documented formats in RFC 2373, with or without an address prefix.
+
+Examples:
+
+```
+'127.0.0.1' =~ Stdlib::IP::Address::V6                                # false
+'10.1.240.4/24' =~ Stdlib::IP::Address::V6                            # false
+'FEDC:BA98:7654:3210:FEDC:BA98:7654:3210' =~ Stdlib::IP::Address::V6  # true
+'FF01:0:0:0:0:0:0:101' =~ Stdlib::IP::Address::V6                     # true
+'FF01::101' =~ Stdlib::IP::Address::V6                                # true
+'FF01:0:0:0:0:0:0:101/32' =~ Stdlib::IP::Address::V6                  # true
+'FF01::101/60' =~ Stdlib::IP::Address::V6                             # true
+'::' =~ Stdlib::IP::Address::V6                                       # true
+'12AB::CD30:192.168.0.1' =~ Stdlib::IP::Address::V6                   # true
+```
+
+#### `Stdlib::IP::Address::Nosubnet`
+
+Match the same things as the `Stdlib::IP::Address` alias, except it will not
+match an address that includes an address prefix (e.g., it will match
+`192.168.0.6` but not `192.168.0.6/24`).
+
+#### `Stdlib::IP::Address::V4::CIDR`
+
+Match an IPv4 address in the CIDR format. It will only match if the
+address contains an address prefix (e.g., it will match `192.168.0.6/24`
+but not `192.168.0.6`).
+
+#### `Stdlib::IP::Address::V4::Nosubnet`
+
+Match an IPv4 address only if the address does not contain an address
+prefix (e.g., it will match `192.168.0.6` but not `192.168.0.6/24`).
+
+#### `Stdlib::IP::Address::V6::Full`
+
+Match an IPv6 address formatted in the "preferred form" as documented in
+section 2.2.1 of RFC 2373, with or without an address prefix as
+documented in section 2.3 of RFC 2373.
+
+#### `Stdlib::IP::Address::V6::Alternate`
+
+Match an IPv6 address formatted in the "alternative form" allowing for
+representing the last two 16-bit pieces of the address with a
+quad-dotted decimal, as documented in section 2.2.1 of RFC 2373. It will
+match addresses with or without an address prefix as documented in
+section 2.3 of RFC 2373.
+
+#### `Stdlib::IP::Address::V6::Compressed`
+
+Match an IPv6 address which may contain `::` used to compress zeros as
+documented in section 2.2.2 of RFC 2373. It will match addresses with
+or without an address prefix as documented in section 2.3 of RFC 2373.
+
+#### `Stdlib::IP::Address::V6::Nosubnet`
+
+Alias to allow `Stdlib::IP::Address::V6::Nosubnet::Full`,
+`Stdlib::IP::Address::V6::Nosubnet::Alternate` and
+`Stdlib::IP::Address::V6::Nosubnet::Compressed`.
+
+#### `Stdlib::IP::Address::V6::Nosubnet::Full`
+
+Match an IPv6 address formatted in the "preferred form" as documented in
+section 2.2.1 of RFC 2373. It will not match addresses with address
+prefix as documented in section 2.3 of RFC 2373.
+
+#### `Stdlib::IP::Address::V6::Nosubnet::Alternate`
+
+Match an IPv6 address formatted in the "alternative form" allowing for
+representing the last two 16-bit pieces of the address with a
+quad-dotted decimal, as documented in section 2.2.1 of RFC 2373. It will
+only match addresses without an address prefix as documented in section
+2.3 of RFC 2373.
+
+#### `Stdlib::IP::Address::V6::Nosubnet::Compressed`
+
+Match an IPv6 address which may contain `::` used to compress zeros as
+documented in section 2.2.2 of RFC 2373. It will only match addresses
+without an address prefix as documented in section 2.3 of RFC 2373.
 
 ### Facts
 
