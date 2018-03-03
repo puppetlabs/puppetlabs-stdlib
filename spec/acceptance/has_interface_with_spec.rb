@@ -1,4 +1,3 @@
-#! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
 describe 'has_interface_with function', :unless => ((fact('osfamily') == 'windows') || (fact('osfamily') == 'AIX')) do

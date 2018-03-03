@@ -1,4 +1,3 @@
-#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 require 'facter/root_home'
 describe 'Root Home Specs' do
