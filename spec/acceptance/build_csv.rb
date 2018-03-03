@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 # vim: set sw=2 sts=2 et tw=80 :
 require 'rspec'
 

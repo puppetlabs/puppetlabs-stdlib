@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require 'spec_helper'
 
 anchor = Puppet::Type.type(:anchor).new(:name => 'ntp::begin')
