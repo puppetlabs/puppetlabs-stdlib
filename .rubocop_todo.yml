@@ -1,0 +1,6 @@
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets
+RSpec/NamedSubject:
+  Enabled: false
+Lint/ScriptPermission:
+  Enabled: false

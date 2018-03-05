@@ -1,4 +1,4 @@
-#! /usr/bin/env ruby -S rspec # rubocop:disable Lint/ScriptPermission : Rubocop Mistake???
+#! /usr/bin/env ruby -S rspec
 require 'spec_helper_acceptance'
 
 describe 'fqdn_rand_string function' do

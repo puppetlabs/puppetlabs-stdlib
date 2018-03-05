@@ -1,4 +1,3 @@
-#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 require 'tempfile'
 describe Puppet::Type.type(:file_line) do
@@ -93,7 +92,7 @@ describe Puppet::Type.type(:file_line) do
     expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :ensure => :present, :encoding => 'iso-8859-1', :line => 'bar') }.not_to raise_error
   end
 
-  it 'autorequires the file it manages' do # rubocop:disable RSpec/ExampleLength : example size cannot be reduced
+  it 'autorequires the file it manages' do
     catalog = Puppet::Resource::Catalog.new
     file = Puppet::Type.type(:file).new(:name => tmp_path)
     catalog.add_resource file

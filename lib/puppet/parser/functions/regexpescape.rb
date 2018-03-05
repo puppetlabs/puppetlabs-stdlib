@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
     Regexp escape a string or array of strings.
     Requires either a single string or an array as an input.
     DOC
-  ) do |arguments| # rubocop:disable Style/ClosingParenthesisIndentation
+  ) do |arguments| # rubocop:disable Layout/ClosingParenthesisIndentation
     raise(Puppet::ParseError, "regexpescape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]

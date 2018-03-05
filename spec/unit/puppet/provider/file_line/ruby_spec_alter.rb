@@ -53,7 +53,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
         provider.create
         expect(File.read(tmpfile).chomp).to eql("foo1\nfoo=blah\nfoo2\nfoo3")
       end
-      it 'appends the line if no matches are found' do # rubocop:disable RSpec/MultipleExpectations : separating expectations breaks the tests
+      it 'appends the line if no matches are found' do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo2") }
         expect(provider.exists?).to be false
         provider.create
@@ -83,7 +83,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       @provider = provider_class.new(@resource)
     end
     describe 'using match' do
-      it 'raises an error if more than one line matches, and should not have modified the file' do # rubocop:disable RSpec/MultipleExpectations : multiple expectations required
+      it 'raises an error if more than one line matches, and should not have modified the file' do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz") }
         expect { @provider.create }.to raise_error(Puppet::Error, %r{More than one line.*matches})
         expect(File.read(tmpfile)).to eql("foo1\nfoo=blah\nfoo2\nfoo=baz")
@@ -180,7 +180,6 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       before :each do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo2\nfoo = baz") }
       end
-      # rubocop:disable RSpec/NestedGroups : Reducing the nesting would needlesly complicate the code
       describe 'inserts at match' do
         include_context 'resource_create'
         it {
@@ -354,7 +353,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       expect(File.read(tmpfile)).to eql("foo1\nfoo\n")
     end
 
-    it 'example in the docs' do # rubocop:disable RSpec/ExampleLength : Cannot reduce without violating line length rule
+    it 'example in the docs' do
       @resource = Puppet::Type::File_line.new(
         :name => 'bashrc_proxy', :ensure => 'absent', :path => tmpfile, :line => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
         :match => '^export\ HTTP_PROXY\=', :match_for_absence => true
@@ -373,5 +372,4 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       expect(File.read(tmpfile)).to eql("foo1\nfoo2\nfoo4\n")
     end
   end
-  # rubocop:enable RSpec/InstanceVariable : multi
 end

@@ -25,7 +25,7 @@ describe 'get_module_path' do
 
       it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
 
-      context 'when the modulepath is a list' do # rubocop:disable RSpec/NestedGroups
+      context 'when the modulepath is a list' do
         before(:each) { Puppet[:modulepath] = modulepath + 'tmp/something_else' }
 
         it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
@@ -39,7 +39,7 @@ describe 'get_module_path' do
 
       it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
 
-      context 'when the modulepath is a list' do # rubocop:disable RSpec/NestedGroups
+      context 'when the modulepath is a list' do
         before(:each) { Puppet[:modulepath] = modulepath + 'tmp/something_else' }
 
         it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
