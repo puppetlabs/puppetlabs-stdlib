@@ -11,6 +11,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
         /var/ネット
         /var//tmp
         /var/../tmp
+        ./dir
       ].each do |value|
         describe value.inspect do
           it { is_expected.to allow_value(value) }
