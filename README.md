@@ -411,7 +411,7 @@ Unacceptable input example:
 
 #### `Stdlib::Filesource`
 
-Matches paths valid values for the source parameter of the puppet file type
+Matches paths valid values for the source parameter of the puppet file type.
 
 Acceptable input example:
 
@@ -447,7 +447,7 @@ ftp://ftp.example.com
 
 #### `Stdlib::Fqdn`
 
-Matches paths on fully quallified domain name
+Matches paths on fully quallified domain name.
 
 Acceptable input example:
 
@@ -469,7 +469,7 @@ Unacceptable input example:
 
 #### `Stdlib::Host`
 
-Matches a valid host which could be a valid ipv4, ipv6 or fqdn
+Matches a valid host which could be a valid ipv4, ipv6 or fqdn.
 
 Acceptable input example:
 
@@ -499,7 +499,7 @@ bob@example.com
 
 #### `Stdlib::Port`
 
-Matches a valid TCP/UDP Port number
+Matches a valid TCP/UDP Port number.
 
 Acceptable input examples:
 
@@ -527,7 +527,7 @@ Unacceptable input example:
 
 #### `Stdlib::Port::Privileged`
 
-Matches a valid TCP/UDP Privileged port i.e. < 1024
+Matches a valid TCP/UDP Privileged port i.e. < 1024.
 
 Acceptable input examples:
 
@@ -553,7 +553,7 @@ Unacceptable input example:
 
 #### `Stdlib::Port::Unprivileged`
 
-Matches a valid TCP/UDP Privileged port i.e. >= 1024
+Matches a valid TCP/UDP Privileged port i.e. >= 1024.
 
 Acceptable input examples:
 
@@ -584,7 +584,7 @@ Unacceptable input example:
 
 #### `Stdlib::Base32`
 
-Matches paths a valid base32 string
+Matches paths a valid base32 string.
 
 Acceptable input example:
 
@@ -612,7 +612,7 @@ asdasddasd3453453=======
 
 #### `Stdlib::Base64`
 
-Matches paths a valid base64 string
+Matches paths a valid base64 string.
 
 Acceptable input example:
 
@@ -638,7 +638,7 @@ asdads asdasd
 
 #### `Stdlib::Ipv4`
 
-Matches on valid IPv4 addresses 
+Matches on valid IPv4 addresses.
 
 Acceptable input example:
 
@@ -666,7 +666,7 @@ Unacceptable input example:
 
 #### `Stdlib::Ipv6`
 
-Matches on valid IPv6 addresses 
+Matches on valid IPv6 addresses.
 
 Acceptable input example:
 
@@ -700,7 +700,7 @@ foobar2001:db8::1
 
 #### `Stdlib::Ip_address`
 
-Matches on valid IPv4 or IPv6 addresses 
+Matches on valid IPv4 or IPv6 addresses.
 
 Acceptable input example:
 
