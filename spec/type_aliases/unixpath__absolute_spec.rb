@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
-  describe 'Stdlib::Unixpath' do
+  describe 'Stdlib::Unixpath::Absolute' do
     describe 'valid handling' do
       %w[
         /usr2/username/bin:/usr/local/bin:/usr/bin:.
@@ -11,8 +11,6 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
         /var/ネット
         /var//tmp
         /var/../tmp
-        ./dir
-        ../dir
       ].each do |value|
         describe value.inspect do
           it { is_expected.to allow_value(value) }
@@ -35,6 +33,8 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
           '*/Users//nope',
           "var\ůťƒ8",
           "var\ネット",
+          "./dir",
+          "../dir",
         ].each do |value|
           describe value.inspect do
             it { is_expected.not_to allow_value(value) }
