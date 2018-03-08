@@ -21,7 +21,7 @@ module Puppet::Parser::Functions
 
     klass = value.class
 
-    unless [TrueClass, FalseClass, Array, Bignum, Fixnum, Float, Hash, String].include?(klass) # rubocop:disable Lint/UnifiedInteger
+    unless %w[TrueClass FalseClass Array Bignum Fixnum Float Hash String].include?(klass.to_s)
       raise(Puppet::ParseError, 'type3x(): Unknown type')
     end
 
