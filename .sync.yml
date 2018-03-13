@@ -1,15 +1,4 @@
 ---
-appveyor.yml:
-  environment:
-  PUPPET_GEM_VERSION: "~> 4.0"
-  matrix:
-    - RUBY_VERSION: 24-x64
-      CHECK: "syntax lint"
-    - RUBY_VERSION: 24-x64
-      CHECK: metadata_lint
-    - RUBY_VERSION: 24-x64
-      CHECK: rubocop
-
 .travis.yml:
   bundle_args: --without system_tests
   docker_sets:
