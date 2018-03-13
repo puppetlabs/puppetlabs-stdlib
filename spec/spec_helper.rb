@@ -9,12 +9,10 @@ end
 
 include RspecPuppetFacts
 
-# rubocop:disable Style/HashSyntax
 default_facts = {
   puppetversion: Puppet.version,
   facterversion: Facter.version,
 }
-# rubocop:enable Style/HashSyntax
 
 default_facts_path = File.expand_path(File.join(File.dirname(__FILE__), 'default_facts.yml'))
 default_module_facts_path = File.expand_path(File.join(File.dirname(__FILE__), 'default_module_facts.yml'))
