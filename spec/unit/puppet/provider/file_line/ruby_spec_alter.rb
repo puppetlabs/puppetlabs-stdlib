@@ -1,4 +1,3 @@
-#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 
 provider_class = Puppet::Type.type(:file_line).provider(:ruby)

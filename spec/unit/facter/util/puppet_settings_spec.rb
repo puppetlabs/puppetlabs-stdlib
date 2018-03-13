@@ -1,4 +1,3 @@
-#! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 require 'facter/util/puppet_settings'
 
