@@ -3,9 +3,7 @@
   bundle_args: --without system_tests
   docker_sets:
     - set: docker/centos-7
-      options:
     - set: docker/ubuntu-14.04
-      options:
   docker_defaults:
     bundler_args: ""
   secure: ""
