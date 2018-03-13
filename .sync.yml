@@ -1,6 +1,5 @@
 ---
 .travis.yml:
-  bundle_args: --without system_tests
   docker_sets:
     - set: docker/centos-7
     - set: docker/ubuntu-14.04
