@@ -653,7 +653,7 @@ Valid values: An IPv4 address with no subnet.
 
 #### `Stdlib::IP::Address::V6::Full`
 
-Match an IPv6 address formatted in the "preferred form" as documented in section 2.2.1 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt), with or without an address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
+Match an IPv6 address formatted in the "preferred form" as documented in section 2.2 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt), with or without an address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
 
 #### `Stdlib::IP::Address::V6::Alternate`
 
