@@ -16,6 +16,10 @@ module Puppet::Parser::Functions
     unless arguments[0].is_a?(String)
       raise(Puppet::ParseError, 'dirname(): Requires string as argument')
     end
+    # undef is converted to an empty string ''
+    if arguments[0].empty?
+      raise(Puppet::ParseError, 'dirname(): Requires a non-empty string as argument')
+    end
 
     return File.dirname(arguments[0])
   end

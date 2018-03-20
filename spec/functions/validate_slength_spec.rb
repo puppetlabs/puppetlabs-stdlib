@@ -28,13 +28,13 @@ describe 'validate_slength' do
     describe 'rejects strings longer than the limit' do
       it { is_expected.to run.with_params('1234567890a', 10).and_raise_error(Puppet::ParseError, %r{Expected length}) }
       it { is_expected.to run.with_params('1234567890abcdef', 10).and_raise_error(Puppet::ParseError, %r{Expected length}) }
-      it { is_expected.to run.with_params(%w[one 1234567890abcdef], 10).and_raise_error(Puppet::ParseError, %r{Expected length}) }
+      it { is_expected.to run.with_params(['one', '1234567890abcdef'], 10).and_raise_error(Puppet::ParseError, %r{Expected length}) }
     end
 
     describe 'accepts strings shorter or equal to the limit' do
       it { is_expected.to run.with_params('1234567890', 10) }
       it { is_expected.to run.with_params('12345', 10) }
-      it { is_expected.to run.with_params(%w[one two], 10) }
+      it { is_expected.to run.with_params(['one', 'two'], 10) }
     end
   end
 
@@ -46,7 +46,7 @@ describe 'validate_slength' do
 
     describe 'rejects numbers shorter than the lower limit' do
       it { is_expected.to run.with_params('one', 10, 5).and_raise_error(Puppet::ParseError, %r{Expected length}) }
-      it { is_expected.to run.with_params(%w[12345678 two], 10, 5).and_raise_error(Puppet::ParseError, %r{Expected length}) }
+      it { is_expected.to run.with_params(['12345678', 'two'], 10, 5).and_raise_error(Puppet::ParseError, %r{Expected length}) }
     end
 
     describe 'accepts strings of length between and including the limits' do
@@ -56,7 +56,7 @@ describe 'validate_slength' do
       it { is_expected.to run.with_params('12345678', 10, 5) }
       it { is_expected.to run.with_params('123456789', 10, 5) }
       it { is_expected.to run.with_params('1234567890', 10, 5) }
-      it { is_expected.to run.with_params(%w[1233456 12345678], 10, 5) }
+      it { is_expected.to run.with_params(['1233456', '12345678'], 10, 5) }
     end
   end
 

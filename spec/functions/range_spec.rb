@@ -62,18 +62,18 @@ describe 'range' do
   context 'with characters as bounds' do
     it { is_expected.to run.with_params('d', 'a').and_return([]) }
     it { is_expected.to run.with_params('a', 'a').and_return(['a']) }
-    it { is_expected.to run.with_params('a', 'b').and_return(%w[a b]) }
-    it { is_expected.to run.with_params('a', 'd').and_return(%w[a b c d]) }
-    it { is_expected.to run.with_params('a', 'd', 1).and_return(%w[a b c d]) }
-    it { is_expected.to run.with_params('a', 'd', '1').and_return(%w[a b c d]) }
-    it { is_expected.to run.with_params('a', 'd', 2).and_return(%w[a c]) }
-    it { is_expected.to run.with_params('a', 'd', -2).and_return(%w[a c]) }
-    it { is_expected.to run.with_params('a', 'd', 3).and_return(%w[a d]) }
+    it { is_expected.to run.with_params('a', 'b').and_return(['a', 'b']) }
+    it { is_expected.to run.with_params('a', 'd').and_return(['a', 'b', 'c', 'd']) }
+    it { is_expected.to run.with_params('a', 'd', 1).and_return(['a', 'b', 'c', 'd']) }
+    it { is_expected.to run.with_params('a', 'd', '1').and_return(['a', 'b', 'c', 'd']) }
+    it { is_expected.to run.with_params('a', 'd', 2).and_return(['a', 'c']) }
+    it { is_expected.to run.with_params('a', 'd', -2).and_return(['a', 'c']) }
+    it { is_expected.to run.with_params('a', 'd', 3).and_return(['a', 'd']) }
     it { is_expected.to run.with_params('a', 'd', 4).and_return(['a']) }
   end
 
   context 'with strings as bounds' do
-    it { is_expected.to run.with_params('onea', 'oned').and_return(%w[onea oneb onec oned]) }
+    it { is_expected.to run.with_params('onea', 'oned').and_return(['onea', 'oneb', 'onec', 'oned']) }
     it { is_expected.to run.with_params('two', 'one').and_return([]) }
     it { is_expected.to run.with_params('true', 'false').and_return([]) }
     it { is_expected.to run.with_params('false', 'true').and_return(['false']) }
@@ -106,16 +106,16 @@ describe 'range' do
   end
 
   context 'with prefixed numbers as strings as bounds' do
-    it { is_expected.to run.with_params('host01', 'host04').and_return(%w[host01 host02 host03 host04]) }
+    it { is_expected.to run.with_params('host01', 'host04').and_return(['host01', 'host02', 'host03', 'host04']) }
     it { is_expected.to run.with_params('01', '04').and_return([1, 2, 3, 4]) }
   end
 
   context 'with prefixed numbers as utf8 strings as bounds' do
-    it { is_expected.to run.with_params('ħөŝŧ01', 'ħөŝŧ04').and_return(%w[ħөŝŧ01 ħөŝŧ02 ħөŝŧ03 ħөŝŧ04]) }
+    it { is_expected.to run.with_params('ħөŝŧ01', 'ħөŝŧ04').and_return(['ħөŝŧ01', 'ħөŝŧ02', 'ħөŝŧ03', 'ħөŝŧ04']) }
   end
 
   context 'with prefixed numbers as double byte character strings as bounds' do
-    it { is_expected.to run.with_params('ホスト01', 'ホスト04').and_return(%w[ホスト01 ホスト02 ホスト03 ホスト04]) }
+    it { is_expected.to run.with_params('ホスト01', 'ホスト04').and_return(['ホスト01', 'ホスト02', 'ホスト03', 'ホスト04']) }
   end
 
   context 'with dash-range syntax' do

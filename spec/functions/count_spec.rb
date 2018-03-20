@@ -10,8 +10,8 @@ describe 'count' do
     is_expected.to run.with_params('one', 'two').and_raise_error(ArgumentError)
   }
   it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(ArgumentError) }
-  it { is_expected.to run.with_params(%w[one two three]).and_return(3) }
-  it { is_expected.to run.with_params(%w[one two two], 'two').and_return(2) }
+  it { is_expected.to run.with_params(['one', 'two', 'three']).and_return(3) }
+  it { is_expected.to run.with_params(['one', 'two', 'two'], 'two').and_return(2) }
   it { is_expected.to run.with_params(['one', nil, 'two']).and_return(2) }
   it { is_expected.to run.with_params(['one', '', 'two']).and_return(2) }
   it { is_expected.to run.with_params(['one', :undef, 'two']).and_return(2) }

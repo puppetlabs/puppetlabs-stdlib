@@ -1,3 +1,4 @@
+---
 version: 1.1.x.{build}
 skip_commits:
   message: /^\(?doc\)?.*/
@@ -12,29 +13,23 @@ environment:
   matrix:
     -
       RUBY_VERSION: 24-x64
-      CHECK: syntax lint
-    -
-      RUBY_VERSION: 24-x64
-      CHECK: metadata_lint
-    -
-      RUBY_VERSION: 24-x64
-      CHECK: rubocop
+      CHECK: syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop
     -
       PUPPET_GEM_VERSION: ~> 4.0
       RUBY_VERSION: 21
-      CHECK: spec
+      CHECK: parallel_spec
     -
       PUPPET_GEM_VERSION: ~> 4.0
       RUBY_VERSION: 21-x64
-      CHECK: spec
+      CHECK: parallel_spec
     -
       PUPPET_GEM_VERSION: ~> 5.0
       RUBY_VERSION: 24
-      CHECK: spec
+      CHECK: parallel_spec
     -
       PUPPET_GEM_VERSION: ~> 5.0
       RUBY_VERSION: 24-x64
-      CHECK: spec
+      CHECK: parallel_spec
 matrix:
   fast_finish: true
 install:

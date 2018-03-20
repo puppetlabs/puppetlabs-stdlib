@@ -17,6 +17,7 @@ describe Facter::Util::PuppetSettings do
       end
     end
     context 'with Puppet loaded' do
+      # module Puppet
       module Puppet; end
       let(:vardir) { '/var/lib/puppet' }
 

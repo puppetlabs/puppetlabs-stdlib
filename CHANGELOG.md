@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
+## Supported Release 4.25.1
+### Summary
+
+This is a patch which includes a roll up of small fixes. In Puppet 5.5.0 `flatten()`, `length(),` `empty(),` `join(),` `keys(),` and `values()` are now built into Puppet. Please note that the Puppet implementation of the functions will take precedence over the functions in 'puppetlabs-stdlib'.
+
+#### Fixed
+- Remove unneeded execute permission from test files.
+- Puppet 5.5.0 function deprecation [MODULES-6894](https://tickets.puppetlabs.com/browse/MODULES-6894).
 
 ## Supported Release 4.25.0
 ### Summary

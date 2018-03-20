@@ -21,6 +21,6 @@ describe 'upcase' do
 
   describe 'strings in arrays handling' do
     it { is_expected.to run.with_params([]).and_return([]) }
-    it { is_expected.to run.with_params(%w[One twO]).and_return(%w[ONE TWO]) }
+    it { is_expected.to run.with_params(['One', 'twO']).and_return(['ONE', 'TWO']) }
   end
 end
