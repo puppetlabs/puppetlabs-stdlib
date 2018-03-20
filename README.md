@@ -653,7 +653,7 @@ Valid values: An IPv4 address with no subnet.
 
 #### `Stdlib::IP::Address::V6::Full`
 
-Match an IPv6 address formatted in the "preferred form" as documented in section 2.2.1 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt), with or without an address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
+Match an IPv6 address formatted in the "preferred form" as documented in section 2.2 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt), with or without an address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
 
 #### `Stdlib::IP::Address::V6::Alternate`
 
@@ -665,18 +665,15 @@ Match an IPv6 address which may contain `::` used to compress zeros as documente
 
 #### `Stdlib::IP::Address::V6::Nosubnet`
 
-Alias to allow `Stdlib::IP::Address::V6::Nosubnet::Full`,
-`Stdlib::IP::Address::V6::Nosubnet::Alternate` and
-`Stdlib::IP::Address::V6::Nosubnet::Compressed`.
+Alias to allow `Stdlib::IP::Address::V6::Nosubnet::Full`, `Stdlib::IP::Address::V6::Nosubnet::Alternate` and `Stdlib::IP::Address::V6::Nosubnet::Compressed`.
 
 #### `Stdlib::IP::Address::V6::Nosubnet::Full`
 
-Match an IPv6 address formatted in the "preferred form" as documented in section 2.2.1 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt). It will not match addresses with address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
+Match an IPv6 address formatted in the "preferred form" as documented in section 2.2 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt). It will not match addresses with address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
 
 #### `Stdlib::IP::Address::V6::Nosubnet::Alternate`
 
-Match an IPv6 address formatted in the "alternative form" allowing for representing the last two 16-bit pieces of the address with a quad-dotted decimal, as documented in section 2.2.1 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt). It will only match addresses without an address prefix as documented in section
-2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
+Match an IPv6 address formatted in the "alternative form" allowing for representing the last two 16-bit pieces of the address with a quad-dotted decimal, as documented in section 2.2.1 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt). It will only match addresses without an address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
 
 #### `Stdlib::IP::Address::V6::Nosubnet::Compressed`
 
