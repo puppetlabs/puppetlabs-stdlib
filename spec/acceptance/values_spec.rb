@@ -23,7 +23,8 @@ describe 'values function' do
       notice(inline_template('<%= @output.inspect %>'))
     DOC
     it 'handles non-hash arguments' do
-      expect(apply_manifest(pp2, :expect_failures => true).stderr).to match(%r{Requires hash})
+      expect(apply_manifest(pp2, :expect_failures => true).stderr).to match(%r{Requires hash}) if return_puppet_version < '5.5.0'
+      expect(apply_manifest(pp2, :expect_failures => true).stderr).to match(%r{expects a Hash value}) if return_puppet_version >= '5.5.0'
     end
   end
 end

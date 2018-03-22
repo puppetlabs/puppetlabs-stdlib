@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'empty' do
   it { is_expected.not_to eq(nil) }
-  it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError) }
+  it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError) } if Puppet.version < '5.5.0'
   it {
     pending('Current implementation ignores parameters after the first.')
     is_expected.to run.with_params('one', 'two').and_raise_error(Puppet::ParseError)
