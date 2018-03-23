@@ -11,4 +11,5 @@ Puppet::Functions.create_function(:length) do
     end
     result
   end
+  Puppet.deprecation_warning('The length function is deprecated. This function is now shipped with Puppet in versions 5.5.0 and later. For more information please see Puppet 5.5.0 Release Notes.')
 end
