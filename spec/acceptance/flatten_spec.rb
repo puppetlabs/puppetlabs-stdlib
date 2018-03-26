@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'flatten function' do
+describe 'flatten function', :if => Puppet::Util::Package.versioncmp(Puppet.version, '5.5.0') < 0 do
   describe 'success' do
     pp1 = <<-DOC
       $a = ["a","b",["c",["d","e"],"f","g"]]

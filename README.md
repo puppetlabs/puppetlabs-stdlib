@@ -1163,7 +1163,7 @@ Converts the case of a string or of all strings in an array to lowercase.
 
 #### `empty`
 
-**Deprecated. Puppet 5.5.0 has introduced a built in `empty` function, which will take precedence over the stdlib function. See [Puppet 5.5.0 Release Notes](https://puppet.com/docs/puppet/5.5/release_notes.html#new-features).**
+**Deprecated:** This function has been replaced with a built-in [`empty`](https://docs.puppet.com/puppet/latest/function.html#empty) function as of Puppet 5.5.0.
 
 Returns `true` if the argument is an array or hash that contains no elements, or an empty string. Returns `false` when the argument is a numerical value.
 
@@ -1276,7 +1276,7 @@ fact('vmware."VRA.version"')
 
 #### `flatten`
 
-**Deprecated. Puppet 5.5.0 has introduced a built in `flatten` function, which will take precedence over the stdlib function. See [Puppet 5.5.0 Release Notes](https://puppet.com/docs/puppet/5.5/release_notes.html#new-features).**
+**Deprecated:** This function has been replaced with a built-in [`flatten`](https://docs.puppet.com/puppet/latest/function.html#flatten) function as of Puppet 5.5.0.
 
 Flattens deeply nested arrays and returns a single flat array as a result.
 
@@ -1635,7 +1635,7 @@ Returns `true` if the variable passed to this function is a string.
 
 #### `join`
 
-**Deprecated. Puppet 5.5.0 has introduced a built in `join` function, which will take precedence over the stdlib function. See [Puppet 5.5.0 Release Notes](https://puppet.com/docs/puppet/5.5/release_notes.html#new-features).**
+**Deprecated:** This function has been replaced with a built-in [`join`](https://docs.puppet.com/puppet/latest/function.html#join) function as of Puppet 5.5.0.
 
 Joins an array into a string using a separator. For example, `join(['a','b','c'], ",")` results in: "a,b,c".
 
@@ -1653,7 +1653,7 @@ For example, `join_keys_to_values({'a'=>1,'b'=>[2,3]}, " is ")` results in ["a i
 
 #### `keys`
 
-**Deprecated. Puppet 5.5.0 has introduced a built in `keys` function, which will take precedence over the stdlib function. See [Puppet 5.5.0 Release Notes](https://puppet.com/docs/puppet/5.5/release_notes.html#new-features).**
+**Deprecated:** This function has been replaced with a built-in [`keys`](https://docs.puppet.com/puppet/latest/function.html#keys) function as of Puppet 5.5.0.
 
 Returns the keys of a hash as an array.
 
@@ -1661,7 +1661,7 @@ Returns the keys of a hash as an array.
 
 #### `length`
 
-**Deprecated. Puppet 5.5.0 has introduced a built in `length` function, which will take precedence over the stdlib function. See [Puppet 5.5.0 Release Notes](https://puppet.com/docs/puppet/5.5/release_notes.html#new-features).**
+**Deprecated:** This function has been replaced with a built-in [`length`](https://docs.puppet.com/puppet/latest/function.html#length) function as of Puppet 5.5.0.
 
 Returns the length of a given string, array or hash. Replaces the deprecated `size()` function.
 
@@ -2784,7 +2784,7 @@ validate_x509_rsa_key_pair($cert, $key)
 
 #### `values`
 
-**Deprecated. Puppet 5.5.0 has introduced a built in `values` function, which will take precedence over the stdlib function. See [Puppet 5.5.0 Release Notes](https://puppet.com/docs/puppet/5.5/release_notes.html#new-features).**
+**Deprecated:** This function has been replaced with a built-in [`values`](https://docs.puppet.com/puppet/latest/function.html#values) function as of Puppet 5.5.0.
 
 Returns the values of a given hash.
 

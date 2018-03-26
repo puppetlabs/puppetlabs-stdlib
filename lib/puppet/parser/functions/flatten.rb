@@ -14,8 +14,6 @@ module Puppet::Parser::Functions
   DOC
              ) do |arguments|
 
-    function_deprecation([:flatten, 'This method is deprecated, this function is now shipped with Puppet in versions 5.5.0 and later. For more information please see Puppet 5.5.0 Release Notes'])
-
     raise(Puppet::ParseError, "flatten(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     array = arguments[0]

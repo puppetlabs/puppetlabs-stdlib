@@ -13,8 +13,6 @@ module Puppet::Parser::Functions
     DOC
              ) do |arguments|
 
-    function_deprecation([:join, 'This method is deprecated, this function is now shipped with Puppet in versions 5.5.0 and later. For more information please see Puppet 5.5.0 Release Notes'])
-
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "join(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
