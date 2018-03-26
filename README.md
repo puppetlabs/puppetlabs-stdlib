@@ -1059,7 +1059,7 @@ For example:
 
 #### `dig`
 
-> DEPRECATED: This function has been replaced with a built-in [`dig`](https://docs.puppet.com/puppet/latest/function.html#dig) function as of Puppet 4.5.0. Use [`dig44()`](#dig44) for backwards compatibility or use the new version.
+**Deprecated:** This function has been replaced with a built-in [`dig`](https://docs.puppet.com/puppet/latest/function.html#dig) function as of Puppet 4.5.0. Use [`dig44()`](#dig44) for backwards compatibility or use the new version.
 
 Retrieves a value within multiple layers of hashes and arrays via an array of keys containing a path. The function goes through the structure by each path component and tries to return the value at the end of the path.
 
@@ -1518,7 +1518,7 @@ if $baz.is_a(String) {
 
 #### `is_absolute_path`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the given path is absolute.
 
@@ -1526,7 +1526,7 @@ Returns `true` if the given path is absolute.
 
 #### `is_array`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the variable passed to this function is an array.
 
@@ -1534,7 +1534,7 @@ Returns `true` if the variable passed to this function is an array.
 
 #### `is_bool`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the variable passed to this function is a Boolean.
 
@@ -1542,7 +1542,7 @@ Returns `true` if the variable passed to this function is a Boolean.
 
 #### `is_domain_name`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the string passed to this function is a syntactically correct domain name.
 
@@ -1557,7 +1557,7 @@ Returns true if the string passed to this function is a valid email address.
 
 #### `is_float`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the variable passed to this function is a float.
 
@@ -1565,7 +1565,7 @@ Returns `true` if the variable passed to this function is a float.
 
 #### `is_function_available`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Accepts a string as an argument and determines whether the Puppet runtime has access to a function by that name. It returns `true` if the function exists, `false` if not.
 
@@ -1573,7 +1573,7 @@ Accepts a string as an argument and determines whether the Puppet runtime has ac
 
 #### `is_hash`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the variable passed to this function is a hash.
 
@@ -1581,7 +1581,7 @@ Returns `true` if the variable passed to this function is a hash.
 
 #### `is_integer`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the variable returned to this string is an integer.
 
@@ -1589,7 +1589,7 @@ Returns `true` if the variable returned to this string is an integer.
 
 #### `is_ip_address`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the string passed to this function is a valid IP address.
 
@@ -1597,7 +1597,7 @@ Returns `true` if the string passed to this function is a valid IP address.
 
 #### `is_ipv6_address`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the string passed to this function is a valid IPv6 address.
 
@@ -1605,7 +1605,7 @@ Returns `true` if the string passed to this function is a valid IPv6 address.
 
 #### `is_ipv4_address`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the string passed to this function is a valid IPv4 address.
 
@@ -1619,7 +1619,7 @@ Returns `true` if the string passed to this function is a valid MAC address.
 
 #### `is_numeric`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the variable passed to this function is a number.
 
@@ -1627,7 +1627,7 @@ Returns `true` if the variable passed to this function is a number.
 
 #### `is_string`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Returns `true` if the variable passed to this function is a string.
 
@@ -2142,7 +2142,7 @@ For example, `{ "key" => "value" }` becomes `"---\nkey: value\n"`.
 
 #### `try_get_value`
 
-**DEPRECATED:** replaced by `dig()`.
+**Deprecated:** replaced by `dig()`.
 
 Retrieves a value within multiple layers of hashes and arrays.
 
@@ -2191,7 +2191,7 @@ $value = try_get_value($data, 'a|b', [], '|')
 
 #### `type3x`
 
-**Deprecated**. This function will be removed in a future release.
+**Deprecated:** This function will be removed in a future release.
 
 Returns a string description of the type of a given value. The type can be a string, array, hash, float, integer, or Boolean. For Puppet 4, use the new type system instead.
 
@@ -2298,7 +2298,7 @@ validate_absolute_path($undefined)
 
 #### `validate_array`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Validates that all passed values are array data structures. Terminates catalog compilation if any value fails this check.
 
@@ -2351,7 +2351,7 @@ validate_augeas($sudoerscontent, 'Sudoers.lns', [], 'Failed to validate sudoers 
 
 #### `validate_bool`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Validates that all passed values are either `true` or `false`.
 Terminates catalog compilation if any value fails this check.
@@ -2398,7 +2398,7 @@ validate_cmd($haproxycontent, '/usr/sbin/haproxy -f % -c', 'Haproxy failed to va
 
 #### `validate_domain_name`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Validate that all values passed are syntactically correct domain names. Aborts catalog compilation if any value fails this check.
 
@@ -2445,7 +2445,7 @@ validate_email_address($some_array)
 
 #### `validate_hash`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Validates that all passed values are hash data structures. Terminates catalog compilation if any value fails this check.
 
@@ -2469,7 +2469,7 @@ validate_hash($undefined)
 
 #### `validate_integer`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Validates an integer or an array of integers. Terminates catalog compilation if any of the checks fail.
 
@@ -2529,7 +2529,7 @@ validate_integer(1, 3, true)
 
 #### `validate_ip_address`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Validates that the argument is an IP address, regardless of whether it is an IPv4 or an IPv6 address. It also validates IP address with netmask.
 
@@ -2645,7 +2645,7 @@ Always note such changes in your CHANGELOG and README.
 
 #### `validate_numeric`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Validates a numeric value, or an array or string of numeric values. Terminates catalog compilation if any of the checks fail.
 
@@ -2663,7 +2663,7 @@ For passing and failing usage, see [`validate_integer`](#validate-integer). The 
 
 #### `validate_re`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Performs simple validation of a string against one or more regular expressions.
 
@@ -2704,7 +2704,7 @@ To force stringification, use quotes:
 
 #### `validate_slength`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Validates that a string (or an array of strings) is less than or equal to a specified length
 
@@ -2734,7 +2734,7 @@ validate_slength(["discombobulate","moo"],17,10)
 
 #### `validate_string`
 
-**Deprecated. Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).**
+**Deprecated:** Will be removed in a future version of stdlib. See [`validate_legacy`](#validate_legacy).
 
 Validates that all passed values are string data structures. Aborts catalog compilation if any value fails this check.
 
