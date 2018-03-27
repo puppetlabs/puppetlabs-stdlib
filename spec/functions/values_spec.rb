@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'values' do
+describe 'values', :if => Puppet::Util::Package.versioncmp(Puppet.version, '5.5.0') < 0 do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it {

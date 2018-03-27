@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'length' do
+describe 'length', :if => Puppet::Util::Package.versioncmp(Puppet.version, '5.5.0') < 0 do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'length' expects 1 argument, got none}) }
   it { is_expected.to run.with_params([], 'extra').and_raise_error(ArgumentError, %r{'length' expects 1 argument, got 2}) }

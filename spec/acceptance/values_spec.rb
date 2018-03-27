@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'values function' do
+describe 'values function', :if => Puppet::Util::Package.versioncmp(Puppet.version, '5.5.0') < 0 do
   describe 'success' do
     pp1 = <<-DOC
       $arg = {
