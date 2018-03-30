@@ -2142,7 +2142,7 @@ For example, `{ "key" => "value" }` becomes `"---\nkey: value\n"`.
 
 #### `try_get_value`
 
-**Deprecated:** replaced by `dig()`.
+**Deprecated:** Replaced by `dig()`.
 
 Retrieves a value within multiple layers of hashes and arrays.
 
