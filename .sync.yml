@@ -8,9 +8,6 @@
   secure: ""
   branches:
     - release
-  extras:
-    - env: CHECK=release_checks
-      rvm: 2.1.9
 
 Gemfile:
   required:
@@ -33,13 +30,9 @@ Gemfile:
         from_env: BEAKER_HOSTGENERATOR_VERSION
       - gem: beaker-rspec
         from_env: BEAKER_RSPEC_VERSION
-    ':development':
-      - gem: puppet-blacksmith
-        version: '~> 3.4'
 
 Rakefile:
   requires:
-    - puppet_blacksmith/rake_tasks
     - puppet-lint/tasks/puppet-lint
 
 .rubocop.yml:
