@@ -13,6 +13,11 @@ module Puppet::Parser::Functions
     Would return:
 
         ['bbb','ccc']
+    
+    This function performs the equivalent of using the more general
+    Puppet filter() function as shown in the following example:
+    
+        ['aaa', 'bbb', 'ccc', 'aaaddd'].filter |$x| { $x !~ /aaa/ }
 DOC
 
     if args.size != 2
