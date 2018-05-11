@@ -38,3 +38,6 @@ Rakefile:
 .rubocop.yml:
   default_configs:
     inherit_from: .rubocop_todo.yml
+
+.gitlab-ci.yml:
+  unmanaged: true
