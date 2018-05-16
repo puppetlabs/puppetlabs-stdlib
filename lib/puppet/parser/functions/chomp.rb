@@ -6,6 +6,9 @@ module Puppet::Parser::Functions
     Removes the record separator from the end of a string or an array of
     strings, for example `hello\n` becomes `hello`.
     Requires a single string or array as an input.
+
+    Note: from Puppet 6.0.0, the compatible function with the same name in Puppet core
+    will be used instead of this function.
     DOC
              ) do |arguments|
 
