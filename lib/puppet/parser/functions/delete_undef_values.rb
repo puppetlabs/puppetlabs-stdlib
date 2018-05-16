@@ -15,6 +15,11 @@ module Puppet::Parser::Functions
 
     Would return: ['A','',false]
 
+    Note that since Puppet 4.0.0 the equivalent can be performed with the filter() function in puppet:
+
+        $array.filter |$val| { $val =~ NotUndef }
+        $hash.filter |$key, $val| { $val =~ NotUndef }
+
       DOC
              ) do |args|
 
