@@ -5,7 +5,7 @@ module Puppet::Parser::Functions
   newfunction(:keys, :type => :rvalue, :doc => <<-DOC
     Returns the keys of a hash as an array.
 
-    Note: from Puppet 5.4.0, the compatible function with the same name in Puppet core
+    Note: from Puppet 5.5.0, the compatible function with the same name in Puppet core
     will be used instead of this function.
     DOC
              ) do |arguments|
