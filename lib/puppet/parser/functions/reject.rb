@@ -13,6 +13,11 @@ module Puppet::Parser::Functions
     Would return:
 
         ['bbb','ccc']
+
+    Note that since Puppet 4.0.0 the same is in general done with the filter function. Here is the
+    equivalence of the reject() function:
+
+        ['aaa','bbb','ccc','aaaddd'].filter |$x| { $x !~ /aaa/ }
 DOC
 
     if args.size != 2
