@@ -25,6 +25,11 @@ module Puppet::Parser::Functions
         member(['a', 'b', 'c'], ['d', 'b'])
 
     would return: false
+
+    Note: Since Puppet 4.0.0 the same can be performed in the puppet language:
+
+        ['d', 'b'] - ['a', 'b', 'c'] == []  # false because 'd' is not present
+        ['a', 'b'] - ['a', 'b', 'c'] == []  # true because both 'a' and 'b' are present
     DOC
              ) do |arguments|
 
