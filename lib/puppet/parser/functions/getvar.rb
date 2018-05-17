@@ -3,7 +3,8 @@
 #
 module Puppet::Parser::Functions
   newfunction(:getvar, :type => :rvalue, :doc => <<-'DOC') do |args|
-    Lookup a variable in a remote namespace.
+    Lookup a variable in a given namespace.
+    Returns undef if variable does not exist.
 
     For example:
 
@@ -27,7 +28,7 @@ module Puppet::Parser::Functions
         result = lookupvar((args[0]).to_s)
       end
 
-      # avoid relying on incosistent behaviour around ruby return values from catch
+      # avoid relying on inconsistent behaviour around ruby return values from catch
       result
     rescue Puppet::ParseError # rubocop:disable Lint/HandleExceptions : Eat the exception if strict_variables = true is set
     end
