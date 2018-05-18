@@ -14,7 +14,7 @@ describe 'grep' do
   }
   it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it { is_expected.to run.with_params([], 'two').and_return([]) }
-  it { is_expected.to run.with_params(%w[one two three], 'two').and_return(['two']) }
-  it { is_expected.to run.with_params(%w[one two three], 't(wo|hree)').and_return(%w[two three]) }
-  it { is_expected.to run.with_params(%w[ờאּê ţשּׂỡ ţһŗəè], 'ţ(שּׂỡ|һŗəè)').and_return(%w[ţשּׂỡ ţһŗəè]) }
+  it { is_expected.to run.with_params(['one', 'two', 'three'], 'two').and_return(['two']) }
+  it { is_expected.to run.with_params(['one', 'two', 'three'], 't(wo|hree)').and_return(['two', 'three']) }
+  it { is_expected.to run.with_params(['ờאּê', 'ţשּׂỡ', 'ţһŗəè'], 'ţ(שּׂỡ|һŗəè)').and_return(['ţשּׂỡ', 'ţһŗəè']) }
 end

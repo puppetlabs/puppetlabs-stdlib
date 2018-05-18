@@ -3,11 +3,7 @@ require 'spec_helper'
 if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
   describe 'Stdlib::Base64' do
     describe 'valid handling' do
-      %w[
-        asdasdASDSADA342386832/746+=
-        asdasdASDSADA34238683274/6+
-        asdasdASDSADA3423868327/46+==
-      ].each do |value|
+      ['asdasdASDSADA342386832/746+=', 'asdasdASDSADA34238683274/6+', 'asdasdASDSADA3423868327/46+=='].each do |value|
         describe value.inspect do
           it { is_expected.to allow_value(value) }
         end
