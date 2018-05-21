@@ -19,7 +19,7 @@ module Puppet::Parser::Functions
 
     raise Puppet::ParseError, "base64(): Wrong number of arguments (#{args.length}; must be >= 2)" unless args.length >= 2
 
-    actions = %w[encode decode]
+    actions = ['encode', 'decode']
 
     unless actions.include?(args[0])
       raise Puppet::ParseError, "base64(): the first argument must be one of 'encode' or 'decode'"
@@ -29,7 +29,7 @@ module Puppet::Parser::Functions
       raise Puppet::ParseError, 'base64(): the second argument must be a string to base64'
     end
 
-    method = %w[default strict urlsafe]
+    method = ['default', 'strict', 'urlsafe']
 
     chosen_method = if args.length <= 2
                       'default'

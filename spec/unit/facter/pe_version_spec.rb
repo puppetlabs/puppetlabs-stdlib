@@ -28,7 +28,7 @@ describe 'PE Version specs' do
   end
 
   context 'when PE is installed' do
-    %w[2.6.1 2.10.300].each do |version|
+    ['2.6.1', '2.10.300'].each do |version|
       puppetversion = "2.7.19 (Puppet Enterprise #{version})"
       context "puppetversion => #{puppetversion}" do
         before :each do

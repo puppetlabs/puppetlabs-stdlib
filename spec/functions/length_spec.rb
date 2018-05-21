@@ -10,8 +10,8 @@ describe 'length', :if => Puppet::Util::Package.versioncmp(Puppet.version, '5.5.
   it { is_expected.to run.with_params('1.0').and_return(3) }
   it { is_expected.to run.with_params([]).and_return(0) }
   it { is_expected.to run.with_params(['a']).and_return(1) }
-  it { is_expected.to run.with_params(%w[one two three]).and_return(3) }
-  it { is_expected.to run.with_params(%w[one two three four]).and_return(4) }
+  it { is_expected.to run.with_params(['one', 'two', 'three']).and_return(3) }
+  it { is_expected.to run.with_params(['one', 'two', 'three', 'four']).and_return(4) }
 
   it { is_expected.to run.with_params({}).and_return(0) }
   it { is_expected.to run.with_params('1' => '2').and_return(1) }

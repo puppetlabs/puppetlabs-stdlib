@@ -16,7 +16,7 @@ describe 'type' do
   end
 
   it 'returns array when given an array' do
-    result = scope.function_type([%w[aaabbbbcccc asdf]])
+    result = scope.function_type([['aaabbbbcccc', 'asdf']])
     expect(result).to(eq('array'))
   end
 

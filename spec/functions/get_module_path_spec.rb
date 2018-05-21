@@ -7,6 +7,7 @@ describe 'get_module_path' do
   it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(Puppet::ParseError, %r{Wrong number of arguments, expects one}) }
   it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError, %r{Could not find module}) }
 
+  # class Stubmodule
   class StubModule
     attr_reader :path
     def initialize(path)

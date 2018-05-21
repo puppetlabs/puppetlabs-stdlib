@@ -10,6 +10,6 @@ describe 'downcase' do
 
   it { is_expected.to run.with_params(AlsoString.new('ABC')).and_return('abc') }
   it { is_expected.to run.with_params([]).and_return([]) }
-  it { is_expected.to run.with_params(%w[ONE TWO]).and_return(%w[one two]) }
+  it { is_expected.to run.with_params(['ONE', 'TWO']).and_return(['one', 'two']) }
   it { is_expected.to run.with_params(['One', 1, 'Two']).and_return(['one', 1, 'two']) }
 end

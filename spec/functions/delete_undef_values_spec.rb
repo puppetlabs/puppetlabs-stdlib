@@ -15,8 +15,8 @@ describe 'delete_undef_values' do
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value.nil?
         end
         it { is_expected.to run.with_params([undef_value]).and_return([]) }
-        it { is_expected.to run.with_params(['one', undef_value, 'two', 'three']).and_return(%w[one two three]) }
-        it { is_expected.to run.with_params(['ớņέ', undef_value, 'ŧשּׁō', 'ŧħґëə']).and_return(%w[ớņέ ŧשּׁō ŧħґëə]) }
+        it { is_expected.to run.with_params(['one', undef_value, 'two', 'three']).and_return(['one', 'two', 'three']) }
+        it { is_expected.to run.with_params(['ớņέ', undef_value, 'ŧשּׁō', 'ŧħґëə']).and_return(['ớņέ', 'ŧשּׁō', 'ŧħґëə']) }
       end
 
       it 'leaves the original argument intact' do

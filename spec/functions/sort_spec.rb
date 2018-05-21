@@ -22,7 +22,7 @@ describe 'sort' do
   context 'when called with an array' do
     it { is_expected.to run.with_params([]).and_return([]) }
     it { is_expected.to run.with_params(['a']).and_return(['a']) }
-    it { is_expected.to run.with_params(%w[c b a]).and_return(%w[a b c]) }
+    it { is_expected.to run.with_params(['c', 'b', 'a']).and_return(['a', 'b', 'c']) }
   end
 
   context 'when called with a string' do
