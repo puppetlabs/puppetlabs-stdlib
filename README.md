@@ -31,9 +31,9 @@ This module provides a standard library of resources for Puppet modules. Puppet 
 
 ## Setup
 
-[Install](https://docs.puppet.com/puppet/latest/modules_installing.html) the stdlib module to add the functions, facts, and resources of this standard library to Puppet.
+[Install](https://puppet.com/docs/puppet/latest/modules_installing.html) the stdlib module to add the functions, facts, and resources of this standard library to Puppet.
 
-If you are authoring a module that depends on stdlib, be sure to [specify dependencies](https://docs.puppet.com/puppet/latest/modules_metadata.html#specifying-dependencies) in your metadata.json.
+If you are authoring a module that depends on stdlib, be sure to [specify dependencies](https://puppet.com/docs/puppet/latest/modules_metadata.html#specifying-dependencies-in-modules) in your metadata.json.
 
 ## Usage
 
@@ -299,14 +299,14 @@ Unacceptable input example:
 
 Matches acceptable ensure values for service resources.
 
-Acceptable input examples:    
+Acceptable input examples:
 
 ```shell
 stopped
 running
 ```
 
-Unacceptable input example:   
+Unacceptable input example:
 
 ```shell
 true
@@ -1029,9 +1029,9 @@ Arguments:
 
 Other settings in Puppet affect the stdlib `deprecation` function:
 
-* [`disable_warnings`](https://docs.puppet.com/puppet/latest/reference/configuration.html#disablewarnings)
-* [`max_deprecations`](https://docs.puppet.com/puppet/latest/reference/configuration.html#maxdeprecations)
-* [`strict`](https://docs.puppet.com/puppet/latest/reference/configuration.html#strict):
+* [`disable_warnings`](https://puppet.com/docs/puppet/latest/configuration.html#disablewarnings)
+* [`max_deprecations`](https://puppet.com/docs/puppet/latest/configuration.html#maxdeprecations)
+* [`strict`](https://puppet.com/docs/puppet/latest/configuration.html#strict):
 
     * `error`: Fails immediately with the deprecation message
     * `off`: Output emits no messages.
@@ -1059,7 +1059,7 @@ For example:
 
 #### `dig`
 
-**Deprecated:** This function has been replaced with a built-in [`dig`](https://docs.puppet.com/puppet/latest/function.html#dig) function as of Puppet 4.5.0. Use [`dig44()`](#dig44) for backwards compatibility or use the new version.
+**Deprecated:** This function has been replaced with a built-in [`dig`](https://puppet.com/docs/puppet/latest/function.html#dig) function as of Puppet 4.5.0. Use [`dig44()`](#dig44) for backwards compatibility or use the new version.
 
 Retrieves a value within multiple layers of hashes and arrays via an array of keys containing a path. The function goes through the structure by each path component and tries to return the value at the end of the path.
 
@@ -1163,7 +1163,7 @@ Converts the case of a string or of all strings in an array to lowercase.
 
 #### `empty`
 
-**Deprecated:** This function has been replaced with a built-in [`empty`](https://docs.puppet.com/puppet/latest/function.html#empty) function as of Puppet 5.5.0.
+**Deprecated:** This function has been replaced with a built-in [`empty`](https://puppet.com/docs/puppet/latest/function.html#empty) function as of Puppet 5.5.0.
 
 Returns `true` if the argument is an array or hash that contains no elements, or an empty string. Returns `false` when the argument is a numerical value.
 
@@ -1276,7 +1276,7 @@ fact('vmware."VRA.version"')
 
 #### `flatten`
 
-**Deprecated:** This function has been replaced with a built-in [`flatten`](https://docs.puppet.com/puppet/latest/function.html#flatten) function as of Puppet 5.5.0.
+**Deprecated:** This function has been replaced with a built-in [`flatten`](https://puppet.com/docs/puppet/latest/function.html#flatten) function as of Puppet 5.5.0.
 
 Flattens deeply nested arrays and returns a single flat array as a result.
 
@@ -1513,8 +1513,8 @@ if $baz.is_a(String) {
 }
 ```
 
-* See the [the Puppet type system](https://docs.puppetlabs.com/latest/type.html#about-resource-types) for more information about types.
-* See the [`assert_type()`](https://docs.puppetlabs.com/latest/function.html#asserttype) function for flexible ways to assert the type of a value.
+* See the [the Puppet type system](https://puppet.com/docs/puppet/latest/lang_data.html) for more information about types.
+* See the [`assert_type()`](https://puppet.com/docs/puppet/latest/function.html#asserttype) function for flexible ways to assert the type of a value.
 
 #### `is_absolute_path`
 
@@ -1635,7 +1635,7 @@ Returns `true` if the variable passed to this function is a string.
 
 #### `join`
 
-**Deprecated:** This function has been replaced with a built-in [`join`](https://docs.puppet.com/puppet/latest/function.html#join) function as of Puppet 5.5.0.
+**Deprecated:** This function has been replaced with a built-in [`join`](https://puppet.com/docs/puppet/latest/function.html#join) function as of Puppet 5.5.0.
 
 Joins an array into a string using a separator. For example, `join(['a','b','c'], ",")` results in: "a,b,c".
 
@@ -1653,7 +1653,7 @@ For example, `join_keys_to_values({'a'=>1,'b'=>[2,3]}, " is ")` results in ["a i
 
 #### `keys`
 
-**Deprecated:** This function has been replaced with a built-in [`keys`](https://docs.puppet.com/puppet/latest/function.html#keys) function as of Puppet 5.5.0.
+**Deprecated:** This function has been replaced with a built-in [`keys`](https://puppet.com/docs/puppet/latest/function.html#keys) function as of Puppet 5.5.0.
 
 Returns the keys of a hash as an array.
 
@@ -1661,7 +1661,7 @@ Returns the keys of a hash as an array.
 
 #### `length`
 
-**Deprecated:** This function has been replaced with a built-in [`length`](https://docs.puppet.com/puppet/latest/function.html#length) function as of Puppet 5.5.0.
+**Deprecated:** This function has been replaced with a built-in [`length`](https://puppet.com/docs/puppet/latest/function.html#length) function as of Puppet 5.5.0.
 
 Returns the length of a given string, array or hash. Replaces the deprecated `size()` function.
 
@@ -2208,7 +2208,7 @@ Arguments:
 
 #### `type_of`
 
-This function is provided for backwards compatibility, but the built-in [type() function](https://docs.puppet.com/puppet/latest/reference/function.html#type) provided by Puppet is preferred.
+This function is provided for backwards compatibility, but the built-in [type() function](https://puppet.com/docs/puppet/latest/function.html#type) provided by Puppet is preferred.
 
 Returns the literal type of a given value. Requires Puppet 4. Useful for comparison of types with `<=` such as in `if type_of($some_value) <= Array[String] { ... }` (which is equivalent to `if $some_value =~ Array[String] { ... }`).
 
@@ -2587,7 +2587,7 @@ This function supports updating modules from Puppet 3-style argument validation 
 
 If you are running Puppet 4, the `validate_legacy` function can help you find and resolve deprecated Puppet 3 `validate_*` functions. These functions are deprecated as of stdlib version 4.13 and will be removed in a future version of stdlib.
 
-Puppet 4 allows improved defined type checking using [data types](https://docs.puppet.com/puppet/latest/reference/lang_data.html). Data types avoid some of the problems with Puppet 3's `validate_*` functions, which were sometimes inconsistent. For example, [validate_numeric](#validate_numeric) unintentionally allowed not only numbers, but also arrays of numbers or strings that looked like numbers.
+Puppet 4 allows improved defined type checking using [data types](https://puppet.com/docs/puppet/latest/lang_data.html). Data types avoid some of the problems with Puppet 3's `validate_*` functions, which were sometimes inconsistent. For example, [validate_numeric](#validate_numeric) unintentionally allowed not only numbers, but also arrays of numbers or strings that looked like numbers.
 
 If you run Puppet 4 and use modules with deprecated `validate_*` functions, you might encounter deprecation messages. The `validate_legacy` function makes these differences visible and makes it easier to move to the clearer Puppet 4 syntax.
 
@@ -2602,7 +2602,7 @@ The deprecation messages you get can vary, depending on the modules and data tha
 
 The `validate_legacy` function helps you move from Puppet 3 style validation to Puppet 4 validation without breaking functionality your module's users depend on.
 
-Moving to Puppet 4 type validation allows much better defined type checking using [data types](https://docs.puppet.com/puppet/latest/reference/lang_data.html). Many of Puppet 3's `validate_*` functions have surprising holes in their validation. For example, [validate_numeric](#validate_numeric) allows not only numbers, but also arrays of numbers or strings that look like numbers, without giving you any control over the specifics.
+Moving to Puppet 4 type validation allows much better defined type checking using [data types](https://puppet.com/docs/puppet/latest/lang_data.html). Many of Puppet 3's `validate_*` functions have surprising holes in their validation. For example, [validate_numeric](#validate_numeric) allows not only numbers, but also arrays of numbers or strings that look like numbers, without giving you any control over the specifics.
 
 For each parameter of your classes and defined types, choose a new Puppet 4 data type to use. In most cases, the new data type allows a different set of values than the original `validate_*` function. The situation then looks like this:
 
@@ -2784,7 +2784,7 @@ validate_x509_rsa_key_pair($cert, $key)
 
 #### `values`
 
-**Deprecated:** This function has been replaced with a built-in [`values`](https://docs.puppet.com/puppet/latest/function.html#values) function as of Puppet 5.5.0.
+**Deprecated:** This function has been replaced with a built-in [`values`](https://puppet.com/docs/puppet/latest/function.html#values) function as of Puppet 5.5.0.
 
 Returns the values of a given hash.
 
@@ -2834,7 +2834,7 @@ Versions | Puppet 2.6 | Puppet 2.7 | Puppet 3.x | Puppet 4.x |
 
 ## Development
 
-Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide](https://docs.puppetlabs.com/forge/contributing.html).
+Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide](https://docs.puppet.com/forge/contributing.html).
 
 To report or research a bug with any part of this module, please go to
 [http://tickets.puppetlabs.com/browse/MODULES](http://tickets.puppetlabs.com/browse/MODULES).
