@@ -299,14 +299,14 @@ Unacceptable input example:
 
 Matches acceptable ensure values for service resources.
 
-Acceptable input examples:    
+Acceptable input examples:
 
 ```shell
 stopped
 running
 ```
 
-Unacceptable input example:   
+Unacceptable input example:
 
 ```shell
 true
@@ -371,7 +371,7 @@ C:/whatever
 
 #### `Stdlib::Filemode`
 
-Matches valid four digit modes in octal format.
+Matches octal file modes consisting of 1 to 4 numbers and symbolic file modes.
 
 Acceptable input examples:
 
@@ -383,10 +383,14 @@ Acceptable input examples:
 1777
 ```
 
+```shell
+a=Xr,g=w
+```
+
 Unacceptable input examples:
 
 ```shell
-644
+x=r,a=wx
 ```
 
 ```shell
