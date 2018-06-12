@@ -1983,6 +1983,8 @@ Returns the number of elements in a string, an array or a hash. This function wi
 
 #### `sprintf_hash`
 
+**Deprecated:** The same functionality can be achieved with the built-in [`sprintf`](https://docs.puppet.com/puppet/latest/function.html#sprintf) function as of Puppet Puppet 4.10.10, and 5.3.4. This function will be removed in a future release.
+
 Performs printf-style formatting with named references of text.
 
 The first parameter is a format string describing how to format the rest of the parameters in the hash. See Ruby documentation for [`Kernel::sprintf`](https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-sprintf) for details about this function.
