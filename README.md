@@ -1899,6 +1899,12 @@ Passing a third argument causes the generated range to step by that interval. Fo
 
 * `range("0", "9", "2")` returns ["0","2","4","6","8"].
 
+Note that the Puppet Language supports `Integer` and `Float` ranges by using the type system. Those are suitable for
+iterating a given number of times.
+Also see the built-in [`step`](https://docs.puppet.com/puppet/latest/function.html#step) function in Puppet for skipping values.
+
+    Integer[0, 9].each |$x| { notice($x) } # notices 0, 1, 2, ... 9
+
 *Type*: rvalue.
 
 #### `regexpescape`
