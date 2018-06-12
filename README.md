@@ -2116,6 +2116,12 @@ Returns the current Unix epoch time as an integer.
 
 For example, `time()` returns something like '1311972653'.
 
+Note that since Puppet 4.8.0 the puppet language has the data types `Timestamp` (a point in time) and
+`Timespan` (a duration). The following example is equivalent to calling `time()` without
+any arguments:
+
+    Timestamp()
+
 *Type*: rvalue.
 
 #### `to_bytes`
