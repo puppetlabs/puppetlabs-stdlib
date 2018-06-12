@@ -1913,13 +1913,19 @@ Searches through an array and rejects all elements that match the provided regul
 
 For example, `reject(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['bbb','ccc'].
 
+Note that since Puppet 4.0.0 the same is in general done with the
+built-in [`filter`](https://docs.puppet.com/puppet/latest/function.html#filter) function in Puppet.
+Here is the equivalence of the stdlib `reject` function:
+
+    ['aaa','bbb','ccc','aaaddd'].filter |$x| { $x !~ /aaa/ }
+
 *Type*: rvalue.
 
 #### `reverse`
 
 Reverses the order of a string or array.
 
-*Note*: The same can be done with the built-in [`reverse_each`](https://docs.puppet.com/puppet/latest/function.html#reverse_each) function in Puppet. 
+*Note*: The same can be done with the built-in [`reverse_each`](https://docs.puppet.com/puppet/latest/function.html#reverse_each) function in Puppet.
 
 
 #### `round`
