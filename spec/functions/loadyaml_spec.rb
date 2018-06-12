@@ -36,4 +36,37 @@ describe 'loadyaml' do
     end
     it { is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value') }
   end
+
+  context 'when an existing URL is specified' do
+    let(:filename) { 'https://example.local/myhash.yaml' }
+    let(:yaml) { 'Dummy YAML' }
+    let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
+
+    it {
+      expect(OpenURI).to receive(:open_uri).with(filename).and_return(yaml)
+      expect(YAML).to receive(:safe_load).with(yaml).and_return(data).once
+      is_expected.to run.with_params(filename).and_return(data)
+    }
+  end
+
+  context 'when an existing URL could not be parsed, with default specified' do
+    let(:filename) { 'https://example.local/myhash.yaml' }
+    let(:yaml) { 'Dummy YAML' }
+
+    it {
+      expect(OpenURI).to receive(:open_uri).with(filename).and_return(yaml)
+      expect(YAML).to receive(:safe_load).with(yaml).and_raise StandardError, 'Cannot parse data'
+      is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
+    }
+  end
+
+  context 'when a URL does not exist, with default specified' do
+    let(:filename) { 'https://example.local/myhash.yaml' }
+    let(:yaml) { 'Dummy YAML' }
+
+    it {
+      expect(OpenURI).to receive(:open_uri).with(filename).and_raise OpenURI::HTTPError, '404 File not Found'
+      is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
+    }
+  end
 end

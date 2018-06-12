@@ -65,5 +65,43 @@ describe 'loadjson' do
       end
       it { is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value') }
     end
+
+    context 'when an existing URL is specified' do
+      let(:filename) do
+        'https://example.local/myhash.json'
+      end
+      let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
+      let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
+
+      it {
+        expect(OpenURI).to receive(:open_uri).with(filename).and_return(json)
+        expect(PSON).to receive(:load).with(json).and_return(data).once
+        is_expected.to run.with_params(filename).and_return(data)
+      }
+    end
+
+    context 'when the URL output could not be parsed, with default specified' do
+      let(:filename) do
+        'https://example.local/myhash.json'
+      end
+      let(:json) { ',;{"key":"value"}' }
+
+      it {
+        expect(OpenURI).to receive(:open_uri).with(filename).and_return(json)
+        expect(PSON).to receive(:load).with(json).once.and_raise StandardError, 'Something terrible have happened!'
+        is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
+      }
+    end
+
+    context 'when the URL does not exist, with default specified' do
+      let(:filename) do
+        'https://example.local/myhash.json'
+      end
+
+      it {
+        expect(OpenURI).to receive(:open_uri).with(filename).and_raise OpenURI::HTTPError, '404 File not Found'
+        is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
+      }
+    end
   end
 end
