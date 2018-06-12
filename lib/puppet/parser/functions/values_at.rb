@@ -26,7 +26,7 @@ module Puppet::Parser::Functions
 
     Would return ['a','c','d'].
 
-    Note that since Puppt 4.0.0 it is possible to slice an array with index and count directly in the language.
+    Note that since Puppet 4.0.0 it is possible to slice an array with index and count directly in the language.
     A negative value is taken to be "from the end" of the array:
 
         ['a', 'b', 'c', 'd'][1, 2]   # results in ['b', 'c']
