@@ -1487,9 +1487,15 @@ if has_key($my_hash, 'key_one') {
 
 #### `hash`
 
+**Deprecated:** This function has been replaced with the built-in ability to create a new value of almost any
+data type - see the built in [`Hash.new`](https://puppet.com/docs/puppet/5.5/function.html#conversion-to-hash-and-struct) function
+in puppet.
+
 Converts an array into a hash.
 
-For example, `hash(['a',1,'b',2,'c',3])` returns {'a'=>1,'b'=>2,'c'=>3}.
+For example (deprecated), `hash(['a',1,'b',2,'c',3])` returns {'a'=>1,'b'=>2,'c'=>3}.
+
+For example (built in), `Hash(['a',1,'b',2,'c',3])` returns {'a'=>1,'b'=>2,'c'=>3}.
 
 *Type*: rvalue.
 
@@ -1912,6 +1918,9 @@ For example, `reject(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['bbb','ccc']
 #### `reverse`
 
 Reverses the order of a string or array.
+
+*Note*: The same can be done with the built-in [`reverse_each`](https://docs.puppet.com/puppet/latest/function.html#reverse_each) function in Puppet. 
+
 
 #### `round`
 
