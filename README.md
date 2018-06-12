@@ -1975,7 +1975,7 @@ Randomizes the order of a string or array elements.
 
 #### `size`
 
-**Deprecated:** This function will be replaced with a built-in `size` function as of Puppet 6.0.0.
+**Deprecated:** This function has been replaced with a built-in [`size`](https://puppet.com/docs/puppet/latest/function.html#size) function as of Puppet 6.0.0 (`size` is now an alias for `length`).
 
 Returns the number of elements in a string, an array or a hash. This function will be deprecated in a future release. For Puppet 4, use the `length` function.
 
