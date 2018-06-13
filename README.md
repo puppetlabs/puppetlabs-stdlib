@@ -1468,6 +1468,7 @@ Arguments: A string specifying an IP address.
 *Type*: rvalue.
 
 #### `has_key`
+**Deprecated:** This function has been replaced with the built-in operator `in`.
 
 Determines if a hash has a certain key value.
 
@@ -1482,6 +1483,13 @@ if has_key($my_hash, 'key_one') {
   notice('this will be printed')
 }
 ```
+
+Note: Since Puppet 4.0.0 this can be achieved in the puppet language with the following equivalent expression:
+
+    $my_hash = {'key_one' => 'value_one'}
+    if 'key_one' in $my_hash {
+      notice('this will be printed')
+    }
 
 *Type*: rvalue.
 
