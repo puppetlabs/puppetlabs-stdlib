@@ -7,7 +7,7 @@ module Puppet::Parser::Functions
     true boolean. Zero or anything non-numeric becomes false. Numbers higher then 0
     become true.
 
-    Note that since Puppet 5.0.0 the same can be achived with the Puppet Type System.
+    Note that since Puppet 5.0.0 the same can be achieved with the Puppet Type System.
     See the new() function in Puppet for the many available type conversions.
 
         Boolean(0) # false

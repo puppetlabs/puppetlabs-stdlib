@@ -1795,7 +1795,15 @@ Arguments: A numeric or a string representing a number.
 
 #### `num2bool`
 
-Converts a number or a string representation of a number into a true Boolean. Zero or anything non-numeric becomes `false`. Numbers greater than 0 become `true`.
+Converts a number or a string representation of a number into a true Boolean. Zero or anything non-numeric becomes `false`.
+Numbers greater than 0 become `true`.
+
+Note that since Puppet 5.0.0 the same can be achieved with the Puppet Type System.
+See the [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean) 
+function in Puppet for the many available type conversions.
+
+    Boolean(0) # false
+    Boolean(1) # true
 
 *Type*: rvalue.
 
