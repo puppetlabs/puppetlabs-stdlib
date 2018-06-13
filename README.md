@@ -1425,6 +1425,11 @@ Searches through an array and returns any elements that match the provided regul
 
 For example, `grep(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['aaa','aaaddd'].
 
+Note that since Puppet 4.0.0, the built-in [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function
+function can do the "same" in a more general way as any logic can be used to filter as opposed to just regular expressions:
+
+    ['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }
+
 *Type*: rvalue.
 
 #### `has_interface_with`
