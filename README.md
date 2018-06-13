@@ -1783,6 +1783,10 @@ $merged_hash = merge($hash1, $hash2)
 
 When there is a duplicate key, the key in the rightmost hash takes precedence.
 
+Note that since Puppet 4.0.0 the same merge can be achieved with the + operator.
+
+    $merged_hash = $hash1 + $hash2
+
 *Type*: rvalue.
 
 #### `min`
