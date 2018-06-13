@@ -1663,6 +1663,12 @@ If a value is an array, the key is prefixed to each element. The return value is
 
 For example, `join_keys_to_values({'a'=>1,'b'=>[2,3]}, " is ")` results in ["a is 1","b is 2","b is 3"].
 
+Note: Since Puppet 5.0.0 - for more detailed control over the formatting (including indentations and
+line breaks, delimiters around arrays and hash entries, between key/values in hash entries, and individual
+formatting of values in the array) - see the
+built-in [`String.new`](https://docs.puppet.com/puppet/latest/function.html#conversion-to-string) function
+and its formatting options for `Array` and `Hash`.
+
 *Type*: rvalue.
 
 #### `keys`
