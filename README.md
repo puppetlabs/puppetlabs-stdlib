@@ -1488,7 +1488,7 @@ if has_key($my_hash, 'key_one') {
 #### `hash`
 
 **Deprecated:** This function has been replaced with the built-in ability to create a new value of almost any
-data type - see the built in [`Hash.new`](https://puppet.com/docs/puppet/5.5/function.html#conversion-to-hash-and-struct) function
+data type - see the built in [`Hash.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-hash-and-struct) function
 in puppet.
 
 Converts an array into a hash.
