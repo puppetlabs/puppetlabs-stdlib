@@ -1844,6 +1844,12 @@ For example:
 * `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc'].
 * `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}.
 
+Note that since Puppet 4.0.0 the general way to modify values is in array is by using the
+built-in [`map`](https://docs.puppet.com/puppet/latest/function.html#map) function.
+This example does the same as the first example above:
+
+        ['a', 'b', 'c'].map |$x| { "p${x}" }
+
 *Type*: rvalue.
 
 #### `pry`
