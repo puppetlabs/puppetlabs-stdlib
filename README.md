@@ -910,6 +910,13 @@ Appends the contents of multiple arrays onto the first array given. For example:
   * `concat(['1','2','3'],'4')` returns ['1','2','3','4'].
   * `concat(['1','2','3'],'4',['5','6','7'])` returns ['1','2','3','4','5','6','7'].
 
+Note: Since puppet 4.0 concatenation of arrays and merge of hashes can be done with the `+` operator,
+and appending can be done with the `<<` operator:
+
+    ['1','2','3'] + ['4','5','6'] + ['7','8','9'] # returns ['1','2','3','4','5','6','7']
+    [1, 2, 3] << 4 # returns [1, 2, 3, 4]
+    [1, 2, 3] << [4, 5] # returns [1, 2, 3, [4, 5]]
+
 *Type*: rvalue.
 
 #### `convert_base`
