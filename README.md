@@ -786,6 +786,17 @@ For backward compatibility, `method` is set as `default` if not specified.
 
 *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
+Note: Since Puppet 4.8.0, the `Binary` data type can be used to produce base 64 encoded strings.
+See the built-in [`String.new`](https://puppet.com/docs/puppet/latest/function.html#binary-value-to-string) and
+[`Binary.new`](https://puppet.com/docs/puppet/latest/function.html#creating-a-binary) functions.
+Also see the built-in [`binary_file`](https://puppet.com/docs/puppet/latest/function.html#binary_file) function
+for reading a file with binary (non UTF-8) content.
+
+    # encode a string as if it was binary
+    $encodestring = String(Binary('thestring', '%s'))
+    # decode a Binary assuming it is an UTF-8 String
+    $decodestring = String(Binary("dGhlc3RyaW5n"), "%s")
+
 **Examples:**
 
 ```puppet
@@ -900,6 +911,10 @@ Keeps value within the range [Min, X, Max] by sort based on integer value (param
   * `clamp([4, 3, '99'])` returns 4.
 
 Arguments: strings, arrays, or numerics.
+
+Note: From Puppet 6.0.0 this can be done using only built-in functions like this:
+
+    [$minval, $maxval, $value_to_clamp].sort[1]
 
 *Type*: rvalue.
 
