@@ -921,7 +921,22 @@ Converts a given integer or base 10 string representing an integer to a specifie
 
 #### `count`
 
-If called with only an array, counts the number of elements that are **not** nil or `undef`. If called with a second argument, counts the number of elements in an array that matches the second argument.
+Takes an array as first argument and an optional second argument.
+Counts the number of elements in array that is equal to the second argument.
+If called with only an array it counts the number of elements that are not nil/undef/empty-string.
+
+**Note**: Equality is tested with a Ruby method and it is therefore subject to what Ruby considers
+to be equal. For strings this means that equality is case sensitive.
+
+In Puppet core, counting can be done in general by using a combination of the built-in functions
+[`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) (since puppet 4.0.0) and
+[`length`](https://puppet.com/docs/puppet/latest/function.html#length) (since puppet 5.5.0, before that in stdlib).
+
+This example shows counting values that are not `undef`:
+
+    notice([42, "hello", undef].filter |$x| { $x =~ NotUndef }.length)
+
+Would notice [42, "hello"]
 
 *Type*: rvalue.
 
