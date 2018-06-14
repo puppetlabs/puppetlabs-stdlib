@@ -1012,6 +1012,12 @@ For example
 * `delete_regex(['abf', 'ab', 'ac'], '^ab.*')` returns ['ac'].
 * `delete_regex(['ab', 'b'], 'b')` returns ['ab'].
 
+Note that since Puppet 4.0.0 the equivalent can be performed with the built-in
+[`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
+
+    ["aaa", "aba", "aca"].filter |$val| { $val !~ /b/ }
+    # Would return: ['aaa', 'aca']
+
 *Type*: rvalue.
 
 #### `delete_values`
@@ -1037,6 +1043,12 @@ Deletes all instances of the `undef` value from an array or hash.
 For example:
 
 * `$hash = delete_undef_values({a=>'A', b=>'', c=>`undef`, d => false})` returns {a => 'A', b => '', d => false}.
+
+Note that since Puppet 4.0.0 the equivalent can be performed with the built-in
+[`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
+
+    $array.filter |$val| { $val =~ NotUndef }
+    $hash.filter |$key, $val| { $val =~ NotUndef }
 
 *Type*: rvalue.
 
