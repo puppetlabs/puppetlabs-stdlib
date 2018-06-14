@@ -972,6 +972,22 @@ For example:
 * `delete({'a' => 1,'b' => 2,'c' => 3},['b','c'])` returns {'a'=> 1}.
 * `delete(['ab', 'b'], 'b')` returns ['ab'].
 
+Note that from puppet 4.0.0 the minus (`-`) operator deletes values from arrays and keys from a hash:
+
+    ['a', 'b', 'c', 'b'] - 'b'
+    # would return ['a', 'c']
+
+    {'a'=>1,'b'=>2,'c'=>3} - ['b','c'])
+    # would return {'a' => '1'}
+
+A global delete from a string can be performed with the built-in
+[`regsubst`](https://puppet.com/docs/puppet/latest/function.html#regsubst) function.
+
+    'abracadabra'.regsubst(/bra/, '', 'G')
+    # would return 'acada'
+
+In general, the filter() function can filter out entries from arrays and hashes based on keys and/or values.
+
 *Type*: rvalue.
 
 #### `delete_at`
