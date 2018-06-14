@@ -1363,6 +1363,9 @@ Returns the absolute path of the specified module for the current environment.
 $module_path = get_module_path('stdlib')
 ```
 
+Note that since Puppet 5.4.0 the built-in [`module_directory`](https://puppet.com/docs/puppet/latest/function.html#module_directory)
+function does the same thing and will return the path to the first found module if given multiple values or an array.
+
 *Type*: rvalue.
 
 #### `getparam`
