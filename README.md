@@ -1697,6 +1697,8 @@ Loads a JSON file containing an array, string, or hash, and returns the data in 
 
 For example:
 
+The first parameter can be an absolute file path, or a URL.
+
 ```puppet
 $myhash = loadjson('/etc/puppet/data/myhash.json')
 ```
