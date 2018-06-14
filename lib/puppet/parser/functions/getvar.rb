@@ -16,6 +16,11 @@ module Puppet::Parser::Functions
         $datalocation = 'site::data'
         $bar = getvar("${datalocation}::bar")
         # Equivalent to $bar = $site::data::bar
+
+    Note: from Puppet 6.0.0, the compatible function with the same name in Puppet core
+    will be used instead of this function. The new function also has support for
+    digging into a structured value. See the built-in
+    [`getvar`](https://puppet.com/docs/puppet/latest/function.html#getvar) function
     DOC
 
     unless args.length == 1

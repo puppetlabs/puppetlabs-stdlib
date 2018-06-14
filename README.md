@@ -1387,6 +1387,8 @@ getparam(Example_resource["example_resource_instance"], "param")
 *Type*: rvalue.
 
 #### `getvar`
+**Deprecated:** This function has been replaced with a built-in [`getvar`](https://puppet.com/docs/puppet/latest/function.html#getvar)
+function as of Puppet 6.0.0. The new version also supports digging into a structured value.
 
 Looks up a variable in a remote namespace.
 
