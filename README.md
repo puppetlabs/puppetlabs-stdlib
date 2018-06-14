@@ -1022,6 +1022,12 @@ For example:
 
 * `delete_values({'a'=>'A','b'=>'B','c'=>'C','B'=>'D'}, 'B')` returns {'a'=>'A','c'=>'C','B'=>'D'}
 
+Note that since Puppet 4.0.0 the equivalent can be performed with the built-in
+[`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
+
+    $array.filter |$val| { $val != 'B' }
+    $hash.filter |$key, $val| { $val != 'B' }
+
 *Type*: rvalue.
 
 #### `delete_undef_values`
