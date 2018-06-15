@@ -353,7 +353,7 @@ Matches MAC addresses defined in [RFC5342](https://tools.ietf.org/html/rfc5342).
 
 #### `Stdlib::Unixpath`
 
-Matches paths on Unix operating systems.
+Matches absolute paths on Unix operating systems.
 
 Acceptable input example:
 
@@ -367,6 +367,10 @@ Unacceptable input example:
 
 ```shell
 C:/whatever
+
+some/path
+
+../some/other/path
 ```
 
 #### `Stdlib::Filemode`
