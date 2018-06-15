@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'ceiling function' do
+describe 'ceiling function', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 do
   describe 'success' do
     pp1 = <<-DOC
       $a = 12.8
