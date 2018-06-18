@@ -751,6 +751,23 @@ Argument: A single argument of either an integer or float value.
 
 Converts any object to an array containing that object. Converts empty argument lists are to empty arrays. Hashes are converted to arrays of alternating keys and values. Arrays are not touched.
 
+Note that since Puppet 5.0.0 it is possible to create new data types for almost any
+datatype using the type system and the built-in
+[`Array.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-array-and-tuple)
+function is used to create a new Array.
+
+    $hsh = {'key' => 42, 'another-key' => 100}
+    notice(Array($hsh))
+
+Would notice `[['key', 42], ['another-key', 100]]`
+
+The Array data type also has a special mode to "create an array if not already an array"
+
+    notice(Array({'key' => 42, 'another-key' => 100}, true))
+
+Would notice `[{'key' => 42, 'another-key' => 100}]`, as the `true` flag prevents the hash from being
+transformed into an array.
+
 *Type*: rvalue.
 
 #### `any2bool`
