@@ -16,7 +16,7 @@ module Puppet::Parser::Functions
 
       notice([42, "hello", undef].filter |$x| { $x =~ NotUndef }.length)
 
-    Would notice the value [42, "hello"].
+    Would notice the value 2.
 
   DOC
              ) do |args|

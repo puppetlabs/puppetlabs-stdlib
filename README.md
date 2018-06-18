@@ -1015,7 +1015,7 @@ This example shows counting values that are not `undef`:
 
     notice([42, "hello", undef].filter |$x| { $x =~ NotUndef }.length)
 
-Would notice [42, "hello"]
+Would notice 2.
 
 *Type*: rvalue.
 
