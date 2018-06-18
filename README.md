@@ -816,9 +816,11 @@ base64('decode', 'aHR0cHM6Ly9wdXBwZXRsYWJzLmNvbQ==', 'urlsafe')
 
 Returns the `basename` of a path. An optional argument strips the extension. For example:
 
-  * ('/path/to/a/file.ext') returns 'file.ext'
-  * ('relative/path/file.ext') returns 'file.ext'
-  * ('/path/to/a/file.ext', '.ext') returns 'file'
+```puppet
+basename('/path/to/a/file.ext')            => 'file.ext'
+basename('relative/path/file.ext')         => 'file.ext'
+basename('/path/to/a/file.ext', '.ext')    => 'file'
+```
 
 *Type*: rvalue.
 
