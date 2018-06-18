@@ -739,6 +739,8 @@ Returns the default provider Puppet uses to manage services on this system
 
 #### `abs`
 
+**Deprecated:** This function has been replaced with a built-in [`abs`](https://puppet.com/docs/puppet/latest/function.html#abs) function as of Puppet 6.0.0.
+
 Returns the absolute value of a number. For example, '-34.56' becomes '34.56'.
 
 Argument: A single argument of either an integer or float value.
@@ -862,6 +864,8 @@ Arguments: Boolean.
 
 #### `camelcase`
 
+**Deprecated:** This function has been replaced with a built-in [`camelcase`](https://puppet.com/docs/puppet/latest/function.html#camelcase) function as of Puppet 6.0.0.
+
 Converts the case of a string or all strings in an array to CamelCase (mixed case).
 
 Arguments: Either an array or string. Returns the same type of argument as it received, but in CamelCase form.
@@ -872,6 +876,8 @@ Arguments: Either an array or string. Returns the same type of argument as it re
 
 #### `capitalize`
 
+**Deprecated:** This function has been replaced with a built-in [`capitalize`](https://puppet.com/docs/puppet/latest/function.html#capitalize) function as of Puppet 6.0.0.
+
 Capitalizes the first character of a string or array of strings and lowercases the remaining characters of each string.
 
 Arguments: either a single string or an array as an input. *Type*: rvalue.
@@ -879,6 +885,8 @@ Arguments: either a single string or an array as an input. *Type*: rvalue.
 *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `ceiling`
+
+**Deprecated:** This function has been replaced with a built-in [`ceiling`](https://puppet.com/docs/puppet/latest/function.html#ceiling) function as of Puppet 6.0.0.
 
 Returns the smallest integer greater than or equal to the argument.
 
@@ -888,6 +896,8 @@ Arguments: A single numeric value.
 
 #### `chomp`
 
+**Deprecated:** This function has been replaced with a built-in [`chomp`](https://puppet.com/docs/puppet/latest/function.html#chomp) function as of Puppet 6.0.0.
+
 Removes the record separator from the end of a string or an array of strings; for example, 'hello\n' becomes 'hello'.
 
 Arguments: a single string or array.
@@ -895,6 +905,8 @@ Arguments: a single string or array.
 *Type*: rvalue.
 
 #### `chop`
+
+**Deprecated:** This function has been replaced with a built-in [`chop`](https://puppet.com/docs/puppet/latest/function.html#chop) function as of Puppet 6.0.0.
 
 Returns a new string with the last character removed. If the string ends with '\r\n', both characters are removed. Applying `chop` to an empty string returns an empty string. To only remove record separators, use the `chomp` function.
 
@@ -1258,6 +1270,8 @@ See also [unix2dos](#unix2dos).
 
 #### `downcase`
 
+**Deprecated:** This function has been replaced with a built-in [`downcase`](https://puppet.com/docs/puppet/latest/function.html#downcase) function as of Puppet 6.0.0.
+
 Converts the case of a string or of all strings in an array to lowercase.
 
 *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
@@ -1388,6 +1402,8 @@ For example, `flatten(['a', ['b', ['c']]])` returns ['a','b','c'].
 *Type*: rvalue.
 
 #### `floor`
+
+**Deprecated:** This function has been replaced with a built-in [`floor`](https://puppet.com/docs/puppet/latest/function.html#floor) function as of Puppet 6.0.0.
 
 Returns the largest integer less than or equal to the argument.
 
@@ -1883,11 +1899,15 @@ if empty($metadata) {
 
 #### `lstrip`
 
+**Deprecated:** This function has been replaced with a built-in [`lstrip`](https://puppet.com/docs/puppet/latest/function.html#lstrip) function as of Puppet 6.0.0.
+
 Strips spaces to the left of a string.
 
 *Type*: rvalue.
 
 #### `max`
+
+**Deprecated:** This function has been replaced with a built-in [`max`](https://puppet.com/docs/puppet/latest/function.html#max) function as of Puppet 6.0.0.
 
 Returns the highest value of all arguments. Requires at least one argument.
 
@@ -1942,6 +1962,8 @@ Note that since Puppet 4.0.0 the same merge can be achieved with the + operator.
 *Type*: rvalue.
 
 #### `min`
+
+**Deprecated:** This function has been replaced with a built-in [`min`](https://puppet.com/docs/puppet/latest/function.html#min) function as of Puppet 6.0.0.
 
 Returns the lowest value of all arguments. Requires at least one argument.
 
@@ -2106,11 +2128,15 @@ Reverses the order of a string or array.
 
 #### `round`
 
- Rounds a number to the nearest integer
+**Deprecated:** This function has been replaced with a built-in [`round`](https://puppet.com/docs/puppet/latest/function.html#round) function as of Puppet 6.0.0.
+
+Rounds a number to the nearest integer
 
 *Type*: rvalue.
 
 #### `rstrip`
+
+**Deprecated:** This function has been replaced with a built-in [`rstrip`](https://puppet.com/docs/puppet/latest/function.html#rstrip) function as of Puppet 6.0.0.
 
 Strips spaces to the right of the string.
 
@@ -2191,6 +2217,8 @@ $output = sprintf_hash('String: %<foo>s / number converted to binary: %<number>b
 *Type*: rvalue
 
 #### `sort`
+
+**Deprecated:** This function has been replaced with a built-in [`sort`](https://puppet.com/docs/puppet/latest/function.html#sort) function as of Puppet 6.0.0.
 
 Sorts strings and arrays lexically.
 
@@ -2286,6 +2314,8 @@ Arguments: A string specifying the time in `strftime` format. See the Ruby [strf
 * `%%`: Literal '%' character
 
 #### `strip`
+
+**Deprecated:** This function has been replaced with a built-in [`strip`](https://puppet.com/docs/puppet/latest/function.html#strip) function as of Puppet 6.0.0.
 
 Removes leading and trailing whitespace from a string or from every string inside an array. For example, `strip("    aaa   ")` results in "aaa".
 
@@ -2468,6 +2498,8 @@ file { $config_file:
 See also [dos2unix](#dos2unix).
 
 #### `upcase`
+
+**Deprecated:** This function has been replaced with a built-in [`upcase`](https://puppet.com/docs/puppet/latest/function.html#upcase) function as of Puppet 6.0.0.
 
 Converts an object, array, or hash of objects to uppercase. Objects to be converted must respond to upcase.
 
