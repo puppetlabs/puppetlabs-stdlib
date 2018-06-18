@@ -2296,6 +2296,8 @@ Converts a string to a salted-SHA512 password hash, used for OS X versions 10.7 
 
 #### `strftime`
 
+**Deprecated:** This function has been replaced with a built-in [`strftime`](https://puppet.com/docs/puppet/latest/function.html#strftime) function as of Puppet 4.8.0.
+
 Returns formatted time.
 
 For example, `strftime("%s")` returns the time since Unix epoch, and `strftime("%Y-%m-%d")` returns the date.
