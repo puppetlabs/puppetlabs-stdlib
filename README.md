@@ -1080,7 +1080,9 @@ A global delete from a string can be performed with the built-in
     'abracadabra'.regsubst(/bra/, '', 'G')
     # would return 'acada'
 
-In general, the filter() function can filter out entries from arrays and hashes based on keys and/or values.
+In general, the built-in
+[`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function
+can filter out entries from arrays and hashes based on keys and/or values.
 
 *Type*: rvalue.
 
