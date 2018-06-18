@@ -39,11 +39,40 @@ describe 'loadyaml' do
 
   context 'when an existing URL is specified' do
     let(:filename) { 'https://example.local/myhash.yaml' }
+    let(:basic_auth) { { :http_basic_authentication => ['', ''] } }
     let(:yaml) { 'Dummy YAML' }
     let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
 
     it {
-      expect(OpenURI).to receive(:open_uri).with(filename).and_return(yaml)
+      expect(OpenURI).to receive(:open_uri).with(filename, basic_auth).and_return(yaml)
+      expect(YAML).to receive(:safe_load).with(yaml).and_return(data).once
+      is_expected.to run.with_params(filename).and_return(data)
+    }
+  end
+
+  context 'when an existing URL (with username and password) is specified' do
+    let(:filename) { 'https://user1:pass1@example.local/myhash.yaml' }
+    let(:url_no_auth) { 'https://example.local/myhash.yaml' }
+    let(:basic_auth) { { :http_basic_authentication => ['user1', 'pass1'] } }
+    let(:yaml) { 'Dummy YAML' }
+    let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
+
+    it {
+      expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(yaml)
+      expect(YAML).to receive(:safe_load).with(yaml).and_return(data).once
+      is_expected.to run.with_params(filename).and_return(data)
+    }
+  end
+
+  context 'when an existing URL (with username) is specified' do
+    let(:filename) { 'https://user1@example.local/myhash.yaml' }
+    let(:url_no_auth) { 'https://example.local/myhash.yaml' }
+    let(:basic_auth) { { :http_basic_authentication => ['user1', ''] } }
+    let(:yaml) { 'Dummy YAML' }
+    let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
+
+    it {
+      expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(yaml)
       expect(YAML).to receive(:safe_load).with(yaml).and_return(data).once
       is_expected.to run.with_params(filename).and_return(data)
     }
@@ -51,10 +80,11 @@ describe 'loadyaml' do
 
   context 'when an existing URL could not be parsed, with default specified' do
     let(:filename) { 'https://example.local/myhash.yaml' }
+    let(:basic_auth) { { :http_basic_authentication => ['', ''] } }
     let(:yaml) { 'Dummy YAML' }
 
     it {
-      expect(OpenURI).to receive(:open_uri).with(filename).and_return(yaml)
+      expect(OpenURI).to receive(:open_uri).with(filename, basic_auth).and_return(yaml)
       expect(YAML).to receive(:safe_load).with(yaml).and_raise StandardError, 'Cannot parse data'
       is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
     }
@@ -62,10 +92,11 @@ describe 'loadyaml' do
 
   context 'when a URL does not exist, with default specified' do
     let(:filename) { 'https://example.local/myhash.yaml' }
+    let(:basic_auth) { { :http_basic_authentication => ['', ''] } }
     let(:yaml) { 'Dummy YAML' }
 
     it {
-      expect(OpenURI).to receive(:open_uri).with(filename).and_raise OpenURI::HTTPError, '404 File not Found'
+      expect(OpenURI).to receive(:open_uri).with(filename, basic_auth).and_raise OpenURI::HTTPError, '404 File not Found'
       is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
     }
   end

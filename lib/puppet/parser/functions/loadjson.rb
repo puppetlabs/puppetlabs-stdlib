@@ -14,6 +14,7 @@ module Puppet::Parser::Functions
 
         $myhash = loadjson('/etc/puppet/data/myhash.json')
         $myhash = loadjson('https://example.local/my_hash.json')
+        $myhash = loadjson('https://username:password@example.local/my_hash.json')
         $myhash = loadjson('no-file.json', {'default' => 'value'})
   DOC
 
@@ -21,11 +22,24 @@ module Puppet::Parser::Functions
     require 'open-uri'
     begin
       if args[0].start_with?('http://', 'https://')
+        username = ''
+        password = ''
+        if (match = args[0].match(%r{(http\://|https\://)(.*):(.*)@(.*)}))
+          # If URL is in the format of https://username:password@example.local/my_hash.yaml
+          protocol, username, password, path = match.captures
+          url = "#{protocol}#{path}"
+        elsif (match = args[0].match(%r{(http\:\/\/|https\:\/\/)(.*)@(.*)}))
+          # If URL is in the format of https://username@example.local/my_hash.yaml
+          protocol, username, path = match.captures
+          url = "#{protocol}#{path}"
+        else
+          url = args[0]
+        end
         begin
-          contents = OpenURI.open_uri(args[0])
+          contents = OpenURI.open_uri(url, :http_basic_authentication => [username, password])
         rescue OpenURI::HTTPError => err
           res = err.io
-          warning("Can't load '#{args[0]}' HTTP Error Code: '#{res.status[0]}'")
+          warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
           args[1]
         end
         PSON.load(contents) || args[1]
