@@ -781,6 +781,8 @@ Converts any object to a Boolean:
 * An undef value returns `false`.
 * Anything else returns `true`.
 
+Also see the built-in [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean)
+
 *Type*: rvalue.
 
 #### `assert_private`
