@@ -955,7 +955,7 @@ Keeps value within the range [Min, X, Max] by sort based on integer value (param
 
 Arguments: strings, arrays, or numerics.
 
-Since Puppet 6.0.0, you can use built-in functions like these:
+Since Puppet 6.0.0, you can use built-in functions to get the same results:
 
     [$minval, $maxval, $value_to_clamp].sort[1]
 
@@ -991,7 +991,7 @@ Since Puppet 4.5.0, this can be done with the built-in [`String.new`](https://pu
 
 #### `count`
 
-Takes an array as the first argument and an optional as the second argument.
+Takes an array as the first argument and a second optional argument.
 It counts the number of elements in an array that is equal to the second argument.
 If called with only an array, it counts the number of elements that are not nil/undef/empty-string.
 
@@ -1065,7 +1065,7 @@ Since Puppet 4.0.0, the minus (`-`) operator deletes values from arrays and dele
     {'a'=>1,'b'=>2,'c'=>3} - ['b','c'])
     # would return {'a' => '1'}
 
-Perform a global delete from a string with the built-in
+You can perform a global delete from a string with the built-in
 [`regsubst`](https://puppet.com/docs/puppet/latest/function.html#regsubst) function.
 
     'abracadabra'.regsubst(/bra/, '', 'G')
@@ -1073,7 +1073,7 @@ Perform a global delete from a string with the built-in
 
 In general, the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function
-can filter out entries from arrays and hashes based on keys and values.
+can filter out entries from arrays and hashes based on a combination of keys and values.
 
 *Type*: rvalue.
 
@@ -1089,7 +1089,7 @@ Since Puppet 4, this can be done with the built-in
     ['a', 'b', 'c'].filter |$pos, $val | { $pos != 1 } # returns ['a', 'c']
     ['a', 'b', 'c', 'd'].filter |$pos, $val | { $pos % 2 != 0 } # returns ['b', 'd']
 
-Or if you want a delete from the beginning or the end of the array, use the slice operator `[ ]`:
+Or, if you want to delete from the beginning or the end of the array — or from both ends at the same time — use the slice operator `[ ]`:
 
     $array[0, -1] # the same as all the values
     $array[2, -1] # all but the first 2 elements
@@ -1128,7 +1128,7 @@ For example:
 
 * `delete_values({'a'=>'A','b'=>'B','c'=>'C','B'=>'D'}, 'B')` returns {'a'=>'A','c'=>'C','B'=>'D'}
 
-Note that since Puppet 4.0.0, you can perform the equivalent with the built-in
+Since Puppet 4.0.0, you can perform the equivalent with the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
 
     $array.filter |$val| { $val != 'B' }
@@ -2156,7 +2156,7 @@ Reverses the order of a string or array.
 
 **Deprecated:** This function has been replaced with a built-in [`round`](https://puppet.com/docs/puppet/latest/function.html#round) function as of Puppet 6.0.0.
 
-It rounds a number to the nearest integer.
+Rounds a number to the nearest integer.
 
 *Type*: rvalue.
 
@@ -2250,7 +2250,7 @@ Sorts strings and arrays lexically.
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `squeeze`
 
@@ -2277,7 +2277,7 @@ Converts a string to a salted-SHA512 password hash, used for OS X versions 10.7 
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `strftime`
 
@@ -2291,7 +2291,7 @@ Arguments: A string specifying the time in `strftime` format. See the Ruby [strf
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 *Format:*
 
@@ -2370,7 +2370,7 @@ Swaps the existing case of a string. For example, `swapcase("aBcD")` results in 
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `time`
 
@@ -2543,7 +2543,7 @@ Arguments: Either a single string or an array of strings.
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `validate_absolute_path`
 
@@ -3032,7 +3032,7 @@ validate_string(true)
 validate_string([ 'some', 'array' ])
 ```
 
-*Note:* validate_string(`undef`) will not fail in this version of the functions API.
+> *Note:* validate_string(`undef`) will not fail in this version of the functions API.
 
 Instead, use:
 
