@@ -751,22 +751,18 @@ Argument: A single argument of either an integer or float value.
 
 Converts any object to an array containing that object. Converts empty argument lists are to empty arrays. Hashes are converted to arrays of alternating keys and values. Arrays are not touched.
 
-Note that since Puppet 5.0.0 it is possible to create new data types for almost any
-datatype using the type system and the built-in
-[`Array.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-array-and-tuple)
-function is used to create a new Array.
+Since Puppet 5.0.0, you can create new values of almost any datatype using the type system — you can use the built-in [`Array.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-array-and-tuple) function to create a new Array:
 
     $hsh = {'key' => 42, 'another-key' => 100}
     notice(Array($hsh))
 
 Would notice `[['key', 42], ['another-key', 100]]`
 
-The Array data type also has a special mode to "create an array if not already an array"
+The Array data type also has a special mode to "create an array if not already an array":
 
     notice(Array({'key' => 42, 'another-key' => 100}, true))
 
-Would notice `[{'key' => 42, 'another-key' => 100}]`, as the `true` flag prevents the hash from being
-transformed into an array.
+Would notice `[{'key' => 42, 'another-key' => 100}]`, as the `true` flag prevents the hash from being transformed into an array.
 
 *Type*: rvalue.
 
@@ -781,7 +777,7 @@ Converts any object to a Boolean:
 * An undef value returns `false`.
 * Anything else returns `true`.
 
-Also see the built-in [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean)
+See the built-in [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean)
 
 *Type*: rvalue.
 
@@ -805,13 +801,13 @@ Converts a string to and from base64 encoding. Requires an `action` ('encode', '
 
 For backward compatibility, `method` is set as `default` if not specified.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> **Note**: This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
-Note: Since Puppet 4.8.0, the `Binary` data type can be used to produce base 64 encoded strings.
-See the built-in [`String.new`](https://puppet.com/docs/puppet/latest/function.html#binary-value-to-string) and
-[`Binary.new`](https://puppet.com/docs/puppet/latest/function.html#creating-a-binary) functions.
-Also see the built-in [`binary_file`](https://puppet.com/docs/puppet/latest/function.html#binary_file) function
-for reading a file with binary (non UTF-8) content.
+Since Puppet 4.8.0, the `Binary` data type can be used to produce base 64 encoded strings.
+
+See the built-in [`String.new`](https://puppet.com/docs/puppet/latest/function.html#binary-value-to-string) and [`Binary.new`](https://puppet.com/docs/puppet/latest/function.html#creating-a-binary) functions.
+
+See the built-in [`binary_file`](https://puppet.com/docs/puppet/latest/function.html#binary_file) function for reading a file with binary (non UTF-8) content.
 
     # encode a string as if it was binary
     $encodestring = String(Binary('thestring', '%s'))
@@ -863,12 +859,8 @@ Converts a Boolean to a number. Converts values:
 
 Argument: a single Boolean or string as an input.
 
-Note that since Puppet 5.0.0 it is possible to create new data types for almost any
-datatype using the type system and the built-in
-[`Numeric.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-numeric),
-[`Integer.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-integer), and
-[`Float.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-float)
-function are used to convert to numeric values.
+Since Puppet 5.0.0, you can create values for almost any datatype using the type system — you can use the built-in [`Numeric.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-numeric), [`Integer.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-integer), and [`Float.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-float)
+functions to convert to numeric values:
 
     notice(Integer(false)) # Notices 0
     notice(Float(true))    # Notices 1.0
@@ -889,10 +881,10 @@ bool2str(false, 't', 'f')         => 'f'
 
 Arguments: Boolean.
 
-Note that since Puppet 5.0.0 it is possible to create new data types for almost any
-datatype using the type system and the built-in
+Since Puppet 5.0.0, you can create new values for almost any
+datatype using the type system — you can use the built-in
 [`String.new`](https://puppet.com/docs/puppet/latest/function.html#boolean-to-string)
-function is used to convert to String with many different format options.
+function to convert to String, with many different format options:
 
     notice(String(false))         # Notices 'false'
     notice(String(true))          # Notices 'true'
@@ -963,7 +955,7 @@ Keeps value within the range [Min, X, Max] by sort based on integer value (param
 
 Arguments: strings, arrays, or numerics.
 
-Note: From Puppet 6.0.0 this can be done using only built-in functions like this:
+Since Puppet 6.0.0, you can use built-in functions to get the same result:
 
     [$minval, $maxval, $value_to_clamp].sort[1]
 
@@ -976,8 +968,7 @@ Appends the contents of multiple arrays onto the first array given. For example:
   * `concat(['1','2','3'],'4')` returns ['1','2','3','4'].
   * `concat(['1','2','3'],'4',['5','6','7'])` returns ['1','2','3','4','5','6','7'].
 
-Note: Since puppet 4.0 concatenation of arrays and merge of hashes can be done with the `+` operator,
-and appending can be done with the `<<` operator:
+Since Puppet 4.0, concatenation of arrays and merge of hashes can be done with the `+` operator, and appending can be done with the `<<` operator:
 
     ['1','2','3'] + ['4','5','6'] + ['7','8','9'] # returns ['1','2','3','4','5','6','7']
     [1, 2, 3] << 4 # returns [1, 2, 3, 4]
@@ -992,7 +983,7 @@ Converts a given integer or base 10 string representing an integer to a specifie
   * `convert_base(5, 2)` results in: '101'
   * `convert_base('254', '16')` results in: 'fe'
 
-Note: Since Puppet 4.5.0 this can be done with the built-in [`String.new`](https://puppet.com/docs/puppet/latest/function.html#integer-to-string) function and its many formatting options:
+Since Puppet 4.5.0, this can be done with the built-in [`String.new`](https://puppet.com/docs/puppet/latest/function.html#integer-to-string) function, with various formatting options:
 
     $binary_repr = String(5, '%b') # results in "101"
     $hex_repr = String(254, '%x')  # results in "fe"
@@ -1000,14 +991,14 @@ Note: Since Puppet 4.5.0 this can be done with the built-in [`String.new`](https
 
 #### `count`
 
-Takes an array as first argument and an optional second argument.
-Counts the number of elements in array that is equal to the second argument.
-If called with only an array it counts the number of elements that are not nil/undef/empty-string.
+Takes an array as the first argument and an optional second argument.
+It counts the number of elements in an array that is equal to the second argument.
+If called with only an array, it counts the number of elements that are not nil/undef/empty-string.
 
-**Note**: Equality is tested with a Ruby method and it is therefore subject to what Ruby considers
-to be equal. For strings this means that equality is case sensitive.
+> **Note**: Equality is tested with a Ruby method. It is subject to what Ruby considers
+to be equal. For strings, equality is case sensitive.
 
-In Puppet core, counting can be done in general by using a combination of the built-in functions
+In Puppet core, counting can be done using a combination of the built-in functions
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) (since puppet 4.0.0) and
 [`length`](https://puppet.com/docs/puppet/latest/function.html#length) (since puppet 5.5.0, before that in stdlib).
 
@@ -1066,7 +1057,7 @@ For example:
 * `delete({'a' => 1,'b' => 2,'c' => 3},['b','c'])` returns {'a'=> 1}.
 * `delete(['ab', 'b'], 'b')` returns ['ab'].
 
-Note that from puppet 4.0.0 the minus (`-`) operator deletes values from arrays and keys from a hash:
+Since Puppet 4.0.0, the minus (`-`) operator deletes values from arrays and deletes keys from a hash:
 
     ['a', 'b', 'c', 'b'] - 'b'
     # would return ['a', 'c']
@@ -1074,7 +1065,7 @@ Note that from puppet 4.0.0 the minus (`-`) operator deletes values from arrays 
     {'a'=>1,'b'=>2,'c'=>3} - ['b','c'])
     # would return {'a' => '1'}
 
-A global delete from a string can be performed with the built-in
+You can perform a global delete from a string with the built-in
 [`regsubst`](https://puppet.com/docs/puppet/latest/function.html#regsubst) function.
 
     'abracadabra'.regsubst(/bra/, '', 'G')
@@ -1082,7 +1073,7 @@ A global delete from a string can be performed with the built-in
 
 In general, the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function
-can filter out entries from arrays and hashes based on keys and/or values.
+can filter out entries from arrays and hashes based on a combination of keys and values.
 
 *Type*: rvalue.
 
@@ -1092,13 +1083,13 @@ Deletes a determined indexed value from an array.
 
 For example: `delete_at(['a','b','c'], 1)` returns ['a','c'].
 
-Note that since Puppet 4 this can be done in general with the built-in
+Since Puppet 4, this can be done with the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
 
     ['a', 'b', 'c'].filter |$pos, $val | { $pos != 1 } # returns ['a', 'c']
     ['a', 'b', 'c', 'd'].filter |$pos, $val | { $pos % 2 != 0 } # returns ['b', 'd']
 
-Or if a delete is wanted from the beginning and/or the end of the array, by using the slice operator `[ ]`:
+Or, if you want to delete from the beginning or the end of the array — or from both ends at the same time — use the slice operator `[ ]`:
 
     $array[0, -1] # the same as all the values
     $array[2, -1] # all but the first 2 elements
@@ -1121,7 +1112,7 @@ For example
 * `delete_regex(['abf', 'ab', 'ac'], '^ab.*')` returns ['ac'].
 * `delete_regex(['ab', 'b'], 'b')` returns ['ab'].
 
-Note that since Puppet 4.0.0 the equivalent can be performed with the built-in
+Since Puppet 4.0.0, the equivalent can be performed with the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
 
     ["aaa", "aba", "aca"].filter |$val| { $val !~ /b/ }
@@ -1137,7 +1128,7 @@ For example:
 
 * `delete_values({'a'=>'A','b'=>'B','c'=>'C','B'=>'D'}, 'B')` returns {'a'=>'A','c'=>'C','B'=>'D'}
 
-Note that since Puppet 4.0.0 the equivalent can be performed with the built-in
+Since Puppet 4.0.0, you can perform the equivalent with the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
 
     $array.filter |$val| { $val != 'B' }
@@ -1153,7 +1144,7 @@ For example:
 
 * `$hash = delete_undef_values({a=>'A', b=>'', c=>`undef`, d => false})` returns {a => 'A', b => '', d => false}.
 
-Note that since Puppet 4.0.0 the equivalent can be performed with the built-in
+Since Puppet 4.0.0, you can perform the equivalent with the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
 
     $array.filter |$val| { $val =~ NotUndef }
@@ -1206,7 +1197,7 @@ For example:
 
 * `difference(["a","b","c"],["b","c","d"])` returns ["a"].
 
-Note: Since Puppet 4 the minus (`-`) operator in the puppet language does the same thing:
+Since Puppet 4, the minus (`-`) operator in the Puppet language does the same:
 
     ['a', 'b', 'c'] - ['b', 'c', 'd']
     # would return ['a']
@@ -1515,8 +1506,7 @@ Returns the absolute path of the specified module for the current environment.
 $module_path = get_module_path('stdlib')
 ```
 
-Note that since Puppet 5.4.0 the built-in [`module_directory`](https://puppet.com/docs/puppet/latest/function.html#module_directory)
-function does the same thing and will return the path to the first found module if given multiple values or an array.
+Since Puppet 5.4.0, the built-in [`module_directory`](https://puppet.com/docs/puppet/latest/function.html#module_directory) function does the same thing and will return the path to the first module found, if given multiple values or an array.
 
 *Type*: rvalue.
 
@@ -1525,7 +1515,7 @@ Returns the value of a resource's parameter.
 
 Arguments: A resource reference and the name of the parameter.
 
-Note that user defined resource types are evaluated lazily.
+> Note: User defined resource types are evaluated lazily.
 
 *Examples:*
 
@@ -1553,7 +1543,7 @@ example_get_param { 'show_notify': }
 
 Would notice: 'the value we are getting in this example'
 
-Note that since puppet 4.0.0 it is possible to get a parameter value by using its data type
+Since Puppet 4.0.0, you can get a parameter value by using its data type
 and the [ ] operator. The example below is equivalent to a call to getparam():
 
 ```puppet
@@ -1601,8 +1591,8 @@ Searches through an array and returns any elements that match the provided regul
 
 For example, `grep(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['aaa','aaaddd'].
 
-Note that since Puppet 4.0.0, the built-in [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function
-function can do the "same" in a more general way as any logic can be used to filter as opposed to just regular expressions:
+Since Puppet 4.0.0, the built-in [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function
+function does the "same" — as any logic can be used to filter, as opposed to just regular expressions:
 
     ['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }
 
@@ -1665,7 +1655,7 @@ if has_key($my_hash, 'key_one') {
 }
 ```
 
-Note: Since Puppet 4.0.0 this can be achieved in the puppet language with the following equivalent expression:
+Since Puppet 4.0.0, this can be achieved in the Puppet language with the following equivalent expression:
 
     $my_hash = {'key_one' => 'value_one'}
     if 'key_one' in $my_hash {
@@ -1677,14 +1667,14 @@ Note: Since Puppet 4.0.0 this can be achieved in the puppet language with the fo
 #### `hash`
 
 **Deprecated:** This function has been replaced with the built-in ability to create a new value of almost any
-data type - see the built in [`Hash.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-hash-and-struct) function
-in puppet.
+data type - see the built-in [`Hash.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-hash-and-struct) function
+in Puppet.
 
 Converts an array into a hash.
 
 For example (deprecated), `hash(['a',1,'b',2,'c',3])` returns {'a'=>1,'b'=>2,'c'=>3}.
 
-For example (built in), `Hash(['a',1,'b',2,'c',3])` returns {'a'=>1,'b'=>2,'c'=>3}.
+For example (built-in), `Hash(['a',1,'b',2,'c',3])` returns {'a'=>1,'b'=>2,'c'=>3}.
 
 *Type*: rvalue.
 
@@ -1852,11 +1842,9 @@ If a value is an array, the key is prefixed to each element. The return value is
 
 For example, `join_keys_to_values({'a'=>1,'b'=>[2,3]}, " is ")` results in ["a is 1","b is 2","b is 3"].
 
-Note: Since Puppet 5.0.0 - for more detailed control over the formatting (including indentations and
-line breaks, delimiters around arrays and hash entries, between key/values in hash entries, and individual
+Since Puppet 5.0.0, there is more control over the formatting (including indentations and line breaks, delimiters around arrays and hash entries, between key/values in hash entries, and individual
 formatting of values in the array) - see the
-built-in [`String.new`](https://docs.puppet.com/puppet/latest/function.html#conversion-to-string) function
-and its formatting options for `Array` and `Hash`.
+built-in [`String.new`](https://docs.puppet.com/puppet/latest/function.html#conversion-to-string) function and its formatting options for `Array` and `Hash`.
 
 *Type*: rvalue.
 
@@ -1964,19 +1952,17 @@ For example, `member(['a','b'], 'b')` and `member(['a','b','c'], ['b','c'])` ret
 
 *Note*: This function does not support nested arrays. If the first argument contains nested arrays, it will not recurse through them.
 
-Note: Since Puppet 4.0.0 the same can be performed in the puppet language. For single values
+Since Puppet 4.0.0, you can perform the same in the Puppet language. For single values,
 the operator `in` can be used:
 
     'a' in ['a', 'b']  # true
 
-And for arrays by using operator `-` to compute a diff:
+And for arrays, use the operator `-` to compute a diff:
 
     ['d', 'b'] - ['a', 'b', 'c'] == []  # false because 'd' is not subtracted
     ['a', 'b'] - ['a', 'b', 'c'] == []  # true because both 'a' and 'b' are subtracted
 
-Also note that since Puppet 5.2.0 the general form of testing content of an array or hash is to use the built-in
-[`any`](https://puppet.com/docs/puppet/latest/function.html#any) and
-[`all`](https://puppet.com/docs/puppet/latest/function.html#all) functions.
+Also note that since Puppet 5.2.0, the general form to test the content of an array or hash is to use the built-in [`any`](https://puppet.com/docs/puppet/latest/function.html#any) and [`all`](https://puppet.com/docs/puppet/latest/function.html#all) functions.
 
 *Type*: rvalue.
 
@@ -1996,7 +1982,7 @@ $merged_hash = merge($hash1, $hash2)
 
 When there is a duplicate key, the key in the rightmost hash takes precedence.
 
-Note that since Puppet 4.0.0 the same merge can be achieved with the + operator.
+Since Puppet 4.0.0, the same merge can be achieved with the + operator.
 
     $merged_hash = $hash1 + $hash2
 
@@ -2014,10 +2000,11 @@ Arguments: A numeric or a string representing a number.
 
 #### `num2bool`
 
-Converts a number or a string representation of a number into a true Boolean. Zero or anything non-numeric becomes `false`.
+Converts a number, or a string representation of a number, into a true Boolean. 
+Zero or anything non-numeric becomes `false`.
 Numbers greater than 0 become `true`.
 
-Note that since Puppet 5.0.0 the same can be achieved with the Puppet Type System.
+Since Puppet 5.0.0, the same can be achieved with the Puppet Type System.
 See the [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean) 
 function in Puppet for the many available type conversions.
 
@@ -2071,8 +2058,7 @@ For example:
 * `prefix(['a','b','c'], 'p')` returns ['pa','pb','pc'].
 * `prefix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'pa'=>'b','pb'=>'c','pc'=>'d'}.
 
-Note that since Puppet 4.0.0 the general way to modify values is in array is by using the
-built-in [`map`](https://docs.puppet.com/puppet/latest/function.html#map) function.
+Since Puppet 4.0.0, modify values in array by using the built-in [`map`](https://docs.puppet.com/puppet/latest/function.html#map) function.
 This example does the same as the first example above:
 
         ['a', 'b', 'c'].map |$x| { "p${x}" }
@@ -2132,9 +2118,9 @@ Passing a third argument causes the generated range to step by that interval. Fo
 
 * `range("0", "9", "2")` returns ["0","2","4","6","8"].
 
-Note that the Puppet Language supports `Integer` and `Float` ranges by using the type system. Those are suitable for
-iterating a given number of times.
-Also see the built-in [`step`](https://docs.puppet.com/puppet/latest/function.html#step) function in Puppet for skipping values.
+> Note: The Puppet Language supports `Integer` and `Float` ranges by using the type system. They are suitable for iterating a given number of times.
+
+See the built-in [`step`](https://docs.puppet.com/puppet/latest/function.html#step) function in Puppet for skipping values.
 
     Integer[0, 9].each |$x| { notice($x) } # notices 0, 1, 2, ... 9
 
@@ -2152,9 +2138,8 @@ Searches through an array and rejects all elements that match the provided regul
 
 For example, `reject(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['bbb','ccc'].
 
-Note that since Puppet 4.0.0 the same is in general done with the
-built-in [`filter`](https://docs.puppet.com/puppet/latest/function.html#filter) function in Puppet.
-Here is the equivalence of the stdlib `reject` function:
+Since Puppet 4.0.0, the same is true with the built-in [`filter`](https://docs.puppet.com/puppet/latest/function.html#filter) function in Puppet.
+The equivalent of the stdlib `reject` function:
 
     ['aaa','bbb','ccc','aaaddd'].filter |$x| { $x !~ /aaa/ }
 
@@ -2164,14 +2149,14 @@ Here is the equivalence of the stdlib `reject` function:
 
 Reverses the order of a string or array.
 
-*Note*: The same can be done with the built-in [`reverse_each`](https://docs.puppet.com/puppet/latest/function.html#reverse_each) function in Puppet.
+> *Note*: The same can be done with the built-in [`reverse_each`](https://docs.puppet.com/puppet/latest/function.html#reverse_each) function in Puppet.
 
 
 #### `round`
 
 **Deprecated:** This function has been replaced with a built-in [`round`](https://puppet.com/docs/puppet/latest/function.html#round) function as of Puppet 6.0.0.
 
-Rounds a number to the nearest integer
+Rounds a number to the nearest integer.
 
 *Type*: rvalue.
 
@@ -2241,7 +2226,7 @@ Returns the number of elements in a string, an array or a hash. This function wi
 
 #### `sprintf_hash`
 
-**Deprecated:** The same functionality can be achieved with the built-in [`sprintf`](https://docs.puppet.com/puppet/latest/function.html#sprintf) function as of Puppet Puppet 4.10.10, and 5.3.4. This function will be removed in a future release.
+**Deprecated:** The same functionality can be achieved with the built-in [`sprintf`](https://docs.puppet.com/puppet/latest/function.html#sprintf) function as of Puppet 4.10.10 and 5.3.4. This function will be removed in a future release.
 
 Performs printf-style formatting with named references of text.
 
@@ -2265,7 +2250,7 @@ Sorts strings and arrays lexically.
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `squeeze`
 
@@ -2277,7 +2262,7 @@ Replaces consecutive repeats (such as 'aaaa') in a string with a single characte
 
 Converts certain strings to a Boolean. This attempts to convert strings that contain the values '1', 'true', 't', 'y', or 'yes' to `true`. Strings that contain values '0', 'false', 'f', 'n', or 'no', or that are an empty string or undefined are converted to `false`. Any other value causes an error. These checks are case insensitive.
 
-Note that since Puppet 5.0.0 the same can be achieved with the Puppet Type System.
+Since Puppet 5.0.0, the same can be achieved with the Puppet Type System.
 See the [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean) 
 function in Puppet for the many available type conversions.
 
@@ -2292,7 +2277,7 @@ Converts a string to a salted-SHA512 password hash, used for OS X versions 10.7 
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `strftime`
 
@@ -2306,7 +2291,7 @@ Arguments: A string specifying the time in `strftime` format. See the Ruby [strf
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 *Format:*
 
@@ -2385,7 +2370,7 @@ Swaps the existing case of a string. For example, `swapcase("aBcD")` results in 
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `time`
 
@@ -2393,9 +2378,7 @@ Returns the current Unix epoch time as an integer.
 
 For example, `time()` returns something like '1311972653'.
 
-Note that since Puppet 4.8.0 the puppet language has the data types `Timestamp` (a point in time) and
-`Timespan` (a duration). The following example is equivalent to calling `time()` without
-any arguments:
+Since Puppet 4.8.0, the Puppet language has the data types `Timestamp` (a point in time) and `Timespan` (a duration). The following example is equivalent to calling `time()` without any arguments:
 
     Timestamp()
 
@@ -2560,7 +2543,7 @@ Arguments: Either a single string or an array of strings.
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `validate_absolute_path`
 
@@ -3049,7 +3032,7 @@ validate_string(true)
 validate_string([ 'some', 'array' ])
 ```
 
-*Note:* validate_string(`undef`) will not fail in this version of the functions API.
+> *Note:* validate_string(`undef`) will not fail in this version of the functions API.
 
 Instead, use:
 
@@ -3107,8 +3090,8 @@ For example:
 * `values_at(['a','b','c'], ["0-1"])` returns ['a','b'].
 * `values_at(['a','b','c','d','e'], [0, "2-3"])` returns ['a','c','d'].
 
-Note that since Puppet 4.0.0 it is possible to slice an array with index and count directly in the language.
-A negative value is taken to be "from the end" of the array - for example:
+Since Puppet 4.0.0, you can slice an array with index and count directly in the language.
+A negative value is taken to be "from the end" of the array, for example:
 
 ```puppet
 ['a', 'b', 'c', 'd'][1, 2]   # results in ['b', 'c']
