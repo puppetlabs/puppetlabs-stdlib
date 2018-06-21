@@ -24,13 +24,12 @@ module Puppet::Parser::Functions
 
 DOC
              ) do |args|
-    args = args.compact
-               
-    # look up the values of any strings that look like '$variables'
-    args.map! do |item|
-      next unless item.is_a? String
+    # look up the values of any strings that look like '$variables' w/o mutating args
+    args = args.map do |item|
+      next item unless item.is_a? String
       item.start_with?('$') ? call_function('getvar', [item.slice(1..-1)]) : item
     end
+    args.compact!
     args.delete(:undef)
     args.delete(:undefined)
     args.delete('')
