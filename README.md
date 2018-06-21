@@ -419,7 +419,7 @@ Valid values: A windows filepath.
 
 #### `Stdlib::Filesource`
 
-Matches paths valid values for the source parameter of the puppet file type.
+Matches paths valid values for the source parameter of the Puppet file type.
 
 Acceptable input example:
 
@@ -999,8 +999,8 @@ If called with only an array, it counts the number of elements that are not nil/
 to be equal. For strings, equality is case sensitive.
 
 In Puppet core, counting can be done using a combination of the built-in functions
-[`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) (since puppet 4.0.0) and
-[`length`](https://puppet.com/docs/puppet/latest/function.html#length) (since puppet 5.5.0, before that in stdlib).
+[`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) (since Puppet 4.0.0) and
+[`length`](https://puppet.com/docs/puppet/latest/function.html#length) (since Puppet 5.5.0, before that in stdlib).
 
 This example shows counting values that are not `undef`:
 
