@@ -955,7 +955,7 @@ Keeps value within the range [Min, X, Max] by sort based on integer value (param
 
 Arguments: strings, arrays, or numerics.
 
-Since Puppet 6.0.0, you can use built-in functions to get the same results:
+Since Puppet 6.0.0, you can use built-in functions to get the same result:
 
     [$minval, $maxval, $value_to_clamp].sort[1]
 
@@ -991,7 +991,7 @@ Since Puppet 4.5.0, this can be done with the built-in [`String.new`](https://pu
 
 #### `count`
 
-Takes an array as the first argument and a second optional argument.
+Takes an array as the first argument and an optional second argument.
 It counts the number of elements in an array that is equal to the second argument.
 If called with only an array, it counts the number of elements that are not nil/undef/empty-string.
 
