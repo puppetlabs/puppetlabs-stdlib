@@ -5,7 +5,7 @@ module Puppet::Parser::Functions
   newfunction(:count, :type => :rvalue, :arity => -2, :doc => <<-DOC
     Takes an array as first argument and an optional second argument.
     Count the number of elements in array that is equal to the second argument.
-    If called with only an array it counts the number of elements that are not nil/undef/empty-string.
+    If called with only an array, it counts the number of elements that are not nil/undef/empty-string.
 
     Note: equality is tested with a Ruby method and it is therefore subject to what Ruby considers
     to be equal. For strings this means that equality is case sensitive.
