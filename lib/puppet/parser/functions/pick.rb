@@ -20,15 +20,27 @@ module Puppet::Parser::Functions
     quotes to prevent interpolation and this function will check to see if that
     variable exists.
 
+    If the first character of your string is actually a '$', then escape it with
+    a backslash to use the literal string.
+
       $real_jenkins_version = pick('$::jenkins_version', '1.449')
+      $pxe_config_template_real = pick($pxe_config_template, '\$pybasedir/drivers/modules/ipxe_config.template')
 
 DOC
              ) do |args|
     # look up the values of any strings that look like '$variables' w/o mutating args
     args = args.map do |item|
       next item unless item.is_a? String
-      item.start_with?('$') ? call_function('getvar', [item.slice(1..-1)]) : item
+      case item[0]
+      when '$'
+        call_function('getvar', [item.slice(1..-1)])
+      when '\\'
+        item.start_with?('\$') ? item.slice(1..-1) : item
+      else
+        item
+      end
     end
+
     args.compact!
     args.delete(:undef)
     args.delete(:undefined)

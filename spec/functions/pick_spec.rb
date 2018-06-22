@@ -9,9 +9,13 @@ describe 'pick' do
   it { is_expected.to run.with_params(:undef, 'two').and_return('two') }
   it { is_expected.to run.with_params(:undefined, 'two').and_return('two') }
   it { is_expected.to run.with_params(nil, 'two').and_return('two') }
-  it { is_expected.to run.with_params('$foo', 'two').and_return('two') }
-  it { is_expected.to run.with_params('$puppetversion', 'two').and_return(Puppet.version) }
-  it { is_expected.to run.with_params('$::puppetversion', 'two').and_return(Puppet.version) }
+
+  context 'with stringified variable names' do
+    it { is_expected.to run.with_params('$foo', 'two').and_return('two') }
+    it { is_expected.to run.with_params('$puppetversion', 'two').and_return(Puppet.version) }
+    it { is_expected.to run.with_params('$::puppetversion', 'two').and_return(Puppet.version) }
+    it { is_expected.to run.with_params('\$foo', 'two').and_return('$foo') }
+  end
 
   context 'with UTF8 and double byte characters' do
     it { is_expected.to run.with_params(nil, 'このテキスト').and_return('このテキスト') }
