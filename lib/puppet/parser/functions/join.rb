@@ -10,6 +10,9 @@ module Puppet::Parser::Functions
         join(['a','b','c'], ",")
 
     Would result in: "a,b,c"
+
+    Note: from Puppet 5.4.0, the compatible function with the same name in Puppet core
+    will be used instead of this function.
     DOC
              ) do |arguments|
 

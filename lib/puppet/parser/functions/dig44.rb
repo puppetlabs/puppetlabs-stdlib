@@ -7,7 +7,7 @@ module Puppet::Parser::Functions
     :type => :rvalue,
     :arity => -2,
     :doc => <<-DOC
-    DEPRECATED: This function has been replaced in puppet 4.5.0.
+    DEPRECATED: This function has been replaced in Puppet 4.5.0.
 
     Looks up into a complex structure of arrays and hashes and returns a value
     or the default value if nothing was found.

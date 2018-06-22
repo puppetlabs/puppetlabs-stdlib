@@ -7,6 +7,16 @@ module Puppet::Parser::Functions
       false, f, 0, n, and no to 0
       true, t, 1, y, and yes to 1
     Requires a single boolean or string as an input.
+
+    Note that since Puppet 5.0.0 it is possible to create new data types for almost any
+    datatype using the type system and the built-in
+    [`Numeric.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-numeric),
+    [`Integer.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-integer), and
+    [`Float.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-float)
+    function are used to convert to numeric values.
+
+        notice(Integer(false)) # Notices 0
+        notice(Float(true))    # Notices 1.0
     DOC
              ) do |arguments|
 

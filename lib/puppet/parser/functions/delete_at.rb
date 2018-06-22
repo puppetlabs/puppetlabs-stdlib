@@ -10,6 +10,17 @@ module Puppet::Parser::Functions
         delete_at(['a','b','c'], 1)
 
     Would return: ['a','c']
+
+    Note that since Puppet 4 this can be done in general with the filter function:
+
+        ['a', 'b', 'c'].filter |$pos, $val | { $pos != 1 }
+
+    Or if a delete is wanted from the beginning or end of the array, by using the slice operator [ ]:
+
+        $array[0, -1] # the same as all the values
+        $array[2, -1] # all but the first 2 elements
+        $array[0, -3] # all but the last 2 elements
+        $array[1, -2] # all but the first and last element
   DOC
              ) do |arguments|
 

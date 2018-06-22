@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'abs function' do
+describe 'abs function', :if => Puppet::Util::Package.versioncmp(return_puppet_version, '6.0.0') < 0 do
   describe 'success' do
     pp1 = <<-DOC
       $input  = '-34.56'

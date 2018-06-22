@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'max function' do
+describe 'max function', :if => Puppet::Util::Package.versioncmp(return_puppet_version, '6.0.0') < 0 do
   describe 'success' do
     pp = <<-DOC
       $o = max("the","public","art","galleries")

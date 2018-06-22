@@ -4,6 +4,9 @@
 module Puppet::Parser::Functions
   newfunction(:empty, :type => :rvalue, :doc => <<-DOC
     Returns true if the variable is empty.
+
+    Note: from Puppet 5.5.0, the compatible function with the same name in Puppet core
+    will be used instead of this function.
   DOC
              ) do |arguments|
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'abs' do
+describe 'abs', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 do
   it { is_expected.not_to eq(nil) }
 
   describe 'signature validation in puppet3', :unless => RSpec.configuration.puppet_future do

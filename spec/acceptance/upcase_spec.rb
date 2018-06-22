@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'upcase function' do
+describe 'upcase function', :if => Puppet::Util::Package.versioncmp(return_puppet_version, '6.0.0') < 0 do
   describe 'success' do
     pp1 = <<-DOC
       $a = ["wallless", "laparohysterosalpingooophorectomy", "brrr", "goddessship"]
