@@ -15,9 +15,21 @@ module Puppet::Parser::Functions
     called 'jenkins_version' (note that parameters set in the Puppet Dashboard/
     Enterprise Console are brought into Puppet as top-scope variables), and,
     failing that, will use a default value of 1.449.
+
+    If you have `strict_variables` turned on, then wrap your variable in single
+    quotes to prevent interpolation and this function will check to see if that
+    variable exists.
+
+      $real_jenkins_version = pick('$::jenkins_version', '1.449')
+
 DOC
              ) do |args|
-    args = args.compact
+    # look up the values of any strings that look like '$variables' w/o mutating args
+    args = args.map do |item|
+      next item unless item.is_a? String
+      item.start_with?('$') ? call_function('getvar', [item.slice(1..-1)]) : item
+    end
+    args.compact!
     args.delete(:undef)
     args.delete(:undefined)
     args.delete('')
