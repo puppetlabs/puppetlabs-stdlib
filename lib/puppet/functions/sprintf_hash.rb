@@ -12,6 +12,9 @@
 #                          { 'foo' => 'a string', 'number' => 5 })
 #   # $output = 'String: a string / number converted to binary: 101'
 #
+# Note that since Puppet 4.10.10, and 5.3.4 this functionality is supported by the
+# `sprintf` function in puppet core.
+#
 Puppet::Functions.create_function(:sprintf_hash) do
   # @param format The format to use.
   # @param arguments Hash with parameters.

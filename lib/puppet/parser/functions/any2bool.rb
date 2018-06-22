@@ -11,6 +11,9 @@ module Puppet::Parser::Functions
     * Number (or a string representation of a number) > 0 will return true, otherwise false
     * undef will return false
     * Anything else will return true
+
+    Also see the built-in [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean)
+    function.
   DOC
              ) do |arguments|
 

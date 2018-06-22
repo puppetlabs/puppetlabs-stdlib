@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'min function' do
+describe 'min function', :if => Puppet::Util::Package.versioncmp(return_puppet_version, '6.0.0') < 0 do
   describe 'success' do
     pp = <<-DOC
       $o = min("the","public","art","galleries")

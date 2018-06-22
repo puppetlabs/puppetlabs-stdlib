@@ -6,6 +6,9 @@ module Puppet::Parser::Functions
   newfunction(:capitalize, :type => :rvalue, :doc => <<-DOC
     Capitalizes the first letter of a string or array of strings.
     Requires either a single string or an array as an input.
+
+    Note: from Puppet 6.0.0, the compatible function with the same name in Puppet core
+    will be used instead of this function.
     DOC
              ) do |arguments|
 

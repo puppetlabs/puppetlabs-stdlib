@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'strip function' do
+describe 'strip function', :if => Puppet::Util::Package.versioncmp(return_puppet_version, '6.0.0') < 0 do
   describe 'success' do
     pp1 = <<-DOC
       $a = ["  the   ","   public   ","   art","galleries   "]

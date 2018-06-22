@@ -10,6 +10,13 @@ module Puppet::Parser::Functions
         hash(['a',1,'b',2,'c',3])
 
     Would return: {'a'=>1,'b'=>2,'c'=>3}
+
+    Note: Since Puppet 5.0.0 type conversions can in general be performed by using the Puppet Type System.
+    See the function new() in Puppet for a wide range of available type conversions.
+    This example shows the equivalent expression in the Puppet language:
+
+        Hash(['a',1,'b',2,'c',3])
+        Hash([['a',1],['b',2],['c',3]])
     DOC
              ) do |arguments|
 
