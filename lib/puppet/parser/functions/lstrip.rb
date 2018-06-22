@@ -4,6 +4,9 @@
 module Puppet::Parser::Functions
   newfunction(:lstrip, :type => :rvalue, :doc => <<-DOC
     Strips leading spaces to the left of a string.
+
+    Note: from Puppet 6.0.0, the compatible function with the same name in Puppet core
+    will be used instead of this function.
     DOC
              ) do |arguments|
 

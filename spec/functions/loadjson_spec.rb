@@ -65,5 +65,78 @@ describe 'loadjson' do
       end
       it { is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value') }
     end
+
+    context 'when an existing URL is specified' do
+      let(:filename) do
+        'https://example.local/myhash.json'
+      end
+      let(:basic_auth) { { :http_basic_authentication => ['', ''] } }
+      let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
+      let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
+
+      it {
+        expect(OpenURI).to receive(:open_uri).with(filename, basic_auth).and_return(json)
+        expect(PSON).to receive(:load).with(json).and_return(data).once
+        is_expected.to run.with_params(filename).and_return(data)
+      }
+    end
+
+    context 'when an existing URL (with username and password) is specified' do
+      let(:filename) do
+        'https://user1:pass1@example.local/myhash.json'
+      end
+      let(:url_no_auth) { 'https://example.local/myhash.json' }
+      let(:basic_auth) { { :http_basic_authentication => ['user1', 'pass1'] } }
+      let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
+      let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
+
+      it {
+        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
+        expect(PSON).to receive(:load).with(json).and_return(data).once
+        is_expected.to run.with_params(filename).and_return(data)
+      }
+    end
+
+    context 'when an existing URL (with username) is specified' do
+      let(:filename) do
+        'https://user1@example.local/myhash.json'
+      end
+      let(:url_no_auth) { 'https://example.local/myhash.json' }
+      let(:basic_auth) { { :http_basic_authentication => ['user1', ''] } }
+      let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
+      let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
+
+      it {
+        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
+        expect(PSON).to receive(:load).with(json).and_return(data).once
+        is_expected.to run.with_params(filename).and_return(data)
+      }
+    end
+
+    context 'when the URL output could not be parsed, with default specified' do
+      let(:filename) do
+        'https://example.local/myhash.json'
+      end
+      let(:basic_auth) { { :http_basic_authentication => ['', ''] } }
+      let(:json) { ',;{"key":"value"}' }
+
+      it {
+        expect(OpenURI).to receive(:open_uri).with(filename, basic_auth).and_return(json)
+        expect(PSON).to receive(:load).with(json).once.and_raise StandardError, 'Something terrible have happened!'
+        is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
+      }
+    end
+
+    context 'when the URL does not exist, with default specified' do
+      let(:filename) do
+        'https://example.local/myhash.json'
+      end
+      let(:basic_auth) { { :http_basic_authentication => ['', ''] } }
+
+      it {
+        expect(OpenURI).to receive(:open_uri).with(filename, basic_auth).and_raise OpenURI::HTTPError, '404 File not Found'
+        is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
+      }
+    end
   end
 end

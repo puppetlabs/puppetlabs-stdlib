@@ -98,7 +98,7 @@ describe 'ensure_resource' do
     end
 
     describe 'after running ensure_resource("user", ["username1", "username2"], {})' do
-      before(:each) { subject.call(['User', %w[username1 username2], {}]) }
+      before(:each) { subject.call(['User', ['username1', 'username2'], {}]) }
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_user('username1').with_ensure('present') }
@@ -108,7 +108,7 @@ describe 'ensure_resource' do
     describe 'when providing already set params' do
       let(:params) { { 'ensure' => 'present' } }
 
-      before(:each) { subject.call(['User', %w[username2 username3], params]) }
+      before(:each) { subject.call(['User', ['username2', 'username3'], params]) }
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_user('username1').with(params) }

@@ -10,6 +10,11 @@ module Puppet::Parser::Functions
       $binary_repr = convert_base(5, 2)  # $binary_repr is now set to "101"
       $hex_repr = convert_base("254", "16")  # $hex_repr is now set to "fe"
 
+     Note: Since Puppet 4.5.0 this can be done with String.new() and its many formatting options:
+
+       $binary_repr = String(5, '%b') # results in "101"
+       $hex_repr = String(254, "%x")  # results in "fe"
+       $hex_repr = String(254, "%#x")  # results in "0xfe"
     DOC
 
     raise Puppet::ParseError, 'convert_base(): First argument must be either a string or an integer' unless args[0].is_a?(Integer) || args[0].is_a?(String)

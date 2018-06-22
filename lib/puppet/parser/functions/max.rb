@@ -5,6 +5,9 @@ module Puppet::Parser::Functions
   newfunction(:max, :type => :rvalue, :doc => <<-DOC
     Returns the highest value of all arguments.
     Requires at least one argument.
+
+    Note: from Puppet 6.0.0, the compatible function with the same name in Puppet core
+    will be used instead of this function.
     DOC
              ) do |args|
 

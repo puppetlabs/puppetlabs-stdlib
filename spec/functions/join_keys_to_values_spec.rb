@@ -23,7 +23,7 @@ describe 'join_keys_to_values' do
     expect(result.sort).to eq(['key1:value1', 'key2:value2'].sort)
   end
   it 'runs join_keys_to_values(<hash with array value>, " ") and return the proper array' do
-    result = subject.call([{ 'key1' => 'value1', 'key2' => %w[value2 value3] }, ' '])
+    result = subject.call([{ 'key1' => 'value1', 'key2' => ['value2', 'value3'] }, ' '])
     expect(result.sort).to eq(['key1 value1', 'key2 value2', 'key2 value3'].sort)
   end
 end

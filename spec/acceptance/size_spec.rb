@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'size function' do
+describe 'size function', :if => Puppet::Util::Package.versioncmp(return_puppet_version, '6.0.0') < 0 do
   describe 'success' do
     pp1 = <<-DOC
       $a = 'discombobulate'

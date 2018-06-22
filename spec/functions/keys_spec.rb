@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'keys' do
+describe 'keys', :if => Puppet::Util::Package.versioncmp(Puppet.version, '5.5.0') < 0 do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it {
@@ -14,11 +14,11 @@ describe 'keys' do
   it { is_expected.to run.with_params('key' => 'value').and_return(['key']) }
   it 'returns the array of keys' do
     result = subject.call([{ 'key1' => 'value1', 'key2' => 'value2' }])
-    expect(result).to match_array(%w[key1 key2])
+    expect(result).to match_array(['key1', 'key2'])
   end
 
   it 'runs with UTF8 and double byte characters' do
     result = subject.call([{ 'ҝểү' => '√ẳŀμệ', 'キー' => '値' }])
-    expect(result).to match_array(%w[ҝểү キー])
+    expect(result).to match_array(['ҝểү', 'キー'])
   end
 end

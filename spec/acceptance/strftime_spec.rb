@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'strftime function' do
+describe 'strftime function', :if => Puppet::Util::Package.versioncmp(Puppet.version, '4.8.0') < 0 do
   describe 'success' do
     pp = <<-DOC
       $o = strftime('%C')

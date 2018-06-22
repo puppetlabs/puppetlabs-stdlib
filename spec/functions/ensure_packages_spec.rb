@@ -12,7 +12,7 @@ describe 'ensure_packages' do
     is_expected.to run.with_params(['packagename', 1]).and_raise_error(Puppet::ParseError)
   }
   it { is_expected.to run.with_params('packagename') }
-  it { is_expected.to run.with_params(%w[packagename1 packagename2]) }
+  it { is_expected.to run.with_params(['packagename1', 'packagename2']) }
 
   context 'when given a catalog with "package { puppet: ensure => absent }"' do
     let(:pre_condition) { 'package { puppet: ensure => absent }' }

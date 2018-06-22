@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'upcase' do
+describe 'upcase', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 do
   describe 'signature validation' do
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
@@ -21,6 +21,6 @@ describe 'upcase' do
 
   describe 'strings in arrays handling' do
     it { is_expected.to run.with_params([]).and_return([]) }
-    it { is_expected.to run.with_params(%w[One twO]).and_return(%w[ONE TWO]) }
+    it { is_expected.to run.with_params(['One', 'twO']).and_return(['ONE', 'TWO']) }
   end
 end

@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 describe 'bool2num function' do
   describe 'success' do
-    %w[false f 0 n no].each do |bool|
+    ['false', 'f', '0', 'n', 'no'].each do |bool|
       pp1 = <<-DOC
         $input = "#{bool}"
         $output = bool2num($input)
@@ -15,7 +15,7 @@ describe 'bool2num function' do
       end
     end
 
-    %w[true t 1 y yes].each do |bool|
+    ['true', 't', '1', 'y', 'yes'].each do |bool|
       pp2 = <<-DOC
         $input = "#{bool}"
         $output = bool2num($input)

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'values' do
+describe 'values', :if => Puppet::Util::Package.versioncmp(Puppet.version, '5.5.0') < 0 do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it {
@@ -14,7 +14,7 @@ describe 'values' do
   it { is_expected.to run.with_params('key' => 'value').and_return(['value']) }
   it 'returns the array of values' do
     result = subject.call([{ 'key1' => 'value1', 'key2' => 'value2', 'duplicate_value_key' => 'value2' }])
-    expect(result).to match_array(%w[value1 value2 value2])
+    expect(result).to match_array(['value1', 'value2', 'value2'])
   end
 
   it 'runs with UTF8 and double byte characters' do

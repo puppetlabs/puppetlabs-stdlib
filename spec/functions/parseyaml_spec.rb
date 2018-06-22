@@ -25,7 +25,7 @@ describe 'parseyaml' do
 
     it 'is able to parse YAML data with an Array' do
       is_expected.to run.with_params("---\n- a\n- b\n- c\n")
-                        .and_return(%w[a b c])
+                        .and_return(['a', 'b', 'c'])
     end
 
     it 'is able to parse YAML data with a mixed structure' do
@@ -35,7 +35,7 @@ describe 'parseyaml' do
 
     it 'is able to parse YAML data with a UTF8 and double byte characters' do
       is_expected.to run.with_params("---\na: ×\nこれ: 記号\nです:\n  ©:\n  - Á\n  - ß\n")
-                        .and_return('a' => '×', 'これ' => '記号', 'です' => { '©' => %w[Á ß] })
+                        .and_return('a' => '×', 'これ' => '記号', 'です' => { '©' => ['Á', 'ß'] })
     end
 
     it 'does not return the default value if the data was parsed correctly' do
