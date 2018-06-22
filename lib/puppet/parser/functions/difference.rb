@@ -13,7 +13,7 @@ module Puppet::Parser::Functions
 
     Would return: ["a"]
 
-    Note: Since Puppet 4 the minus (-) operator in the puppet language does the same thing:
+    Note: Since Puppet 4 the minus (-) operator in the Puppet language does the same thing:
 
       ['a', 'b', 'c'] - ['b', 'c', 'd']
       # would return ['a']

@@ -11,7 +11,7 @@ module Puppet::Parser::Functions
 
     Would return: {'a'=>'A','c'=>'C','B'=>'D'}
 
-    Note that since Puppet 4.0.0 the equivalent can be performed with the filter() function in puppet:
+    Note that since Puppet 4.0.0 the equivalent can be performed with the filter() function in Puppet:
 
         $array.filter |$val| { $val != 'B' }
         $hash.filter |$key, $val| { $val != 'B' }

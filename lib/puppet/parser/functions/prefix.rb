@@ -12,7 +12,7 @@ module Puppet::Parser::Functions
     Will return: ['pa','pb','pc']
 
     Note that since Puppet 4.0.0 the general way to modify values is in array is by using the map
-    function in puppet. This example does the same as the example above:
+    function in Puppet. This example does the same as the example above:
 
         ['a', 'b', 'c'].map |$x| { "p${x}" }
     DOC

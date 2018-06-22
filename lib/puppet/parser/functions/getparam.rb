@@ -32,7 +32,7 @@ Puppet::Parser::Functions.newfunction(:getparam,
 
     Would notice: 'the value we are getting in this example'
 
-    Note that since puppet 4.0.0 it is possible to get a parameter value by using its data type
+    Note that since Puppet 4.0.0 it is possible to get a parameter value by using its data type
     and the [ ] operator. The example below is equivalent to a call to getparam():
 
         Example_resource['example_resource_instance']['param']

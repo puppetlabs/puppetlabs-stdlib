@@ -20,7 +20,7 @@ module Puppet::Parser::Functions
         delete('abracadabra', 'bra')
         Would return: 'acada'
 
-    Note that from puppet 4.0.0 the minus (-) operator deletes values from arrays and keys from a hash:
+    Note that from Puppet 4.0.0 the minus (-) operator deletes values from arrays and keys from a hash:
 
         ['a', 'b', 'c', 'b'] - 'b'
         # would return ['a', 'c']

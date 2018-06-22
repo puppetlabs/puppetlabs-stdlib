@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
           notice('this will be printed')
         }
 
-    Note: Since Puppet 4.0.0 this can be achieved in the puppet language with the following equivalent expression:
+    Note: Since Puppet 4.0.0 this can be achieved in the Puppet language with the following equivalent expression:
 
        $my_hash = {'key_one' => 'value_one'}
        if 'key_one' in $my_hash {

@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
 
         ['aaa','aaaddd']
 
-    Note that since Puppet 4.0.0, the filter() function in puppet can do the same:
+    Note that since Puppet 4.0.0, the filter() function in Puppet can do the same:
 
         ['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }
     DOC

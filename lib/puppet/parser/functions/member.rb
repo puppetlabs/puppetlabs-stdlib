@@ -26,7 +26,7 @@ module Puppet::Parser::Functions
 
     would return: false
 
-    Note: Since Puppet 4.0.0 the same can be performed in the puppet language. For single values
+    Note: Since Puppet 4.0.0 the same can be performed in the Puppet language. For single values
     the operator `in` can be used:
 
         'a' in ['a', 'b']  # true

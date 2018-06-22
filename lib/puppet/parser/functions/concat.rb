@@ -13,7 +13,7 @@ module Puppet::Parser::Functions
 
       ['1','2','3','4','5','6','7','8','9']
 
-    Note: Since puppet 4.0 concatenation of arrays and hashes can be done with the + operator.
+    Note: Since Puppet 4.0 concatenation of arrays and hashes can be done with the + operator.
 
       ['1','2','3'] + ['4','5','6'] + ['7','8','9']
   DOC

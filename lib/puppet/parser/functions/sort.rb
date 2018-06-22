@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
   newfunction(:sort, :type => :rvalue, :doc => <<-DOC
     Sorts strings and arrays lexically.
 
-    Note that from Puppet 6.0.0 the same function in puppet will be used instead of this.
+    Note that from Puppet 6.0.0 the same function in Puppet will be used instead of this.
   DOC
              ) do |arguments|
 
