@@ -16,6 +16,11 @@
 # `sprintf` function in puppet core.
 #
 Puppet::Functions.create_function(:sprintf_hash) do
+  dispatch :deprecation_gen do
+    param 'Any', :scope
+    repeated_param 'Any', :args
+  end
+
   # @param format The format to use.
   # @param arguments Hash with parameters.
   # @return The formatted string.
@@ -28,5 +33,10 @@ Puppet::Functions.create_function(:sprintf_hash) do
 
   def sprintf_hash(format, arguments)
     Kernel.sprintf(format, Hash[arguments.map { |(k, v)| [k.to_sym, v] }])
+  end
+
+  def deprecation_gen(scope, *args)
+    call_function('deprecation', 'is_absolute_path', 'This method is deprecated, please use match expressions with Stdlib::Compat::Absolute_Path instead. They are described at https://docs.puppet.com/puppet/latest/reference/lang_data_type.html#match-expressions.')
+    scope.send('function_is_absolute_path', args)
   end
 end
