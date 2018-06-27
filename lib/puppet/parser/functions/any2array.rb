@@ -32,6 +32,7 @@ module Puppet::Parser::Functions
 
     return arguments unless arguments.length == 1
     return arguments[0] if arguments[0].is_a?(Array)
+    return [] if arguments == ['']
     if arguments[0].is_a?(Hash)
       result = []
       arguments[0].each do |key, value|
