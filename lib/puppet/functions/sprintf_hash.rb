@@ -19,14 +19,25 @@ Puppet::Functions.create_function(:sprintf_hash) do
   # @param format The format to use.
   # @param arguments Hash with parameters.
   # @return The formatted string.
-  dispatch :sprintf_hash do
-    param 'String', :format
-    param 'Hash', :arguments
-    # Disabled for now. This gives issues on puppet 4.7.1.
-    # return_type 'String'
+  # dispatch :sprintf_hash do
+  #   param 'String', :format
+  #   param 'Hash', :arguments
+  #   # Disabled for now. This gives issues on puppet 4.7.1.
+  #   # return_type 'String'
+  # end
+
+  dispatch :deprecation_gen do
+    param 'Any', :scope
+    repeated_param 'Any', :args
   end
 
-  def sprintf_hash(format, arguments)
-    Kernel.sprintf(format, Hash[arguments.map { |(k, v)| [k.to_sym, v] }])
+  def call(scope, *args)
+    manipulated_args = [scope] + args
+    self.class.dispatcher.dispatch(self, scope, manipulated_args)
+  end
+
+  def deprecation_gen(scope, *args)
+    call_function('deprecation', 'sprintf_hash', 'This method is deprecated as of puppet 4.10..10, please use the built in sprintf_hash method instead.')
+    scope.send('sprintf_hash', args)
   end
 end
