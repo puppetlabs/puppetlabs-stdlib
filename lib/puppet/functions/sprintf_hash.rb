@@ -27,6 +27,8 @@ Puppet::Functions.create_function(:sprintf_hash) do
   end
 
   def sprintf_hash(format, arguments)
+    call_function('deprecation', 'sprintf_hash', 'This method is deprecated. From Puppet 4.10.10/5.3.4 please use the built-in sprintf instead')
+
     Kernel.sprintf(format, Hash[arguments.map { |(k, v)| [k.to_sym, v] }])
   end
 end
