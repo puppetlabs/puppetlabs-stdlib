@@ -2176,6 +2176,10 @@ Takes an integer max value and a string seed value and returns a repeatable rand
 
 *Type*: rvalue.
 
+#### `seeded_rand_string`
+
+Generates a consistent (based on seed value) random string. Useful for generating matching passwords for different hosts.
+
 #### `shell_escape`
 
 Escapes a string so that it can be safely used in a Bourne shell command line. Note that the resulting string should be used unquoted and is not intended for use in either double or single quotes. This function behaves the same as Ruby's `Shellwords.shellescape()` function; see the [Ruby documentation](http://ruby-doc.org/stdlib-2.3.0/libdoc/shellwords/rdoc/Shellwords.html#method-c-shellescape).
