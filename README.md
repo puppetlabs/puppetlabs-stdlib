@@ -315,12 +315,14 @@ false
 
 #### `Stdlib::Httpsurl`
 
-Matches HTTPS URLs.
+Matches HTTPS URLs, it is case a insensitive match.
 
 Acceptable input example:
 
 ```shell
 https://hello.com
+
+HTTPS://HELLO.COM
 ```
 
 Unacceptable input example:
@@ -331,7 +333,7 @@ httds://notquiteright.org`
 
 #### `Stdlib::Httpurl`
 
-Matches both HTTPS and HTTP URLs.
+Matches both HTTPS and HTTP URLs, it is a case insensitive match.
 
 Acceptable input example:
 
@@ -339,6 +341,8 @@ Acceptable input example:
 https://hello.com
 
 http://hello.com
+
+HTTP://HELLO.COM
 ```
 
 Unacceptable input example:
