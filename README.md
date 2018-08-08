@@ -3119,6 +3119,8 @@ Takes one element from first array given and merges corresponding elements from 
 
 As of Puppet Enterprise 3.7, the stdlib module is no longer included in PE. PE users should install the most recent release of stdlib for compatibility with Puppet modules.
 
+For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-stdlib/blob/master/metadata.json)
+
 ### Version Compatibility
 
 Versions | Puppet 2.6 | Puppet 2.7 | Puppet 3.x | Puppet 4.x |
