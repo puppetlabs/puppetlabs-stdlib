@@ -315,7 +315,7 @@ false
 
 #### `Stdlib::Httpsurl`
 
-Matches HTTPS URLs, it is case a insensitive match.
+Matches HTTPS URLs. It is a case insensitive match.
 
 Acceptable input example:
 
@@ -333,7 +333,7 @@ httds://notquiteright.org`
 
 #### `Stdlib::Httpurl`
 
-Matches both HTTPS and HTTP URLs, it is a case insensitive match.
+Matches both HTTPS and HTTP URLs. It is a case insensitive match.
 
 Acceptable input example:
 
@@ -379,7 +379,7 @@ some/path
 
 #### `Stdlib::Filemode`
 
-Matches octal file modes consisting of 1 to 4 numbers and symbolic file modes.
+Matches octal file modes consisting of one to four numbers and symbolic file modes.
 
 Acceptable input examples:
 
@@ -755,14 +755,14 @@ Argument: A single argument of either an integer or float value.
 
 Converts any object to an array containing that object. Converts empty argument lists are to empty arrays. Hashes are converted to arrays of alternating keys and values. Arrays are not touched.
 
-Since Puppet 5.0.0, you can create new values of almost any datatype using the type system — you can use the built-in [`Array.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-array-and-tuple) function to create a new Array:
+Since Puppet 5.0.0, you can create new values of almost any datatype using the type system — you can use the built-in [`Array.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-array-and-tuple) function to create a new array:
 
     $hsh = {'key' => 42, 'another-key' => 100}
     notice(Array($hsh))
 
 Would notice `[['key', 42], ['another-key', 100]]`
 
-The Array data type also has a special mode to "create an array if not already an array":
+The array data type also has a special mode to "create an array if not already an array":
 
     notice(Array({'key' => 42, 'another-key' => 100}, true))
 
@@ -865,7 +865,7 @@ Converts a Boolean to a number. Converts values:
 
 Argument: a single Boolean or string as an input.
 
-Since Puppet 5.0.0, you can create values for almost any datatype using the type system — you can use the built-in [`Numeric.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-numeric), [`Integer.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-integer), and [`Float.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-float)
+Since Puppet 5.0.0, you can create values for almost any data type using the type system — you can use the built-in [`Numeric.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-numeric), [`Integer.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-integer), and [`Float.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-float)
 functions to convert to numeric values:
 
     notice(Integer(false)) # Notices 0
@@ -888,7 +888,7 @@ bool2str(false, 't', 'f')         => 'f'
 Arguments: Boolean.
 
 Since Puppet 5.0.0, you can create new values for almost any
-datatype using the type system — you can use the built-in
+data type using the type system — you can use the built-in
 [`String.new`](https://puppet.com/docs/puppet/latest/function.html#boolean-to-string)
 function to convert to String, with many different format options:
 
@@ -974,7 +974,7 @@ Appends the contents of multiple arrays onto the first array given. For example:
   * `concat(['1','2','3'],'4')` returns ['1','2','3','4'].
   * `concat(['1','2','3'],'4',['5','6','7'])` returns ['1','2','3','4','5','6','7'].
 
-Since Puppet 4.0, concatenation of arrays and merge of hashes can be done with the `+` operator, and appending can be done with the `<<` operator:
+Since Puppet 4.0, you can use the `+` operator for concatenation of arrays and merge of hashes, and the `<<` operator for appending:
 
     ['1','2','3'] + ['4','5','6'] + ['7','8','9'] # returns ['1','2','3','4','5','6','7']
     [1, 2, 3] << 4 # returns [1, 2, 3, 4]
@@ -989,7 +989,7 @@ Converts a given integer or base 10 string representing an integer to a specifie
   * `convert_base(5, 2)` results in: '101'
   * `convert_base('254', '16')` results in: 'fe'
 
-Since Puppet 4.5.0, this can be done with the built-in [`String.new`](https://puppet.com/docs/puppet/latest/function.html#integer-to-string) function, with various formatting options:
+Since Puppet 4.5.0, you can do this with the built-in [`String.new`](https://puppet.com/docs/puppet/latest/function.html#integer-to-string) function, with various formatting options:
 
     $binary_repr = String(5, '%b') # results in "101"
     $hex_repr = String(254, '%x')  # results in "fe"
@@ -1004,7 +1004,7 @@ If called with only an array, it counts the number of elements that are not nil/
 > **Note**: Equality is tested with a Ruby method. It is subject to what Ruby considers
 to be equal. For strings, equality is case sensitive.
 
-In Puppet core, counting can be done using a combination of the built-in functions
+In Puppet core, counting is done using a combination of the built-in functions
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) (since Puppet 4.0.0) and
 [`length`](https://puppet.com/docs/puppet/latest/function.html#length) (since Puppet 5.5.0, before that in stdlib).
 
@@ -1118,7 +1118,7 @@ For example
 * `delete_regex(['abf', 'ab', 'ac'], '^ab.*')` returns ['ac'].
 * `delete_regex(['ab', 'b'], 'b')` returns ['ab'].
 
-Since Puppet 4.0.0, the equivalent can be performed with the built-in
+Since Puppet 4.0.0, do the equivalent with the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
 
     ["aaa", "aba", "aca"].filter |$val| { $val !~ /b/ }
@@ -1134,7 +1134,7 @@ For example:
 
 * `delete_values({'a'=>'A','b'=>'B','c'=>'C','B'=>'D'}, 'B')` returns {'a'=>'A','c'=>'C','B'=>'D'}
 
-Since Puppet 4.0.0, you can perform the equivalent with the built-in
+Since Puppet 4.0.0, do the equivalent with the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
 
     $array.filter |$val| { $val != 'B' }
@@ -1150,7 +1150,7 @@ For example:
 
 * `$hash = delete_undef_values({a=>'A', b=>'', c=>`undef`, d => false})` returns {a => 'A', b => '', d => false}.
 
-Since Puppet 4.0.0, you can perform the equivalent with the built-in
+Since Puppet 4.0.0, do the equivalent with the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
 
     $array.filter |$val| { $val =~ NotUndef }
@@ -1597,8 +1597,7 @@ Searches through an array and returns any elements that match the provided regul
 
 For example, `grep(['aaa','bbb','ccc','aaaddd'], 'aaa')` returns ['aaa','aaaddd'].
 
-Since Puppet 4.0.0, the built-in [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function
-function does the "same" — as any logic can be used to filter, as opposed to just regular expressions:
+Since Puppet 4.0.0, the built-in [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function does the "same" — as any logic can be used to filter, as opposed to just regular expressions:
 
     ['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }
 
@@ -1959,7 +1958,7 @@ For example, `member(['a','b'], 'b')` and `member(['a','b','c'], ['b','c'])` ret
 *Note*: This function does not support nested arrays. If the first argument contains nested arrays, it will not recurse through them.
 
 Since Puppet 4.0.0, you can perform the same in the Puppet language. For single values,
-the operator `in` can be used:
+use the operator `in`:
 
     'a' in ['a', 'b']  # true
 
@@ -1988,7 +1987,7 @@ $merged_hash = merge($hash1, $hash2)
 
 When there is a duplicate key, the key in the rightmost hash takes precedence.
 
-Since Puppet 4.0.0, the same merge can be achieved with the + operator.
+Since Puppet 4.0.0, you can use the + operator to achieve the same merge.
 
     $merged_hash = $hash1 + $hash2
 
@@ -2008,9 +2007,9 @@ Arguments: A numeric or a string representing a number.
 
 Converts a number, or a string representation of a number, into a true Boolean. 
 Zero or anything non-numeric becomes `false`.
-Numbers greater than 0 become `true`.
+Numbers greater than zero become `true`.
 
-Since Puppet 5.0.0, the same can be achieved with the Puppet Type System.
+Since Puppet 5.0.0, the same can be achieved with the Puppet type system.
 See the [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean) 
 function in Puppet for the many available type conversions.
 
@@ -2124,7 +2123,7 @@ Passing a third argument causes the generated range to step by that interval. Fo
 
 * `range("0", "9", "2")` returns ["0","2","4","6","8"].
 
-> Note: The Puppet Language supports `Integer` and `Float` ranges by using the type system. They are suitable for iterating a given number of times.
+> Note: The Puppet language supports `Integer` and `Float` ranges by using the type system. They are suitable for iterating a given number of times.
 
 See the built-in [`step`](https://docs.puppet.com/puppet/latest/function.html#step) function in Puppet for skipping values.
 
@@ -2272,7 +2271,7 @@ Replaces consecutive repeats (such as 'aaaa') in a string with a single characte
 
 Converts certain strings to a Boolean. This attempts to convert strings that contain the values '1', 'true', 't', 'y', or 'yes' to `true`. Strings that contain values '0', 'false', 'f', 'n', or 'no', or that are an empty string or undefined are converted to `false`. Any other value causes an error. These checks are case insensitive.
 
-Since Puppet 5.0.0, the same can be achieved with the Puppet Type System.
+Since Puppet 5.0.0, the same can be achieved with the Puppet type system.
 See the [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean) 
 function in Puppet for the many available type conversions.
 
@@ -2368,7 +2367,7 @@ For example:
 * `suffix(['a','b','c'], 'p')` returns ['ap','bp','cp'].
 * `suffix({'a'=>'b','b'=>'c','c'=>'d'}, 'p')` returns {'ap'=>'b','bp'=>'c','cp'=>'d'}.
 
-Note that since Puppet 4.0.0 the general way to modify values is in array is by using the built-in [`map`](https://docs.puppet.com/puppet/latest/function.html#map) function. These example does the same as the first example above:
+Note that since Puppet 4.0.0, you can modify values in an array using the built-in [`map`](https://docs.puppet.com/puppet/latest/function.html#map) function. This example does the same as the first example above:
 
     ['a', 'b', 'c'].map |$x| { "${x}p" }
 
@@ -3119,6 +3118,8 @@ Takes one element from first array given and merges corresponding elements from 
 
 As of Puppet Enterprise 3.7, the stdlib module is no longer included in PE. PE users should install the most recent release of stdlib for compatibility with Puppet modules.
 
+For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-stdlib/blob/master/metadata.json)
+
 ### Version Compatibility
 
 Versions | Puppet 2.6 | Puppet 2.7 | Puppet 3.x | Puppet 4.x |
@@ -3133,7 +3134,7 @@ Versions | Puppet 2.6 | Puppet 2.7 | Puppet 3.x | Puppet 4.x |
 
 ## Development
 
-Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide](https://docs.puppet.com/forge/contributing.html).
+Puppet modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide](https://docs.puppet.com/forge/contributing.html).
 
 To report or research a bug with any part of this module, please go to
 [http://tickets.puppetlabs.com/browse/MODULES](http://tickets.puppetlabs.com/browse/MODULES).
