@@ -38,11 +38,19 @@ end
 group :system_tests do
   gem "puppet-module-posix-system-r#{minor_version}",                            require: false, platforms: [:ruby]
   gem "puppet-module-win-system-r#{minor_version}",                              require: false, platforms: [:mswin, :mingw, :x64_mingw]
-  gem "beaker", *location_for(ENV['BEAKER_VERSION'] || '~> 3.13')
+  gem "beaker", *location_for(ENV['BEAKER_VERSION'] || '~> 4.0.0')
   gem "beaker-abs", *location_for(ENV['BEAKER_ABS_VERSION'] || '~> 0.1')
   gem "beaker-pe",                                                               require: false
   gem "beaker-hostgenerator"
   gem "beaker-rspec"
+  gem "beaker-aws"
+  gem "beaker-docker"
+  gem "beaker-google"
+  gem "beaker-openstack"
+  gem "beaker-vagrant"
+  gem "beaker-vcloud"
+  gem "beaker-vmpooler"
+  gem "beaker-vmware"
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
