@@ -539,15 +539,15 @@ Valid values: A base64 string.
 
 #### `Stdlib::Ipv4`
 
-This type is no longer available. In order to make use of this functionality please use [Stdlib::IP::Address::V4](https://github.com/puppetlabs/puppetlabs-stdlib#stdlibipaddressv4).
+This type is no longer available. To make use of this functionality, use [Stdlib::IP::Address::V4](https://github.com/puppetlabs/puppetlabs-stdlib#stdlibipaddressv4).
 
 #### `Stdlib::Ipv6`
 
-This type is no longer available. In order to make use of this functionality please use [Stdlib::IP::Address::V6](https://github.com/puppetlabs/puppetlabs-stdlib#stdlibipaddressv6).
+This type is no longer available. To make use of this functionality, use  [Stdlib::IP::Address::V6](https://github.com/puppetlabs/puppetlabs-stdlib#stdlibipaddressv6).
 
 #### `Stdlib::Ip_address`
 
-This type is no longer available. In order to make use of this functionality please use [Stdlib::IP::Address](https://github.com/puppetlabs/puppetlabs-stdlib#stdlibipaddress)
+This type is no longer available. To make use of this functionality, use  [Stdlib::IP::Address](https://github.com/puppetlabs/puppetlabs-stdlib#stdlibipaddress)
 
 #### `Stdlib::IP::Address`
 
