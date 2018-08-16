@@ -551,51 +551,15 @@ Valid values: A base64 string.
 
 #### `Stdlib::Ipv4`
 
-Matches on valid IPv4 addresses.
-
-Acceptable input example:
-
-```shell
-0.0.0.0
-
-192.0.2.1
-
-127.0.0.1
-```
-
-Valid values: An IPv4 address.
+This type is no longer available. To make use of this functionality, use [Stdlib::IP::Address::V4](https://github.com/puppetlabs/puppetlabs-stdlib#stdlibipaddressv4).
 
 #### `Stdlib::Ipv6`
 
-Matches on valid IPv6 addresses.
-
-Acceptable input example:
-
-```shell
-2001:0db8:85a3:0000:0000:8a2e:0370:7334
-
-2001:db8::
-
-2001:db8::80
-```
-
-Valid values: An IPv6 address.
+This type is no longer available. To make use of this functionality, use  [Stdlib::IP::Address::V6](https://github.com/puppetlabs/puppetlabs-stdlib#stdlibipaddressv6).
 
 #### `Stdlib::Ip_address`
 
-Matches on valid IPv4 or IPv6 addresses.
-
-Acceptable input example:
-
-```shell
-0.0.0.0
-
-127.0.0.1
-
-fe80:0000:0000:0000:0204:61ff:fe9d:f156
-```
-
-Valid values: An IP address.
+This type is no longer available. To make use of this functionality, use  [Stdlib::IP::Address](https://github.com/puppetlabs/puppetlabs-stdlib#stdlibipaddress)
 
 #### `Stdlib::IP::Address`
 
