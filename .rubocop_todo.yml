@@ -6,3 +6,5 @@ Style/HashSyntax:
   Exclude:
   - spec/spec_helper.rb
   EnforcedStyle: hash_rockets
+Layout/IndentHeredoc:
+  Enabled: false

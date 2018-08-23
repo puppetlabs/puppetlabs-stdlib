@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'validate_x509_rsa_key_pair' do
-  # rubocop:disable Layout/IndentHeredoc : Heredoc's are meant to be indented in this way
   let(:valid_cert) do
     <<DOC
 -----BEGIN CERTIFICATE-----
