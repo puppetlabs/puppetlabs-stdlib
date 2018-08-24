@@ -43,7 +43,7 @@ describe 'squeeze' do
   context 'when using a class extending String' do
     it 'calls its squeeze method' do
       value = AlsoString.new('aaaaaaaaa')
-      value.expects(:squeeze).returns('foo')
+      expect(value).to receive(:squeeze).and_return('foo')
       expect(subject).to run.with_params(value).and_return('foo')
     end
   end

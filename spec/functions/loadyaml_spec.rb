@@ -8,8 +8,8 @@ describe 'loadyaml' do
     let(:filename) { '/tmp/doesnotexist' }
 
     before(:each) do
-      File.expects(:exists?).with(filename).returns(false).once
-      YAML.expects(:load_file).never
+      expect(File).to receive(:exists?).with(filename).and_return(false).once
+      expect(YAML).to receive(:load_file).never
     end
     it { is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value') }
     it { is_expected.to run.with_params(filename, 'đẽƒằưļŧ' => '٧ẵłựέ').and_return('đẽƒằưļŧ' => '٧ẵłựέ') }
@@ -21,8 +21,8 @@ describe 'loadyaml' do
     let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
 
     before(:each) do
-      File.expects(:exists?).with(filename).returns(true).once
-      YAML.expects(:load_file).with(filename).returns(data).once
+      expect(File).to receive(:exists?).with(filename).and_return(true).once
+      expect(YAML).to receive(:load_file).with(filename).and_return(data).once
     end
     it { is_expected.to run.with_params(filename).and_return(data) }
   end
@@ -31,8 +31,8 @@ describe 'loadyaml' do
     let(:filename) { '/tmp/doesexist' }
 
     before(:each) do
-      File.expects(:exists?).with(filename).returns(true).once
-      YAML.stubs(:load_file).with(filename).once.raises StandardError, 'Something terrible have happened!'
+      expect(File).to receive(:exists?).with(filename).and_return(true).once
+      allow(YAML).to receive(:load_file).with(filename).once.and_raise(StandardError, 'Something terrible have happened!')
     end
     it { is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value') }
   end

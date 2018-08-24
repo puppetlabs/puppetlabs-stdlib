@@ -31,7 +31,7 @@ describe 'size' do
   context 'when using a class extending String' do
     it 'calls its size method' do
       value = AlsoString.new('asdfghjkl')
-      value.expects(:size).returns('foo')
+      expect(value).to receive(:size).and_return('foo')
       expect(subject).to run.with_params(value).and_return('foo')
     end
   end

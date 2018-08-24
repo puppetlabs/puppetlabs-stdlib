@@ -11,12 +11,12 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
 
     it 'displays a single warning' do
-      Puppet.expects(:warning).with(includes('heelo'))
+      expect(Puppet).to receive(:warning).with(include('heelo'))
       is_expected.to run.with_params('key', 'heelo')
     end
 
     it 'displays a single warning, despite multiple calls' do
-      Puppet.expects(:warning).with(includes('heelo')).once
+      expect(Puppet).to receive(:warning).with(include('heelo')).once
       (0..1).each do |_i|
         is_expected.to run.with_params('key', 'heelo')
       end
@@ -24,7 +24,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
 
     it 'fails twice with message, with multiple calls. when strict= :error' do
       Puppet.settings[:strict] = :error
-      Puppet.expects(:warning).with(includes('heelo')).never
+      expect(Puppet).to receive(:warning).with(include('heelo')).never
       (0..1).each do |_i|
         is_expected.to run.with_params('key', 'heelo').and_raise_error(RuntimeError, %r{deprecation. key. heelo})
       end
@@ -32,7 +32,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
 
     it 'displays nothing, despite multiple calls. strict= :off' do
       Puppet.settings[:strict] = :off
-      Puppet.expects(:warning).with(includes('heelo')).never
+      expect(Puppet).to receive(:warning).with(include('heelo')).never
       (0..1).each do |_i|
         is_expected.to run.with_params('key', 'heelo')
       end
@@ -56,7 +56,7 @@ elsif Puppet.version.to_f < 4.0
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
 
     it 'displays a single warning' do
-      scope.expects(:warning).with(includes('heelo'))
+      expect(scope).to receive(:warning).with(include('heelo'))
       is_expected.to run.with_params('key', 'heelo')
     end
   end

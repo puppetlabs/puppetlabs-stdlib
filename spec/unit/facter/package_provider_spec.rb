@@ -9,13 +9,13 @@ describe 'package_provider', :type => :fact do
   ['4.2.2', '3.7.1 (Puppet Enterprise 3.2.1)'].each do |puppetversion|
     describe "on puppet ''#{puppetversion}''" do
       before :each do
-        Facter.stubs(:value).returns puppetversion
+        allow(Facter).to receive(:value).and_return(puppetversion)
       end
 
       context 'when darwin' do
         it 'returns pkgdmg' do
           provider = Puppet::Type.type(:package).provider(:pkgdmg)
-          Puppet::Type.type(:package).stubs(:defaultprovider).returns provider
+          allow(Puppet::Type.type(:package)).to receive(:defaultprovider).and_return(provider)
 
           expect(Facter.fact(:package_provider).value).to eq('pkgdmg')
         end
@@ -24,7 +24,7 @@ describe 'package_provider', :type => :fact do
       context 'when centos 7' do
         it 'returns yum' do
           provider = Puppet::Type.type(:package).provider(:yum)
-          Puppet::Type.type(:package).stubs(:defaultprovider).returns provider
+          allow(Puppet::Type.type(:package)).to receive(:defaultprovider).and_return(provider)
 
           expect(Facter.fact(:package_provider).value).to eq('yum')
         end
@@ -33,7 +33,7 @@ describe 'package_provider', :type => :fact do
       context 'when ubuntu' do
         it 'returns apt' do
           provider = Puppet::Type.type(:package).provider(:apt)
-          Puppet::Type.type(:package).stubs(:defaultprovider).returns provider
+          allow(Puppet::Type.type(:package)).to receive(:defaultprovider).and_return(provider)
 
           expect(Facter.fact(:package_provider).value).to eq('apt')
         end

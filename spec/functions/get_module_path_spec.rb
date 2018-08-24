@@ -22,7 +22,7 @@ describe 'get_module_path' do
     before(:each) { Puppet[:modulepath] = modulepath }
 
     context 'when in the default environment' do
-      before(:each) { Puppet::Module.expects(:find).with('foo', 'rp_env').returns(path_of_module_foo) }
+      before(:each) { expect(Puppet::Module).to receive(:find).with('foo', 'rp_env').and_return(path_of_module_foo) }
 
       it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
 
@@ -36,7 +36,7 @@ describe 'get_module_path' do
     context 'when in a non-default default environment' do
       let(:environment) { 'test' }
 
-      before(:each) { Puppet::Module.expects(:find).with('foo', 'test').returns(path_of_module_foo) }
+      before(:each) { expect(Puppet::Module).to receive(:find).with('foo', 'test').and_return(path_of_module_foo) }
 
       it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
 

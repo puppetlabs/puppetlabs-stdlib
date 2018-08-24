@@ -46,7 +46,7 @@ describe 'seeded_rand' do
 
     # workaround not being able to use let(:facts) because some tests need
     # multiple different hostnames in one context
-    scope.stubs(:lookupvar).with('::fqdn', {}).returns(host)
+    allow(scope).to receive(:lookupvar).with('::fqdn', {}).and_return(host)
 
     scope.function_seeded_rand([max, seed])
   end
