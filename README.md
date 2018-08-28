@@ -940,7 +940,7 @@ Appends the contents of multiple arrays onto the first array given. For example:
 
 Since Puppet 4.0, you can use the `+` operator for concatenation of arrays and merge of hashes, and the `<<` operator for appending:
 
-    ['1','2','3'] + ['4','5','6'] + ['7','8','9'] # returns ['1','2','3','4','5','6','7']
+    ['1','2','3'] + ['4','5','6'] + ['7','8','9'] # returns ['1','2','3','4','5','6','7','8','9']
     [1, 2, 3] << 4 # returns [1, 2, 3, 4]
     [1, 2, 3] << [4, 5] # returns [1, 2, 3, [4, 5]]
 
