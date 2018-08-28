@@ -1969,12 +1969,12 @@ Arguments: A numeric or a string representing a number.
 
 #### `num2bool`
 
-Converts a number, or a string representation of a number, into a true Boolean. 
+Converts a number, or a string representation of a number, into a true Boolean.
 Zero or anything non-numeric becomes `false`.
 Numbers greater than zero become `true`.
 
 Since Puppet 5.0.0, the same can be achieved with the Puppet type system.
-See the [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean) 
+See the [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean)
 function in Puppet for the many available type conversions.
 
     Boolean(0) # false
@@ -2236,7 +2236,7 @@ Replaces consecutive repeats (such as 'aaaa') in a string with a single characte
 Converts certain strings to a Boolean. This attempts to convert strings that contain the values '1', 'true', 't', 'y', or 'yes' to `true`. Strings that contain values '0', 'false', 'f', 'n', or 'no', or that are an empty string or undefined are converted to `false`. Any other value causes an error. These checks are case insensitive.
 
 Since Puppet 5.0.0, the same can be achieved with the Puppet type system.
-See the [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean) 
+See the [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean)
 function in Puppet for the many available type conversions.
 
     Boolean('false'), Boolean('n'), Boolean('no') # all false
