@@ -19,31 +19,38 @@ describe 'get_module_path' do
     let(:modulepath) { '/tmp/does_not_exist' }
     let(:path_of_module_foo) { StubModule.new('/tmp/does_not_exist/foo') }
 
-    before(:each) { Puppet[:modulepath] = modulepath }
+    before(:each) do
+      Puppet[:modulepath] = modulepath
+    end
 
     context 'when in the default environment' do
-      before(:each) { Puppet::Module.expects(:find).with('foo', 'rp_env').returns(path_of_module_foo) }
+      before(:each) do
+        allow(Puppet::Module).to receive(:find).with('foo', 'rp_env').and_return(path_of_module_foo)
+      end
+      it 'runs against foo' do
+        is_expected.to run.with_params('foo').and_return(path_of_module_foo.path)
+      end
 
-      it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
+      it 'when the modulepath is a list' do
+        Puppet[:modulepath] = modulepath + 'tmp/something_else'
 
-      context 'when the modulepath is a list' do
-        before(:each) { Puppet[:modulepath] = modulepath + 'tmp/something_else' }
-
-        it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
+        is_expected.to run.with_params('foo').and_return(path_of_module_foo.path)
       end
     end
 
     context 'when in a non-default default environment' do
       let(:environment) { 'test' }
 
-      before(:each) { Puppet::Module.expects(:find).with('foo', 'test').returns(path_of_module_foo) }
+      before(:each) do
+        allow(Puppet::Module).to receive(:find).with('foo', 'test').and_return(path_of_module_foo)
+      end
+      it 'runs against foo' do
+        is_expected.to run.with_params('foo').and_return(path_of_module_foo.path)
+      end
 
-      it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
-
-      context 'when the modulepath is a list' do
-        before(:each) { Puppet[:modulepath] = modulepath + 'tmp/something_else' }
-
-        it { is_expected.to run.with_params('foo').and_return(path_of_module_foo.path) }
+      it 'when the modulepath is a list' do
+        Puppet[:modulepath] = modulepath + 'tmp/something_else'
+        is_expected.to run.with_params('foo').and_return(path_of_module_foo.path)
       end
     end
   end

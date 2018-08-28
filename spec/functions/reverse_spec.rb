@@ -26,7 +26,7 @@ describe 'reverse' do
   context 'when using a class extending String' do
     it 'calls its reverse method' do
       value = AlsoString.new('asdfghjkl')
-      value.expects(:reverse).returns('foo')
+      expect(value).to receive(:reverse).and_return('foo')
       expect(subject).to run.with_params(value).and_return('foo')
     end
   end

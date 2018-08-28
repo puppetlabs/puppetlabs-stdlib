@@ -48,7 +48,7 @@ describe 'fqdn_rotate' do
   it 'uses the Puppet::Util.deterministic_rand function' do
     skip 'Puppet::Util#deterministic_rand not available' unless Puppet::Util.respond_to?(:deterministic_rand)
 
-    Puppet::Util.expects(:deterministic_rand).with(44_489_829_212_339_698_569_024_999_901_561_968_770, 4)
+    expect(Puppet::Util).to receive(:deterministic_rand).with(44_489_829_212_339_698_569_024_999_901_561_968_770, 4)
     fqdn_rotate('asdf')
   end
 
@@ -66,7 +66,7 @@ describe 'fqdn_rotate' do
 
     # workaround not being able to use let(:facts) because some tests need
     # multiple different hostnames in one context
-    scope.stubs(:lookupvar).with('::fqdn').returns(host)
+    allow(scope).to receive(:lookupvar).with('::fqdn').and_return(host)
 
     function_args = [value] + extra
     scope.function_fqdn_rotate(function_args)
