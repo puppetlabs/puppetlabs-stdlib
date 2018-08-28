@@ -7,34 +7,32 @@ describe 'loadyaml' do
   context 'when a non-existing file is specified' do
     let(:filename) { '/tmp/doesnotexist' }
 
-    before(:each) do
+    it "'default' => 'value'" do
       expect(File).to receive(:exists?).with(filename).and_return(false).once
       expect(YAML).to receive(:load_file).never
+      is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
     end
-    it { is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value') }
-    it { is_expected.to run.with_params(filename, 'đẽƒằưļŧ' => '٧ẵłựέ').and_return('đẽƒằưļŧ' => '٧ẵłựέ') }
-    it { is_expected.to run.with_params(filename, 'デフォルト' => '値').and_return('デフォルト' => '値') }
   end
 
   context 'when an existing file is specified' do
     let(:filename) { '/tmp/doesexist' }
     let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
 
-    before(:each) do
+    it "returns 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値'" do
       expect(File).to receive(:exists?).with(filename).and_return(true).once
       expect(YAML).to receive(:load_file).with(filename).and_return(data).once
+      is_expected.to run.with_params(filename).and_return(data)
     end
-    it { is_expected.to run.with_params(filename).and_return(data) }
   end
 
   context 'when the file could not be parsed' do
     let(:filename) { '/tmp/doesexist' }
 
-    before(:each) do
+    it 'filename /tmp/doesexist' do
       expect(File).to receive(:exists?).with(filename).and_return(true).once
       allow(YAML).to receive(:load_file).with(filename).once.and_raise(StandardError, 'Something terrible have happened!')
+      is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
     end
-    it { is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value') }
   end
 
   context 'when an existing URL is specified' do

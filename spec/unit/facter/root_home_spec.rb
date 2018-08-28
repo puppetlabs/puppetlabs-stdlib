@@ -21,10 +21,8 @@ describe 'Root Home Specs' do
       end
     end
     context 'when windows' do
-      before :each do
-        expect(Facter::Util::Resolution).to receive(:exec).with('getent passwd root').and_return(nil)
-      end
       it 'is nil on windows' do
+        expect(Facter::Util::Resolution).to receive(:exec).with('getent passwd root').and_return(nil)
         expect(described_class.returnt_root_home).to be_nil
       end
     end

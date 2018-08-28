@@ -11,20 +11,17 @@ describe 'assert_private' do
   end
 
   context 'when called from private class' do
-    before :each do
+    it 'fails with a class error message' do
       expect(scope).to receive(:lookupvar).with('module_name').and_return('foo')
       expect(scope).to receive(:lookupvar).with('caller_module_name').and_return('bar')
-    end
-
-    it 'fails with a class error message' do
       expect(scope.source).to receive(:name).and_return('foo::baz')
       expect(scope.source).to receive(:type).and_return('hostclass')
 
       is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Class foo::baz is private})
     end
 
-    context 'with an explicit failure message' do
-      it { is_expected.to run.with_params('failure message!').and_raise_error(Puppet::ParseError, %r{failure message!}) }
+    it 'fails with an explicit failure message' do
+      is_expected.to run.with_params('failure message!').and_raise_error(Puppet::ParseError, %r{failure message!})
     end
   end
 
