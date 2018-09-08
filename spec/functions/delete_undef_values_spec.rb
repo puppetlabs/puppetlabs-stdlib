@@ -12,7 +12,6 @@ describe 'delete_undef_values' do
       describe "when undef is represented by #{undef_value.inspect}" do
         before(:each) do
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == ''
-          pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value.nil?
         end
         it { is_expected.to run.with_params([undef_value]).and_return([]) }
         it { is_expected.to run.with_params(['one', undef_value, 'two', 'three']).and_return(['one', 'two', 'three']) }
@@ -35,7 +34,6 @@ describe 'delete_undef_values' do
       describe "when undef is represented by #{undef_value.inspect}" do
         before(:each) do
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == ''
-          pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value.nil?
         end
         it { is_expected.to run.with_params('key' => undef_value).and_return({}) }
         it {
