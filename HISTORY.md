@@ -464,7 +464,7 @@ Includes the addition of several new functions and considerable improvements to 
 
 #### Bugfixes
 - Fix backwards compatibility from an improvement to the parseyaml function
-- Renaming of load_module_metadata test to include _spec.rb
+- Renaming of load_module_metadata test to include \_spec.rb
 - Fix root_home fact on AIX 5.x, now '-c' rather than '-C'
 - Fixed Gemfile to work with ruby 1.8.7
 
