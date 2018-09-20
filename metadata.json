@@ -96,7 +96,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=2.7.20 < 6.0.0"
+      "version_requirement": ">=2.7.20 < 7.0.0"
     }
   ],
   "description": "Standard Library for Puppet Modules",
