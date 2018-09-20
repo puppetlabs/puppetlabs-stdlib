@@ -4,10 +4,9 @@
 module Puppet::Parser::Functions
   newfunction(:pick, :type => :rvalue, :doc => <<-DOC
     This function is similar to a coalesce function in SQL in that it will return
-    the first value in a list of values that is not undefined or an empty string
-    (two things in Puppet that will return a boolean false value). Typically,
-    this function is used to check for a value in the Puppet Dashboard/Enterprise
-    Console, and failover to a default value like the following:
+    the first value in a list of values that is not undefined or an empty string.
+    Typically, this function is used to check for a value in the Puppet
+    Dashboard/Enterprise Console, and failover to a default value like the following:
 
       $real_jenkins_version = pick($::jenkins_version, '1.449')
 
