@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe 'dig44' do
+  let(:undef_value) do
+    Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 ? :undef : nil
+  end
+
   let(:data) do
     {
       'a' => {
@@ -19,7 +23,7 @@ describe 'dig44' do
       'b' => true,
       'c' => false,
       'd' => '1',
-      'e' => :undef,
+      'e' => undef_value,
       'f' => nil,
     }
   end
