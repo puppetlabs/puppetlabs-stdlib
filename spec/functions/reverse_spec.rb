@@ -26,7 +26,7 @@ describe 'reverse' do
   context 'when using a class extending String' do
     it 'calls its reverse method' do
       value = AlsoString.new('asdfghjkl')
-      expect_any_instance_of(AlsoString).to receive(:reverse).and_return("foo")
+      expect_any_instance_of(AlsoString).to receive(:reverse).and_return('foo') # rubocop:disable RSpec/AnyInstance
       expect(subject).to run.with_params(value).and_return('foo')
     end
   end
