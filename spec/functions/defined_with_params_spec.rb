@@ -52,7 +52,7 @@ describe 'defined_with_params' do
       context 'with array' do
         it 'fails' do
           expect {
-            subject.call([['User[dan]'], {}])
+            subject.execute(['User[dan]'], {})
           }.to raise_error ArgumentError, %r{not understood: 'Array'}
         end
       end

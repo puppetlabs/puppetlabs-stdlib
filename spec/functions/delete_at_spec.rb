@@ -23,7 +23,7 @@ describe 'delete_at' do
   it 'leaves the original array intact' do
     argument = [1, 2, 3]
     original = argument.dup
-    _result = subject.call([argument, 2])
+    _result = subject.execute(argument, 2)
     expect(argument).to eq(original)
   end
 end
