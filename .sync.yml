@@ -1,4 +1,11 @@
 ---
+.gitlab-ci.yml:
+  unmanaged: true
+
+.rubocop.yml:
+  default_configs:
+    inherit_from: .rubocop_todo.yml
+
 .travis.yml:
   docker_sets:
     - set: docker/centos-7
@@ -30,9 +37,5 @@ Rakefile:
   requires:
     - puppet-lint/tasks/puppet-lint
 
-.rubocop.yml:
-  default_configs:
-    inherit_from: .rubocop_todo.yml
-
-.gitlab-ci.yml:
-  unmanaged: true
+spec/spec_helper.rb:
+  mock_with: ':rspec'

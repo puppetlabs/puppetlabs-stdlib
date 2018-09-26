@@ -1,3 +1,6 @@
+RSpec.configure do |c|
+  c.mock_with :rspec
+end
 
 require 'puppetlabs_spec_helper/module_spec_helper'
 require 'rspec-puppet-facts'
@@ -28,11 +31,18 @@ end
 
 RSpec.configure do |c|
   c.default_facts = default_facts
-  c.mock_with :rspec
   c.before :each do
     # set to strictest setting for testing
     # by default Puppet runs at warning level
     Puppet.settings[:strict] = :warning
-    allow(Puppet).to receive(:warning).and_call_original
   end
 end
+
+def ensure_module_defined(module_name)
+  module_name.split('::').reduce(Object) do |last_module, next_module|
+    last_module.const_set(next_module, Module.new) unless last_module.const_defined?(next_module)
+    last_module.const_get(next_module)
+  end
+end
+
+# 'spec_overrides' from sync.yml will appear below this line

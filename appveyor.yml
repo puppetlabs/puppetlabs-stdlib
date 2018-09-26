@@ -30,6 +30,14 @@ environment:
       PUPPET_GEM_VERSION: ~> 5.0
       RUBY_VERSION: 24-x64
       CHECK: parallel_spec
+    -
+      PUPPET_GEM_VERSION: ~> 6.0
+      RUBY_VERSION: 25
+      CHECK: parallel_spec
+    -
+      PUPPET_GEM_VERSION: ~> 6.0
+      RUBY_VERSION: 25-x64
+      CHECK: parallel_spec
 matrix:
   fast_finish: true
 install:
