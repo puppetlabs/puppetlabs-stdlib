@@ -1,16 +1,16 @@
 require 'spec_helper'
 
 describe 'delete_undef_values' do
+  let(:is_puppet_6) { Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') == 0 }
+
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError) }
   it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError) }
   it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError) }
   it { is_expected.to run.with_params('one', 'two').and_raise_error(Puppet::ParseError) }
 
-  # Behavior is different in Puppet 6.0.0, and fixed in PUP-9180 in Puppet 6.0.1
-  let(:is_puppet_6) { Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') == 0 }
-
   describe 'when deleting from an array' do
+    # Behavior is different in Puppet 6.0.0, and fixed in PUP-9180 in Puppet 6.0.1
     [:undef, '', nil].each do |undef_value|
       describe "when undef is represented by #{undef_value.inspect}" do
         before(:each) do

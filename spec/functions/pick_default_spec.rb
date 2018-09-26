@@ -25,7 +25,7 @@ describe 'pick_default' do
   end
 
   if Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0
-    def mapped_value(v) 
+    def mapped_value(v)
       v
     end
   else
@@ -33,7 +33,7 @@ describe 'pick_default' do
       # Puppet 6.0.0 will always map arguments the same way as the Puppet Language
       # even if function is called from Ruby via call_function
       # The 3x function API expects nil and :undef to be represented as empty string
-      return v.nil? || v == :undef ? '' : v
+      (v.nil? || v == :undef) ? '' : v
     end
   end
 end

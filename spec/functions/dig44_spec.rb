@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'dig44' do
   let(:undef_value) do
-    Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 ? :undef : nil
+    (Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0) ? :undef : nil
   end
 
   let(:data) do

@@ -24,7 +24,7 @@ describe 'ensure_resource' do
     end
 
     describe 'after running ensure_resource("user", "username1", { gid => undef })' do
-      before(:each) { subject.execute('User', 'username1', { 'gid' => undef_value() }) }
+      before(:each) { subject.execute('User', 'username1', 'gid' => undef_value) }
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_user('username1').without_ensure }
@@ -32,7 +32,7 @@ describe 'ensure_resource' do
     end
 
     describe 'after running ensure_resource("user", "username1", { ensure => present, gid => undef })' do
-      before(:each) { subject.execute('User', 'username1', { 'ensure' => 'present', 'gid' => undef_value() }) }
+      before(:each) { subject.execute('User', 'username1', 'ensure' => 'present', 'gid' => undef_value) }
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_user('username1').with_ensure('present') }
@@ -41,6 +41,7 @@ describe 'ensure_resource' do
 
     describe 'after running ensure_resource("test::deftype", "foo", {})' do
       let(:pre_condition) { 'define test::deftype { }' }
+
       before(:each) { subject.execute('test::deftype', 'foo', {}) }
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
@@ -57,7 +58,7 @@ describe 'ensure_resource' do
     end
 
     describe 'after running ensure_resource("user", "Şắოрŀễ Ţë×ť", { gid => undef })' do
-      before(:each) { subject.execute('User', 'Şắოрŀễ Ţë×ť', { 'gid' => undef_value() }) }
+      before(:each) { subject.execute('User', 'Şắოрŀễ Ţë×ť', 'gid' => undef_value) }
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_user('Şắოрŀễ Ţë×ť').without_ensure }
@@ -65,7 +66,7 @@ describe 'ensure_resource' do
     end
 
     describe 'after running ensure_resource("user", "Şắოрŀễ Ţë×ť", { ensure => present, gid => undef })' do
-      before(:each) { subject.execute('User', 'Şắოрŀễ Ţë×ť', { 'ensure' => 'present', 'gid' => undef_value() }) }
+      before(:each) { subject.execute('User', 'Şắოрŀễ Ţë×ť', 'ensure' => 'present', 'gid' => undef_value) }
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_user('Şắოрŀễ Ţë×ť').with_ensure('present') }
@@ -92,7 +93,7 @@ describe 'ensure_resource' do
     end
 
     describe 'after running ensure_resource("user", "username1", { gid => undef })' do
-      before(:each) { subject.execute('User', 'username1', { 'gid' => undef_value() }) }
+      before(:each) { subject.execute('User', 'username1', 'gid' => undef_value) }
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_user('username1').with_ensure('present') }
