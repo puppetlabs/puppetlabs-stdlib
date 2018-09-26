@@ -20,7 +20,7 @@ describe 'concat' do
   arguments = [['1', '2', '3'], ['4', '5', '6']]
   originals = [arguments[0].dup, arguments[1].dup]
   it 'leaves the original array intact' do
-    _result = subject.call([arguments[0], arguments[1]])
+    _result = subject.execute(arguments[0], arguments[1])
     arguments.each_with_index do |argument, index|
       expect(argument).to eq(originals[index])
     end

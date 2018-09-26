@@ -61,19 +61,19 @@ describe 'delete' do
   it 'leaves the original array intact' do
     argument1 = ['one', 'two', 'three']
     original1 = argument1.dup
-    _result = subject.call([argument1, 'two'])
+    _result = subject.execute(argument1, 'two')
     expect(argument1).to eq(original1)
   end
   it 'leaves the original string intact' do
     argument1 = 'onetwothree'
     original1 = argument1.dup
-    _result = subject.call([argument1, 'two'])
+    _result = subject.execute(argument1, 'two')
     expect(argument1).to eq(original1)
   end
   it 'leaves the original hash intact' do
     argument1 = { 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }
     original1 = argument1.dup
-    _result = subject.call([argument1, 'key2'])
+    _result = subject.execute(argument1, 'key2')
     expect(argument1).to eq(original1)
   end
 end
