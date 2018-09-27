@@ -11,12 +11,22 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
 
     it 'displays a single warning' do
-      expect(Puppet).to receive(:warning).with(include('heelo'))
+      if Puppet::Util::Package.versioncmp(Puppet.version, '5.0.0') >= 0 && Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0
+        expect(Puppet).to receive(:deprecation_warning).with('heelo at :', 'key')
+        expect(Puppet).to receive(:deprecation_warning).with("Modifying 'autosign' as a setting is deprecated.")
+      else
+        expect(Puppet).to receive(:warning).with(include('heelo')).once
+      end
       is_expected.to run.with_params('key', 'heelo')
     end
 
     it 'displays a single warning, despite multiple calls' do
-      expect(Puppet).to receive(:warning).with(include('heelo')).once
+      if Puppet::Util::Package.versioncmp(Puppet.version, '5.0.0') >= 0 && Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0
+        expect(Puppet).to receive(:deprecation_warning).with('heelo at :', 'key').twice
+        expect(Puppet).to receive(:deprecation_warning).with("Modifying 'autosign' as a setting is deprecated.")
+      else
+        expect(Puppet).to receive(:warning).with(include('heelo')).once
+      end
       (0..1).each do |_i|
         is_expected.to run.with_params('key', 'heelo')
       end
