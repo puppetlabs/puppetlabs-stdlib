@@ -44,13 +44,13 @@ describe 'delete_regex' do
   it 'leaves the original array intact' do
     argument1 = ['one', 'two', 'three']
     original1 = argument1.dup
-    subject.call([argument1, 'two'])
+    subject.execute(argument1, 'two')
     expect(argument1).to eq(original1)
   end
   it 'leaves the original hash intact' do
     argument1 = { 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }
     original1 = argument1.dup
-    subject.call([argument1, 'key2'])
+    subject.execute(argument1, 'key2')
     expect(argument1).to eq(original1)
   end
 end
