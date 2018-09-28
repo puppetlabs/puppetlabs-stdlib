@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
+## Supported Release 5.1.0
+### Summary
+This is a moderate release which adds support for Puppet 6.
+
+#### Fixed
+- Handle nil in `delete_undef_values()` function
+- Readme error regarding concatenation fixed.
+- Fix to the `pick()` function documentation.
+
+#### Added
+- Support added for Puppet 6
+
 ## Supported Release 5.0.0
 ### Summary
 This is a major release which removes support for the Scientific 5 and Debian 7 OS, as well as a removal of the `Stdlib::(Ipv4|IPv6|Ip_address)` data types in favour of `Stdlib::IP::*`. 
