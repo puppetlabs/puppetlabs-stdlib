@@ -6,6 +6,7 @@ describe 'is_mac_address' do
   it { is_expected.to run.with_params([], []).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it { is_expected.to run.with_params('00:a0:1f:12:7f:a0').and_return(true) }
   it { is_expected.to run.with_params('00:A0:1F:12:7F:A0').and_return(true) }
+  it { is_expected.to run.with_params('80:00:02:09:fe:80:00:00:00:00:00:00:00:24:65:ff:ff:91:a3:12').and_return(true) }
   it { is_expected.to run.with_params('00:00:00:00:00:0g').and_return(false) }
   it { is_expected.to run.with_params('').and_return(false) }
   it { is_expected.to run.with_params('one').and_return(false) }
