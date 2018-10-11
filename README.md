@@ -1368,6 +1368,21 @@ userlist:
 ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
 ```
 
+#### `stdlib::extname`
+
+Returns the Extension (the Portion of Filename in Path starting from the last Period).
+
+Example usage:
+
+```puppet
+stdlib::extname('test.rb')       => '.rb'
+stdlib::extname('a/b/d/test.rb') => '.rb'
+stdlib::extname('test')          => ''
+stdlib::extname('.profile')      => ''
+```
+
+*Type*: rvalue.
+
 #### `fact`
 
 Return the value of a given fact. Supports the use of dot-notation for referring to structured facts. If a fact requested does not exist, returns Undef.
