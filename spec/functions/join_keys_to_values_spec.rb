@@ -17,7 +17,12 @@ describe 'join_keys_to_values' do
     it { is_expected.to run.with_params({ 'ҝẽγ' => '√ạĺűē' }, '万').and_return(['ҝẽγ万√ạĺűē']) }
   end
 
-  it { is_expected.to run.with_params({ 'key' => nil }, ':').and_return(['key:']) }
+  if Puppet::Util::Package.versioncmp(Puppet.version, '5.5.7') == 0
+    it { is_expected.to run.with_params({ 'key' => '' }, ':').and_return(['key:']) }
+  else
+    it { is_expected.to run.with_params({ 'key' => nil }, ':').and_return(['key:']) }
+  end
+
   it 'runs join_keys_to_values(<hash with multiple keys>, ":") and return the proper array' do
     is_expected.to run.with_params({ 'key1' => 'value1', 'key2' => 'value2' }, ':').and_return(['key1:value1', 'key2:value2'])
   end
