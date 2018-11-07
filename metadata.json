@@ -45,7 +45,7 @@
     {
       "operatingsystem": "SLES",
       "operatingsystemrelease": [
-        "11 SP1",
+        "11",
         "12"
       ]
     },
@@ -74,13 +74,13 @@
     {
       "operatingsystem": "Windows",
       "operatingsystemrelease": [
-        "Server 2008",
-        "Server 2008 R2",
-        "Server 2012",
-        "Server 2012 R2",
-        "Server 2016",
+        "2008",
+        "2008 R2",
+        "2012",
+        "2012 R2",
+        "2016",
         "7",
-        "8",
+        "8.1",
         "10"
       ]
     },
