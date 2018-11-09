@@ -3099,18 +3099,6 @@ As of Puppet Enterprise 3.7, the stdlib module is no longer included in PE. PE u
 
 For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-stdlib/blob/master/metadata.json)
 
-### Version Compatibility
-
-Versions | Puppet 2.6 | Puppet 2.7 | Puppet 3.x | Puppet 4.x |
-:---------------|:-----:|:---:|:---:|:----:
-**stdlib 2.x**  | **yes** | **yes** | no | no
-**stdlib 3.x**  | no    | **yes**  | **yes** | no
-**stdlib 4.x**  | no    | **yes**  | **yes** | no
-**stdlib 4.6+**  | no    | **yes**  | **yes** | **yes**
-**stdlib 5.x**  | no    | no  | **yes**  | **yes**
-
-**stdlib 5.x**: When released, stdlib 5.x will drop support for Puppet 2.7.x. Please see [this discussion](https://github.com/puppetlabs/puppetlabs-stdlib/pull/176#issuecomment-30251414).
-
 ## Development
 
 Puppet modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide](https://docs.puppet.com/forge/contributing.html).
