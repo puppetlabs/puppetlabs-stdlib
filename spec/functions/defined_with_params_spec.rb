@@ -71,4 +71,17 @@ describe 'defined_with_params' do
     it { is_expected.to run.with_params(Puppet::Resource.new('Test::Deftype[foo]'), {}).and_return(true) }
     it { is_expected.to run.with_params(Puppet::Resource.new('Test::Deftype[bar]'), {}).and_return(false) }
   end
+
+  describe 'when passed a class' do
+    let :pre_condition do
+      'class test () { } class { "test": }'
+    end
+
+    it { is_expected.to run.with_params('Class[test]', {}).and_return(true) }
+    it { is_expected.to run.with_params('Class["bar"]', {}).and_return(false) }
+    it { is_expected.to run.with_params('Class[bar]', {}).and_return(false) }
+    it { is_expected.to run.with_params(Puppet::Resource.new('class', 'test'), {}).and_return(true) }
+    it { is_expected.to run.with_params(Puppet::Resource.new('Class["bar"]'), {}).and_return(false) }
+    it { is_expected.to run.with_params(Puppet::Resource.new('Class[bar]'), {}).and_return(false) }
+  end
 end
