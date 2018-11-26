@@ -3,8 +3,8 @@ require 'spec_helper'
 describe 'to_yaml' do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params('').and_return("--- ''\n") }
-  it { is_expected.to run.with_params(true).and_return("--- true\n...\n") }
-  it { is_expected.to run.with_params('one').and_return("--- one\n...\n") }
+  it { is_expected.to run.with_params(true).and_return(%r{--- true\n}) }
+  it { is_expected.to run.with_params('one').and_return(%r{--- one\n}) }
   it { is_expected.to run.with_params([]).and_return("--- []\n") }
   it { is_expected.to run.with_params(['one']).and_return("---\n- one\n") }
   it { is_expected.to run.with_params(['one', 'two']).and_return("---\n- one\n- two\n") }
