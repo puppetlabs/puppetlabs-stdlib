@@ -2007,7 +2007,7 @@ Example usage:
 
 Returns:
   Boolean(0) # OS is below the given version.
-  Boolean(1) # OS is equal to or grater than the given version.
+  Boolean(1) # OS is equal to or greater than the given version.
 
 #### `parsejson`
 
