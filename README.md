@@ -1997,6 +1997,18 @@ function in Puppet for the many available type conversions.
 
 *Type*: rvalue.
 
+#### 'os_version_gte'
+
+Checks to see if the OS version is at least a certain version. Note that only the major version is taken into account.
+
+Example usage:
+  if os_version_gte('Debian', '9') { }
+  if os_version_gte('Ubuntu', '18.04') { }
+
+Returns:
+  Boolean(0) # OS is below the given version.
+  Boolean(1) # OS is equal to or grater than the given version.
+
 #### `parsejson`
 
 Converts a string of JSON into the correct Puppet structure (as a hash, array, string, integer, or a combination of such).
