@@ -16,6 +16,7 @@
 1. [Contributors](#contributors)
 
 
+<a id="moduledescription"></a>
 ## Module Description
 
 This module provides a standard library of resources for Puppet modules. Puppet modules make heavy use of this standard library. The stdlib module adds the following resources to Puppet:
@@ -29,12 +30,14 @@ This module provides a standard library of resources for Puppet modules. Puppet 
 
 > *Note:* As of version 3.7, Puppet Enterprise no longer includes the stdlib module. If you're running Puppet Enterprise, you should install the most recent release of stdlib for compatibility with Puppet modules.
 
+<a id="setup"></a>
 ## Setup
 
 [Install](https://puppet.com/docs/puppet/latest/modules_installing.html) the stdlib module to add the functions, facts, and resources of this standard library to Puppet.
 
 If you are authoring a module that depends on stdlib, be sure to [specify dependencies](https://puppet.com/docs/puppet/latest/modules_metadata.html#specifying-dependencies-in-modules) in your metadata.json.
 
+<a id="usage"></a>
 ## Usage
 
 Most of stdlib's features are automatically loaded by Puppet. To use standardized run stages in Puppet, declare this class in your manifest with `include stdlib`.
@@ -61,6 +64,7 @@ node default {
 }
 ```
 
+<a id="reference"></a>
 ## Reference
 
 * [Public classes](#public-classes)
@@ -70,6 +74,7 @@ node default {
 * [Facts](#facts)
 * [Functions](#functions)
 
+<a id="limitations"></a>
 ### Classes
 
 #### Public classes
@@ -80,6 +85,7 @@ The `stdlib` class has no parameters.
 
 * `stdlib::stages`: Manages a standard set of run stages for Puppet.
 
+<a id="definedtypes"></a>
 ### Defined types
 
 #### `file_line`
@@ -269,6 +275,7 @@ Replaces all lines matched by `match` parameter, even if `line` already exists i
 
 Default value: `false`.
 
+<a id="datatypes"></a>
 ### Data types
 
 #### `Stdlib::Absolutepath`
@@ -655,6 +662,7 @@ Match an IPv6 address formatted in the "alternative form" allowing for represent
 
 Match an IPv6 address which may contain `::` used to compress zeros as documented in section 2.2.2 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt). It will only match addresses without an address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
 
+<a id="facts"></a>
 ### Facts
 
 #### `package_provider`
@@ -703,6 +711,7 @@ Determines the root home directory, which depends on your operating system. Gene
 
 Returns the default provider Puppet uses to manage services on this system
 
+<a id="functions"></a>
 ### Functions
 
 #### `abs`
@@ -3107,12 +3116,14 @@ A negative value is taken to be "from the end" of the array, for example:
 
 Takes one element from first array given and merges corresponding elements from second array given. This generates a sequence of n-element arrays, where *n* is one more than the count of arguments. For example, `zip(['1','2','3'],['4','5','6'])` results in ["1", "4"], ["2", "5"], ["3", "6"]. *Type*: rvalue.
 
+<a id="limitations"></a>
 ## Limitations
 
 As of Puppet Enterprise 3.7, the stdlib module is no longer included in PE. PE users should install the most recent release of stdlib for compatibility with Puppet modules.
 
 For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-stdlib/blob/master/metadata.json)
 
+<a id="development"></a>
 ## Development
 
 Puppet modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide](https://docs.puppet.com/forge/contributing.html).
@@ -3120,6 +3131,7 @@ Puppet modules on the Puppet Forge are open projects, and community contribution
 To report or research a bug with any part of this module, please go to
 [http://tickets.puppetlabs.com/browse/MODULES](http://tickets.puppetlabs.com/browse/MODULES).
 
+<a id="contributors"></a>
 ## Contributors
 
 The list of contributors can be found at: [https://github.com/puppetlabs/puppetlabs-stdlib/graphs/contributors](https://github.com/puppetlabs/puppetlabs-stdlib/graphs/contributors).
