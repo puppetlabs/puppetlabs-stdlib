@@ -1,4 +1,5 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
+source 'https://CaKSPgT5Tw9xmyfeN4Rg@gem.fury.io/david22swan/'
 
 def location_for(place_or_version, fake_version = nil)
   git_url_regex = %r{\A(?<url>(https?|git)[:@][^#]*)(#(?<branch>.*))?}
@@ -22,15 +23,15 @@ group :development do
   gem "json_pure", '<= 2.0.1',                         require: false if Gem::Version.new(RUBY_VERSION.dup) < Gem::Version.new('2.0.0')
   gem "json", '= 1.8.1',                               require: false if Gem::Version.new(RUBY_VERSION.dup) == Gem::Version.new('2.1.9')
   gem "json", '<= 2.0.4',                              require: false if Gem::Version.new(RUBY_VERSION.dup) == Gem::Version.new('2.4.4')
-  gem "puppet-module-posix-default-r#{minor_version}", require: false, platforms: [:ruby]
-  gem "puppet-module-posix-dev-r#{minor_version}",     require: false, platforms: [:ruby]
-  gem "puppet-module-win-default-r#{minor_version}",   require: false, platforms: [:mswin, :mingw, :x64_mingw]
-  gem "puppet-module-win-dev-r#{minor_version}",       require: false, platforms: [:mswin, :mingw, :x64_mingw]
+  gem "puppet-module-posix-default-r#{minor_version}", require: false, platforms: [:ruby], :source => "https://CaKSPgT5Tw9xmyfeN4Rg@gem.fury.io/david22swan/"
+  gem "puppet-module-posix-dev-r#{minor_version}",     require: false, platforms: [:ruby], :source => "https://CaKSPgT5Tw9xmyfeN4Rg@gem.fury.io/david22swan/"
+  gem "puppet-module-win-default-r#{minor_version}",   require: false, platforms: [:mswin, :mingw, :x64_mingw], :source => "https://CaKSPgT5Tw9xmyfeN4Rg@gem.fury.io/david22swan/"
+  gem "puppet-module-win-dev-r#{minor_version}",       require: false, platforms: [:mswin, :mingw, :x64_mingw], :source => "https://CaKSPgT5Tw9xmyfeN4Rg@gem.fury.io/david22swan/"
   gem "github_changelog_generator",                    require: false, git: 'https://github.com/skywinder/github-changelog-generator', ref: '20ee04ba1234e9e83eb2ffb5056e23d641c7a018' if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.2.2')
 end
 group :system_tests do
-  gem "puppet-module-posix-system-r#{minor_version}", require: false, platforms: [:ruby]
-  gem "puppet-module-win-system-r#{minor_version}",   require: false, platforms: [:mswin, :mingw, :x64_mingw]
+  gem "puppet-module-posix-system-r#{minor_version}", require: false, platforms: [:ruby], :source => "https://CaKSPgT5Tw9xmyfeN4Rg@gem.fury.io/david22swan/"
+  gem "puppet-module-win-system-r#{minor_version}",   require: false, platforms: [:mswin, :mingw, :x64_mingw], :source => "https://CaKSPgT5Tw9xmyfeN4Rg@gem.fury.io/david22swan/"
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
