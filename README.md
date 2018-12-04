@@ -39,7 +39,6 @@ This module provides a standard library of resources for Puppet modules. Puppet 
 If you are authoring a module that depends on stdlib, be sure to [specify dependencies](https://puppet.com/docs/puppet/latest/modules_metadata.html#specifying-dependencies-in-modules) in your metadata.json.
 
 <a id="usage"></a>
-
 ## Usage
 
 Most of stdlib's features are automatically loaded by Puppet. To use standardized run stages in Puppet, declare this class in your manifest with `include stdlib`.
@@ -67,7 +66,6 @@ node default {
 ```
 
 <a id="reference"></a>
-
 ## Reference
 
 * [Public classes](#public-classes)
@@ -78,23 +76,19 @@ node default {
 * [Functions](#functions)
 
 <a id="classes"></a>
-
 ### Classes
 
 <a id="public-classes"></a>
-
 #### Public classes
 
 The `stdlib` class has no parameters.
 
 <a id="private-classes"></a>
-
 #### Private classes
 
 * `stdlib::stages`: Manages a standard set of run stages for Puppet.
 
 <a id="defined-types"></a>
-
 ### Defined types
 
 #### `file_line`
@@ -287,7 +281,6 @@ Replaces all lines matched by `match` parameter, even if `line` already exists i
 Default value: `false`.
 
 <a id="data-types"></a>
-
 ### Data types
 
 #### `Stdlib::Absolutepath`
@@ -675,7 +668,6 @@ Match an IPv6 address formatted in the "alternative form" allowing for represent
 Match an IPv6 address which may contain `::` used to compress zeros as documented in section 2.2.2 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt). It will only match addresses without an address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
 
 <a id="facts"></a>
-
 ### Facts
 
 #### `package_provider`
@@ -3129,7 +3121,7 @@ A negative value is taken to be "from the end" of the array, for example:
 Takes one element from first array given and merges corresponding elements from second array given. This generates a sequence of n-element arrays, where *n* is one more than the count of arguments. For example, `zip(['1','2','3'],['4','5','6'])` results in ["1", "4"], ["2", "5"], ["3", "6"]. *Type*: rvalue.
 
 <a id="limitations"></a>
-## Limitations x
+## Limitations
 
 As of Puppet Enterprise 3.7, the stdlib module is no longer included in PE. PE users should install the most recent release of stdlib for compatibility with Puppet modules.
 
