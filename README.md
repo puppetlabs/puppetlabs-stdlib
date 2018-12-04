@@ -31,7 +31,6 @@ This module provides a standard library of resources for Puppet modules. Puppet 
 > *Note:* As of version 3.7, Puppet Enterprise no longer includes the stdlib module. If you're running Puppet Enterprise, you should install the most recent release of stdlib for compatibility with Puppet modules.
 
 <a id="setup"></a>
-
 ## Setup
 
 [Install](https://puppet.com/docs/puppet/latest/modules_installing.html) the stdlib module to add the functions, facts, and resources of this standard library to Puppet.
