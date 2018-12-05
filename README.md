@@ -15,8 +15,7 @@
 1. [Development - Guide for contributing to the module](#development)
 1. [Contributors](#contributors)
 
-
-<a id="moduledescription"></a>
+<a id="module-description"></a>
 ## Module Description
 
 This module provides a standard library of resources for Puppet modules. Puppet modules make heavy use of this standard library. The stdlib module adds the following resources to Puppet:
@@ -74,18 +73,20 @@ node default {
 * [Facts](#facts)
 * [Functions](#functions)
 
-<a id="limitations"></a>
+<a id="classes"></a>
 ### Classes
 
+<a id="public-classes"></a>
 #### Public classes
 
 The `stdlib` class has no parameters.
 
+<a id="private-classes"></a>
 #### Private classes
 
 * `stdlib::stages`: Manages a standard set of run stages for Puppet.
 
-<a id="definedtypes"></a>
+<a id="defined-types"></a>
 ### Defined types
 
 #### `file_line`
@@ -203,7 +204,9 @@ Values: String specifying a valid Ruby character encoding.
 
 Default: 'UTF-8'.
 
-##### `ensure`: Specifies whether the resource is present.
+##### `ensure`
+
+Specifies whether the resource is present.
 
 Values: 'present', 'absent'.
 
@@ -275,7 +278,7 @@ Replaces all lines matched by `match` parameter, even if `line` already exists i
 
 Default value: `false`.
 
-<a id="datatypes"></a>
+<a id="data-types"></a>
 ### Data types
 
 #### `Stdlib::Absolutepath`
@@ -1083,8 +1086,7 @@ Deletes all instances of a given element from an array or hash that match a prov
 
 *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
-
-For example
+For example:
 
 * `delete_regex(['a','b','c','b'], 'b')` returns ['a','c'].
 * `delete_regex({'a' => 1,'b' => 2,'c' => 3},['b','c'])` returns {'a'=> 1}.
@@ -1908,7 +1910,7 @@ $metadata = load_module_metadata('archive')
 notify { $metadata['author']: }
 ```
 
-When a module's metadata file is absent, the catalog compilation fails. To avoid this failure:
+When a module's metadata file is absent, the catalog compilation fails. To avoid this failure, do the following:
 
 ```
 $metadata = load_module_metadata('mysql', true)
