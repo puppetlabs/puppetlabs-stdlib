@@ -4,6 +4,6 @@ type Stdlib::Filesource = Variant[
   Stdlib::HTTPUrl,
   Pattern[
     /^file:\/\/\/([^\/\0]+(\/)?)+$/,
-    /^puppet:\/\/(([\w-]+\.?)+)?\/modules\/([^\/\0]+(\/)?)+$/,
+    /^puppet:\/\/(([\w-]+\.?)+)?\/([^\/\0]+(\/)?)+$/,
   ],
 ]
