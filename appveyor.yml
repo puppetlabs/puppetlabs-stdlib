@@ -18,14 +18,6 @@ environment:
       RUBY_VERSION: 24-x64
       CHECK: syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop
     -
-      PUPPET_GEM_VERSION: ~> 4.0
-      RUBY_VERSION: 21
-      CHECK: parallel_spec
-    -
-      PUPPET_GEM_VERSION: ~> 4.0
-      RUBY_VERSION: 21-x64
-      CHECK: parallel_spec
-    -
       PUPPET_GEM_VERSION: ~> 5.0
       RUBY_VERSION: 24
       CHECK: parallel_spec
