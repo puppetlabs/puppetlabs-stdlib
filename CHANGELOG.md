@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
+
+## Supported Release 5.2.0
+### Summary
+This is a moderate release made in order to roll up various new features.
+
+#### Fixed
+- `ensure-packages()` duplicate checking now works as it should.
+
+#### Added
+- (MODULES-7024) - Support for 20-octet MAC addresses added.
+- `extname()` function added - This function returns the extensionof whatever file it is passed.
+- (MODULES-8273) - Unquoted classes can now be used with the `defined_with_params()` function.
+- (MODULES-8137) - Support has been added for SLES 15.
+- (MODULES-8404) - `Stdlib::Filesource` has been relaxed and now supports custom mount points.
+- (MODULES-8322) - IPs values of `0.0.0.0/0` and `::/0` are now considered to be valid.
+- New type `Stdlib::IP::Address::V6::CIDR` has been created.
+
 ## Supported Release 5.1.0
 ### Summary
 This is a moderate release which adds support for Puppet 6.
@@ -16,7 +33,7 @@ This is a moderate release which adds support for Puppet 6.
 
 ## Supported Release 5.0.0
 ### Summary
-This is a major release which removes support for the Scientific 5 and Debian 7 OS, as well as a removal of the `Stdlib::(Ipv4|IPv6|Ip_address)` data types in favour of `Stdlib::IP::*`. 
+This is a major release which removes support for the Scientific 5 and Debian 7 OS, as well as a removal of the `Stdlib::(Ipv4|IPv6|Ip_address)` data types in favour of `Stdlib::IP::*`.
 
 **In addition it contains a substantial piece of work centered around updating functions that have now been migrated into Puppet itself. Please note that this will be the last major release to support Puppet 2 and Puppet 3 and that they will soon be removed.**
 
