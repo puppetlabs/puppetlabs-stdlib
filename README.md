@@ -665,11 +665,6 @@ Match an IPv6 address formatted in the "alternative form" allowing for represent
 
 Match an IPv6 address which may contain `::` used to compress zeros as documented in section 2.2.2 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt). It will only match addresses without an address prefix as documented in section 2.3 of [RFC 2373](https://www.ietf.org/rfc/rfc2373.txt).
 
-#### `Stdlib::IP::Address::V6::CIDR`
-
-Match an IPv6 address in the CIDR format. It will only match if the address contains an address prefix (for example, it will match   'FF01:0:0:0:0:0:0:101/32', 'FF01::101/60', '::/0',
-but not 'FF01:0:0:0:0:0:0:101', 'FF01::101', '::').
-
 <a id="facts"></a>
 ### Facts
 
