@@ -5,6 +5,8 @@ describe 'merge' do
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it { is_expected.to run.with_params({}, 'two').and_raise_error(Puppet::ParseError, %r{unexpected argument type String}) }
   it { is_expected.to run.with_params({}, 1).and_raise_error(Puppet::ParseError, %r{unexpected argument type (Fixnum|Integer)}) }
+  it { is_expected.to run.with_params({'one'=>1,'three'=>{'four'=>4}}, {'two'=>'dos','three'=>{'five'=>5}}).and_return({"one"=>1, "three"=>{"five"=>5}, "two"=>"dos"}) }
+
   it {
     pending 'should not special case this'
     is_expected.to run.with_params({}).and_return({})
