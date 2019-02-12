@@ -18,5 +18,6 @@ describe 'has_ip_address' do
     it { is_expected.to run.with_params('127.0.0.1').and_return(true) }
     it { is_expected.to run.with_params('10.0.0.1').and_return(true) }
     it { is_expected.to run.with_params('8.8.8.8').and_return(false) }
+    it { is_expected.to run.with_params('invalid').and_return(false) }
   end
 end
