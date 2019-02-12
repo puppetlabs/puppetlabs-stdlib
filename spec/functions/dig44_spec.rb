@@ -46,15 +46,15 @@ describe 'dig44' do
     end
 
     it 'requires two arguments' do
-      is_expected.to run.with_params.and_raise_error(ArgumentError)
+      is_expected.to run.with_params.and_raise_error(ArgumentError, %r{Wrong number of arguments})
     end
 
     it 'fails if the data is not a structure' do
-      is_expected.to run.with_params('test', []).and_raise_error(Puppet::Error)
+      is_expected.to run.with_params('test', []).and_raise_error(Puppet::Error, %r{first argument must be a hash or an array})
     end
 
     it 'fails if the path is not an array' do
-      is_expected.to run.with_params({}, '').and_raise_error(Puppet::Error)
+      is_expected.to run.with_params({}, '').and_raise_error(Puppet::Error, %r{second argument must be an array})
     end
 
     it 'returns the value if the value is string' do
