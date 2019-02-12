@@ -17,5 +17,6 @@ describe 'has_ip_network' do
     it { is_expected.to run.with_params('127.0.0.0').and_return(true) }
     it { is_expected.to run.with_params('10.0.0.0').and_return(true) }
     it { is_expected.to run.with_params('8.8.8.0').and_return(false) }
+    it { is_expected.to run.with_params('invalid').and_return(false) }
   end
 end
