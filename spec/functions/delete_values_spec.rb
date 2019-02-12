@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe 'delete_values' do
   it { is_expected.not_to eq(nil) }
-  it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError) }
-  it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError) }
-  it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError) }
-  it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(Puppet::ParseError) }
+  it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
+  it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
+  it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
+  it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
   describe 'when the first argument is not a hash' do
-    it { is_expected.to run.with_params(1, 'two').and_raise_error(TypeError) }
-    it { is_expected.to run.with_params('one', 'two').and_raise_error(TypeError) }
-    it { is_expected.to run.with_params([], 'two').and_raise_error(TypeError) }
+    it { is_expected.to run.with_params(1, 'two').and_raise_error(TypeError, %r{First argument must be a Hash}) }
+    it { is_expected.to run.with_params('one', 'two').and_raise_error(TypeError, %r{First argument must be a Hash}) }
+    it { is_expected.to run.with_params([], 'two').and_raise_error(TypeError, %r{First argument must be a Hash}) }
   end
 
   describe 'when deleting from a hash' do
