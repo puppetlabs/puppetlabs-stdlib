@@ -33,6 +33,7 @@ describe 'validate_hash' do
       it { is_expected.to run.with_params({}, 1).and_raise_error(Puppet::ParseError, %r{is not a Hash}) }
       it { is_expected.to run.with_params({}, true).and_raise_error(Puppet::ParseError, %r{is not a Hash}) }
       it { is_expected.to run.with_params({}, 'one').and_raise_error(Puppet::ParseError, %r{is not a Hash}) }
+      it { is_expected.to run.with_params("{ 'number' => 'one' }").and_raise_error(Puppet::ParseError, %r{is not a Hash}) }
     end
   end
 end
