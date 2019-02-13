@@ -18,7 +18,7 @@ describe 'chop', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0'
   it { is_expected.to run.with_params(AlsoString.new("one\n\n")).and_return("one\n") }
   it { is_expected.to run.with_params([AlsoString.new("one\n"), AlsoString.new('two'), "three\n"]).and_return(['one', 'tw', 'three']) }
 
-  it { is_expected.to run.with_params([1,2,3]).and_return([1,2,3]) }
+  it { is_expected.to run.with_params([1, 2, 3]).and_return([1, 2, 3]) }
 
   context 'with UTF8 and double byte characters' do
     it { is_expected.to run.with_params("ůťƒ8\n\n").and_return("ůťƒ8\n") }
