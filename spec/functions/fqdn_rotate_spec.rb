@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'fqdn_rotate' do
+
+
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it { is_expected.to run.with_params(0).and_raise_error(Puppet::ParseError, %r{Requires either array or string to work with}) }
@@ -8,7 +10,7 @@ describe 'fqdn_rotate' do
   it { is_expected.to run.with_params('').and_return('') }
   it { is_expected.to run.with_params('a').and_return('a') }
   it { is_expected.to run.with_params('ã').and_return('ã') }
-
+  it { is_expected.to run.with_params('abcdefg', 4).and_return('defgabc') }
   it { is_expected.to run.with_params([]).and_return([]) }
   it { is_expected.to run.with_params(['a']).and_return(['a']) }
 
