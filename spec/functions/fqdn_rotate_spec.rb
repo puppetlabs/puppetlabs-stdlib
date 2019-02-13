@@ -10,7 +10,7 @@ describe 'fqdn_rotate' do
   it { is_expected.to run.with_params('').and_return('') }
   it { is_expected.to run.with_params('a').and_return('a') }
   it { is_expected.to run.with_params('ã').and_return('ã') }
-  it { is_expected.to run.with_params('abcdefg', 4).and_return('defgabc') }
+
   it { is_expected.to run.with_params([]).and_return([]) }
   it { is_expected.to run.with_params(['a']).and_return(['a']) }
 
