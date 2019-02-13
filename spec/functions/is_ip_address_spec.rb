@@ -20,5 +20,5 @@ describe 'is_ip_address' do
   it { is_expected.to run.with_params(1).and_return(false) }
   it { is_expected.to run.with_params({}).and_return(false) }
   it { is_expected.to run.with_params([]).and_return(false) }
-  it { is_expected.to run.with_params("thisstring").and_return(false) }
+  it { is_expected.to run.with_params('thisstring').and_return(false) }
 end

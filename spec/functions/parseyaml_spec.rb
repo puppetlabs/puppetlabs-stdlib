@@ -44,10 +44,10 @@ describe 'parseyaml' do
     end
   end
 
-    it 'raises an error with invalid YAML and no default' do
-      is_expected.to run.with_params('["one"')
-                        .and_raise_error(Psych::SyntaxError)
-    end
+  it 'raises an error with invalid YAML and no default' do
+    is_expected.to run.with_params('["one"')
+                      .and_raise_error(Psych::SyntaxError)
+  end
 
   context 'with incorrect YAML data' do
     it 'supports a structure for a default value' do
