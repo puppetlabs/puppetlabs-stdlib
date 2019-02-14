@@ -20,21 +20,5 @@ describe 'is_ip_address' do
   it { is_expected.to run.with_params(1).and_return(false) }
   it { is_expected.to run.with_params({}).and_return(false) }
   it { is_expected.to run.with_params([]).and_return(false) }
-
-  context 'Checking for deprecation warning', :if => Puppet.version.to_f < 4.0 do
-    # Checking for deprecation warning, which should only be provoked when the env variable for it is set.
-    it 'displays a single deprecation' do
-      ENV['STDLIB_LOG_DEPRECATIONS'] = 'true'
-      expect(scope).to receive(:warning).with(include('This method is deprecated'))
-      is_expected.to run.with_params('1.2.3.4').and_return(true)
-    end
-    it 'displays no warning for deprecation' do
-      ENV['STDLIB_LOG_DEPRECATIONS'] = 'false'
-      expect(scope).to receive(:warning).with(include('This method is deprecated')).never
-      is_expected.to run.with_params('1.2.3.4').and_return(true)
-    end
-    after(:each) do
-      ENV.delete('STDLIB_LOG_DEPRECATIONS')
-    end
-  end
+  it { is_expected.to run.with_params('thisstring').and_return(false) }
 end

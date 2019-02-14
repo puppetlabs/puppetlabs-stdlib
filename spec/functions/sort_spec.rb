@@ -30,4 +30,8 @@ describe 'sort', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0'
     it { is_expected.to run.with_params('a').and_return('a') }
     it { is_expected.to run.with_params('cbda').and_return('abcd') }
   end
+
+  context 'when called with a number' do
+    it { is_expected.to run.with_params('9478').and_return('4789') }
+  end
 end

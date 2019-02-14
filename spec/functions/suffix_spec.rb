@@ -17,21 +17,11 @@ describe 'suffix' do
   it { is_expected.to run.with_params(['one', 'two', 'three'], 'post').and_return(['onepost', 'twopost', 'threepost']) }
   it { is_expected.to run.with_params(['ỗńέ', 'ťשׂǿ', 'ŧҺř℮ə'], 'рổŝţ').and_return(['ỗńέрổŝţ', 'ťשׂǿрổŝţ', 'ŧҺř℮əрổŝţ']) }
 
-  it {
-    is_expected.to run.with_params({}).and_return({})
-  }
-  it {
-    is_expected.to run.with_params('key1' => 'value1', 2 => 3).and_return('key1' => 'value1', '2' => 3)
-  }
-  it {
-    is_expected.to run.with_params({}, '').and_return({})
-  }
-  it {
-    is_expected.to run.with_params({ 'key' => 'value' }, '').and_return('key' => 'value')
-  }
-  it {
-    is_expected.to run.with_params({ 'key' => 'value' }, 'post').and_return('keypost' => 'value')
-  }
+  it { is_expected.to run.with_params({}).and_return({}) }
+  it { is_expected.to run.with_params('key1' => 'value1', 2 => 3).and_return('key1' => 'value1', '2' => 3) }
+  it { is_expected.to run.with_params({}, '').and_return({}) }
+  it { is_expected.to run.with_params({ 'key' => 'value' }, '').and_return('key' => 'value') }
+  it { is_expected.to run.with_params({ 'key' => 'value' }, 'post').and_return('keypost' => 'value') }
   it {
     is_expected.to run \
       .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'post') \

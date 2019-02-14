@@ -4,10 +4,10 @@ describe 'delete_undef_values' do
   let(:is_puppet_6) { Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') == 0 }
 
   it { is_expected.not_to eq(nil) }
-  it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError) }
-  it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError) }
-  it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError) }
-  it { is_expected.to run.with_params('one', 'two').and_raise_error(Puppet::ParseError) }
+  it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
+  it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{expected an array or hash}) }
+  it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError, %r{expected an array or hash}) }
+  it { is_expected.to run.with_params('one', 'two').and_raise_error(Puppet::ParseError, %r{expected an array or hash}) }
 
   describe 'when deleting from an array' do
     # Behavior is different in Puppet 6.0.0, and fixed in PUP-9180 in Puppet 6.0.1

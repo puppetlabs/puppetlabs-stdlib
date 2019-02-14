@@ -28,6 +28,7 @@ describe 'validate_string' do
       it { is_expected.to run.with_params({}).and_raise_error(Puppet::ParseError, %r{is not a string}) }
       it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{is not a string}) }
       it { is_expected.to run.with_params(true).and_raise_error(Puppet::ParseError, %r{is not a string}) }
+      it { is_expected.to run.with_params('one', 2).and_raise_error(Puppet::ParseError, %r{is not a string}) }
     end
   end
 end

@@ -12,6 +12,7 @@ describe 'min', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0')
   it { is_expected.to run.with_params('one', 'two').and_return('one') }
   it { is_expected.to run.with_params('one', 'two', 'three').and_return('one') }
   it { is_expected.to run.with_params('three', 'two', 'one').and_return('one') }
+  it { is_expected.to run.with_params('the', 'public', 'art', 'galleries').and_return('art') }
 
   describe 'implementation artifacts' do
     it { is_expected.to run.with_params(1, 'one').and_return(1) }

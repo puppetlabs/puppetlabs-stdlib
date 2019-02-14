@@ -41,7 +41,7 @@ describe 'validate_absolute_path' do
     end
 
     context 'with relative paths' do
-      ['relative1', '.', '..', './foo', '../foo', 'etc/puppetlabs/puppet', 'opt/puppet/bin', 'relative\\windows'].each do |path|
+      ['relative1', '.', '..', './foo', '../foo', 'etc/puppetlabs/puppet', 'relative\\windows'].each do |path|
         it { is_expected.to run.with_params(path).and_raise_error(Puppet::ParseError, %r{is not an absolute path}) }
         it { is_expected.to run.with_params([path]).and_raise_error(Puppet::ParseError, %r{is not an absolute path}) }
         it { is_expected.to run.with_params(['/tmp', path]).and_raise_error(Puppet::ParseError, %r{is not an absolute path}) }

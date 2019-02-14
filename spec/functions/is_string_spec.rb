@@ -25,6 +25,7 @@ describe 'is_string' do
   it { is_expected.to run.with_params(false).and_return(false) }
   it { is_expected.to run.with_params('one').and_return(true) }
   it { is_expected.to run.with_params('0001234').and_return(true) }
+  it { is_expected.to run.with_params('aaa' => 'www.com').and_return(false) }
 
   context 'with  deprecation warning' do
     after(:each) do
