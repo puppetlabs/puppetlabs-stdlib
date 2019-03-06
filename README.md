@@ -323,7 +323,7 @@ true
 false
 ```
 
-#### `Stdlib::Httpsurl`
+#### `Stdlib::HTTPSUrl`
 
 Matches HTTPS URLs. It is a case insensitive match.
 
@@ -341,7 +341,7 @@ Unacceptable input example:
 httds://notquiteright.org`
 ```
 
-#### `Stdlib::Httpurl`
+#### `Stdlib::HTTPUrl`
 
 Matches both HTTPS and HTTP URLs. It is a case insensitive match.
 
