@@ -1399,6 +1399,17 @@ stdlib::extname('.profile')      => ''
 
 *Type*: rvalue.
 
+#### `stdlib::ip_in_range`
+
+A Puppet function to determine if an IPv4 address is within the IPv4 CIDR. Returns true if the ipaddress is within the given CIDRs.
+
+```puppet
+$ranges = ['192.168.0.0/24', '10.10.10.0/24']
+$valid_ip = stdlib::ip_in_range('10.10.10.53', $ranges) # $valid_ip == true
+```
+
+*Type*: rvalue.
+
 #### `fact`
 
 Return the value of a given fact. Supports the use of dot-notation for referring to structured facts. If a fact requested does not exist, returns Undef.
