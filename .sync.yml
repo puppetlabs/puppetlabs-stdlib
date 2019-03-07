@@ -1,4 +1,8 @@
 ---
+.gitignore:
+  required:
+    - ---.project
+
 .gitlab-ci.yml:
   unmanaged: true
 
