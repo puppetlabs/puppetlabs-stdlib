@@ -503,6 +503,10 @@ s3://bucket/path/to/file
 ```
 Valid values: Amazon Web Services S3 object store uris.
 
+#### `Stdlib::Syslogfacility`
+
+An enum that defines all syslog facilities defined in [RFC5424](https://tools.ietf.org/html/rfc5424). This is based on work in the [voxpupuli/nrpe](https://github.com/voxpupuli/puppet-nrpe/commit/5700fd4f5bfc3e237195c8833039f9ed1045cd6b) module.
+
 <a id="facts"></a>
 ### Facts
 
