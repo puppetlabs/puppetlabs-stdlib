@@ -305,6 +305,69 @@ Unacceptable input example:
 ../relative_path
 ```
 
+#### `Stdlib::Ensure::File`
+
+Matches acceptable ensure values for file resources.
+
+Acceptable input examples:
+
+```shell
+present
+absent
+file
+directory
+link
+```
+
+Unacceptable input example:
+
+```shell
+true
+false
+```
+#### `Stdlib::Ensure::Package`
+
+Matches acceptable keyword ensure values for package resources. Does **not**
+match package versions; see `Stdlib::Ensure::PackageVersion`.
+
+Acceptable input examples:
+
+```shell
+present
+installed
+absent
+purged
+held
+latest
+```
+
+Unacceptable input example:
+
+```shell
+true
+false
+"v0.2.4"
+```
+#### `Stdlib::Ensure::PackageVersion`
+
+Matches acceptable ensure values for package resources, plus strings and
+`SemVer`.
+
+Acceptable input examples are the ones in `Stdlib::Ensure::Package` and:
+
+```shell
+"v2.5.7"
+"0.2.1"
+"de946be15264ce9736fdfac133ade2eccf4e7b51"
+SemVer('0.4.2')
+```
+
+Unacceptable input example:
+
+```shell
+true
+false
+```
 #### `Stdlib::Ensure::Service`
 
 Matches acceptable ensure values for service resources.
