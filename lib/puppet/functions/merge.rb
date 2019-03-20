@@ -36,10 +36,9 @@
 # The iterative `merge()` has an advantage over doing the same with a general `reduce()` in that the constructed hash
 # does not have to be copied in each iteration and thus will perform much better with large inputs.
 #
-Puppet::Functions.create_function(:'merge') do
-
+Puppet::Functions.create_function(:merge) do
   dispatch :merge2hashes do
-    repeated_param 'Variant[Hash, Undef, String[0,0]]', :args  # this strange type is backwards compatible
+    repeated_param 'Variant[Hash, Undef, String[0,0]]', :args # this strange type is backwards compatible
     return_type 'Hash'
   end
 
@@ -55,14 +54,13 @@ Puppet::Functions.create_function(:'merge') do
     return_type 'Hash'
   end
 
-
   def merge2hashes(*hashes)
     accumulator = {}
-    hashes.each {|h| accumulator.merge!(h) if h.is_a?(Hash)}
+    hashes.each { |h| accumulator.merge!(h) if h.is_a?(Hash) }
     accumulator
   end
 
-  def merge_iterable2(iterable, &block)
+  def merge_iterable2(iterable)
     accumulator = {}
     enum = Puppet::Pops::Types::Iterable.asserted_iterable(self, iterable)
     enum.each do |v|
@@ -72,7 +70,7 @@ Puppet::Functions.create_function(:'merge') do
     accumulator
   end
 
-  def merge_iterable3(iterable, &block)
+  def merge_iterable3(iterable)
     accumulator = {}
     enum = Puppet::Pops::Types::Iterable.asserted_iterable(self, iterable)
     if enum.hash_style?
@@ -88,7 +86,7 @@ Puppet::Functions.create_function(:'merge') do
           accumulator.merge!(r) if r.is_a?(Hash)
           index += 1
         end
-      rescue StopIteration
+      rescue StopIteration # rubocop:disable Lint/HandleExceptions
       end
     end
     accumulator
