@@ -3,11 +3,16 @@
 #
 module Puppet::Parser::Functions
   newfunction(:min, :type => :rvalue, :doc => <<-DOC
-    Returns the lowest value of all arguments.
+    @summary
+      **Deprecated:** Returns the lowest value of all arguments.
+
     Requires at least one argument.
 
-    Note: from Puppet 6.0.0, the compatible function with the same name in Puppet core
-    will be used instead of this function.
+    @return
+      The lowest value among the given arguments
+
+    > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with a
+    built-in [`min`](https://puppet.com/docs/puppet/latest/function.html#min) function.
     DOC
              ) do |args|
 

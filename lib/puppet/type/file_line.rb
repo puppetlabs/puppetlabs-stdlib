@@ -1,34 +1,38 @@
 Puppet::Type.newtype(:file_line) do
   desc <<-DOC
-    Ensures that a given line is contained within a file.  The implementation
-    matches the full line, including whitespace at the beginning and end.  If
-    the line is not contained in the given file, Puppet will append the line to
-    the end of the file to ensure the desired state.  Multiple resources may
-    be declared to manage multiple lines in the same file.
+    @summary
+      Ensures that a given line is contained within a file.
+
+    The implementation matches the full line, including whitespace at the
+    beginning and end.  If the line is not contained in the given file, Puppet
+    will append the line to the end of the file to ensure the desired state.
+    Multiple resources may be declared to manage multiple lines in the same file.
 
     Example:
+    ```
+    file_line { 'sudo_rule':
+      path => '/etc/sudoers',
+      line => '%sudo ALL=(ALL) ALL',
+    }
 
-        file_line { 'sudo_rule':
-          path => '/etc/sudoers',
-          line => '%sudo ALL=(ALL) ALL',
-        }
-
-        file_line { 'sudo_rule_nopw':
-          path => '/etc/sudoers',
-          line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
-        }
-
+    file_line { 'sudo_rule_nopw':
+      path => '/etc/sudoers',
+      line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
+    }
+    ```
     In this example, Puppet will ensure both of the specified lines are
     contained in the file /etc/sudoers.
 
     Match Example:
 
-        file_line { 'bashrc_proxy':
-          ensure => present,
-          path   => '/etc/bashrc',
-          line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
-          match  => '^export\ HTTP_PROXY\=',
-        }
+    ```
+    file_line { 'bashrc_proxy':
+      ensure => present,
+      path   => '/etc/bashrc',
+      line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+      match  => '^export\ HTTP_PROXY\=',
+    }
+    ```
 
     In this code example match will look for a line beginning with export
     followed by HTTP_PROXY and replace it with the value in line.
@@ -40,12 +44,14 @@ Puppet::Type.newtype(:file_line) do
     One possibility is to set `match => ...` and `match_for_absence => true`,
     as in the following example:
 
-        file_line { 'bashrc_proxy':
-          ensure            => absent,
-          path              => '/etc/bashrc',
-          match             => '^export\ HTTP_PROXY\=',
-          match_for_absence => true,
-        }
+    ```
+    file_line { 'bashrc_proxy':
+      ensure            => absent,
+      path              => '/etc/bashrc',
+      match             => '^export\ HTTP_PROXY\=',
+      match_for_absence => true,
+    }
+    ```
 
     In this code example match will look for a line beginning with export
     followed by HTTP_PROXY and delete it.  If multiple lines match, an
@@ -57,11 +63,13 @@ Puppet::Type.newtype(:file_line) do
     The second way of using `ensure => absent` is to specify a `line => ...`,
     and no match:
 
-        file_line { 'bashrc_proxy':
-          ensure => absent,
-          path   => '/etc/bashrc',
-          line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
-        }
+    ```
+    file_line { 'bashrc_proxy':
+      ensure => absent,
+      path   => '/etc/bashrc',
+      line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+    }
+    ```
 
     Note that when ensuring lines are absent this way, the default behavior
     this time is to always remove all lines matching, and this behavior
@@ -69,13 +77,15 @@ Puppet::Type.newtype(:file_line) do
 
     Encoding example:
 
-        file_line { "XScreenSaver":
-          ensure   => present,
-          path     => '/root/XScreenSaver',
-          line     => "*lock: 10:00:00",
-          match    => '^*lock:',
-          encoding => "iso-8859-1",
-        }
+    ```
+    file_line { "XScreenSaver":
+      ensure   => present,
+      path     => '/root/XScreenSaver',
+      line     => "*lock: 10:00:00",
+      match    => '^*lock:',
+      encoding => "iso-8859-1",
+    }
+    ```
 
     Files with special characters that are not valid UTF-8 will give the
     error message "invalid byte sequence in UTF-8".  In this case, determine

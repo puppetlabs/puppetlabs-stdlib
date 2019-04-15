@@ -3,24 +3,26 @@
 #
 module Puppet::Parser::Functions
   newfunction(:has_key, :type => :rvalue, :doc => <<-'DOC') do |args|
-    Determine if a hash has a certain key value.
+    @summary
+      **Deprecated:** Determine if a hash has a certain key value.
 
-    Example:
+    @example Example Usage:
+      $my_hash = {'key_one' => 'value_one'}
+      if has_key($my_hash, 'key_two') {
+        notice('we will not reach here')
+      }
+      if has_key($my_hash, 'key_one') {
+        notice('this will be printed')
+      }
 
-        $my_hash = {'key_one' => 'value_one'}
-        if has_key($my_hash, 'key_two') {
-          notice('we will not reach here')
-        }
-        if has_key($my_hash, 'key_one') {
-          notice('this will be printed')
-        }
-
-    Note: Since Puppet 4.0.0 this can be achieved in the Puppet language with the following equivalent expression:
-
-       $my_hash = {'key_one' => 'value_one'}
-       if 'key_one' in $my_hash {
-         notice('this will be printed')
-       }
+    > **Note:** **Deprecated** since Puppet 4.0.0, this can now be achieved in the Puppet
+    language with the following equivalent expression:
+      ````
+      $my_hash = {'key_one' => 'value_one'}
+      if 'key_one' in $my_hash {
+        notice('this will be printed')
+      }
+       ````
     DOC
 
     unless args.length == 2

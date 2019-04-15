@@ -3,7 +3,10 @@
 #
 module Puppet::Parser::Functions
   newfunction(:basename, :type => :rvalue, :doc => <<-DOC
-    Strips directory (and optional suffix) from a filename
+    @summary
+      Strips directory (and optional suffix) from a filename
+
+    @return [String] The stripped filename
     DOC
              ) do |arguments|
 

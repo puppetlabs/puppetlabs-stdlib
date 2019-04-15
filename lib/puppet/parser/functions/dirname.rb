@@ -3,7 +3,10 @@
 #
 module Puppet::Parser::Functions
   newfunction(:dirname, :type => :rvalue, :doc => <<-DOC
-    Returns the dirname of a path.
+    @summary
+      Returns the dirname of a path.
+
+    @return [String] the given path's dirname
     DOC
              ) do |arguments|
 

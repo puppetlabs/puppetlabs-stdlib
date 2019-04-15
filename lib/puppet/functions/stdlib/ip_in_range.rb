@@ -1,4 +1,5 @@
-# Returns true if the ipaddress is within the given CIDRs
+# @summary
+#   Returns true if the ipaddress is within the given CIDRs
 #
 # @example ip_in_range(<IPv4 Address>, <IPv4 CIDR>)
 #   stdlib::ip_in_range('10.10.10.53', '10.10.10.0/24') => true
