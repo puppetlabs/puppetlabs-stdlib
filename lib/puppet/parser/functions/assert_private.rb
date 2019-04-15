@@ -3,7 +3,9 @@
 #
 module Puppet::Parser::Functions
   newfunction(:assert_private, :doc => <<-DOC
-    Sets the current class or definition as private.
+    @summary
+      Sets the current class or definition as private.
+
     Calling the class or definition from outside the current module will fail.
     DOC
              ) do |args|

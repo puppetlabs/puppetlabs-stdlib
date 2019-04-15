@@ -3,28 +3,33 @@
 #
 module Puppet::Parser::Functions
   newfunction(:is_absolute_path, :type => :rvalue, :arity => 1, :doc => <<-'DOC') do |args|
-    Returns boolean true if the string represents an absolute path in the filesystem.  This function works
-    for windows and unix style paths.
+    @summary
+      **Deprecated:** Returns boolean true if the string represents an absolute path in the filesystem.
 
-    The following values will return true:
+    This function works for windows and unix style paths.
 
-        $my_path = 'C:/Program Files (x86)/Puppet Labs/Puppet'
-        is_absolute_path($my_path)
-        $my_path2 = '/var/lib/puppet'
-        is_absolute_path($my_path2)
-        $my_path3 = ['C:/Program Files (x86)/Puppet Labs/Puppet']
-        is_absolute_path($my_path3)
-        $my_path4 = ['/var/lib/puppet']
-        is_absolute_path($my_path4)
+    @example The following values will return true:
+      $my_path = 'C:/Program Files (x86)/Puppet Labs/Puppet'
+      is_absolute_path($my_path)
+      $my_path2 = '/var/lib/puppet'
+      is_absolute_path($my_path2)
+      $my_path3 = ['C:/Program Files (x86)/Puppet Labs/Puppet']
+      is_absolute_path($my_path3)
+      $my_path4 = ['/var/lib/puppet']
+      is_absolute_path($my_path4)
 
-    The following values will return false:
+    @example The following values will return false:
+      is_absolute_path(true)
+      is_absolute_path('../var/lib/puppet')
+      is_absolute_path('var/lib/puppet')
+      $undefined = undef
+      is_absolute_path($undefined)
 
-        is_absolute_path(true)
-        is_absolute_path('../var/lib/puppet')
-        is_absolute_path('var/lib/puppet')
-        $undefined = undef
-        is_absolute_path($undefined)
+    @return [Boolean]
+      Returns `true` or `false`
 
+    > **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+    [`validate_legacy`](#validate_legacy).
   DOC
     function_deprecation([:is_absolute_path, 'This method is deprecated, please use the stdlib validate_legacy function,
                            with Stdlib::Compat::Absolute_path. There is further documentation for validate_legacy function in the README.'])

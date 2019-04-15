@@ -3,6 +3,9 @@
 #
 module Puppet::Parser::Functions
   newfunction(:is_numeric, :type => :rvalue, :doc => <<-DOC
+    @summary
+      **Deprecated:** Returns true if the given value is numeric.
+
     Returns true if the given argument is a Numeric (Integer or Float),
     or a String containing either a valid integer in decimal base 10 form, or
     a valid floating point string representation.
@@ -13,13 +16,11 @@ module Puppet::Parser::Functions
     The string representation may start with a '-' (minus). If a decimal '.' is used,
     it must be followed by at least one digit.
 
-    Valid examples:
+    @return [Boolean]
+      Returns `true` or `false`
 
-      77435
-      10e-12
-      -8475
-      0.2343
-      -23.561e3
+    > **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+    [`validate_legacy`](#validate_legacy).
     DOC
              ) do |arguments|
 
