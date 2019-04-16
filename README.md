@@ -1399,6 +1399,22 @@ stdlib::extname('.profile')      => ''
 
 *Type*: rvalue.
 
+#### `stdlib::has_value`
+
+Returns whether or not a value is present in a hash
+
+Note that this is a relatively expensive operation versus a key lookup
+
+Example usage:
+
+``` puppet
+  #   $h = { 'foo' => 'bar', }
+  #   $h.stdlib::has_value('foo') => false
+  #   $h.stdlib::has_value('bar') => true
+```
+
+*Type*: rvalue.
+
 #### `stdlib::ip_in_range`
 
 A Puppet function to determine if an IPv4 address is within the IPv4 CIDR. Returns true if the ipaddress is within the given CIDRs.
