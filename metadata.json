@@ -7,7 +7,9 @@
   "source": "https://github.com/puppetlabs/puppetlabs-stdlib",
   "project_page": "https://github.com/puppetlabs/puppetlabs-stdlib",
   "issues_url": "https://tickets.puppetlabs.com/browse/MODULES",
-  "dependencies": [],
+  "dependencies": [
+
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -99,7 +101,7 @@
     }
   ],
   "description": "Standard Library for Puppet Modules",
-  "pdk-version": "1.8.0",
-  "template-url": "https://github.com/puppetlabs/pdk-templates",
-  "template-ref": "heads/master-0-gfde5699"
+  "pdk-version": "1.10.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#master",
+  "template-ref": "heads/master-0-gf778803"
 }
