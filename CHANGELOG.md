@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
+## Supported Release 6.0.0
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/5.2.0...v6.0.0)
+
+#### Changed
+- (MODULES-8444) - Raise lower Puppet bound
+
+#### Added
+- Add a stdlib::ip_in_range() function
+- (MODULES-8760) Add iterative feature to merge() function
+
 ## Supported Release 5.2.0
 ### Summary
 This is a moderate release made in order to roll up various new features.
