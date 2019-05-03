@@ -1401,7 +1401,7 @@ stdlib::extname('.profile')      => ''
 
 #### `stdlib::ip_in_range`
 
-A Puppet function that determine whether an IPv4 address is within the IPv4 CIDR. Returns true if the ipaddress is within the given CIDRs.
+A Puppet function that determines whether an IPv4 address is within the IPv4 CIDR. Returns true if the ipaddress is within the given CIDRs.
 
 ```puppet
 $ranges = ['192.168.0.0/24', '10.10.10.0/24']
