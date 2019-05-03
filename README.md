@@ -1401,7 +1401,7 @@ stdlib::extname('.profile')      => ''
 
 #### `stdlib::ip_in_range`
 
-A Puppet function to determine if an IPv4 address is within the IPv4 CIDR. Returns true if the ipaddress is within the given CIDRs.
+A Puppet function that determine whether an IPv4 address is within the IPv4 CIDR. Returns true if the ipaddress is within the given CIDRs.
 
 ```puppet
 $ranges = ['192.168.0.0/24', '10.10.10.0/24']
@@ -1997,32 +1997,32 @@ Since Puppet 4.0.0, you can use the + operator to achieve the same merge.
 
     $merged_hash = $hash1 + $hash2
 
-If merge is given a single `Iterable` (`Array`, `Hash`, etc.) it will call a given block with
-up to three parameters, and merge each resulting Hash into the accumulated result. All other types
-of values returned from the block (typically `undef`) are skipped (not merged).
+If merge is given a single `Iterable` (`Array`, `Hash`, etc.), it calls a block with
+up to three parameters, and merges each resulting Hash into the accumulated result. All other types
+of values returned from the block (for example, `undef`) are skipped, not merged.
 
-The codeblock can take 2 or three parameters:
-* with two, it gets the current hash (as built to this point), and each value (for hash the value is a [key, value] tuple)
-* with three, it gets the current hash (as built to this point), the key/index of each value, and then the value
+The codeblock takes two or three parameters:
+* With two parameters, the codeblock gets the current hash and each value (for hash the value is a [key, value] tuple).
+* With three parameters, the codeblock gets the current hash, the key/index of each value, and the value.
 
-If the iterable is empty, or no hash was returned from the given block, an empty hash is returned. In the given block, a call to `next()`
-will skip that entry, and a call to `break()` will end the iteration.
+If the iterable is empty, or if no hash was returned from the given block, an empty hash is returned. A call to `next()` skips that entry, and a call to `break()` ends the iteration.
 
-*Example: counting occurrences of strings in an array*
+Counting occurrences of strings in an array example:
+
 ```puppet
 ['a', 'b', 'c', 'c', 'd', 'b'].merge | $hsh, $v | { { $v => $hsh[$v].lest || { 0 } + 1 } }
 # would result in { a => 1, b => 2, c => 2, d => 1 }
 ```
 
-*Example: skipping values for entries that are longer than 1 char*
+Skipping values for entries that are longer than one char example:
 
 ```puppet
 ['a', 'b', 'c', 'c', 'd', 'b', 'blah', 'blah'].merge | $hsh, $v | { if $v =~ String[1,1] { { $v => $hsh[$v].lest || { 0 } + 1 } } }
 # would result in { a => 1, b => 2, c => 2, d => 1 } since 'blah' is longer than 2 chars
 ```
 
-The iterative `merge()` has an advantage over doing the same with a general `reduce()` in that the constructed hash
-does not have to be copied in each iteration and thus will perform much better with large inputs.
+The iterative `merge()` has an advantage over a general `reduce()` in that the constructed hash
+does not have to be copied in each iteration and it performs better with large inputs.
 
 *Type*: rvalue.
 
