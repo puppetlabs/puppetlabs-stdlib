@@ -8,14 +8,17 @@ module Puppet::Parser::Functions
       (parameter order doesn't matter).
 
     Strings are converted and compared numerically. Arrays of values are flattened
-    into a list for further handling. For example:
+    into a list for further handling.
 
-    * `clamp('24', [575, 187])`` returns 187.
-    * `clamp(16, 88, 661)` returns 88.
-    * `clamp([4, 3, '99'])` returns 4.
+    @example Example usage
 
-    > *Note:* From Puppet 6.0.0 this can be done with only core Puppet like this:
-      ```[$minval, $maxval, $value_to_clamp].sort[1]```
+      clamp('24', [575, 187])` returns 187.
+      clamp(16, 88, 661)` returns 88.
+      clamp([4, 3, '99'])` returns 4.
+
+    > *Note:*
+      From Puppet 6.0.0 this can be done with only core Puppet like this:
+      `[$minval, $maxval, $value_to_clamp].sort[1]`
 
     @return [Array[Integer]] The sorted Array
     DOC

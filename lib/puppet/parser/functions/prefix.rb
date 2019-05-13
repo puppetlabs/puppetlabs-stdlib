@@ -3,18 +3,19 @@
 #
 module Puppet::Parser::Functions
   newfunction(:prefix, :type => :rvalue, :doc => <<-DOC
-    This function applies a prefix to all elements in an array or a hash.
+    @summary
+      This function applies a prefix to all elements in an array or a hash.
 
-    *Examples:*
+    @example **Usage**
 
-        prefix(['a','b','c'], 'p')
+      prefix(['a','b','c'], 'p')
+      Will return: ['pa','pb','pc']
 
-    Will return: ['pa','pb','pc']
-
-    Note that since Puppet 4.0.0 the general way to modify values is in array is by using the map
+    > *Note:* since Puppet 4.0.0 the general way to modify values is in array is by using the map
     function in Puppet. This example does the same as the example above:
+    ['a', 'b', 'c'].map |$x| { "p${x}" }
 
-        ['a', 'b', 'c'].map |$x| { "p${x}" }
+    @return [Hash] or [Array] The passed values now contains the passed prefix
     DOC
              ) do |arguments|
 

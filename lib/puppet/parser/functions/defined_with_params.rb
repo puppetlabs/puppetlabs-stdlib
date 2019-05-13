@@ -3,7 +3,7 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:defined_with_params,
                                       :type => :rvalue,
-                                      :doc => <<-'DOC'
+                                      :doc => <<-DOC
     @summary
       Takes a resource reference and an optional hash of attributes.
 
@@ -20,7 +20,8 @@ Puppet::Parser::Functions.newfunction(:defined_with_params,
       }
       ```
 
-    @return [Boolean] Returns `true` or `false`
+    @return [Boolean]
+      returns `true` or `false`
 DOC
                                      ) do |vals|
   reference, params = vals

@@ -6,18 +6,18 @@ module Puppet::Parser::Functions
     @summary
       Appends the contents of multiple arrays into array 1.
 
-    For example:
-    * `concat(['1','2','3'],'4')` returns `['1','2','3','4']`.
-    * `concat(['1','2','3'],'4',['5','6','7'])` returns `['1','2','3','4','5','6','7']`.
+    @example Example usage
 
-    > *Note:* Since Puppet 4.0, you can use the `+`` operator for concatenation of arrays and
-    merge of hashes, and the `<<`` operator for appending:
+      concat(['1','2','3'],'4') returns ['1','2','3','4']
+      concat(['1','2','3'],'4',['5','6','7']) returns ['1','2','3','4','5','6','7']
 
-    ```
-    ['1','2','3'] + ['4','5','6'] + ['7','8','9'] # returns ['1','2','3','4','5','6','7','8','9']
-    [1, 2, 3] << 4 # returns [1, 2, 3, 4]
-    [1, 2, 3] << [4, 5] # returns [1, 2, 3, [4, 5]]
-    ```
+    > *Note:*
+      Since Puppet 4.0, you can use the `+`` operator for concatenation of arrays and
+      merge of hashes, and the `<<`` operator for appending:
+
+    `['1','2','3'] + ['4','5','6'] + ['7','8','9']` returns `['1','2','3','4','5','6','7','8','9']`
+    `[1, 2, 3] << 4` returns `[1, 2, 3, 4]`
+    `[1, 2, 3] << [4, 5]` returns `[1, 2, 3, [4, 5]]`
 
     @return [Array] The single concatenated array
   DOC

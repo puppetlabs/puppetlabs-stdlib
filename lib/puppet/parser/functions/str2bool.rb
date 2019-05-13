@@ -3,11 +3,14 @@
 #
 module Puppet::Parser::Functions
   newfunction(:str2bool, :type => :rvalue, :doc => <<-DOC
-    This converts a string to a boolean. This attempt to convert strings that
-    contain things like: Y,y, 1, T,t, TRUE,true to 'true' and strings that contain things
-    like: 0, F,f, N,n, false, FALSE, no to 'false'.
+    @summary
+      This converts a string to a boolean.
 
-    Note that since Puppet 5.0.0 the Boolean data type can convert strings to a Boolean value.
+    @return
+      This attempt to convert to boolean strings that contain things like: Y,y, 1, T,t, TRUE,true to 'true' and strings that contain things
+      like: 0, F,f, N,n, false, FALSE, no to 'false'.
+
+    > *Note:* that since Puppet 5.0.0 the Boolean data type can convert strings to a Boolean value.
     See the function new() in Puppet for details what the Boolean data type supports.
   DOC
              ) do |arguments|

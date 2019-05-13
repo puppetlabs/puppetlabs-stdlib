@@ -4,39 +4,43 @@
 # TODO(Krzysztof Wilczynski): We probably need to approach numeric values differently ...
 module Puppet::Parser::Functions
   newfunction(:range, :type => :rvalue, :doc => <<-DOC
-    When given range in the form of (start, stop) it will extrapolate a range as
-    an array.
+    @summary
+      When given range in the form of (start, stop) it will extrapolate a range as
+      an array.
 
-    *Examples:*
+    @return
+      the range is extrapolated as an array
 
-        range("0", "9")
+    @example **Usage**
+      range("0", "9")
+      Will return: [0,1,2,3,4,5,6,7,8,9]
 
-    Will return: [0,1,2,3,4,5,6,7,8,9]
+      range("00", "09")
+      Will return: [0,1,2,3,4,5,6,7,8,9]
+      (Zero padded strings are converted to integers automatically)
 
-        range("00", "09")
+      range("a", "c")
+      Will return: ["a","b","c"]
 
-    Will return: [0,1,2,3,4,5,6,7,8,9] (Zero padded strings are converted to
-    integers automatically)
+      range("host01", "host10")
+      Will return: ["host01", "host02", ..., "host09", "host10"]
 
-        range("a", "c")
+      range("0", "9", "2")
+      Will return: [0,2,4,6,8]
 
-    Will return: ["a","b","c"]
-
-        range("host01", "host10")
-    Will return: ["host01", "host02", ..., "host09", "host10"]
     NB Be explicit in including trailing zeros. Otherwise the underlying ruby function will fail.
 
-    Passing a third argument will cause the generated range to step by that
-    interval, e.g.
-
-        range("0", "9", "2")
-
-    Will return: [0,2,4,6,8]
+    > *Note:*
+      Passing a third argument will cause the generated range to step by that
+      interval, e.g.
 
     The Puppet Language support Integer and Float ranges by using the type system. Those are suitable for
-    iterating a given number of times. Also see the step() function in Puppet for skipping values.
+    iterating a given number of times.
 
-        Integer[0, 9].each |$x| { notice($x) } # notices 0, 1, 2, ... 9
+    @see
+      the step() function in Puppet for skipping values.
+
+     Integer[0, 9].each |$x| { notice($x) } # notices 0, 1, 2, ... 9
     DOC
              ) do |arguments|
 

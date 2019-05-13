@@ -6,7 +6,11 @@ module Puppet::Parser::Functions
     @summary
       **Deprecated:** Determine if a hash has a certain key value.
 
+    @return
+      Boolean value
+
     @example Example Usage:
+
       $my_hash = {'key_one' => 'value_one'}
       if has_key($my_hash, 'key_two') {
         notice('we will not reach here')
@@ -17,12 +21,11 @@ module Puppet::Parser::Functions
 
     > **Note:** **Deprecated** since Puppet 4.0.0, this can now be achieved in the Puppet
     language with the following equivalent expression:
-      ````
-      $my_hash = {'key_one' => 'value_one'}
-      if 'key_one' in $my_hash {
-        notice('this will be printed')
-      }
-       ````
+    $my_hash = {'key_one' => 'value_one'}
+    if 'key_one' in $my_hash {
+      notice('this will be printed')
+    }
+
     DOC
 
     unless args.length == 2

@@ -1,4 +1,14 @@
+# @summary
+#   Validate the passed value represents an array.
 Puppet::Functions.create_function(:validate_array) do
+  # @param scope
+  #   The main value that will be passed to the method
+  #
+  # @param args
+  #   Any additional values that are to be passed to the method
+  #
+  # @return
+  #   A boolean value (`true` or `false`) returned from the called function.
   dispatch :deprecation_gen do
     param 'Any', :scope
     repeated_param 'Any', :args

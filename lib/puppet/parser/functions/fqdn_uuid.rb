@@ -8,6 +8,9 @@ module Puppet::Parser::Functions
       Returns a [RFC 4122](https://tools.ietf.org/html/rfc4122) valid version 5 UUID based
       on an FQDN string under the DNS namespace
 
+    @return
+      Returns a [RFC 4122](https://tools.ietf.org/html/rfc4122) valid version 5 UUID
+
     @example Example Usage:
       fqdn_uuid('puppetlabs.com') # Returns '9c70320f-6815-5fc5-ab0f-debe68bf764c'
       fqdn_uuid('google.com') # Returns '64ee70a4-8cc1-5d25-abf2-dea6c79a09c8'

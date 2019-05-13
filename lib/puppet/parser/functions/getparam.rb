@@ -7,12 +7,15 @@ Puppet::Parser::Functions.newfunction(:getparam,
     @summary
       Returns the value of a resource's parameter.
 
+    @return
+      value of a resource's parameter.
+
     Takes a resource reference and name of the parameter and
     returns value of resource's parameter. Note that user defined
     resource types are evaluated lazily.
 
-    *Examples:*
-      ```
+    @example Example Usage:
+
       # define a resource type with a parameter
       define example_resource($param) {
       }
@@ -32,7 +35,6 @@ Puppet::Parser::Functions.newfunction(:getparam,
 
       # Declare an instance of the second resource type - this will call notice
       example_get_param { 'show_notify': }
-      ```
 
     Would notice: 'the value we are getting in this example'
 

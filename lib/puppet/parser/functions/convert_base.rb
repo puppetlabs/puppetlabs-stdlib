@@ -7,19 +7,22 @@ module Puppet::Parser::Functions
       Converts a given integer or base 10 string representing an integer to a
       specified base, as a string.
 
-    For example:
-    * `convert_base(5, 2)` results in: `'101'`
-    * `convert_base('254', '16')` results in: `'fe'`
+    @return
+      converted value as a string
 
-    > *Note:* Since Puppet 4.5.0 this can be done with the built-in
-    [`String.new`](https://puppet.com/docs/puppet/latest/function.html#integer-to-string)
-    function and its many formatting options:
+    @example Example usage
 
-       ```
-       $binary_repr = String(5, '%b') # results in "101"
-       $hex_repr = String(254, "%x")  # results in "fe"
-       $hex_repr = String(254, "%#x")  # results in "0xfe"
-       ```
+    convert_base(5, 2)` results in: `'101'`
+    convert_base('254', '16')` results in: `'fe'`
+
+    > *Note:*
+      Since Puppet 4.5.0 this can be done with the built-in
+      [`String.new`](https://puppet.com/docs/puppet/latest/function.html#integer-to-string)
+      function and its many formatting options:
+
+      `$binary_repr = String(5, '%b')` return `"101"`
+      `$hex_repr = String(254, "%x")`  return `"fe"`
+      `$hex_repr = String(254, "%#x")` return `"0xfe"`
 
       @return [String] The converted value as a String
     DOC

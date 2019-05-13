@@ -9,10 +9,11 @@ module Puppet::Parser::Functions
     Empty argument lists are converted to an empty array. Arrays are left
     untouched. Hashes are converted to arrays of alternating keys and values.
 
-    > *Note:* since Puppet 5.0.0 it is possible to create new data types for almost any
-    datatype using the type system and the built-in
-    [`Array.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-array-and-tuple)
-    function is used to create a new Array..
+    > *Note:*
+      since Puppet 5.0.0 it is possible to create new data types for almost any
+      datatype using the type system and the built-in
+      [`Array.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-array-and-tuple)
+      function is used to create a new Array..
 
       ```
       $hsh = {'key' => 42, 'another-key' => 100}

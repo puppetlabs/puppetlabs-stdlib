@@ -6,6 +6,9 @@ module Puppet::Parser::Functions
     @summary
       Returns true if the client has the requested IP address on some interface.
 
+    @return [Boolean]
+      `true` or `false`
+
     This function iterates through the 'interfaces' fact and checks the
     'ipaddress_IFACE' facts, performing a simple string comparison.
     DOC

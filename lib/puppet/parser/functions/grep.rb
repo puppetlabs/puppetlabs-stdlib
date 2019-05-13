@@ -7,6 +7,8 @@ module Puppet::Parser::Functions
       This function searches through an array and returns any elements that match
       the provided regular expression.
 
+    @return
+      array of elements that match the provided regular expression.
     @example Example Usage:
       grep(['aaa','bbb','ccc','aaaddd'], 'aaa') # Returns ['aaa','aaaddd']
 

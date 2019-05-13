@@ -14,6 +14,8 @@ Puppet::Parser::Functions.newfunction(
   * Optionally, a string specifying the character set.
   * Optionally, a string specifying the seed for repeatable randomness.
 
+  @return [String]
+
   @example Example Usage:
     fqdn_rand_string(10)
     fqdn_rand_string(10, 'ABCDEF!@#$%^')

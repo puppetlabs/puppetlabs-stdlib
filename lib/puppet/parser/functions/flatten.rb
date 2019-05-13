@@ -7,8 +7,12 @@ module Puppet::Parser::Functions
       This function flattens any deeply nested arrays and returns a single flat array
       as a result.
 
-    @example Example Usage:
-      flatten(['a', ['b', ['c']]]) # Returns: ['a','b','c']
+    @return
+      convert nested arrays into a single flat array
+
+    @example Example usage
+
+      flatten(['a', ['b', ['c']]])` returns: `['a','b','c']
 
     > **Note:** **Deprecated** from Puppet 5.5.0, this function has been replaced with a
     built-in [`flatten`](https://puppet.com/docs/puppet/latest/function.html#flatten) function.

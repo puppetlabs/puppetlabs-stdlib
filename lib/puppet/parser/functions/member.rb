@@ -13,19 +13,19 @@ module Puppet::Parser::Functions
     > **Note**: This function does not support nested arrays. If the first argument contains
     nested arrays, it will not recurse through them.
 
-    @examples Example Usage:
+    @example **Usage**
       member(['a','b'], 'b') # Returns: true
       member(['a', 'b', 'c'], ['a', 'b']) # Returns: true
       member(['a','b'], 'c') # Returns: false
       member(['a', 'b', 'c'], ['d', 'b']) # Returns: false
 
-    Since Puppet 4.0.0 the same can be performed in the Puppet language. For single values
-    the operator `in` can be used:
-      `'a' in ['a', 'b']  # true`
-
-    And for arrays by using operator `-` to compute a diff:
-      `['d', 'b'] - ['a', 'b', 'c'] == []  # false because 'd' is not subtracted`
-      `['a', 'b'] - ['a', 'b', 'c'] == []  # true because both 'a' and 'b' are subtracted`
+    > *Note:*
+    Since Puppet 4.0.0 the same can be performed in the Puppet language.
+    For single values the operator `in` can be used:
+    `'a' in ['a', 'b']  # true`
+    For arrays by using operator `-` to compute a diff:
+    `['d', 'b'] - ['a', 'b', 'c'] == []  # false because 'd' is not subtracted`
+    `['a', 'b'] - ['a', 'b', 'c'] == []  # true because both 'a' and 'b' are subtracted`
 
     @return
       Returns whether the given value was a member of the array

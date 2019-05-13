@@ -7,12 +7,13 @@ module Puppet::Parser::Functions
       **DEPRECATED** Retrieves a value within multiple layers of hashes and arrays via an
       array of keys containing a path.
 
+    @return
       The function goes through the structure by each path component and tries to return
       the value at the end of the path.
 
-      In addition to the required path argument, the function accepts the default argument.
-      It is returned if the path is not correct, if no value was found, or if any other error
-      has occurred.
+    In addition to the required path argument, the function accepts the default argument.
+    It is returned if the path is not correct, if no value was found, or if any other error
+    has occurred.
 
       ```ruby
       $data = {
@@ -41,7 +42,8 @@ module Puppet::Parser::Functions
       2. `['a', 'b', 2]` The path array.
       3. `not_found` The default value. It is returned if nothing is found.
 
-      > **Note:* **Deprecated** This function has been replaced with a built-in
+    > **Note:*
+      **Deprecated** This function has been replaced with a built-in
       [`dig`](https://puppet.com/docs/puppet/latest/function.html#dig) function as of
       Puppet 4.5.0. Use [`dig44()`](#dig44) for backwards compatibility or use the new version.
     DOC

@@ -3,15 +3,16 @@
 #
 module Puppet::Parser::Functions
   newfunction(:num2bool, :type => :rvalue, :doc => <<-DOC
-    This function converts a number or a string representation of a number into a
-    true boolean. Zero or anything non-numeric becomes false. Numbers higher then 0
-    become true.
+    @summary
+      This function converts a number or a string representation of a number into a
+      true boolean.
 
-    Note that since Puppet 5.0.0 the same can be achieved with the Puppet Type System.
+    > *Note:* that since Puppet 5.0.0 the same can be achieved with the Puppet Type System.
     See the new() function in Puppet for the many available type conversions.
 
-        Boolean(0) # false
-        Boolean(1) # true
+    @return [Boolean]
+        Boolean(0) # false for any zero or negative number
+        Boolean(1) # true for any positive number
     DOC
              ) do |arguments|
 

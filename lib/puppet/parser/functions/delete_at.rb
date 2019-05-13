@@ -2,7 +2,7 @@
 # delete_at.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:delete_at, :type => :rvalue, :doc => <<-DOC
+  newfunction(:delete_at, :type => :rvalue, :doc => <<-DOC) do |arguments|
     @summary
       Deletes a determined indexed value from an array.
 
@@ -11,8 +11,9 @@ module Puppet::Parser::Functions
 
     Would return: `['a','c']`
 
-    > *Note:* since Puppet 4 this can be done in general with the built-in
-    [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
+    > *Note:*
+      Since Puppet 4 this can be done in general with the built-in
+      [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
 
       ```['a', 'b', 'c'].filter |$pos, $val | { $pos != 1 }```
 
@@ -25,8 +26,8 @@ module Puppet::Parser::Functions
       ```
 
     @return [Array] The given array, now missing the target value
+
   DOC
-             ) do |arguments|
 
     raise(Puppet::ParseError, "delete_at(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 

@@ -2,59 +2,63 @@
 # validate_interger.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_integer, :doc => <<-'DOC') do |args|
-    Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
+  newfunction(:validate_integer, :doc => <<-DOC
+    @summary
+      Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
 
     The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
-
     The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
     If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
     if (all elements of) the first argument are greater or equal to the given minimum.
-
     It will fail if the first argument is not an integer or array of integers, and if arg 2 and arg 3 are not convertable to an integer.
 
-    The following values will pass:
+    @return
+      Validate that the first argument is an integer (or an array of integers). Fail compilation if any of the checks fail.
 
-      validate_integer(1)
-      validate_integer(1, 2)
-      validate_integer(1, 1)
-      validate_integer(1, 2, 0)
-      validate_integer(2, 2, 2)
-      validate_integer(2, '', 0)
-      validate_integer(2, undef, 0)
-      $foo = undef
-      validate_integer(2, $foo, 0)
-      validate_integer([1,2,3,4,5], 6)
-      validate_integer([1,2,3,4,5], 6, 0)
+    @example **Usage**
 
-    Plus all of the above, but any combination of values passed as strings ('1' or "1").
-    Plus all of the above, but with (correct) combinations of negative integer values.
+      The following values will pass:
 
-    The following values will not:
+        validate_integer(1)
+        validate_integer(1, 2)
+        validate_integer(1, 1)
+        validate_integer(1, 2, 0)
+        validate_integer(2, 2, 2)
+        validate_integer(2, '', 0)
+        validate_integer(2, undef, 0)
+        $foo = undef
+        validate_integer(2, $foo, 0)
+        validate_integer([1,2,3,4,5], 6)
+        validate_integer([1,2,3,4,5], 6, 0)
 
-      validate_integer(true)
-      validate_integer(false)
-      validate_integer(7.0)
-      validate_integer({ 1 => 2 })
-      $foo = undef
-      validate_integer($foo)
-      validate_integer($foobaridontexist)
+      Plus all of the above, but any combination of values passed as strings ('1' or "1").
+      Plus all of the above, but with (correct) combinations of negative integer values.
 
-      validate_integer(1, 0)
-      validate_integer(1, true)
-      validate_integer(1, '')
-      validate_integer(1, undef)
-      validate_integer(1, , 0)
-      validate_integer(1, 2, 3)
-      validate_integer(1, 3, 2)
-      validate_integer(1, 3, true)
+      The following values will not:
 
-    Plus all of the above, but any combination of values passed as strings ('false' or "false").
-    Plus all of the above, but with incorrect combinations of negative integer values.
-    Plus all of the above, but with non-integer items in arrays or maximum / minimum argument.
+        validate_integer(true)
+        validate_integer(false)
+        validate_integer(7.0)
+        validate_integer({ 1 => 2 })
+        $foo = undef
+        validate_integer($foo)
+        validate_integer($foobaridontexist)
+
+        validate_integer(1, 0)
+        validate_integer(1, true)
+        validate_integer(1, '')
+        validate_integer(1, undef)
+        validate_integer(1, , 0)
+        validate_integer(1, 2, 3)
+        validate_integer(1, 3, 2)
+        validate_integer(1, 3, true)
+
+      Plus all of the above, but any combination of values passed as strings ('false' or "false").
+      Plus all of the above, but with incorrect combinations of negative integer values.
+      Plus all of the above, but with non-integer items in arrays or maximum / minimum argument.
 
     DOC
-
+             ) do |args|
     function_deprecation([:validate_integer, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.'])
 

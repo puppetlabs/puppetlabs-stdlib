@@ -1,5 +1,5 @@
 Puppet::Type.newtype(:anchor) do
-  desc <<-'DESCRIPTION'
+  desc <<-DOC
   @summary
     A simple resource type intended to be used as an anchor in a composite class.
 
@@ -37,12 +37,11 @@ Puppet::Type.newtype(:anchor) do
   class { 'mcollective': } -> class { 'ntp': }
   ```
 
-  DESCRIPTION
+  DOC
 
   newparam :name do
     desc 'The name of the anchor resource.'
   end
-
   def refresh
     # We don't do anything with them, but we need this to
     #   show that we are "refresh aware" and not break the

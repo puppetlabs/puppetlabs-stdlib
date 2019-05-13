@@ -6,9 +6,12 @@ module Puppet::Parser::Functions
     @summary
       Returns boolean based on kind and value.
 
+    @return
+      boolean values `true` or `false`
+
     Valid kinds are `macaddress`, `netmask`, `ipaddress` and `network`.
 
-    @example Example Usage:
+    @example **Usage**
       has_interface_with("macaddress", "x:x:x:x:x:x") # Returns `false`
       has_interface_with("ipaddress", "127.0.0.1") # Returns `true`
 

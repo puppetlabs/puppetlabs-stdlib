@@ -6,6 +6,9 @@ module Puppet::Parser::Functions
     @summary
       Sets the current class or definition as private.
 
+    @return
+      set the current class or definition as private.
+
     Calling the class or definition from outside the current module will fail.
     DOC
              ) do |args|

@@ -9,7 +9,8 @@ module Puppet::Parser::Functions
     For example `hello\n` becomes `hello`.
     Requires a single string or array as an input.
 
-    > *Note:* **Deprecated** from Puppet 6.0.0, this function has been replaced with a
+    > *Note:*
+      **Deprecated** from Puppet 6.0.0, this function has been replaced with a
     built-in [`chomp`](https://puppet.com/docs/puppet/latest/function.html#chomp) function.
 
     @return [String] The converted String, if it was a String that was given

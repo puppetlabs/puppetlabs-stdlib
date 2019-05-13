@@ -6,7 +6,8 @@ module Puppet::Parser::Functions
     @summary
       Lookup a variable in a given namespace.
 
-    Returns undef if variable does not exist.
+    @return
+      undef - if variable does not exist
 
     @example Example usage
       $foo = getvar('site::data::foo') # Equivalent to $foo = $site::data::foo

@@ -3,15 +3,15 @@
 #
 module Puppet::Parser::Functions
   newfunction(:zip, :type => :rvalue, :doc => <<-DOC
-    Takes one element from first array and merges corresponding elements from second array. This generates a sequence of n-element arrays, where n is one more than the count of arguments.
+    @summary
+      Takes one element from first array and merges corresponding elements from second array.
 
-    *Example:*
+    @return
+      This generates a sequence of n-element arrays, where n is one more than the count of arguments.
 
-        zip(['1','2','3'],['4','5','6'])
-
-    Would result in:
-
-        ["1", "4"], ["2", "5"], ["3", "6"]
+    @example
+      zip(['1','2','3'],['4','5','6'])
+      Would result in: ["1", "4"], ["2", "5"], ["3", "6"]
     DOC
              ) do |arguments|
 

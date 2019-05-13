@@ -15,7 +15,7 @@
 #     fact('vmware."VRA.version"')
 #
 Puppet::Functions.create_function(:fact) do
-  # @param [String] fact_name
+  # @param fact_name
   #   The name of the fact to check
   #
   # @return

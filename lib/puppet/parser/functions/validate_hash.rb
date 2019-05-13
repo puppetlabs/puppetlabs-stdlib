@@ -2,23 +2,29 @@
 # validate_hash.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_hash, :doc => <<-'DOC') do |args|
-    Validate that all passed values are hash data structures. Abort catalog
-    compilation if any value fails this check.
+  newfunction(:validate_hash, :doc => <<-DOC
+    @summary
+      Validate that all passed values are hash data structures. Abort catalog
+      compilation if any value fails this check.
 
-    The following values will pass:
+    @return
+      validate hash
 
-        $my_hash = { 'one' => 'two' }
-        validate_hash($my_hash)
+    @example **Usage**
 
-    The following values will fail, causing compilation to abort:
+      The following values will pass:
 
-        validate_hash(true)
-        validate_hash('some_string')
-        $undefined = undef
-        validate_hash($undefined)
+          $my_hash = { 'one' => 'two' }
+          validate_hash($my_hash)
 
+      The following values will fail, causing compilation to abort:
+
+          validate_hash(true)
+          validate_hash('some_string')
+          $undefined = undef
+          validate_hash($undefined)
     DOC
+             ) do |args|
 
     function_deprecation([:validate_hash, 'This method is deprecated, please use the stdlib validate_legacy function,
                           with Stdlib::Compat::Hash. There is further documentation for validate_legacy function in the README.'])

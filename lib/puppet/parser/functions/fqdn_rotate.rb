@@ -9,6 +9,9 @@ Puppet::Parser::Functions.newfunction(
     Rotates an array or string a random number of times, combining the `$fqdn` fact
     and an optional seed for repeatable randomness.
 
+  @return
+    rotated array or string
+
   @example Example Usage:
     fqdn_rotate(['a', 'b', 'c', 'd'])
     fqdn_rotate('abcd')

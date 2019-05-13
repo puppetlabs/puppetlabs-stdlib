@@ -6,6 +6,8 @@ module Puppet::Parser::Functions
     @summary
       Returns the largest integer less or equal to the argument.
 
+    @return
+      the largest integer less or equal to the argument.
     Takes a single numeric value as an argument.
 
     > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with

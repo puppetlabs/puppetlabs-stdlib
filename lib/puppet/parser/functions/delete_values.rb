@@ -6,16 +6,16 @@ module Puppet::Parser::Functions
     @summary
       Deletes all instances of a given value from a hash.
 
-    For example:
-      ```delete_values({'a'=>'A','b'=>'B','c'=>'C','B'=>'D'}, 'B')```
-    Would return: `{'a'=>'A','c'=>'C','B'=>'D'}`
+    @example Example usage
 
-    > *Note:* since Puppet 4.0.0 the equivalent can be performed with the
+      delete_values({'a'=>'A','b'=>'B','c'=>'C','B'=>'D'}, 'B')
+      Would return: {'a'=>'A','c'=>'C','B'=>'D'}
+
+    > *Note:*
+    Since Puppet 4.0.0 the equivalent can be performed with the
     built-in [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
-      ```
-      $array.filter |$val| { $val != 'B' }
-      $hash.filter |$key, $val| { $val != 'B' }
-      ```
+    $array.filter |$val| { $val != 'B' }
+    $hash.filter |$key, $val| { $val != 'B' }
 
     @return [Hash] The given hash now missing all instances of the targeted value
     DOC

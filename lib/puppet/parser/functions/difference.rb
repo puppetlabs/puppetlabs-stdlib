@@ -9,16 +9,19 @@ module Puppet::Parser::Functions
     The returned array is a copy of the original array, removing any items that
     also appear in the second array.
 
-    For example:
-    ```difference(["a","b","c"],["b","c","d"])```
-    Would return: `["a"]`
+    @example Example usage
 
-    > *Note:* Since Puppet 4 the minus (-) operator in the Puppet language does the same thing:
+      difference(["a","b","c"],["b","c","d"])
+      Would return: `["a"]`
 
-      ```['a', 'b', 'c'] - ['b', 'c', 'd']```
-      Would return: `['a']`
+    > *Note:*
+    Since Puppet 4 the minus (-) operator in the Puppet language does the same thing:
+    ['a', 'b', 'c'] - ['b', 'c', 'd']
+    Would return: `['a']`
 
-      @return [Array] The difference between the two given arrays
+    @return [Array]
+      The difference between the two given arrays
+
     DOC
              ) do |arguments|
 

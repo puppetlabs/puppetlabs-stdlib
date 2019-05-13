@@ -9,8 +9,8 @@ module Puppet::Parser::Functions
 
     > *Note:* **Deprecated** from Puppet 6.0.0, this function has been replaced with a
     built-in [`downcase`](https://puppet.com/docs/puppet/latest/function.html#downcase) function.
-
-    > *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible.
+    >
+    This function is an implementation of a Ruby class and might not be UTF8 compatible.
     To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
     @return [String] The converted String, if it was a String that was given

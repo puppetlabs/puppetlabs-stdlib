@@ -6,6 +6,9 @@ module Puppet::Parser::Functions
     @summary
       This function returns an array of the intersection of two.
 
+    @return
+      an array of the intersection of two.
+
     @example Example Usage:
       intersection(["a","b","c"],["b","c","d"])  # returns ["b","c"]
       intersection(["a","b","c"],[1,2,3,4])      # returns [] (true, when evaluated as a Boolean)

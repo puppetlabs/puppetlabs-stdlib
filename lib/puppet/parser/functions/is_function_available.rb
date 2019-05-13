@@ -4,8 +4,9 @@
 module Puppet::Parser::Functions
   newfunction(:is_function_available, :type => :rvalue, :doc => <<-DOC
     @summary
-      **Deprecated:** This function accepts a string as an argument and determines whether the
-      Puppet runtime has access to a function by that name.
+      **Deprecated:** Determines whether the Puppet runtime has access to a function by that name.
+
+    This function accepts a string as an argument.
 
     @return [Boolean]
       Returns `true` or `false`

@@ -2,17 +2,23 @@
 # validate.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_re, :doc => <<-'DOC') do |args|
+  newfunction(:validate_re, :doc => <<-DOC
+  @summary
     Perform simple validation of a string against one or more regular
-    expressions. The first argument of this function should be a string to
-    test, and the second argument should be a stringified regular expression
-    (without the // delimiters) or an array of regular expressions.  If none
-    of the regular expressions match the string passed in, compilation will
-    abort with a parse error.
+    expressions.
 
-    If a third argument is specified, this will be the error message raised and
-    seen by the user.
+  The first argument of this function should be a string to
+  test, and the second argument should be a stringified regular expression
+  (without the // delimiters) or an array of regular expressions.  If none
+  of the regular expressions match the string passed in, compilation will
+  abort with a parse error.
+  If a third argument is specified, this will be the error message raised and
+  seen by the user.
 
+  @return
+    validation of a string against one or more regular expressions.
+
+  @example **Usage**
     The following strings will validate against the regular expressions:
 
         validate_re('one', '^one$')
@@ -26,13 +32,12 @@ module Puppet::Parser::Functions
 
         validate_re($::puppetversion, '^2.7', 'The $puppetversion fact value does not match 2.7')
 
-    Note: Compilation will also abort, if the first argument is not a String. Always use
-    quotes to force stringification:
-
-        validate_re("${::operatingsystemmajrelease}", '^[57]$')
-
-    DOC
-
+  > *Note:*
+  Compilation will also abort, if the first argument is not a String. Always use
+  quotes to force stringification:
+  validate_re("${::operatingsystemmajrelease}", '^[57]$')
+   DOC
+             ) do |args|
     function_deprecation([:validate_re, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Re. There is further documentation for validate_legacy function in the README.'])
 

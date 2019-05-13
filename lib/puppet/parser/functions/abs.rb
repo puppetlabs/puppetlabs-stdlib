@@ -9,11 +9,12 @@ module Puppet::Parser::Functions
     For example -34.56 becomes 34.56.
     Takes a single integer or float value as an argument.
 
-    > *Note:* **Deprected** from Puppet 6.0.0, the built-in
-    ['abs'](https://puppet.com/docs/puppet/6.4/function.html#abs)function will be used instead.
+    > *Note:*
+      **Deprected** from Puppet 6.0.0, the built-in
+      ['abs'](https://puppet.com/docs/puppet/6.4/function.html#abs)function will be used instead.
 
-    @return [Integer] The absolute value of the given number if it was an Integer
-    @return [Float] The absolute value of the given number if it was a float
+    @return The absolute value of the given number if it was an Integer
+
     DOC
              ) do |arguments|
 

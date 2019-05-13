@@ -7,7 +7,7 @@ Puppet::Functions.create_function(:is_string) do
   # @param args
   #   Any additional values that are to be passed to the wrapped method
   #
-  # @return [Boolea]
+  # @return [Boolean]
   #   A boolean value returned from the called 3.x function.
   dispatch :deprecation_gen do
     param 'Any', :scope

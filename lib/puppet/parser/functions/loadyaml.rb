@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
     @return [Array|String|Hash]
       The data stored in the YAML file, the type depending on the type of data that was stored.
 
-    @example Example USage:
+    @example Example Usage:
         $myhash = loadyaml('/etc/puppet/data/myhash.yaml')
         $myhash = loadyaml('https://example.local/my_hash.yaml')
         $myhash = loadyaml('https://username:password@example.local/my_hash.yaml')

@@ -3,19 +3,22 @@
 #
 module Puppet::Parser::Functions
   newfunction(:time, :type => :rvalue, :doc => <<-DOC
-    This function will return the current time since epoch as an integer.
+    @summary
+      This function will return the current time since epoch as an integer.
 
-    *Examples:*
+    @return
+      the current time since epoch as an integer.
 
-        time()
+    @example **Usage**
 
-    Will return something like: 1311972653
+      time()
+      Will return something like: 1311972653
 
-    Note that since Puppet 4.8.0 the Puppet language has the data types Timestamp (a point in time) and
+    > *Note:* that since Puppet 4.8.0 the Puppet language has the data types Timestamp (a point in time) and
     Timespan (a duration). The following example is equivalent to calling time() without
     any arguments:
 
-        Timestamp()
+    ```Timestamp()```
 
     DOC
              ) do |arguments|

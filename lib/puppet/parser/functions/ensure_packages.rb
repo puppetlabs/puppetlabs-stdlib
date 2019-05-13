@@ -3,9 +3,14 @@
 #
 module Puppet::Parser::Functions
   newfunction(:ensure_packages, :type => :statement, :doc => <<-DOC
-    Takes a list of packages and only installs them if they don't already exist.
+    @summary
+      Takes a list of packages and only installs them if they don't already exist.
+
     It optionally takes a hash as a second parameter that will be passed as the
     third argument to the ensure_resource() function.
+
+    @return
+      install the passed packages
   DOC
              ) do |arguments|
 

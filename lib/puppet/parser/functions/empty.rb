@@ -6,8 +6,9 @@ module Puppet::Parser::Functions
     @summary
       **Deprecated:** Returns true if the variable is empty.
 
-    Returns `true` if the argument is an array or hash that contains no elements,
-    or an empty string. Returns `false` when the argument is a numerical value.
+    @return
+      Returns `true` if the argument is an array or hash that contains no elements,
+      or an empty string. Returns `false` when the argument is a numerical value.
 
     > *Note*: **Deprecated** from Puppet 5.5.0, the built-in
     [`empty`](https://puppet.com/docs/puppet/6.4/function.html#empty) function will be used instead.

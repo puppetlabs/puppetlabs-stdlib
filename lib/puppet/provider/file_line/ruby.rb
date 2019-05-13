@@ -1,4 +1,13 @@
 Puppet::Type.type(:file_line).provide(:ruby) do
+  desc <<-DOC
+    @summary
+      This type allows puppet to manage small config files.
+
+    The implementation matches the full line, including whitespace at the
+    beginning and end.  If the line is not contained in the given file, Puppet
+    will append the line to the end of the file to ensure the desired state.
+    Multiple resources may be declared to manage multiple lines in the same file.
+  DOC
   def exists?
     found = false
     lines_count = 0

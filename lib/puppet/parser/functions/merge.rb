@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
     @summary
       Merges two or more hashes together and returns the resulting hash.
 
-    @example Example Usage:
+    @example **Usage**
       $hash1 = {'one' => 1, 'two', => 2}
       $hash2 = {'two' => 'dos', 'three', => 'tres'}
       $merged_hash = merge($hash1, $hash2) # $merged_hash =  {'one' => 1, 'two' => 'dos', 'three' => 'tres'}

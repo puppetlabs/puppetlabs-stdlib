@@ -6,7 +6,9 @@ module Puppet::Parser::Functions
     @summary
       **Deprecated:** This function converts an array into a hash.
 
-    @examples Example Usage:
+    @return
+      the converted array as a hash
+    @example Example Usage:
       hash(['a',1,'b',2,'c',3]) # Returns: {'a'=>1,'b'=>2,'c'=>3}
 
     > **Note:** This function has been replaced with the built-in ability to create a new value of almost any
