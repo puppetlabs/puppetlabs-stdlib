@@ -786,7 +786,7 @@ Converts a string to and from base64 encoding. Requires an `action` ('encode', '
 
 For backward compatibility, `method` is set as `default` if not specified.
 
-> **Note**: This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> **Note**: This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 Since Puppet 4.8.0, the `Binary` data type can be used to produce base 64 encoded strings.
 
@@ -888,7 +888,7 @@ Converts the case of a string or all strings in an array to CamelCase (mixed cas
 
 Arguments: Either an array or string. Returns the same type of argument as it received, but in CamelCase form.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+*Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
  *Type*: rvalue.
 
@@ -900,7 +900,7 @@ Capitalizes the first character of a string or array of strings and lowercases t
 
 Arguments: either a single string or an array as an input. *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+*Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `ceiling`
 
@@ -1089,7 +1089,7 @@ Or, if you want to delete from the beginning or the end of the array — or from
 
 Deletes all instances of a given element from an array or hash that match a provided regular expression. A string is treated as a one-item array.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+*Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 For example:
 
@@ -1292,7 +1292,7 @@ See also [unix2dos](#unix2dos).
 
 Converts the case of a string or of all strings in an array to lowercase.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+*Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 *Type*: rvalue.
 
@@ -2153,7 +2153,7 @@ This function uses the Puppet master's implementation of crypt(3). If your envir
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+*Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `range`
 
@@ -2306,7 +2306,7 @@ Sorts strings and arrays lexically.
 
 *Type*: rvalue.
 
-> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `squeeze`
 
@@ -2333,7 +2333,7 @@ Converts a string to a salted-SHA512 password hash, used for OS X versions 10.7 
 
 *Type*: rvalue.
 
-> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `strftime`
 
@@ -2347,7 +2347,7 @@ Arguments: A string specifying the time in `strftime` format. See the Ruby [strf
 
 *Type*: rvalue.
 
-> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 *Format:*
 
@@ -2426,7 +2426,7 @@ Swaps the existing case of a string. For example, `swapcase("aBcD")` results in 
 
 *Type*: rvalue.
 
-> *Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+> *Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `time`
 
@@ -2589,7 +2589,7 @@ For example, `upcase('abcd')` returns 'ABCD'.
 
 *Type*: rvalue.
 
-*Note:* This function is an implementation of a Ruby class and might not be UTF8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
+*Note:* This function is an implementation of a Ruby class and might not be UTF-8 compatible. To ensure compatibility, use this function with Ruby 2.4.0 or greater.
 
 #### `uriescape`
 
