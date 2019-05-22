@@ -80,7 +80,7 @@ module Puppet::Parser::Functions
             when '...' then (start...stop) # Exclusive of last element
             end
 
-    result = range.step(step).to_a
+    result = range.step(step).first(1_000_000).to_a
 
     return result
   end
