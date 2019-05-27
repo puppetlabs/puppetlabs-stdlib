@@ -2,21 +2,23 @@
 # validate_numeric.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_numeric, :doc => <<-'DOC') do |args|
-    Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
+  newfunction(:validate_numeric, :doc => <<-DOC
+    @summary
+      Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
 
     The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
-
     The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
     If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
     if (all elements of) the first argument are greater or equal to the given minimum.
-
     It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
+
+    @return
+      Validate that the first argument is a numeric value (or an array of numeric values). Fail compilation if any of the checks fail.
 
     For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
 
     DOC
-
+             ) do |args|
     function_deprecation([:validate_numeric, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Numeric. There is further documentation for validate_legacy function in the README.'])
 

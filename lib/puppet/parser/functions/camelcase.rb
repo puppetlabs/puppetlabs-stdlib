@@ -4,10 +4,16 @@
 #
 module Puppet::Parser::Functions
   newfunction(:camelcase, :type => :rvalue, :doc => <<-DOC
-    Converts the case of a string or all strings in an array to camel case.
+    @summary
+      **Deprecated** Converts the case of a string or all strings in an array to camel case.
 
-    Note: from Puppet 6.0.0, the compatible function with the same name in Puppet core
-    will be used instead of this function.
+    > *Note:*
+      **Deprecated** from Puppet 6.0.0, this function has been replaced with
+      a built-in [`camelcase`](https://puppet.com/docs/puppet/latest/function.html#camelcase)
+      function.
+
+    @return [String] The converted String, if it was a String that was given
+    @return [Array[String]] The converted Array, if it was a Array that was given
   DOC
              ) do |arguments|
 

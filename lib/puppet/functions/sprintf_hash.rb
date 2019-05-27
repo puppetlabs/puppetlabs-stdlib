@@ -1,4 +1,5 @@
-# Uses sprintf with named references.
+# @summary
+#  Uses sprintf with named references.
 #
 # The first parameter is format string describing how the rest of the parameters in the hash
 # should be formatted. See the documentation for the `Kernel::sprintf` function in Ruby for

@@ -3,8 +3,10 @@
 #
 module Puppet::Parser::Functions
   newfunction(:any2bool, :type => :rvalue, :doc => <<-DOC
-    This converts 'anything' to a boolean. In practise it does the following:
+    @summary
+      Converts 'anything' to a boolean.
 
+    In practise it does the following:
     * Strings such as Y,y,1,T,t,TRUE,yes,'true' will return true
     * Strings such as 0,F,f,N,n,FALSE,no,'false' will return false
     * Booleans will just return their original value
@@ -14,6 +16,8 @@ module Puppet::Parser::Functions
 
     Also see the built-in [`Boolean.new`](https://puppet.com/docs/puppet/latest/function.html#conversion-to-boolean)
     function.
+
+    @return [Boolean] The boolean value of the object that was given
   DOC
              ) do |arguments|
 

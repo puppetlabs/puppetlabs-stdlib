@@ -3,20 +3,19 @@
 #
 module Puppet::Parser::Functions
   newfunction(:grep, :type => :rvalue, :doc => <<-DOC
-    This function searches through an array and returns any elements that match
-    the provided regular expression.
+    @summary
+      This function searches through an array and returns any elements that match
+      the provided regular expression.
 
-    *Examples:*
+    @return
+      array of elements that match the provided regular expression.
+    @example Example Usage:
+      grep(['aaa','bbb','ccc','aaaddd'], 'aaa') # Returns ['aaa','aaaddd']
 
-        grep(['aaa','bbb','ccc','aaaddd'], 'aaa')
-
-    Would return:
-
-        ['aaa','aaaddd']
-
-    Note that since Puppet 4.0.0, the filter() function in Puppet can do the same:
-
-        ['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }
+    > **Note:** that since Puppet 4.0.0, the built-in
+    [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function does
+    the "same" — as any logic can be used to filter, as opposed to just regular expressions:
+    ```['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }```
     DOC
              ) do |arguments|
 

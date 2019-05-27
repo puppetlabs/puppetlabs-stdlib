@@ -5,10 +5,13 @@ require 'shellwords'
 #
 module Puppet::Parser::Functions
   newfunction(:shell_join, :type => :rvalue, :doc => <<-DOC
-    Builds a command line string from the given array of strings. Each array item is escaped for Bourne shell. All items are
-    then joined together, with a single space in between.
-
+    @summary
+    Builds a command line string from the given array of strings.
+    Each array item is escaped for Bourne shell. All items are then joined together, with a single space in between.
     This function behaves the same as ruby's Shellwords.shelljoin() function
+
+    @return
+      a command line string
   DOC
              ) do |arguments|
 

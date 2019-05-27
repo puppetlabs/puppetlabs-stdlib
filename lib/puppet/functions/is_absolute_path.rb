@@ -1,4 +1,14 @@
+# @summary
+#   Wrapper that calls the Puppet 3.x funtion of the same name.
 Puppet::Functions.create_function(:is_absolute_path) do
+  # @param scope
+  #   The main value that will be passed to the wrapped method
+  #
+  # @param args
+  #   Any additional values that are to be passed to the wrapped method
+  #
+  # @return [Boolea]
+  #   A boolean value returned from the called 3.x function.
   dispatch :deprecation_gen do
     param 'Any', :scope
     repeated_param 'Any', :args

@@ -3,17 +3,23 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:ensure_resource,
                                       :type => :statement,
-                                      :doc => <<-'DOC'
+                                      :doc => <<-DOC
+  @summary
     Takes a resource type, title, and a list of attributes that describe a
     resource.
 
-        user { 'dan':
-          ensure => present,
-        }
+  user { 'dan':
+    ensure => present,
+  }
 
-    This example only creates the resource if it does not already exist:
+  @return
+    created or recreated the passed resource with the passed type and attributes
 
-        ensure_resource('user', 'dan', {'ensure' => 'present' })
+  @example Example usage
+
+    Creates the resource if it does not already exist:
+
+      ensure_resource('user', 'dan', {'ensure' => 'present' })
 
     If the resource already exists but does not match the specified parameters,
     this function will attempt to recreate the resource leading to a duplicate
@@ -22,7 +28,7 @@ Puppet::Parser::Functions.newfunction(:ensure_resource,
     An array of resources can also be passed in and each will be created with
     the type and parameters specified if it doesn't already exist.
 
-        ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
+      ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
 
 DOC
                                      ) do |vals|

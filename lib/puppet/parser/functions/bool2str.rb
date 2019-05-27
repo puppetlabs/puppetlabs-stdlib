@@ -3,29 +3,38 @@
 #
 module Puppet::Parser::Functions
   newfunction(:bool2str, :type => :rvalue, :doc => <<-DOC
-    Converts a boolean to a string using optionally supplied arguments. The
-    optional second and third arguments represent what true and false will be
+    @summary
+      Converts a boolean to a string using optionally supplied arguments.
+
+    The optional second and third arguments represent what true and false will be
     converted to respectively. If only one argument is given, it will be
     converted from a boolean to a string containing 'true' or 'false'.
 
-    *Examples:*
+    @return
+      The converted value to string of the given Boolean
 
-    bool2str(true)                    => 'true'
-    bool2str(true, 'yes', 'no')       => 'yes'
-    bool2str(false, 't', 'f')         => 'f'
+    **Examples of usage**
+
+      ```
+        bool2str(true)                    => 'true'
+        bool2str(true, 'yes', 'no')       => 'yes'
+        bool2str(false, 't', 'f')         => 'f'
+      ```
 
     Requires a single boolean as an input.
 
-    Note that since Puppet 5.0.0 it is possible to create new data types for almost any
-    datatype using the type system and the built-in
-    [`String.new`](https://puppet.com/docs/puppet/latest/function.html#boolean-to-string)
-    function is used to convert to String with many different format options.
+    > *Note:*
+      since Puppet 5.0.0 it is possible to create new data types for almost any
+      datatype using the type system and the built-in
+      [`String.new`](https://puppet.com/docs/puppet/latest/function.html#boolean-to-string)
+      function is used to convert to String with many different format options.
 
+      ```
         notice(String(false))         # Notices 'false'
         notice(String(true))          # Notices 'true'
         notice(String(false, '%y'))   # Notices 'yes'
         notice(String(true, '%y'))    # Notices 'no'
-
+      ```
     DOC
              ) do |arguments|
 

@@ -3,14 +3,18 @@
 #
 module Puppet::Parser::Functions
   newfunction(:loadyaml, :type => :rvalue, :arity => -2, :doc => <<-'DOC') do |args|
-    Load a YAML file containing an array, string, or hash, and return the data
-    in the corresponding native data type.
+    @summary
+      Load a YAML file containing an array, string, or hash, and return the data
+      in the corresponding native data type.
+
     The first parameter can be a file path or a URL.
     The second parameter is the default value. It will be returned if the file
     was not found or could not be parsed.
 
-    For example:
+    @return [Array|String|Hash]
+      The data stored in the YAML file, the type depending on the type of data that was stored.
 
+    @example Example Usage:
         $myhash = loadyaml('/etc/puppet/data/myhash.yaml')
         $myhash = loadyaml('https://example.local/my_hash.yaml')
         $myhash = loadyaml('https://username:password@example.local/my_hash.yaml')

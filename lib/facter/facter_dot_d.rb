@@ -1,5 +1,6 @@
-# A Facter plugin that loads facts from /etc/facter/facts.d
-# and /etc/puppetlabs/facter/facts.d.
+# @summary
+#   A Facter plugin that loads facts from /etc/facter/facts.d
+#   and /etc/puppetlabs/facter/facts.d.
 #
 # Facts can be in the form of JSON, YAML or Text files
 # and any executable that returns key=value pairs.
@@ -13,7 +14,7 @@
 # fact scripts more often than is needed
 class Facter::Util::DotD
   require 'yaml'
-
+  # These will be nil if Puppet is not available.
   def initialize(dir = '/etc/facts.d', cache_file = File.join(Puppet[:libdir], 'facts_dot_d.cache'))
     @dir = dir
     @cache_file = cache_file
@@ -21,12 +22,15 @@ class Facter::Util::DotD
     @types = { '.txt' => :txt, '.json' => :json, '.yaml' => :yaml }
   end
 
+  # entries
   def entries
     Dir.entries(@dir).reject { |f| f =~ %r{^\.|\.ttl$} }.sort.map { |f| File.join(@dir, f) }
   rescue
     []
   end
 
+  # fact_type
+  # @param file
   def fact_type(file)
     extension = File.extname(file)
 
@@ -37,6 +41,8 @@ class Facter::Util::DotD
     type
   end
 
+  # txt_parser
+  # @param file
   def txt_parser(file)
     File.readlines(file).each do |line|
       next unless line =~ %r{^([^=]+)=(.+)$}
@@ -51,6 +57,8 @@ class Facter::Util::DotD
     Facter.warn("Failed to handle #{file} as text facts: #{e.class}: #{e}")
   end
 
+  # json_parser
+  # @param file
   def json_parser(file)
     begin
       require 'json'
@@ -68,6 +76,8 @@ class Facter::Util::DotD
     Facter.warn("Failed to handle #{file} as json facts: #{e.class}: #{e}")
   end
 
+  # yaml_parser
+  # @param file
   def yaml_parser(file)
     require 'yaml'
 
@@ -80,6 +90,8 @@ class Facter::Util::DotD
     Facter.warn("Failed to handle #{file} as yaml facts: #{e.class}: #{e}")
   end
 
+  # script_parser
+  # @param file
   def script_parser(file)
     result = cache_lookup(file)
     ttl = cache_time(file)
@@ -110,12 +122,15 @@ class Facter::Util::DotD
     Facter.debug(e.backtrace.join("\n\t"))
   end
 
+  # cache_save
   def cache_save!
     cache = load_cache
     File.open(@cache_file, 'w', 0o600) { |f| f.write(YAML.dump(cache)) }
   rescue # rubocop:disable Lint/HandleExceptions
   end
 
+  # cache_store
+  # @param file
   def cache_store(file, data)
     load_cache
 
@@ -123,6 +138,8 @@ class Facter::Util::DotD
   rescue # rubocop:disable Lint/HandleExceptions
   end
 
+  # cache_lookup
+  # @param file
   def cache_lookup(file)
     cache = load_cache
 
@@ -140,6 +157,8 @@ class Facter::Util::DotD
     return nil
   end
 
+  # cache_time
+  # @param file
   def cache_time(file)
     meta = file + '.ttl'
 
@@ -148,6 +167,7 @@ class Facter::Util::DotD
     return 0
   end
 
+  # load_cache
   def load_cache
     @cache ||= if File.exist?(@cache_file)
                  YAML.load_file(@cache_file)
@@ -161,6 +181,7 @@ class Facter::Util::DotD
     return @cache
   end
 
+  # create
   def create
     entries.each do |fact|
       type = fact_type(fact)

@@ -3,7 +3,14 @@
 #
 module Puppet::Parser::Functions
   newfunction(:is_mac_address, :type => :rvalue, :doc => <<-DOC
-    Returns true if the string passed to this function is a valid mac address.
+    @summary
+      **Deprecated:** Returns true if the string passed to this function is a valid mac address.
+
+    @return [Boolean]
+      Returns `true` or `false`
+
+    > **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+    [`validate_legacy`](#validate_legacy).
     DOC
              ) do |arguments|
 

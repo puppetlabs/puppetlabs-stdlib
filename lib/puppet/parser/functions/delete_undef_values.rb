@@ -3,24 +3,26 @@
 #
 module Puppet::Parser::Functions
   newfunction(:delete_undef_values, :type => :rvalue, :doc => <<-DOC
-    Returns a copy of input hash or array with all undefs deleted.
+    @summary
+      Returns a copy of input hash or array with all undefs deleted.
 
-    *Examples:*
+    @example Example usage
 
-        $hash = delete_undef_values({a=>'A', b=>'', c=>undef, d => false})
+      $hash = delete_undef_values({a=>'A', b=>'', c=>undef, d => false})
+      Would return: {a => 'A', b => '', d => false}
 
-    Would return: {a => 'A', b => '', d => false}
+      While:
+      $array = delete_undef_values(['A','',undef,false])
+      Would return: ['A','',false]
 
-        $array = delete_undef_values(['A','',undef,false])
+    > *Note:*
+    Since Puppet 4.0.0 the equivalent can be performed with the built-in
+    [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
+    $array.filter |$val| { $val =~ NotUndef }
+    $hash.filter |$key, $val| { $val =~ NotUndef }
 
-    Would return: ['A','',false]
-
-    Note that since Puppet 4.0.0 the equivalent can be performed with the filter() function in Puppet:
-
-        $array.filter |$val| { $val =~ NotUndef }
-        $hash.filter |$key, $val| { $val =~ NotUndef }
-
-      DOC
+    @return [Array] The given array now issing of undefined values.
+    DOC
              ) do |args|
 
     raise(Puppet::ParseError, "delete_undef_values(): Wrong number of arguments given (#{args.size})") if args.empty?

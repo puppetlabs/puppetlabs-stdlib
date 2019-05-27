@@ -4,13 +4,16 @@
 #
 module Puppet::Parser::Functions
   newfunction(:swapcase, :type => :rvalue, :doc => <<-DOC
-    This function will swap the existing case of a string.
+    @summary
+      This function will swap the existing case of a string.
 
-    *Examples:*
+    @return
+      string with uppercase alphabetic characters converted to lowercase and lowercase characters converted to uppercase
 
-        swapcase("aBcD")
+    @example **Usage**
 
-    Would result in: "AbCd"
+      swapcase("aBcD")
+      Would result in: "AbCd"
     DOC
              ) do |arguments|
 

@@ -3,20 +3,20 @@
 #
 module Puppet::Parser::Functions
   newfunction(:round, :type => :rvalue, :doc => <<-DOC
-    Rounds a number to the nearest integer
+    @summary
+      Rounds a number to the nearest integer
 
-    *Examples:*
+    @return
+      the rounded value as integer
 
-    round(2.9)
+    @example
 
-    returns: 3
+    ```round(2.9)``` returns ```3```
 
-    round(2.4)
+    ```round(2.4)``` returns ```2```
 
-    returns: 2
-
-    Note: from Puppet 6.0.0, the compatible function with the same name in Puppet core
-    will be used instead of this function.
+    > *Note:* from Puppet 6.0.0, the compatible function with the same name in Puppet core
+      will be used instead of this function.
   DOC
              ) do |args|
 

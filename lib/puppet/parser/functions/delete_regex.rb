@@ -4,30 +4,33 @@
 #
 module Puppet::Parser::Functions
   newfunction(:delete_regex, :type => :rvalue, :doc => <<-DOC
-    deletes all instances of a given element that match a regular expression
-    from an array or key from a hash. Multiple regular expressions are assumed
-    to be matched as an OR.
+    @summary
+      Deletes all instances of a given element that match a regular expression
+      from an array or key from a hash.
 
-    *Examples:*
+    Multiple regular expressions are assumed to be matched as an OR.
 
-        delete_regex(['a','b','c','b'], 'b')
-        Would return: ['a','c']
+    @example Example usage
 
-        delete_regex(['a','b','c','b'], ['b', 'c'])
-        Would return: ['a']
+      delete_regex(['a','b','c','b'], 'b')
+      Would return: ['a','c']
 
-        delete_regex({'a'=>1,'b'=>2,'c'=>3}, 'b')
-        Would return: {'a'=>1,'c'=>3}
+      delete_regex(['a','b','c','b'], ['b', 'c'])
+      Would return: ['a']
 
-        delete_regex({'a'=>1,'b'=>2,'c'=>3}, '^a$')
-        Would return: {'b'=>2,'c'=>3}
+      delete_regex({'a'=>1,'b'=>2,'c'=>3}, 'b')
+      Would return: {'a'=>1,'c'=>3}
 
-     Note that since Puppet 4 this can be done in general with the filter function:
+      delete_regex({'a'=>1,'b'=>2,'c'=>3}, '^a$')
+      Would return: {'b'=>2,'c'=>3}
 
-        ["aaa", "aba", "aca"].filter |$val| { $val !~ /b/ }
-        # Would return: ['aaa', 'aca']
+    > *Note:*
+    Since Puppet 4 this can be done in general with the built-in
+    [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function:
+    ["aaa", "aba", "aca"].filter |$val| { $val !~ /b/ }
+    Would return: ['aaa', 'aca']
 
-
+    @return [Array] The given array now missing all targeted values.
   DOC
              ) do |arguments|
 

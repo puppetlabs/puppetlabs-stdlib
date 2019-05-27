@@ -5,28 +5,33 @@ require 'tempfile'
 # validate_cmd.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_cmd, :doc => <<-'DOC') do |args|
-    Perform validation of a string with an external command.
+  newfunction(:validate_cmd, :doc => <<-DOC
+    @summary
+      Perform validation of a string with an external command.
+
     The first argument of this function should be a string to
     test, and the second argument should be a path to a test command
     taking a % as a placeholder for the file path (will default to the end).
     If the command, launched against a tempfile containing the passed string,
     returns a non-null value, compilation will abort with a parse error.
-
     If a third argument is specified, this will be the error message raised and
     seen by the user.
 
+    @return
+      validate of a string with an external command
+
     A helpful error message can be returned like this:
 
-    Example:
+    @example **Usage**
 
-        # Defaults to end of path
+      Defaults to end of path
         validate_cmd($sudoerscontent, '/usr/sbin/visudo -c -f', 'Visudo failed to validate sudoers content')
 
-        # % as file location
+      % as file location
         validate_cmd($haproxycontent, '/usr/sbin/haproxy -f % -c', 'Haproxy failed to validate config content')
 
     DOC
+             ) do |args|
     if (args.length < 2) || (args.length > 3)
       raise Puppet::ParseError, "validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)"
     end

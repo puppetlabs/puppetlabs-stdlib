@@ -1,6 +1,7 @@
 Puppet::Type.newtype(:anchor) do
-  desc <<-'DESCRIPTION'
-  A simple resource type intended to be used as an anchor in a composite class.
+  desc <<-DOC
+  @summary
+    A simple resource type intended to be used as an anchor in a composite class.
 
   In Puppet 2.6, when a class declares another class, the resources in the
   interior class are not contained by the exterior class. This interacts badly
@@ -12,32 +13,35 @@ Puppet::Type.newtype(:anchor) do
   classes between two no-op resources that _are_ contained by the exterior
   class, you can ensure that all resources in the module are contained.
 
-      class ntp {
-        # These classes will have the correct order relationship with each
-        # other. However, without anchors, they won't have any order
-        # relationship to Class['ntp'].
-        class { 'ntp::package': }
-        -> class { 'ntp::config': }
-        -> class { 'ntp::service': }
+  ```
+  class ntp {
+    # These classes will have the correct order relationship with each
+    # other. However, without anchors, they won't have any order
+    # relationship to Class['ntp'].
+    class { 'ntp::package': }
+    -> class { 'ntp::config': }
+    -> class { 'ntp::service': }
 
-        # These two resources "anchor" the composed classes within the ntp
-        # class.
-        anchor { 'ntp::begin': } -> Class['ntp::package']
-        Class['ntp::service']    -> anchor { 'ntp::end': }
-      }
+    # These two resources "anchor" the composed classes within the ntp
+    # class.
+    anchor { 'ntp::begin': } -> Class['ntp::package']
+    Class['ntp::service']    -> anchor { 'ntp::end': }
+  }
+  ```
 
   This allows the end user of the ntp module to establish require and before
   relationships with Class['ntp']:
 
-      class { 'ntp': } -> class { 'mcollective': }
-      class { 'mcollective': } -> class { 'ntp': }
+  ```
+  class { 'ntp': } -> class { 'mcollective': }
+  class { 'mcollective': } -> class { 'ntp': }
+  ```
 
-  DESCRIPTION
+  DOC
 
   newparam :name do
     desc 'The name of the anchor resource.'
   end
-
   def refresh
     # We don't do anything with them, but we need this to
     #   show that we are "refresh aware" and not break the
