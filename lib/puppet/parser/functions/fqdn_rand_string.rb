@@ -18,7 +18,7 @@ Puppet::Parser::Functions.newfunction(
 
   @example Example Usage:
     fqdn_rand_string(10)
-    fqdn_rand_string(10, 'ABCDEF!@#$%^')
+    fqdn_rand_string(10, 'ABCDEF!@$%^')
     fqdn_rand_string(10, '', 'custom seed')
   DOC
 ) do |args|
