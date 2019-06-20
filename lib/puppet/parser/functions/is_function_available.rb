@@ -2,7 +2,7 @@
 # is_function_available.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_function_available, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_function_available, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Determines whether the Puppet runtime has access to a function by that name.
 

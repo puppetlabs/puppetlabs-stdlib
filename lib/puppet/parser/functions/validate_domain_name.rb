@@ -2,7 +2,7 @@
 # validate_domain_name.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_domain_name, :doc => <<-DOC
+  newfunction(:validate_domain_name, doc: <<-DOC
     @summary
       Validate that all values passed are syntactically correct domain names.
       Fail compilation if any value fails this check.

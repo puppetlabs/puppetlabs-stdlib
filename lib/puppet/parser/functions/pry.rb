@@ -2,7 +2,7 @@
 # pry.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:pry, :type => :statement, :doc => <<-DOC
+  newfunction(:pry, type: :statement, doc: <<-DOC
     @summary
       This function invokes a pry debugging session in the current scope object.
     This is useful for debugging manifest code at specific points during a compilation.

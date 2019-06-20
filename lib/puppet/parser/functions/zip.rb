@@ -2,7 +2,7 @@
 # zip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:zip, :type => :rvalue, :doc => <<-DOC
+  newfunction(:zip, type: :rvalue, doc: <<-DOC
     @summary
       Takes one element from first array and merges corresponding elements from second array.
 

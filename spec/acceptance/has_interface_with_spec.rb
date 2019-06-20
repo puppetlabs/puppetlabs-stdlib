@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'has_interface_with function', :unless => ((fact('osfamily') == 'windows') || (fact('osfamily') == 'AIX')) do
+describe 'has_interface_with function', unless: ((fact('osfamily') == 'windows') || (fact('osfamily') == 'AIX')) do
   describe 'success' do
     pp1 = <<-DOC
       $a = $::ipaddress
@@ -8,7 +8,7 @@ describe 'has_interface_with function', :unless => ((fact('osfamily') == 'window
       notice(inline_template('has_interface_with is <%= @o.inspect %>'))
     DOC
     it 'has_interface_with existing ipaddress' do
-      apply_manifest(pp1, :catch_failures => true) do |r|
+      apply_manifest(pp1, catch_failures: true) do |r|
         expect(r.stdout).to match(%r{has_interface_with is true})
       end
     end
@@ -19,7 +19,7 @@ describe 'has_interface_with function', :unless => ((fact('osfamily') == 'window
       notice(inline_template('has_interface_with is <%= @o.inspect %>'))
     DOC
     it 'has_interface_with absent ipaddress' do
-      apply_manifest(pp2, :catch_failures => true) do |r|
+      apply_manifest(pp2, catch_failures: true) do |r|
         expect(r.stdout).to match(%r{has_interface_with is false})
       end
     end
@@ -40,7 +40,7 @@ describe 'has_interface_with function', :unless => ((fact('osfamily') == 'window
       notice(inline_template('has_interface_with is <%= @o.inspect %>'))
     DOC
     it 'has_interface_with existing interface' do
-      apply_manifest(pp3, :catch_failures => true) do |r|
+      apply_manifest(pp3, catch_failures: true) do |r|
         expect(r.stdout).to match(%r{has_interface_with is true})
       end
     end

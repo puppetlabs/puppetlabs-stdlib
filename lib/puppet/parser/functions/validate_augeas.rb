@@ -4,7 +4,7 @@ require 'tempfile'
 # validate_augaes.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_augeas, :doc => <<-DOC
+  newfunction(:validate_augeas, doc: <<-DOC
     @summary
       Perform validation of a string using an Augeas lens
 
@@ -67,9 +67,9 @@ module Puppet::Parser::Functions
       # Check for syntax
       lens = args[1]
       aug.transform(
-        :lens => lens,
-        :name => 'Validate_augeas',
-        :incl => tmpfile.path,
+        lens: lens,
+        name: 'Validate_augeas',
+        incl: tmpfile.path,
       )
       aug.load!
 

@@ -2,7 +2,7 @@
 # validate_hash.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_hash, :doc => <<-DOC
+  newfunction(:validate_hash, doc: <<-DOC
     @summary
       Validate that all passed values are hash data structures. Abort catalog
       compilation if any value fails this check.

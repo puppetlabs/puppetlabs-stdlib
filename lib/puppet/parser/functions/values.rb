@@ -2,7 +2,7 @@
 # values.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:values, :type => :rvalue, :doc => <<-DOC
+  newfunction(:values, type: :rvalue, doc: <<-DOC
     @summary
       When given a hash this function will return the values of that hash.
 

@@ -2,7 +2,7 @@
 # intersection.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:intersection, :type => :rvalue, :doc => <<-DOC
+  newfunction(:intersection, type: :rvalue, doc: <<-DOC
     @summary
       This function returns an array of the intersection of two.
 

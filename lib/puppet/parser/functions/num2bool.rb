@@ -2,7 +2,7 @@
 # num2bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:num2bool, :type => :rvalue, :doc => <<-DOC
+  newfunction(:num2bool, type: :rvalue, doc: <<-DOC
     @summary
       This function converts a number or a string representation of a number into a
       true boolean.

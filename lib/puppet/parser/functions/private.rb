@@ -2,7 +2,7 @@
 # private.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:private, :doc => <<-'DOC'
+  newfunction(:private, doc: <<-'DOC'
    @summary
     **Deprecated:** Sets the current class or definition as private.
     Calling the class or definition from outside the current module will fail.

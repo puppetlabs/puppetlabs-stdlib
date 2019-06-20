@@ -3,7 +3,7 @@ require 'shellwords'
 # shell_escape.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:shell_escape, :type => :rvalue, :doc => <<-DOC
+  newfunction(:shell_escape, type: :rvalue, doc: <<-DOC
     @summary
       Escapes a string so that it can be safely used in a Bourne shell command line.
 

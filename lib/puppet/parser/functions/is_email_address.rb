@@ -2,7 +2,7 @@
 # is_email_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_email_address, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_email_address, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the string passed to this function is a valid email address.
 

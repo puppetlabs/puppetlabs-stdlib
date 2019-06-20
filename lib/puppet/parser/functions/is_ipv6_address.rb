@@ -2,7 +2,7 @@
 # is_ipv6_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_ipv6_address, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_ipv6_address, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the string passed to this function is a valid IPv6 address.
 

@@ -2,7 +2,7 @@
 # type3x.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:type3x, :type => :rvalue, :doc => <<-DOC
+  newfunction(:type3x, type: :rvalue, doc: <<-DOC
     @summary
       **DEPRECATED:** This function will be removed when Puppet 3 support is dropped; please migrate to the new parser's typing system.
 

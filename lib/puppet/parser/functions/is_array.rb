@@ -2,7 +2,7 @@
 # is_array.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_array, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_array, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the variable passed to this function is an array.
 

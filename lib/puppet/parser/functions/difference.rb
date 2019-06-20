@@ -2,7 +2,7 @@
 # difference.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:difference, :type => :rvalue, :doc => <<-DOC
+  newfunction(:difference, type: :rvalue, doc: <<-DOC
     @summary
       This function returns the difference between two arrays.
 

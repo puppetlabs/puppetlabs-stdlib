@@ -2,7 +2,7 @@
 # validate_ip_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_ip_address, :doc => <<-DOC
+  newfunction(:validate_ip_address, doc: <<-DOC
     @summary
       Validate that all values passed are valid IP addresses,
       regardless they are IPv4 or IPv6

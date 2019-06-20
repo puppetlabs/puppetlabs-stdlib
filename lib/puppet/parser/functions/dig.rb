@@ -2,7 +2,7 @@
 # dig.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:dig, :type => :rvalue, :doc => <<-DOC
+  newfunction(:dig, type: :rvalue, doc: <<-DOC
     @summary
       **DEPRECATED** Retrieves a value within multiple layers of hashes and arrays via an
       array of keys containing a path.

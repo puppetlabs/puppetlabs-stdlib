@@ -2,7 +2,7 @@
 #  lstrip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:lstrip, :type => :rvalue, :doc => <<-DOC
+  newfunction(:lstrip, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Strips leading spaces to the left of a string.
 

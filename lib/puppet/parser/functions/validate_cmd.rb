@@ -5,7 +5,7 @@ require 'tempfile'
 # validate_cmd.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_cmd, :doc => <<-DOC
+  newfunction(:validate_cmd, doc: <<-DOC
     @summary
       Perform validation of a string with an external command.
 

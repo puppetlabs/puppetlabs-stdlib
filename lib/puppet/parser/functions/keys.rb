@@ -2,7 +2,7 @@
 # keys.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:keys, :type => :rvalue, :doc => <<-DOC
+  newfunction(:keys, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns the keys of a hash as an array.
 

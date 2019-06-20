@@ -2,7 +2,7 @@
 # validate.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_re, :doc => <<-DOC
+  newfunction(:validate_re, doc: <<-DOC
   @summary
     Perform simple validation of a string against one or more regular
     expressions.

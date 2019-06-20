@@ -2,7 +2,7 @@
 #  chomp.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:chomp, :type => :rvalue, :doc => <<-DOC
+  newfunction(:chomp, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated** Removes the record separator from the end of a string or an array of strings.
 

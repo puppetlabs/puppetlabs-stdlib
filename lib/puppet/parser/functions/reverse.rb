@@ -2,7 +2,7 @@
 # reverse.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:reverse, :type => :rvalue, :doc => <<-DOC
+  newfunction(:reverse, type: :rvalue, doc: <<-DOC
     @summary
       Reverses the order of a string or array.
 

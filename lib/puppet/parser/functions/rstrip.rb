@@ -2,7 +2,7 @@
 #  rstrip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:rstrip, :type => :rvalue, :doc => <<-DOC
+  newfunction(:rstrip, type: :rvalue, doc: <<-DOC
     @summary
       Strips leading spaces to the right of the string.
 

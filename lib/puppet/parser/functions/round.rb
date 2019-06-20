@@ -2,7 +2,7 @@
 # round.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:round, :type => :rvalue, :doc => <<-DOC
+  newfunction(:round, type: :rvalue, doc: <<-DOC
     @summary
       Rounds a number to the nearest integer
 

@@ -2,7 +2,7 @@
 # validate_String.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_string, :doc => <<-DOC
+  newfunction(:validate_string, doc: <<-DOC
     @summary
       Validate that all passed values are string data structures
 

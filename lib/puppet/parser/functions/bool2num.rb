@@ -2,7 +2,7 @@
 # bool2num.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:bool2num, :type => :rvalue, :doc => <<-DOC
+  newfunction(:bool2num, type: :rvalue, doc: <<-DOC
     @summary
       Converts a boolean to a number.
 

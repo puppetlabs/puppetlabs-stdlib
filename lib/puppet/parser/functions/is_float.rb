@@ -2,7 +2,7 @@
 # is_float.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_float, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_float, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the variable passed to this function is a float.
 

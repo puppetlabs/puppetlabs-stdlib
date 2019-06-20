@@ -4,8 +4,8 @@ describe 'os_version_gte' do
   context 'on Debian 9' do
     let(:facts) do
       {
-        :operatingsystem => 'Debian',
-        :operatingsystemmajrelease => '9',
+        operatingsystem: 'Debian',
+        operatingsystemmajrelease: '9',
       }
     end
 
@@ -19,8 +19,8 @@ describe 'os_version_gte' do
   context 'on Ubuntu 16.04' do
     let(:facts) do
       {
-        :operatingsystem => 'Ubuntu',
-        :operatingsystemmajrelease => '16.04',
+        operatingsystem: 'Ubuntu',
+        operatingsystemmajrelease: '16.04',
       }
     end
 
@@ -34,8 +34,8 @@ describe 'os_version_gte' do
   context 'with invalid params' do
     let(:facts) do
       {
-        :operatingsystem => 'Ubuntu',
-        :operatingsystemmajrelease => '16.04',
+        operatingsystem: 'Ubuntu',
+        operatingsystemmajrelease: '16.04',
       }
     end
 

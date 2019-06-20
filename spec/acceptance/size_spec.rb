@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'size function', :if => Puppet::Util::Package.versioncmp(return_puppet_version, '6.0.0') < 0 do
+describe 'size function', if: Puppet::Util::Package.versioncmp(return_puppet_version, '6.0.0') < 0 do
   describe 'success' do
     pp1 = <<-DOC
       $a = 'discombobulate'
@@ -8,7 +8,7 @@ describe 'size function', :if => Puppet::Util::Package.versioncmp(return_puppet_
       notice(inline_template('size is <%= @o.inspect %>'))
     DOC
     it 'single string size' do
-      apply_manifest(pp1, :catch_failures => true) do |r|
+      apply_manifest(pp1, catch_failures: true) do |r|
         expect(r.stdout).to match(%r{size is 14})
       end
     end
@@ -19,7 +19,7 @@ describe 'size function', :if => Puppet::Util::Package.versioncmp(return_puppet_
       notice(inline_template('size is <%= @o.inspect %>'))
     DOC
     it 'with empty string' do
-      apply_manifest(pp2, :catch_failures => true) do |r|
+      apply_manifest(pp2, catch_failures: true) do |r|
         expect(r.stdout).to match(%r{size is 0})
       end
     end
@@ -30,7 +30,7 @@ describe 'size function', :if => Puppet::Util::Package.versioncmp(return_puppet_
       notice(inline_template('size is <%= @o.inspect %>'))
     DOC
     it 'with undef' do
-      apply_manifest(pp3, :catch_failures => true) do |r|
+      apply_manifest(pp3, catch_failures: true) do |r|
         expect(r.stdout).to match(%r{size is 0})
       end
     end
@@ -41,7 +41,7 @@ describe 'size function', :if => Puppet::Util::Package.versioncmp(return_puppet_
       notice(inline_template('size is <%= @o.inspect %>'))
     DOC
     it 'strings in array' do
-      apply_manifest(pp4, :catch_failures => true) do |r|
+      apply_manifest(pp4, catch_failures: true) do |r|
         expect(r.stdout).to match(%r{size is 2})
       end
     end

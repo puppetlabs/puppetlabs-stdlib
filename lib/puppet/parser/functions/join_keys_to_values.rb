@@ -2,7 +2,7 @@
 # join_keys_to_values.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:join_keys_to_values, :type => :rvalue, :doc => <<-DOC
+  newfunction(:join_keys_to_values, type: :rvalue, doc: <<-DOC
     @summary
       This function joins each key of a hash to that key's corresponding value with a
       separator.

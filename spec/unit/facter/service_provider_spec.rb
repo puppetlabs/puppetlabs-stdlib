@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'puppet/type'
 require 'puppet/type/service'
 
-describe 'service_provider', :type => :fact do
+describe 'service_provider', type: :fact do
   before(:each) { Facter.clear }
   after(:each) { Facter.clear }
 

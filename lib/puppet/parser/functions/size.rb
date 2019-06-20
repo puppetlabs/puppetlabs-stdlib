@@ -2,7 +2,7 @@
 # size.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:size, :type => :rvalue, :doc => <<-DOC
+  newfunction(:size, type: :rvalue, doc: <<-DOC
     @summary
       Returns the number of elements in a string, an array or a hash
 

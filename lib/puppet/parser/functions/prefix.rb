@@ -2,7 +2,7 @@
 # prefix.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:prefix, :type => :rvalue, :doc => <<-DOC
+  newfunction(:prefix, type: :rvalue, doc: <<-DOC
     @summary
       This function applies a prefix to all elements in an array or a hash.
 

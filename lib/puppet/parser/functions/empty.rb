@@ -2,7 +2,7 @@
 # empty.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:empty, :type => :rvalue, :doc => <<-DOC
+  newfunction(:empty, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the variable is empty.
 

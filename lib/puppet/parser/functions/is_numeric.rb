@@ -2,7 +2,7 @@
 # is_numeric.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_numeric, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_numeric, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the given value is numeric.
 

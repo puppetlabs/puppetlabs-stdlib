@@ -3,7 +3,7 @@
 #
 # TODO(Krzysztof Wilczynski): We probably need to approach numeric values differently ...
 module Puppet::Parser::Functions
-  newfunction(:range, :type => :rvalue, :doc => <<-DOC
+  newfunction(:range, type: :rvalue, doc: <<-DOC
     @summary
       When given range in the form of (start, stop) it will extrapolate a range as
       an array.

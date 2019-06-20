@@ -2,7 +2,7 @@
 # max.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:max, :type => :rvalue, :doc => <<-DOC
+  newfunction(:max, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns the highest value of all arguments.
 

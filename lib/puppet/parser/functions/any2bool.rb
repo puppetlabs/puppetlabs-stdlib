@@ -2,7 +2,7 @@
 # any2bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:any2bool, :type => :rvalue, :doc => <<-DOC
+  newfunction(:any2bool, type: :rvalue, doc: <<-DOC
     @summary
       Converts 'anything' to a boolean.
 

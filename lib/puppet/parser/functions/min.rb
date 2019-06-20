@@ -2,7 +2,7 @@
 # min.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:min, :type => :rvalue, :doc => <<-DOC
+  newfunction(:min, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns the lowest value of all arguments.
 

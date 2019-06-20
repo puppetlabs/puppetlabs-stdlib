@@ -2,7 +2,7 @@
 # join.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:join, :type => :rvalue, :doc => <<-DOC
+  newfunction(:join, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** This function joins an array into a string using a separator.
 

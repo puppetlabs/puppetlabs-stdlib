@@ -2,7 +2,7 @@
 # assert_private.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:assert_private, :doc => <<-DOC
+  newfunction(:assert_private, doc: <<-DOC
     @summary
       Sets the current class or definition as private.
 

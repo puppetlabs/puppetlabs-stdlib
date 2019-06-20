@@ -2,7 +2,7 @@
 # getvar.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:getvar, :type => :rvalue, :doc => <<-'DOC') do |args|
+  newfunction(:getvar, type: :rvalue, doc: <<-'DOC') do |args|
     @summary
       Lookup a variable in a given namespace.
 

@@ -2,7 +2,7 @@
 # shuffle.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:shuffle, :type => :rvalue, :doc => <<-DOC
+  newfunction(:shuffle, type: :rvalue, doc: <<-DOC
   @summary
     Randomizes the order of a string or array elements.
 

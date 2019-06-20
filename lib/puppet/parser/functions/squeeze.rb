@@ -2,7 +2,7 @@
 # squeeze.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:squeeze, :type => :rvalue, :doc => <<-DOC
+  newfunction(:squeeze, type: :rvalue, doc: <<-DOC
     @summary
       Returns a new string where runs of the same character that occur in this set are replaced by a single character.
 

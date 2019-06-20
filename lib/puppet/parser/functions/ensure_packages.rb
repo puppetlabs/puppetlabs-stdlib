@@ -2,7 +2,7 @@
 # ensure_packages.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:ensure_packages, :type => :statement, :doc => <<-DOC
+  newfunction(:ensure_packages, type: :statement, doc: <<-DOC
     @summary
       Takes a list of packages and only installs them if they don't already exist.
 

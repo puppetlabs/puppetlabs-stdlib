@@ -134,7 +134,7 @@ class Facter::Util::DotD
   def cache_store(file, data)
     load_cache
 
-    @cache[file] = { :data => data, :stored => Time.now.to_i }
+    @cache[file] = { data: data, stored: Time.now.to_i }
   rescue # rubocop:disable Lint/HandleExceptions
   end
 

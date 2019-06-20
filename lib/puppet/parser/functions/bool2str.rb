@@ -2,7 +2,7 @@
 # bool2str.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:bool2str, :type => :rvalue, :doc => <<-DOC
+  newfunction(:bool2str, type: :rvalue, doc: <<-DOC
     @summary
       Converts a boolean to a string using optionally supplied arguments.
 

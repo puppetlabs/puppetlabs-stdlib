@@ -2,7 +2,7 @@
 # has_interface_with
 #
 module Puppet::Parser::Functions
-  newfunction(:has_interface_with, :type => :rvalue, :doc => <<-DOC
+  newfunction(:has_interface_with, type: :rvalue, doc: <<-DOC
     @summary
       Returns boolean based on kind and value.
 

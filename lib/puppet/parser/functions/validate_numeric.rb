@@ -2,7 +2,7 @@
 # validate_numeric.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_numeric, :doc => <<-DOC
+  newfunction(:validate_numeric, doc: <<-DOC
     @summary
       Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
 

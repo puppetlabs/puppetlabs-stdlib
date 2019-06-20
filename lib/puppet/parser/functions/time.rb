@@ -2,7 +2,7 @@
 # time.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:time, :type => :rvalue, :doc => <<-DOC
+  newfunction(:time, type: :rvalue, doc: <<-DOC
     @summary
       This function will return the current time since epoch as an integer.
 

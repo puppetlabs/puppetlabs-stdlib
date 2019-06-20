@@ -2,7 +2,7 @@
 # floor.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:floor, :type => :rvalue, :doc => <<-DOC
+  newfunction(:floor, type: :rvalue, doc: <<-DOC
     @summary
       Returns the largest integer less or equal to the argument.
 

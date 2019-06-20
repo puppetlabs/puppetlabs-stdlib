@@ -2,7 +2,7 @@
 # is_integer.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_integer, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_integer, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the variable passed to this function is an Integer or
       a decimal (base 10) integer in String form.

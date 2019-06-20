@@ -2,7 +2,7 @@
 # delete.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:delete, :type => :rvalue, :doc => <<-DOC
+  newfunction(:delete, type: :rvalue, doc: <<-DOC
     @summary
       Deletes all instances of a given element from an array, substring from a
       string, or key from a hash.

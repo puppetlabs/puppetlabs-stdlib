@@ -2,7 +2,7 @@
 # validate_bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_bool, :doc => <<-DOC
+  newfunction(:validate_bool, doc: <<-DOC
     @summary
       Validate that all passed values are either true or false. Abort catalog
       compilation if any value fails this check.

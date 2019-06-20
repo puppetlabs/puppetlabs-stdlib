@@ -2,7 +2,7 @@
 # parseyaml.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:parseyaml, :type => :rvalue, :doc => <<-DOC
+  newfunction(:parseyaml, type: :rvalue, doc: <<-DOC
     @summary
       This function accepts YAML as a string and converts it into the correct
       Puppet structure.

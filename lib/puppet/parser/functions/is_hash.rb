@@ -2,7 +2,7 @@
 # is_hash.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_hash, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_hash, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the variable passed to this function is a hash.
 

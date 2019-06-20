@@ -2,7 +2,7 @@
 # abs.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:abs, :type => :rvalue, :doc => <<-DOC
+  newfunction(:abs, type: :rvalue, doc: <<-DOC
     @summary
       **Deprected:** Returns the absolute value of a number
 

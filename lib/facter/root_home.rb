@@ -21,7 +21,7 @@ Facter.add(:root_home) do
 end
 
 Facter.add(:root_home) do
-  confine :kernel => :darwin
+  confine kernel: :darwin
   setcode do
     str = Facter::Util::Resolution.exec('dscacheutil -q user -a name root')
     hash = {}
@@ -34,7 +34,7 @@ Facter.add(:root_home) do
 end
 
 Facter.add(:root_home) do
-  confine :kernel => :aix
+  confine kernel: :aix
   root_home = nil
   setcode do
     str = Facter::Util::Resolution.exec('lsuser -c -a home root')

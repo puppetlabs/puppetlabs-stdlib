@@ -2,7 +2,7 @@
 # parsejson.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:parsejson, :type => :rvalue, :doc => <<-DOC
+  newfunction(:parsejson, type: :rvalue, doc: <<-DOC
     @summary
       This function accepts JSON as a string and converts it into the correct
       Puppet structure.

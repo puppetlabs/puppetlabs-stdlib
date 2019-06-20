@@ -3,8 +3,8 @@
 #
 Puppet::Parser::Functions.newfunction(
   :fqdn_rotate,
-  :type => :rvalue,
-  :doc => <<-DOC
+  type: :rvalue,
+  doc: <<-DOC
   @summary
     Rotates an array or string a random number of times, combining the `$fqdn` fact
     and an optional seed for repeatable randomness.

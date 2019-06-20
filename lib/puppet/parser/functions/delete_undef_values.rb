@@ -2,7 +2,7 @@
 # delete_undef_values.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:delete_undef_values, :type => :rvalue, :doc => <<-DOC
+  newfunction(:delete_undef_values, type: :rvalue, doc: <<-DOC
     @summary
       Returns a copy of input hash or array with all undefs deleted.
 

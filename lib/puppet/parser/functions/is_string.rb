@@ -2,7 +2,7 @@
 # is_string.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_string, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_string, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the variable passed to this function is a string.
 

@@ -2,7 +2,7 @@
 # validate_email_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_email_address, :doc => <<-DOC
+  newfunction(:validate_email_address, doc: <<-DOC
     @summary
       Validate that all values passed are valid email addresses.
       Fail compilation if any value fails this check.

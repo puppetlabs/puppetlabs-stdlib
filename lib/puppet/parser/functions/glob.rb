@@ -2,7 +2,7 @@
 #  glob.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:glob, :type => :rvalue, :doc => <<-DOC
+  newfunction(:glob, type: :rvalue, doc: <<-DOC
     @summary
       Uses same patterns as Dir#glob.
 

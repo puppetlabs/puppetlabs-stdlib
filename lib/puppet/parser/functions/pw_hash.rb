@@ -3,9 +3,9 @@
 #
 Puppet::Parser::Functions.newfunction(
   :pw_hash,
-  :type => :rvalue,
-  :arity => 3,
-  :doc => <<-DOC
+  type: :rvalue,
+  arity: 3,
+  doc: <<-DOC
   @summary
     Hashes a password using the crypt function. Provides a hash usable
     on most POSIX systems.

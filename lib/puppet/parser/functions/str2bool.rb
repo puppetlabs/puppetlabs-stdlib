@@ -2,7 +2,7 @@
 # str2bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:str2bool, :type => :rvalue, :doc => <<-DOC
+  newfunction(:str2bool, type: :rvalue, doc: <<-DOC
     @summary
       This converts a string to a boolean.
 

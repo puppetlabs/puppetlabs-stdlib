@@ -34,7 +34,7 @@ end
 
 # Fact: pe_major_version
 Facter.add('pe_major_version') do
-  confine :is_pe => true
+  confine is_pe: true
   setcode do
     pe_version = Facter.value(:pe_version)
     if pe_version
@@ -45,7 +45,7 @@ end
 
 # Fact: pe_minor_version
 Facter.add('pe_minor_version') do
-  confine :is_pe => true
+  confine is_pe: true
   setcode do
     pe_version = Facter.value(:pe_version)
     if pe_version
@@ -56,7 +56,7 @@ end
 
 # Fact: pe_patch_version
 Facter.add('pe_patch_version') do
-  confine :is_pe => true
+  confine is_pe: true
   setcode do
     pe_version = Facter.value(:pe_version)
     if pe_version

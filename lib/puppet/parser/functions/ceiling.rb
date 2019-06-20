@@ -2,7 +2,7 @@
 #  ceiling.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:ceiling, :type => :rvalue, :doc => <<-DOC
+  newfunction(:ceiling, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated** Returns the smallest integer greater or equal to the argument.
     Takes a single numeric value as an argument.

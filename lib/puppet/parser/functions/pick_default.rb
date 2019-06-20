@@ -2,7 +2,7 @@
 # pick_default.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:pick_default, :type => :rvalue, :doc => <<-DOC
+  newfunction(:pick_default, type: :rvalue, doc: <<-DOC
     @summary
       This function will return the first value in a list of values that is not undefined or an empty string.
 

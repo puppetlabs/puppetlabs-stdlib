@@ -2,7 +2,7 @@
 # deprecation.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:deprecation, :doc => <<-DOC
+  newfunction(:deprecation, doc: <<-DOC
   @summary
     Function to print deprecation warnings (this is the 3.X version of it).
 

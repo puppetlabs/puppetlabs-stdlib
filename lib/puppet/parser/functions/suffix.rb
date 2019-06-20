@@ -2,7 +2,7 @@
 # suffix.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:suffix, :type => :rvalue, :doc => <<-DOC
+  newfunction(:suffix, type: :rvalue, doc: <<-DOC
     @summary
       This function applies a suffix to all elements in an array, or to the keys
       in a hash.

@@ -2,7 +2,7 @@
 # count.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:count, :type => :rvalue, :arity => -2, :doc => <<-DOC
+  newfunction(:count, type: :rvalue, arity: -2, doc: <<-DOC
     @summary
       Counts the number of elements in array.
 

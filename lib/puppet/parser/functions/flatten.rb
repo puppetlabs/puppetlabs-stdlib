@@ -2,7 +2,7 @@
 # flatten.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:flatten, :type => :rvalue, :doc => <<-DOC
+  newfunction(:flatten, type: :rvalue, doc: <<-DOC
     @summary
       This function flattens any deeply nested arrays and returns a single flat array
       as a result.

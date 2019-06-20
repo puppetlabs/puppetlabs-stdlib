@@ -2,7 +2,7 @@
 # has_ip_address
 #
 module Puppet::Parser::Functions
-  newfunction(:has_ip_address, :type => :rvalue, :doc => <<-DOC
+  newfunction(:has_ip_address, type: :rvalue, doc: <<-DOC
     @summary
       Returns true if the client has the requested IP address on some interface.
 

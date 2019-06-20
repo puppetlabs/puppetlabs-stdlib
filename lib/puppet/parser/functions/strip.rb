@@ -2,7 +2,7 @@
 #  strip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:strip, :type => :rvalue, :doc => <<-DOC
+  newfunction(:strip, type: :rvalue, doc: <<-DOC
     @summary
       This function removes leading and trailing whitespace from a string or from
       every string inside an array.

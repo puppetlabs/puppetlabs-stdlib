@@ -2,7 +2,7 @@
 #  chop.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:chop, :type => :rvalue, :doc => <<-DOC
+  newfunction(:chop, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated** Returns a new string with the last character removed.
 

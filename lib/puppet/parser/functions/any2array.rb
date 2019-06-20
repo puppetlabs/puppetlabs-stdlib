@@ -2,7 +2,7 @@
 # any2array.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:any2array, :type => :rvalue, :doc => <<-DOC
+  newfunction(:any2array, type: :rvalue, doc: <<-DOC
     @summary
       This converts any object to an array containing that object.
 

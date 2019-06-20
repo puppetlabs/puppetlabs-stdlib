@@ -2,7 +2,7 @@
 # clamp.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:clamp, :type => :rvalue, :arity => -2, :doc => <<-DOC
+  newfunction(:clamp, type: :rvalue, arity: -2, doc: <<-DOC
     @summary
       Keeps value within the range [Min, X, Max] by sort based on integer value
       (parameter order doesn't matter).

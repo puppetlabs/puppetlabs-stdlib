@@ -9,7 +9,7 @@ describe 'type function' do
       notice(inline_template('type is <%= @o.to_s %>'))
     DOC
     it 'types arrays' do
-      apply_manifest(pp1, :catch_failures => true) do |r|
+      apply_manifest(pp1, catch_failures: true) do |r|
         expect(r.stdout).to match(%r{type is Tuple\[String.*, String.*, String.*, String.*\]})
       end
     end
@@ -20,7 +20,7 @@ describe 'type function' do
       notice(inline_template('type is <%= @o.to_s %>'))
     DOC
     it 'types strings' do
-      apply_manifest(pp2, :catch_failures => true) do |r|
+      apply_manifest(pp2, catch_failures: true) do |r|
         expect(r.stdout).to match(%r{type is String})
       end
     end
