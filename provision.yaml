@@ -1,0 +1,16 @@
+---
+default:
+  provisioner: docker
+  images: ['waffleimage/centos7']
+waffle_debian:
+  provisioner: docker
+  images: ['waffleimage/debian8', 'waffleimage/debian9', 'waffleimage/ubuntu14.04', 'waffleimage/ubuntu16.04', 'waffleimage/ubuntu18.04']
+waffle_el6:
+  provisioner: docker
+  images: ['waffleimage/centos6', 'waffleimage/scientificlinux6']
+waffle_el7:
+  provisioner: docker
+  images: ['waffleimage/centos7', 'waffleimage/oraclelinux7', 'waffleimage/scientificlinux7']
+release_checks:
+  provisioner: vmpooler
+  images: ['redhat-5-x86_64', 'redhat-6-x86_64', 'redhat-7-x86_64', 'redhat-8-x86_64', 'centos-5-x86_64', 'centos-6-x86_64', 'centos-7-x86_64', 'oracle-5-x86_64', 'oracle-6-x86_64', 'oracle-7-x86_64', 'scientific-6-x86_64', 'scientific-7-x86_64', 'debian-8-x86_64', 'debian-9-x86_64', 'sles-11-x86_64', 'sles-12-x86_64', 'ubuntu-1404-x86_64', 'ubuntu-1604-x86_64', 'ubuntu-1804-x86_64', 'win-2008-x86_64', 'win-2008r2-x86_64', 'win-2012-x86_64', 'win-2012r2-x86_64', 'win-2016-x86_64', 'win-2019-x86_64', 'win-7-x86_64', 'win-81-x86_64', 'win-10-pro-x86_64']

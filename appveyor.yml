@@ -34,6 +34,27 @@ environment:
       PUPPET_GEM_VERSION: ~> 6.0
       RUBY_VERSION: 25-x64
       CHECK: parallel_spec
+    -
+      RUBY_VERSION: 25-x64
+      ACCEPTANCE: yes
+      TARGET_HOST: localhost
+    -
+      RUBY_VERSION: 25-x64
+      ACCEPTANCE: yes
+      TARGET_HOST: localhost
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+for:
+-
+  matrix:
+    only:
+      - ACCEPTANCE: yes
+  install:
+    - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+    - bundle install --jobs 4 --retry 2
+    - type Gemfile.lock
+  test_script:
+     - bundle exec rake spec_prep
+     - bundle exec rake litmus:acceptance:localhost
 matrix:
   fast_finish: true
 install:
