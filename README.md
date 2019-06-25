@@ -19,7 +19,7 @@ This module provides a standard library of resources for Puppet modules.
 
 ## Module Description
 
- Puppet modules make heavy use of this standard library. The stdlib module adds the following resources to Puppet:
+Puppet modules make heavy use of this standard library. The stdlib module adds the following resources to Puppet:
 
  * Stages
  * Facts
