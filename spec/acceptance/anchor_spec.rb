@@ -1,4 +1,5 @@
 require 'spec_helper_acceptance'
+require 'pry-byebug'
 
 describe 'anchor type' do
   describe 'success' do
@@ -17,6 +18,7 @@ describe 'anchor type' do
       include anchorrefresh
     DOC
     it 'effects proper chaining of resources' do
+      binding.pry
       apply_manifest(pp, :catch_failures => true) do |r|
         expect(r.stdout).to match(%r{Anchor\[final\]: Triggered 'refresh'})
       end

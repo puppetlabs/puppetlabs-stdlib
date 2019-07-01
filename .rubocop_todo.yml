@@ -8,3 +8,5 @@ Style/HashSyntax:
   EnforcedStyle: hash_rockets
 Layout/IndentHeredoc:
   Enabled: false
+Lint/Debugger:
+  Enabled: false

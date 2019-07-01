@@ -27,7 +27,7 @@ module Puppet::Parser::Functions
     ## Run `@resource_table` to see the current catalog resource table
     #
     if $stdout.isatty
-      binding.pry # rubocop:disable Lint/Debugger
+      binding.pry
     else
       Puppet.warning 'pry(): cowardly refusing to start the debugger on a daemonized master'
     end
