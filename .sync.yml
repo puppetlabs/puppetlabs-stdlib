@@ -11,25 +11,12 @@
     inherit_from: .rubocop_todo.yml
 
 .travis.yml:
-  docker_sets:
-    - set: docker/centos-7
-    - set: docker/ubuntu-14.04
-  docker_defaults:
-    bundler_args: ""
-  secure: ""
-  branches:
-    - release
+  unmanaged: true
+
+appveyor.yml:
+  unmanaged: true
 
 Gemfile:
-  required:
-    ':system_tests':
-      - gem: 'puppet-module-posix-system-r#{minor_version}'
-        platforms: ruby
-      - gem: 'puppet-module-win-system-r#{minor_version}'
-        platforms:
-          - mswin
-          - mingw
-          - x64_mingw
   optional:
     ':development':
       - gem: 'github_changelog_generator'
