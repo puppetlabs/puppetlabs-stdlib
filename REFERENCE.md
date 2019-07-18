@@ -16,7 +16,7 @@ the stdlib class, and should not be declared independently.
 
 **Functions**
 
-* [`abs`](#abs): **Deprected:** Returns the absolute value of a number
+* [`abs`](#abs): **Deprecated:** Returns the absolute value of a number
 * [`any2array`](#any2array): This converts any object to an array containing that object.
 * [`any2bool`](#any2bool): Converts 'anything' to a boolean.
 * [`assert_private`](#assert_private): Sets the current class or definition as private.
