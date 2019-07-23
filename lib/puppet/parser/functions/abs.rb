@@ -4,7 +4,7 @@
 module Puppet::Parser::Functions
   newfunction(:abs, :type => :rvalue, :doc => <<-DOC
     @summary
-      **Deprected:** Returns the absolute value of a number
+      **Deprecated:** Returns the absolute value of a number
 
     For example -34.56 becomes 34.56.
     Takes a single integer or float value as an argument.
