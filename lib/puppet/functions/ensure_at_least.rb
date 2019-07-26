@@ -6,9 +6,16 @@
 #
 # @example Example usage:
 #   # Ensure at least version 2.7.5-77.el7_6 of python is installed
-#   package { 'python':
-#     ensure => ensure_at_least('python', '2.7.5-77.el7_6')
-#   }
+#     package { 'python':
+#       ensure => ensure_at_least('python', '2.7.5-77.el7_6')
+#     }
+#
+# @example To specify a specific provider:
+#   # Ensure at least version 2.7.5-77.el7_6 of python is installed
+#     package { 'openssl':
+#       ensure   => ensure_at_least('openssl', '2.1.2', 'gem'),
+#       provider => gem
+#     }
 #
 Puppet::Functions.create_function(:ensure_at_least) do
   # @param package
@@ -17,21 +24,39 @@ Puppet::Functions.create_function(:ensure_at_least) do
   # @param minversion
   #   The minimum version to ensure
   #
+  # @param provider
+  #   (Optional) The provider to use
+  #
   # @return [String] package version value.
   dispatch :ensure_at_least do
     required_param 'String', :package
     required_param 'String', :minversion
+    optional_param 'String', :provider
     return_type 'String'
   end
 
-  def ensure_at_least(package, minversion)
+  def ensure_at_least(package, minversion, provider = nil)
     trusted = closure_scope['trusted']
-    query = "package_inventory[version] {
-                certname = '#{trusted['certname']}' and
-                package_name = '#{package}'
-              }"
+    query = [
+      'package_inventory[version] {',
+      "certname = '#{trusted['certname']}'",
+      "and package_name = '#{package}'",
+      ("and provider = '#{provider}'" unless provider.nil?),
+      '}',
+    ].compact.join(' ')
 
-    installed = call_function('puppetdb_query', query).map { |elem| elem['version'] }.first
+    queryresult = call_function('puppetdb_query', query)
+    if queryresult.length > 1
+      if provider.nil?
+        # Assume first PDB query result is for the default provider
+        provider = queryresult.map { |elem| elem['provider'] }.first
+      end
+      # Assume last PDB query result is always the highest version
+      result = queryresult.select { |elem| elem['provider'] == provider }.last
+    else
+      result = queryresult.first
+    end
+    installed = result['version']
 
     if installed
       case call_function('versioncmp', installed, minversion)
