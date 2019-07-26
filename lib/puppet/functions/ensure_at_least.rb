@@ -6,11 +6,11 @@
 #
 # @example Example usage:
 #   # Ensure at least version 2.7.5-77.el7_6 of python is installed
-#     package { 'python':
-#       ensure => ensure_at_least('python', '2.7.5-77.el7_6')
-#     }
+#   package { 'python':
+#     ensure => ensure_at_least('python', '2.7.5-77.el7_6')
+#   }
 #
-Puppet::Functions.create_function(:ensure_at_least, Puppet::Functions::InternalFunction) do
+Puppet::Functions.create_function(:ensure_at_least) do
   # @param package
   #   The package to ensure
   #
@@ -19,7 +19,6 @@ Puppet::Functions.create_function(:ensure_at_least, Puppet::Functions::InternalF
   #
   # @return [String] package version value.
   dispatch :ensure_at_least do
-    scope_param
     required_param 'String', :package
     required_param 'String', :minversion
     return_type 'String'
