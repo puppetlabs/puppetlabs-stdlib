@@ -46,7 +46,12 @@ Puppet::Functions.create_function(:ensure_at_least) do
     ].compact.join(' ')
 
     queryresult = call_function('puppetdb_query', query)
-    if queryresult.length > 1
+    case queryresult.length
+    when 0
+      result = { 'version' => '0.0.0' }
+    when 1
+      result = queryresult.first
+    when 2..Float::INFINITY
       if provider.nil?
         # Assume first PDB query result is for the default provider
         provider = queryresult.map { |elem| elem['provider'] }.first
@@ -54,17 +59,16 @@ Puppet::Functions.create_function(:ensure_at_least) do
       # Assume last PDB query result is always the highest version
       result = queryresult.select { |elem| elem['provider'] == provider }.last
     else
-      result = queryresult.first
+      result = { 'version' => '0.0.0' }
     end
+
     installed = result['version']
 
-    if installed
-      case call_function('versioncmp', installed, minversion)
-      when 0, 1
-        installed
-      when -1
-        minversion
-      end
+    case call_function('versioncmp', installed, minversion)
+    when 0, 1
+      installed
+    when -1
+      minversion
     else
       minversion
     end
