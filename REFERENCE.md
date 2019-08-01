@@ -168,6 +168,7 @@ the provided regular expression.
 last Period).
 * [`stdlib::ip_in_range`](#stdlibip_in_range): Returns true if the ipaddress is within the given CIDRs
 * [`str2bool`](#str2bool): This converts a string to a boolean.
+* [`str2saltedpbkdf2`](#str2saltedpbkdf2): Convert a string into a salted SHA512 PBKDF2 password hash like requred for OS X / macOS 10.8+
 * [`str2saltedsha512`](#str2saltedsha512): This converts a string to a salted-SHA512 password hash (which is used for
 OS X versions >= 10.7).
 * [`strftime`](#strftime): This function returns formatted time.
@@ -4476,6 +4477,80 @@ See the function new() in Puppet for details what the Boolean data type supports
 
 Returns: `Any` This attempt to convert to boolean strings that contain things like: Y,y, 1, T,t, TRUE,true to 'true' and strings that contain things
 like: 0, F,f, N,n, false, FALSE, no to 'false'.
+
+### str2saltedpbkdf2
+
+Type: Ruby 3.x API
+
+Convert a string into a salted SHA512 PBKDF2 password hash like requred for OS X / macOS 10.8+.
+Note, however, that Apple changes what's required periodically and this may not work for the latest
+version of macOS. If that is the case you should get a helpful error message when Puppet tries to set
+the pasword using the parameters you provide to the user resource.
+
+#### Examples
+
+##### Plain text password and salt
+
+```puppet
+$pw_info = str2saltedpbkdf2('Pa55w0rd', 'Using s0m3 s@lt', 50000)
+user { 'jdoe':
+  ensure     => present,
+  iterations => $pw_info['interations'],
+  password   => $pw_info['password_hex'],
+  salt       => $pw_info['salt_hex'],
+}
+```
+
+##### Sensitive password and salt
+
+```puppet
+$pw = Sensitive.new('Pa55w0rd')
+$salt = Sensitive.new('Using s0m3 s@lt')
+$pw_info = Sensitive.new(str2saltedpbkdf2($pw, $salt, 50000))
+user { 'jdoe':
+  ensure     => present,
+  iterations => unwrap($pw_info)['interations'],
+  password   => unwrap($pw_info)['password_hex'],
+  salt       => unwrap($pw_info)['salt_hex'],
+}
+```
+
+#### `str2saltedpbkdf2()`
+
+Convert a string into a salted SHA512 PBKDF2 password hash like requred for OS X / macOS 10.8+.
+Note, however, that Apple changes what's required periodically and this may not work for the latest
+version of macOS. If that is the case you should get a helpful error message when Puppet tries to set
+the pasword using the parameters you provide to the user resource.
+
+Returns: `Hash` Provides a hash containing the hex version of the password, the hex version of the salt, and iterations.
+
+##### Examples
+
+###### Plain text password and salt
+
+```puppet
+$pw_info = str2saltedpbkdf2('Pa55w0rd', 'Using s0m3 s@lt', 50000)
+user { 'jdoe':
+  ensure     => present,
+  iterations => $pw_info['interations'],
+  password   => $pw_info['password_hex'],
+  salt       => $pw_info['salt_hex'],
+}
+```
+
+###### Sensitive password and salt
+
+```puppet
+$pw = Sensitive.new('Pa55w0rd')
+$salt = Sensitive.new('Using s0m3 s@lt')
+$pw_info = Sensitive.new(str2saltedpbkdf2($pw, $salt, 50000))
+user { 'jdoe':
+  ensure     => present,
+  iterations => unwrap($pw_info)['interations'],
+  password   => unwrap($pw_info)['password_hex'],
+  salt       => unwrap($pw_info)['salt_hex'],
+}
+```
 
 ### str2saltedsha512
 
