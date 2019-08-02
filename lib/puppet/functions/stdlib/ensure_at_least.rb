@@ -17,7 +17,7 @@
 #       provider => gem
 #     }
 #
-Puppet::Functions.create_function(:ensure_at_least) do
+Puppet::Functions.create_function(:'stdlib::ensure_at_least') do
   # @param package
   #   The package to ensure
   #
