@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
 
     > **Note:** that since Puppet 4.0.0, the built-in
     [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function does
-    the "same" — as any logic can be used to filter, as opposed to just regular expressions:
+    the "same" - as any logic can be used to filter, as opposed to just regular expressions:
     ```['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }```
     DOC
              ) do |arguments|

@@ -887,7 +887,7 @@ bool2str(false, 't', 'f')         => 'f'
 引数: ブーリアン。
 
 Since Puppet 5.0.0, you can create new values for almost any
-data type using the type system — you can use the built-in
+data type using the type system - you can use the built-in
 [`String.new`](https://puppet.com/docs/puppet/latest/function.html#boolean-to-string)
 function to convert to String, with many different format options:
 

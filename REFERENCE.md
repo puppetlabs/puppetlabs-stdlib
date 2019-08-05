@@ -2346,7 +2346,7 @@ Type: Ruby 3.x API
 
 > **Note:** that since Puppet 4.0.0, the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function does
-the "same" — as any logic can be used to filter, as opposed to just regular expressions:
+the "same" - as any logic can be used to filter, as opposed to just regular expressions:
 ```['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }```
 
 #### Examples
@@ -2361,7 +2361,7 @@ grep(['aaa','bbb','ccc','aaaddd'], 'aaa') # Returns ['aaa','aaaddd']
 
 > **Note:** that since Puppet 4.0.0, the built-in
 [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function does
-the "same" — as any logic can be used to filter, as opposed to just regular expressions:
+the "same" - as any logic can be used to filter, as opposed to just regular expressions:
 ```['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }```
 
 Returns: `Any` array of elements that match the provided regular expression.
