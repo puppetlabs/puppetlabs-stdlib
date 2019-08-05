@@ -31,7 +31,7 @@
 #       provider => gem
 #     }
 #
-Puppet::Functions.create_function(:'stdlib::ensure_at_least') do
+Puppet::Functions.create_function(:ensure_at_least) do
   # @param package
   #   The package to ensure
   #
@@ -178,6 +178,7 @@ Puppet::Functions.create_function(:'stdlib::ensure_at_least') do
       end
       call_function('notice', "#{msgprefix} Auto-selected provider #{provider}")
       msgprefix = "#{msgprefix} Provider #{provider} |"
+      providerselected = true
       # Provider is now known or auto-selected, filter the resultset on that provider
       filtered_result = queryresult.select { |elem| elem['provider'] == provider }
       # Now determine how many records we have left
@@ -211,11 +212,12 @@ Puppet::Functions.create_function(:'stdlib::ensure_at_least') do
       call_function('notice', "#{msgprefix}#{" Provider #{provider} |" unless provider.nil?} Error occured finding packages")
     end
 
+    msgprefix = "#{msgprefix}#{" Provider #{provider} |" unless provider.nil?}" unless providerselected
     installed = result['version']
 
     case call_function('versioncmp', installed, minversion)
     when 0, 1
-      call_function('notice', "#{msgprefix}#{" Provider #{provider} |" unless provider.nil?} Returned installed version #{installed}, reason: newer or same as minimum version #{minversion}")
+      call_function('notice', "#{msgprefix} Returned installed version #{installed}, reason: newer or same as minimum version #{minversion}")
       return installed
     else
       retversion = if installversion.nil?
@@ -223,7 +225,7 @@ Puppet::Functions.create_function(:'stdlib::ensure_at_least') do
                    else
                      installversion
                    end
-      call_function('notice', "#{msgprefix}#{" Provider #{provider} |" unless provider.nil?} Returned version to install: #{retversion}, reason: minimum version #{minversion} not present")
+      call_function('notice', "#{msgprefix} Returned version to install: #{retversion}, reason: minimum version #{minversion} not present")
       return retversion
     end
   end
