@@ -458,6 +458,51 @@ Match an IPv6 address which may contain `::` used to compress zeros as documente
 Match an IPv6 address in the CIDR format. It will only match if the address contains an address prefix (for example, it will match   'FF01:0:0:0:0:0:0:101/32', 'FF01::101/60', '::/0',
 but not 'FF01:0:0:0:0:0:0:101', 'FF01::101', '::').
 
+#### `Stdlib::ObjectStore`
+
+Matches cloud object store uris.
+
+Acceptable input example:
+
+```shell
+s3://mybucket/path/to/file
+
+gs://bucket/file
+
+```
+Valid values: cloud object store uris.
+
+
+#### `Stdlib::ObjectStore::GSUri`
+
+Matches Google Cloud object store uris.
+
+Acceptable input example:
+
+```shell
+
+gs://bucket/file
+
+gs://bucket/path/to/file
+
+```
+Valid values: Google Cloud object store uris.
+
+
+#### `Stdlib::ObjectStore::S3Uri`
+
+Matches Amazon Web Services S3 object store uris.
+
+Acceptable input example:
+
+```shell
+s3://bucket/file
+
+s3://bucket/path/to/file
+
+```
+Valid values: Amazon Web Services S3 object store uris.
+
 <a id="facts"></a>
 ### Facts
 
