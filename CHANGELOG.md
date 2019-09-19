@@ -1,50 +1,78 @@
 # Change log
 
-All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org).
+All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## Supported Release 6.0.0
+## [v6.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v6.1.0) (2019-09-19)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v6.0.0...v6.1.0)
+
+### Added
+
+- \(MODULES-9915\) Add type aliases for cloud object store uris [\#1048](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1048) ([hooten](https://github.com/hooten))
+- FM-8411 - add support for debian10 [\#1045](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1045) ([lionce](https://github.com/lionce))
+- \(FM-8230\) Convert testing to litmus [\#1031](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1031) ([eimlav](https://github.com/eimlav))
+- \(FM-8160\) Add Windows Server 2019 support [\#1025](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1025) ([eimlav](https://github.com/eimlav))
+- \(FM-8048\) Add RedHat 8 support [\#1022](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1022) ([eimlav](https://github.com/eimlav))
+- \(MODULES-9049\) Add type alias for 'yes' and 'no'. [\#1017](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1017) ([ghoneycutt](https://github.com/ghoneycutt))
+- add Stdlib::Syslogfacility type [\#1005](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1005) ([bastelfreak](https://github.com/bastelfreak))
+
+### Fixed
+
+- fix lib/puppet/parser/functions/fqdn\_rand\_string.rb:21: syntax error [\#1029](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1029) ([pulecp](https://github.com/pulecp))
+- Limit the maximum array size produced by range\(\). [\#1023](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1023) ([mbaynton](https://github.com/mbaynton))
+
+## [v6.0.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v6.0.0) (2019-05-10)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/5.2.0...v6.0.0)
 
-#### Changed
-- (MODULES-8444) - Raise lower Puppet bound
+### Changed
 
-#### Added
-- Add a stdlib::ip_in_range() function
-- (MODULES-8760) Add iterative feature to merge() function
+- pdksync - \(MODULES-8444\) - Raise lower Puppet bound [\#1011](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1011) ([david22swan](https://github.com/david22swan))
+- \(MODULES-8760\) Add iterative feature to merge\(\) function [\#1008](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1008) ([hlindberg](https://github.com/hlindberg))
 
-## Supported Release 5.2.0
+### Added
+
+- Add a stdlib::ip\_in\_range\(\) function [\#1003](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1003) ([iglov](https://github.com/iglov))
+
+## [5.2.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/5.2.0) (2019-01-17)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/5.1.0...5.2.0)
+
+### Added
+
+- \(MODULES-8404\) - Relax `Stdlib::Filesource` type [\#981](https://github.com/puppetlabs/puppetlabs-stdlib/pull/981) ([alexjfisher](https://github.com/alexjfisher))
+- Creates new type Stdlib::IP::Address::V6::CIDR [\#980](https://github.com/puppetlabs/puppetlabs-stdlib/pull/980) ([timhughes](https://github.com/timhughes))
+- \(MODULES-8137\) - Addition of support for SLES 15 [\#978](https://github.com/puppetlabs/puppetlabs-stdlib/pull/978) ([david22swan](https://github.com/david22swan))
+- \(MODULES-8322\) Consider IPs with /0 as valid [\#975](https://github.com/puppetlabs/puppetlabs-stdlib/pull/975) ([simondeziel](https://github.com/simondeziel))
+- Add a function to compare the OS version [\#972](https://github.com/puppetlabs/puppetlabs-stdlib/pull/972) ([ekohl](https://github.com/ekohl))
+- \(MODULES-8273\) - Make unquoted classes useable [\#971](https://github.com/puppetlabs/puppetlabs-stdlib/pull/971) ([baurmatt](https://github.com/baurmatt))
+- add Function extname\(\) [\#949](https://github.com/puppetlabs/puppetlabs-stdlib/pull/949) ([cocker-cc](https://github.com/cocker-cc))
+- \(MODULES-7024\) Add 20-octet MAC addresses [\#905](https://github.com/puppetlabs/puppetlabs-stdlib/pull/905) ([ananace](https://github.com/ananace))
+
+### Fixed
+
+- pdksync - \(FM-7655\) Fix rubygems-update for ruby \< 2.3 [\#979](https://github.com/puppetlabs/puppetlabs-stdlib/pull/979) ([tphoney](https://github.com/tphoney))
+- fix ensure\_packages duplicate checking [\#969](https://github.com/puppetlabs/puppetlabs-stdlib/pull/969) ([netzvieh](https://github.com/netzvieh))
+
+## [5.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/5.1.0) (2018-09-28)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/5.0.0...5.1.0)
+
+### Added
+
+- pdksync - \(MODULES-6805\) metadata.json shows support for puppet 6 [\#958](https://github.com/puppetlabs/puppetlabs-stdlib/pull/958) ([tphoney](https://github.com/tphoney))
+- \(maint\) Convert from mocking with mocha to rspec-mocks [\#948](https://github.com/puppetlabs/puppetlabs-stdlib/pull/948) ([rodjek](https://github.com/rodjek))
+
+### Fixed
+
+- \(FM-7388\) - Fixing unit tests for puppet 4, 5 and 6 [\#962](https://github.com/puppetlabs/puppetlabs-stdlib/pull/962) ([tphoney](https://github.com/tphoney))
+- Fix `pick` function docs [\#955](https://github.com/puppetlabs/puppetlabs-stdlib/pull/955) ([alexjfisher](https://github.com/alexjfisher))
+- \(MODULES-7768\) Handle nil in delete\_undef\_values\(\) function [\#954](https://github.com/puppetlabs/puppetlabs-stdlib/pull/954) ([hlindberg](https://github.com/hlindberg))
+- Update docs for 'concat' to be correct [\#950](https://github.com/puppetlabs/puppetlabs-stdlib/pull/950) ([rhowe-gds](https://github.com/rhowe-gds))
+
+## 5.0.0
 ### Summary
-This is a moderate release made in order to roll up various new features.
-
-#### Fixed
-- `ensure-packages()` duplicate checking now works as it should.
-
-#### Added
-- (MODULES-7024) - Support for 20-octet MAC addresses added.
-- `extname()` function added - This function returns the extensionof whatever file it is passed.
-- (MODULES-8273) - Unquoted classes can now be used with the `defined_with_params()` function.
-- (MODULES-8137) - Support has been added for SLES 15.
-- (MODULES-8404) - `Stdlib::Filesource` has been relaxed and now supports custom mount points.
-- (MODULES-8322) - IPs values of `0.0.0.0/0` and `::/0` are now considered to be valid.
-- New type `Stdlib::IP::Address::V6::CIDR` has been created.
-
-## Supported Release 5.1.0
-### Summary
-This is a moderate release which adds support for Puppet 6.
-
-#### Fixed
-- Handle nil in `delete_undef_values()` function
-- Readme error regarding concatenation fixed.
-- Fix to the `pick()` function documentation.
-
-#### Added
-- Support added for Puppet 6
-
-## Supported Release 5.0.0
-### Summary
-This is a major release which removes support for the Scientific 5 and Debian 7 OS, as well as a removal of the `Stdlib::(Ipv4|IPv6|Ip_address)` data types in favour of `Stdlib::IP::*`.
+This is a major release which removes support for the Scientific 5 and Debian 7 OS, as well as a removal of the `Stdlib::(Ipv4|IPv6|Ip_address)` data types in favour of `Stdlib::IP::*`. 
 
 **In addition it contains a substantial piece of work centered around updating functions that have now been migrated into Puppet itself. Please note that this will be the last major release to support Puppet 2 and Puppet 3 and that they will soon be removed.**
 
@@ -508,7 +536,7 @@ Includes the addition of several new functions and considerable improvements to 
 
 #### Bugfixes
 - Fix backwards compatibility from an improvement to the parseyaml function
-- Renaming of load_module_metadata test to include _spec.rb
+- Renaming of load_module_metadata test to include \_spec.rb
 - Fix root_home fact on AIX 5.x, now '-c' rather than '-C'
 - Fixed Gemfile to work with ruby 1.8.7
 
@@ -1109,3 +1137,6 @@ This is a supported release
 ##### 0.1.1 2011-05-24 Jeff McCune <jeff@puppetlabs.com>
 
 * Add stdlib::stages class with a standard set of stages
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
