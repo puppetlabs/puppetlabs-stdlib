@@ -16,7 +16,7 @@ the stdlib class, and should not be declared independently.
 
 **Functions**
 
-* [`abs`](#abs): **Deprected:** Returns the absolute value of a number
+* [`abs`](#abs): **Deprecated:** Returns the absolute value of a number
 * [`any2array`](#any2array): This converts any object to an array containing that object.
 * [`any2bool`](#any2bool): Converts 'anything' to a boolean.
 * [`assert_private`](#assert_private): Sets the current class or definition as private.
@@ -240,6 +240,55 @@ supplied key.
 * [`values`](#values): When given a hash this function will return the values of that hash.
 * [`values_at`](#values_at): Finds value inside an array based on location.
 * [`zip`](#zip): Takes one element from first array and merges corresponding elements from second array.
+
+**Data types**
+
+* [`Stdlib::Absolutepath`](#stdlibabsolutepath): A strict absolutepath type
+* [`Stdlib::Base32`](#stdlibbase32): Type to match base32 String
+* [`Stdlib::Base64`](#stdlibbase64): Type to match base64 String
+* [`Stdlib::Compat::Absolute_path`](#stdlibcompatabsolute_path): Emulate the is_absolute_path and validate_absolute_path functions  The first pattern is originally from is_absolute_path, which had it from 2
+* [`Stdlib::Compat::Array`](#stdlibcompatarray): Emulate the is_array and validate_array functions
+* [`Stdlib::Compat::Bool`](#stdlibcompatbool): Emulate the is_bool and validate_bool functions
+* [`Stdlib::Compat::Float`](#stdlibcompatfloat): Emulate the is_float function The regex is what's currently used in is_float To keep your development moving forward, you can also add a depr
+* [`Stdlib::Compat::Hash`](#stdlibcompathash): Emulate the is_hash and validate_hash functions
+* [`Stdlib::Compat::Integer`](#stdlibcompatinteger): Emulate the is_integer and validate_integer functions The regex is what's currently used in is_integer validate_numeric also allows range che
+* [`Stdlib::Compat::Ip_address`](#stdlibcompatip_address): 
+* [`Stdlib::Compat::Ipv4`](#stdlibcompatipv4): Emulate the validate_ipv4_address and is_ipv4_address functions
+* [`Stdlib::Compat::Ipv6`](#stdlibcompatipv6): 
+* [`Stdlib::Compat::Numeric`](#stdlibcompatnumeric): Emulate the is_numeric and validate_numeric functions The regex is what's currently used in is_numeric validate_numeric also allows range che
+* [`Stdlib::Compat::String`](#stdlibcompatstring): Emulate the is_string and validate_string functions
+* [`Stdlib::Ensure::Service`](#stdlibensureservice): 
+* [`Stdlib::Filemode`](#stdlibfilemode): See `man chmod.1` for the regular expression for symbolic mode
+* [`Stdlib::Filesource`](#stdlibfilesource): Validate the source parameter on file types
+* [`Stdlib::Fqdn`](#stdlibfqdn): 
+* [`Stdlib::HTTPSUrl`](#stdlibhttpsurl): 
+* [`Stdlib::HTTPUrl`](#stdlibhttpurl): 
+* [`Stdlib::Host`](#stdlibhost): 
+* [`Stdlib::IP::Address`](#stdlibipaddress): 
+* [`Stdlib::IP::Address::Nosubnet`](#stdlibipaddressnosubnet): 
+* [`Stdlib::IP::Address::V4`](#stdlibipaddressv4): 
+* [`Stdlib::IP::Address::V4::CIDR`](#stdlibipaddressv4cidr): 
+* [`Stdlib::IP::Address::V4::Nosubnet`](#stdlibipaddressv4nosubnet): 
+* [`Stdlib::IP::Address::V6`](#stdlibipaddressv6): 
+* [`Stdlib::IP::Address::V6::Alternative`](#stdlibipaddressv6alternative): 
+* [`Stdlib::IP::Address::V6::CIDR`](#stdlibipaddressv6cidr): 
+* [`Stdlib::IP::Address::V6::Compressed`](#stdlibipaddressv6compressed): 
+* [`Stdlib::IP::Address::V6::Full`](#stdlibipaddressv6full): 
+* [`Stdlib::IP::Address::V6::Nosubnet`](#stdlibipaddressv6nosubnet): 
+* [`Stdlib::IP::Address::V6::Nosubnet::Alternative`](#stdlibipaddressv6nosubnetalternative): 
+* [`Stdlib::IP::Address::V6::Nosubnet::Compressed`](#stdlibipaddressv6nosubnetcompressed): 
+* [`Stdlib::IP::Address::V6::Nosubnet::Full`](#stdlibipaddressv6nosubnetfull): 
+* [`Stdlib::MAC`](#stdlibmac): A type for a MAC address
+* [`Stdlib::ObjectStore`](#stdlibobjectstore): 
+* [`Stdlib::ObjectStore::GSUri`](#stdlibobjectstoregsuri): 
+* [`Stdlib::ObjectStore::S3Uri`](#stdlibobjectstores3uri): 
+* [`Stdlib::Port`](#stdlibport): 
+* [`Stdlib::Port::Privileged`](#stdlibportprivileged): 
+* [`Stdlib::Port::Unprivileged`](#stdlibportunprivileged): 
+* [`Stdlib::Syslogfacility`](#stdlibsyslogfacility): 
+* [`Stdlib::Unixpath`](#stdlibunixpath): this regex rejects any path component that does not start with "/" or is NUL
+* [`Stdlib::Windowspath`](#stdlibwindowspath): 
+* [`Stdlib::Yes_no`](#stdlibyes_no): 
 
 ## Classes
 
@@ -2056,7 +2105,7 @@ Arguments
 
 ```puppet
 fqdn_rand_string(10)
-fqdn_rand_string(10, 'ABCDEF!@#$%^')
+fqdn_rand_string(10, 'ABCDEF!@$%^')
 fqdn_rand_string(10, '', 'custom seed')
 ```
 
@@ -2077,7 +2126,7 @@ Returns: `String`
 
 ```puppet
 fqdn_rand_string(10)
-fqdn_rand_string(10, 'ABCDEF!@#$%^')
+fqdn_rand_string(10, 'ABCDEF!@$%^')
 fqdn_rand_string(10, '', 'custom seed')
 ```
 
@@ -6660,4 +6709,349 @@ Returns: `Any` This generates a sequence of n-element arrays, where n is one mor
 zip(['1','2','3'],['4','5','6'])
 Would result in: ["1", "4"], ["2", "5"], ["3", "6"]
 ```
+
+## Data types
+
+### Stdlib::Absolutepath
+
+A strict absolutepath type
+
+Alias of `Variant[Stdlib::Windowspath, Stdlib::Unixpath]`
+
+### Stdlib::Base32
+
+Type to match base32 String
+
+Alias of `Pattern[/^[a-z2-7]+={,6}$/, /^[A-Z2-7]+={,6}$/]`
+
+### Stdlib::Base64
+
+Type to match base64 String
+
+Alias of `Pattern[/^[a-zA-Z0-9\/\+]+={,2}$/]`
+
+### Stdlib::Compat::Absolute_path
+
+Emulate the is_absolute_path and validate_absolute_path functions
+
+The first pattern is originally from is_absolute_path, which had it from 2.7.x's lib/puppet/util.rb Puppet::Util.absolute_path?
+slash = '[\\\\/]'
+name = '[^\\\\/]+'
+%r!^(([A-Z]:#{slash})|(#{slash}#{slash}#{name}#{slash}#{name})|(#{slash}#{slash}\?#{slash}#{name}))!i,
+
+Alias of `Variant[Pattern[/^(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+))/], Pattern[/^\//]]`
+
+### Stdlib::Compat::Array
+
+Emulate the is_array and validate_array functions
+
+Alias of `Array[Any]`
+
+### Stdlib::Compat::Bool
+
+Emulate the is_bool and validate_bool functions
+
+Alias of `Boolean`
+
+### Stdlib::Compat::Float
+
+Emulate the is_float function
+The regex is what's currently used in is_float
+To keep your development moving forward, you can also add a deprecation warning using the Integer type:
+
+```class example($value) { validate_float($value,) }```
+
+would turn into
+
+```
+class example(Stdlib::Compat::Float $value) {
+  validate_float($value, 10, 0)
+  assert_type(Integer[0, 10], $value) |$expected, $actual| {
+    warning("The 'value' parameter for the 'ntp' class has type ${actual}, but should be ${expected}.")
+  }
+}
+```
+
+This allows you to find all places where a consumers of your code call it with unexpected values.
+
+Alias of `Variant[Float, Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)(?:[eE]-?\d+)?$/]]`
+
+### Stdlib::Compat::Hash
+
+Emulate the is_hash and validate_hash functions
+
+Alias of `Hash[Any, Any]`
+
+### Stdlib::Compat::Integer
+
+Emulate the is_integer and validate_integer functions
+The regex is what's currently used in is_integer
+validate_numeric also allows range checking, which cannot be mapped to the string parsing inside the function.
+For full backwards compatibility, you will need to keep the validate_numeric call around to catch everything.
+To keep your development moving forward, you can also add a deprecation warning using the Integer type:
+
+```class example($value) { validate_integer($value, 10, 0) }```
+
+would turn into
+
+```
+class example(Stdlib::Compat::Integer $value) {
+  validate_numeric($value, 10, 0)
+  assert_type(Integer[0, 10], $value) |$expected, $actual| {
+    warning("The 'value' parameter for the 'ntp' class has type ${actual}, but should be ${expected}.")
+  }
+}
+```
+
+> Note that you need to use Variant[Integer[0, 10], Float[0, 10]] if you want to match both integers and floating point numbers.
+
+This allows you to find all places where a consumers of your code call it with unexpected values.
+
+Alias of `Variant[Integer, Pattern[/^-?(?:(?:[1-9]\d*)|0)$/], Array[Variant[Integer, Pattern[/^-?(?:(?:[1-9]\d*)|0)$/]]]]`
+
+### Stdlib::Compat::Ip_address
+
+The Stdlib::Compat::Ip_address data type.
+
+Alias of `Variant[Stdlib::Compat::Ipv4, Stdlib::Compat::Ipv6]`
+
+### Stdlib::Compat::Ipv4
+
+Emulate the validate_ipv4_address and is_ipv4_address functions
+
+Alias of `Pattern[/^((([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d))[.]){3}([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d)))(\/((([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d))[.]){3}([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d))|[0-9]+))?$/]`
+
+### Stdlib::Compat::Ipv6
+
+The Stdlib::Compat::Ipv6 data type.
+
+Alias of `Pattern[/\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/]`
+
+### Stdlib::Compat::Numeric
+
+Emulate the is_numeric and validate_numeric functions
+The regex is what's currently used in is_numeric
+validate_numeric also allows range checking, which cannot be mapped to the string parsing inside the function.
+For full backwards compatibility, you will need to keep the validate_numeric call around to catch everything.
+To keep your development moving forward, you can also add a deprecation warning using the Integer type:
+
+```class example($value) { validate_numeric($value, 10, 0) }```
+
+would turn into
+
+```
+class example(Stdlib::Compat::Numeric $value) {
+  validate_numeric($value, 10, 0)
+  assert_type(Integer[0, 10], $value) |$expected, $actual| {
+    warning("The 'value' parameter for the 'ntp' class has type ${actual}, but should be ${expected}.")
+  }
+}
+```
+
+> Note that you need to use Variant[Integer[0, 10], Float[0, 10]] if you want to match both integers and floating point numbers.
+
+This allows you to find all places where a consumers of your code call it with unexpected values.
+
+Alias of `Variant[Numeric, Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$/], Array[Variant[Numeric, Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$/]]]]`
+
+### Stdlib::Compat::String
+
+Emulate the is_string and validate_string functions
+
+Alias of `Optional[String]`
+
+### Stdlib::Ensure::Service
+
+The Stdlib::Ensure::Service data type.
+
+Alias of `Enum['stopped', 'running']`
+
+### Stdlib::Filemode
+
+See `man chmod.1` for the regular expression for symbolic mode
+
+Alias of `Pattern[/^(([0-7]{1,4})|(([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+)(,([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+))*))$/]`
+
+### Stdlib::Filesource
+
+Validate the source parameter on file types
+
+Alias of `Variant[Stdlib::Absolutepath, Stdlib::HTTPUrl, Pattern[
+    /^file:\/\/\/([^\/\0]+(\/)?)+$/,
+    /^puppet:\/\/(([\w-]+\.?)+)?\/([^\/\0]+(\/)?)+$/,
+  ]]`
+
+### Stdlib::Fqdn
+
+The Stdlib::Fqdn data type.
+
+Alias of `Pattern[/^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/]`
+
+### Stdlib::HTTPSUrl
+
+The Stdlib::HTTPSUrl data type.
+
+Alias of `Pattern[/(?i:^https:\/\/)/]`
+
+### Stdlib::HTTPUrl
+
+The Stdlib::HTTPUrl data type.
+
+Alias of `Pattern[/(?i:^https?:\/\/)/]`
+
+### Stdlib::Host
+
+The Stdlib::Host data type.
+
+Alias of `Variant[Stdlib::Fqdn, Stdlib::Compat::Ip_address]`
+
+### Stdlib::IP::Address
+
+The Stdlib::IP::Address data type.
+
+Alias of `Variant[Stdlib::IP::Address::V4, Stdlib::IP::Address::V6]`
+
+### Stdlib::IP::Address::Nosubnet
+
+The Stdlib::IP::Address::Nosubnet data type.
+
+Alias of `Variant[Stdlib::IP::Address::V4::Nosubnet, Stdlib::IP::Address::V6::Nosubnet]`
+
+### Stdlib::IP::Address::V4
+
+The Stdlib::IP::Address::V4 data type.
+
+Alias of `Variant[Stdlib::IP::Address::V4::CIDR, Stdlib::IP::Address::V4::Nosubnet]`
+
+### Stdlib::IP::Address::V4::CIDR
+
+The Stdlib::IP::Address::V4::CIDR data type.
+
+Alias of `Pattern[/\A([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\/([0-9]|[12][0-9]|3[0-2])\z/]`
+
+### Stdlib::IP::Address::V4::Nosubnet
+
+The Stdlib::IP::Address::V4::Nosubnet data type.
+
+Alias of `Pattern[/\A([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/]`
+
+### Stdlib::IP::Address::V6
+
+The Stdlib::IP::Address::V6 data type.
+
+Alias of `Variant[Stdlib::IP::Address::V6::Full, Stdlib::IP::Address::V6::Compressed, Stdlib::IP::Address::V6::Alternative, Stdlib::IP::Address::V6::Nosubnet]`
+
+### Stdlib::IP::Address::V6::Alternative
+
+The Stdlib::IP::Address::V6::Alternative data type.
+
+Alias of `Pattern[/\A([[:xdigit:]]{1,4}:){6}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){4}(:[[:xdigit:]]{1,4}){0,1}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){3}(:[[:xdigit:]]{1,4}){0,2}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){2}(:[[:xdigit:]]{1,4}){0,3}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){1}(:[[:xdigit:]]{1,4}){0,4}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A:(:[[:xdigit:]]{1,4}){0,5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/]`
+
+### Stdlib::IP::Address::V6::CIDR
+
+The Stdlib::IP::Address::V6::CIDR data type.
+
+Alias of `Pattern[/\A((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:)))(%.+)?s*\/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])?\z/]`
+
+### Stdlib::IP::Address::V6::Compressed
+
+The Stdlib::IP::Address::V6::Compressed data type.
+
+Alias of `Pattern[/\A:(:|(:[[:xdigit:]]{1,4}){1,7})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){1}(:|(:[[:xdigit:]]{1,4}){1,6})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){2}(:|(:[[:xdigit:]]{1,4}){1,5})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){3}(:|(:[[:xdigit:]]{1,4}){1,4})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){4}(:|(:[[:xdigit:]]{1,4}){1,3})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){5}(:|(:[[:xdigit:]]{1,4}){1,2})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){6}(:|(:[[:xdigit:]]{1,4}){1,1})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){7}:(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/]`
+
+### Stdlib::IP::Address::V6::Full
+
+The Stdlib::IP::Address::V6::Full data type.
+
+Alias of `Pattern[/\A[[:xdigit:]]{1,4}(:[[:xdigit:]]{1,4}){7}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/]`
+
+### Stdlib::IP::Address::V6::Nosubnet
+
+The Stdlib::IP::Address::V6::Nosubnet data type.
+
+Alias of `Variant[Stdlib::IP::Address::V6::Nosubnet::Full, Stdlib::IP::Address::V6::Nosubnet::Compressed, Stdlib::IP::Address::V6::Nosubnet::Alternative]`
+
+### Stdlib::IP::Address::V6::Nosubnet::Alternative
+
+The Stdlib::IP::Address::V6::Nosubnet::Alternative data type.
+
+Alias of `Pattern[/\A([[:xdigit:]]{1,4}:){6}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){4}(:[[:xdigit:]]{1,4}){0,1}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){3}(:[[:xdigit:]]{1,4}){0,2}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){2}(:[[:xdigit:]]{1,4}){0,3}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){1}(:[[:xdigit:]]{1,4}){0,4}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A:(:[[:xdigit:]]{1,4}){0,5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/]`
+
+### Stdlib::IP::Address::V6::Nosubnet::Compressed
+
+The Stdlib::IP::Address::V6::Nosubnet::Compressed data type.
+
+Alias of `Pattern[/\A:(:|(:[[:xdigit:]]{1,4}){1,7})\z/, /\A([[:xdigit:]]{1,4}:){1}(:|(:[[:xdigit:]]{1,4}){1,6})\z/, /\A([[:xdigit:]]{1,4}:){2}(:|(:[[:xdigit:]]{1,4}){1,5})\z/, /\A([[:xdigit:]]{1,4}:){3}(:|(:[[:xdigit:]]{1,4}){1,4})\z/, /\A([[:xdigit:]]{1,4}:){4}(:|(:[[:xdigit:]]{1,4}){1,3})\z/, /\A([[:xdigit:]]{1,4}:){5}(:|(:[[:xdigit:]]{1,4}){1,2})\z/, /\A([[:xdigit:]]{1,4}:){6}(:|(:[[:xdigit:]]{1,4}){1,1})\z/, /\A([[:xdigit:]]{1,4}:){7}:\z/]`
+
+### Stdlib::IP::Address::V6::Nosubnet::Full
+
+The Stdlib::IP::Address::V6::Nosubnet::Full data type.
+
+Alias of `Pattern[/\A[[:xdigit:]]{1,4}(:[[:xdigit:]]{1,4}){7}\z/]`
+
+### Stdlib::MAC
+
+A type for a MAC address
+
+Alias of `Pattern[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/, /^([0-9A-Fa-f]{2}[:-]){19}([0-9A-Fa-f]{2})$/]`
+
+### Stdlib::ObjectStore
+
+The Stdlib::ObjectStore data type.
+
+Alias of `Variant[Stdlib::ObjectStore::GSUri, Stdlib::ObjectStore::S3Uri]`
+
+### Stdlib::ObjectStore::GSUri
+
+The Stdlib::ObjectStore::GSUri data type.
+
+Alias of `Pattern[/^gs:\/\//]`
+
+### Stdlib::ObjectStore::S3Uri
+
+The Stdlib::ObjectStore::S3Uri data type.
+
+Alias of `Pattern[/^s3:\/\//]`
+
+### Stdlib::Port
+
+The Stdlib::Port data type.
+
+Alias of `Integer[0, 65535]`
+
+### Stdlib::Port::Privileged
+
+The Stdlib::Port::Privileged data type.
+
+Alias of `Integer[1, 1023]`
+
+### Stdlib::Port::Unprivileged
+
+The Stdlib::Port::Unprivileged data type.
+
+Alias of `Integer[1024, 65535]`
+
+### Stdlib::Syslogfacility
+
+The Stdlib::Syslogfacility data type.
+
+Alias of `Enum['kern', 'user', 'mail', 'daemon', 'auth', 'syslog', 'lpr', 'news', 'uucp', 'cron', 'authpriv', 'ftp', 'ntp', 'security', 'console', 'solaris-cron', 'local0', 'local1', 'local2', 'local3', 'local4', 'local5', 'local6', 'local7']`
+
+### Stdlib::Unixpath
+
+this regex rejects any path component that does not start with "/" or is NUL
+
+Alias of `Pattern[/^\/([^\/\0]+\/*)*$/]`
+
+### Stdlib::Windowspath
+
+The Stdlib::Windowspath data type.
+
+Alias of `Pattern[/^(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+))/]`
+
+### Stdlib::Yes_no
+
+The Stdlib::Yes_no data type.
+
+Alias of `Pattern[/\A(?i:(yes|no))\z/]`
 
