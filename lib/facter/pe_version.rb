@@ -11,13 +11,17 @@
 # Fact: pe_version
 Facter.add('pe_version') do
   setcode do
-    puppet_ver = Facter.value('puppetversion')
-    if !puppet_ver.nil?
-      pe_ver = puppet_ver.match(%r{Puppet Enterprise (\d+\.\d+\.\d+)})
-      pe_ver[1] if pe_ver
-    else
-      nil
+    found_version = Facter.value('pe_build')
+
+    unless found_version
+      puppet_ver = Facter.value('puppetversion')
+      unless puppet_ver.nil?
+        pe_ver = puppet_ver.match(%r{Puppet Enterprise (\d+\.\d+\.\d+)})
+        found_version = pe_ver[1] if pe_ver
+      end
     end
+
+    found_version
   end
 end
 
