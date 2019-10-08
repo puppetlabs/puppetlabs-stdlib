@@ -15,7 +15,7 @@ require 'json'
 #       content => to_json_pretty({
 #         param_one => 'value',
 #         param_two => undef,
-#       }),
+#       }, true),
 #     }
 Puppet::Functions.create_function(:to_json_pretty) do
   # @param data
