@@ -6,39 +6,35 @@
 #
 # The values should be directly usable in a File resource path attribute.
 #
-begin
-  require 'facter/util/puppet_settings'
-rescue LoadError => e
-  # puppet apply does not add module lib directories to the $LOAD_PATH (See
-  # #4248). It should (in the future) but for the time being we need to be
-  # defensive which is what this rescue block is doing.
-  rb_file = File.join(File.dirname(__FILE__), 'util', 'puppet_settings.rb')
-  load rb_file if File.exist?(rb_file) || raise(e)
-end
-
-# Facter fact returns the value of the Puppet vardir
-Facter.add(:puppet_vardir) do
+settings = [
+  :vardir,
+  :environmentpath,
+  :server,
+  :localcacert,
+  :ssldir,
+  :hostpubkey,
+  :hostprivkey,
+  :hostcert,
+]
+compat = [
+  :vardir,
+  :environmentpath,
+  :server,
+]
+Facter.add(:puppet_settings) do
+  puppet_settings = {}
   setcode do
-    Facter::Util::PuppetSettings.with_puppet do
-      Puppet[:vardir]
+    settings.each do |setting|
+      puppet_settings[setting.to_s] = Puppet[setting]
     end
+    puppet_settings
   end
 end
 
-# Facter fact returns the value of the Puppet environment path
-Facter.add(:puppet_environmentpath) do
-  setcode do
-    Facter::Util::PuppetSettings.with_puppet do
-      Puppet[:environmentpath]
-    end
-  end
-end
-
-# Facter fact returns the value of the Puppet server
-Facter.add(:puppet_server) do
-  setcode do
-    Facter::Util::PuppetSettings.with_puppet do
-      Puppet[:server]
+compat.each do |setting|
+  Facter.add("puppet_#{setting}".to_sym) do
+    setcode do
+      Puppet[setting]
     end
   end
 end
