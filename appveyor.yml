@@ -53,8 +53,12 @@ for:
     - bundle install --jobs 4 --retry 2
     - type Gemfile.lock
   test_script:
-     - bundle exec rake spec_prep
-     - bundle exec rake litmus:acceptance:localhost
+    - bundle exec puppet -V
+    - ruby -v
+    - gem -v
+    - bundle -v
+    - bundle exec rake spec_prep
+    - bundle exec rake litmus:acceptance:localhost
 matrix:
   fast_finish: true
 install:
