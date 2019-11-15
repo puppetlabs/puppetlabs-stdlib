@@ -16,6 +16,9 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     describe 'rejects other values' do
       [
         '',
+        "\ns3://bucket-name/path",
+        "\ns3://bucket-name/path\n",
+        "s3://bucket-name/path\n",
         'S3://bucket-name/path',
         3,
         's3:/bucket-name/path',

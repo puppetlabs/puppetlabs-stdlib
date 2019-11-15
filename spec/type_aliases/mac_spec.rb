@@ -1,9 +1,14 @@
 require 'spec_helper'
 
 if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
-  describe 'Stdlib::Unixpath' do
+  describe 'Stdlib::MAC' do
     describe 'valid handling' do
-      ['/usr2/username/bin:/usr/local/bin:/usr/bin:.', '/var/tmp', '/Users/helencampbell/workspace/puppetlabs-stdlib', '/var/ůťƒ8', '/var/ネット', '/var//tmp', '/var/../tmp'].each do |value|
+      [
+        '00:a0:1f:12:7f:a0',
+        '00:A0:1F:12:7F:A0',
+        '00-A0-1F-12-7F-A0',
+        '80:00:02:09:fe:80:00:00:00:00:00:00:00:24:65:ff:ff:91:a3:12',
+      ].each do |value|
         describe value.inspect do
           it { is_expected.to allow_value(value) }
         end
@@ -19,13 +24,11 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
           { 'foo' => 'bar' },
           {},
           '',
-          "\n/var/tmp",
-          'C:/whatever',
-          '\\var\\tmp',
-          '\\Users/hc/wksp/stdlib',
-          '*/Users//nope',
-          "var\ůťƒ8",
-          "var\ネット",
+          'one',
+          '00:00:00:00:00:0g',
+          "\n00:a0:1f:12:7f:a0",
+          "\n00:a0:1f:12:7f:a0\n",
+          "00:a0:1f:12:7f:a0\n",
         ].each do |value|
           describe value.inspect do
             it { is_expected.not_to allow_value(value) }
