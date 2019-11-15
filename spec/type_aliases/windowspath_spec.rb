@@ -19,6 +19,8 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
           { 'foo' => 'bar' },
           {},
           "\nC:\\",
+          "\nC:\\\n",
+          "C:\\\n",
           '',
           'httds://notquiteright.org',
           '/usr2/username/bin:/usr/local/bin:/usr/bin:.',
