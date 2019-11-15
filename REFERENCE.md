@@ -6722,13 +6722,13 @@ Alias of `Variant[Stdlib::Windowspath, Stdlib::Unixpath]`
 
 Type to match base32 String
 
-Alias of `Pattern[/^[a-z2-7]+={,6}$/, /^[A-Z2-7]+={,6}$/]`
+Alias of `Pattern[/\A[a-z2-7]+={,6}\z/, /\A[A-Z2-7]+={,6}\z/]`
 
 ### Stdlib::Base64
 
 Type to match base64 String
 
-Alias of `Pattern[/^[a-zA-Z0-9\/\+]+={,2}$/]`
+Alias of `Pattern[/\A[a-zA-Z0-9\/\+]+={,2}\z/]`
 
 ### Stdlib::Compat::Absolute_path
 
@@ -6870,34 +6870,34 @@ Alias of `Enum['stopped', 'running']`
 
 See `man chmod.1` for the regular expression for symbolic mode
 
-Alias of `Pattern[/^(([0-7]{1,4})|(([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+)(,([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+))*))$/]`
+Alias of `Pattern[/\A(([0-7]{1,4})|(([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+)(,([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+))*))\z/]`
 
 ### Stdlib::Filesource
 
 Validate the source parameter on file types
 
 Alias of `Variant[Stdlib::Absolutepath, Stdlib::HTTPUrl, Pattern[
-    /^file:\/\/\/([^\/\0]+(\/)?)+$/,
-    /^puppet:\/\/(([\w-]+\.?)+)?\/([^\/\0]+(\/)?)+$/,
+    /\Afile:\/\/\/([^\n\/\0]+(\/)?)+\z/,
+    /\Apuppet:\/\/(([\w-]+\.?)+)?\/([^\n\/\0]+(\/)?)+\z/,
   ]]`
 
 ### Stdlib::Fqdn
 
 The Stdlib::Fqdn data type.
 
-Alias of `Pattern[/^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/]`
+Alias of `Pattern[/\A(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])\z/]`
 
 ### Stdlib::HTTPSUrl
 
 The Stdlib::HTTPSUrl data type.
 
-Alias of `Pattern[/(?i:^https:\/\/)/]`
+Alias of `Pattern[/(?i:\Ahttps:\/\/.*\z)/]`
 
 ### Stdlib::HTTPUrl
 
 The Stdlib::HTTPUrl data type.
 
-Alias of `Pattern[/(?i:^https?:\/\/)/]`
+Alias of `Pattern[/(?i:\Ahttps?:\/\/.*\z)/]`
 
 ### Stdlib::Host
 
@@ -6993,7 +6993,7 @@ Alias of `Pattern[/\A[[:xdigit:]]{1,4}(:[[:xdigit:]]{1,4}){7}\z/]`
 
 A type for a MAC address
 
-Alias of `Pattern[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/, /^([0-9A-Fa-f]{2}[:-]){19}([0-9A-Fa-f]{2})$/]`
+Alias of `Pattern[/\A([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\z/, /\A([0-9A-Fa-f]{2}[:-]){19}([0-9A-Fa-f]{2})\z/]`
 
 ### Stdlib::ObjectStore
 
@@ -7005,13 +7005,13 @@ Alias of `Variant[Stdlib::ObjectStore::GSUri, Stdlib::ObjectStore::S3Uri]`
 
 The Stdlib::ObjectStore::GSUri data type.
 
-Alias of `Pattern[/^gs:\/\//]`
+Alias of `Pattern[/\Ags:\/\/.*\z/]`
 
 ### Stdlib::ObjectStore::S3Uri
 
 The Stdlib::ObjectStore::S3Uri data type.
 
-Alias of `Pattern[/^s3:\/\//]`
+Alias of `Pattern[/\As3:\/\/.*\z/]`
 
 ### Stdlib::Port
 
@@ -7041,13 +7041,13 @@ Alias of `Enum['kern', 'user', 'mail', 'daemon', 'auth', 'syslog', 'lpr', 'news'
 
 this regex rejects any path component that does not start with "/" or is NUL
 
-Alias of `Pattern[/^\/([^\/\0]+\/*)*$/]`
+Alias of `Pattern[/\A\/([^\n\/\0]+\/*)*\z/]`
 
 ### Stdlib::Windowspath
 
 The Stdlib::Windowspath data type.
 
-Alias of `Pattern[/^(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+))/]`
+Alias of `Pattern[/\A(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+)).*\z/]`
 
 ### Stdlib::Yes_no
 
