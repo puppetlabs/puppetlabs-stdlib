@@ -20,6 +20,8 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
           {},
           '',
           "\n/var/tmp",
+          "\n/var/tmp\n",
+          "/var/tmp\n",
           'C:/whatever',
           '\\var\\tmp',
           '\\Users/hc/wksp/stdlib',
