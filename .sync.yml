@@ -115,3 +115,4 @@ Rakefile:
   - puppet-lint/tasks/puppet-lint
 spec/spec_helper.rb:
   mock_with: ":rspec"
+  coverage_report: true
