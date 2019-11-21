@@ -31,7 +31,7 @@ Puppet::Functions.create_function(:fact) do
   end
 
   def fact(fact_name)
-    facts = closure_scope['facts']
+    facts = closure_scope['facts'] || Facter.to_hash
 
     # Transform the dot-notation string into an array of paths to walk. Make
     # sure to correctly extract double-quoted values containing dots as single
