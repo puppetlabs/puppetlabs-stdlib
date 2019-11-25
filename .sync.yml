@@ -89,6 +89,7 @@
     services: docker
     sudo: required
     stage: acceptance
+  simplecov: true
 appveyor.yml:
   use_litmus: true
   matrix_extras:
@@ -99,6 +100,7 @@ appveyor.yml:
     ACCEPTANCE: 'yes'
     TARGET_HOST: localhost
     APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+  simplecov: true
 Gemfile:
   use_litmus: true
   optional:
