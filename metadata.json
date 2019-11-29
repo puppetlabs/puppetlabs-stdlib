@@ -107,5 +107,5 @@
   "description": "Standard Library for Puppet Modules",
   "pdk-version": "1.14.1",
   "template-url": "https://github.com/puppetlabs/pdk-templates#master",
-  "template-ref": "heads/master-0-g1a92949"
+  "template-ref": "heads/master-0-gfaf9e8b"
 }
