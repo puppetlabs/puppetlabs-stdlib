@@ -2,7 +2,20 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v6.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v6.1.0) (2019-09-19)
+## [v6.2.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v6.2.0) (2019-12-10)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v6.1.0...v6.2.0)
+
+### Added
+
+- \(FM-8696\) - Addition of Support for CentOS 8 [\#1065](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1065) ([david22swan](https://github.com/david22swan))
+- Add support for additional options to to\_json\_pretty [\#1055](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1055) ([runejuhl](https://github.com/runejuhl))
+
+### Fixed
+
+- Fix PE detection \(for the moment\) [\#1049](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1049) ([trevor-vaughan](https://github.com/trevor-vaughan))
+
+## [v6.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v6.1.0) (2019-09-20)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v6.0.0...v6.1.0)
 
