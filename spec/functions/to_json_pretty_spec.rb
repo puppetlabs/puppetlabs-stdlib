@@ -14,4 +14,14 @@ describe 'to_json_pretty' do
   it { is_expected.to run.with_params({ 'one' => '1', 'two' => nil }, true).and_return("{\n  \"one\": \"1\"\n}\n") }
   it { is_expected.to run.with_params(['one', 'two', nil, 'three'], true).and_return("[\n  \"one\",\n  \"two\",\n  \"three\"\n]\n") }
   it { is_expected.to run.with_params(['one', 'two', nil, 'three'], true, 'indent' => '@@@@').and_return("[\n@@@@\"one\",\n@@@@\"two\",\n@@@@\"three\"\n]\n") }
+
+  it {
+    pending('Current implementation only elides nil values for arrays of depth=1')
+    is_expected.to run.with_params([[nil], 'two', nil, 'three'], true).and_return("[\n  [\n\n  ],\n  \"two\",\n  \"three\"\n]\n")
+  }
+
+  it {
+    pending('Current implementation only elides nil values for hashes of depth=1')
+    is_expected.to run.with_params({ 'omg' => { 'lol' => nil }, 'what' => nil }, true).and_return("{\n}\n")
+  }
 end
