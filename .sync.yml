@@ -92,6 +92,9 @@
     sudo: required
     stage: acceptance
   simplecov: true
+  notifications:
+    slack:
+      secure: j5y9T97u6QlDPs4eEnDNch2IGAzbfWycVcMutP3u9Klvkgqu33xtxHgyAQOW+2A/Xw2sKQs/LzIiUeQRzlNMcAPRZ0rK19sW1w5OgZGcd131HViFDfX8W7V4R41sZVNF232JekMr7RwPGIaZ9htaGsDJeJF8TaiG1Akk32LQZV8=
 appveyor.yml:
   use_litmus: true
   matrix_extras:
