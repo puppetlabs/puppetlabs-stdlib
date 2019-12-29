@@ -22,7 +22,7 @@ module Puppet::Parser::Functions
     second = arguments[1]
 
     unless first.is_a?(Array) && second.is_a?(Array)
-      raise(Puppet::ParseError, 'intersection(): Requires 2 arrays')
+      raise(Puppet::ParseError, "intersection(): Requires 2 arrays, got #{first.class} and #{second.class}")
     end
 
     result = first & second
