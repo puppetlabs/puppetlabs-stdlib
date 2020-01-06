@@ -55,9 +55,7 @@ Puppet::Functions.create_function(:'stdlib::is_absolute_path') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     function_deprecation([:is_absolute_path, 'This method is deprecated, please use the stdlib validate_legacy function,
                            with Stdlib::Compat::Absolute_path. There is further documentation for validate_legacy function in the README.'])
     require 'puppet/util'
@@ -82,6 +80,5 @@ Puppet::Functions.create_function(:'stdlib::is_absolute_path') do
       value = !!(path =~ regexes[:posix]) || !!(path =~ regexes[:windows]) # rubocop:disable Style/DoubleNegation : No alternative known
     end
     value
-  
   end
 end

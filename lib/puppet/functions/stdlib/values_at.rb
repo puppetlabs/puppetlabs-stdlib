@@ -60,10 +60,7 @@ Puppet::Functions.create_function(:'stdlib::values_at') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "values_at(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments.shift
@@ -118,7 +115,6 @@ Puppet::Functions.create_function(:'stdlib::values_at') do
     # We remove nil values as they make no sense in Puppet DSL ...
     result = indices_list.map { |i| array[i] }.compact
 
-    return result
-  
+    result
   end
 end

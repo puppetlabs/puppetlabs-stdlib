@@ -64,9 +64,7 @@ Puppet::Functions.create_function(:'stdlib::dig44') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
     # Two arguments are required
     raise(Puppet::ParseError, "dig44(): Wrong number of arguments given (#{arguments.size} for at least 2)") if arguments.size < 2
 
@@ -88,6 +86,5 @@ Puppet::Functions.create_function(:'stdlib::dig44') do
       structure[key]
     end
     value.nil? ? default : value
-  
   end
 end

@@ -44,10 +44,7 @@ Puppet::Functions.create_function(:'stdlib::reject') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     if args.size != 2
       raise Puppet::ParseError,
             "reject(): Wrong number of arguments given #{args.size} for 2"
@@ -57,6 +54,5 @@ Puppet::Functions.create_function(:'stdlib::reject') do
     pattern = Regexp.new(args[1])
 
     ary.reject { |e| e =~ pattern }
-  
   end
 end

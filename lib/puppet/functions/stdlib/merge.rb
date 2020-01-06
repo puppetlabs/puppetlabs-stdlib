@@ -43,10 +43,7 @@ Puppet::Functions.create_function(:'stdlib::merge') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     if args.length < 2
       raise Puppet::ParseError, "merge(): wrong number of arguments (#{args.length}; must be at least 2)"
     end
@@ -63,6 +60,5 @@ Puppet::Functions.create_function(:'stdlib::merge') do
     end
     # Return the fully merged hash
     accumulator
-  
   end
 end

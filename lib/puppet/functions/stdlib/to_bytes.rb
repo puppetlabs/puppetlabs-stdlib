@@ -37,10 +37,7 @@ Puppet::Functions.create_function(:'stdlib::to_bytes') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "to_bytes(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     arg = arguments[0]
@@ -60,6 +57,5 @@ Puppet::Functions.create_function(:'stdlib::to_bytes') do
     when 'E' then return (value * (1 << 60)).to_i
     else raise Puppet::ParseError, "to_bytes(): Unknown prefix #{prefix}"
     end
-  
   end
 end

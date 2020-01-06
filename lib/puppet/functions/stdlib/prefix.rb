@@ -41,10 +41,7 @@ Puppet::Functions.create_function(:'stdlib::prefix') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "prefix(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
@@ -75,7 +72,6 @@ Puppet::Functions.create_function(:'stdlib::prefix') do
                end]
              end
 
-    return result
-  
+    result
   end
 end

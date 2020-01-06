@@ -39,10 +39,7 @@ Puppet::Functions.create_function(:'stdlib::camelcase') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "camelcase(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
@@ -59,7 +56,6 @@ Puppet::Functions.create_function(:'stdlib::camelcase') do
                value.split('_').map { |e| e.capitalize }.join
              end
 
-    return result
-  
+    result
   end
 end

@@ -33,15 +33,11 @@ Puppet::Functions.create_function(:'stdlib::unix2dos') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     unless arguments[0].is_a?(String)
       raise(Puppet::ParseError, 'unix2dos(): Requires string as argument')
     end
 
     arguments[0].gsub(%r{\r*\n}, "\r\n")
-  
   end
 end

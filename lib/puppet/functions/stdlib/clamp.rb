@@ -46,10 +46,7 @@ Puppet::Functions.create_function(:'stdlib::clamp') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     args.flatten!
 
     raise(Puppet::ParseError, 'clamp(): Wrong number of arguments, need three to clamp') if args.size != 3
@@ -67,6 +64,5 @@ Puppet::Functions.create_function(:'stdlib::clamp') do
     # convert to numeric each element
     # then sort them and get a middle value
     args.map { |n| n.to_i }.sort[1]
-  
   end
 end

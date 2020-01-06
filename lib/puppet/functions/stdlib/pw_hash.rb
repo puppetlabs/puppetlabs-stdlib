@@ -53,43 +53,40 @@ Puppet::Functions.create_function(:'stdlib::pw_hash') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-  raise ArgumentError, "pw_hash(): wrong number of arguments (#{args.size} for 3)" if args.size != 3
-  args.map! do |arg|
-    if (defined? Puppet::Pops::Types::PSensitiveType::Sensitive) && (arg.is_a? Puppet::Pops::Types::PSensitiveType::Sensitive)
-      arg.unwrap
-    else
-      arg
+    raise ArgumentError, "pw_hash(): wrong number of arguments (#{args.size} for 3)" if args.size != 3
+    args.map! do |arg|
+      if (defined? Puppet::Pops::Types::PSensitiveType::Sensitive) && (arg.is_a? Puppet::Pops::Types::PSensitiveType::Sensitive)
+        arg.unwrap
+      else
+        arg
+      end
     end
-  end
-  raise ArgumentError, 'pw_hash(): first argument must be a string' unless args[0].is_a?(String) || args[0].nil?
-  raise ArgumentError, 'pw_hash(): second argument must be a string' unless args[1].is_a? String
-  hashes = { 'md5'     => '1',
-             'sha-256' => '5',
-             'sha-512' => '6' }
-  hash_type = hashes[args[1].downcase]
-  raise ArgumentError, "pw_hash(): #{args[1]} is not a valid hash type" if hash_type.nil?
-  raise ArgumentError, 'pw_hash(): third argument must be a string' unless args[2].is_a? String
-  raise ArgumentError, 'pw_hash(): third argument must not be empty' if args[2].empty?
-  raise ArgumentError, 'pw_hash(): characters in salt must be in the set [a-zA-Z0-9./]' unless args[2] =~ %r{\A[a-zA-Z0-9./]+\z}
+    raise ArgumentError, 'pw_hash(): first argument must be a string' unless args[0].is_a?(String) || args[0].nil?
+    raise ArgumentError, 'pw_hash(): second argument must be a string' unless args[1].is_a? String
+    hashes = { 'md5'     => '1',
+               'sha-256' => '5',
+               'sha-512' => '6' }
+    hash_type = hashes[args[1].downcase]
+    raise ArgumentError, "pw_hash(): #{args[1]} is not a valid hash type" if hash_type.nil?
+    raise ArgumentError, 'pw_hash(): third argument must be a string' unless args[2].is_a? String
+    raise ArgumentError, 'pw_hash(): third argument must not be empty' if args[2].empty?
+    raise ArgumentError, 'pw_hash(): characters in salt must be in the set [a-zA-Z0-9./]' unless args[2] =~ %r{\A[a-zA-Z0-9./]+\z}
 
-  password = args[0]
-  return nil if password.nil? || password.empty?
+    password = args[0]
+    return nil if password.nil? || password.empty?
 
-  salt = "$#{hash_type}$#{args[2]}"
+    salt = "$#{hash_type}$#{args[2]}"
 
-  # handle weak implementations of String#crypt
-  if 'test'.crypt('$1$1') != '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
-    # JRuby < 1.7.17
-    # MS Windows and other systems that don't support enhanced salts
-    raise Puppet::ParseError, 'system does not support enhanced salts' unless RUBY_PLATFORM == 'java'
-    # puppetserver bundles Apache Commons Codec
-    org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
-  else
-    password.crypt(salt)
-  end
-
+    # handle weak implementations of String#crypt
+    if 'test'.crypt('$1$1') != '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
+      # JRuby < 1.7.17
+      # MS Windows and other systems that don't support enhanced salts
+      raise Puppet::ParseError, 'system does not support enhanced salts' unless RUBY_PLATFORM == 'java'
+      # puppetserver bundles Apache Commons Codec
+      org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
+    else
+      password.crypt(salt)
+    end
   end
 end

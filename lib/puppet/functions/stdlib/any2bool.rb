@@ -43,10 +43,7 @@ Puppet::Functions.create_function(:'stdlib::any2bool') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "any2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     # If argument is already Boolean, return it
@@ -79,7 +76,6 @@ Puppet::Functions.create_function(:'stdlib::any2bool') do
       return function_str2bool([arguments[0]])
     end
 
-    return true
-  
+    true
   end
 end

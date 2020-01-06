@@ -33,10 +33,7 @@ Puppet::Functions.create_function(:'stdlib::shuffle') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "shuffle(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
@@ -65,7 +62,6 @@ Puppet::Functions.create_function(:'stdlib::shuffle') do
 
     result = string ? result.join : result
 
-    return result
-  
+    result
   end
 end

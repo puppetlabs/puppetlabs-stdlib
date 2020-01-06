@@ -53,9 +53,7 @@ Puppet::Functions.create_function(:'stdlib::validate_string') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     function_deprecation([:validate_string, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::String. There is further documentation for validate_legacy function in the README.'])
 
@@ -69,6 +67,5 @@ Puppet::Functions.create_function(:'stdlib::validate_string') do
         raise Puppet::ParseError, "#{arg.inspect} is not a string.  It looks to be a #{arg.class}"
       end
     end
-  
   end
 end

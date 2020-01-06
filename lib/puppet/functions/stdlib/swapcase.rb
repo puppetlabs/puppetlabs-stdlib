@@ -39,10 +39,7 @@ Puppet::Functions.create_function(:'stdlib::swapcase') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "swapcase(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
@@ -58,7 +55,6 @@ Puppet::Functions.create_function(:'stdlib::swapcase') do
                value.swapcase
              end
 
-    return result
-  
+    result
   end
 end

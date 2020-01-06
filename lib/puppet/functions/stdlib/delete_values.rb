@@ -43,10 +43,7 @@ Puppet::Functions.create_function(:'stdlib::delete_values') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "delete_values(): Wrong number of arguments given (#{arguments.size} of 2)") if arguments.size != 2
 
     hash, item = arguments
@@ -55,6 +52,5 @@ Puppet::Functions.create_function(:'stdlib::delete_values') do
       raise(TypeError, "delete_values(): First argument must be a Hash. Given an argument of class #{hash.class}.")
     end
     hash.dup.delete_if { |_key, val| item == val }
-  
   end
 end

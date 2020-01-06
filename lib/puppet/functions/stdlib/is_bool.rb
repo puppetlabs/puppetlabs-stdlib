@@ -36,10 +36,7 @@ Puppet::Functions.create_function(:'stdlib::is_bool') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     function_deprecation([:is_bool, 'This method is deprecated, please use the stdlib validate_legacy function,
                           with Stdlib::Compat::Bool. There is further documentation for validate_legacy function in the README.'])
 
@@ -49,7 +46,6 @@ Puppet::Functions.create_function(:'stdlib::is_bool') do
 
     result = type.is_a?(TrueClass) || type.is_a?(FalseClass)
 
-    return result
-  
+    result
   end
 end

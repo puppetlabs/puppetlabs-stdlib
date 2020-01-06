@@ -50,10 +50,7 @@ Puppet::Functions.create_function(:'stdlib::validate_domain_name') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     rescuable_exceptions = [ArgumentError]
 
     if args.empty?
@@ -69,6 +66,5 @@ Puppet::Functions.create_function(:'stdlib::validate_domain_name') do
         raise Puppet::ParseError, "#{arg.inspect} is not a syntactically correct domain name"
       end
     end
-  
   end
 end

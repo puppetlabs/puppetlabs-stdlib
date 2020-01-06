@@ -48,10 +48,7 @@ Puppet::Functions.create_function(:'stdlib::count') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     if args.size > 2
       raise(ArgumentError, "count(): Wrong number of arguments given #{args.size} for 1 or 2.")
     end
@@ -63,6 +60,5 @@ Puppet::Functions.create_function(:'stdlib::count') do
     else
       collection.count { |obj| !obj.nil? && obj != :undef && obj != '' }
     end
-  
   end
 end

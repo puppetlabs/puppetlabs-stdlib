@@ -32,10 +32,7 @@ Puppet::Functions.create_function(:'stdlib::dirname') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     if arguments.empty?
       raise(Puppet::ParseError, 'dirname(): No arguments given')
     end
@@ -50,7 +47,6 @@ Puppet::Functions.create_function(:'stdlib::dirname') do
       raise(Puppet::ParseError, 'dirname(): Requires a non-empty string as argument')
     end
 
-    return File.dirname(arguments[0])
-  
+    File.dirname(arguments[0])
   end
 end

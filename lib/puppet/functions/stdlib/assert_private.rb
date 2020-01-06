@@ -35,10 +35,7 @@ Puppet::Functions.create_function(:'stdlib::assert_private') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     raise(Puppet::ParseError, "assert_private(): Wrong number of arguments given (#{args.size}}) for 0 or 1)") if args.size > 1
 
     scope = self
@@ -54,6 +51,5 @@ Puppet::Functions.create_function(:'stdlib::assert_private') do
       end
       raise(Puppet::ParseError, message)
     end
-  
   end
 end

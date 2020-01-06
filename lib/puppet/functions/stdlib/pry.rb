@@ -39,9 +39,7 @@ Puppet::Functions.create_function(:'stdlib::pry') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
     begin
       require 'pry'
     rescue LoadError
@@ -57,6 +55,5 @@ Puppet::Functions.create_function(:'stdlib::pry') do
     else
       Puppet.warning 'pry(): cowardly refusing to start the debugger on a daemonized master'
     end
-  
   end
 end

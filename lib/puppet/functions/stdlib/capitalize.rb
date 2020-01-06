@@ -41,10 +41,7 @@ Puppet::Functions.create_function(:'stdlib::capitalize') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "capitalize(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
@@ -60,7 +57,6 @@ Puppet::Functions.create_function(:'stdlib::capitalize') do
                value.capitalize
              end
 
-    return result
-  
+    result
   end
 end

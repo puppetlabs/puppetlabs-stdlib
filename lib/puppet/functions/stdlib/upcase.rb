@@ -42,10 +42,7 @@ Puppet::Functions.create_function(:'stdlib::upcase') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "upcase(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     value = arguments[0]
@@ -66,7 +63,6 @@ Puppet::Functions.create_function(:'stdlib::upcase') do
       result = value.upcase
     end
 
-    return result
-  
+    result
   end
 end

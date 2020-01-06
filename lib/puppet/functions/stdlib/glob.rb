@@ -36,10 +36,7 @@ Puppet::Functions.create_function(:'stdlib::glob') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     unless arguments.size == 1
       raise(Puppet::ParseError, 'glob(): Wrong number of arguments given ' \
         "(#{arguments.size} for 1)")
@@ -53,6 +50,5 @@ Puppet::Functions.create_function(:'stdlib::glob') do
     end
 
     Dir.glob(pattern)
-  
   end
 end

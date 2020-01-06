@@ -47,10 +47,7 @@ Puppet::Functions.create_function(:'stdlib::delete_undef_values') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     raise(Puppet::ParseError, "delete_undef_values(): Wrong number of arguments given (#{args.size})") if args.empty?
 
     unless args[0].is_a?(Array) || args[0].is_a?(Hash)
@@ -64,6 +61,5 @@ Puppet::Functions.create_function(:'stdlib::delete_undef_values') do
       result.delete nil
     end
     result
-  
   end
 end

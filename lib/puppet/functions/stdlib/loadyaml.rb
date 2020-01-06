@@ -44,10 +44,7 @@ Puppet::Functions.create_function(:'stdlib::loadyaml') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     raise ArgumentError, 'Wrong number of arguments. 1 or 2 arguments should be provided.' unless args.length >= 1
     require 'yaml'
     require 'open-uri'
@@ -84,6 +81,5 @@ Puppet::Functions.create_function(:'stdlib::loadyaml') do
       raise e unless args[1]
       args[1]
     end
-  
   end
 end

@@ -42,9 +42,7 @@ Puppet::Functions.create_function(:'stdlib::validate_numeric') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     function_deprecation([:validate_numeric, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Numeric. There is further documentation for validate_legacy function in the README.'])
 
@@ -123,6 +121,5 @@ Puppet::Functions.create_function(:'stdlib::validate_numeric') do
         raise Puppet::ParseError, "validate_numeric(): Expected first argument to be a Numeric or Array, got #{input.class}"
       end
     end
-  
   end
 end

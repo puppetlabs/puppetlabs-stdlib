@@ -57,27 +57,24 @@ Puppet::Functions.create_function(:'stdlib::ensure_resources') do
     repeated_param 'Any', :vals
   end
 
-
   def default_impl(*vals)
-    
-  type, title, params = vals
-  raise(ArgumentError, 'Must specify a type') unless type
-  raise(ArgumentError, 'Must specify a title') unless title
-  params ||= {}
+    type, title, params = vals
+    raise(ArgumentError, 'Must specify a type') unless type
+    raise(ArgumentError, 'Must specify a title') unless title
+    params ||= {}
 
-  raise(Puppet::ParseError, 'ensure_resources(): Requires second argument to be a Hash') unless title.is_a?(Hash)
-  resource_hash = title.dup
-  resources = resource_hash.keys
+    raise(Puppet::ParseError, 'ensure_resources(): Requires second argument to be a Hash') unless title.is_a?(Hash)
+    resource_hash = title.dup
+    resources = resource_hash.keys
 
-  Puppet::Parser::Functions.function(:ensure_resource)
-  resources.each do |resource_name|
-    params_merged = if resource_hash[resource_name]
-                      params.merge(resource_hash[resource_name])
-                    else
-                      params
-                    end
-    function_ensure_resource([type, resource_name, params_merged])
-  end
-
+    Puppet::Parser::Functions.function(:ensure_resource)
+    resources.each do |resource_name|
+      params_merged = if resource_hash[resource_name]
+                        params.merge(resource_hash[resource_name])
+                      else
+                        params
+                      end
+      function_ensure_resource([type, resource_name, params_merged])
+    end
   end
 end

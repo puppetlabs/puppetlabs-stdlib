@@ -52,10 +52,7 @@ Puppet::Functions.create_function(:'stdlib::validate_ip_address') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     require 'ipaddr'
     rescuable_exceptions = [ArgumentError]
 
@@ -83,6 +80,5 @@ Puppet::Functions.create_function(:'stdlib::validate_ip_address') do
         raise Puppet::ParseError, "#{arg.inspect} is not a valid IP address."
       end
     end
-  
   end
 end

@@ -34,10 +34,7 @@ Puppet::Functions.create_function(:'stdlib::enclose_ipv6') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     require 'ipaddr'
 
     rescuable_exceptions = [ArgumentError]
@@ -67,7 +64,6 @@ Puppet::Functions.create_function(:'stdlib::enclose_ipv6') do
       result << val
     end
 
-    return result.uniq
-  
+    result.uniq
   end
 end

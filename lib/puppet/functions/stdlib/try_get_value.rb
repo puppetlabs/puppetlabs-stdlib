@@ -63,9 +63,7 @@ Puppet::Functions.create_function(:'stdlib::try_get_value') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     warning('try_get_value() DEPRECATED: this function is deprecated, please use dig() instead.')
     data = args[0]
     path = args[1] || ''
@@ -78,6 +76,5 @@ Puppet::Functions.create_function(:'stdlib::try_get_value') do
     separator = args[3] || '/'
     path = path.split(separator).map { |key| (key =~ %r{^\d+$}) ? key.to_i : key }
     function_dig([data, path, default])
-  
   end
 end

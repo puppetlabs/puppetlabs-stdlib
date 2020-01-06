@@ -41,10 +41,7 @@ Puppet::Functions.create_function(:'stdlib::flatten') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "flatten(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     array = arguments[0]
@@ -55,7 +52,6 @@ Puppet::Functions.create_function(:'stdlib::flatten') do
 
     result = array.flatten
 
-    return result
-  
+    result
   end
 end

@@ -39,10 +39,7 @@ Puppet::Functions.create_function(:'stdlib::shell_escape') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "shell_escape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     # explicit conversion to string is required for ruby 1.9
@@ -50,7 +47,6 @@ Puppet::Functions.create_function(:'stdlib::shell_escape') do
 
     result = Shellwords.shellescape(string)
 
-    return result
-  
+    result
   end
 end

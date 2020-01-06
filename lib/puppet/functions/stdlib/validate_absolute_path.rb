@@ -57,10 +57,7 @@ Puppet::Functions.create_function(:'stdlib::validate_absolute_path') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     require 'puppet/util'
 
     if args.empty?
@@ -82,6 +79,5 @@ Puppet::Functions.create_function(:'stdlib::validate_absolute_path') do
         end
       end
     end
-  
   end
 end

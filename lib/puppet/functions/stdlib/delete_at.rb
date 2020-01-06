@@ -52,10 +52,7 @@ Puppet::Functions.create_function(:'stdlib::delete_at') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "delete_at(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments[0]
@@ -81,7 +78,6 @@ Puppet::Functions.create_function(:'stdlib::delete_at') do
 
     result.delete_at(index) # We ignore the element that got deleted ...
 
-    return result
-  
+    result
   end
 end

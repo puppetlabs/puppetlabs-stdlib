@@ -41,17 +41,14 @@ Puppet::Functions.create_function(:'stdlib::seeded_rand') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-  require 'digest/md5'
+    require 'digest/md5'
 
-  raise(ArgumentError, 'seeded_rand(): first argument must be a positive integer') unless function_is_integer([args[0]]) && args[0].to_i > 0
-  raise(ArgumentError, 'seeded_rand(): second argument must be a string') unless args[1].is_a? String
+    raise(ArgumentError, 'seeded_rand(): first argument must be a positive integer') unless function_is_integer([args[0]]) && args[0].to_i > 0
+    raise(ArgumentError, 'seeded_rand(): second argument must be a string') unless args[1].is_a? String
 
-  max = args[0].to_i
-  seed = Digest::MD5.hexdigest(args[1]).hex
-  Puppet::Util.deterministic_rand(seed, max)
-
+    max = args[0].to_i
+    seed = Digest::MD5.hexdigest(args[1]).hex
+    Puppet::Util.deterministic_rand(seed, max)
   end
 end

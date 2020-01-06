@@ -45,10 +45,7 @@ Puppet::Functions.create_function(:'stdlib::time') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     # The Time Zone argument is optional ...
     time_zone = arguments[0] if arguments[0]
 
@@ -77,7 +74,6 @@ Puppet::Functions.create_function(:'stdlib::time') do
     # Calling Time#to_i on a receiver changes it.  Trust me I am the Doctor.
     result = result.to_i
 
-    return result
-  
+    result
   end
 end

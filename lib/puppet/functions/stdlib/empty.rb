@@ -37,10 +37,7 @@ Puppet::Functions.create_function(:'stdlib::empty') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "empty(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
     value = arguments[0]
 
@@ -50,7 +47,6 @@ Puppet::Functions.create_function(:'stdlib::empty') do
 
     return false if value.is_a?(Numeric)
     result = value.empty?
-    return result
-  
+    result
   end
 end

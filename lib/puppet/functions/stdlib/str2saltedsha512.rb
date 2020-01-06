@@ -39,9 +39,7 @@ Puppet::Functions.create_function(:'stdlib::str2saltedsha512') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
     require 'digest/sha2'
 
     raise(Puppet::ParseError, "str2saltedsha512(): Wrong number of arguments passed (#{arguments.size} but we require 1)") if arguments.size != 1
@@ -56,6 +54,5 @@ Puppet::Functions.create_function(:'stdlib::str2saltedsha512') do
     seedstring = Array(seedint).pack('L')
     saltedpass = Digest::SHA512.digest(seedstring + password)
     (seedstring + saltedpass).unpack('H*')[0]
-  
   end
 end

@@ -41,10 +41,7 @@ Puppet::Functions.create_function(:'stdlib::grep') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     if arguments.size != 2
       raise(Puppet::ParseError, "grep(): Wrong number of arguments given #{arguments.size} for 2")
     end
@@ -53,6 +50,5 @@ Puppet::Functions.create_function(:'stdlib::grep') do
     pattern = Regexp.new(arguments[1])
 
     a.grep(pattern)
-  
   end
 end

@@ -47,10 +47,7 @@ Puppet::Functions.create_function(:'stdlib::validate_array') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     function_deprecation([:validate_array, 'This method is deprecated, please use the stdlib validate_legacy function,
       with Stdlib::Compat::Array. There is further documentation for validate_legacy function in the README.'])
 
@@ -63,6 +60,5 @@ Puppet::Functions.create_function(:'stdlib::validate_array') do
         raise Puppet::ParseError, "#{arg.inspect} is not an Array.  It looks to be a #{arg.class}"
       end
     end
-  
   end
 end

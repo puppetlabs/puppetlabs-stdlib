@@ -36,10 +36,7 @@ Puppet::Functions.create_function(:'stdlib::keys') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "keys(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     hash = arguments[0]
@@ -50,7 +47,6 @@ Puppet::Functions.create_function(:'stdlib::keys') do
 
     result = hash.keys
 
-    return result
-  
+    result
   end
 end

@@ -55,9 +55,7 @@ Puppet::Functions.create_function(:'stdlib::validate_cmd') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     if (args.length < 2) || (args.length > 3)
       raise Puppet::ParseError, "validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)"
     end
@@ -93,6 +91,5 @@ Puppet::Functions.create_function(:'stdlib::validate_cmd') do
     ensure
       tmpfile.unlink
     end
-  
   end
 end

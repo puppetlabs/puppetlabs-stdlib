@@ -37,10 +37,7 @@ Puppet::Functions.create_function(:'stdlib::zip') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     # Technically we support three arguments but only first is mandatory ...
     raise(Puppet::ParseError, "zip(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
@@ -56,7 +53,6 @@ Puppet::Functions.create_function(:'stdlib::zip') do
     result = a.zip(b)
     result = flatten ? result.flatten : result
 
-    return result
-  
+    result
   end
 end

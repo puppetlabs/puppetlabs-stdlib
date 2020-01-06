@@ -60,10 +60,7 @@ Puppet::Functions.create_function(:'stdlib::bool2str') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     unless arguments.size == 1 || arguments.size == 3
       raise(Puppet::ParseError, "bool2str(): Wrong number of arguments given (#{arguments.size} for 3)")
     end
@@ -82,7 +79,6 @@ Puppet::Functions.create_function(:'stdlib::bool2str') do
       raise(Puppet::ParseError, 'bool2str(): Requires strings to convert to')
     end
 
-    return value ? true_string : false_string
-  
+    value ? true_string : false_string
   end
 end

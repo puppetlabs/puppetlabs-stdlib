@@ -36,10 +36,7 @@ Puppet::Functions.create_function(:'stdlib::sort') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     if arguments.size != 1
       raise(Puppet::ParseError, "sort(): Wrong number of arguments given #{arguments.size} for 1")
     end
@@ -51,6 +48,5 @@ Puppet::Functions.create_function(:'stdlib::sort') do
     elsif value.is_a?(String)
       value.split('').sort.join('')
     end
-  
   end
 end

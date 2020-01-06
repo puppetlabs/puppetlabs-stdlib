@@ -40,10 +40,7 @@ Puppet::Functions.create_function(:'stdlib::abs') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "abs(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
@@ -62,7 +59,6 @@ Puppet::Functions.create_function(:'stdlib::abs') do
     # We have numeric value to handle ...
     result = value.abs
 
-    return result
-  
+    result
   end
 end

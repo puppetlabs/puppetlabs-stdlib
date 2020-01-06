@@ -44,10 +44,7 @@ Puppet::Functions.create_function(:'stdlib::unique') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     if Puppet::Util::Package.versioncmp(Puppet.version, '5.0.0') >= 0
       function_deprecation([:unique, 'This method is deprecated, please use the core puppet unique function. There is further documentation for the function in the release notes of Puppet 5.0.'])
     end
@@ -69,7 +66,6 @@ Puppet::Functions.create_function(:'stdlib::unique') do
     result = result.uniq # Remove duplicates ...
     result = string ? result.join : result
 
-    return result
-  
+    result
   end
 end

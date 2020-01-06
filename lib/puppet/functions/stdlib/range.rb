@@ -66,10 +66,7 @@ Puppet::Functions.create_function(:'stdlib::range') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, 'range(): Wrong number of arguments given (0 for 1)') if arguments.empty?
 
     if arguments.size > 1
@@ -112,7 +109,6 @@ Puppet::Functions.create_function(:'stdlib::range') do
 
     result = range.step(step).first(1_000_000).to_a
 
-    return result
-  
+    result
   end
 end

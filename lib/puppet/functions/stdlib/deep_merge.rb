@@ -45,10 +45,7 @@ Puppet::Functions.create_function(:'stdlib::deep_merge') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     if args.length < 2
       raise Puppet::ParseError, "deep_merge(): wrong number of arguments (#{args.length}; must be at least 2)"
     end
@@ -73,7 +70,6 @@ Puppet::Functions.create_function(:'stdlib::deep_merge') do
 
       result = deep_merge.call(result, arg)
     end
-    return(result)
-  
+    result
   end
 end

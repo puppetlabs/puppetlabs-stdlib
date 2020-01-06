@@ -37,10 +37,7 @@ Puppet::Functions.create_function(:'stdlib::union') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     # Check that 2 or more arguments have been given ...
     raise(Puppet::ParseError, "union(): Wrong number of arguments given (#{arguments.size} for < 2)") if arguments.size < 2
 
@@ -49,6 +46,5 @@ Puppet::Functions.create_function(:'stdlib::union') do
     end
 
     arguments.reduce(:|)
-  
   end
 end

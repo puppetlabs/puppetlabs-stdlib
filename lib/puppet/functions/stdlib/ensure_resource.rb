@@ -54,26 +54,23 @@ Puppet::Functions.create_function(:'stdlib::ensure_resource') do
     repeated_param 'Any', :vals
   end
 
-
   def default_impl(*vals)
-    
-  type, title, params = vals
-  raise(ArgumentError, 'Must specify a type') unless type
-  raise(ArgumentError, 'Must specify a title') unless title
-  params ||= {}
+    type, title, params = vals
+    raise(ArgumentError, 'Must specify a type') unless type
+    raise(ArgumentError, 'Must specify a title') unless title
+    params ||= {}
 
-  items = [title].flatten
+    items = [title].flatten
 
-  items.each do |item|
-    Puppet::Parser::Functions.function(:defined_with_params)
-    if function_defined_with_params(["#{type}[#{item}]", params])
-      Puppet.debug("Resource #{type}[#{item}] with params #{params} not created because it already exists")
-    else
-      Puppet.debug("Create new resource #{type}[#{item}] with params #{params}")
-      Puppet::Parser::Functions.function(:create_resources)
-      function_create_resources([type.capitalize, { item => params }])
+    items.each do |item|
+      Puppet::Parser::Functions.function(:defined_with_params)
+      if function_defined_with_params(["#{type}[#{item}]", params])
+        Puppet.debug("Resource #{type}[#{item}] with params #{params} not created because it already exists")
+      else
+        Puppet.debug("Create new resource #{type}[#{item}] with params #{params}")
+        Puppet::Parser::Functions.function(:create_resources)
+        function_create_resources([type.capitalize, { item => params }])
+      end
     end
-  end
-
   end
 end

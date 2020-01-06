@@ -61,9 +61,7 @@ Puppet::Functions.create_function(:'stdlib::validate_re') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     function_deprecation([:validate_re, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Re. There is further documentation for validate_legacy function in the README.'])
 
@@ -80,6 +78,5 @@ Puppet::Functions.create_function(:'stdlib::validate_re') do
     raise Puppet::ParseError, msg unless [args[1]].flatten.any? do |re_str|
       args[0] =~ Regexp.compile(re_str)
     end
-  
   end
 end

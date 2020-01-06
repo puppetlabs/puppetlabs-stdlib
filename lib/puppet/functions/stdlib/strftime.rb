@@ -49,7 +49,7 @@
 #        %m - Month of the year (01..12)
 #        %M - Minute of the hour (00..59)
 #        %n - Newline (
-#)
+# )
 #        %N - Fractional seconds digits, default is 9 digits (nanosecond)
 #                %3N  millisecond (3 digits)
 #                %6N  microsecond (6 digits)
@@ -95,10 +95,7 @@ Puppet::Functions.create_function(:'stdlib::strftime') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "strftime(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
@@ -127,7 +124,6 @@ Puppet::Functions.create_function(:'stdlib::strftime') do
 
     result = time.strftime(format)
 
-    return result
-  
+    result
   end
 end

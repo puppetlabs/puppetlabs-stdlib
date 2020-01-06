@@ -39,10 +39,7 @@ Puppet::Functions.create_function(:'stdlib::fqdn_uuid') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     raise(ArgumentError, 'fqdn_uuid: No arguments given') if args.empty?
     raise(ArgumentError, "fqdn_uuid: Too many arguments given (#{args.length})") unless args.length == 1
     fqdn = args[0]
@@ -91,6 +88,5 @@ Puppet::Functions.create_function(:'stdlib::fqdn_uuid') do
     end
 
     bytes.join('-')
-  
   end
 end

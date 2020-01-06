@@ -66,21 +66,18 @@ Puppet::Functions.create_function(:'stdlib::getparam') do
     repeated_param 'Any', :vals
   end
 
-
   def default_impl(*vals)
-    
-  reference, param = vals
-  raise(ArgumentError, 'Must specify a reference') unless reference
-  raise(ArgumentError, 'Must specify name of a parameter') unless param && param.instance_of?(String)
+    reference, param = vals
+    raise(ArgumentError, 'Must specify a reference') unless reference
+    raise(ArgumentError, 'Must specify name of a parameter') unless param && param.instance_of?(String)
 
-  return '' if param.empty?
+    return '' if param.empty?
 
-  resource = findresource(reference.to_s)
-  if resource
-    return resource[param] unless resource[param].nil?
-  end
+    resource = findresource(reference.to_s)
+    if resource
+      return resource[param] unless resource[param].nil?
+    end
 
-  return ''
-
+    ''
   end
 end

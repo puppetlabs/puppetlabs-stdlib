@@ -82,9 +82,7 @@ Puppet::Functions.create_function(:'stdlib::validate_integer') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     function_deprecation([:validate_integer, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.'])
 
@@ -163,6 +161,5 @@ Puppet::Functions.create_function(:'stdlib::validate_integer') do
         raise Puppet::ParseError, "validate_integer(): Expected first argument to be an Integer or Array, got #{input.class}"
       end
     end
-  
   end
 end

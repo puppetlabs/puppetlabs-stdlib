@@ -58,10 +58,7 @@ Puppet::Functions.create_function(:'stdlib::member') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "member(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments[0]
@@ -84,7 +81,6 @@ Puppet::Functions.create_function(:'stdlib::member') do
 
     result = (item - array).empty?
 
-    return result
-  
+    result
   end
 end

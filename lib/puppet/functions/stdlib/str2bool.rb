@@ -37,10 +37,7 @@ Puppet::Functions.create_function(:'stdlib::str2bool') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "str2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     string = arguments[0]
@@ -68,7 +65,6 @@ Puppet::Functions.create_function(:'stdlib::str2bool') do
                raise(Puppet::ParseError, 'str2bool(): Unknown type of boolean given')
              end
 
-    return result
-  
+    result
   end
 end

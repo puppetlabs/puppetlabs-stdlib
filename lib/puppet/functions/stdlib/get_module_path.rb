@@ -44,13 +44,10 @@ Puppet::Functions.create_function(:'stdlib::get_module_path') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     raise(Puppet::ParseError, 'get_module_path(): Wrong number of arguments, expects one') unless args.size == 1
     module_path = Puppet::Module.find(args[0], compiler.environment.to_s)
     raise(Puppet::ParseError, "Could not find module #{args[0]} in environment #{compiler.environment}") unless module_path
     module_path.path
-  
   end
 end

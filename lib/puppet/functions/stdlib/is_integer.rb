@@ -42,10 +42,7 @@ Puppet::Functions.create_function(:'stdlib::is_integer') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     function_deprecation([:is_integer, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.'])
 
@@ -70,7 +67,6 @@ Puppet::Functions.create_function(:'stdlib::is_integer') do
     numeric = %r{^-?(?:(?:[1-9]\d*)|0)$}
 
     return true if value.is_a?(Integer) || (value.is_a?(String) && value.match(numeric))
-    return false
-  
+    false
   end
 end

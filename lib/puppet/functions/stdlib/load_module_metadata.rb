@@ -37,9 +37,7 @@ Puppet::Functions.create_function(:'stdlib::load_module_metadata') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     raise(Puppet::ParseError, 'load_module_metadata(): Wrong number of arguments, expects one or two') unless [1, 2].include?(args.size)
     mod = args[0]
     allow_empty_metadata = args[1]
@@ -54,7 +52,6 @@ Puppet::Functions.create_function(:'stdlib::load_module_metadata') do
       raise(Puppet::ParseError, "load_module_metadata(): No metadata.json file for module #{mod}") unless allow_empty_metadata
     end
 
-    return metadata
-  
+    metadata
   end
 end

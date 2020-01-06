@@ -64,9 +64,7 @@ Puppet::Functions.create_function(:'stdlib::validate_augeas') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     unless Puppet.features.augeas?
       raise Puppet::ParseError, 'validate_augeas(): this function requires the augeas feature. See http://docs.puppetlabs.com/guides/augeas.html#pre-requisites for how to activate it.'
     end
@@ -116,6 +114,5 @@ Puppet::Functions.create_function(:'stdlib::validate_augeas') do
       aug.close
       tmpfile.unlink
     end
-  
   end
 end

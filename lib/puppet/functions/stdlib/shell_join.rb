@@ -37,10 +37,7 @@ Puppet::Functions.create_function(:'stdlib::shell_join') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "shell_join(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     array = arguments[0]
@@ -51,7 +48,6 @@ Puppet::Functions.create_function(:'stdlib::shell_join') do
     array = array.map { |item| item.to_s }
     result = Shellwords.shelljoin(array)
 
-    return result
-  
+    result
   end
 end

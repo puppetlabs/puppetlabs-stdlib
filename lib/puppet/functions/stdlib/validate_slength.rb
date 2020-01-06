@@ -48,9 +48,7 @@ Puppet::Functions.create_function(:'stdlib::validate_slength') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     function_deprecation([:validate_slength, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with String[]. There is further documentation for validate_legacy function in the README.'])
 
@@ -95,6 +93,5 @@ Puppet::Functions.create_function(:'stdlib::validate_slength') do
     else
       raise Puppet::ParseError, "validate_slength(): Expected first argument to be a String or Array, got #{input.class}"
     end
-  
   end
 end

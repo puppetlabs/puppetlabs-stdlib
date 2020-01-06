@@ -51,10 +51,7 @@ Puppet::Functions.create_function(:'stdlib::bool2num') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "bool2num(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = function_str2bool([arguments[0]])
@@ -62,7 +59,6 @@ Puppet::Functions.create_function(:'stdlib::bool2num') do
     # We have real boolean values as well ...
     result = value ? 1 : 0
 
-    return result
-  
+    result
   end
 end

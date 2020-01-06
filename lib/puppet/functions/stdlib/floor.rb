@@ -37,10 +37,7 @@ Puppet::Functions.create_function(:'stdlib::floor') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "floor(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     begin
@@ -52,6 +49,5 @@ Puppet::Functions.create_function(:'stdlib::floor') do
     raise(Puppet::ParseError, "floor(): Wrong argument type given (#{arg.class} for Numeric)") if arg.is_a?(Numeric) == false
 
     arg.floor
-  
   end
 end

@@ -36,10 +36,7 @@ Puppet::Functions.create_function(:'stdlib::is_float') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     function_deprecation([:is_float, 'This method is deprecated, please use the stdlib validate_legacy function,
                           with Stdlib::Compat::Float. There is further documentation for validate_legacy function in the README.'])
 
@@ -53,7 +50,6 @@ Puppet::Functions.create_function(:'stdlib::is_float') do
     return false unless value.is_a?(Numeric) || value.is_a?(String)
 
     return false if value != value.to_f.to_s && !value.is_a?(Float)
-    return true
-  
+    true
   end
 end

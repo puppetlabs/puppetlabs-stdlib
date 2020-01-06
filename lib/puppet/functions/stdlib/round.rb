@@ -42,10 +42,7 @@ Puppet::Functions.create_function(:'stdlib::round') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     raise Puppet::ParseError, "round(): Wrong number of arguments given #{args.size} for 1" if args.size != 1
     raise Puppet::ParseError, "round(): Expected a Numeric, got #{args[0].class}" unless args[0].is_a? Numeric
 
@@ -56,6 +53,5 @@ Puppet::Functions.create_function(:'stdlib::round') do
     else
       Integer(value - 0.5)
     end
-  
   end
 end

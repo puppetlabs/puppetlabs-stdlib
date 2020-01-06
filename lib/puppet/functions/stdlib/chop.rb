@@ -16,7 +16,7 @@
 #      **Deprecated** Returns a new string with the last character removed.
 #
 #    If the string ends with `
-#`, both characters are removed. Applying
+# `, both characters are removed. Applying
 #    chop to an empty string returns an empty string. If you wish to merely
 #    remove record separators then you should use the `chomp` function.
 #    Requires a string or array of strings as input.
@@ -41,10 +41,7 @@ Puppet::Functions.create_function(:'stdlib::chop') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "chop(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
@@ -60,7 +57,6 @@ Puppet::Functions.create_function(:'stdlib::chop') do
                value.chop
              end
 
-    return result
-  
+    result
   end
 end

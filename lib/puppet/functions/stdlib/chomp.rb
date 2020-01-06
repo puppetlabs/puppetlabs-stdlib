@@ -16,7 +16,7 @@
 #      **Deprecated** Removes the record separator from the end of a string or an array of strings.
 #
 #    For example `hello
-#` becomes `hello`.
+# ` becomes `hello`.
 #    Requires a single string or array as an input.
 #
 #    > *Note:*
@@ -41,10 +41,7 @@ Puppet::Functions.create_function(:'stdlib::chomp') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "chomp(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
@@ -60,7 +57,6 @@ Puppet::Functions.create_function(:'stdlib::chomp') do
                value.chomp
              end
 
-    return result
-  
+    result
   end
 end

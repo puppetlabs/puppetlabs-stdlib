@@ -36,10 +36,7 @@ Puppet::Functions.create_function(:'stdlib::deprecation') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "deprecation: Wrong number of arguments given (#{arguments.size} for 2)") unless arguments.size == 2
 
     key = arguments[0]
@@ -48,6 +45,5 @@ Puppet::Functions.create_function(:'stdlib::deprecation') do
     if ENV['STDLIB_LOG_DEPRECATIONS'] == 'true'
       warning("deprecation. #{key}. #{message}")
     end
-  
   end
 end

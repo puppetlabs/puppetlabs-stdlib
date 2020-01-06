@@ -47,10 +47,7 @@ Puppet::Functions.create_function(:'stdlib::difference') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     # Two arguments are required
     raise(Puppet::ParseError, "difference(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size != 2
 
@@ -63,7 +60,6 @@ Puppet::Functions.create_function(:'stdlib::difference') do
 
     result = first - second
 
-    return result
-  
+    result
   end
 end

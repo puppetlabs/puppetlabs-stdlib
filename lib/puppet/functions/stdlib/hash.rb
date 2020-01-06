@@ -44,10 +44,7 @@ Puppet::Functions.create_function(:'stdlib::hash') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "hash(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     array = arguments[0]
@@ -66,7 +63,6 @@ Puppet::Functions.create_function(:'stdlib::hash') do
       raise(Puppet::ParseError, 'hash(): Unable to compute hash from array given')
     end
 
-    return result
-  
+    result
   end
 end

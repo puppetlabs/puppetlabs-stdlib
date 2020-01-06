@@ -36,17 +36,13 @@ Puppet::Functions.create_function(:'stdlib::shell_split') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "shell_split(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     string = arguments[0].to_s
 
     result = Shellwords.shellsplit(string)
 
-    return result
-  
+    result
   end
 end

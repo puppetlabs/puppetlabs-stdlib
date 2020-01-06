@@ -49,9 +49,7 @@ Puppet::Functions.create_function(:'stdlib::validate_bool') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     if args.empty?
       raise Puppet::ParseError, "validate_bool(): wrong number of arguments (#{args.length}; must be > 0)"
     end
@@ -61,6 +59,5 @@ Puppet::Functions.create_function(:'stdlib::validate_bool') do
         raise Puppet::ParseError, "#{arg.inspect} is not a boolean.  It looks to be a #{arg.class}"
       end
     end
-  
   end
 end

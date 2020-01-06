@@ -51,10 +51,7 @@ Puppet::Functions.create_function(:'stdlib::has_key') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     unless args.length == 2
       raise Puppet::ParseError, "has_key(): wrong number of arguments (#{args.length}; must be 2)"
     end
@@ -62,6 +59,5 @@ Puppet::Functions.create_function(:'stdlib::has_key') do
       raise Puppet::ParseError, "has_key(): expects the first argument to be a hash, got #{args[0].inspect} which is of type #{args[0].class}"
     end
     args[0].key?(args[1])
-  
   end
 end

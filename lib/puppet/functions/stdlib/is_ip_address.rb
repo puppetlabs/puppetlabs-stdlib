@@ -36,10 +36,7 @@ Puppet::Functions.create_function(:'stdlib::is_ip_address') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     require 'ipaddr'
 
     function_deprecation([:is_ip_address, 'This method is deprecated, please use the stdlib validate_legacy function,
@@ -56,7 +53,6 @@ Puppet::Functions.create_function(:'stdlib::is_ip_address') do
     end
 
     return true if ip.ipv4? || ip.ipv6?
-    return false
-  
+    false
   end
 end

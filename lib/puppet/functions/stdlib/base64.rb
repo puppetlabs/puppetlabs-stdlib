@@ -56,10 +56,7 @@ Puppet::Functions.create_function(:'stdlib::base64') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     require 'base64'
 
     raise Puppet::ParseError, "base64(): Wrong number of arguments (#{args.length}; must be >= 2)" unless args.length >= 2
@@ -107,7 +104,6 @@ Puppet::Functions.create_function(:'stdlib::base64') do
       end
     end
 
-    return result
-  
+    result
   end
 end

@@ -38,9 +38,7 @@ Puppet::Functions.create_function(:'stdlib::parseyaml') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
     raise ArgumentError, 'Wrong number of arguments. 1 or 2 arguments should be provided.' unless arguments.length >= 1
     require 'yaml'
 
@@ -53,6 +51,5 @@ Puppet::Functions.create_function(:'stdlib::parseyaml') do
       raise e unless arguments[1]
       arguments[1]
     end
-  
   end
 end

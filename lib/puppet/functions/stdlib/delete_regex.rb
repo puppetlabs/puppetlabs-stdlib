@@ -56,10 +56,7 @@ Puppet::Functions.create_function(:'stdlib::delete_regex') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "delete_regex(): Wrong number of arguments given #{arguments.size} for 2") unless arguments.size == 2
 
     collection = arguments[0].dup
@@ -72,6 +69,5 @@ Puppet::Functions.create_function(:'stdlib::delete_regex') do
       end
     end
     collection
-  
   end
 end

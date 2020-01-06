@@ -38,10 +38,7 @@ Puppet::Functions.create_function(:'stdlib::num2bool') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "num2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     number = arguments[0]
@@ -67,7 +64,6 @@ Puppet::Functions.create_function(:'stdlib::num2bool') do
     number = number.to_i
 
     # Return true for any positive number and false otherwise
-    return number > 0
-  
+    number > 0
   end
 end

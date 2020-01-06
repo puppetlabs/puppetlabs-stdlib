@@ -46,10 +46,7 @@ Puppet::Functions.create_function(:'stdlib::validate_ipv4_address') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     function_deprecation([:validate_ipv4_address, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Ipv4. There is further documentation for validate_legacy function in the README.'])
 
@@ -77,6 +74,5 @@ Puppet::Functions.create_function(:'stdlib::validate_ipv4_address') do
         raise Puppet::ParseError, "#{arg.inspect} is not a valid IPv4 address."
       end
     end
-  
   end
 end

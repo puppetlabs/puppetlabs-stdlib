@@ -33,10 +33,7 @@ Puppet::Functions.create_function(:'stdlib::squeeze') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     if (arguments.size != 2) && (arguments.size != 1)
       raise(Puppet::ParseError, "squeeze(): Wrong number of arguments given #{arguments.size} for 2 or 1")
     end
@@ -55,6 +52,5 @@ Puppet::Functions.create_function(:'stdlib::squeeze') do
     else
       item.squeeze
     end
-  
   end
 end

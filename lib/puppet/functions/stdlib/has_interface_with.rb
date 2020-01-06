@@ -42,10 +42,7 @@ Puppet::Functions.create_function(:'stdlib::has_interface_with') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     raise(Puppet::ParseError, "has_interface_with(): Wrong number of arguments given (#{args.size} for 1 or 2)") if args.empty? || args.size > 2
 
     interfaces = lookupvar('interfaces')
@@ -93,6 +90,5 @@ Puppet::Functions.create_function(:'stdlib::has_interface_with') do
     end
 
     result
-  
   end
 end

@@ -37,10 +37,7 @@ Puppet::Functions.create_function(:'stdlib::is_domain_name') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     if arguments.size != 1
       raise(Puppet::ParseError, "is_domain_name(): Wrong number of arguments given #{arguments.size} for 1")
     end
@@ -78,7 +75,6 @@ Puppet::Functions.create_function(:'stdlib::is_domain_name') do
       break if label[0..0] == '-'
       break unless %r{^[a-z\d-]+$}i =~ label
     end
-    return vlabels == labels
-  
+    vlabels == labels
   end
 end

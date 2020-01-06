@@ -36,10 +36,7 @@ Puppet::Functions.create_function(:'stdlib::ensure_packages') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "ensure_packages(): Wrong number of arguments given (#{arguments.size} for 1 or 2)") if arguments.size > 2 || arguments.empty?
     raise(Puppet::ParseError, 'ensure_packages(): Requires second argument to be a Hash') if arguments.size == 2 && !arguments[1].is_a?(Hash)
 
@@ -73,6 +70,5 @@ Puppet::Functions.create_function(:'stdlib::ensure_packages') do
         function_ensure_resource(['package', package_name, defaults])
       end
     end
-  
   end
 end

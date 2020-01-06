@@ -45,10 +45,7 @@ Puppet::Functions.create_function(:'stdlib::getvar') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     unless args.length == 1
       raise Puppet::ParseError, "getvar(): wrong number of arguments (#{args.length}; must be 1)"
     end
@@ -63,6 +60,5 @@ Puppet::Functions.create_function(:'stdlib::getvar') do
       result
     rescue Puppet::ParseError # rubocop:disable Lint/HandleExceptions : Eat the exception if strict_variables = true is set
     end
-  
   end
 end

@@ -57,10 +57,7 @@ Puppet::Functions.create_function(:'stdlib::any2array') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     if arguments.empty?
       return []
     end
@@ -75,7 +72,6 @@ Puppet::Functions.create_function(:'stdlib::any2array') do
       end
       return result
     end
-    return arguments
-  
+    arguments
   end
 end

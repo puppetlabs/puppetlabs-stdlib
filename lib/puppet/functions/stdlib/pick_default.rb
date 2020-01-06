@@ -51,9 +51,7 @@ Puppet::Functions.create_function(:'stdlib::pick_default') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     raise 'Must receive at least one argument.' if args.empty?
     default = args.last
     args = args[0..-2].compact
@@ -61,7 +59,6 @@ Puppet::Functions.create_function(:'stdlib::pick_default') do
     args.delete(:undefined)
     args.delete('')
     args << default
-    return args[0]
-  
+    args[0]
   end
 end

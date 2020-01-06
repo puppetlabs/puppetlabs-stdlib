@@ -37,10 +37,7 @@ Puppet::Functions.create_function(:'stdlib::ceiling') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "ceiling(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     begin
@@ -52,6 +49,5 @@ Puppet::Functions.create_function(:'stdlib::ceiling') do
     raise(Puppet::ParseError, "ceiling(): Wrong argument type given (#{arg.class} for Numeric)") if arg.is_a?(Numeric) == false
 
     arg.ceil
-  
   end
 end

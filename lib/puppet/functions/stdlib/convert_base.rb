@@ -50,10 +50,7 @@ Puppet::Functions.create_function(:'stdlib::convert_base') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
-
     raise Puppet::ParseError, 'convert_base(): First argument must be either a string or an integer' unless args[0].is_a?(Integer) || args[0].is_a?(String)
     raise Puppet::ParseError, 'convert_base(): Second argument must be either a string or an integer' unless args[1].is_a?(Integer) || args[1].is_a?(String)
 
@@ -73,7 +70,6 @@ Puppet::Functions.create_function(:'stdlib::convert_base') do
 
     raise Puppet::ParseError, 'convert_base(): base must be at least 2 and must not be greater than 36' unless new_base >= 2 && new_base <= 36
 
-    return number_to_convert.to_s(new_base)
-  
+    number_to_convert.to_s(new_base)
   end
 end

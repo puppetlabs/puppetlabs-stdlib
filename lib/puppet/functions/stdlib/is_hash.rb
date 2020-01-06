@@ -36,17 +36,13 @@ Puppet::Functions.create_function(:'stdlib::is_hash') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     raise(Puppet::ParseError, "is_hash(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     type = arguments[0]
 
     result = type.is_a?(Hash)
 
-    return result
-  
+    result
   end
 end

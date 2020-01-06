@@ -39,9 +39,7 @@ Puppet::Functions.create_function(:'stdlib::type3x') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     raise(Puppet::ParseError, "type3x(): Wrong number of arguments given (#{args.size} for 1)") unless args.size == 1
 
     value = args[0]
@@ -69,7 +67,6 @@ Puppet::Functions.create_function(:'stdlib::type3x') do
       end
     end
 
-    return result.downcase
-  
+    result.downcase
   end
 end

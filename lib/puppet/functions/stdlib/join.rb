@@ -39,10 +39,7 @@ Puppet::Functions.create_function(:'stdlib::join') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "join(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
@@ -62,7 +59,6 @@ Puppet::Functions.create_function(:'stdlib::join') do
 
     result = suffix ? array.join(suffix) : array.join
 
-    return result
-  
+    result
   end
 end

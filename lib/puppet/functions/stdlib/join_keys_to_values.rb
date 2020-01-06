@@ -47,10 +47,7 @@ Puppet::Functions.create_function(:'stdlib::join_keys_to_values') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     # Validate the number of arguments.
     if arguments.size != 2
       raise(Puppet::ParseError, "join_keys_to_values(): Takes exactly two arguments, but #{arguments.size} given.")
@@ -78,6 +75,5 @@ Puppet::Functions.create_function(:'stdlib::join_keys_to_values') do
         String(k) + separator + String(v)
       end
     }.flatten
-  
   end
 end

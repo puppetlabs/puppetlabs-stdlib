@@ -45,15 +45,12 @@ Puppet::Functions.create_function(:'stdlib::pick') do
     repeated_param 'Any', :args
   end
 
-
   def default_impl(*args)
-    
     args = args.compact
     args.delete(:undef)
     args.delete(:undefined)
     args.delete('')
     raise Puppet::ParseError, 'pick(): must receive at least one non empty value' if args[0].to_s.empty?
-    return args[0]
-  
+    args[0]
   end
 end

@@ -36,10 +36,7 @@ Puppet::Functions.create_function(:'stdlib::is_mac_address') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     if arguments.size != 1
       raise(Puppet::ParseError, "is_mac_address(): Wrong number of arguments given #{arguments.size} for 1")
     end
@@ -48,7 +45,6 @@ Puppet::Functions.create_function(:'stdlib::is_mac_address') do
 
     return true if %r{^[a-f0-9]{1,2}(:[a-f0-9]{1,2}){5}$}i =~ mac
     return true if %r{^[a-f0-9]{1,2}(:[a-f0-9]{1,2}){19}$}i =~ mac
-    return false
-  
+    false
   end
 end

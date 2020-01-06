@@ -38,10 +38,7 @@ Puppet::Functions.create_function(:'stdlib::is_function_available') do
     repeated_param 'Any', :arguments
   end
 
-
   def default_impl(*arguments)
-    
-
     if arguments.size != 1
       raise(Puppet::ParseError, "is_function_available?(): Wrong number of arguments given #{arguments.size} for 1")
     end
@@ -51,6 +48,5 @@ Puppet::Functions.create_function(:'stdlib::is_function_available') do
 
     function = Puppet::Parser::Functions.function(arguments[0].to_sym)
     function.is_a?(String) && !function.empty?
-  
   end
 end
