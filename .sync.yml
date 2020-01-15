@@ -15,10 +15,10 @@
   includes:
   - bundler_args: 
     dist: trusty
-    env: PLATFORMS=debian_puppet5
+    env: PLATFORMS=deb_puppet5
     rvm: 2.5.3
     before_script:
-    - bundle exec rake 'litmus:provision_list[waffle_debian]'
+    - bundle exec rake 'litmus:provision_list[travis_deb]'
     - bundle exec rake 'litmus:install_agent[puppet5]'
     - bundle exec rake litmus:install_module
     script:
@@ -28,10 +28,36 @@
     stage: acceptance
   - bundler_args: 
     dist: trusty
-    env: PLATFORMS=debian_puppet6
+    env: PLATFORMS=deb_puppet6
     rvm: 2.5.3
     before_script:
-    - bundle exec rake 'litmus:provision_list[waffle_debian]'
+    - bundle exec rake 'litmus:provision_list[travis_deb]'
+    - bundle exec rake 'litmus:install_agent[puppet6]'
+    - bundle exec rake litmus:install_module
+    script:
+    - bundle exec rake litmus:acceptance:parallel
+    services: docker
+    sudo: required
+    stage: acceptance
+  - bundler_args: 
+    dist: trusty
+    env: PLATFORMS=ub_puppet5
+    rvm: 2.5.3
+    before_script:
+    - bundle exec rake 'litmus:provision_list[travis_ub]'
+    - bundle exec rake 'litmus:install_agent[puppet5]'
+    - bundle exec rake litmus:install_module
+    script:
+    - bundle exec rake litmus:acceptance:parallel
+    services: docker
+    sudo: required
+    stage: acceptance
+  - bundler_args: 
+    dist: trusty
+    env: PLATFORMS=ub_puppet6
+    rvm: 2.5.3
+    before_script:
+    - bundle exec rake 'litmus:provision_list[travis_ub]'
     - bundle exec rake 'litmus:install_agent[puppet6]'
     - bundle exec rake litmus:install_module
     script:
@@ -44,7 +70,7 @@
     env: PLATFORMS=el6_puppet5
     rvm: 2.5.3
     before_script:
-    - bundle exec rake 'litmus:provision_list[waffle_el6]'
+    - bundle exec rake 'litmus:provision_list[travis_el6]'
     - bundle exec rake 'litmus:install_agent[puppet5]'
     - bundle exec rake litmus:install_module
     script:
@@ -57,7 +83,7 @@
     env: PLATFORMS=el6_puppet6
     rvm: 2.5.3
     before_script:
-    - bundle exec rake 'litmus:provision_list[waffle_el6]'
+    - bundle exec rake 'litmus:provision_list[travis_el6]'
     - bundle exec rake 'litmus:install_agent[puppet6]'
     - bundle exec rake litmus:install_module
     script:
@@ -67,10 +93,10 @@
     stage: acceptance
   - bundler_args: 
     dist: trusty
-    env: PLATFORMS=el7_puppet5
+    env: PLATFORMS=e7l_puppet5
     rvm: 2.5.3
     before_script:
-    - bundle exec rake 'litmus:provision_list[waffle_el7]'
+    - bundle exec rake 'litmus:provision_list[travis_el7]'
     - bundle exec rake 'litmus:install_agent[puppet5]'
     - bundle exec rake litmus:install_module
     script:
@@ -83,7 +109,7 @@
     env: PLATFORMS=el7_puppet6
     rvm: 2.5.3
     before_script:
-    - bundle exec rake 'litmus:provision_list[waffle_el7]'
+    - bundle exec rake 'litmus:provision_list[travis_el7]'
     - bundle exec rake 'litmus:install_agent[puppet6]'
     - bundle exec rake litmus:install_module
     script:
