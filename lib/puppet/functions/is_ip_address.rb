@@ -1,5 +1,5 @@
 # @summary
-#   Wrapper that calls the Puppet 3.x funtion of the same name.
+#   Wrapper that calls the Puppet 3.x function of the same name.
 Puppet::Functions.create_function(:is_ip_address) do
   # @param scope
   #   The main value that will be passed to the wrapped method
