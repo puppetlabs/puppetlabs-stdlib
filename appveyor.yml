@@ -14,6 +14,8 @@ init:
   - 'mkdir C:\ProgramData\PuppetLabs\hiera && exit 0'
   - 'mkdir C:\ProgramData\PuppetLabs\puppet\var && exit 0'
 environment:
+  HONEYCOMB_WRITEKEY: 7f3c63a70eecc61d635917de46bea4e6
+  HONEYCOMB_DATASET: litmus tests
   SIMPLECOV: yes
   matrix:
     -
