@@ -1,2 +1,2 @@
-type Stdlib::ObjectStore::GSUri = Pattern[/^gs:\/\//]
+type Stdlib::ObjectStore::GSUri = Pattern[/\Ags:\/\/.*\z/]
 

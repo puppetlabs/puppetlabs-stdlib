@@ -16,6 +16,9 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     describe 'rejects other values' do
       [
         '',
+        "\ngs://mybucket/myfile.csv",
+        "\ngs://mybucket/myfile.csv\n",
+        "gs://mybucket/myfile.csv\n",
         'GS://mybucket/myfile.csv',
         5,
         'gs//mybucket/myfile.csv',

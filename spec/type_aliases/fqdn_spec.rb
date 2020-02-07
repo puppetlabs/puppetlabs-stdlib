@@ -18,6 +18,9 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
           { 'foo' => 'bar' },
           {},
           '',
+          "\nexample",
+          "\nexample\n",
+          "example\n",
           '2001:DB8::1',
           'www www.example.com',
         ].each do |value|
