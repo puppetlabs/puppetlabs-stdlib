@@ -5,6 +5,8 @@
   default_configs:
     inherit_from: ".rubocop_todo.yml"
 ".travis.yml":
+  global_env: 
+    - HONEYCOMB_WRITEKEY="7f3c63a70eecc61d635917de46bea4e6",HONEYCOMB_DATASET="litmus tests"
   deploy_to_forge:
     enabled: false
   dist: trusty
@@ -93,7 +95,7 @@
     stage: acceptance
   - bundler_args: 
     dist: trusty
-    env: PLATFORMS=e7l_puppet5
+    env: PLATFORMS=el7_puppet5
     rvm: 2.5.3
     before_script:
     - bundle exec rake 'litmus:provision_list[travis_el7]'
@@ -122,6 +124,9 @@
     slack:
       secure: j5y9T97u6QlDPs4eEnDNch2IGAzbfWycVcMutP3u9Klvkgqu33xtxHgyAQOW+2A/Xw2sKQs/LzIiUeQRzlNMcAPRZ0rK19sW1w5OgZGcd131HViFDfX8W7V4R41sZVNF232JekMr7RwPGIaZ9htaGsDJeJF8TaiG1Akk32LQZV8=
 appveyor.yml:
+  environment:
+    HONEYCOMB_WRITEKEY: 7f3c63a70eecc61d635917de46bea4e6
+    HONEYCOMB_DATASET: litmus tests
   use_litmus: true
   matrix_extras:
   - RUBY_VERSION: 25-x64
