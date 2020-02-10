@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'release'
+      - 'pdksync_puppet-modules-gem_v4_3_3'
 
 jobs:
   LitmusAcceptance:
