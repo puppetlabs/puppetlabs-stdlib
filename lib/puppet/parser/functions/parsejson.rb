@@ -18,6 +18,7 @@ module Puppet::Parser::Functions
     raise ArgumentError, 'Wrong number of arguments. 1 or 2 arguments should be provided.' unless arguments.length >= 1
 
     begin
+      Puppet.deprecation_warning("`parsejson' is deprecated, please use `stdlib::parsejson' instead")
       PSON.load(arguments[0]) || arguments[1]
     rescue StandardError => e
       raise e unless arguments[1]

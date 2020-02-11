@@ -15,6 +15,8 @@ module Puppet::Parser::Functions
   DOC
              ) do |args|
     raise(Puppet::ParseError, 'load_module_metadata(): Wrong number of arguments, expects one or two') unless [1, 2].include?(args.size)
+
+    Puppet.deprecation_warning("`load_module_metadata' is deprecated, please use `stdlib::load_module_data' instead")
     mod = args[0]
     allow_empty_metadata = args[1]
     module_path = function_get_module_path([mod])

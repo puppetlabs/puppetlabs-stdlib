@@ -23,6 +23,8 @@ module Puppet::Parser::Functions
   DOC
 
     raise ArgumentError, 'Wrong number of arguments. 1 or 2 arguments should be provided.' unless args.length >= 1
+
+    Puppet.deprecation_warning("`loadjson' is deprecated, please use `stdlib::loadjson' instead")
     require 'open-uri'
     begin
       if args[0].start_with?('http://', 'https://')
