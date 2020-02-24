@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'release'
+      - 'pdksync_multigemtesting1'
 
 jobs:
   LitmusAcceptance:
