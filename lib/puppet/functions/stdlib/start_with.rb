@@ -2,10 +2,10 @@
 #   Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
 #
 # @example
-#   'foobar'.start_with('foo') => true
-#   'foobar'.start_with('bar') => false
-#   'foObar'.start_with(['bar', 'baz']) => false
-Puppet::Functions.create_function(:start_with) do
+#   'foobar'.stdlib::start_with('foo') => true
+#   'foobar'.stdlib::start_with('bar') => false
+#   'foObar'.stdlib::start_with(['bar', 'baz']) => false
+Puppet::Functions.create_function(:'stdlib::start_with') do
   # @param test_string The string to check
   # @param prefixes The prefixes to check.
   #
