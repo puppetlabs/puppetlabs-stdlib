@@ -26,25 +26,19 @@ Puppet::Functions.create_function(:'stdlib::loadjson') do
   # If URL is in the format of https://username@example.local/my_info.json
   URI_WITH_NAME_PATTERN = %r{(http\://|https\://)(.*)@(.*)}
 
-  dispatch :default_impl do
-    param 'String', :path_or_uri
+  dispatch :load_from_url do
+    param 'Variant[Stdlib::HttpUrl, Stdlib::HttpsUrl]', :url
     optional_param Any, :default
   end
 
-  def default_impl(path_or_uri, default = nil)
+  dispatch :load_local do
+    param 'Stdlib::Absolutepath', :path
+    optional_param Any, :default
+  end
+
+  def with_error_or_default(default = nil, &block)
     begin
-      if path_or_uri.start_with?('http://', 'https://')
-        load_from_uri(path_or_uri, default)
-
-      elsif File.exists?(path_or_uri)
-        content = File.read(path_or_uri)
-
-        Puppet::Util::Json.load(content) || default
-      else
-        warning("Can't load '#{path_or_uri}' File does not exist!")
-
-        default
-      end
+      yield
     rescue StandardError => err
       if default
         default
@@ -54,31 +48,46 @@ Puppet::Functions.create_function(:'stdlib::loadjson') do
     end
   end
 
- private
-  def load_from_uri(uri, default)
-    require 'open-uri'
+  def load_local(path, default)
+    with_error_or_default(default) do
+      if File.exists?(path)
+        content = File.read(path)
 
-    username = ''
-    password = ''
-    if (match = uri.match(URI_WITH_NAME_AND_PASS_PATTERN))
-      protocol, username, password, path = match.captures
-      url = "#{protocol}#{path}"
-    elsif (match = uri.match(URI_WITH_NAME_PATTERN))
-      protocol, username, path = match.captures
-      url = "#{protocol}#{path}"
-    else
-      url = uri
+        Puppet::Util::Json.load(content) || default
+      else
+        warning("Can't load '#{path}' File does not exist!")
+
+        default
+      end
     end
+  end
 
-    begin
-      contents = OpenURI.open_uri(url, :http_basic_authentication => [username, password])
-    rescue OpenURI::HTTPError => err
-      res = err.io
-      warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
+  def load_from_url(url, default)
+    with_error_or_default(default) do
+      require 'open-uri'
 
-      default
+      username = ''
+      password = ''
+      if (match = url.match(URI_WITH_NAME_AND_PASS_PATTERN))
+        protocol, username, password, path = match.captures
+        url = "#{protocol}#{path}"
+      elsif (match = url.match(URI_WITH_NAME_PATTERN))
+        protocol, username, path = match.captures
+        url = "#{protocol}#{path}"
+      else
+        url = url
+      end
+
+      begin
+        contents = OpenURI.open_uri(url, :http_basic_authentication => [username, password])
+      rescue OpenURI::HTTPError => err
+        res = err.io
+        warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
+
+        default
+      end
+
+      Puppet::Util::Json.load(contents) || default
     end
-
-    Puppet::Util::Json.load(contents) || default
   end
 end
