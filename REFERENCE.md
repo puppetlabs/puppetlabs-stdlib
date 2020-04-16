@@ -86,32 +86,32 @@ the provided regular expression.
 * [`intersection`](#intersection): This function returns an array of the intersection of two.
 * [`is_a`](#is_a): Boolean check to determine whether a variable is of a given data type.
 This is equivalent to the `=~` type checks.
+* [`is_absolute_path`](#is_absolute_path): Wrapper that calls the Puppet 3.x function of the same name.
 * [`is_absolute_path`](#is_absolute_path): **Deprecated:** Returns boolean true if the string represents an absolute path in the filesystem.
-* [`is_absolute_path`](#is_absolute_path): Wrapper that calls the Puppet 3.x funtion of the same name.
-* [`is_array`](#is_array): Wrapper that calls the Puppet 3.x funtion of the same name.
 * [`is_array`](#is_array): **Deprecated:** Returns true if the variable passed to this function is an array.
-* [`is_bool`](#is_bool): Wrapper that calls the Puppet 3.x funtion of the same name.
+* [`is_array`](#is_array): Wrapper that calls the Puppet 3.x function of the same name.
+* [`is_bool`](#is_bool): Wrapper that calls the Puppet 3.x function of the same name.
 * [`is_bool`](#is_bool): **Deprecated:** Returns true if the variable passed to this function is a boolean.
 * [`is_domain_name`](#is_domain_name): **Deprecated:** Returns true if the string passed to this function is
 a syntactically correct domain name.
 * [`is_email_address`](#is_email_address): **Deprecated:** Returns true if the string passed to this function is a valid email address.
-* [`is_float`](#is_float): Wrapper that calls the Puppet 3.x funtion of the same name.
 * [`is_float`](#is_float): **Deprecated:** Returns true if the variable passed to this function is a float.
+* [`is_float`](#is_float): Wrapper that calls the Puppet 3.x function of the same name.
 * [`is_function_available`](#is_function_available): **Deprecated:** Determines whether the Puppet runtime has access to a function by that name.
 * [`is_hash`](#is_hash): **Deprecated:** Returns true if the variable passed to this function is a hash.
 * [`is_integer`](#is_integer): **Deprecated:** Returns true if the variable passed to this function is an Integer or
 a decimal (base 10) integer in String form.
+* [`is_ip_address`](#is_ip_address): Wrapper that calls the Puppet 3.x function of the same name.
 * [`is_ip_address`](#is_ip_address): **Deprecated:** Returns true if the string passed to this function is a valid IP address.
-* [`is_ip_address`](#is_ip_address): Wrapper that calls the Puppet 3.x funtion of the same name.
-* [`is_ipv4_address`](#is_ipv4_address): Wrapper that calls the Puppet 3.x funtion of the same name.
 * [`is_ipv4_address`](#is_ipv4_address): **Deprecated:** Returns true if the string passed to this function is a valid IPv4 address.
+* [`is_ipv4_address`](#is_ipv4_address): Wrapper that calls the Puppet 3.x function of the same name.
+* [`is_ipv6_address`](#is_ipv6_address): Wrapper that calls the Puppet 3.x function of the same name.
 * [`is_ipv6_address`](#is_ipv6_address): **Deprecated:** Returns true if the string passed to this function is a valid IPv6 address.
-* [`is_ipv6_address`](#is_ipv6_address): Wrapper that calls the Puppet 3.x funtion of the same name.
 * [`is_mac_address`](#is_mac_address): **Deprecated:** Returns true if the string passed to this function is a valid mac address.
-* [`is_numeric`](#is_numeric): Wrapper that calls the Puppet 3.x funtion of the same name.
 * [`is_numeric`](#is_numeric): **Deprecated:** Returns true if the given value is numeric.
+* [`is_numeric`](#is_numeric): Wrapper that calls the Puppet 3.x function of the same name.
 * [`is_string`](#is_string): **Deprecated:** Returns true if the variable passed to this function is a string.
-* [`is_string`](#is_string): Wrapper that calls the Puppet 3.x funtion of the same name.
+* [`is_string`](#is_string): Wrapper that calls the Puppet 3.x function of the same name.
 * [`join`](#join): **Deprecated:** This function joins an array into a string using a separator.
 * [`join_keys_to_values`](#join_keys_to_values): This function joins each key of a hash to that key's corresponding value with a
 separator.
@@ -164,14 +164,15 @@ the provided regular expression.
 * [`sort`](#sort): Sorts strings and arrays lexically.
 * [`sprintf_hash`](#sprintf_hash): Uses sprintf with named references.
 * [`squeeze`](#squeeze): Returns a new string where runs of the same character that occur in this set are replaced by a single character.
+* [`stdlib::end_with`](#stdlibend_with): Returns true if str ends with one of the prefixes given. Each of the prefixes should be a String.
 * [`stdlib::extname`](#stdlibextname): Returns the Extension (the Portion of Filename in Path starting from the
 last Period).
 * [`stdlib::ip_in_range`](#stdlibip_in_range): Returns true if the ipaddress is within the given CIDRs
+* [`stdlib::start_with`](#stdlibstart_with): Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
 * [`str2bool`](#str2bool): This converts a string to a boolean.
 * [`str2saltedpbkdf2`](#str2saltedpbkdf2): Convert a string into a salted SHA512 PBKDF2 password hash like requred for OS X / macOS 10.8+
 * [`str2saltedsha512`](#str2saltedsha512): This converts a string to a salted-SHA512 password hash (which is used for
 OS X versions >= 10.7).
-* [`strftime`](#strftime): This function returns formatted time.
 * [`strip`](#strip): This function removes leading and trailing whitespace from a string or from
 every string inside an array.
 * [`suffix`](#suffix): This function applies a suffix to all elements in an array, or to the keys
@@ -199,32 +200,32 @@ for windows and unix style paths.
 * [`validate_array`](#validate_array): Validate that all passed values are array data structures. Abort catalog
 compilation if any value fails this check.
 * [`validate_augeas`](#validate_augeas): Perform validation of a string using an Augeas lens
+* [`validate_bool`](#validate_bool): Validate the passed value represents a boolean.
 * [`validate_bool`](#validate_bool): Validate that all passed values are either true or false. Abort catalog
 compilation if any value fails this check.
-* [`validate_bool`](#validate_bool): Validate the passed value represents a boolean.
 * [`validate_cmd`](#validate_cmd): Perform validation of a string with an external command.
 * [`validate_domain_name`](#validate_domain_name): Validate that all values passed are syntactically correct domain names.
 Fail compilation if any value fails this check.
 * [`validate_email_address`](#validate_email_address): Validate that all values passed are valid email addresses.
 Fail compilation if any value fails this check.
-* [`validate_hash`](#validate_hash): Validate the passed value represents a hash.
 * [`validate_hash`](#validate_hash): Validate that all passed values are hash data structures. Abort catalog
 compilation if any value fails this check.
+* [`validate_hash`](#validate_hash): Validate the passed value represents a hash.
 * [`validate_integer`](#validate_integer): Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
 * [`validate_integer`](#validate_integer): Validate the passed value represents an integer.
-* [`validate_ip_address`](#validate_ip_address): Validate the passed value represents an ip_address.
 * [`validate_ip_address`](#validate_ip_address): Validate that all values passed are valid IP addresses,
 regardless they are IPv4 or IPv6
 Fail compilation if any value fails this check.
+* [`validate_ip_address`](#validate_ip_address): Validate the passed value represents an ip_address.
 * [`validate_ipv4_address`](#validate_ipv4_address): Validate the passed value represents an ipv4_address.
 * [`validate_ipv4_address`](#validate_ipv4_address): Validate that all values passed are valid IPv4 addresses.
 Fail compilation if any value fails this check.
-* [`validate_ipv6_address`](#validate_ipv6_address): Validate the passed value represents an ipv6_address.
 * [`validate_ipv6_address`](#validate_ipv6_address): Validate that all values passed are valid IPv6 addresses.
 Fail compilation if any value fails this check.
+* [`validate_ipv6_address`](#validate_ipv6_address): Validate the passed value represents an ipv6_address.
 * [`validate_legacy`](#validate_legacy): Validate a value against both the target_type (new) and the previous_validation function (old).
-* [`validate_numeric`](#validate_numeric): Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
 * [`validate_numeric`](#validate_numeric): Validate the passed value represents a numeric value.
+* [`validate_numeric`](#validate_numeric): Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
 * [`validate_re`](#validate_re): Perform simple validation of a string against one or more regular
 expressions.
 * [`validate_re`](#validate_re): Perform validation of a string against one or more regular
@@ -233,8 +234,8 @@ expressions.
 An optional third parameter can be given the minimum length. It fails if the first argument is not a string or array of strings,
 and if arg 2 and arg 3 are not convertable to a number.
 * [`validate_slength`](#validate_slength): Validate that a passed string has length less/equal with the passed value
-* [`validate_string`](#validate_string): Validate that all passed values are string data structures.
 * [`validate_string`](#validate_string): Validate that all passed values are string data structures
+* [`validate_string`](#validate_string): Validate that all passed values are string data structures.
 * [`validate_x509_rsa_key_pair`](#validate_x509_rsa_key_pair): Validates a PEM-formatted X.509 certificate and RSA private key using
 OpenSSL. Verifies that the certficate's signature was created from the
 supplied key.
@@ -2686,6 +2687,30 @@ The expected type
 
 ### is_absolute_path
 
+Type: Ruby 4.x API
+
+Wrapper that calls the Puppet 3.x function of the same name.
+
+#### `is_absolute_path(Any $scope, Any *$args)`
+
+The is_absolute_path function.
+
+Returns: `Boolea` A boolean value returned from the called 3.x function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the wrapped method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the wrapped method
+
+### is_absolute_path
+
 Type: Ruby 3.x API
 
 This function works for windows and unix style paths.
@@ -2752,35 +2777,25 @@ $undefined = undef
 is_absolute_path($undefined)
 ```
 
-### is_absolute_path
+### is_array
 
-Type: Ruby 4.x API
+Type: Ruby 3.x API
 
-Wrapper that calls the Puppet 3.x funtion of the same name.
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
 
-#### `is_absolute_path(Any $scope, Any *$args)`
+#### `is_array()`
 
-The is_absolute_path function.
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
 
-Returns: `Boolea` A boolean value returned from the called 3.x function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the wrapped method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the wrapped method
+Returns: `Boolean` Returns `true` or `false`
 
 ### is_array
 
 Type: Ruby 4.x API
 
-Wrapper that calls the Puppet 3.x funtion of the same name.
+Wrapper that calls the Puppet 3.x function of the same name.
 
 #### `is_array(Any $scope, Any *$args)`
 
@@ -2800,25 +2815,11 @@ Data type: `Any`
 
 Any additional values that are to be passed to the wrapped method
 
-### is_array
-
-Type: Ruby 3.x API
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-#### `is_array()`
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-Returns: `Boolean` Returns `true` or `false`
-
 ### is_bool
 
 Type: Ruby 4.x API
 
-Wrapper that calls the Puppet 3.x funtion of the same name.
+Wrapper that calls the Puppet 3.x function of the same name.
 
 #### `is_bool(Any $scope, Any *$args)`
 
@@ -2882,9 +2883,23 @@ Returns: `Boolean` Returns `true` or `false`
 
 ### is_float
 
+Type: Ruby 3.x API
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+#### `is_float()`
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+Returns: `Boolean` Returns `true` or `false`
+
+### is_float
+
 Type: Ruby 4.x API
 
-Wrapper that calls the Puppet 3.x funtion of the same name.
+Wrapper that calls the Puppet 3.x function of the same name.
 
 #### `is_float(Any $scope, Any *$args)`
 
@@ -2903,20 +2918,6 @@ The main value that will be passed to the wrapped method
 Data type: `Any`
 
 Any additional values that are to be passed to the wrapped method
-
-### is_float
-
-Type: Ruby 3.x API
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-#### `is_float()`
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-Returns: `Boolean` Returns `true` or `false`
 
 ### is_function_available
 
@@ -2976,23 +2977,9 @@ Returns: `Boolean` Returns `true` or `false`
 
 ### is_ip_address
 
-Type: Ruby 3.x API
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-#### `is_ip_address()`
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-Returns: `Boolean` Returns `true` or `false`
-
-### is_ip_address
-
 Type: Ruby 4.x API
 
-Wrapper that calls the Puppet 3.x funtion of the same name.
+Wrapper that calls the Puppet 3.x function of the same name.
 
 #### `is_ip_address(Any $scope, Any *$args)`
 
@@ -3012,11 +2999,39 @@ Data type: `Any`
 
 Any additional values that are to be passed to the wrapped method
 
+### is_ip_address
+
+Type: Ruby 3.x API
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+#### `is_ip_address()`
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+Returns: `Boolean` Returns `true` or `false`
+
+### is_ipv4_address
+
+Type: Ruby 3.x API
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+#### `is_ipv4_address()`
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+Returns: `Boolean` Returns `true` or `false`
+
 ### is_ipv4_address
 
 Type: Ruby 4.x API
 
-Wrapper that calls the Puppet 3.x funtion of the same name.
+Wrapper that calls the Puppet 3.x function of the same name.
 
 #### `is_ipv4_address(Any $scope, Any *$args)`
 
@@ -3036,39 +3051,11 @@ Data type: `Any`
 
 Any additional values that are to be passed to the wrapped method
 
-### is_ipv4_address
-
-Type: Ruby 3.x API
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-#### `is_ipv4_address()`
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-Returns: `Boolean` Returns `true` or `false`
-
-### is_ipv6_address
-
-Type: Ruby 3.x API
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-#### `is_ipv6_address()`
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-Returns: `Boolean` Returns `true` or `false`
-
 ### is_ipv6_address
 
 Type: Ruby 4.x API
 
-Wrapper that calls the Puppet 3.x funtion of the same name.
+Wrapper that calls the Puppet 3.x function of the same name.
 
 #### `is_ipv6_address(Any $scope, Any *$args)`
 
@@ -3088,6 +3075,20 @@ Data type: `Any`
 
 Any additional values that are to be passed to the wrapped method
 
+### is_ipv6_address
+
+Type: Ruby 3.x API
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+#### `is_ipv6_address()`
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+Returns: `Boolean` Returns `true` or `false`
+
 ### is_mac_address
 
 Type: Ruby 3.x API
@@ -3101,30 +3102,6 @@ Type: Ruby 3.x API
 [`validate_legacy`](#validate_legacy).
 
 Returns: `Boolean` Returns `true` or `false`
-
-### is_numeric
-
-Type: Ruby 4.x API
-
-Wrapper that calls the Puppet 3.x funtion of the same name.
-
-#### `is_numeric(Any $scope, Any *$args)`
-
-The is_numeric function.
-
-Returns: `Boolea` A boolean value returned from the called 3.x function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the wrapped method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the wrapped method
 
 ### is_numeric
 
@@ -3160,6 +3137,30 @@ it must be followed by at least one digit.
 
 Returns: `Boolean` Returns `true` or `false`
 
+### is_numeric
+
+Type: Ruby 4.x API
+
+Wrapper that calls the Puppet 3.x function of the same name.
+
+#### `is_numeric(Any $scope, Any *$args)`
+
+The is_numeric function.
+
+Returns: `Boolea` A boolean value returned from the called 3.x function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the wrapped method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the wrapped method
+
 ### is_string
 
 Type: Ruby 3.x API
@@ -3178,7 +3179,7 @@ Returns: `Boolean` Returns `true` or `false`
 
 Type: Ruby 4.x API
 
-Wrapper that calls the Puppet 3.x funtion of the same name.
+Wrapper that calls the Puppet 3.x function of the same name.
 
 #### `is_string(Any $scope, Any *$args)`
 
@@ -4374,6 +4375,36 @@ The squeeze function.
 
 Returns: `Any` a new string where runs of the same character that occur in this set are replaced by a single character.
 
+### stdlib::end_with
+
+Type: Ruby 4.x API
+
+@example
+   'foobar'.stdlib::end_with('bar') => true
+   'foobar'.stdlib::end_with('foo') => false
+   'foobar'.stdlib::end_with(['foo', 'baz']) => false
+
+#### `stdlib::end_with(String[1] $test_string, Variant[String[1],Array[String[1], 1]] $suffixes)`
+
+@example
+   'foobar'.stdlib::end_with('bar') => true
+   'foobar'.stdlib::end_with('foo') => false
+   'foobar'.stdlib::end_with(['foo', 'baz']) => false
+
+Returns: `Boolean` True or False
+
+##### `test_string`
+
+Data type: `String[1]`
+
+The string to check
+
+##### `suffixes`
+
+Data type: `Variant[String[1],Array[String[1], 1]]`
+
+The suffixes to check
+
 ### stdlib::extname
 
 Type: Ruby 4.x API
@@ -4462,6 +4493,50 @@ Data type: `Variant[String, Array]`
 
 One CIDR or an array of CIDRs
 defining the range(s) to check against
+
+### stdlib::start_with
+
+Type: Ruby 4.x API
+
+Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
+
+#### Examples
+
+##### 
+
+```puppet
+'foobar'.stdlib::start_with('foo') => true
+'foobar'.stdlib::start_with('bar') => false
+'foObar'.stdlib::start_with(['bar', 'baz']) => false
+```
+
+#### `stdlib::start_with(String[1] $test_string, Variant[String[1],Array[String[1], 1]] $prefixes)`
+
+The stdlib::start_with function.
+
+Returns: `Boolean` True or False
+
+##### Examples
+
+###### 
+
+```puppet
+'foobar'.stdlib::start_with('foo') => true
+'foobar'.stdlib::start_with('bar') => false
+'foObar'.stdlib::start_with(['bar', 'baz']) => false
+```
+
+##### `test_string`
+
+Data type: `String[1]`
+
+The string to check
+
+##### `prefixes`
+
+Data type: `Variant[String[1],Array[String[1], 1]]`
+
+The prefixes to check.
 
 ### str2bool
 
@@ -4567,144 +4642,6 @@ of a salted-SHA512 password hash that can be inserted into your Puppet
 manifests as a valid password attribute.
 
 Returns: `Any` converted string as a hex version of a salted-SHA512 password hash
-
-### strftime
-
-Type: Ruby 3.x API
-
-> *Note:* that since Puppet 4.8.0 the function with the same name in Puppet will be used instead of this
-function. It also supports the Timestamp and Timespan data types in the Puppet language.
-
-**Format meaning:**
-
-    %a - The abbreviated weekday name (``Sun'')
-    %A - The  full  weekday  name (``Sunday'')
-    %b - The abbreviated month name (``Jan'')
-    %B - The  full  month  name (``January'')
-    %c - The preferred local date and time representation
-    %C - Century (20 in 2009)
-    %d - Day of the month (01..31)
-    %D - Date (%m/%d/%y)
-    %e - Day of the month, blank-padded ( 1..31)
-    %F - Equivalent to %Y-%m-%d (the ISO 8601 date format)
-    %h - Equivalent to %b
-    %H - Hour of the day, 24-hour clock (00..23)
-    %I - Hour of the day, 12-hour clock (01..12)
-    %j - Day of the year (001..366)
-    %k - hour, 24-hour clock, blank-padded ( 0..23)
-    %l - hour, 12-hour clock, blank-padded ( 0..12)
-    %L - Millisecond of the second (000..999)
-    %m - Month of the year (01..12)
-    %M - Minute of the hour (00..59)
-    %n - Newline (\n)
-    %N - Fractional seconds digits, default is 9 digits (nanosecond)
-            %3N  millisecond (3 digits)
-            %6N  microsecond (6 digits)
-            %9N  nanosecond (9 digits)
-    %p - Meridian indicator (``AM''  or  ``PM'')
-    %P - Meridian indicator (``am''  or  ``pm'')
-    %r - time, 12-hour (same as %I:%M:%S %p)
-    %R - time, 24-hour (%H:%M)
-    %s - Number of seconds since 1970-01-01 00:00:00 UTC.
-    %S - Second of the minute (00..60)
-    %t - Tab character (\t)
-    %T - time, 24-hour (%H:%M:%S)
-    %u - Day of the week as a decimal, Monday being 1. (1..7)
-    %U - Week  number  of the current year,
-            starting with the first Sunday as the first
-            day of the first week (00..53)
-    %v - VMS date (%e-%b-%Y)
-    %V - Week number of year according to ISO 8601 (01..53)
-    %W - Week  number  of the current year,
-            starting with the first Monday as the first
-            day of the first week (00..53)
-    %w - Day of the week (Sunday is 0, 0..6)
-    %x - Preferred representation for the date alone, no time
-    %X - Preferred representation for the time alone, no date
-    %y - Year without a century (00..99)
-    %Y - Year with century
-    %z - Time zone as  hour offset from UTC (e.g. +0900)
-    %Z - Time zone name
-    %% - Literal ``%'' character
-
-#### Examples
-
-##### **Usage**
-
-```puppet
-
-To return the time since epoch: strftime("%s")
-To return the date: strftime("%Y-%m-%d")
-```
-
-#### `strftime()`
-
-> *Note:* that since Puppet 4.8.0 the function with the same name in Puppet will be used instead of this
-function. It also supports the Timestamp and Timespan data types in the Puppet language.
-
-**Format meaning:**
-
-    %a - The abbreviated weekday name (``Sun'')
-    %A - The  full  weekday  name (``Sunday'')
-    %b - The abbreviated month name (``Jan'')
-    %B - The  full  month  name (``January'')
-    %c - The preferred local date and time representation
-    %C - Century (20 in 2009)
-    %d - Day of the month (01..31)
-    %D - Date (%m/%d/%y)
-    %e - Day of the month, blank-padded ( 1..31)
-    %F - Equivalent to %Y-%m-%d (the ISO 8601 date format)
-    %h - Equivalent to %b
-    %H - Hour of the day, 24-hour clock (00..23)
-    %I - Hour of the day, 12-hour clock (01..12)
-    %j - Day of the year (001..366)
-    %k - hour, 24-hour clock, blank-padded ( 0..23)
-    %l - hour, 12-hour clock, blank-padded ( 0..12)
-    %L - Millisecond of the second (000..999)
-    %m - Month of the year (01..12)
-    %M - Minute of the hour (00..59)
-    %n - Newline (\n)
-    %N - Fractional seconds digits, default is 9 digits (nanosecond)
-            %3N  millisecond (3 digits)
-            %6N  microsecond (6 digits)
-            %9N  nanosecond (9 digits)
-    %p - Meridian indicator (``AM''  or  ``PM'')
-    %P - Meridian indicator (``am''  or  ``pm'')
-    %r - time, 12-hour (same as %I:%M:%S %p)
-    %R - time, 24-hour (%H:%M)
-    %s - Number of seconds since 1970-01-01 00:00:00 UTC.
-    %S - Second of the minute (00..60)
-    %t - Tab character (\t)
-    %T - time, 24-hour (%H:%M:%S)
-    %u - Day of the week as a decimal, Monday being 1. (1..7)
-    %U - Week  number  of the current year,
-            starting with the first Sunday as the first
-            day of the first week (00..53)
-    %v - VMS date (%e-%b-%Y)
-    %V - Week number of year according to ISO 8601 (01..53)
-    %W - Week  number  of the current year,
-            starting with the first Monday as the first
-            day of the first week (00..53)
-    %w - Day of the week (Sunday is 0, 0..6)
-    %x - Preferred representation for the date alone, no time
-    %X - Preferred representation for the time alone, no date
-    %y - Year without a century (00..99)
-    %Y - Year with century
-    %z - Time zone as  hour offset from UTC (e.g. +0900)
-    %Z - Time zone name
-    %% - Literal ``%'' character
-
-Returns: `Any` converted time according to the directives in the given format string
-
-##### Examples
-
-###### **Usage**
-
-```puppet
-
-To return the time since epoch: strftime("%s")
-To return the date: strftime("%Y-%m-%d")
-```
 
 ### strip
 
@@ -4931,11 +4868,30 @@ Convert data structure and output to pretty JSON
     content => to_json_pretty({
       param_one => 'value',
       param_two => undef,
-    }),
+    }, true),
+  }
+
+* how to output pretty JSON using tabs for indentation
+  file { '/tmp/my.json':
+    ensure  => file,
+    content => to_json_pretty({
+      param_one => 'value',
+      param_two => {
+        param_more => 42,
+      },
+    }, nil, {indent => '    '}),
   }
 ```
 
-#### `to_json_pretty(Variant[Hash, Array] $data, Optional[Boolean] $skip_undef)`
+#### `to_json_pretty(Variant[Hash, Array] $data, Optional[Optional[Boolean]] $skip_undef, Optional[Struct[{
+indent       => Optional[String],
+space        => Optional[String],
+space_before => Optional[String],
+object_nl    => Optional[String],
+array_nl     => Optional[String],
+allow_nan    => Optional[Boolean],
+max_nesting  => Optional[Integer[-1,default]],
+}]] $opts)`
 
 The to_json_pretty function.
 
@@ -4958,7 +4914,18 @@ Returns: `Any` converted data to pretty json
     content => to_json_pretty({
       param_one => 'value',
       param_two => undef,
-    }),
+    }, true),
+  }
+
+* how to output pretty JSON using tabs for indentation
+  file { '/tmp/my.json':
+    ensure  => file,
+    content => to_json_pretty({
+      param_one => 'value',
+      param_two => {
+        param_more => 42,
+      },
+    }, nil, {indent => '    '}),
   }
 ```
 
@@ -4970,9 +4937,25 @@ data structure which needs to be converted to pretty json
 
 ##### `skip_undef`
 
-Data type: `Optional[Boolean]`
+Data type: `Optional[Optional[Boolean]]`
 
 value `true` or `false`
+
+##### `opts`
+
+Data type: `Optional[Struct[{
+indent       => Optional[String],
+space        => Optional[String],
+space_before => Optional[String],
+object_nl    => Optional[String],
+array_nl     => Optional[String],
+allow_nan    => Optional[Boolean],
+max_nesting  => Optional[Integer[-1,default]],
+}]]`
+
+hash-map of settings passed to JSON.pretty_generate, see
+https://ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/JSON.html#method-i-generate.
+Note that `max_nesting` doesn't take the value `false`; use `-1` instead.
 
 ### to_yaml
 
@@ -5564,6 +5547,31 @@ A helpful error message can be returned like this:
 
 ### validate_bool
 
+Type: Ruby 4.x API
+
+Validate the passed value represents a boolean.
+
+#### `validate_bool(Any $scope, Any *$args)`
+
+The validate_bool function.
+
+Returns: `Boolean` `true` or `false`
+A boolean value returned from the called function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the method
+
+### validate_bool
+
 Type: Ruby 3.x API
 
 Validate that all passed values are either true or false. Abort catalog
@@ -5614,31 +5622,6 @@ The following values will fail, causing compilation to abort:
     validate_bool("true")
     validate_bool($some_array)
 ```
-
-### validate_bool
-
-Type: Ruby 4.x API
-
-Validate the passed value represents a boolean.
-
-#### `validate_bool(Any $scope, Any *$args)`
-
-The validate_bool function.
-
-Returns: `Boolean` `true` or `false`
-A boolean value returned from the called function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the method
 
 ### validate_cmd
 
@@ -5800,30 +5783,6 @@ The following values will fail, causing compilation to abort:
 
 ### validate_hash
 
-Type: Ruby 4.x API
-
-Validate the passed value represents a hash.
-
-#### `validate_hash(Any $scope, Any *$args)`
-
-The validate_hash function.
-
-Returns: `Any` A boolean value (`true` or `false`) returned from the called function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the method
-
-### validate_hash
-
 Type: Ruby 3.x API
 
 Validate that all passed values are hash data structures. Abort catalog
@@ -5872,6 +5831,30 @@ The following values will fail, causing compilation to abort:
     $undefined = undef
     validate_hash($undefined)
 ```
+
+### validate_hash
+
+Type: Ruby 4.x API
+
+Validate the passed value represents a hash.
+
+#### `validate_hash(Any $scope, Any *$args)`
+
+The validate_hash function.
+
+Returns: `Any` A boolean value (`true` or `false`) returned from the called function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the method
 
 ### validate_integer
 
@@ -6014,31 +5997,6 @@ Any additional values that are to be passed to the method
 
 ### validate_ip_address
 
-Type: Ruby 4.x API
-
-Validate the passed value represents an ip_address.
-
-#### `validate_ip_address(Any $scope, Any *$args)`
-
-The validate_ip_address function.
-
-Returns: `Boolean` `true` or `false`
-A boolean value returned from the called function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the method
-
-### validate_ip_address
-
 Type: Ruby 3.x API
 
 Validate that all values passed are valid IP addresses,
@@ -6094,6 +6052,31 @@ The following values will fail, causing compilation to abort:
   $some_array = [ 1, true, false, "garbage string", "3ffe:505:2" ]
   validate_ip_address($some_array)
 ```
+
+### validate_ip_address
+
+Type: Ruby 4.x API
+
+Validate the passed value represents an ip_address.
+
+#### `validate_ip_address(Any $scope, Any *$args)`
+
+The validate_ip_address function.
+
+Returns: `Boolean` `true` or `false`
+A boolean value returned from the called function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the method
 
 ### validate_ipv4_address
 
@@ -6169,31 +6152,6 @@ The following values will fail, causing compilation to abort:
 
 ### validate_ipv6_address
 
-Type: Ruby 4.x API
-
-Validate the passed value represents an ipv6_address.
-
-#### `validate_ipv6_address(Any $scope, Any *$args)`
-
-The validate_ipv6_address function.
-
-Returns: `Boolean` `true` or `false`
-A boolean value returned from the called function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the method
-
-### validate_ipv6_address
-
 Type: Ruby 3.x API
 
 Validate that all values passed are valid IPv6 addresses.
@@ -6240,6 +6198,31 @@ The following values will fail, causing compilation to abort:
   $some_array = [ true, false, "garbage string", "1.2.3.4" ]
   validate_ipv6_address($some_array)
 ```
+
+### validate_ipv6_address
+
+Type: Ruby 4.x API
+
+Validate the passed value represents an ipv6_address.
+
+#### `validate_ipv6_address(Any $scope, Any *$args)`
+
+The validate_ipv6_address function.
+
+Returns: `Boolean` `true` or `false`
+A boolean value returned from the called function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the method
 
 ### validate_legacy
 
@@ -6321,30 +6304,6 @@ Any additional values that are to be passed to the method
 
 ### validate_numeric
 
-Type: Ruby 3.x API
-
-The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
-The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
-If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
-if (all elements of) the first argument are greater or equal to the given minimum.
-It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
-
-For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
-
-#### `validate_numeric()`
-
-The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
-The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
-If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
-if (all elements of) the first argument are greater or equal to the given minimum.
-It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
-
-For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
-
-Returns: `Any` Validate that the first argument is a numeric value (or an array of numeric values). Fail compilation if any of the checks fail.
-
-### validate_numeric
-
 Type: Ruby 4.x API
 
 Validate the passed value represents a numeric value.
@@ -6367,6 +6326,30 @@ The main value that will be passed to the method
 Data type: `Any`
 
 Any additional values that are to be passed to the method
+
+### validate_numeric
+
+Type: Ruby 3.x API
+
+The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
+The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+if (all elements of) the first argument are greater or equal to the given minimum.
+It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
+
+For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
+
+#### `validate_numeric()`
+
+The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
+The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+if (all elements of) the first argument are greater or equal to the given minimum.
+It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
+
+For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
+
+Returns: `Any` Validate that the first argument is a numeric value (or an array of numeric values). Fail compilation if any of the checks fail.
 
 ### validate_re
 
@@ -6545,31 +6528,6 @@ Any additional values that are to be passed to the method
 
 ### validate_string
 
-Type: Ruby 4.x API
-
-Validate that all passed values are string data structures.
-
-#### `validate_string(Any $scope, Any *$args)`
-
-The validate_string function.
-
-Returns: `Boolean` `true` or `false`
-A boolean value returned from the called function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the method
-
-### validate_string
-
 Type: Ruby 3.x API
 
 > *Note:*
@@ -6626,6 +6584,31 @@ The following values will fail, causing compilation to abort:
     validate_string(true)
     validate_string([ 'some', 'array' ])
 ```
+
+### validate_string
+
+Type: Ruby 4.x API
+
+Validate that all passed values are string data structures.
+
+#### `validate_string(Any $scope, Any *$args)`
+
+The validate_string function.
+
+Returns: `Boolean` `true` or `false`
+A boolean value returned from the called function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the method
 
 ### validate_x509_rsa_key_pair
 
