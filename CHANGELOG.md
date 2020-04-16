@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v6.3.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v6.3.0) (2020-04-15)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v6.2.0...v6.3.0)
+
+### Added
+
+- Add start\_with function [\#1086](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1086) ([baurmatt](https://github.com/baurmatt))
+- stdlib::end\_with: create String.end\_with function [\#1084](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1084) ([b4ldr](https://github.com/b4ldr))
+- Adding str2saltedpbkdf2 function [\#1040](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1040) ([genebean](https://github.com/genebean))
+
+### Fixed
+
+- \(MODULES-10623\) explicitly top-scope calls to JSON methods [\#1101](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1101) ([tkishel](https://github.com/tkishel))
+- \[IAC-547\] Remove strftime from stdlib as it has already been replaced by the puppet agent since 4.8.0 [\#1097](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1097) ([carabasdaniel](https://github.com/carabasdaniel))
+- Add correct namespace for start\_with function [\#1095](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1095) ([baurmatt](https://github.com/baurmatt))
+- intersection: show types in exception due to invalid arguments [\#1077](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1077) ([runejuhl](https://github.com/runejuhl))
+- Make type aliases stricter [\#1066](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1066) ([pegasd](https://github.com/pegasd))
+
 ## [v6.2.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v6.2.0) (2019-12-10)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v6.1.0...v6.2.0)
