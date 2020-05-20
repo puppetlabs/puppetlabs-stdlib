@@ -65,7 +65,8 @@
       "operatingsystemrelease": [
         "14.04",
         "16.04",
-        "18.04"
+        "18.04",
+        "20.04"
       ]
     },
     {
@@ -107,5 +108,5 @@
   "description": "Standard Library for Puppet Modules",
   "pdk-version": "1.17.0",
   "template-url": "https://github.com/puppetlabs/pdk-templates#master",
-  "template-ref": "heads/master-0-g095317c"
+  "template-ref": "heads/master-0-g88b05c7"
 }
