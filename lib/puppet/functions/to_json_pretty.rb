@@ -73,7 +73,7 @@ max_nesting  => Optional[Integer[-1,default]],
         data = data.reject { |_, value| value.nil? }
       end
     end
-    # Call ::JSON to ensure it references the JSON library from Ruby’s standard library
+    # Call ::JSON to ensure it references the JSON library from Ruby's standard library
     # instead of a random JSON namespace that might be in scope due to user code.
     ::JSON.pretty_generate(data, opts) << "\n"
   end
