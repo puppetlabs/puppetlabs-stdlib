@@ -2,7 +2,7 @@
 version: 1.1.x.{build}
 branches:
   only:
-    - master
+    - main
     - release
 skip_commits:
   message: /^\(?doc\)?.*/
