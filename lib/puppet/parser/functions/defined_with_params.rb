@@ -48,16 +48,32 @@ DOC
     title = nil
   end
 
-  resource = findresource(type, title)
-  if resource
+  resources = if title.empty?
+                catalog.resources.select { |r| r.type == type }
+              else
+                [findresource(type, title)]
+              end
+
+  resources.compact.each do |res|
+    # If you call this from within a defined type, it will find itself
+    next if res.to_s == resource.to_s
+
     matches = params.map do |key, value|
       # eql? avoids bugs caused by monkeypatching in puppet
-      resource_is_undef = resource[key].eql?(:undef) || resource[key].nil?
+      res_is_undef = res[key].eql?(:undef) || res[key].nil?
       value_is_undef = value.eql?(:undef) || value.nil?
-      (resource_is_undef && value_is_undef) || (resource[key] == value)
+      found_match = (res_is_undef && value_is_undef) || (res[key] == value)
+
+      Puppet.debug("Matching resource is #{res}") if found_match
+
+      found_match
     end
     ret = params.empty? || !matches.include?(false)
+
+    break if ret
   end
-  Puppet.debug("Resource #{reference} was not determined to be defined")
+
+  Puppet.debug("Resource #{reference} was not determined to be defined") unless ret
+
   ret
 end
