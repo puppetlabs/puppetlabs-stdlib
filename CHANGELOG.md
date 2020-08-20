@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v6.4.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v6.3.0) (2020-08-20)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v6.3.0...v6.4.0)
+
+### Added
+
+- \(IAC-746\) - Add ubuntu 20.04 support [\#1110](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1110) ([david22swan](https://github.com/david22swan))
+- \(IAC-973\) - Update travis/appveyor to run on new default branch `main` [\#1117](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1117) ([david22swan](https://github.com/david22swan))
+
+### Fixed
+
+- \(MODULES-10729\) defined_with_params - unnamed type [\#1115](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1115) ([trevor-vaughan](https://github.com/trevor-vaughan))
+- \(MODULES-10781\) Fix defined type defined_with_params() [\#1122](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1122) ([trevor-vaughan](https://github.com/trevor-vaughan))
+
 ## [v6.3.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v6.3.0) (2020-04-15)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v6.2.0...v6.3.0)
