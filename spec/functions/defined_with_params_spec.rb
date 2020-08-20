@@ -94,6 +94,26 @@ describe 'defined_with_params' do
     }
   end
 
+  describe 'when called from within a defined type looking for a defined type of the same type' do
+    let :pre_condition do
+      <<-PRECOND
+        define test::deftype(
+          Optional $port = undef
+        ) {
+          if defined_with_params(Test::Deftype, { 'port' => $port }) {
+            fail('Ruh Roh Shaggy')
+          }
+        }
+
+        test::deftype { 'foo': }
+        test::deftype { 'bar': port => 200 }
+      PRECOND
+    end
+
+    # Testing to make sure that the internal logic handles this case via the pre_condition
+    it { is_expected.to run.with_params('NoOp[noop]', {}).and_return(false) }
+  end
+
   describe 'when passed a class' do
     let :pre_condition do
       'class test () { } class { "test": }'
