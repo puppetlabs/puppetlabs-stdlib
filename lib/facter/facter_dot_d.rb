@@ -207,10 +207,8 @@ if mdata
 
       # Windows has a different configuration directory that defaults to a vendor
       # specific sub directory of the %COMMON_APPDATA% directory.
-      if Dir.const_defined? 'COMMON_APPDATA' # rubocop:disable Metrics/BlockNesting : Any attempt to alter this breaks it
-        windows_facts_dot_d = File.join(Dir::COMMON_APPDATA, 'PuppetLabs', 'facter', 'facts.d')
-        Facter::Util::DotD.new(windows_facts_dot_d).create
-      end
+      windows_facts_dot_d = File.join(ENV['ALLUSERSPROFILE'], 'PuppetLabs', 'facter', 'facts.d')
+      Facter::Util::DotD.new(windows_facts_dot_d).create
     end
   end
 end
