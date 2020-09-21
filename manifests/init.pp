@@ -8,5 +8,5 @@
 # of stdlib::stages.
 #
 class stdlib {
-  include ::stdlib::stages
+  include stdlib::stages
 }

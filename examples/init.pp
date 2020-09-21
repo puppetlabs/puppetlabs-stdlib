@@ -1,1 +1,1 @@
-include ::stdlib
+include stdlib
