@@ -1,6 +1,6 @@
 {
   "name": "puppetlabs-stdlib",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "author": "puppetlabs",
   "summary": "Standard library of resources for Puppet modules.",
   "license": "Apache-2.0",
