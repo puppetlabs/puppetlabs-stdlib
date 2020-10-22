@@ -10,7 +10,7 @@ Puppet::Functions.create_function(:'stdlib::end_with') do
   #    'foobar'.stdlib::end_with(['foo', 'baz']) => false
   # @return [Boolean] True or False
   dispatch :end_with do
-    param 'String[1]', :test_string
+    param 'String', :test_string
     param 'Variant[String[1],Array[String[1], 1]]', :suffixes
     return_type 'Boolean'
   end
