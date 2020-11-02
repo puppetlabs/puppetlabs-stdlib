@@ -10,7 +10,7 @@ Puppet::Functions.create_function(:'stdlib::start_with') do
   #   'foObar'.stdlib::start_with(['bar', 'baz']) => false
   # @return [Boolean] True or False
   dispatch :start_with do
-    param 'String[1]', :test_string
+    param 'String', :test_string
     param 'Variant[String[1],Array[String[1], 1]]', :prefixes
     return_type 'Boolean'
   end
