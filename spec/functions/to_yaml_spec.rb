@@ -17,4 +17,6 @@ describe 'to_yaml' do
 
   it { is_expected.to run.with_params('‰').and_return("--- \"‰\"\n") }
   it { is_expected.to run.with_params('∇').and_return("--- \"∇\"\n") }
+
+  it { is_expected.to run.with_params({ 'foo' => { 'bar' => true, 'baz' => false } }, :indentation => 4).and_return("---\nfoo:\n    bar: true\n    baz: false\n") }
 end
