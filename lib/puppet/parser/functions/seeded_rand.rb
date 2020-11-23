@@ -28,5 +28,5 @@ DOC
 
   max = args[0].to_i
   seed = Digest::MD5.hexdigest(args[1]).hex
-  Puppet::Util.deterministic_rand(seed, max)
+  Puppet::Util.deterministic_rand_int(seed, max)
 end
