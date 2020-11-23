@@ -27,6 +27,7 @@ Puppet modules make heavy use of this standard library. The stdlib module adds t
  * Defined types
  * Data types
  * Providers
+ * Templates
 
 > *Note:* As of version 3.7, Puppet Enterprise no longer includes the stdlib module. If you're running Puppet Enterprise, you should install the most recent release of stdlib for compatibility with Puppet modules.
 
@@ -555,6 +556,42 @@ Determines the root home directory, which depends on your operating system. Gene
 #### `service_provider`
 
 Returns the default provider Puppet uses to manage services on this system
+
+<a id="templates"></a>
+### EPP Templates
+
+You can include a standardized comment header in your `.epp` or `.erb` templates with the following:
+
+```puppet
+<%= scope.call_function('epp', ["stdlib/puppet_managed.epp"]) %>
+```
+
+The EPP template takes the following optional parameters:
+
+- String  $message = 'WARNING This file is managed by puppet. Do not edit!',
+- String  $begin_line = '#',
+- String  $end_line = '',
+- Int     $line_length = 70,
+- String  $metadata_title = 'Metadata:',
+- Hash    $metadata = {}
+
+Example:
+
+```puppet
+<%= scope.call_function('epp', ["stdlib/puppet_managed.epp"], {'metadata' => {'fqdn' => $::fqdn}}) %>
+```
+
+Should produce
+```shell
+#
+#
+# WARNING This file is managed by puppet. Do not edit!
+#
+# Metadata:
+#  fqdn=hostname.example.com
+#
+#
+```
 
 ## Limitations
 

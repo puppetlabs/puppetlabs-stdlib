@@ -1,0 +1,20 @@
+<%- | String  $message = 'WARNING This file is managed by puppet. Do not edit!',
+      String  $begin_line = '#',
+      String  $end_line = '',
+      Int     $line_length = 70,
+      String  $metadata_title = 'Metadata:',
+      Hash    $metadata = {}
+| -%>
+<%- $comment_length = $begin_line.length() + $end_line.length()  -%>
+<%= $begin_line %><% if $end_line != '' %><% ($comment_length...$line_length).step(1).each |a|%> <% end %><% $end_line %><% end %>
+<%= $begin_line %><% if $end_line != '' %><% ($comment_length...$line_length).step(1).each |a|%> <% end %><% $end_line %><% end %>
+<%= $begin_line %> <% $message %><% if $end_line != '' %><% $tmp = $comment_length + $message.length() + 1%><% ($tmp...$line_length).step(1).each |a|%> <% end %><% $end_line %><% end %>
+<% if $metadata -%>
+<%= $begin_line %><% if $end_line != '' %><% ($comment_length...$line_length).step(1).each |a|%> <% end %><% $end_line %><% end %>
+<%= $begin_line %> <%= $metadata_title %><% if $end_line != '' %><% $tmp = $comment_length + $message.length() + 1 %><% ($tmp...$line_length).step(1).each |a|%> <% end %><% $end_line %><% end %>
+<% $metadata.each | $key | -%>
+<%= $begin_line %>  <% $key %>=<%= $metadata[$key] %><% if $end_line != '' %><% $tmp = $comment_length + $key.length() $metadata[$key].length() + 3 %><% ($tmp...$line_length).step(1).each |a|%> <% end %><% $end_line %><% end %>
+<% end -%>
+<% end -%>
+<%= $begin_line %><% if $end_line != '' %><% ($comment_length...$line_length).step(1).each |a|%> <% end %><% $end_line %><% end %>
+<%= $begin_line %><% if $end_line != '' %><% ($comment_length...$line_length).step(1).each |a|%> <% end %><% $end_line %><% end %>
