@@ -5,7 +5,7 @@
   default_configs:
     inherit_from: ".rubocop_todo.yml"
 ".travis.yml":
-  global_env: 
+  global_env:
     - HONEYCOMB_WRITEKEY="7f3c63a70eecc61d635917de46bea4e6",HONEYCOMB_DATASET="litmus tests"
   deploy_to_forge:
     enabled: false
@@ -68,4 +68,9 @@ spec/spec_helper.rb:
 .gitpod.Dockerfile:
   unmanaged: false
 .gitpod.yml:
+  unmanaged: false
+
+.github/workflows/nightly.yml:
+  unmanaged: false
+.github/workflows/pr_test.yml:
   unmanaged: false
