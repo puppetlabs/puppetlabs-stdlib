@@ -220,7 +220,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Slack Workflow Notification
-        uses: Gamesight/slack-workflow-status@master
+        uses: Gamesight/slack-workflow-status@main
         with:
           # Required Input
           repo_token: ${{ secrets.GITHUB_TOKEN }}

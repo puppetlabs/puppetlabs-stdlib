@@ -726,7 +726,7 @@ PuppetまたはPuppet agentが稼働しているノードについて設定さ�
 
 #### `puppet_server`
 
-Puppet agentの`server`値を返します。この値は、agentが通信するPuppet masterのホストネームです。
+Puppet agentの`server`値を返します。この値は、agentが通信するPuppet serverのホストネームです。
 
 #### `root_home`
 
@@ -2065,7 +2065,7 @@ Puppet 4.0.0以降では、内蔵の[`map`](https://docs.puppet.com/puppet/lates
 
 #### `pry`
 
-現在のスコープオブジェクトでpryデバッグセッションを起動します。コンパイル中の特定ポイントにおけるマニフェストコードのデバッグに役立ちます。`puppet apply`の実行中またはフォアグラウンドでPuppet masterを実行しているときにのみ使用する必要があります。PuppetのRubyGemsに`pry` gemがインストールされている必要があります。
+現在のスコープオブジェクトでpryデバッグセッションを起動します。コンパイル中の特定ポイントにおけるマニフェストコードのデバッグに役立ちます。`puppet apply`の実行中またはフォアグラウンドでPuppet serverを実行しているときにのみ使用する必要があります。PuppetのRubyGemsに`pry` gemがインストールされている必要があります。
 
 *例:*
 
@@ -2095,7 +2095,7 @@ crypt関数を用いてパスワードをハッシュします。ほとんどの
 
 この関数の第3の引数は、使用するソルトです。
 
-この関数は、Puppet masterのcrypt(3)実装を使用しています。お使いの環境に複数の異なるオペレーティングシステムが含まれている場合は、この関数を使用する前に、互換性があることを確認してください。
+この関数は、Puppet serverのcrypt(3)実装を使用しています。お使いの環境に複数の異なるオペレーティングシステムが含まれている場合は、この関数を使用する前に、互換性があることを確認してください。
 
 *タイプ*: 右辺値
 
@@ -3109,7 +3109,7 @@ Puppet 4.0.0以降では、インデックスで配列をスライスし、言�
 
 Puppet Enterprise 3.7では、stdlibモジュールがPEに含まれていません。PEユーザは、Puppetと互換性のあるstdlibの最新リリースをインストールする必要があります。
 
-サポートされているオペレーティングシステムの一覧については、[metadata.json](https://github.com/puppetlabs/puppetlabs-stdlib/blob/master/metadata.json)を参照してください。
+サポートされているオペレーティングシステムの一覧については、[metadata.json](https://github.com/puppetlabs/puppetlabs-stdlib/blob/main/metadata.json)を参照してください。
 
 ### バージョン互換性
 

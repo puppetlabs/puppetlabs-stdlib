@@ -29,7 +29,7 @@ module Puppet::Parser::Functions
     if $stdout.isatty
       binding.pry # rubocop:disable Lint/Debugger
     else
-      Puppet.warning 'pry(): cowardly refusing to start the debugger on a daemonized master'
+      Puppet.warning 'pry(): cowardly refusing to start the debugger on a daemonized server'
     end
   end
 end
