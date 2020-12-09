@@ -3,12 +3,12 @@
  * Work in a topic branch
  * Submit a github pull request
  * Address any comments / feeback
- * Merge into master using --no-ff
+ * Merge into main using --no-ff
 
 # Releasing this module #
 
  * This module adheres to http://semver.org/
- * Look for API breaking changes using git diff vX.Y.Z..master
+ * Look for API breaking changes using git diff vX.Y.Z..
    * If no API breaking changes, the minor version may be bumped.
    * If there are API breaking changes, the major version must be bumped.
    * If there are only small minor changes, the patch version may be bumped.

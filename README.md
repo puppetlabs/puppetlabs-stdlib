@@ -64,7 +64,7 @@ node default {
 
 ## Reference
 
-For information on the classes and types, see the [REFERENCE.md](https://github.com/puppetlabs/puppetlabs-stdlib/blob/master/REFERENCE.md).
+For information on the classes and types, see the [REFERENCE.md](https://github.com/puppetlabs/puppetlabs-stdlib/blob/main/REFERENCE.md).
 
 <a id="data-types"></a>
 ### Data types
@@ -544,7 +544,7 @@ Returns the value of the Puppet environment path settings for the node running P
 
 #### `puppet_server`
 
-Returns the Puppet agent's `server` value, which is the hostname of the Puppet master with which the agent should communicate.
+Returns the Puppet agent's `server` value, which is the hostname of the Puppet server with which the agent should communicate.
 
 #### `root_home`
 
@@ -560,11 +560,11 @@ Returns the default provider Puppet uses to manage services on this system
 
 As of Puppet Enterprise 3.7, the stdlib module is no longer included in PE. PE users should install the most recent release of stdlib for compatibility with Puppet modules.
 
-For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-stdlib/blob/master/metadata.json)
+For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-stdlib/blob/main/metadata.json)
 
 ## Development
 
-Puppet modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide](https://github.com/puppetlabs/puppetlabs-stdlib/blob/master/CONTRIBUTING.md).
+Puppet modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide](https://github.com/puppetlabs/puppetlabs-stdlib/blob/main/CONTRIBUTING.md).
 
 To report or research a bug with any part of this module, please go to
 [http://tickets.puppetlabs.com/browse/MODULES](http://tickets.puppetlabs.com/browse/MODULES).

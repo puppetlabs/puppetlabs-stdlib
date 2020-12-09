@@ -304,7 +304,7 @@ This release sees a massive update to all unit tests to test UTF8 characters. Th
 - Permit double slash in absolute/Unix path types.
 
 #### Bugfixes
-- Fix unsupported data type error with rspec-puppet master.
+- Fix unsupported data type error with rspec-puppet server.
 - Now allows test module metadata.json to be read by Puppet.
 - Fix acceptance test failure "Hiera is not a class".
 - Removal of unsupported platforms and future parser setting in acceptance tests.
@@ -948,7 +948,7 @@ This is a supported release
 
 ##### 2012-07-19 - Jeff McCune <jeff@puppetlabs.com> - 2.4.0
 
- * (Maint) use PuppetlabsSpec::PuppetInternals.scope (master) (deafe88)
+ * (Maint) use PuppetlabsSpec::PuppetInternals.scope (main) (deafe88)
 
 ##### 2012-07-10 - Hailee Kenney <hailee@puppetlabs.com> - 2.4.0
 
@@ -974,7 +974,7 @@ This is a supported release
  * (#13595) initialize\_everything\_for\_tests couples modules Puppet ver (3222f35)
  * (#13439) Fix MRI 1.9 issue with spec\_helper (15c5fd1)
  * (#13439) Fix test failures with Puppet 2.6.x (665610b)
- * (#13439) refactor spec helper for compatibility with both puppet 2.7 and master (82194ca)
+ * (#13439) refactor spec helper for compatibility with both puppet 2.7 and server (82194ca)
  * (#13494) Specify the behavior of zero padded strings (61891bb)
 
 ##### 2012-03-29 Puppet Labs <support@puppetlabs.com> - 2.1.3

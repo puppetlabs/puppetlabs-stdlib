@@ -37,7 +37,7 @@ module Puppet::Parser::Functions
 
     path = args[0]
     # This logic was borrowed from
-    # [lib/puppet/file_serving/base.rb](https://github.com/puppetlabs/puppet/blob/master/lib/puppet/file_serving/base.rb)
+    # [lib/puppet/file_serving/base.rb](https://github.com/puppetlabs/puppet/blob/main/lib/puppet/file_serving/base.rb)
     # Puppet 2.7 and beyond will have Puppet::Util.absolute_path? Fall back to a back-ported implementation otherwise.
     if Puppet::Util.respond_to?(:absolute_path?)
       value = (Puppet::Util.absolute_path?(path, :posix) || Puppet::Util.absolute_path?(path, :windows))

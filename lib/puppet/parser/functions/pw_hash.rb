@@ -28,7 +28,7 @@ Puppet::Parser::Functions.newfunction(
   @return [Hash]
     Provides a hash usable on most POSIX systems.
 
-  > *Note:*: this uses the Puppet Master's implementation of crypt(3). If your
+  > *Note:*: this uses the Puppet Server's implementation of crypt(3). If your
     environment contains several different operating systems, ensure that they
     are compatible before using this function.
   DOC
