@@ -19,7 +19,7 @@ environment:
   SIMPLECOV: yes
   matrix:
     -
-      RUBY_VERSION: 24-x64
+      RUBY_VERSION: 25-x64
       CHECK: syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop
     -
       PUPPET_GEM_VERSION: ~> 5.0
