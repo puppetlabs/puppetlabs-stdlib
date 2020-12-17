@@ -129,7 +129,7 @@ class Facter::Util::DotD
   def cache_save!
     cache = load_cache
     File.open(@cache_file, 'w', 0o600) { |f| f.write(YAML.dump(cache)) }
-  rescue # rubocop:disable Lint/HandleExceptions
+  rescue
   end
 
   # cache_store
@@ -137,8 +137,8 @@ class Facter::Util::DotD
   def cache_store(file, data)
     load_cache
 
-    @cache[file] = { :data => data, :stored => Time.now.to_i }
-  rescue # rubocop:disable Lint/HandleExceptions
+    @cache[file] = { data: data, stored: Time.now.to_i }
+  rescue
   end
 
   # cache_lookup
@@ -155,9 +155,9 @@ class Facter::Util::DotD
 
     return cache[file][:data] if ttl == -1
     return cache[file][:data] if (now - cache[file][:stored]) <= ttl
-    return nil
+    nil
   rescue
-    return nil
+    nil
   end
 
   # cache_time
@@ -165,9 +165,9 @@ class Facter::Util::DotD
   def cache_time(file)
     meta = file + '.ttl'
 
-    return File.read(meta).chomp.to_i
+    File.read(meta).chomp.to_i
   rescue
-    return 0
+    0
   end
 
   # load_cache
@@ -178,10 +178,10 @@ class Facter::Util::DotD
                  {}
                end
 
-    return @cache
+    @cache
   rescue
     @cache = {}
-    return @cache
+    @cache
   end
 
   # create

@@ -49,7 +49,7 @@ describe 'validate_re' do
         false,              # FalseClass
         ['10'],             # Array
         :key,               # Symbol
-        { :key => 'val' },  # Hash
+        { key: 'val' },  # Hash
       ].each do |input|
         it { is_expected.to run.with_params(input, '.*').and_raise_error(Puppet::ParseError, %r{needs to be a String}) }
       end

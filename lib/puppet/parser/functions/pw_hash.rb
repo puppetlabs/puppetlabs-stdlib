@@ -5,9 +5,9 @@
 #
 Puppet::Parser::Functions.newfunction(
   :pw_hash,
-  :type => :rvalue,
-  :arity => 3,
-  :doc => <<-DOC
+  type: :rvalue,
+  arity: 3,
+  doc: <<-DOC,
   @summary
     Hashes a password using the crypt function. Provides a hash usable
     on most POSIX systems.
@@ -52,7 +52,7 @@ Puppet::Parser::Functions.newfunction(
   raise ArgumentError, "pw_hash(): #{args[1]} is not a valid hash type" if hash_type.nil?
   raise ArgumentError, 'pw_hash(): third argument must be a string' unless args[2].is_a? String
   raise ArgumentError, 'pw_hash(): third argument must not be empty' if args[2].empty?
-  raise ArgumentError, 'pw_hash(): characters in salt must be in the set [a-zA-Z0-9./]' unless args[2] =~ %r{\A[a-zA-Z0-9./]+\z}
+  raise ArgumentError, 'pw_hash(): characters in salt must be in the set [a-zA-Z0-9./]' unless %r{\A[a-zA-Z0-9./]+\z}.match?(args[2])
 
   password = args[0]
   return nil if password.nil? || password.empty?

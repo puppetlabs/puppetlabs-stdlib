@@ -5,7 +5,7 @@
 #
 # TODO(Krzysztof Wilczynski): We probably need to approach numeric values differently ...
 module Puppet::Parser::Functions
-  newfunction(:range, :type => :rvalue, :doc => <<-DOC
+  newfunction(:range, type: :rvalue, doc: <<-DOC
     @summary
       When given range in the form of (start, stop) it will extrapolate a range as
       an array.
@@ -44,8 +44,7 @@ module Puppet::Parser::Functions
 
      Integer[0, 9].each |$x| { notice($x) } # notices 0, 1, 2, ... 9
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, 'range(): Wrong number of arguments given (0 for 1)') if arguments.empty?
 
     if arguments.size > 1
@@ -65,7 +64,7 @@ module Puppet::Parser::Functions
 
         type = m[2]
         step = 1
-      elsif value =~ %r{^.+$}
+      elsif %r{^.+$}.match?(value)
         raise(Puppet::ParseError, "range(): Unable to compute range from the value: #{value}")
       else
         raise(Puppet::ParseError, "range(): Unknown range format: #{value}")
@@ -73,7 +72,7 @@ module Puppet::Parser::Functions
     end
 
     # If we were given an integer, ensure we work with one
-    if start.to_s =~ %r{^\d+$}
+    if %r{^\d+$}.match?(start.to_s)
       start = start.to_i
       stop  = stop.to_i
     else

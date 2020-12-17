@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'range' do
   it { is_expected.not_to eq(nil) }
 
-  describe 'signature validation in puppet3', :unless => RSpec.configuration.puppet_future do
+  describe 'signature validation in puppet3', unless: RSpec.configuration.puppet_future do
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
     it {
       pending('Current implementation ignores parameters after the third.')
@@ -15,7 +15,7 @@ describe 'range' do
     it { is_expected.to run.with_params('').and_raise_error(Puppet::ParseError, %r{Unknown range format}i) }
   end
 
-  describe 'signature validation in puppet4', :if => RSpec.configuration.puppet_future do
+  describe 'signature validation in puppet4', if: RSpec.configuration.puppet_future do
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params.and_raise_error(ArgumentError)

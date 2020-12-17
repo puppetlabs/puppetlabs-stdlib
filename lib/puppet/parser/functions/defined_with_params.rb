@@ -4,8 +4,8 @@
 require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:defined_with_params,
-                                      :type => :rvalue,
-                                      :doc => <<-DOC
+                                      type: :rvalue,
+                                      doc: <<-DOC,
     @summary
       Takes a resource reference and an optional hash of attributes.
 

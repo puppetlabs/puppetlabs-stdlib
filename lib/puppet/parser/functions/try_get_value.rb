@@ -6,9 +6,9 @@
 module Puppet::Parser::Functions
   newfunction(
     :try_get_value,
-    :type => :rvalue,
-    :arity => -2,
-    :doc => <<-DOC
+    type: :rvalue,
+    arity: -2,
+    doc: <<-DOC,
       @summary
         **DEPRECATED:** this function is deprecated, please use dig() instead.
 

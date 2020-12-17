@@ -4,7 +4,7 @@
 # any2bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:any2bool, :type => :rvalue, :doc => <<-DOC
+  newfunction(:any2bool, type: :rvalue, doc: <<-DOC
     @summary
       Converts 'anything' to a boolean.
 
@@ -21,8 +21,7 @@ module Puppet::Parser::Functions
 
     @return [Boolean] The boolean value of the object that was given
   DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "any2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     # If argument is already Boolean, return it

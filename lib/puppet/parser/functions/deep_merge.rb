@@ -4,7 +4,7 @@
 # deep_merge.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:deep_merge, :type => :rvalue, :doc => <<-'DOC') do |args|
+  newfunction(:deep_merge, type: :rvalue, doc: <<-'DOC') do |args|
     @summary
       Recursively merges two or more hashes together and returns the resulting hash.
 

@@ -14,7 +14,7 @@ describe 'is_ipv4_address' do
     it { is_expected.to run.with_params(value).and_return(false) }
   end
 
-  context 'Checking for deprecation warning', :if => Puppet.version.to_f < 4.0 do
+  context 'Checking for deprecation warning', if: Puppet.version.to_f < 4.0 do
     after(:each) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end

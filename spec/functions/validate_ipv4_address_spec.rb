@@ -8,7 +8,7 @@ describe 'validate_ipv4_address' do
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   end
 
-  context 'Checking for deprecation warning', :if => Puppet.version.to_f < 4.0 do
+  context 'Checking for deprecation warning', if: Puppet.version.to_f < 4.0 do
     after(:each) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end

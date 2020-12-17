@@ -4,7 +4,7 @@
 # prefix.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:prefix, :type => :rvalue, :doc => <<-DOC
+  newfunction(:prefix, type: :rvalue, doc: <<-DOC
     @summary
       This function applies a prefix to all elements in an array or a hash.
 
@@ -19,8 +19,7 @@ module Puppet::Parser::Functions
 
     @return [Hash] or [Array] The passed values now contains the passed prefix
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "prefix(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
