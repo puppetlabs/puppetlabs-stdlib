@@ -40,7 +40,7 @@ Facter.add(:root_home) do
   root_home = nil
   setcode do
     str = Facter::Util::Resolution.exec('lsuser -c -a home root')
-    str && str.split("\n").each do |line|
+    str&.split("\n")&.each do |line|
       next if %r{^#}.match?(line)
       root_home = line.split(%r{:})[1]
     end

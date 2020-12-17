@@ -94,13 +94,13 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def count_matches(regex)
-    lines.select { |line|
+    lines.count do |line|
       if resource[:replace_all_matches_not_matching_line].to_s == 'true'
         line.match(regex) unless line.chomp == resource[:line]
       else
         line.match(regex)
       end
-    }.size
+    end
   end
 
   def handle_create_with_match
