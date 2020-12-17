@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # private.rb
 #
@@ -11,7 +13,7 @@ module Puppet::Parser::Functions
       Sets the current class or definition as private
   DOC
              ) do |args|
-    warning("private() DEPRECATED: This function will cease to function on Puppet 4; please use assert_private() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Metrics/LineLength : Cannot shorten this line
+    warning("private() DEPRECATED: This function will cease to function on Puppet 4; please use assert_private() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Layout/LineLength : Cannot shorten this line
     unless Puppet::Parser::Functions.autoloader.loaded?(:assert_private)
       Puppet::Parser::Functions.autoloader.load(:assert_private)
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # validate_ipv7_address.rb
 #

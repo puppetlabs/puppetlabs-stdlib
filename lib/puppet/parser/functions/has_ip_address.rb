@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # has_ip_address
 #

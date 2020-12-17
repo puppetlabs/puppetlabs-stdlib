@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Puppet::Type.newtype(:file_line) do
   desc <<-DOC
     @summary

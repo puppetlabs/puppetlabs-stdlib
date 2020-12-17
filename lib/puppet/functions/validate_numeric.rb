@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Validate the passed value represents a numeric value.
 Puppet::Functions.create_function(:validate_numeric) do

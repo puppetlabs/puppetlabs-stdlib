@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #  Uses sprintf with named references.
 #

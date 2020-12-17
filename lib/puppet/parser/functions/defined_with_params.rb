@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Test whether a given class or definition is defined
 require 'puppet/parser/functions'
 

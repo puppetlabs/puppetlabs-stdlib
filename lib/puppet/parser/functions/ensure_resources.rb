@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:ensure_resources,

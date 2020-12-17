@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Puppet::Parser::Functions.newfunction(
   :fqdn_rand_string,
   :arity => -2,

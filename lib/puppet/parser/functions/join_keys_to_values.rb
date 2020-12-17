@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # join_keys_to_values.rb
 #

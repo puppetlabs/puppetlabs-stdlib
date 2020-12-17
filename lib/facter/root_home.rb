@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # root_home.rb
 module Facter::Util::RootHome
   # @summary

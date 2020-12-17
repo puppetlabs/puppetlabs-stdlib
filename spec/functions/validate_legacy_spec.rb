@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0

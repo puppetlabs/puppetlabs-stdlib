@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Returns the Extension (the Portion of Filename in Path starting from the
 #   last Period).

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fact: service_provider
 #
 # Purpose: Returns the default provider Puppet will choose to manage services

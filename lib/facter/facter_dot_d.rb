@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   A Facter plugin that loads facts from /etc/facter/facts.d
 #   and /etc/puppetlabs/facter/facts.d.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Validate the passed value represents an array.
 Puppet::Functions.create_function(:validate_array) do

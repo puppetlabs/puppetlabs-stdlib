@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'tempfile'
 describe Puppet::Type.type(:file_line) do
@@ -71,10 +73,10 @@ describe Puppet::Type.type(:file_line) do
     expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path) }.to raise_error(Puppet::Error, %r{line is a required attribute})
   end
   it 'does not require that a line is specified when matching for absence' do
-    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Metrics/LineLength
+    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Layout/LineLength
   end
   it 'although if a line is specified anyway when matching for absence it still works and the line is silently ignored' do
-    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :line => 'i_am_irrelevant', :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Metrics/LineLength
+    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :line => 'i_am_irrelevant', :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Layout/LineLength
   end
   it 'requires that a file is specified' do
     expect { Puppet::Type.type(:file_line).new(:name => 'foo', :line => 'path') }.to raise_error(Puppet::Error, %r{path is a required attribute})

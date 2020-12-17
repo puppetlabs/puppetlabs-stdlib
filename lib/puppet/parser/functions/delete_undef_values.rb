@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # delete_undef_values.rb
 #
