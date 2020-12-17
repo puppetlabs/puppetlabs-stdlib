@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fact: is_pe, pe_version, pe_major_version, pe_minor_version, pe_patch_version
 #
 # Purpose: Return various facts about the PE state of the system

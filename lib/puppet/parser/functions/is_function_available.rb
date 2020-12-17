@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # is_function_available.rb
 #

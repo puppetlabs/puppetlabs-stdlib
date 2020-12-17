@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'range' do
@@ -142,15 +144,15 @@ describe 'range' do
 
   describe 'when passing mixed arguments as bounds' do
     it {
-      pending('these bounds should not be allowed as ruby will OOM hard. e.g. `(\'host0\'..\'hosta\').to_a` has 3239930 elements on ruby 1.9, adding more \'0\'s and \'a\'s increases that exponentially') # rubocop:disable Metrics/LineLength : unable to cut line to required length
+      pending('these bounds should not be allowed as ruby will OOM hard. e.g. `(\'host0\'..\'hosta\').to_a` has 3239930 elements on ruby 1.9, adding more \'0\'s and \'a\'s increases that exponentially') # rubocop:disable Layout/LineLength : unable to cut line to required length
       is_expected.to run.with_params('0', 'a').and_raise_error(Puppet::ParseError, %r{cannot interpolate between numeric and non-numeric bounds})
     }
     it {
-      pending('these bounds should not be allowed as ruby will OOM hard. e.g. `(\'host0\'..\'hosta\').to_a` has 3239930 elements on ruby 1.9, adding more \'0\'s and \'a\'s increases that exponentially') # rubocop:disable Metrics/LineLength : unable to cut line to required length
+      pending('these bounds should not be allowed as ruby will OOM hard. e.g. `(\'host0\'..\'hosta\').to_a` has 3239930 elements on ruby 1.9, adding more \'0\'s and \'a\'s increases that exponentially') # rubocop:disable Layout/LineLength : unable to cut line to required length
       is_expected.to run.with_params(0, 'a').and_raise_error(Puppet::ParseError, %r{cannot interpolate between numeric and non-numeric bounds})
     }
     it {
-      pending('these bounds should not be allowed as ruby will OOM hard. e.g. `(\'host0\'..\'hosta\').to_a` has 3239930 elements on ruby 1.9, adding more \'0\'s and \'a\'s increases that exponentially') # rubocop:disable Metrics/LineLength : unable to cut line to required length
+      pending('these bounds should not be allowed as ruby will OOM hard. e.g. `(\'host0\'..\'hosta\').to_a` has 3239930 elements on ruby 1.9, adding more \'0\'s and \'a\'s increases that exponentially') # rubocop:disable Layout/LineLength : unable to cut line to required length
       is_expected.to run.with_params('h0', 'ha').and_raise_error(Puppet::ParseError, %r{cannot interpolate between numeric and non-numeric bounds})
     }
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # str2saltedpbkdf2.rb
 #  Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible. To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 #

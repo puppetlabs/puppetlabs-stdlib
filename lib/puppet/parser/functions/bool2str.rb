@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # bool2str.rb
 #

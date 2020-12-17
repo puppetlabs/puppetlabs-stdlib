@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Boolean check to determine whether a variable is of a given data type.
 #   This is equivalent to the `=~` type checks.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'type' do
@@ -6,7 +8,7 @@ describe 'type' do
   end
 
   it 'gives a deprecation warning when called' do
-    expect(scope).to receive(:warning).with("type() DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Metrics/LineLength : Unable to reduce to required length
+    expect(scope).to receive(:warning).with("type() DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Layout/LineLength : Unable to reduce to required length
     scope.function_type(['aoeu'])
   end
 

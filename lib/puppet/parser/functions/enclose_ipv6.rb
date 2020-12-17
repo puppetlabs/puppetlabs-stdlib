@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # enclose_ipv6.rb
 #

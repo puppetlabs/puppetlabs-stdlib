@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'join', :if => Puppet::Util::Package.versioncmp(Puppet.version, '5.5.0') < 0 do

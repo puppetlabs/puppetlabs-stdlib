@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #  Perform validation of a string against one or more regular
 #  expressions.

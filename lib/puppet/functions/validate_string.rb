@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Validate that all passed values are string data structures.
 Puppet::Functions.create_function(:validate_string) do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Merges two or more hashes together or hashes resulting from iteration, and returns
 #   the resulting hash.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Validate the passed value represents an ipv4_address.
 Puppet::Functions.create_function(:validate_ipv4_address) do

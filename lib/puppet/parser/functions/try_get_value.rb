@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # try_get_value.rb
 #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 anchor = Puppet::Type.type(:anchor).new(:name => 'ntp::begin')

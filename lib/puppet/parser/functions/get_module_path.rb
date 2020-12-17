@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # get_module_path.rb
 #

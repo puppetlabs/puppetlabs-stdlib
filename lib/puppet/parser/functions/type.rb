@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # type.rb
 #
@@ -18,7 +20,7 @@ module Puppet::Parser::Functions
   DOC
              ) do |args|
 
-    warning("type() DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Metrics/LineLength : Cannot reduce line length
+    warning("type() DEPRECATED: This function will cease to function on Puppet 4; please use type3x() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Layout/LineLength : Cannot reduce line length
     unless Puppet::Parser::Functions.autoloader.loaded?(:type3x)
       Puppet::Parser::Functions.autoloader.load(:type3x)
     end

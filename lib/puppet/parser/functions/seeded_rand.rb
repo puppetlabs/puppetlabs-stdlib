@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # seeded_rand.rb
 #

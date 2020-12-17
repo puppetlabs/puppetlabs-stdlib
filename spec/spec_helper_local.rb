@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # automatically load any shared examples or contexts
 Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 

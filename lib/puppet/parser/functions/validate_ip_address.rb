@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # validate_ip_address.rb
 #

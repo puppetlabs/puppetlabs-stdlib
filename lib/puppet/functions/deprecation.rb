@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Function to print deprecation warnings, Logs a warning once for a given key.
 #
 # The uniqueness key - can appear once.

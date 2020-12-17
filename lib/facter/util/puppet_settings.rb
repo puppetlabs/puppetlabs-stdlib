@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A method to evaluate a Facter code block if puppet is loaded.
 module Facter::Util::PuppetSettings
   # This method is intended to provide a convenient way to evaluate a
