@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'size', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 do
+describe 'size', if: Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it {
@@ -30,7 +30,7 @@ describe 'size', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0'
   it { is_expected.to run.with_params('万').and_return(1) }
   it { is_expected.to run.with_params('āβćđ').and_return(4) }
 
-  context 'when using a class extending String', :unless => Puppet::Util::Package.versioncmp(Puppet.version, '5.5.7') == 0 do
+  context 'when using a class extending String', unless: Puppet::Util::Package.versioncmp(Puppet.version, '5.5.7') == 0 do
     it 'calls its size method' do
       value = AlsoString.new('asdfghjkl')
       expect(value).to receive(:size).and_return('foo')

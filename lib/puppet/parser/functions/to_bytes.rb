@@ -4,7 +4,7 @@
 # to_bytes.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:to_bytes, :type => :rvalue, :doc => <<-DOC
+  newfunction(:to_bytes, type: :rvalue, doc: <<-DOC
     @summary
         Converts the argument into bytes, for example 4 kB becomes 4096.
 
@@ -15,8 +15,7 @@ module Puppet::Parser::Functions
     These conversions reflect a layperson's understanding of
     1 MB = 1024 KB, when in fact 1 MB = 1000 KB, and 1 MiB = 1024 KiB.
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "to_bytes(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     arg = arguments[0]

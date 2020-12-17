@@ -37,8 +37,8 @@ describe 'seeded_rand' do
   end
 
   it 'does not return different values for different hosts' do
-    val1 = seeded_rand(1000, 'foo', :host => 'first.host.com')
-    val2 = seeded_rand(1000, 'foo', :host => 'second.host.com')
+    val1 = seeded_rand(1000, 'foo', host: 'first.host.com')
+    val2 = seeded_rand(1000, 'foo', host: 'second.host.com')
 
     expect(val1).to eql(val2)
   end

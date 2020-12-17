@@ -4,7 +4,7 @@
 # floor.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:floor, :type => :rvalue, :doc => <<-DOC
+  newfunction(:floor, type: :rvalue, doc: <<-DOC
     @summary
       Returns the largest integer less or equal to the argument.
 
@@ -15,8 +15,7 @@ module Puppet::Parser::Functions
     > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with
     a built-in [`floor`](https://puppet.com/docs/puppet/latest/function.html#floor) function.
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "floor(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     begin

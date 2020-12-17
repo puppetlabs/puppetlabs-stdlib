@@ -38,7 +38,7 @@ describe 'is_domain_name' do
 
   # Values obtained from Facter values will be frozen strings
   # in newer versions of Facter:
-  it { is_expected.to run.with_params('www.example.com'.freeze).and_return(true) }
+  it { is_expected.to run.with_params('www.example.com').and_return(true) }
 
   describe 'top level domain must be alphabetic if there are multiple labels' do
     it { is_expected.to run.with_params('2com').and_return(true) }

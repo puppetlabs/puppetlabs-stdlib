@@ -5,7 +5,7 @@ require 'digest/sha1'
 # fqdn_uuid.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:fqdn_uuid, :type => :rvalue, :doc => <<-DOC) do |args|
+  newfunction(:fqdn_uuid, type: :rvalue, doc: <<-DOC) do |args|
     @summary
       Returns a [RFC 4122](https://tools.ietf.org/html/rfc4122) valid version 5 UUID based
       on an FQDN string under the DNS namespace

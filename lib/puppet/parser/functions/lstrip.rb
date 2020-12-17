@@ -4,7 +4,7 @@
 #  lstrip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:lstrip, :type => :rvalue, :doc => <<-DOC
+  newfunction(:lstrip, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Strips leading spaces to the left of a string.
 
@@ -14,8 +14,7 @@ module Puppet::Parser::Functions
     > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with a
     built-in [`max`](https://puppet.com/docs/puppet/latest/function.html#max) function.
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "lstrip(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]

@@ -27,7 +27,7 @@ Puppet::Functions.create_function(:deprecation) do
     end
     # depending on configuration setting of strict
     case Puppet.settings[:strict]
-    when :off # rubocop:disable Lint/EmptyWhen : Is required to prevent false errors
+    when :off
       # do nothing
     when :error
       raise("deprecation. #{key}. #{message}")

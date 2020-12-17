@@ -4,7 +4,7 @@
 # suffix.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:suffix, :type => :rvalue, :doc => <<-DOC
+  newfunction(:suffix, type: :rvalue, doc: <<-DOC
     @summary
       This function applies a suffix to all elements in an array, or to the keys
       in a hash.
@@ -23,8 +23,7 @@ module Puppet::Parser::Functions
     ```['a', 'b', 'c'].map |$x| { "${x}p" }```
 
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "suffix(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 

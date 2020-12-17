@@ -3,8 +3,8 @@
 require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:ensure_resources,
-                                      :type => :statement,
-                                      :doc => <<-DOC
+                                      type: :statement,
+                                      doc: <<-DOC,
   @summary
     Takes a resource type, title (only hash), and a list of attributes that describe a
     resource.

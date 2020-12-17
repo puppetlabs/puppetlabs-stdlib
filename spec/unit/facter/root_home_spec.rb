@@ -30,7 +30,7 @@ describe 'Root Home Specs' do
     end
   end
 
-  describe 'root_home', :type => :fact do
+  describe 'root_home', type: :fact do
     before(:each) { Facter.clear }
     after(:each) { Facter.clear }
 

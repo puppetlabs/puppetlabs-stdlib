@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-anchor = Puppet::Type.type(:anchor).new(:name => 'ntp::begin')
+anchor = Puppet::Type.type(:anchor).new(name: 'ntp::begin')
 
 describe anchor do
   it 'stringifies normally' do

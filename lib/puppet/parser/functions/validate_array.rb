@@ -4,7 +4,7 @@
 # validate_array.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_array, :doc => <<-DOC) do |args|
+  newfunction(:validate_array, doc: <<-DOC) do |args|
     @summary
       Validate that all passed values are array data structures. Abort catalog
       compilation if any value fails this check.

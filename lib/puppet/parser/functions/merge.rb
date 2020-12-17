@@ -4,7 +4,7 @@
 # merge.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:merge, :type => :rvalue, :doc => <<-'DOC') do |args|
+  newfunction(:merge, type: :rvalue, doc: <<-'DOC') do |args|
     @summary
       Merges two or more hashes together and returns the resulting hash.
 

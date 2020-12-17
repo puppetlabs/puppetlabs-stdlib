@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'chomp', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 do
+describe 'chomp', if: Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Wrong number of arguments given}) }
   it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{Requires either array or string}) }
