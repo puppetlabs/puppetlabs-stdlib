@@ -19,7 +19,7 @@ module Puppet::Parser::Functions
     scope = self
     if scope.lookupvar('module_name') != scope.lookupvar('caller_module_name')
       message = nil
-      if args[0] && args[0].is_a?(String)
+      if args[0]&.is_a?(String)
         message = args[0]
       else
         manifest_name = scope.source.name
