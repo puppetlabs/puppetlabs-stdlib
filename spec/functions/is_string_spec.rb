@@ -18,7 +18,7 @@ describe 'is_string' do
   it { is_expected.to run.with_params(-3.7).and_return(false) }
   it { is_expected.to run.with_params('-3.7').and_return(false) }
 
-  it { is_expected.to run.with_params(undef).and_return(false) }
+  it { is_expected.to run.with_params(:undef).and_return(false) }
   it { is_expected.to run.with_params([]).and_return(false) }
   it { is_expected.to run.with_params([1]).and_return(false) }
   it { is_expected.to run.with_params({}).and_return(false) }
