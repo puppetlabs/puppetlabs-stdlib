@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'PE Version specs' do
+  # we mock calls for the puppetversion fact, it is not normal to expect nil responses when mocking.
+  RSpec::Mocks.configuration.allow_message_expectations_on_nil = true
   context 'when puppetversion is nil' do
     before :each do
       allow(Facter.fact(:puppetversion)).to receive(:value).and_return(nil)
@@ -20,7 +22,8 @@ describe 'PE Version specs' do
       puppetversion = "2.7.19 (Puppet Enterprise #{version})"
       context "puppetversion => #{puppetversion}" do
         before :each do
-          allow(Facter.fact(:puppetversion)).to receive(:value).and_return(puppetversion)
+          allow(Facter).to receive(:value).with(anything).and_call_original
+          allow(Facter).to receive(:value).with('puppetversion').and_return(puppetversion)
         end
 
         (major, minor, patch) = version.split('.')
