@@ -61,6 +61,7 @@ Gemfile:
 Rakefile:
   requires:
   - puppet-lint/tasks/puppet-lint
+  changelog_since_tag: '3.0.0'
 spec/spec_helper.rb:
   mock_with: ":rspec"
   coverage_report: true
