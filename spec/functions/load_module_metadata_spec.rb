@@ -7,6 +7,8 @@ describe 'load_module_metadata' do
 
   describe 'when calling with valid arguments' do
     before :each do
+      # In Puppet 7, there are two prior calls to File.read prior to the responses we want to mock
+      allow(File).to receive(:read).with(anything, anything).and_call_original
       allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}, :encoding => 'utf-8').and_return('{"name": "puppetlabs-stdlib"}')
       allow(File).to receive(:read).with(%r{\/(stdlib|test)\/metadata.json}).and_return('{"name": "puppetlabs-stdlib"}')
       # Additional modules used by litmus which are identified while running these dues to being in fixtures
