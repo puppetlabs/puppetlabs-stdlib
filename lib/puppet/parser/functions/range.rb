@@ -51,6 +51,8 @@ module Puppet::Parser::Functions
       stop  = arguments[1]
       step  = arguments[2].nil? ? 1 : arguments[2].to_i.abs
 
+      raise(ArgumentError, 'range(): 3rd arg (step size) must be a non zero integer (e.g. 1 or -1)') if step.zero?
+
       type = '..' # Use the simplest type of Range available in Ruby
 
     else # arguments.size == 1
