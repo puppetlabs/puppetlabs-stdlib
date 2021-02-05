@@ -14,8 +14,8 @@ describe 'shell_join' do
     it { is_expected.to run.with_params(['foo', 'bar']).and_return('foo bar') }
     it { is_expected.to run.with_params(['foo', 'bar baz']).and_return('foo bar\ baz') }
     it {
-      is_expected.to run.with_params(['~`!@#$', '%^&*()_+-=', '[]\{}|;\':"', ',./<>?'])
-                        .and_return('\~\`\!@\#\$ \%\^\&\*\(\)_\+-\= \[\]\\\\\{\}\|\;\\\':\" ,./\<\>\?')
+      is_expected.to run.with_params(['~`!@#$', '%^&*()_-=', '[]\{}|;\':"', ',./<>?'])
+                        .and_return('\~\`\!@\#\$ \%\^\&\*\(\)_-\= \[\]\\\\\{\}\|\;\\\':\" ,./\<\>\?')
     }
 
     context 'with UTF8 and double byte characters' do
