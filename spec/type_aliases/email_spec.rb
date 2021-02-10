@@ -56,6 +56,9 @@ describe 'Stdlib::Email' do
      'email@example.com (Joe Smith)',
      'email@-example.com',
      'email@example..com',
+     'random stuff multiline
+     valid@email.com
+     more random stuff $^*!',
      '”(),:;<>[\]@example.com',
      'just”not”right@example.com',
      'this\ is"really"not\allowed@example.com'].each do |value|
