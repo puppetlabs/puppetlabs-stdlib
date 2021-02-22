@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 # Test cases are a combination of the test cases used in MediaWiki[1] and a
