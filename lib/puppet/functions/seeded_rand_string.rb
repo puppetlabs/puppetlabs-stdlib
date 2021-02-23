@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Generates a consistent random string of specific length based on provided seed.
 #

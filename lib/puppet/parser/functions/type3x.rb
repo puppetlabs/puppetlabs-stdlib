@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # type3x.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:type3x, :type => :rvalue, :doc => <<-DOC
+  newfunction(:type3x, type: :rvalue, doc: <<-DOC
     @summary
       **DEPRECATED:** This function will be removed when Puppet 3 support is dropped; please migrate to the new parser's typing system.
 
@@ -15,7 +17,7 @@ module Puppet::Parser::Functions
     * integer
     * boolean
   DOC
-             ) do |args|
+  ) do |args|
     raise(Puppet::ParseError, "type3x(): Wrong number of arguments given (#{args.size} for 1)") unless args.size == 1
 
     value = args[0]

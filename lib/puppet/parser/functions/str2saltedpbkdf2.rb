@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 # str2saltedpbkdf2.rb
 #  Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible. To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 #
 module Puppet::Parser::Functions
-  newfunction(:str2saltedpbkdf2, :type => :rvalue, :doc => <<-DOC
+  newfunction(:str2saltedpbkdf2, type: :rvalue, doc: <<-DOC
     @summary Convert a string into a salted SHA512 PBKDF2 password hash like requred for OS X / macOS 10.8+
 
     Convert a string into a salted SHA512 PBKDF2 password hash like requred for OS X / macOS 10.8+.
@@ -33,7 +35,7 @@ module Puppet::Parser::Functions
     @return [Hash]
       Provides a hash containing the hex version of the password, the hex version of the salt, and iterations.
   DOC
-             ) do |args|
+  ) do |args|
     require 'openssl'
 
     raise ArgumentError, "str2saltedpbkdf2(): wrong number of arguments (#{args.size} for 3)" if args.size != 3

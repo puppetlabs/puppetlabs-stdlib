@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # convert_base.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:convert_base, :type => :rvalue, :arity => 2, :doc => <<-'DOC') do |args|
+  newfunction(:convert_base, type: :rvalue, arity: 2, doc: <<-'DOC') do |args|
     @summary
       Converts a given integer or base 10 string representing an integer to a
       specified base, as a string.
@@ -31,11 +33,11 @@ module Puppet::Parser::Functions
     raise Puppet::ParseError, 'convert_base(): Second argument must be either a string or an integer' unless args[1].is_a?(Integer) || args[1].is_a?(String)
 
     if args[0].is_a?(String)
-      raise Puppet::ParseError, 'convert_base(): First argument must be an integer or a string corresponding to an integer in base 10' unless args[0] =~ %r{^[0-9]+$}
+      raise Puppet::ParseError, 'convert_base(): First argument must be an integer or a string corresponding to an integer in base 10' unless %r{^[0-9]+$}.match?(args[0])
     end
 
     if args[1].is_a?(String)
-      raise Puppet::ParseError, 'convert_base(): First argument must be an integer or a string corresponding to an integer in base 10' unless args[1] =~ %r{^[0-9]+$}
+      raise Puppet::ParseError, 'convert_base(): First argument must be an integer or a string corresponding to an integer in base 10' unless %r{^[0-9]+$}.match?(args[1])
     end
 
     number_to_convert = args[0]

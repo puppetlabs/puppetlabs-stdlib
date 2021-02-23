@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # hash.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:hash, :type => :rvalue, :doc => <<-DOC
+  newfunction(:hash, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** This function converts an array into a hash.
 
@@ -20,8 +22,7 @@ module Puppet::Parser::Functions
       Hash([['a',1],['b',2],['c',3]])
       ```
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "hash(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     array = arguments[0]

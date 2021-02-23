@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'puppet/util/execution'
 require 'tempfile'
 
@@ -5,7 +7,7 @@ require 'tempfile'
 # validate_cmd.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_cmd, :doc => <<-DOC
+  newfunction(:validate_cmd, doc: <<-DOC
     @summary
       Perform validation of a string with an external command.
 
@@ -31,7 +33,7 @@ module Puppet::Parser::Functions
         validate_cmd($haproxycontent, '/usr/sbin/haproxy -f % -c', 'Haproxy failed to validate config content')
 
     DOC
-             ) do |args|
+  ) do |args|
     if (args.length < 2) || (args.length > 3)
       raise Puppet::ParseError, "validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)"
     end
@@ -47,7 +49,7 @@ module Puppet::Parser::Functions
       tmpfile.write(content)
       tmpfile.close
 
-      check_with_correct_location = if checkscript =~ %r{\s%(\s|$)}
+      check_with_correct_location = if %r{\s%(\s|$)}.match?(checkscript)
                                       checkscript.gsub(%r{%}, tmpfile.path)
                                     else
                                       "#{checkscript} #{tmpfile.path}"

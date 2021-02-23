@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # values_at.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:values_at, :type => :rvalue, :doc => <<-DOC
+  newfunction(:values_at, type: :rvalue, doc: <<-DOC
     @summary
       Finds value inside an array based on location.
 
@@ -36,8 +38,7 @@ module Puppet::Parser::Functions
     `['a', 'b', 'c', 'd'][1, -2]`  results in `['b', 'c']`
 
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "values_at(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments.shift
@@ -74,7 +75,7 @@ module Puppet::Parser::Functions
         range.each { |i| indices_list << i.to_i } # rubocop:disable Lint/ShadowingOuterLocalVariable : Value is meant to be shadowed
       else
         # Only positive numbers allowed in this case ...
-        unless i =~ %r{^\d+$}
+        unless %r{^\d+$}.match?(i)
           raise(Puppet::ParseError, 'values_at(): Unknown format of given index')
         end
 

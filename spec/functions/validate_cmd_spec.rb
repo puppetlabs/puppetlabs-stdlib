@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-describe 'validate_cmd', :unless => Puppet::Util::Platform.windows? do
+describe 'validate_cmd', unless: Puppet::Util::Platform.windows? do
   let(:touch) { File.exist?('/usr/bin/touch') ? '/usr/bin/touch' : '/bin/touch' }
 
   describe 'signature validation' do

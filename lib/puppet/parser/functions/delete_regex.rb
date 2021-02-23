@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 #
 #  delete_regex.rb
 #  Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible. To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 #
 module Puppet::Parser::Functions
-  newfunction(:delete_regex, :type => :rvalue, :doc => <<-DOC
+  newfunction(:delete_regex, type: :rvalue, doc: <<-DOC
     @summary
       Deletes all instances of a given element that match a regular expression
       from an array or key from a hash.
@@ -32,8 +34,7 @@ module Puppet::Parser::Functions
 
     @return [Array] The given array now missing all targeted values.
   DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "delete_regex(): Wrong number of arguments given #{arguments.size} for 2") unless arguments.size == 2
 
     collection = arguments[0].dup

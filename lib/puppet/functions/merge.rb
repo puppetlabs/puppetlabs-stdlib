@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Merges two or more hashes together or hashes resulting from iteration, and returns
 #   the resulting hash.
@@ -102,7 +104,7 @@ Puppet::Functions.create_function(:merge) do
           accumulator.merge!(r) if r.is_a?(Hash)
           index += 1
         end
-      rescue StopIteration # rubocop:disable Lint/HandleExceptions
+      rescue StopIteration
       end
     end
     accumulator

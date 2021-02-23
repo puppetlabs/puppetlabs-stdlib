@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 #
 # fqdn_rotate.rb
 #
 Puppet::Parser::Functions.newfunction(
   :fqdn_rotate,
-  :type => :rvalue,
-  :doc => <<-DOC
+  type: :rvalue,
+  doc: <<-DOC,
   @summary
     Rotates an array or string a random number of times, combining the `$fqdn` fact
     and an optional seed for repeatable randomness.
@@ -18,7 +20,6 @@ Puppet::Parser::Functions.newfunction(
     fqdn_rotate([1, 2, 3], 'custom seed')
   DOC
 ) do |args|
-
   raise(Puppet::ParseError, "fqdn_rotate(): Wrong number of arguments given (#{args.size} for 1)") if args.empty?
 
   value = args.shift

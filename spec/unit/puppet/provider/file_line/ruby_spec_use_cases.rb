@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 provider_class = Puppet::Type.type(:file_line).provider(:ruby)
 #  These tests fail on windows when run as part of the rake task. Individually they pass
-describe provider_class, :unless => Puppet::Util::Platform.windows? do
+describe provider_class, unless: Puppet::Util::Platform.windows? do
   include PuppetlabsSpec::Files
 
   let :tmpfile do
@@ -16,9 +18,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   end
   let :resource do
     Puppet::Type::File_line.new({
-      :name => 'foo',
-      :path => tmpfile,
-      :line => 'foo',
+      name: 'foo',
+      path: tmpfile,
+      line: 'foo',
     }.merge(params))
   end
   let :provider do
@@ -35,9 +37,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     describe 'MODULES-5003' do
       let(:params) do
         {
-          :line => "*\thard\tcore\t0",
-          :match => "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
-          :multiple => true,
+          line: "*\thard\tcore\t0",
+          match: "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
+          multiple: true,
         }
       end
       let(:content) { "*	hard	core	90\n*	hard	core	10\n" }
@@ -54,9 +56,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     describe 'MODULES-5003 - one match, one line - just ensure the line exists' do
       let(:params) do
         {
-          :line => "*\thard\tcore\t0",
-          :match => "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
-          :multiple => true,
+          line: "*\thard\tcore\t0",
+          match: "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
+          multiple: true,
         }
       end
       let(:content) { "*	hard	core	90\n*	hard	core	0\n" }
@@ -69,11 +71,11 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     describe 'MODULES-5003 - one match, one line - replace all matches, even when line exists' do
       let(:params) do
         {
-          :line => "*\thard\tcore\t0",
-          :match => "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
-          :multiple => true,
+          line: "*\thard\tcore\t0",
+          match: "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
+          multiple: true,
 
-        }.merge(:replace_all_matches_not_matching_line => true)
+        }.merge(replace_all_matches_not_matching_line: true)
       end
       let(:content) { "*	hard	core	90\n*	hard	core	0\n" }
 
@@ -89,8 +91,8 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     describe 'MODULES-5651 - match, no line' do
       let(:params) do
         {
-          :line => 'LogLevel=notice',
-          :match => '^#LogLevel$',
+          line: 'LogLevel=notice',
+          match: '^#LogLevel$',
         }
       end
       let(:content) { "#LogLevel\nstuff" }
@@ -107,8 +109,8 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     describe 'MODULES-5651 - match, line' do
       let(:params) do
         {
-          :line => 'LogLevel=notice',
-          :match => '^#LogLevel$',
+          line: 'LogLevel=notice',
+          match: '^#LogLevel$',
         }
       end
       let(:content) { "#Loglevel\nLogLevel=notice\nstuff" }
@@ -121,8 +123,8 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     describe 'MODULES-5651 - no match, line' do
       let(:params) do
         {
-          :line => 'LogLevel=notice',
-          :match => '^#LogLevel$',
+          line: 'LogLevel=notice',
+          match: '^#LogLevel$',
         }
       end
       let(:content) { "LogLevel=notice\nstuff" }

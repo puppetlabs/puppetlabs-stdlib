@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'validate_ipv6_address' do
@@ -6,7 +8,7 @@ describe 'validate_ipv6_address' do
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   end
 
-  context 'Checking for deprecation warning', :if => Puppet.version.to_f < 4.0 do
+  context 'Checking for deprecation warning', if: Puppet.version.to_f < 4.0 do
     after(:each) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end
@@ -51,7 +53,7 @@ describe 'validate_ipv6_address' do
     it { is_expected.to run.with_params('::1', {}).and_raise_error(Puppet::ParseError, %r{is not a string}) }
     it { is_expected.to run.with_params('::1', true).and_raise_error(Puppet::ParseError, %r{is not a string}) }
     it { is_expected.to run.with_params('::1', 'one').and_raise_error(Puppet::ParseError, %r{is not a valid IPv6}) }
-    context 'unless running on ruby 1.8.7', :if => RUBY_VERSION != '1.8.7' do
+    context 'unless running on ruby 1.8.7', if: RUBY_VERSION != '1.8.7' do
       it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{is not a string}) }
       it { is_expected.to run.with_params('::1', 1).and_raise_error(Puppet::ParseError, %r{is not a string}) }
     end

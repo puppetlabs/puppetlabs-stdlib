@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # keys.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:keys, :type => :rvalue, :doc => <<-DOC
+  newfunction(:keys, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns the keys of a hash as an array.
 
@@ -12,8 +14,7 @@ module Puppet::Parser::Functions
     > **Note:** **Deprecated** from Puppet 5.5.0, the built-in [`keys`](https://puppet.com/docs/puppet/latest/function.html#keys)
     function will be used instead of this function.
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "keys(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     hash = arguments[0]

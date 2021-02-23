@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # pry.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:pry, :type => :statement, :doc => <<-DOC
+  newfunction(:pry, type: :statement, doc: <<-DOC
     @summary
       This function invokes a pry debugging session in the current scope object.
     This is useful for debugging manifest code at specific points during a compilation.
@@ -15,7 +17,7 @@ module Puppet::Parser::Functions
       `pry()`
 
     DOC
-             ) do |arguments|
+  ) do |arguments|
     begin
       require 'pry'
     rescue LoadError

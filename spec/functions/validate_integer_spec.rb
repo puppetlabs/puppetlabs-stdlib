@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'validate_integer' do
@@ -24,11 +26,11 @@ describe 'validate_integer' do
       it { is_expected.to run.with_params([0, 1, 2, invalid, 3, 4], 10, -10).and_raise_error(Puppet::ParseError, %r{to be an Integer}) }
     end
 
-    context 'when running on modern rubies', :unless => RUBY_VERSION == '1.8.7' do
+    context 'when running on modern rubies', unless: RUBY_VERSION == '1.8.7' do
       it { is_expected.to run.with_params([0, 1, 2, { 1 => 2 }, 3, 4], 10, -10).and_raise_error(Puppet::ParseError, %r{to be an Integer}) }
     end
 
-    context 'when running on ruby, which munges hashes weirdly', :if => RUBY_VERSION == '1.8.7' do
+    context 'when running on ruby, which munges hashes weirdly', if: RUBY_VERSION == '1.8.7' do
       it { is_expected.to run.with_params([0, 1, 2, { 1 => 2 }, 3, 4], 10, -10).and_raise_error(Puppet::ParseError) }
       it { is_expected.to run.with_params([0, 1, 2, { 0 => 2 }, 3, 4], 10, -10).and_raise_error(Puppet::ParseError) }
     end

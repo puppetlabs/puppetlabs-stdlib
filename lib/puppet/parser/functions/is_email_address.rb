@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # is_email_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_email_address, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_email_address, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the string passed to this function is a valid email address.
 
@@ -12,14 +14,14 @@ module Puppet::Parser::Functions
     > **Note:* **Deprecated** Will be removed in a future version of stdlib. See
     [`validate_legacy`](#validate_legacy).
     DOC
-             ) do |arguments|
+  ) do |arguments|
     if arguments.size != 1
       raise(Puppet::ParseError, "is_email_address(): Wrong number of arguments given #{arguments.size} for 1")
     end
 
     # Taken from http://emailregex.com/ (simpler regex)
     valid_email_regex = %r{\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z}
-    return (arguments[0] =~ valid_email_regex) == 0 # rubocop:disable Style/NumericPredicate : Changing to '.zero?' breaks the code
+    return (arguments[0] =~ valid_email_regex) == 0
   end
 end
 

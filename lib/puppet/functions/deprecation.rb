@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Function to print deprecation warnings, Logs a warning once for a given key.
 #
 # The uniqueness key - can appear once.
@@ -25,7 +27,7 @@ Puppet::Functions.create_function(:deprecation) do
     end
     # depending on configuration setting of strict
     case Puppet.settings[:strict]
-    when :off # rubocop:disable Lint/EmptyWhen : Is required to prevent false errors
+    when :off
       # do nothing
     when :error
       raise("deprecation. #{key}. #{message}")

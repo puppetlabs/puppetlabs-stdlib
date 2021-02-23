@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'any2bool' do
@@ -34,7 +36,7 @@ describe 'any2bool' do
   end
 
   describe 'everything else returns true' do
-    [[], {}, ['1'], [1], { :one => 1 }].each do |value|
+    [[], {}, ['1'], [1], { one: 1 }].each do |value|
       it { is_expected.to run.with_params(value).and_return(true) }
     end
   end

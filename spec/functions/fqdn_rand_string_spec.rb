@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'fqdn_rand_string' do
@@ -28,22 +30,22 @@ describe 'fqdn_rand_string' do
   end
 
   it 'considers the same host and same extra arguments to have the same random sequence' do
-    first_random = fqdn_rand_string(10, :extra_identifier => [1, 'same', 'host'])
-    second_random = fqdn_rand_string(10, :extra_identifier => [1, 'same', 'host'])
+    first_random = fqdn_rand_string(10, extra_identifier: [1, 'same', 'host'])
+    second_random = fqdn_rand_string(10, extra_identifier: [1, 'same', 'host'])
 
     expect(first_random).to eql(second_random)
   end
 
   it 'allows extra arguments to control the random value on a single host' do
-    first_random = fqdn_rand_string(10, :extra_identifier => [1, 'different', 'host'])
-    second_different_random = fqdn_rand_string(10, :extra_identifier => [2, 'different', 'host'])
+    first_random = fqdn_rand_string(10, extra_identifier: [1, 'different', 'host'])
+    second_different_random = fqdn_rand_string(10, extra_identifier: [2, 'different', 'host'])
 
     expect(first_random).not_to eql(second_different_random)
   end
 
   it 'returns different strings for different hosts' do
-    val1 = fqdn_rand_string(10, :host => 'first.host.com')
-    val2 = fqdn_rand_string(10, :host => 'second.host.com')
+    val1 = fqdn_rand_string(10, host: 'first.host.com')
+    val2 = fqdn_rand_string(10, host: 'second.host.com')
 
     expect(val1).not_to eql(val2)
   end

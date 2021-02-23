@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # time.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:time, :type => :rvalue, :doc => <<-DOC
+  newfunction(:time, type: :rvalue, doc: <<-DOC
     @summary
       This function will return the current time since epoch as an integer.
 
@@ -21,8 +23,7 @@ module Puppet::Parser::Functions
     ```Timestamp()```
 
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     # The Time Zone argument is optional ...
     time_zone = arguments[0] if arguments[0]
 

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 # Custom Puppet function to convert dos to unix format
 module Puppet::Parser::Functions
-  newfunction(:dos2unix, :type => :rvalue, :arity => 1, :doc => <<-DOC
+  newfunction(:dos2unix, type: :rvalue, arity: 1, doc: <<-DOC
     @summary
       Returns the Unix version of the given string.
 
@@ -8,8 +10,7 @@ module Puppet::Parser::Functions
 
     @return The retrieved version
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     unless arguments[0].is_a?(String)
       raise(Puppet::ParseError, 'dos2unix(): Requires string as argument')
     end

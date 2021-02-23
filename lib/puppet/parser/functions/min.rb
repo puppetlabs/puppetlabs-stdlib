@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # min.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:min, :type => :rvalue, :doc => <<-DOC
+  newfunction(:min, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns the lowest value of all arguments.
 
@@ -14,8 +16,7 @@ module Puppet::Parser::Functions
     > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with a
     built-in [`min`](https://puppet.com/docs/puppet/latest/function.html#min) function.
     DOC
-             ) do |args|
-
+  ) do |args|
     raise(Puppet::ParseError, 'min(): Wrong number of arguments need at least one') if args.empty?
 
     # Sometimes we get numbers as numerics and sometimes as strings.

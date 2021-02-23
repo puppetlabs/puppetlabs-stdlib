@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 #
 # loadjson.rb
 #
 
 module Puppet::Parser::Functions
-  newfunction(:loadjson, :type => :rvalue, :arity => -2, :doc => <<-'DOC') do |args|
+  newfunction(:loadjson, type: :rvalue, arity: -2, doc: <<-'DOC') do |args|
     @summary
       Load a JSON file containing an array, string, or hash, and return the data
       in the corresponding native data type.
@@ -40,7 +42,7 @@ module Puppet::Parser::Functions
           url = args[0]
         end
         begin
-          contents = OpenURI.open_uri(url, :http_basic_authentication => [username, password])
+          contents = OpenURI.open_uri(url, http_basic_authentication: [username, password])
         rescue OpenURI::HTTPError => err
           res = err.io
           warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")

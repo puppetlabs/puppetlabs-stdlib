@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # assert_private.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:assert_private, :doc => <<-DOC
+  newfunction(:assert_private, doc: <<-DOC
     @summary
       Sets the current class or definition as private.
 
@@ -11,14 +13,13 @@ module Puppet::Parser::Functions
 
     Calling the class or definition from outside the current module will fail.
     DOC
-             ) do |args|
-
+  ) do |args|
     raise(Puppet::ParseError, "assert_private(): Wrong number of arguments given (#{args.size}}) for 0 or 1)") if args.size > 1
 
     scope = self
     if scope.lookupvar('module_name') != scope.lookupvar('caller_module_name')
       message = nil
-      if args[0] && args[0].is_a?(String)
+      if args[0]&.is_a?(String)
         message = args[0]
       else
         manifest_name = scope.source.name

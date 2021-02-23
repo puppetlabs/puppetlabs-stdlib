@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'uri'
 #
 #  uriescape.rb
 #  Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible. To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 #
 module Puppet::Parser::Functions
-  newfunction(:uriescape, :type => :rvalue, :doc => <<-DOC
+  newfunction(:uriescape, type: :rvalue, doc: <<-DOC
     @summary
       Urlencodes a string or array of strings.
       Requires either a single string or an array as an input.
@@ -13,8 +15,7 @@ module Puppet::Parser::Functions
       a string that contains the converted value
 
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "uriescape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]

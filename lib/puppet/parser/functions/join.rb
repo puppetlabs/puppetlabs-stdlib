@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # join.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:join, :type => :rvalue, :doc => <<-DOC
+  newfunction(:join, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** This function joins an array into a string using a separator.
 
@@ -15,8 +17,7 @@ module Puppet::Parser::Functions
     > **Note:** **Deprecated** from Puppet 5.4.0 this function has been replaced
     with a built-in [`join`](https://puppet.com/docs/puppet/latest/function.html#join) function.
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "join(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 

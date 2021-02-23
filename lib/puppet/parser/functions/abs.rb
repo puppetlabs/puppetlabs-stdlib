@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # abs.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:abs, :type => :rvalue, :doc => <<-DOC
+  newfunction(:abs, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns the absolute value of a number
 
@@ -16,17 +18,16 @@ module Puppet::Parser::Functions
     @return The absolute value of the given number if it was an Integer
 
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "abs(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
 
     # Numbers in Puppet are often string-encoded which is troublesome ...
     if value.is_a?(String)
-      if value =~ %r{^-?(?:\d+)(?:\.\d+){1}$}
+      if %r{^-?(?:\d+)(?:\.\d+){1}$}.match?(value)
         value = value.to_f
-      elsif value =~ %r{^-?\d+$}
+      elsif %r{^-?\d+$}.match?(value)
         value = value.to_i
       else
         raise(Puppet::ParseError, 'abs(): Requires float or integer to work with')

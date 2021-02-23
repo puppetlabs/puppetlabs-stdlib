@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'PE Version specs' do
@@ -32,19 +34,19 @@ describe 'PE Version specs' do
           expect(Facter.fact(:is_pe).value).to eq(true)
         end
 
-        it "Should have a version of #{version}" do
+        it "has a version of #{version}" do
           expect(Facter.fact(:pe_version).value).to eq(version)
         end
 
-        it "Should have a major version of #{major}" do
+        it "has a major version of #{major}" do
           expect(Facter.fact(:pe_major_version).value).to eq(major)
         end
 
-        it "Should have a minor version of #{minor}" do
+        it "has a minor version of #{minor}" do
           expect(Facter.fact(:pe_minor_version).value).to eq(minor)
         end
 
-        it "Should have a patch version of #{patch}" do
+        it "has a patch version of #{patch}" do
           expect(Facter.fact(:pe_patch_version).value).to eq(patch)
         end
       end

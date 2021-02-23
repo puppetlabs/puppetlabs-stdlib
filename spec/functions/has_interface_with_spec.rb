@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'has_interface_with' do
@@ -8,7 +10,7 @@ describe 'has_interface_with' do
   # We need to mock out the Facts so we can specify how we expect this function
   # to behave on different platforms.
   context 'when on Mac OS X Systems' do
-    let(:facts) { { :interfaces => 'lo0,gif0,stf0,en1,p2p0,fw0,en0,vmnet1,vmnet8,utun0' } }
+    let(:facts) { { interfaces: 'lo0,gif0,stf0,en1,p2p0,fw0,en0,vmnet1,vmnet8,utun0' } }
 
     it { is_expected.to run.with_params('lo0').and_return(true) }
     it { is_expected.to run.with_params('lo').and_return(false) }
@@ -17,13 +19,13 @@ describe 'has_interface_with' do
   context 'when on Linux Systems' do
     let(:facts) do
       {
-        :interfaces => 'eth0,lo',
-        :ipaddress => '10.0.0.1',
-        :ipaddress_lo => '127.0.0.1',
-        :ipaddress_eth0 => '10.0.0.1',
-        :muppet => 'kermit',
-        :muppet_lo => 'mspiggy',
-        :muppet_eth0 => 'kermit',
+        interfaces: 'eth0,lo',
+        ipaddress: '10.0.0.1',
+        ipaddress_lo: '127.0.0.1',
+        ipaddress_eth0: '10.0.0.1',
+        muppet: 'kermit',
+        muppet_lo: 'mspiggy',
+        muppet_eth0: 'kermit',
       }
     end
 

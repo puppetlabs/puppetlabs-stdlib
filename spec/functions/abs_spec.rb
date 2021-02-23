@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 if Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0
   describe 'abs' do

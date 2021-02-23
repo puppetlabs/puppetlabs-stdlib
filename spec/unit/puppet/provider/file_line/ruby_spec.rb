@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 provider_class = Puppet::Type.type(:file_line).provider(:ruby)
 #  These tests fail on windows when run as part of the rake task. Individually they pass
-describe provider_class, :unless => Puppet::Util::Platform.windows? do
+describe provider_class, unless: Puppet::Util::Platform.windows? do
   include PuppetlabsSpec::Files
 
   let :tmpfile do
@@ -16,9 +18,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   end
   let :resource do
     Puppet::Type::File_line.new({
-      :name => 'foo',
-      :path => tmpfile,
-      :line => 'foo',
+      name: 'foo',
+      path: tmpfile,
+      line: 'foo',
     }.merge(params))
   end
   let :provider do
@@ -53,7 +55,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   end
 
   describe 'match parameter' do
-    let(:params) { { :match => '^bar' } }
+    let(:params) { { match: '^bar' } }
 
     describe 'does not match line - line does not exist - replacing' do
       let(:content) { "foo bar\nbar" }
@@ -68,7 +70,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     describe 'does not match line - line does not exist - appending' do
-      let(:params) { super().merge(:replace => false) }
+      let(:params) { super().merge(replace: false) }
       let(:content) { "foo bar\nbar" }
 
       it 'does not request changes' do
@@ -85,7 +87,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     context 'when matches line - line exists' do
-      let(:params) { { :match => '^foo' } }
+      let(:params) { { match: '^foo' } }
       let(:content) { "foo\nbar" }
 
       it 'detects the line' do
@@ -94,7 +96,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     context 'when matches line - line does not exist' do
-      let(:params) { { :match => '^foo' } }
+      let(:params) { { match: '^foo' } }
       let(:content) { "foo bar\nbar" }
 
       it 'requests changes' do
@@ -110,8 +112,8 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   describe 'append_on_no_match' do
     let(:params) do
       {
-        :append_on_no_match => false,
-        :match => '^foo1$',
+        append_on_no_match: false,
+        match: '^foo1$',
       }
     end
 
@@ -139,8 +141,8 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     context 'when replace is false' do
       let(:params) do
         {
-          :replace_all_matches_not_matching_line => true,
-          :replace => false,
+          replace_all_matches_not_matching_line: true,
+          replace: false,
         }
       end
 
@@ -152,9 +154,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     context 'when match matches line - when there are more matches than lines' do
       let(:params) do
         {
-          :replace_all_matches_not_matching_line => true,
-          :match => '^foo',
-          :multiple => true,
+          replace_all_matches_not_matching_line: true,
+          match: '^foo',
+          multiple: true,
         }
       end
       let(:content) { "foo\nfoo bar\nbar\nfoo baz" }
@@ -171,9 +173,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     context 'when match matches line - when there are the same matches and lines' do
       let(:params) do
         {
-          :replace_all_matches_not_matching_line => true,
-          :match => '^foo',
-          :multiple => true,
+          replace_all_matches_not_matching_line: true,
+          match: '^foo',
+          multiple: true,
         }
       end
       let(:content) { "foo\nfoo\nbar" }
@@ -186,9 +188,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     context 'when match does not match line - when there are more matches than lines' do
       let(:params) do
         {
-          :replace_all_matches_not_matching_line => true,
-          :match => '^bar',
-          :multiple => true,
+          replace_all_matches_not_matching_line: true,
+          match: '^bar',
+          multiple: true,
         }
       end
       let(:content) { "foo\nfoo bar\nbar\nbar baz" }
@@ -205,9 +207,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     context 'when match does not match line - when there are the same matches and lines' do
       let(:params) do
         {
-          :replace_all_matches_not_matching_line => true,
-          :match => '^bar',
-          :multiple => true,
+          replace_all_matches_not_matching_line: true,
+          match: '^bar',
+          multiple: true,
         }
       end
       let(:content) { "foo\nfoo\nbar\nbar baz" }
@@ -225,9 +227,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   context 'when match does not match line - when there are no matches' do
     let(:params) do
       {
-        :replace_all_matches_not_matching_line => true,
-        :match => '^bar',
-        :multiple => true,
+        replace_all_matches_not_matching_line: true,
+        match: '^bar',
+        multiple: true,
       }
     end
     let(:content) { "foo\nfoo bar" }
@@ -240,9 +242,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   context 'when match does not match line - when there are no matches or lines' do
     let(:params) do
       {
-        :replace_all_matches_not_matching_line => true,
-        :match => '^bar',
-        :multiple => true,
+        replace_all_matches_not_matching_line: true,
+        match: '^bar',
+        multiple: true,
       }
     end
     let(:content) { 'foo bar' }

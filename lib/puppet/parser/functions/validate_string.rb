@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # validate_String.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_string, :doc => <<-DOC
+  newfunction(:validate_string, doc: <<-DOC
     @summary
       Validate that all passed values are string data structures
 
@@ -29,7 +31,7 @@ module Puppet::Parser::Functions
         }
     ```
     DOC
-             ) do |args|
+  ) do |args|
     function_deprecation([:validate_string, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::String. There is further documentation for validate_legacy function in the README.'])
 

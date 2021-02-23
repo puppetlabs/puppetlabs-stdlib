@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # deprecation.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:deprecation, :doc => <<-DOC
+  newfunction(:deprecation, doc: <<-DOC
   @summary
     Function to print deprecation warnings (this is the 3.X version of it).
 
@@ -12,8 +14,7 @@ module Puppet::Parser::Functions
   @return [String]
     return deprecation warnings
 DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "deprecation: Wrong number of arguments given (#{arguments.size} for 2)") unless arguments.size == 2
 
     key = arguments[0]

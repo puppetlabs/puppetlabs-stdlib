@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # is_function_available.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_function_available, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_function_available, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Determines whether the Puppet runtime has access to a function by that name.
 
@@ -14,8 +16,7 @@ module Puppet::Parser::Functions
     > **Note:* **Deprecated** Will be removed in a future version of stdlib. See
     [`validate_legacy`](#validate_legacy).
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     if arguments.size != 1
       raise(Puppet::ParseError, "is_function_available?(): Wrong number of arguments given #{arguments.size} for 1")
     end

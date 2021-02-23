@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 provider_class = Puppet::Type.type(:file_line).provider(:ruby)
 #  These tests fail on windows when run as part of the rake task. Individually they pass
-describe provider_class, :unless => Puppet::Util::Platform.windows? do
+describe provider_class, unless: Puppet::Util::Platform.windows? do
   include PuppetlabsSpec::Files
 
   let :tmpfile do
@@ -16,9 +18,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   end
   let :resource do
     Puppet::Type::File_line.new({
-      :name => 'foo',
-      :path => tmpfile,
-      :line => 'foo',
+      name: 'foo',
+      path: tmpfile,
+      line: 'foo',
     }.merge(params))
   end
   let :provider do
@@ -38,9 +40,9 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     context 'when replacing' do
       let :params do
         {
-          :line => 'foo = bar',
-          :match => '^foo\s*=.*$',
-          :replace => false,
+          line: 'foo = bar',
+          match: '^foo\s*=.*$',
+          replace: false,
         }
       end
       let(:content) { "foo1\nfoo=blah\nfoo2\nfoo3" }
@@ -61,7 +63,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       it 'raises an error with invalid values' do
         expect {
           @resource = Puppet::Type::File_line.new(
-            :name => 'foo', :path => tmpfile, :line => 'foo = bar', :match => '^foo\s*=.*$', :replace => 'asgadga',
+            name: 'foo', path: tmpfile, line: 'foo = bar', match: '^foo\s*=.*$', replace: 'asgadga',
           )
         }.to raise_error(Puppet::Error, %r{Invalid value "asgadga"\. Valid values are true, false\.})
       end
@@ -74,10 +76,10 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     # rubocop:disable RSpec/InstanceVariable : replacing before with let breaks the tests, variables need to be altered within it block : multi
     before :each do
       @resource = Puppet::Type::File_line.new(
-        :name => 'foo',
-        :path => tmpfile,
-        :line => 'foo = bar',
-        :match => '^foo\s*=.*$',
+        name: 'foo',
+        path: tmpfile,
+        line: 'foo = bar',
+        match: '^foo\s*=.*$',
       )
       @provider = provider_class.new(@resource)
     end
@@ -89,7 +91,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       end
 
       it 'replaces all lines that matches' do
-        @resource = Puppet::Type::File_line.new(:name => 'foo', :path => tmpfile, :line => 'foo = bar', :match => '^foo\s*=.*$', :multiple => true)
+        @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'foo = bar', match: '^foo\s*=.*$', multiple: true)
         @provider = provider_class.new(@resource)
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz") }
         @provider.create
@@ -97,7 +99,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       end
 
       it 'replaces all lines that match, even when some lines are correct' do
-        @resource = Puppet::Type::File_line.new(:name => 'neil', :path => tmpfile, :line => "\thard\tcore\t0\n", :match => '^[ \t]hard[ \t]+core[ \t]+.*', :multiple => true)
+        @resource = Puppet::Type::File_line.new(name: 'neil', path: tmpfile, line: "\thard\tcore\t0\n", match: '^[ \t]hard[ \t]+core[ \t]+.*', multiple: true)
         @provider = provider_class.new(@resource)
         File.open(tmpfile, 'w') { |fh| fh.write("\thard\tcore\t90\n\thard\tcore\t0\n") }
         @provider.create
@@ -107,7 +109,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       it 'raises an error with invalid values' do
         expect {
           @resource = Puppet::Type::File_line.new(
-            :name => 'foo', :path => tmpfile, :line => 'foo = bar', :match => '^foo\s*=.*$', :multiple => 'asgadga',
+            name: 'foo', path: tmpfile, line: 'foo = bar', match: '^foo\s*=.*$', multiple: 'asgadga',
           )
         }.to raise_error(Puppet::Error, %r{Invalid value "asgadga"\. Valid values are true, false\.})
       end
@@ -130,7 +132,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
     describe 'using match+append_on_no_match - when there is a match' do
       it 'replaces line' do
-        @resource = Puppet::Type::File_line.new(:name => 'foo', :path => tmpfile, :line => 'inserted = line', :match => '^foo3$', :append_on_no_match => false)
+        @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'inserted = line', match: '^foo3$', append_on_no_match: false)
         @provider = provider_class.new(@resource)
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo = blah\nfoo2\nfoo = baz") }
         expect(File.read(tmpfile).chomp).to eql("foo1\nfoo = blah\nfoo2\nfoo = baz")
@@ -138,7 +140,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
     describe 'using match+append_on_no_match - when there is no match' do
       it 'does not add line after no matches found' do
-        @resource = Puppet::Type::File_line.new(:name => 'foo', :path => tmpfile, :line => 'inserted = line', :match => '^foo3$', :append_on_no_match => false)
+        @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'inserted = line', match: '^foo3$', append_on_no_match: false)
         @provider = provider_class.new(@resource)
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo = blah\nfoo2\nfoo = baz") }
         expect(File.read(tmpfile).chomp).to eql("foo1\nfoo = blah\nfoo2\nfoo = baz")
@@ -151,10 +153,10 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   context 'when after' do
     let :resource do
       Puppet::Type::File_line.new(
-        :name => 'foo',
-        :path => tmpfile,
-        :line => 'inserted = line',
-        :after => '^foo1',
+        name: 'foo',
+        path: tmpfile,
+        line: 'inserted = line',
+        after: '^foo1',
       )
     end
 
@@ -168,11 +170,11 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
         let(:after) { '^foo1$' }
         let(:resource) do
           Puppet::Type::File_line.new(
-            :name => 'foo',
-            :path => tmpfile,
-            :line => 'inserted = line',
-            :after => after,
-            :match => match,
+            name: 'foo',
+            path: tmpfile,
+            line: 'inserted = line',
+            after: after,
+            match: match,
           )
         end
       end
@@ -226,7 +228,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       end
 
       it 'adds the line after all lines matching the after expression' do
-        @resource = Puppet::Type::File_line.new(:name => 'foo', :path => tmpfile, :line => 'inserted = line', :after => '^foo1$', :multiple => true)
+        @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'inserted = line', after: '^foo1$', multiple: true)
         @provider = provider_class.new(@resource)
         @provider.create
         expect(File.read(tmpfile).chomp).to eql("foo1\ninserted = line\nfoo = blah\nfoo2\nfoo1\ninserted = line\nfoo = baz")
@@ -253,10 +255,10 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       #  file fixtures once the following pull request has been merged:
       # https://github.com/puppetlabs/puppetlabs-stdlib/pull/73/files
       @resource = Puppet::Type::File_line.new(
-        :name => 'foo',
-        :path => tmpfile,
-        :line => 'foo',
-        :ensure => 'absent',
+        name: 'foo',
+        path: tmpfile,
+        line: 'foo',
+        ensure: 'absent',
       )
       @provider = provider_class.new(@resource)
     end
@@ -276,7 +278,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
       expect(File.read(tmpfile)).to eql("foo1\nfoo2\n")
     end
     it 'example in the docs' do
-      @resource = Puppet::Type::File_line.new(:name => 'bashrc_proxy', :ensure => 'absent', :path => tmpfile, :line => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128')
+      @resource = Puppet::Type::File_line.new(name: 'bashrc_proxy', ensure: 'absent', path: tmpfile, line: 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128')
       @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo2\nexport HTTP_PROXY=http://squid.puppetlabs.vm:3128\nfoo4\n") }
       @provider.destroy
@@ -286,12 +288,12 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
   context 'when removing with a match' do
     before :each do
       @resource = Puppet::Type::File_line.new(
-        :name => 'foo',
-        :path => tmpfile,
-        :line => 'foo2',
-        :ensure => 'absent',
-        :match => 'o$',
-        :match_for_absence => true,
+        name: 'foo',
+        path: tmpfile,
+        line: 'foo2',
+        ensure: 'absent',
+        match: 'o$',
+        match_for_absence: true,
       )
       @provider = provider_class.new(@resource)
     end
@@ -308,7 +310,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     it 'the line parameter is actually not used at all but is silently ignored if here' do
-      @resource = Puppet::Type::File_line.new(:name => 'foo', :path => tmpfile, :line => 'supercalifragilisticexpialidocious', :ensure => 'absent', :match => 'o$', :match_for_absence => true)
+      @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'supercalifragilisticexpialidocious', ensure: 'absent', match: 'o$', match_for_absence: true)
       @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo\nfoo2") }
       @provider.destroy
@@ -316,7 +318,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     it 'and may not be here and does not need to be here' do
-      @resource = Puppet::Type::File_line.new(:name => 'foo', :path => tmpfile, :ensure => 'absent', :match => 'o$', :match_for_absence => true)
+      @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, ensure: 'absent', match: 'o$', match_for_absence: true)
       @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo\nfoo2") }
       @provider.destroy
@@ -329,7 +331,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     it 'removes multiple lines if :multiple is true' do
-      @resource = Puppet::Type::File_line.new(:name => 'foo', :path => tmpfile, :line => 'foo2', :ensure => 'absent', :match => 'o$', :multiple => true, :match_for_absence => true)
+      @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'foo2', ensure: 'absent', match: 'o$', multiple: true, match_for_absence: true)
       @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo\nfoo2\nfoo\nfoo") }
       @provider.destroy
@@ -337,7 +339,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     it 'ignores the match if match_for_absence is not specified' do
-      @resource = Puppet::Type::File_line.new(:name => 'foo', :path => tmpfile, :line => 'foo2', :ensure => 'absent', :match => 'o$')
+      @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'foo2', ensure: 'absent', match: 'o$')
       @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo\nfoo2") }
       @provider.destroy
@@ -345,7 +347,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     it 'ignores the match if match_for_absence is false' do
-      @resource = Puppet::Type::File_line.new(:name => 'foo', :path => tmpfile, :line => 'foo2', :ensure => 'absent', :match => 'o$', :match_for_absence => false)
+      @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'foo2', ensure: 'absent', match: 'o$', match_for_absence: false)
       @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo\nfoo2") }
       @provider.destroy
@@ -354,8 +356,8 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
 
     it 'example in the docs' do
       @resource = Puppet::Type::File_line.new(
-        :name => 'bashrc_proxy', :ensure => 'absent', :path => tmpfile, :line => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
-        :match => '^export\ HTTP_PROXY\=', :match_for_absence => true
+        name: 'bashrc_proxy', ensure: 'absent', path: tmpfile, line: 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
+        match: '^export\ HTTP_PROXY\=', match_for_absence: true
       )
       @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo2\nexport HTTP_PROXY=foo\nfoo4\n") }
@@ -364,7 +366,7 @@ describe provider_class, :unless => Puppet::Util::Platform.windows? do
     end
 
     it 'example in the docs showing line is redundant' do
-      @resource = Puppet::Type::File_line.new(:name => 'bashrc_proxy', :ensure => 'absent', :path => tmpfile, :match => '^export\ HTTP_PROXY\=', :match_for_absence => true)
+      @resource = Puppet::Type::File_line.new(name: 'bashrc_proxy', ensure: 'absent', path: tmpfile, match: '^export\ HTTP_PROXY\=', match_for_absence: true)
       @provider = provider_class.new(@resource)
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo2\nexport HTTP_PROXY=foo\nfoo4\n") }
       @provider.destroy

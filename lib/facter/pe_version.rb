@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fact: is_pe, pe_version, pe_major_version, pe_minor_version, pe_patch_version
 #
 # Purpose: Return various facts about the PE state of the system
@@ -38,7 +40,7 @@ end
 
 # Fact: pe_major_version
 Facter.add('pe_major_version') do
-  confine :is_pe => true
+  confine is_pe: true
   setcode do
     pe_version = Facter.value(:pe_version)
     if pe_version
@@ -49,7 +51,7 @@ end
 
 # Fact: pe_minor_version
 Facter.add('pe_minor_version') do
-  confine :is_pe => true
+  confine is_pe: true
   setcode do
     pe_version = Facter.value(:pe_version)
     if pe_version
@@ -60,7 +62,7 @@ end
 
 # Fact: pe_patch_version
 Facter.add('pe_patch_version') do
-  confine :is_pe => true
+  confine is_pe: true
   setcode do
     pe_version = Facter.value(:pe_version)
     if pe_version

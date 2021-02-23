@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'parsejson' do
@@ -57,7 +59,7 @@ describe 'parsejson' do
     end
 
     ['', 1, 1.2, nil, true, false, [], {}, :yaml].each do |value|
-      it "should return the default value for an incorrect #{value.inspect} (#{value.class}) parameter" do
+      it "returns the default value for an incorrect #{value.inspect} (#{value.class}) parameter" do
         is_expected.to run.with_params(value, 'default_value')
                           .and_return('default_value')
       end

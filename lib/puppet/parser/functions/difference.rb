@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # difference.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:difference, :type => :rvalue, :doc => <<-DOC
+  newfunction(:difference, type: :rvalue, doc: <<-DOC
     @summary
       This function returns the difference between two arrays.
 
@@ -23,8 +25,7 @@ module Puppet::Parser::Functions
       The difference between the two given arrays
 
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     # Two arguments are required
     raise(Puppet::ParseError, "difference(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size != 2
 

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'getvar' do
   it { is_expected.not_to eq(nil) }
 
-  describe 'before Puppet 6.0.0', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 do
+  describe 'before Puppet 6.0.0', if: Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') < 0 do
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
     it { is_expected.to run.with_params('one', 'two').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   end
 
-  describe 'from Puppet 6.0.0', :if => Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') >= 0 do
+  describe 'from Puppet 6.0.0', if: Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') >= 0 do
     it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{expects between 1 and 2 arguments, got none}i) }
     it { is_expected.to run.with_params('one', 'two').and_return('two') }
     it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(ArgumentError, %r{expects between 1 and 2 arguments, got 3}i) }

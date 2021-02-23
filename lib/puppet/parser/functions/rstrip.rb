@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 #  rstrip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:rstrip, :type => :rvalue, :doc => <<-DOC
+  newfunction(:rstrip, type: :rvalue, doc: <<-DOC
     @summary
       Strips leading spaces to the right of the string.
 
@@ -12,8 +14,7 @@ module Puppet::Parser::Functions
     > *Note:* from Puppet 6.0.0, the compatible function with the same name in Puppet core
     will be used instead of this function.
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "rstrip(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]

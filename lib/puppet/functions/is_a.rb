@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @summary
 #   Boolean check to determine whether a variable is of a given data type.
 #   This is equivalent to the `=~` type checks.
@@ -35,7 +37,7 @@ Puppet::Functions.create_function(:is_a) do
     param 'Type', :type
   end
 
-  def is_a(value, type) # rubocop:disable Style/PredicateName : Used in to many other places to rename at this time, attempting to refactor caused Rubocop to crash.
+  def is_a(value, type) # rubocop:disable Naming/PredicateName : Used in to many other places to rename at this time, attempting to refactor caused Rubocop to crash.
     # See puppet's lib/puppet/pops/evaluator/evaluator_impl.rb eval_MatchExpression
     Puppet::Pops::Types::TypeCalculator.instance?(type, value)
   end

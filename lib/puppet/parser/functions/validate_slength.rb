@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # validate_slength.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_slength, :doc => <<-DOC
+  newfunction(:validate_slength, doc: <<-DOC
     @summary
       Validate that the first argument is a string (or an array of strings), and less/equal to than the length of the second argument.
       An optional third parameter can be given the minimum length. It fails if the first argument is not a string or array of strings,
@@ -24,7 +26,7 @@ module Puppet::Parser::Functions
         validate_slength(["discombobulate","thermometer"],5)
         validate_slength(["discombobulate","moo"],17,10)
     DOC
-             ) do |args|
+  ) do |args|
     function_deprecation([:validate_slength, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with String[]. There is further documentation for validate_legacy function in the README.'])
 

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # str2bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:str2bool, :type => :rvalue, :doc => <<-DOC
+  newfunction(:str2bool, type: :rvalue, doc: <<-DOC
     @summary
       This converts a string to a boolean.
 
@@ -13,8 +15,7 @@ module Puppet::Parser::Functions
     > *Note:* that since Puppet 5.0.0 the Boolean data type can convert strings to a Boolean value.
     See the function new() in Puppet for details what the Boolean data type supports.
   DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "str2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     string = arguments[0]

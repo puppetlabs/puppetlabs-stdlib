@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # num2bool.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:num2bool, :type => :rvalue, :doc => <<-DOC
+  newfunction(:num2bool, type: :rvalue, doc: <<-DOC
     @summary
       This function converts a number or a string representation of a number into a
       true boolean.
@@ -14,14 +16,13 @@ module Puppet::Parser::Functions
         Boolean(0) # false for any zero or negative number
         Boolean(1) # true for any positive number
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "num2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     number = arguments[0]
 
     case number
-    when Numeric # rubocop:disable Lint/EmptyWhen : Required for the module to work
+    when Numeric
       # Yay, it's a number
     when String
       begin

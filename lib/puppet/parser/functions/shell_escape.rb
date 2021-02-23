@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'shellwords'
 #
 # shell_escape.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:shell_escape, :type => :rvalue, :doc => <<-DOC
+  newfunction(:shell_escape, type: :rvalue, doc: <<-DOC
     @summary
       Escapes a string so that it can be safely used in a Bourne shell command line.
 
@@ -15,8 +17,7 @@ module Puppet::Parser::Functions
 
     This function behaves the same as ruby's Shellwords.shellescape() function.
   DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "shell_escape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
     # explicit conversion to string is required for ruby 1.9

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # is_integer.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_integer, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_integer, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the variable passed to this function is an Integer or
       a decimal (base 10) integer in String form.
@@ -18,8 +20,7 @@ module Puppet::Parser::Functions
     > **Note:* **Deprecated** Will be removed in a future version of stdlib. See
     [`validate_legacy`](#validate_legacy).
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     function_deprecation([:is_integer, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.'])
 

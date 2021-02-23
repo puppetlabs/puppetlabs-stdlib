@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'validate_x509_rsa_key_pair' do
@@ -174,7 +176,6 @@ DOC
     start_pos = middle - (chars_to_truncate / 2)
     end_pos = middle + (chars_to_truncate / 2)
 
-    string[start_pos...end_pos] = ''
-    string
+    string[0..start_pos] + string[end_pos..-1]
   end
 end

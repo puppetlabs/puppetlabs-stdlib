@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # validate_domain_name.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_domain_name, :doc => <<-DOC
+  newfunction(:validate_domain_name, doc: <<-DOC
     @summary
       Validate that all values passed are syntactically correct domain names.
       Fail compilation if any value fails this check.
@@ -26,8 +28,7 @@ module Puppet::Parser::Functions
           validate_domain_name('-foo.example.com')
           validate_domain_name('www.example.2com')
     DOC
-             ) do |args|
-
+  ) do |args|
     rescuable_exceptions = [ArgumentError]
 
     if args.empty?

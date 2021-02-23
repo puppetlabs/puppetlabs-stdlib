@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # is_numeric.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:is_numeric, :type => :rvalue, :doc => <<-DOC
+  newfunction(:is_numeric, type: :rvalue, doc: <<-DOC
     @summary
       **Deprecated:** Returns true if the given value is numeric.
 
@@ -22,8 +24,7 @@ module Puppet::Parser::Functions
     > **Note:* **Deprecated** Will be removed in a future version of stdlib. See
     [`validate_legacy`](#validate_legacy).
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     function_deprecation([:is_numeric, 'This method is deprecated, please use the stdlib validate_legacy function,
                           with Stdlib::Compat::Numeric. There is further documentation for validate_legacy function in the README.'])
 

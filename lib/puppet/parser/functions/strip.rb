@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 #  strip.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:strip, :type => :rvalue, :doc => <<-DOC
+  newfunction(:strip, type: :rvalue, doc: <<-DOC
     @summary
       This function removes leading and trailing whitespace from a string or from
       every string inside an array.
@@ -18,8 +20,7 @@ module Puppet::Parser::Functions
     > *Note:*: from Puppet 6.0.0, the compatible function with the same name in Puppet core
     will be used instead of this function.
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "strip(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]

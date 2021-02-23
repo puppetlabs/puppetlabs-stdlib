@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 # TODO(Krzysztof Wilczynski): We need to add support for regular expression ...
 # TODO(Krzysztof Wilczynski): Support for strings and hashes too ...
 #
 # member.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:member, :type => :rvalue, :doc => <<-DOC
+  newfunction(:member, type: :rvalue, doc: <<-DOC
     @summary
       This function determines if a variable is a member of an array.
 
@@ -34,8 +36,7 @@ module Puppet::Parser::Functions
     hash is to use the built-in [`any`](https://puppet.com/docs/puppet/latest/function.html#any)
     and [`all`](https://puppet.com/docs/puppet/latest/function.html#all) functions.
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "member(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments[0]

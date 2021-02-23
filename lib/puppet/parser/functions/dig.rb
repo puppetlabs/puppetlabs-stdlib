@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # dig.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:dig, :type => :rvalue, :doc => <<-DOC
+  newfunction(:dig, type: :rvalue, doc: <<-DOC
     @summary
       **DEPRECATED** Retrieves a value within multiple layers of hashes and arrays via an
       array of keys containing a path.
@@ -47,7 +49,7 @@ module Puppet::Parser::Functions
       [`dig`](https://puppet.com/docs/puppet/latest/function.html#dig) function as of
       Puppet 4.5.0. Use [`dig44()`](#dig44) for backwards compatibility or use the new version.
     DOC
-             ) do |arguments|
+  ) do |arguments|
     warning('dig() DEPRECATED: This function has been replaced in Puppet 4.5.0, please use dig44() for backwards compatibility or use the new version.')
     unless Puppet::Parser::Functions.autoloader.loaded?(:dig44)
       Puppet::Parser::Functions.autoloader.load(:dig44)

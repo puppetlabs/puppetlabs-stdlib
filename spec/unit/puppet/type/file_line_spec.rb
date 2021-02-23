@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'tempfile'
 describe Puppet::Type.type(:file_line) do
@@ -16,7 +18,7 @@ describe Puppet::Type.type(:file_line) do
     end
   end
   let :file_line do
-    Puppet::Type.type(:file_line).new(:name => 'foo', :line => 'line', :path => tmp_path)
+    Puppet::Type.type(:file_line).new(name: 'foo', line: 'line', path: tmp_path)
   end
 
   it 'accepts a line' do
@@ -35,28 +37,28 @@ describe Puppet::Type.type(:file_line) do
   it 'accepts a match regex that does not match the specified line' do
     expect {
       Puppet::Type.type(:file_line).new(
-        :name => 'foo', :path => my_path, :line => 'foo=bar', :match => '^bar=blah$',
+        name: 'foo', path: my_path, line: 'foo=bar', match: '^bar=blah$',
       )
     }.not_to raise_error
   end
   it 'accepts a match regex that does match the specified line' do
     expect {
       Puppet::Type.type(:file_line).new(
-        :name => 'foo', :path => my_path, :line => 'foo=bar', :match => '^\s*foo=.*$',
+        name: 'foo', path: my_path, line: 'foo=bar', match: '^\s*foo=.*$',
       )
     }.not_to raise_error
   end
   it 'accepts utf8 characters' do
     expect {
       Puppet::Type.type(:file_line).new(
-        :name => 'ƒồỗ', :path => my_path, :line => 'ƒồỗ=ьåя', :match => '^ьåя=βļάħ$',
+        name: 'ƒồỗ', path: my_path, line: 'ƒồỗ=ьåя', match: '^ьåя=βļάħ$',
       )
     }.not_to raise_error
   end
   it 'accepts double byte characters' do
     expect {
       Puppet::Type.type(:file_line).new(
-        :name => 'フーバー', :path => my_path, :line => 'この=それ', :match => '^この=ああ$',
+        name: 'フーバー', path: my_path, line: 'この=それ', match: '^この=ああ$',
       )
     }.not_to raise_error
   end
@@ -68,16 +70,16 @@ describe Puppet::Type.type(:file_line) do
     expect { file_line[:path] = 'file' }.to raise_error(Puppet::Error, %r{File paths must be fully qualified})
   end
   it 'requires that a line is specified' do
-    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path) }.to raise_error(Puppet::Error, %r{line is a required attribute})
+    expect { Puppet::Type.type(:file_line).new(name: 'foo', path: tmp_path) }.to raise_error(Puppet::Error, %r{line is a required attribute})
   end
   it 'does not require that a line is specified when matching for absence' do
-    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Metrics/LineLength
+    expect { Puppet::Type.type(:file_line).new(name: 'foo', path: tmp_path, ensure: :absent, match_for_absence: :true, match: 'match') }.not_to raise_error
   end
   it 'although if a line is specified anyway when matching for absence it still works and the line is silently ignored' do
-    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :line => 'i_am_irrelevant', :ensure => :absent, :match_for_absence => :true, :match => 'match') }.not_to raise_error # rubocop:disable Metrics/LineLength
+    expect { Puppet::Type.type(:file_line).new(name: 'foo', path: tmp_path, line: 'i_am_irrelevant', ensure: :absent, match_for_absence: :true, match: 'match') }.not_to raise_error
   end
   it 'requires that a file is specified' do
-    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :line => 'path') }.to raise_error(Puppet::Error, %r{path is a required attribute})
+    expect { Puppet::Type.type(:file_line).new(name: 'foo', line: 'path') }.to raise_error(Puppet::Error, %r{path is a required attribute})
   end
   it 'defaults to ensure => present' do
     expect(file_line[:ensure]).to eq :present
@@ -89,12 +91,12 @@ describe Puppet::Type.type(:file_line) do
     expect(file_line[:encoding]).to eq 'UTF-8'
   end
   it 'accepts encoding => iso-8859-1' do
-    expect { Puppet::Type.type(:file_line).new(:name => 'foo', :path => tmp_path, :ensure => :present, :encoding => 'iso-8859-1', :line => 'bar') }.not_to raise_error
+    expect { Puppet::Type.type(:file_line).new(name: 'foo', path: tmp_path, ensure: :present, encoding: 'iso-8859-1', line: 'bar') }.not_to raise_error
   end
 
   it 'autorequires the file it manages' do
     catalog = Puppet::Resource::Catalog.new
-    file = Puppet::Type.type(:file).new(:name => tmp_path)
+    file = Puppet::Type.type(:file).new(name: tmp_path)
     catalog.add_resource file
     catalog.add_resource file_line
     relationship = file_line.autorequire.find do |rel|

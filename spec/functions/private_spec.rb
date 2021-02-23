@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'private' do
   it 'issues a warning' do
-    expect(scope).to receive(:warning).with("private() DEPRECATED: This function will cease to function on Puppet 4; please use assert_private() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Metrics/LineLength : unable to cut line to required length
+    expect(scope).to receive(:warning).with("private() DEPRECATED: This function will cease to function on Puppet 4; please use assert_private() before upgrading to puppet 4 for backwards-compatibility, or migrate to the new parser's typing system.") # rubocop:disable Layout/LineLength : unable to cut line to required length
     begin
       subject.execute
-    rescue # rubocop:disable Lint/HandleExceptions
+    rescue
       # ignore this
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'validate_ip_address' do
@@ -20,7 +22,7 @@ describe 'validate_ip_address' do
     it { is_expected.to run.with_params('::1/64') }
     it { is_expected.to run.with_params('fe80::a00:27ff:fe94:44d6/64') }
 
-    context 'Checking for deprecation warning', :if => Puppet.version.to_f < 4.0 do
+    context 'Checking for deprecation warning', if: Puppet.version.to_f < 4.0 do
       after(:each) do
         ENV.delete('STDLIB_LOG_DEPRECATIONS')
       end

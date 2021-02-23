@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # count.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:count, :type => :rvalue, :arity => -2, :doc => <<-DOC
+  newfunction(:count, type: :rvalue, arity: -2, doc: <<-DOC
     @summary
       Counts the number of elements in array.
 
@@ -24,8 +26,7 @@ module Puppet::Parser::Functions
 
     @return [Integer] The amount of elements counted within the array
   DOC
-             ) do |args|
-
+  ) do |args|
     if args.size > 2
       raise(ArgumentError, "count(): Wrong number of arguments given #{args.size} for 1 or 2.")
     end

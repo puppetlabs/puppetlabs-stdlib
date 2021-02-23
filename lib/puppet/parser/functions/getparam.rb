@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # Test whether a given class or definition is defined
 require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:getparam,
-                                      :type => :rvalue,
-                                      :doc => <<-'DOC'
+                                      type: :rvalue,
+                                      doc: <<-'DOC',
     @summary
       Returns the value of a resource's parameter.
 
@@ -46,7 +48,7 @@ Puppet::Parser::Functions.newfunction(:getparam,
                                      ) do |vals|
   reference, param = vals
   raise(ArgumentError, 'Must specify a reference') unless reference
-  raise(ArgumentError, 'Must specify name of a parameter') unless param && param.instance_of?(String)
+  raise(ArgumentError, 'Must specify name of a parameter') unless param&.instance_of?(String)
 
   return '' if param.empty?
 

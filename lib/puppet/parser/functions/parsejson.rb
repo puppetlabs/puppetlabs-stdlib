@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # parsejson.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:parsejson, :type => :rvalue, :doc => <<-DOC
+  newfunction(:parsejson, type: :rvalue, doc: <<-DOC
     @summary
       This function accepts JSON as a string and converts it into the correct
       Puppet structure.
@@ -14,7 +16,7 @@ module Puppet::Parser::Functions
       The optional second argument can be used to pass a default value that will
       be returned if the parsing of YAML string have failed.
   DOC
-             ) do |arguments|
+  ) do |arguments|
     raise ArgumentError, 'Wrong number of arguments. 1 or 2 arguments should be provided.' unless arguments.length >= 1
 
     begin

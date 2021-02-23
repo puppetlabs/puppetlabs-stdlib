@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 # @summary
 #   Convert a data structure and output to JSON

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # validate.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_re, :doc => <<-DOC
+  newfunction(:validate_re, doc: <<-DOC
   @summary
     Perform simple validation of a string against one or more regular
     expressions.
@@ -37,7 +39,7 @@ module Puppet::Parser::Functions
   quotes to force stringification:
   validate_re("${::operatingsystemmajrelease}", '^[57]$')
    DOC
-             ) do |args|
+  ) do |args|
     function_deprecation([:validate_re, 'This method is deprecated, please use the stdlib validate_legacy function,
                             with Stdlib::Compat::Re. There is further documentation for validate_legacy function in the README.'])
 

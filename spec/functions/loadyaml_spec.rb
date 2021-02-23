@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'loadyaml' do
@@ -37,7 +39,7 @@ describe 'loadyaml' do
 
   context 'when an existing URL is specified' do
     let(:filename) { 'https://example.local/myhash.yaml' }
-    let(:basic_auth) { { :http_basic_authentication => ['', ''] } }
+    let(:basic_auth) { { http_basic_authentication: ['', ''] } }
     let(:yaml) { 'Dummy YAML' }
     let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
 
@@ -51,7 +53,7 @@ describe 'loadyaml' do
   context 'when an existing URL (with username and password) is specified' do
     let(:filename) { 'https://user1:pass1@example.local/myhash.yaml' }
     let(:url_no_auth) { 'https://example.local/myhash.yaml' }
-    let(:basic_auth) { { :http_basic_authentication => ['user1', 'pass1'] } }
+    let(:basic_auth) { { http_basic_authentication: ['user1', 'pass1'] } }
     let(:yaml) { 'Dummy YAML' }
     let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
 
@@ -65,7 +67,7 @@ describe 'loadyaml' do
   context 'when an existing URL (with username) is specified' do
     let(:filename) { 'https://user1@example.local/myhash.yaml' }
     let(:url_no_auth) { 'https://example.local/myhash.yaml' }
-    let(:basic_auth) { { :http_basic_authentication => ['user1', ''] } }
+    let(:basic_auth) { { http_basic_authentication: ['user1', ''] } }
     let(:yaml) { 'Dummy YAML' }
     let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
 
@@ -78,7 +80,7 @@ describe 'loadyaml' do
 
   context 'when an existing URL could not be parsed, with default specified' do
     let(:filename) { 'https://example.local/myhash.yaml' }
-    let(:basic_auth) { { :http_basic_authentication => ['', ''] } }
+    let(:basic_auth) { { http_basic_authentication: ['', ''] } }
     let(:yaml) { 'Dummy YAML' }
 
     it {
@@ -90,7 +92,7 @@ describe 'loadyaml' do
 
   context 'when a URL does not exist, with default specified' do
     let(:filename) { 'https://example.local/myhash.yaml' }
-    let(:basic_auth) { { :http_basic_authentication => ['', ''] } }
+    let(:basic_auth) { { http_basic_authentication: ['', ''] } }
     let(:yaml) { 'Dummy YAML' }
 
     it {

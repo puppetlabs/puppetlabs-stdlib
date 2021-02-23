@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # delete.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:delete, :type => :rvalue, :doc => <<-DOC
+  newfunction(:delete, type: :rvalue, doc: <<-DOC
     @summary
       Deletes all instances of a given element from an array, substring from a
       string, or key from a hash.
@@ -45,8 +47,7 @@ module Puppet::Parser::Functions
     @return [Hash] The filtered Hash, if one was given.
     @return [Array] The filtered Array, if one was given.
   DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "delete(): Wrong number of arguments given #{arguments.size} for 2") unless arguments.size == 2
 
     collection = arguments[0].dup

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Some monkey-patching to allow us to test private methods.
 class Class
   def publicize_methods(*methods)

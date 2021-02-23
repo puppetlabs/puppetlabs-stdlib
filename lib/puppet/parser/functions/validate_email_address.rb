@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # validate_email_address.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:validate_email_address, :doc => <<-DOC
+  newfunction(:validate_email_address, doc: <<-DOC
     @summary
       Validate that all values passed are valid email addresses.
       Fail compilation if any value fails this check.
@@ -23,7 +25,7 @@ module Puppet::Parser::Functions
         $some_array = [ 'bad_email@/d/efdf.com' ]
         validate_email_address($some_array)
     DOC
-             ) do |args|
+  ) do |args|
     rescuable_exceptions = [ArgumentError]
 
     if args.empty?

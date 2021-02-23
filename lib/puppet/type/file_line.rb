@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Puppet::Type.newtype(:file_line) do
   desc <<-DOC
     @summary
@@ -104,7 +106,7 @@ Puppet::Type.newtype(:file_line) do
     defaultto :present
   end
 
-  newparam(:name, :namevar => true) do
+  newparam(:name, namevar: true) do
     desc 'An arbitrary name used as the identity of the resource.'
   end
 

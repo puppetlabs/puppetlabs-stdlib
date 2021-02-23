@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 #
 # basename.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:basename, :type => :rvalue, :doc => <<-DOC
+  newfunction(:basename, type: :rvalue, doc: <<-DOC
     @summary
       Strips directory (and optional suffix) from a filename
 
     @return [String] The stripped filename
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, 'basename(): No arguments given') if arguments.empty?
     raise(Puppet::ParseError, "basename(): Too many arguments given (#{arguments.size})") if arguments.size > 2
     raise(Puppet::ParseError, 'basename(): Requires string as first argument') unless arguments[0].is_a?(String)

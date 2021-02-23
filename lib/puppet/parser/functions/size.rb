@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # size.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:size, :type => :rvalue, :doc => <<-DOC
+  newfunction(:size, type: :rvalue, doc: <<-DOC
     @summary
       Returns the number of elements in a string, an array or a hash
 
@@ -12,8 +14,7 @@ module Puppet::Parser::Functions
     > *Note:* that since Puppet 5.4.0, the length() function in Puppet is preferred over this. For versions
     of Puppet < 5.4.0 use the stdlib length() function.
   DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "size(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     item = arguments[0]

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 #
 #  swapcase.rb
 #  Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible. To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 #
 module Puppet::Parser::Functions
-  newfunction(:swapcase, :type => :rvalue, :doc => <<-DOC
+  newfunction(:swapcase, type: :rvalue, doc: <<-DOC
     @summary
       This function will swap the existing case of a string.
 
@@ -15,8 +17,7 @@ module Puppet::Parser::Functions
       swapcase("aBcD")
       Would result in: "AbCd"
     DOC
-             ) do |arguments|
-
+  ) do |arguments|
     raise(Puppet::ParseError, "swapcase(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]

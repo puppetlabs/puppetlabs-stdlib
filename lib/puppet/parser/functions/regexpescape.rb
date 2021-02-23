@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 #
 #  regexpescape.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:regexpescape, :type => :rvalue, :doc => <<-DOC
+  newfunction(:regexpescape, type: :rvalue, doc: <<-DOC
     @summary
       Regexp escape a string or array of strings.
       Requires either a single string or an array as an input.
     @return [String]
       A string of characters with metacharacters converted to their escaped form.
     DOC
-  ) do |arguments| # rubocop:disable Layout/ClosingParenthesisIndentation
+  ) do |arguments|
     raise(Puppet::ParseError, "regexpescape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]

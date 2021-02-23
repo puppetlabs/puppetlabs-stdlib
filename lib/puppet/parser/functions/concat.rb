@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 #
 # concat.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:concat, :type => :rvalue, :doc => <<-DOC
+  newfunction(:concat, type: :rvalue, doc: <<-DOC
     @summary
       Appends the contents of multiple arrays into array 1.
 
@@ -21,8 +23,7 @@ module Puppet::Parser::Functions
 
     @return [Array] The single concatenated array
   DOC
-             ) do |arguments|
-
+  ) do |arguments|
     # Check that more than 2 arguments have been given ...
     raise(Puppet::ParseError, "concat(): Wrong number of arguments given (#{arguments.size} for < 2)") if arguments.size < 2
 

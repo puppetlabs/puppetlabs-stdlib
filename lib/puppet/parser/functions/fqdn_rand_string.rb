@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Puppet::Parser::Functions.newfunction(
   :fqdn_rand_string,
-  :arity => -2,
-  :type => :rvalue,
-  :doc => <<-DOC
+  arity: -2,
+  type: :rvalue,
+  doc: <<-DOC,
   @summary
     Generates a random alphanumeric string. Combining the `$fqdn` fact and an
     optional seed for repeatable randomness.
@@ -36,7 +38,7 @@ Puppet::Parser::Functions.newfunction(
 
   rand_string = ''
   for current in 1..length # rubocop:disable Style/For : An each loop would not work correctly in this circumstance
-    rand_string << charset[function_fqdn_rand([charset.size, (args + [current.to_s]).join(':')]).to_i]
+    rand_string += charset[function_fqdn_rand([charset.size, (args + [current.to_s]).join(':')]).to_i]
   end
 
   rand_string
