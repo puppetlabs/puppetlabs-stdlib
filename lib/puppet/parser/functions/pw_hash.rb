@@ -15,24 +15,24 @@ Puppet::Parser::Functions.newfunction(
   The first argument to this function is the password to hash. If it is
   undef or an empty string, this function returns undef.
 
-  The second argument to this function is which type of hash to use. It
+  The second argument to this function is which hash algorithm to use. It
   will be converted into the appropriate crypt(3) hash specifier. Valid
   hash types are:
 
-  |Hash type|Prefix|Note                |
-  |---------|------|--------------------|
-  |MD5      |1     |                    |
-  |SHA-256  |5     |                    |
-  |SHA-512  |6     |Recommended         |
-  |bcrypt   |2b    |                    |
-  |bcrypt-a |2a    |bug compatible      |
-  |bcrypt-x |2x    |bug compatible      |
-  |bcrypt-y |2y    |historic alias to 2b|
+  |Hash type|Prefix|Note                 |
+  |---------|------|---------------------|
+  |MD5      |1     |                     |
+  |SHA-256  |5     |                     |
+  |SHA-512  |6     |Recommended          |
+  |bcrypt   |2b    |                     |
+  |bcrypt-a |2a    |bug compatible       |
+  |bcrypt-x |2x    |bug compatible       |
+  |bcrypt-y |2y    |historic alias for 2b|
 
   The third argument to this function is the salt to use.
 
-  @return [Hash]
-    Provides a hash usable on most POSIX systems.
+  @return [String]
+    Provides a crypt hash usable on most POSIX systems.
 
   > *Note:*: this uses the Puppet Server's implementation of crypt(3). If your
     environment contains several different operating systems, ensure that they
