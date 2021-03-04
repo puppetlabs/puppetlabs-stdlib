@@ -52,6 +52,13 @@ describe 'pw_hash' do
 
   context 'when the third argument contains invalid characters' do
     it { is_expected.to run.with_params('password', 'sha-512', 'one%').and_raise_error(ArgumentError, %r{characters in salt must be in the set}) }
+    it { is_expected.to run.with_params('password', 'bcrypt', '1234').and_raise_error(ArgumentError, %r{characters in salt must match}) }
+  end
+
+  context 'when run' do
+    it { is_expected.to run.with_params('password', 'sha-512', '1234').and_return(%r{^\$6\$1234\$}) }
+    it { is_expected.to run.with_params('password', 'bcrypt', '05$abcdefghijklmnopqrstuv').and_return(%r{^\$2b\$05\$abcdefghijklmnopqrstu}) }
+    it { is_expected.to run.with_params('password', 'bcrypt-y', '05$abcdefghijklmnopqrstuv').and_return(%r{^\$2y\$05\$abcdefghijklmnopqrstu}) }
   end
 
   context 'when running on a platform with a weak String#crypt implementation' do
