@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 #
-# validate_ipv7_address.rb
+# validate_ipv6_address.rb
 #
 module Puppet::Parser::Functions
   newfunction(:validate_ipv6_address, doc: <<-DOC
