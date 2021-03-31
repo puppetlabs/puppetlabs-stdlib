@@ -3,47 +3,9 @@
   delete: true
 ".rubocop.yml":
   include_todos: true
-".travis.yml":
-  global_env:
-    - HONEYCOMB_WRITEKEY="7f3c63a70eecc61d635917de46bea4e6",HONEYCOMB_DATASET="litmus tests"
-  deploy_to_forge:
-    enabled: false
-  dist: trusty
-  user: puppet
-  secure: ''
-  branches:
-  - release
-  use_litmus: true
-  litmus:
-    provision_list:
-    - ---travis_el
-    - travis_deb
-    - travis_el7
-    - travis_el8
-    complex:
-    - collection:
-        puppet_collection:
-        - puppet6
-        provision_list:
-        - travis_ub_6
-  simplecov: true
-  notifications:
-    slack:
-      secure: j5y9T97u6QlDPs4eEnDNch2IGAzbfWycVcMutP3u9Klvkgqu33xtxHgyAQOW+2A/Xw2sKQs/LzIiUeQRzlNMcAPRZ0rK19sW1w5OgZGcd131HViFDfX8W7V4R41sZVNF232JekMr7RwPGIaZ9htaGsDJeJF8TaiG1Akk32LQZV8=
 appveyor.yml:
-  environment:
-    HONEYCOMB_WRITEKEY: 7f3c63a70eecc61d635917de46bea4e6
-    HONEYCOMB_DATASET: litmus tests
-  use_litmus: true
-  matrix_extras:
-  - RUBY_VERSION: 25-x64
-    ACCEPTANCE: 'yes'
-    TARGET_HOST: localhost
-  - RUBY_VERSION: 25-x64
-    ACCEPTANCE: 'yes'
-    TARGET_HOST: localhost
-    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-  simplecov: true
+  delete: true
+
 Gemfile:
   optional:
     ":development":
@@ -62,3 +24,10 @@ spec/spec_helper.rb:
   unmanaged: false
 .github/workflows/auto_release.yml:
   unmanaged: false
+.github/workflows/spec.yml:
+  checks: 'syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop'
+  unmanaged: false
+.github/workflows/release.yml:
+  unmanaged: false
+.travis.yml:
+  delete: true
