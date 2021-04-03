@@ -37,7 +37,7 @@ the stdlib class, and should not be declared independently.
 specified base, as a string.
 * [`count`](#count): Counts the number of elements in array.
 * [`deep_merge`](#deep_merge): Recursively merges two or more hashes together and returns the resulting hash.
-* [`defined_with_params`](#defined_with_params): Takes a resource reference and an optional hash of attributes.
+* [`defined_with_params`](#defined_with_params)
 * [`delete`](#delete): Deletes all instances of a given element from an array, substring from a
 string, or key from a hash.
 * [`delete_at`](#delete_at): Deletes a determined indexed value from an array.
@@ -50,31 +50,26 @@ from an array or key from a hash.
 * [`difference`](#difference): This function returns the difference between two arrays.
 * [`dig`](#dig): **DEPRECATED** Retrieves a value within multiple layers of hashes and arrays via an
 array of keys containing a path.
-* [`dig44`](#dig44): **DEPRECATED**: Looks up into a complex structure of arrays and hashes and returns a value
-or the default value if nothing was found.
+* [`dig44`](#dig44)
 * [`dirname`](#dirname): Returns the dirname of a path.
 * [`dos2unix`](#dos2unix): Returns the Unix version of the given string.
 * [`downcase`](#downcase): **Deprecated:** Converts the case of a string or all strings in an array to lower case.
 * [`empty`](#empty): **Deprecated:** Returns true if the variable is empty.
 * [`enclose_ipv6`](#enclose_ipv6): Takes an array of ip addresses and encloses the ipv6 addresses with square brackets.
 * [`ensure_packages`](#ensure_packages): Takes a list of packages and only installs them if they don't already exist.
-* [`ensure_resource`](#ensure_resource): Takes a resource type, title, and a list of attributes that describe a
-resource.
-* [`ensure_resources`](#ensure_resources): Takes a resource type, title (only hash), and a list of attributes that describe a
-resource.
+* [`ensure_resource`](#ensure_resource)
+* [`ensure_resources`](#ensure_resources)
 * [`fact`](#fact): Digs into the facts hash using dot-notation
 * [`flatten`](#flatten): This function flattens any deeply nested arrays and returns a single flat array
 as a result.
 * [`floor`](#floor): Returns the largest integer less or equal to the argument.
-* [`fqdn_rand_string`](#fqdn_rand_string): Generates a random alphanumeric string. Combining the `$fqdn` fact and an
-optional seed for repeatable randomness.
-* [`fqdn_rotate`](#fqdn_rotate): Rotates an array or string a random number of times, combining the `$fqdn` fact
-and an optional seed for repeatable randomness.
+* [`fqdn_rand_string`](#fqdn_rand_string)
+* [`fqdn_rotate`](#fqdn_rotate): fqdn_rotate.rb
 * [`fqdn_uuid`](#fqdn_uuid): Returns a [RFC 4122](https://tools.ietf.org/html/rfc4122) valid version 5 UUID based
 on an FQDN string under the DNS namespace
 * [`get_module_path`](#get_module_path): Returns the absolute path of the specified module for the current
 environment.
-* [`getparam`](#getparam): Returns the value of a resource's parameter.
+* [`getparam`](#getparam)
 * [`getvar`](#getvar): Lookup a variable in a given namespace.
 * [`glob`](#glob): Uses same patterns as Dir#glob.
 * [`grep`](#grep): This function searches through an array and returns any elements that match
@@ -87,12 +82,12 @@ the provided regular expression.
 * [`intersection`](#intersection): This function returns an array of the intersection of two.
 * [`is_a`](#is_a): Boolean check to determine whether a variable is of a given data type.
 This is equivalent to the `=~` type checks.
-* [`is_absolute_path`](#is_absolute_path): **Deprecated:** Returns boolean true if the string represents an absolute path in the filesystem.
 * [`is_absolute_path`](#is_absolute_path): Wrapper that calls the Puppet 3.x function of the same name.
-* [`is_array`](#is_array): **Deprecated:** Returns true if the variable passed to this function is an array.
+* [`is_absolute_path`](#is_absolute_path): **Deprecated:** Returns boolean true if the string represents an absolute path in the filesystem.
 * [`is_array`](#is_array): Wrapper that calls the Puppet 3.x function of the same name.
-* [`is_bool`](#is_bool): **Deprecated:** Returns true if the variable passed to this function is a boolean.
+* [`is_array`](#is_array): **Deprecated:** Returns true if the variable passed to this function is an array.
 * [`is_bool`](#is_bool): Wrapper that calls the Puppet 3.x function of the same name.
+* [`is_bool`](#is_bool): **Deprecated:** Returns true if the variable passed to this function is a boolean.
 * [`is_domain_name`](#is_domain_name): **Deprecated:** Returns true if the string passed to this function is
 a syntactically correct domain name.
 * [`is_email_address`](#is_email_address): **Deprecated:** Returns true if the string passed to this function is a valid email address.
@@ -102,15 +97,15 @@ a syntactically correct domain name.
 * [`is_hash`](#is_hash): **Deprecated:** Returns true if the variable passed to this function is a hash.
 * [`is_integer`](#is_integer): **Deprecated:** Returns true if the variable passed to this function is an Integer or
 a decimal (base 10) integer in String form.
-* [`is_ip_address`](#is_ip_address): **Deprecated:** Returns true if the string passed to this function is a valid IP address.
 * [`is_ip_address`](#is_ip_address): Wrapper that calls the Puppet 3.x function of the same name.
+* [`is_ip_address`](#is_ip_address): **Deprecated:** Returns true if the string passed to this function is a valid IP address.
 * [`is_ipv4_address`](#is_ipv4_address): Wrapper that calls the Puppet 3.x function of the same name.
 * [`is_ipv4_address`](#is_ipv4_address): **Deprecated:** Returns true if the string passed to this function is a valid IPv4 address.
 * [`is_ipv6_address`](#is_ipv6_address): Wrapper that calls the Puppet 3.x function of the same name.
 * [`is_ipv6_address`](#is_ipv6_address): **Deprecated:** Returns true if the string passed to this function is a valid IPv6 address.
 * [`is_mac_address`](#is_mac_address): **Deprecated:** Returns true if the string passed to this function is a valid mac address.
-* [`is_numeric`](#is_numeric): **Deprecated:** Returns true if the given value is numeric.
 * [`is_numeric`](#is_numeric): Wrapper that calls the Puppet 3.x function of the same name.
+* [`is_numeric`](#is_numeric): **Deprecated:** Returns true if the given value is numeric.
 * [`is_string`](#is_string): Wrapper that calls the Puppet 3.x function of the same name.
 * [`is_string`](#is_string): **Deprecated:** Returns true if the variable passed to this function is a string.
 * [`join`](#join): **Deprecated:** This function joins an array into a string using a separator.
@@ -126,9 +121,9 @@ in the corresponding native data type.
 * [`lstrip`](#lstrip): **Deprecated:** Strips leading spaces to the left of a string.
 * [`max`](#max): **Deprecated:** Returns the highest value of all arguments.
 * [`member`](#member): This function determines if a variable is a member of an array.
-* [`merge`](#merge): Merges two or more hashes together and returns the resulting hash.
 * [`merge`](#merge): Merges two or more hashes together or hashes resulting from iteration, and returns
 the resulting hash.
+* [`merge`](#merge): Merges two or more hashes together and returns the resulting hash.
 * [`min`](#min): **Deprecated:** Returns the lowest value of all arguments.
 * [`num2bool`](#num2bool): This function converts a number or a string representation of a number into a
 true boolean.
@@ -146,8 +141,7 @@ the first value in a list of values that is not undefined or an empty string.
 * [`private`](#private): **Deprecated:** Sets the current class or definition as private.
 Calling the class or definition from outside the current module will fail.
 * [`pry`](#pry): This function invokes a pry debugging session in the current scope object.
-* [`pw_hash`](#pw_hash): Hashes a password using the crypt function. Provides a hash usable
-on most POSIX systems.
+* [`pw_hash`](#pw_hash): Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible.  To ensure compatibility ple
 * [`range`](#range): When given range in the form of (start, stop) it will extrapolate a range as
 an array.
 * [`regexpescape`](#regexpescape): Regexp escape a string or array of strings.
@@ -157,7 +151,7 @@ the provided regular expression.
 * [`reverse`](#reverse): Reverses the order of a string or array.
 * [`round`](#round): Rounds a number to the nearest integer
 * [`rstrip`](#rstrip): Strips leading spaces to the right of the string.
-* [`seeded_rand`](#seeded_rand): Generates a random whole number greater than or equal to 0 and less than MAX, using the value of SEED for repeatable randomness.
+* [`seeded_rand`](#seeded_rand): seeded_rand.rb
 * [`seeded_rand_string`](#seeded_rand_string): Generates a consistent random string of specific length based on provided seed.
 * [`shell_escape`](#shell_escape): Escapes a string so that it can be safely used in a Bourne shell command line.
 * [`shell_join`](#shell_join): Builds a command line string from the given array of strings. Each array item is escaped for Bourne shell. All items are then joined together
@@ -184,10 +178,10 @@ in a hash.
 * [`swapcase`](#swapcase): This function will swap the existing case of a string.
 * [`time`](#time): This function will return the current time since epoch as an integer.
 * [`to_bytes`](#to_bytes): Converts the argument into bytes, for example 4 kB becomes 4096.
-* [`to_json`](#to_json): Convert a data structure and output to JSON
+* [`to_json`](#to_json): }
 * [`to_json_pretty`](#to_json_pretty): Convert data structure and output to pretty JSON
-* [`to_yaml`](#to_yaml): Convert a data structure and output it as YAML
-* [`try_get_value`](#try_get_value): **DEPRECATED:** this function is deprecated, please use dig() instead.
+* [`to_yaml`](#to_yaml): }
+* [`try_get_value`](#try_get_value)
 * [`type`](#type): **DEPRECATED:** This function will cease to function on Puppet 4;
 * [`type3x`](#type3x): **DEPRECATED:** This function will be removed when Puppet 3 support is dropped; please migrate to the new parser's typing system.
 * [`type_of`](#type_of): Returns the type of the passed value.
@@ -197,42 +191,42 @@ in a hash.
 * [`upcase`](#upcase): Converts a string or an array of strings to uppercase.
 * [`uriescape`](#uriescape): Urlencodes a string or array of strings.
 Requires either a single string or an array as an input.
+* [`validate_absolute_path`](#validate_absolute_path): Validate the string represents an absolute path in the filesystem.
 * [`validate_absolute_path`](#validate_absolute_path): Validate the string represents an absolute path in the filesystem.  This function works
 for windows and unix style paths.
-* [`validate_absolute_path`](#validate_absolute_path): Validate the string represents an absolute path in the filesystem.
+* [`validate_array`](#validate_array): Validate the passed value represents an array.
 * [`validate_array`](#validate_array): Validate that all passed values are array data structures. Abort catalog
 compilation if any value fails this check.
-* [`validate_array`](#validate_array): Validate the passed value represents an array.
 * [`validate_augeas`](#validate_augeas): Perform validation of a string using an Augeas lens
+* [`validate_bool`](#validate_bool): Validate the passed value represents a boolean.
 * [`validate_bool`](#validate_bool): Validate that all passed values are either true or false. Abort catalog
 compilation if any value fails this check.
-* [`validate_bool`](#validate_bool): Validate the passed value represents a boolean.
 * [`validate_cmd`](#validate_cmd): Perform validation of a string with an external command.
 * [`validate_domain_name`](#validate_domain_name): Validate that all values passed are syntactically correct domain names.
 Fail compilation if any value fails this check.
 * [`validate_email_address`](#validate_email_address): Validate that all values passed are valid email addresses.
 Fail compilation if any value fails this check.
+* [`validate_hash`](#validate_hash): Validate the passed value represents a hash.
 * [`validate_hash`](#validate_hash): Validate that all passed values are hash data structures. Abort catalog
 compilation if any value fails this check.
-* [`validate_hash`](#validate_hash): Validate the passed value represents a hash.
-* [`validate_integer`](#validate_integer): Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
 * [`validate_integer`](#validate_integer): Validate the passed value represents an integer.
+* [`validate_integer`](#validate_integer): Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
+* [`validate_ip_address`](#validate_ip_address): Validate the passed value represents an ip_address.
 * [`validate_ip_address`](#validate_ip_address): Validate that all values passed are valid IP addresses,
 regardless they are IPv4 or IPv6
 Fail compilation if any value fails this check.
-* [`validate_ip_address`](#validate_ip_address): Validate the passed value represents an ip_address.
+* [`validate_ipv4_address`](#validate_ipv4_address): Validate the passed value represents an ipv4_address.
 * [`validate_ipv4_address`](#validate_ipv4_address): Validate that all values passed are valid IPv4 addresses.
 Fail compilation if any value fails this check.
-* [`validate_ipv4_address`](#validate_ipv4_address): Validate the passed value represents an ipv4_address.
+* [`validate_ipv6_address`](#validate_ipv6_address): Validate the passed value represents an ipv6_address.
 * [`validate_ipv6_address`](#validate_ipv6_address): Validate that all values passed are valid IPv6 addresses.
 Fail compilation if any value fails this check.
-* [`validate_ipv6_address`](#validate_ipv6_address): Validate the passed value represents an ipv6_address.
 * [`validate_legacy`](#validate_legacy): Validate a value against both the target_type (new) and the previous_validation function (old).
-* [`validate_numeric`](#validate_numeric): Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
 * [`validate_numeric`](#validate_numeric): Validate the passed value represents a numeric value.
-* [`validate_re`](#validate_re): Perform simple validation of a string against one or more regular
-expressions.
+* [`validate_numeric`](#validate_numeric): Validate that the first argument is a numeric value (or an array of numeric values). Abort catalog compilation if any of the checks fail.
 * [`validate_re`](#validate_re): Perform validation of a string against one or more regular
+expressions.
+* [`validate_re`](#validate_re): Perform simple validation of a string against one or more regular
 expressions.
 * [`validate_slength`](#validate_slength): Validate that a passed string has length less/equal with the passed value
 * [`validate_slength`](#validate_slength): Validate that the first argument is a string (or an array of strings), and less/equal to than the length of the second argument.
@@ -264,6 +258,7 @@ supplied key.
 * [`Stdlib::Compat::Numeric`](#stdlibcompatnumeric): Emulate the is_numeric and validate_numeric functions The regex is what's currently used in is_numeric validate_numeric also allows range che
 * [`Stdlib::Compat::String`](#stdlibcompatstring): Emulate the is_string and validate_string functions
 * [`Stdlib::Datasize`](#stdlibdatasize)
+* [`Stdlib::Email`](#stdlibemail): https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
 * [`Stdlib::Ensure::File`](#stdlibensurefile)
 * [`Stdlib::Ensure::File::Directory`](#stdlibensurefiledirectory)
 * [`Stdlib::Ensure::File::File`](#stdlibensurefilefile)
@@ -1248,35 +1243,13 @@ When there is a duplicate key that is not a hash, the key in the rightmost hash 
 
 Type: Ruby 3.x API
 
-Returns `true` if a resource with the specified attributes has already been added
-to the catalog, and `false` otherwise.
-
-  ```
-  user { 'dan':
-    ensure => present,
-  }
-
-  if ! defined_with_params(User[dan], {'ensure' => 'present' }) {
-    user { 'dan': ensure => present, }
-  }
-  ```
+The defined_with_params function.
 
 #### `defined_with_params()`
 
-Returns `true` if a resource with the specified attributes has already been added
-to the catalog, and `false` otherwise.
+The defined_with_params function.
 
-  ```
-  user { 'dan':
-    ensure => present,
-  }
-
-  if ! defined_with_params(User[dan], {'ensure' => 'present' }) {
-    user { 'dan': ensure => present, }
-  }
-  ```
-
-Returns: `Boolean` returns `true` or `false`
+Returns: `Any`
 
 ### <a name="delete"></a>`delete`
 
@@ -1741,69 +1714,13 @@ the value at the end of the path.
 
 Type: Ruby 3.x API
 
-Key can contain slashes to describe path components. The function will go down
-the structure and try to extract the required value.
-
-```
-$data = {
-  'a' => {
-    'b' => [
-      'b1',
-      'b2',
-      'b3',
-    ]
-  }
-}
-
-$value = dig44($data, ['a', 'b', 2])
-# $value = 'b3'
-
-# with all possible options
-$value = dig44($data, ['a', 'b', 2], 'not_found')
-# $value = 'b3'
-
-# using the default value
-$value = dig44($data, ['a', 'b', 'c', 'd'], 'not_found')
-# $value = 'not_found'
-```
-
-> **Note:* **Deprecated** This function has been replaced with a built-in
-  [`dig`](https://puppet.com/docs/puppet/latest/function.html#dig) function as of
-  Puppet 4.5.0.
+The dig44 function.
 
 #### `dig44()`
 
-Key can contain slashes to describe path components. The function will go down
-the structure and try to extract the required value.
+The dig44 function.
 
-```
-$data = {
-  'a' => {
-    'b' => [
-      'b1',
-      'b2',
-      'b3',
-    ]
-  }
-}
-
-$value = dig44($data, ['a', 'b', 2])
-# $value = 'b3'
-
-# with all possible options
-$value = dig44($data, ['a', 'b', 2], 'not_found')
-# $value = 'b3'
-
-# using the default value
-$value = dig44($data, ['a', 'b', 'c', 'd'], 'not_found')
-# $value = 'not_found'
-```
-
-> **Note:* **Deprecated** This function has been replaced with a built-in
-  [`dig`](https://puppet.com/docs/puppet/latest/function.html#dig) function as of
-  Puppet 4.5.0.
-
-Returns: `String` 'not_found' will be returned if nothing is found
+Returns: `Any`
 
 ### <a name="dirname"></a>`dirname`
 
@@ -1894,123 +1811,25 @@ Returns: `Any` install the passed packages
 
 Type: Ruby 3.x API
 
-user { 'dan':
-  ensure => present,
-}
-
-#### Examples
-
-##### Example usage
-
-```puppet
-
-Creates the resource if it does not already exist:
-
-  ensure_resource('user', 'dan', {'ensure' => 'present' })
-
-If the resource already exists but does not match the specified parameters,
-this function will attempt to recreate the resource leading to a duplicate
-resource definition error.
-
-An array of resources can also be passed in and each will be created with
-the type and parameters specified if it doesn't already exist.
-
-  ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
-```
+The ensure_resource function.
 
 #### `ensure_resource()`
 
-user { 'dan':
-  ensure => present,
-}
+The ensure_resource function.
 
-Returns: `Any` created or recreated the passed resource with the passed type and attributes
-
-##### Examples
-
-###### Example usage
-
-```puppet
-
-Creates the resource if it does not already exist:
-
-  ensure_resource('user', 'dan', {'ensure' => 'present' })
-
-If the resource already exists but does not match the specified parameters,
-this function will attempt to recreate the resource leading to a duplicate
-resource definition error.
-
-An array of resources can also be passed in and each will be created with
-the type and parameters specified if it doesn't already exist.
-
-  ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
-```
+Returns: `Any`
 
 ### <a name="ensure_resources"></a>`ensure_resources`
 
 Type: Ruby 3.x API
 
-An hash of resources should be passed in and each will be created with
-  the type and parameters specified if it doesn't already exist.
-
-  ensure_resources('user', {'dan' => { gid => 'mygroup', uid => '600' }, 'alex' => { gid => 'mygroup' }}, {'ensure' => 'present'})
-
-  From Hiera Backend:
-
-  userlist:
-    dan:
-      gid: 'mygroup'
-   uid: '600'
-    alex:
-   gid: 'mygroup'
-
-  Call:
-  ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
-
-#### Examples
-
-##### Example usage
-
-```puppet
-
-user { 'dan':
-  gid => 'mygroup',
-  ensure => present,
-}
-```
+The ensure_resources function.
 
 #### `ensure_resources()`
 
-An hash of resources should be passed in and each will be created with
-  the type and parameters specified if it doesn't already exist.
+The ensure_resources function.
 
-  ensure_resources('user', {'dan' => { gid => 'mygroup', uid => '600' }, 'alex' => { gid => 'mygroup' }}, {'ensure' => 'present'})
-
-  From Hiera Backend:
-
-  userlist:
-    dan:
-      gid: 'mygroup'
-   uid: '600'
-    alex:
-   gid: 'mygroup'
-
-  Call:
-  ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
-
-Returns: `Any` created resources with the passed type and attributes
-
-##### Examples
-
-###### Example usage
-
-```puppet
-
-user { 'dan':
-  gid => 'mygroup',
-  ensure => present,
-}
-```
+Returns: `Any`
 
 ### <a name="fact"></a>`fact`
 
@@ -2128,76 +1947,25 @@ Returns: `Any` the largest integer less or equal to the argument.
 
 Type: Ruby 3.x API
 
-Optionally, you can specify a character set for the function (defaults to alphanumeric).
-
-Arguments
-* An integer, specifying the length of the resulting string.
-* Optionally, a string specifying the character set.
-* Optionally, a string specifying the seed for repeatable randomness.
-
-#### Examples
-
-##### Example Usage:
-
-```puppet
-fqdn_rand_string(10)
-fqdn_rand_string(10, 'ABCDEF!@$%^')
-fqdn_rand_string(10, '', 'custom seed')
-```
+The fqdn_rand_string function.
 
 #### `fqdn_rand_string()`
 
-Optionally, you can specify a character set for the function (defaults to alphanumeric).
+The fqdn_rand_string function.
 
-Arguments
-* An integer, specifying the length of the resulting string.
-* Optionally, a string specifying the character set.
-* Optionally, a string specifying the seed for repeatable randomness.
-
-Returns: `String`
-
-##### Examples
-
-###### Example Usage:
-
-```puppet
-fqdn_rand_string(10)
-fqdn_rand_string(10, 'ABCDEF!@$%^')
-fqdn_rand_string(10, '', 'custom seed')
-```
+Returns: `Any`
 
 ### <a name="fqdn_rotate"></a>`fqdn_rotate`
 
 Type: Ruby 3.x API
 
-Rotates an array or string a random number of times, combining the `$fqdn` fact
-and an optional seed for repeatable randomness.
-
-#### Examples
-
-##### Example Usage:
-
-```puppet
-fqdn_rotate(['a', 'b', 'c', 'd'])
-fqdn_rotate('abcd')
-fqdn_rotate([1, 2, 3], 'custom seed')
-```
+fqdn_rotate.rb
 
 #### `fqdn_rotate()`
 
-The fqdn_rotate function.
+fqdn_rotate.rb
 
-Returns: `Any` rotated array or string
-
-##### Examples
-
-###### Example Usage:
-
-```puppet
-fqdn_rotate(['a', 'b', 'c', 'd'])
-fqdn_rotate('abcd')
-fqdn_rotate([1, 2, 3], 'custom seed')
-```
+Returns: `Any`
 
 ### <a name="fqdn_uuid"></a>`fqdn_uuid`
 
@@ -2271,83 +2039,13 @@ $module_path = get_module_path('stdlib')
 
 Type: Ruby 3.x API
 
-Takes a resource reference and name of the parameter and
-returns value of resource's parameter. Note that user defined
-resource types are evaluated lazily.
-
-Would notice: 'the value we are getting in this example'
-
-> **Note** that since Puppet 4.0.0 it is possible to get a parameter value by using its data type
-and the [ ] operator. The example below is equivalent to a call to getparam():
-  ```Example_resource['example_resource_instance']['param']``
-
-#### Examples
-
-##### Example Usage:
-
-```puppet
-
-# define a resource type with a parameter
-define example_resource($param) {
-}
-
-# declare an instance of that type
-example_resource { "example_resource_instance":
-    param => "'the value we are getting in this example''"
-}
-
-# Because of order of evaluation, a second definition is needed
-# that will be evaluated after the first resource has been declared
-#
-define example_get_param {
-  # This will notice the value of the parameter
-  notice(getparam(Example_resource["example_resource_instance"], "param"))
-}
-
-# Declare an instance of the second resource type - this will call notice
-example_get_param { 'show_notify': }
-```
+The getparam function.
 
 #### `getparam()`
 
-Takes a resource reference and name of the parameter and
-returns value of resource's parameter. Note that user defined
-resource types are evaluated lazily.
+The getparam function.
 
-Would notice: 'the value we are getting in this example'
-
-> **Note** that since Puppet 4.0.0 it is possible to get a parameter value by using its data type
-and the [ ] operator. The example below is equivalent to a call to getparam():
-  ```Example_resource['example_resource_instance']['param']``
-
-Returns: `Any` value of a resource's parameter.
-
-##### Examples
-
-###### Example Usage:
-
-```puppet
-
-# define a resource type with a parameter
-define example_resource($param) {
-}
-
-# declare an instance of that type
-example_resource { "example_resource_instance":
-    param => "'the value we are getting in this example''"
-}
-
-# Because of order of evaluation, a second definition is needed
-# that will be evaluated after the first resource has been declared
-#
-define example_get_param {
-  # This will notice the value of the parameter
-  notice(getparam(Example_resource["example_resource_instance"], "param"))
-}
-
-# Declare an instance of the second resource type - this will call notice
-example_get_param { 'show_notify': }
-```
+Returns: `Any`
 
 ### <a name="getvar"></a>`getvar`
 
@@ -2721,6 +2419,30 @@ The expected type
 
 ### <a name="is_absolute_path"></a>`is_absolute_path`
 
+Type: Ruby 4.x API
+
+Wrapper that calls the Puppet 3.x function of the same name.
+
+#### `is_absolute_path(Any $scope, Any *$args)`
+
+The is_absolute_path function.
+
+Returns: `Boolea` A boolean value returned from the called 3.x function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the wrapped method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the wrapped method
+
+### <a name="is_absolute_path"></a>`is_absolute_path`
+
 Type: Ruby 3.x API
 
 This function works for windows and unix style paths.
@@ -2787,15 +2509,15 @@ $undefined = undef
 is_absolute_path($undefined)
 ```
 
-### <a name="is_absolute_path"></a>`is_absolute_path`
+### <a name="is_array"></a>`is_array`
 
 Type: Ruby 4.x API
 
 Wrapper that calls the Puppet 3.x function of the same name.
 
-#### `is_absolute_path(Any $scope, Any *$args)`
+#### `is_array(Any $scope, Any *$args)`
 
-The is_absolute_path function.
+The is_array function.
 
 Returns: `Boolea` A boolean value returned from the called 3.x function.
 
@@ -2825,15 +2547,15 @@ Type: Ruby 3.x API
 
 Returns: `Boolean` Returns `true` or `false`
 
-### <a name="is_array"></a>`is_array`
+### <a name="is_bool"></a>`is_bool`
 
 Type: Ruby 4.x API
 
 Wrapper that calls the Puppet 3.x function of the same name.
 
-#### `is_array(Any $scope, Any *$args)`
+#### `is_bool(Any $scope, Any *$args)`
 
-The is_array function.
+The is_bool function.
 
 Returns: `Boolea` A boolean value returned from the called 3.x function.
 
@@ -2862,30 +2584,6 @@ Type: Ruby 3.x API
 [`validate_legacy`](#validate_legacy).
 
 Returns: `Boolean` Returns `true` or `false`
-
-### <a name="is_bool"></a>`is_bool`
-
-Type: Ruby 4.x API
-
-Wrapper that calls the Puppet 3.x function of the same name.
-
-#### `is_bool(Any $scope, Any *$args)`
-
-The is_bool function.
-
-Returns: `Boolea` A boolean value returned from the called 3.x function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the wrapped method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the wrapped method
 
 ### <a name="is_domain_name"></a>`is_domain_name`
 
@@ -3011,20 +2709,6 @@ Returns: `Boolean` Returns `true` or `false`
 
 ### <a name="is_ip_address"></a>`is_ip_address`
 
-Type: Ruby 3.x API
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-#### `is_ip_address()`
-
-> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
-[`validate_legacy`](#validate_legacy).
-
-Returns: `Boolean` Returns `true` or `false`
-
-### <a name="is_ip_address"></a>`is_ip_address`
-
 Type: Ruby 4.x API
 
 Wrapper that calls the Puppet 3.x function of the same name.
@@ -3046,6 +2730,20 @@ The main value that will be passed to the wrapped method
 Data type: `Any`
 
 Any additional values that are to be passed to the wrapped method
+
+### <a name="is_ip_address"></a>`is_ip_address`
+
+Type: Ruby 3.x API
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+#### `is_ip_address()`
+
+> **Note:* **Deprecated** Will be removed in a future version of stdlib. See
+[`validate_legacy`](#validate_legacy).
+
+Returns: `Boolean` Returns `true` or `false`
 
 ### <a name="is_ipv4_address"></a>`is_ipv4_address`
 
@@ -3139,6 +2837,30 @@ Returns: `Boolean` Returns `true` or `false`
 
 ### <a name="is_numeric"></a>`is_numeric`
 
+Type: Ruby 4.x API
+
+Wrapper that calls the Puppet 3.x function of the same name.
+
+#### `is_numeric(Any $scope, Any *$args)`
+
+The is_numeric function.
+
+Returns: `Boolea` A boolean value returned from the called 3.x function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the wrapped method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the wrapped method
+
+### <a name="is_numeric"></a>`is_numeric`
+
 Type: Ruby 3.x API
 
 Returns true if the given argument is a Numeric (Integer or Float),
@@ -3170,30 +2892,6 @@ it must be followed by at least one digit.
 [`validate_legacy`](#validate_legacy).
 
 Returns: `Boolean` Returns `true` or `false`
-
-### <a name="is_numeric"></a>`is_numeric`
-
-Type: Ruby 4.x API
-
-Wrapper that calls the Puppet 3.x function of the same name.
-
-#### `is_numeric(Any $scope, Any *$args)`
-
-The is_numeric function.
-
-Returns: `Boolea` A boolean value returned from the called 3.x function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the wrapped method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the wrapped method
 
 ### <a name="is_string"></a>`is_string`
 
@@ -3551,44 +3249,6 @@ member(['a', 'b', 'c'], ['d', 'b']) # Returns: false
 
 ### <a name="merge"></a>`merge`
 
-Type: Ruby 3.x API
-
-When there is a duplicate key, the key in the rightmost hash will "win."
-
-Note that since Puppet 4.0.0 the same merge can be achieved with the + operator.
-  `$merged_hash = $hash1 + $has
-
-#### Examples
-
-##### **Usage**
-
-```puppet
-$hash1 = {'one' => 1, 'two', => 2}
-$hash2 = {'two' => 'dos', 'three', => 'tres'}
-$merged_hash = merge($hash1, $hash2) # $merged_hash =  {'one' => 1, 'two' => 'dos', 'three' => 'tres'}
-```
-
-#### `merge()`
-
-When there is a duplicate key, the key in the rightmost hash will "win."
-
-Note that since Puppet 4.0.0 the same merge can be achieved with the + operator.
-  `$merged_hash = $hash1 + $has
-
-Returns: `Hash` The merged hash
-
-##### Examples
-
-###### **Usage**
-
-```puppet
-$hash1 = {'one' => 1, 'two', => 2}
-$hash2 = {'two' => 'dos', 'three', => 'tres'}
-$merged_hash = merge($hash1, $hash2) # $merged_hash =  {'one' => 1, 'two' => 'dos', 'three' => 'tres'}
-```
-
-### <a name="merge"></a>`merge`
-
 Type: Ruby 4.x API
 
 When there is a duplicate key, the key in the rightmost hash will "win."
@@ -3679,6 +3339,44 @@ Repeated Param - The hashes that are to be merged
 Data type: `Callable[2,2]`
 
 A block placed on the repeatable param `args`
+
+### <a name="merge"></a>`merge`
+
+Type: Ruby 3.x API
+
+When there is a duplicate key, the key in the rightmost hash will "win."
+
+Note that since Puppet 4.0.0 the same merge can be achieved with the + operator.
+  `$merged_hash = $hash1 + $has
+
+#### Examples
+
+##### **Usage**
+
+```puppet
+$hash1 = {'one' => 1, 'two', => 2}
+$hash2 = {'two' => 'dos', 'three', => 'tres'}
+$merged_hash = merge($hash1, $hash2) # $merged_hash =  {'one' => 1, 'two' => 'dos', 'three' => 'tres'}
+```
+
+#### `merge()`
+
+When there is a duplicate key, the key in the rightmost hash will "win."
+
+Note that since Puppet 4.0.0 the same merge can be achieved with the + operator.
+  `$merged_hash = $hash1 + $has
+
+Returns: `Hash` The merged hash
+
+##### Examples
+
+###### **Usage**
+
+```puppet
+$hash1 = {'one' => 1, 'two', => 2}
+$hash2 = {'two' => 'dos', 'three', => 'tres'}
+$merged_hash = merge($hash1, $hash2) # $merged_hash =  {'one' => 1, 'two' => 'dos', 'three' => 'tres'}
+```
 
 ### <a name="min"></a>`min`
 
@@ -3985,47 +3683,15 @@ Returns: `Any` debugging information
 
 Type: Ruby 3.x API
 
-The first argument to this function is the password to hash. If it is
-undef or an empty string, this function returns undef.
-
-The second argument to this function is which type of hash to use. It
-will be converted into the appropriate crypt(3) hash specifier. Valid
-hash types are:
-
-|Hash type            |Specifier|
-|---------------------|---------|
-|MD5                  |1        |
-|SHA-256              |5        |
-|SHA-512 (recommended)|6        |
-
-The third argument to this function is the salt to use.
-
-> *Note:*: this uses the Puppet Server's implementation of crypt(3). If your
-  environment contains several different operating systems, ensure that they
-  are compatible before using this function.
+Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible.
+ To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 
 #### `pw_hash()`
 
-The first argument to this function is the password to hash. If it is
-undef or an empty string, this function returns undef.
+Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible.
+ To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 
-The second argument to this function is which type of hash to use. It
-will be converted into the appropriate crypt(3) hash specifier. Valid
-hash types are:
-
-|Hash type            |Specifier|
-|---------------------|---------|
-|MD5                  |1        |
-|SHA-256              |5        |
-|SHA-512 (recommended)|6        |
-
-The third argument to this function is the salt to use.
-
-> *Note:*: this uses the Puppet Server's implementation of crypt(3). If your
-  environment contains several different operating systems, ensure that they
-  are compatible before using this function.
-
-Returns: `Hash` Provides a hash usable on most POSIX systems.
+Returns: `Any`
 
 ### <a name="range"></a>`range`
 
@@ -4204,35 +3870,13 @@ Returns: `Any` the string with leading spaces removed
 
 Type: Ruby 3.x API
 
-Generates a random whole number greater than or equal to 0 and less
-than MAX, using the value of SEED for repeatable randomness.  If SEED
-starts with "$fqdn:", this is behaves the same as `fqdn_rand`.
-
-#### Examples
-
-##### **Usage:**
-
-```puppet
-seeded_rand(MAX, SEED).
-MAX must be a positive integer; SEED is any string.
-```
+seeded_rand.rb
 
 #### `seeded_rand()`
 
-Generates a random whole number greater than or equal to 0 and less
-than MAX, using the value of SEED for repeatable randomness.  If SEED
-starts with "$fqdn:", this is behaves the same as `fqdn_rand`.
+seeded_rand.rb
 
-Returns: `Any` random number greater than or equal to 0 and less than MAX
-
-##### Examples
-
-###### **Usage:**
-
-```puppet
-seeded_rand(MAX, SEED).
-MAX must be a positive integer; SEED is any string.
-```
+Returns: `Any`
 
 ### <a name="seeded_rand_string"></a>`seeded_rand_string`
 
@@ -4920,37 +4564,13 @@ Returns: `Any` converted value into bytes
 
 Type: Ruby 4.x API
 
-Convert a data structure and output to JSON
-
-#### Examples
-
-##### how to output JSON
-
-```puppet
-# output json to a file
-  file { '/tmp/my.json':
-    ensure  => file,
-    content => to_json($myhash),
-  }
-```
+}
 
 #### `to_json(Any $data)`
 
-The to_json function.
+}
 
 Returns: `Any` converted data to json
-
-##### Examples
-
-###### how to output JSON
-
-```puppet
-# output json to a file
-  file { '/tmp/my.json':
-    ensure  => file,
-    content => to_json($myhash),
-  }
-```
 
 ##### `data`
 
@@ -5074,55 +4694,13 @@ Note that `max_nesting` doesn't take the value `false`; use `-1` instead.
 
 Type: Ruby 4.x API
 
-Convert a data structure and output it as YAML
-
-#### Examples
-
-##### How to output YAML
-
-```puppet
-# output yaml to a file
-  file { '/tmp/my.yaml':
-    ensure  => file,
-    content => to_yaml($myhash),
-  }
-```
-
-##### Use options control the output format
-
-```puppet
-file { '/tmp/my.yaml':
-  ensure  => file,
-  content => to_yaml($myhash, {indentation: 4})
 }
-```
 
 #### `to_yaml(Any $data, Optional[Hash] $options)`
 
-The to_yaml function.
+}
 
 Returns: `String`
-
-##### Examples
-
-###### How to output YAML
-
-```puppet
-# output yaml to a file
-  file { '/tmp/my.yaml':
-    ensure  => file,
-    content => to_yaml($myhash),
-  }
-```
-
-###### Use options control the output format
-
-```puppet
-file { '/tmp/my.yaml':
-  ensure  => file,
-  content => to_yaml($myhash, {indentation: 4})
-}
-```
 
 ##### `data`
 
@@ -5140,68 +4718,13 @@ Data type: `Optional[Hash]`
 
 Type: Ruby 3.x API
 
-Key can contain slashes to describe path components. The function will go down
-the structure and try to extract the required value.
-``
-$data = {
-  'a' => {
-    'b' => [
-      'b1',
-      'b2',
-      'b3',
-    ]
-  }
-}
-
-$value = try_get_value($data, 'a/b/2', 'not_found', '/')
-=> $value = 'b3'
-```
-```
-a -> first hash key
-b -> second hash key
-2 -> array index starting with 0
-
-not_found -> (optional) will be returned if there is no value or the path did not match. Defaults to nil.
-/ -> (optional) path delimiter. Defaults to '/'.
-```
-
-In addition to the required "key" argument, "try_get_value" accepts default
-argument. It will be returned if no value was found or a path component is
-missing. And the fourth argument can set a variable path separator.
+The try_get_value function.
 
 #### `try_get_value()`
 
-Key can contain slashes to describe path components. The function will go down
-the structure and try to extract the required value.
-``
-$data = {
-  'a' => {
-    'b' => [
-      'b1',
-      'b2',
-      'b3',
-    ]
-  }
-}
+The try_get_value function.
 
-$value = try_get_value($data, 'a/b/2', 'not_found', '/')
-=> $value = 'b3'
-```
-```
-a -> first hash key
-b -> second hash key
-2 -> array index starting with 0
-
-not_found -> (optional) will be returned if there is no value or the path did not match. Defaults to nil.
-/ -> (optional) path delimiter. Defaults to '/'.
-```
-
-In addition to the required "key" argument, "try_get_value" accepts default
-argument. It will be returned if no value was found or a path component is
-missing. And the fourth argument can set a variable path separator.
-
-Returns: `Any` Looks up into a complex structure of arrays and hashes and returns a value
-or the default value if nothing was found.
+Returns: `Any`
 
 ### <a name="type"></a>`type`
 
@@ -5444,6 +4967,30 @@ Returns: `String` a string that contains the converted value
 
 ### <a name="validate_absolute_path"></a>`validate_absolute_path`
 
+Type: Ruby 4.x API
+
+Validate the string represents an absolute path in the filesystem.
+
+#### `validate_absolute_path(Any $scope, Any *$args)`
+
+The validate_absolute_path function.
+
+Returns: `Boolean` A boolean value returned from the called function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the method
+
+### <a name="validate_absolute_path"></a>`validate_absolute_path`
+
 Type: Ruby 3.x API
 
 Validate the string represents an absolute path in the filesystem.  This function works
@@ -5511,17 +5058,17 @@ The following values will fail, causing compilation to abort:
     validate_absolute_path($undefin
 ```
 
-### <a name="validate_absolute_path"></a>`validate_absolute_path`
+### <a name="validate_array"></a>`validate_array`
 
 Type: Ruby 4.x API
 
-Validate the string represents an absolute path in the filesystem.
+Validate the passed value represents an array.
 
-#### `validate_absolute_path(Any $scope, Any *$args)`
+#### `validate_array(Any $scope, Any *$args)`
 
-The validate_absolute_path function.
+The validate_array function.
 
-Returns: `Boolean` A boolean value returned from the called function.
+Returns: `Any` A boolean value (`true` or `false`) returned from the called function.
 
 ##### `scope`
 
@@ -5583,30 +5130,6 @@ The following values will fail, causing compilation to abort:
     $undefined = undef
     validate_array($undefined
 ```
-
-### <a name="validate_array"></a>`validate_array`
-
-Type: Ruby 4.x API
-
-Validate the passed value represents an array.
-
-#### `validate_array(Any $scope, Any *$args)`
-
-The validate_array function.
-
-Returns: `Any` A boolean value (`true` or `false`) returned from the called function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the method
 
 ### <a name="validate_augeas"></a>`validate_augeas`
 
@@ -5684,6 +5207,31 @@ A helpful error message can be returned like this:
 
 ### <a name="validate_bool"></a>`validate_bool`
 
+Type: Ruby 4.x API
+
+Validate the passed value represents a boolean.
+
+#### `validate_bool(Any $scope, Any *$args)`
+
+The validate_bool function.
+
+Returns: `Boolean` `true` or `false`
+A boolean value returned from the called function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the method
+
+### <a name="validate_bool"></a>`validate_bool`
+
 Type: Ruby 3.x API
 
 Validate that all passed values are either true or false. Abort catalog
@@ -5734,31 +5282,6 @@ The following values will fail, causing compilation to abort:
     validate_bool("true")
     validate_bool($some_array)
 ```
-
-### <a name="validate_bool"></a>`validate_bool`
-
-Type: Ruby 4.x API
-
-Validate the passed value represents a boolean.
-
-#### `validate_bool(Any $scope, Any *$args)`
-
-The validate_bool function.
-
-Returns: `Boolean` `true` or `false`
-A boolean value returned from the called function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the method
 
 ### <a name="validate_cmd"></a>`validate_cmd`
 
@@ -5920,6 +5443,30 @@ The following values will fail, causing compilation to abort:
 
 ### <a name="validate_hash"></a>`validate_hash`
 
+Type: Ruby 4.x API
+
+Validate the passed value represents a hash.
+
+#### `validate_hash(Any $scope, Any *$args)`
+
+The validate_hash function.
+
+Returns: `Any` A boolean value (`true` or `false`) returned from the called function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the method
+
+### <a name="validate_hash"></a>`validate_hash`
+
 Type: Ruby 3.x API
 
 Validate that all passed values are hash data structures. Abort catalog
@@ -5969,17 +5516,18 @@ The following values will fail, causing compilation to abort:
     validate_hash($undefined)
 ```
 
-### <a name="validate_hash"></a>`validate_hash`
+### <a name="validate_integer"></a>`validate_integer`
 
 Type: Ruby 4.x API
 
-Validate the passed value represents a hash.
+Validate the passed value represents an integer.
 
-#### `validate_hash(Any $scope, Any *$args)`
+#### `validate_integer(Any $scope, Any *$args)`
 
-The validate_hash function.
+The validate_integer function.
 
-Returns: `Any` A boolean value (`true` or `false`) returned from the called function.
+Returns: `Boolean` `true` or `false`
+A boolean value returned from the called function.
 
 ##### `scope`
 
@@ -6107,15 +5655,15 @@ Plus all of the above, but with incorrect combinations of negative integer value
 Plus all of the above, but with non-integer items in arrays or maximum / minimum argument.
 ```
 
-### <a name="validate_integer"></a>`validate_integer`
+### <a name="validate_ip_address"></a>`validate_ip_address`
 
 Type: Ruby 4.x API
 
-Validate the passed value represents an integer.
+Validate the passed value represents an ip_address.
 
-#### `validate_integer(Any $scope, Any *$args)`
+#### `validate_ip_address(Any $scope, Any *$args)`
 
-The validate_integer function.
+The validate_ip_address function.
 
 Returns: `Boolean` `true` or `false`
 A boolean value returned from the called function.
@@ -6190,15 +5738,15 @@ The following values will fail, causing compilation to abort:
   validate_ip_address($some_array)
 ```
 
-### <a name="validate_ip_address"></a>`validate_ip_address`
+### <a name="validate_ipv4_address"></a>`validate_ipv4_address`
 
 Type: Ruby 4.x API
 
-Validate the passed value represents an ip_address.
+Validate the passed value represents an ipv4_address.
 
-#### `validate_ip_address(Any $scope, Any *$args)`
+#### `validate_ipv4_address(Any $scope, Any *$args)`
 
-The validate_ip_address function.
+The validate_ipv4_address function.
 
 Returns: `Boolean` `true` or `false`
 A boolean value returned from the called function.
@@ -6262,15 +5810,15 @@ The following values will fail, causing compilation to abort:
   validate_ipv4_address($some_array)
 ```
 
-### <a name="validate_ipv4_address"></a>`validate_ipv4_address`
+### <a name="validate_ipv6_address"></a>`validate_ipv6_address`
 
 Type: Ruby 4.x API
 
-Validate the passed value represents an ipv4_address.
+Validate the passed value represents an ipv6_address.
 
-#### `validate_ipv4_address(Any $scope, Any *$args)`
+#### `validate_ipv6_address(Any $scope, Any *$args)`
 
-The validate_ipv4_address function.
+The validate_ipv6_address function.
 
 Returns: `Boolean` `true` or `false`
 A boolean value returned from the called function.
@@ -6335,31 +5883,6 @@ The following values will fail, causing compilation to abort:
   $some_array = [ true, false, "garbage string", "1.2.3.4" ]
   validate_ipv6_address($some_array)
 ```
-
-### <a name="validate_ipv6_address"></a>`validate_ipv6_address`
-
-Type: Ruby 4.x API
-
-Validate the passed value represents an ipv6_address.
-
-#### `validate_ipv6_address(Any $scope, Any *$args)`
-
-The validate_ipv6_address function.
-
-Returns: `Boolean` `true` or `false`
-A boolean value returned from the called function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the method
 
 ### <a name="validate_legacy"></a>`validate_legacy`
 
@@ -6441,30 +5964,6 @@ Any additional values that are to be passed to the method
 
 ### <a name="validate_numeric"></a>`validate_numeric`
 
-Type: Ruby 3.x API
-
-The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
-The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
-If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
-if (all elements of) the first argument are greater or equal to the given minimum.
-It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
-
-For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
-
-#### `validate_numeric()`
-
-The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
-The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
-If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
-if (all elements of) the first argument are greater or equal to the given minimum.
-It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
-
-For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
-
-Returns: `Any` Validate that the first argument is a numeric value (or an array of numeric values). Fail compilation if any of the checks fail.
-
-### <a name="validate_numeric"></a>`validate_numeric`
-
 Type: Ruby 4.x API
 
 Validate the passed value represents a numeric value.
@@ -6487,6 +5986,58 @@ The main value that will be passed to the method
 Data type: `Any`
 
 Any additional values that are to be passed to the method
+
+### <a name="validate_numeric"></a>`validate_numeric`
+
+Type: Ruby 3.x API
+
+The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
+The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+if (all elements of) the first argument are greater or equal to the given minimum.
+It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
+
+For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
+
+#### `validate_numeric()`
+
+The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
+The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+if (all elements of) the first argument are greater or equal to the given minimum.
+It will fail if the first argument is not a numeric (Integer or Float) or array of numerics, and if arg 2 and arg 3 are not convertable to a numeric.
+
+For passing and failing usage, see `validate_integer()`. It is all the same for validate_numeric, yet now floating point values are allowed, too.
+
+Returns: `Any` Validate that the first argument is a numeric value (or an array of numeric values). Fail compilation if any of the checks fail.
+
+### <a name="validate_re"></a>`validate_re`
+
+Type: Ruby 4.x API
+
+Perform validation of a string against one or more regular
+expressions.
+
+#### `validate_re(Any $scope, Any *$args)`
+
+The validate_re function.
+
+Returns: `Boolean` `true` or `false` returned from the called function.
+
+##### `scope`
+
+Data type: `Any`
+
+The main value that will be passed to the method
+
+##### `*args`
+
+Data type: `Any`
+
+Any additional values that are to be passed to the method
+The first argument of this function should be a string to
+test, and the second argument should be a stringified regular expression
+(without the // delimiters) or an array of regular expressions
 
 ### <a name="validate_re"></a>`validate_re`
 
@@ -6559,34 +6110,6 @@ A helpful error message can be returned like this:
 
     validate_re($::puppetversion, '^2.7', 'The $puppetversion fact value does not match 2.7')
 ```
-
-### <a name="validate_re"></a>`validate_re`
-
-Type: Ruby 4.x API
-
-Perform validation of a string against one or more regular
-expressions.
-
-#### `validate_re(Any $scope, Any *$args)`
-
-The validate_re function.
-
-Returns: `Boolean` `true` or `false` returned from the called function.
-
-##### `scope`
-
-Data type: `Any`
-
-The main value that will be passed to the method
-
-##### `*args`
-
-Data type: `Any`
-
-Any additional values that are to be passed to the method
-The first argument of this function should be a string to
-test, and the second argument should be a stringified regular expression
-(without the // delimiters) or an array of regular expressions
 
 ### <a name="validate_slength"></a>`validate_slength`
 
@@ -7119,6 +6642,16 @@ Alias of
 
 ```puppet
 Pattern[/^\d+(?i:[kmgt]b?|b)$/]
+```
+
+### <a name="stdlibemail"></a>`Stdlib::Email`
+
+https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
+
+Alias of
+
+```puppet
+Pattern[/\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\z/]
 ```
 
 ### <a name="stdlibensurefile"></a>`Stdlib::Ensure::File`
