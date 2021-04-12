@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v7.0.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v7.0.1) (2021-04-03)
+## [v7.0.2](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v7.0.2) (2021-04-12)
 
-[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v7.0.0...v7.0.1)
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v7.0.0...v7.0.2)
 
 ### Fixed
 
