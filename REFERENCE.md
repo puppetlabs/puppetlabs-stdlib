@@ -341,6 +341,8 @@ node default {
 
 ### <a name="anchor"></a>`anchor`
 
+> Note: this has been replaced by core puppet `contain()` method. Please see https://puppet.com/docs/puppet/latest/lang_containment.html for more information.
+
 In Puppet 2.6, when a class declares another class, the resources in the
 interior class are not contained by the exterior class. This interacts badly
 with the pattern of composing complex modules from smaller classes, as it
