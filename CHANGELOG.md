@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v7.0.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v7.0.1) (2021-04-03)
+## [v7.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v7.1.0) (2021-05-15)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v7.0.1...v7.1.0)
+
+### Added
+
+- pw\_hash: add support for bcrypt variants [\#1173](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1173) ([kjetilho](https://github.com/kjetilho))
+
+## [v7.0.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v7.0.1) (2021-04-12)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v7.0.0...v7.0.1)
 
