@@ -12,6 +12,8 @@ describe 'pick_default' do
   it { is_expected.to run.with_params(:undef, 'two').and_return('two') }
   it { is_expected.to run.with_params(:undefined, 'two').and_return('two') }
   it { is_expected.to run.with_params(nil, 'two').and_return('two') }
+  it { is_expected.to run.with_params(nil, nil).and_return(nil) }
+  it { is_expected.to run.with_params(:undef, :undef).and_return(:undef) }
 
   ['', :undef, :undefined, nil, {}, [], 1, 'default'].each do |value|
     describe "when providing #{value.inspect} as default" do
