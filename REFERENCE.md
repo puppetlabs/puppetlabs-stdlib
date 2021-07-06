@@ -289,6 +289,8 @@ OpenSSL.
 * [`Stdlib::HTTPSUrl`](#Stdlib--HTTPSUrl): Validate a HTTPS URL
 * [`Stdlib::HTTPUrl`](#Stdlib--HTTPUrl): Validate a HTTP(S) URL
 * [`Stdlib::Host`](#Stdlib--Host): Validate a host (FQDN or IP address)
+* [`Stdlib::Http::Method`](#Stdlib--Http--Method): Valid HTTP method verbs
+* [`Stdlib::Http::Status`](#Stdlib--Http--Status): A valid HTTP status code per RFC9110
 * [`Stdlib::HttpStatus`](#Stdlib--HttpStatus): Validate a HTTP status code
 * [`Stdlib::IP::Address`](#Stdlib--IP--Address): Validate an IP address
 * [`Stdlib::IP::Address::Nosubnet`](#Stdlib--IP--Address--Nosubnet): Validate an IP address without subnet
@@ -7796,11 +7798,32 @@ Validate a host (FQDN or IP address)
 
 Alias of `Variant[Stdlib::Fqdn, Stdlib::Compat::Ip_address]`
 
+### <a name="Stdlib--Http--Method"></a>`Stdlib::Http::Method`
+
+Valid HTTP method verbs
+
+* **See also**
+  * https://www.iana.org/assignments/http-methods/http-methods.xhtml
+
+Alias of `Enum['ACL', 'BASELINE-CONTROL', 'BIND', 'CHECKIN', 'CHECKOUT', 'CONNECT', 'COPY', 'DELETE', 'GET', 'HEAD', 'LABEL', 'LINK', 'LOCK', 'MERGE', 'MKACTIVITY', 'MKCALENDAR', 'MKCOL', 'MKREDIRECTREF', 'MKWORKSPACE', 'MOVE', 'OPTIONS', 'ORDERPATCH', 'PATCH', 'POST', 'PRI', 'PROPFIND', 'PROPPATCH', 'PUT', 'REBIND', 'REPORT', 'SEARCH', 'TRACE', 'UNBIND', 'UNCHECKOUT', 'UNLINK', 'UNLOCK', 'UPDATE', 'UPDATEREDIRECTREF', 'VERSION-CONTROL']`
+
+### <a name="Stdlib--Http--Status"></a>`Stdlib::Http::Status`
+
+A valid HTTP status code per RFC9110
+
+* **See also**
+  * https://httpwg.org/specs/rfc9110.html#overview.of.status.codes
+
+Alias of `Integer[100, 599]`
+
 ### <a name="Stdlib--HttpStatus"></a>`Stdlib::HttpStatus`
 
 Validate a HTTP status code
 
-Alias of `Integer[100, 599]`
+* **See also**
+  * Stdlib::Http::Status
+
+Alias of `Stdlib::Http::Status`
 
 ### <a name="Stdlib--IP--Address"></a>`Stdlib::IP::Address`
 
