@@ -1,1 +1,1 @@
-type Stdlib::HttpStatus = Stdlib::Http::Status
+type Stdlib::HttpStatus = Integer[100, 599]
