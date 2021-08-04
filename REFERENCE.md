@@ -3294,15 +3294,15 @@ $merged_hash = merge($hash1, $hash2) # $merged_hash =  {'one' => 1, 'two' => 'do
 ['a', 'b', 'c', 'c', 'd', 'b', 'blah', 'blah'].merge | $hsh, $v | { if $v =~ String[1,1] { { $v => $hsh[$v].lest || { 0 } + 1 } } } # results in { a => 1, b => 2, c => 2, d => 1 }
 ```
 
-#### `merge(Variant[Hash, Undef, String[0,0]] *$args)`
+#### `merge(Variant[Hash[Scalar,Any], Undef, String[0,0]] *$args)`
 
 The merge function.
 
-Returns: `Hash` The merged hash
+Returns: `Hash[Scalar,Any]` The merged hash
 
 ##### `*args`
 
-Data type: `Variant[Hash, Undef, String[0,0]]`
+Data type: `Variant[Hash[Scalar,Any], Undef, String[0,0]]`
 
 Repeated Param - The hashes that are to be merged
 
