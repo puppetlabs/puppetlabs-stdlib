@@ -24,7 +24,7 @@ describe 'ensure_packages' do
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_package('puppet').with_ensure('absent') }
-      it { expect(-> { catalogue }).to contain_package('facter').with_ensure('present') }
+      it { expect(-> { catalogue }).to contain_package('facter').with_ensure('installed') }
     end
 
     describe 'after running ensure_package("facter", { "provider" => "gem" })' do
@@ -32,7 +32,7 @@ describe 'ensure_packages' do
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_package('puppet').with_ensure('absent').without_provider }
-      it { expect(-> { catalogue }).to contain_package('facter').with_ensure('present').with_provider('gem') }
+      it { expect(-> { catalogue }).to contain_package('facter').with_ensure('installed').with_provider('gem') }
     end
   end
 
@@ -52,8 +52,8 @@ describe 'ensure_packages' do
     end
 
     # this lambda is required due to strangeness within rspec-puppet's expectation handling
-    it { expect(-> { catalogue }).to contain_package('foo').with('provider' => 'rpm', 'ensure' => 'present') }
-    it { expect(-> { catalogue }).to contain_package('bar').with('provider' => 'gem', 'ensure' => 'present') }
+    it { expect(-> { catalogue }).to contain_package('foo').with('provider' => 'rpm', 'ensure' => 'installed') }
+    it { expect(-> { catalogue }).to contain_package('bar').with('provider' => 'gem', 'ensure' => 'installed') }
 
     context 'with UTF8 and double byte characters' do
       it { expect(-> { catalogue }).to contain_package('パッケージ').with('ensure' => 'absent') }
@@ -61,14 +61,14 @@ describe 'ensure_packages' do
     end
   end
 
-  context 'when given a catalog with "package { puppet: ensure => present }"' do
-    let(:pre_condition) { 'package { puppet: ensure => present }' }
+  context 'when given a catalog with "package { puppet: ensure => installed }"' do
+    let(:pre_condition) { 'package { puppet: ensure => installed }' }
 
-    describe 'after running ensure_package("puppet", { "ensure" => "installed" })' do
-      before(:each) { subject.execute('puppet', 'ensure' => 'installed') }
+    describe 'after running ensure_package("puppet", { "ensure" => "present" })' do
+      before(:each) { subject.execute('puppet', 'ensure' => 'present') }
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
-      it { expect(-> { catalogue }).to contain_package('puppet').with_ensure('present') }
+      it { expect(-> { catalogue }).to contain_package('puppet').with_ensure('installed') }
     end
   end
 end

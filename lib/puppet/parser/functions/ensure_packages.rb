@@ -20,12 +20,12 @@ module Puppet::Parser::Functions
 
     if arguments[0].is_a?(Hash)
       if arguments[1]
-        defaults = { 'ensure' => 'present' }.merge(arguments[1])
-        if defaults['ensure'] == 'installed'
-          defaults['ensure'] = 'present'
+        defaults = { 'ensure' => 'installed' }.merge(arguments[1])
+        if defaults['ensure'] == 'present'
+          defaults['ensure'] = 'installed'
         end
       else
-        defaults = { 'ensure' => 'present' }
+        defaults = { 'ensure' => 'installed' }
       end
 
       Puppet::Parser::Functions.function(:ensure_resources)
@@ -34,12 +34,12 @@ module Puppet::Parser::Functions
       packages = Array(arguments[0])
 
       if arguments[1]
-        defaults = { 'ensure' => 'present' }.merge(arguments[1])
-        if defaults['ensure'] == 'installed'
-          defaults['ensure'] = 'present'
+        defaults = { 'ensure' => 'installed' }.merge(arguments[1])
+        if defaults['ensure'] == 'present'
+          defaults['ensure'] = 'installed'
         end
       else
-        defaults = { 'ensure' => 'present' }
+        defaults = { 'ensure' => 'installed' }
       end
 
       Puppet::Parser::Functions.function(:ensure_resource)
