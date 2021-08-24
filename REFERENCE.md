@@ -180,6 +180,8 @@ in a hash.
 * [`to_bytes`](#to_bytes): Converts the argument into bytes, for example 4 kB becomes 4096.
 * [`to_json`](#to_json): }
 * [`to_json_pretty`](#to_json_pretty): Convert data structure and output to pretty JSON
+* [`to_python`](#to_python): Convert an object into a String containing its Python representation
+* [`to_ruby`](#to_ruby): Convert an object into a String containing its Ruby representation
 * [`to_yaml`](#to_yaml): }
 * [`try_get_value`](#try_get_value)
 * [`type`](#type): **DEPRECATED:** This function will cease to function on Puppet 4;
@@ -3294,15 +3296,15 @@ $merged_hash = merge($hash1, $hash2) # $merged_hash =  {'one' => 1, 'two' => 'do
 ['a', 'b', 'c', 'c', 'd', 'b', 'blah', 'blah'].merge | $hsh, $v | { if $v =~ String[1,1] { { $v => $hsh[$v].lest || { 0 } + 1 } } } # results in { a => 1, b => 2, c => 2, d => 1 }
 ```
 
-#### `merge(Variant[Hash, Undef, String[0,0]] *$args)`
+#### `merge(Variant[Hash[Scalar,Any], Undef, String[0,0]] *$args)`
 
 The merge function.
 
-Returns: `Hash` The merged hash
+Returns: `Hash[Scalar,Any]` The merged hash
 
 ##### `*args`
 
-Data type: `Variant[Hash, Undef, String[0,0]]`
+Data type: `Variant[Hash[Scalar,Any], Undef, String[0,0]]`
 
 Repeated Param - The hashes that are to be merged
 
@@ -4691,6 +4693,106 @@ max_nesting  => Optional[Integer[-1,default]],
 hash-map of settings passed to JSON.pretty_generate, see
 https://ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/JSON.html#method-i-generate.
 Note that `max_nesting` doesn't take the value `false`; use `-1` instead.
+
+### <a name="to_python"></a>`to_python`
+
+Type: Ruby 4.x API
+
+Convert an object into a String containing its Python representation
+
+#### Examples
+
+##### how to output Python
+
+```puppet
+# output Python to a file
+$listen = '0.0.0.0'
+$port = 8000
+file { '/opt/acme/etc/settings.py':
+  content => inline_epp(@("SETTINGS")),
+    LISTEN = <%= $listen.to_python %>
+    PORT = <%= $mailserver.to_python %>
+    | SETTINGS
+}
+```
+
+#### `to_python(Any $object)`
+
+The to_python function.
+
+Returns: `Any`
+
+##### Examples
+
+###### how to output Python
+
+```puppet
+# output Python to a file
+$listen = '0.0.0.0'
+$port = 8000
+file { '/opt/acme/etc/settings.py':
+  content => inline_epp(@("SETTINGS")),
+    LISTEN = <%= $listen.to_python %>
+    PORT = <%= $mailserver.to_python %>
+    | SETTINGS
+}
+```
+
+##### `object`
+
+Data type: `Any`
+
+
+
+### <a name="to_ruby"></a>`to_ruby`
+
+Type: Ruby 4.x API
+
+Convert an object into a String containing its Ruby representation
+
+#### Examples
+
+##### how to output Ruby
+
+```puppet
+# output Ruby to a file
+$listen = '0.0.0.0'
+$port = 8000
+file { '/opt/acme/etc/settings.rb':
+  content => inline_epp(@("SETTINGS")),
+    LISTEN = <%= $listen.to_ruby %>
+    PORT = <%= $mailserver.to_ruby %>
+    | SETTINGS
+}
+```
+
+#### `to_ruby(Any $object)`
+
+The to_ruby function.
+
+Returns: `Any`
+
+##### Examples
+
+###### how to output Ruby
+
+```puppet
+# output Ruby to a file
+$listen = '0.0.0.0'
+$port = 8000
+file { '/opt/acme/etc/settings.rb':
+  content => inline_epp(@("SETTINGS")),
+    LISTEN = <%= $listen.to_ruby %>
+    PORT = <%= $mailserver.to_ruby %>
+    | SETTINGS
+}
+```
+
+##### `object`
+
+Data type: `Any`
+
+
 
 ### <a name="to_yaml"></a>`to_yaml`
 
