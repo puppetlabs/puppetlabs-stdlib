@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'to_ruby' do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params('').and_return('""') }
-  it { is_expected.to run.with_params(:undef).and_return('nil') }
+  it { is_expected.to run.with_params(nil).and_return('nil') }
   it { is_expected.to run.with_params(true).and_return('true') }
   it { is_expected.to run.with_params('one').and_return('"one"') }
   it { is_expected.to run.with_params(42).and_return('42') }

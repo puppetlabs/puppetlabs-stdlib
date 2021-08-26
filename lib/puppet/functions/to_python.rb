@@ -28,7 +28,7 @@ Puppet::Functions.create_function(:to_python) do
     case object
     when true then 'True'
     when false then 'False'
-    when :undef then 'None'
+    when nil then 'None'
     when Array then "[#{object.map { |x| to_python(x) }.join(', ')}]"
     when Hash then "{#{object.map { |k, v| "#{to_python(k)}: #{to_python(v)}" }.join(', ')}}"
     else object.inspect

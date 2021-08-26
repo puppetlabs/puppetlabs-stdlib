@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'to_python' do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params('').and_return('""') }
-  it { is_expected.to run.with_params(:undef).and_return('None') }
+  it { is_expected.to run.with_params(nil).and_return('None') }
   it { is_expected.to run.with_params(true).and_return('True') }
   it { is_expected.to run.with_params(false).and_return('False') }
   it { is_expected.to run.with_params('one').and_return('"one"') }
