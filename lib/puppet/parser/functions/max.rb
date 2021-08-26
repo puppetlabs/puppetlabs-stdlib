@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
       The highest value among those passed in
 
     > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with a
-    built-in [`lstrip`](https://puppet.com/docs/puppet/latest/function.html#lstrip) function.
+    built-in [`max`](https://puppet.com/docs/puppet/latest/function.html#max) function.
     DOC
   ) do |args|
     raise(Puppet::ParseError, 'max(): Wrong number of arguments need at least one') if args.empty?
