@@ -22,6 +22,6 @@ Puppet::Functions.create_function(:os_version_gte) do
   def os_version_gte(os, version)
     facts = closure_scope['facts']
     (facts['operatingsystem'] == os &&
-     Puppet::Util::Package.versioncmp(version, facts['operatingsystemmajrelease']) >= 0)
+     Puppet::Util::Package.versioncmp(facts['operatingsystemmajrelease'], version) >= 0)
   end
 end
