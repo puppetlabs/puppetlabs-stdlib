@@ -11,9 +11,10 @@ describe 'os_version_gte' do
       }
     end
 
+    it { is_expected.to run.with_params('Debian', '10').and_return(false) }
     it { is_expected.to run.with_params('Debian', '9').and_return(true) }
-    it { is_expected.to run.with_params('Debian', '8').and_return(false) }
-    it { is_expected.to run.with_params('Debian', '8.0').and_return(false) }
+    it { is_expected.to run.with_params('Debian', '8').and_return(true) }
+    it { is_expected.to run.with_params('Debian', '8.0').and_return(true) }
     it { is_expected.to run.with_params('Ubuntu', '16.04').and_return(false) }
     it { is_expected.to run.with_params('Fedora', '29').and_return(false) }
   end
@@ -27,9 +28,11 @@ describe 'os_version_gte' do
     end
 
     it { is_expected.to run.with_params('Debian', '9').and_return(false) }
-    it { is_expected.to run.with_params('Ubuntu', '16').and_return(false) }
+    it { is_expected.to run.with_params('Ubuntu', '16').and_return(true) }
+    it { is_expected.to run.with_params('Ubuntu', '14.04').and_return(true) }
     it { is_expected.to run.with_params('Ubuntu', '16.04').and_return(true) }
-    it { is_expected.to run.with_params('Ubuntu', '18.04').and_return(true) }
+    it { is_expected.to run.with_params('Ubuntu', '18.04').and_return(false) }
+    it { is_expected.to run.with_params('Ubuntu', '20.04').and_return(false) }
     it { is_expected.to run.with_params('Fedora', '29').and_return(false) }
   end
 
