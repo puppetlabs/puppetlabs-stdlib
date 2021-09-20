@@ -26,9 +26,9 @@ module Puppet::Parser::Functions
 
     result = if value.is_a?(Array)
                # Numbers in Puppet are often string-encoded which is troublesome ...
-               value.map { |i| i.is_a?(String) ? URI.escape(i) : i }
+               value.map { |i| i.is_a?(String) ? URI::DEFAULT_PARSER.escape(i) : i }
              else
-               URI.escape(value)
+               URI::DEFAULT_PARSER.escape(value)
              end
 
     return result
