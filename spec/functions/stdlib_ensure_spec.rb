@@ -17,4 +17,10 @@ describe 'stdlib::ensure' do
       it { is_expected.to run.with_params(false, resource).and_return('absent') }
     end
   end
+  context 'work with package resource' do
+    it { is_expected.to run.with_params('present', 'package').and_return('installed') }
+    it { is_expected.to run.with_params(true, 'package').and_return('installed') }
+    it { is_expected.to run.with_params('absent', 'package').and_return('absent') }
+    it { is_expected.to run.with_params(false, 'package').and_return('absent') }
+  end
 end
