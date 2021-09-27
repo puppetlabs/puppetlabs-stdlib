@@ -1,13 +1,19 @@
 # @summary function to cast ensure parameter to resource specific value
 function stdlib::ensure(
     Variant[Boolean, Enum['present', 'absent']]               $ensure,
-    Enum['directory', 'link', 'mounted', 'service', 'file'] $resource,
+    Enum['directory', 'link', 'mounted', 'service', 'file', 'package'] $resource,
 ) >> String {
     $_ensure = $ensure ? {
         Boolean => $ensure.bool2str('present', 'absent'),
         default => $ensure,
     }
     case $resource {
+        'package': {
+            $_ensure ? {
+                'present' => 'installed',
+                default   => 'absent',
+            }
+        }
         'service': {
             $_ensure ? {
                 'present' => 'running',
