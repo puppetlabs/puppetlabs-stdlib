@@ -93,6 +93,12 @@
         "6.1",
         "7.1"
       ]
+    },
+    {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "8"
+      ]
     }
   ],
   "requirements": [
