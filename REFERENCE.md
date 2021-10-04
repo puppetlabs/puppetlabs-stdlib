@@ -182,6 +182,7 @@ in a hash.
 * [`to_json_pretty`](#to_json_pretty): Convert data structure and output to pretty JSON
 * [`to_python`](#to_python): Convert an object into a String containing its Python representation
 * [`to_ruby`](#to_ruby): Convert an object into a String containing its Ruby representation
+* [`to_toml`](#to_toml): Convert a data structure and output to TOML.
 * [`to_yaml`](#to_yaml): }
 * [`try_get_value`](#try_get_value)
 * [`type`](#type): **DEPRECATED:** This function will cease to function on Puppet 4;
@@ -260,7 +261,7 @@ supplied key.
 * [`Stdlib::Compat::Numeric`](#stdlibcompatnumeric): Emulate the is_numeric and validate_numeric functions The regex is what's currently used in is_numeric validate_numeric also allows range che
 * [`Stdlib::Compat::String`](#stdlibcompatstring): Emulate the is_string and validate_string functions
 * [`Stdlib::Datasize`](#stdlibdatasize)
-* [`Stdlib::Email`](#stdlibemail): https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
+* [`Stdlib::Email`](#stdlibemail): https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address lint:ignore:140chars
 * [`Stdlib::Ensure::File`](#stdlibensurefile)
 * [`Stdlib::Ensure::File::Directory`](#stdlibensurefiledirectory)
 * [`Stdlib::Ensure::File::File`](#stdlibensurefilefile)
@@ -3160,12 +3161,12 @@ $myhash = loadyaml('no-file.yaml', {'default' => 'val
 Type: Ruby 3.x API
 
 > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with a
-built-in [`max`](https://puppet.com/docs/puppet/latest/function.html#max) function.
+built-in [`lstrip`](https://puppet.com/docs/puppet/latest/function.html#lstrip) function.
 
 #### `lstrip()`
 
 > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with a
-built-in [`max`](https://puppet.com/docs/puppet/latest/function.html#max) function.
+built-in [`lstrip`](https://puppet.com/docs/puppet/latest/function.html#lstrip) function.
 
 Returns: `String` The stripped string
 
@@ -3176,14 +3177,14 @@ Type: Ruby 3.x API
 Requires at least one argument.
 
 > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with a
-built-in [`lstrip`](https://puppet.com/docs/puppet/latest/function.html#lstrip) function.
+built-in [`max`](https://puppet.com/docs/puppet/latest/function.html#max) function.
 
 #### `max()`
 
 Requires at least one argument.
 
 > **Note:** **Deprecated** from Puppet 6.0.0, this function has been replaced with a
-built-in [`lstrip`](https://puppet.com/docs/puppet/latest/function.html#lstrip) function.
+built-in [`max`](https://puppet.com/docs/puppet/latest/function.html#max) function.
 
 Returns: `Any` The highest value among those passed in
 
@@ -4148,7 +4149,7 @@ Type: Puppet Language
 
 function to cast ensure parameter to resource specific value
 
-#### `stdlib::ensure(Variant[Boolean, Enum['present', 'absent']] $ensure, Enum['directory', 'link', 'mounted', 'service', 'file'] $resource)`
+#### `stdlib::ensure(Variant[Boolean, Enum['present', 'absent']] $ensure, Enum['directory', 'link', 'mounted', 'service', 'file', 'package'] $resource)`
 
 The stdlib::ensure function.
 
@@ -4162,7 +4163,7 @@ Data type: `Variant[Boolean, Enum['present', 'absent']]`
 
 ##### `resource`
 
-Data type: `Enum['directory', 'link', 'mounted', 'service', 'file']`
+Data type: `Enum['directory', 'link', 'mounted', 'service', 'file', 'package']`
 
 
 
@@ -4793,6 +4794,46 @@ file { '/opt/acme/etc/settings.rb':
 Data type: `Any`
 
 
+
+### <a name="to_toml"></a>`to_toml`
+
+Type: Ruby 4.x API
+
+Convert a data structure and output to TOML.
+
+#### Examples
+
+##### How to output TOML to a file
+
+```puppet
+file { '/tmp/config.toml':
+  ensure  => file,
+  content => to_toml($myhash),
+}
+```
+
+#### `to_toml(Hash $data)`
+
+The to_toml function.
+
+Returns: `String` Converted data as TOML string
+
+##### Examples
+
+###### How to output TOML to a file
+
+```puppet
+file { '/tmp/config.toml':
+  ensure  => file,
+  content => to_toml($myhash),
+}
+```
+
+##### `data`
+
+Data type: `Hash`
+
+Data structure which needs to be converted into TOML
 
 ### <a name="to_yaml"></a>`to_yaml`
 
@@ -6751,6 +6792,7 @@ Pattern[/^\d+(?i:[kmgt]b?|b)$/]
 ### <a name="stdlibemail"></a>`Stdlib::Email`
 
 https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
+lint:ignore:140chars
 
 Alias of
 
