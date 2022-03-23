@@ -58,6 +58,17 @@ describe 'pw_hash' do
     it { is_expected.to run.with_params('password', 'bcrypt-y', '1234').and_raise_error(ArgumentError, %r{characters in salt must match}) }
   end
 
+  context 'when the third argument has an invalid strength parameter for bcrypt' do
+    it { is_expected.to run.with_params('password', 'bcrypt', '03$salt.salt.salt.salt.sa').and_raise_error(ArgumentError, %r{characters in salt must match}) }
+    it { is_expected.to run.with_params('password', 'bcrypt-a', '03$salt.salt.salt.salt.sa').and_raise_error(ArgumentError, %r{characters in salt must match}) }
+    it { is_expected.to run.with_params('password', 'bcrypt-x', '03$salt.salt.salt.salt.sa').and_raise_error(ArgumentError, %r{characters in salt must match}) }
+    it { is_expected.to run.with_params('password', 'bcrypt-y', '03$salt.salt.salt.salt.sa').and_raise_error(ArgumentError, %r{characters in salt must match}) }
+    it { is_expected.to run.with_params('password', 'bcrypt', '32$salt.salt.salt.salt.sa').and_raise_error(ArgumentError, %r{characters in salt must match}) }
+    it { is_expected.to run.with_params('password', 'bcrypt-a', '32$salt.salt.salt.salt.sa').and_raise_error(ArgumentError, %r{characters in salt must match}) }
+    it { is_expected.to run.with_params('password', 'bcrypt-x', '32$salt.salt.salt.salt.sa').and_raise_error(ArgumentError, %r{characters in salt must match}) }
+    it { is_expected.to run.with_params('password', 'bcrypt-y', '32$salt.salt.salt.salt.sa').and_raise_error(ArgumentError, %r{characters in salt must match}) }
+  end
+
   context 'when running on a platform with a weak String#crypt implementation' do
     before(:each) { allow_any_instance_of(String).to receive(:crypt).with('$1$1').and_return('a bad hash') } # rubocop:disable RSpec/AnyInstance : Unable to find a viable replacement
 
