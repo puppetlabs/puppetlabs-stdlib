@@ -178,12 +178,12 @@ in a hash.
 * [`swapcase`](#swapcase): This function will swap the existing case of a string.
 * [`time`](#time): This function will return the current time since epoch as an integer.
 * [`to_bytes`](#to_bytes): Converts the argument into bytes, for example 4 kB becomes 4096.
-* [`to_json`](#to_json): }
+* [`to_json`](#to_json): Convert a data structure and output to JSON
 * [`to_json_pretty`](#to_json_pretty): Convert data structure and output to pretty JSON
 * [`to_python`](#to_python): Convert an object into a String containing its Python representation
 * [`to_ruby`](#to_ruby): Convert an object into a String containing its Ruby representation
 * [`to_toml`](#to_toml): Convert a data structure and output to TOML.
-* [`to_yaml`](#to_yaml): }
+* [`to_yaml`](#to_yaml): Convert a data structure and output it as YAML
 * [`try_get_value`](#try_get_value)
 * [`type`](#type): **DEPRECATED:** This function will cease to function on Puppet 4;
 * [`type3x`](#type3x): **DEPRECATED:** This function will be removed when Puppet 3 support is dropped; please migrate to the new parser's typing system.
@@ -4569,19 +4569,41 @@ Returns: `Any` converted value into bytes
 
 Type: Ruby 4.x API
 
+Convert a data structure and output to JSON
+
+#### Examples
+
+##### Output JSON to a file
+
+```puppet
+file { '/tmp/my.json':
+  ensure  => file,
+  content => to_json($myhash),
 }
+```
 
 #### `to_json(Any $data)`
 
-}
+The to_json function.
 
-Returns: `Any` converted data to json
+Returns: `String` Converted data to JSON
+
+##### Examples
+
+###### Output JSON to a file
+
+```puppet
+file { '/tmp/my.json':
+  ensure  => file,
+  content => to_json($myhash),
+}
+```
 
 ##### `data`
 
 Data type: `Any`
 
-data structure which needs to be converted into JSON
+Data structure which needs to be converted into JSON
 
 ### <a name="to_json_pretty"></a>`to_json_pretty`
 
@@ -4839,25 +4861,65 @@ Data structure which needs to be converted into TOML
 
 Type: Ruby 4.x API
 
+Convert a data structure and output it as YAML
+
+#### Examples
+
+##### Output YAML to a file
+
+```puppet
+file { '/tmp/my.yaml':
+  ensure  => file,
+  content => to_yaml($myhash),
 }
+```
+
+##### Use options to control the output format
+
+```puppet
+file { '/tmp/my.yaml':
+  ensure  => file,
+  content => to_yaml($myhash, {indentation => 4})
+}
+```
 
 #### `to_yaml(Any $data, Optional[Hash] $options)`
 
-}
+The to_yaml function.
 
-Returns: `String`
+Returns: `String` The YAML document
+
+##### Examples
+
+###### Output YAML to a file
+
+```puppet
+file { '/tmp/my.yaml':
+  ensure  => file,
+  content => to_yaml($myhash),
+}
+```
+
+###### Use options to control the output format
+
+```puppet
+file { '/tmp/my.yaml':
+  ensure  => file,
+  content => to_yaml($myhash, {indentation => 4})
+}
+```
 
 ##### `data`
 
 Data type: `Any`
 
-
+The data you want to convert to YAML
 
 ##### `options`
 
 Data type: `Optional[Hash]`
 
-
+A hash of options that will be passed to Ruby's Psych library. Note, this could change between Puppet versions, but at time of writing these are `line_width`, `indentation`, and `canonical`.
 
 ### <a name="try_get_value"></a>`try_get_value`
 
