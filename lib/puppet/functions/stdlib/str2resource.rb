@@ -19,7 +19,7 @@ Puppet::Functions.create_function(:'stdlib::str2resource') do
   # @return Puppet::Resource
   dispatch :str2resource do
     param 'String', :res_string
-    #return_type 'Puppet::Resource'
+    # return_type 'Puppet::Resource'
     return_type 'Any'
   end
 
@@ -29,9 +29,9 @@ Puppet::Functions.create_function(:'stdlib::str2resource') do
     resource = closure_scope.findresource(type_name, title)
 
     if resource.nil?
-      raise(Puppet::ParseError, "stdlib::str2resource(): could not find #{type_name}[#{title}], this is parse order dependant and values should not be quoted")
+      raise(Puppet::ParseError, "stdlib::str2resource(): could not find #{type_name}[#{title}], this is parse order dependent and values should not be quoted")
     end
 
-    return resource
+    resource
   end
 end
