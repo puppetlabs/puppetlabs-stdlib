@@ -167,6 +167,7 @@ the provided regular expression.
 last Period).
 * [`stdlib::ip_in_range`](#stdlibip_in_range): Returns true if the ipaddress is within the given CIDRs
 * [`stdlib::start_with`](#stdlibstart_with): Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
+* [`stdlib::xml_encode`](#stdlibxml_encode): Encode strings for XML files
 * [`str2bool`](#str2bool): This converts a string to a boolean.
 * [`str2saltedpbkdf2`](#str2saltedpbkdf2): Convert a string into a salted SHA512 PBKDF2 password hash like requred for OS X / macOS 10.8+
 * [`str2saltedsha512`](#str2saltedsha512): This converts a string to a salted-SHA512 password hash (which is used for
@@ -4299,6 +4300,64 @@ The string to check
 Data type: `Variant[String[1],Array[String[1], 1]]`
 
 The prefixes to check.
+
+### <a name="stdlibxml_encode"></a>`stdlib::xml_encode`
+
+Type: Ruby 4.x API
+
+This function can encode strings such that they can be used directly in XML files.
+It supports encoding for both XML text (CharData) or attribute values (AttValue).
+
+#### Examples
+
+##### Creating an XML file from a template
+
+```puppet
+file { '/path/to/config.xml':
+  ensure  => file,
+  content => epp(
+    'mymodule/config.xml.epp',
+    {
+      password => $password.stdlib::xml_encode,
+    },
+  ),
+}
+```
+
+#### `stdlib::xml_encode(String $str, Optional[Enum['text','attr']] $type)`
+
+This function can encode strings such that they can be used directly in XML files.
+It supports encoding for both XML text (CharData) or attribute values (AttValue).
+
+Returns: `String` Returns the encoded CharData or AttValue string suitable for use in XML
+
+##### Examples
+
+###### Creating an XML file from a template
+
+```puppet
+file { '/path/to/config.xml':
+  ensure  => file,
+  content => epp(
+    'mymodule/config.xml.epp',
+    {
+      password => $password.stdlib::xml_encode,
+    },
+  ),
+}
+```
+
+##### `str`
+
+Data type: `String`
+
+The string to encode
+
+##### `type`
+
+Data type: `Optional[Enum['text','attr']]`
+
+Whether to encode for text or an attribute
 
 ### <a name="str2bool"></a>`str2bool`
 
