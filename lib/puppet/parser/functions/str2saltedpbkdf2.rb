@@ -13,7 +13,7 @@ module Puppet::Parser::Functions
     the pasword using the parameters you provide to the user resource.
 
     @example Plain text password and salt
-      $pw_info = str2saltedpbkdf2('Pa55w0rd', 'Using s0m3 s@lt', 50000)
+      $pw_info = str2saltedpbkdf2('Pa55w0rd', 'Use a s@lt h3r3 th@t is 32 byt3s', 50000)
       user { 'jdoe':
         ensure     => present,
         iterations => $pw_info['interations'],
@@ -23,7 +23,7 @@ module Puppet::Parser::Functions
 
     @example Sensitive password and salt
       $pw = Sensitive.new('Pa55w0rd')
-      $salt = Sensitive.new('Using s0m3 s@lt')
+      $salt = Sensitive.new('Use a s@lt h3r3 th@t is 32 byt3s')
       $pw_info = Sensitive.new(str2saltedpbkdf2($pw, $salt, 50000))
       user { 'jdoe':
         ensure     => present,
