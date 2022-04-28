@@ -7,8 +7,9 @@ module Puppet::Parser::Functions
   newfunction(:validate_slength, doc: <<-DOC
     @summary
       Validate that the first argument is a string (or an array of strings), and less/equal to than the length of the second argument.
-      An optional third parameter can be given the minimum length. It fails if the first argument is not a string or array of strings,
-      and if arg 2 and arg 3 are not convertable to a number.
+
+    An optional third parameter can be given the minimum length. It fails if the first argument is not a string or array of strings,
+    and if arg 2 and arg 3 are not convertable to a number.
 
     @return
       validate that the first argument is a string (or an array of strings), and less/equal to than the length of the second argument. Fail compilation if any of the checks fail.
