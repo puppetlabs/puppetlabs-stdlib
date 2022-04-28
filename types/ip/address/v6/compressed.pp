@@ -1,3 +1,4 @@
+# Validate a compressed IPv6 address
 type Stdlib::IP::Address::V6::Compressed = Pattern[
   /\A:(:|(:[[:xdigit:]]{1,4}){1,7})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/,
   /\A([[:xdigit:]]{1,4}:){1}(:|(:[[:xdigit:]]{1,4}){1,6})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/,

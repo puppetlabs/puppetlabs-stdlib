@@ -1,3 +1,4 @@
+# Validate a syslog facility
 type Stdlib::Syslogfacility = Enum[
   'kern',
   'user',
