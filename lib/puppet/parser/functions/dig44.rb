@@ -8,7 +8,7 @@ module Puppet::Parser::Functions
     :dig44,
     type: :rvalue,
     arity: -2,
-    doc: <<-DOC,
+    doc: <<-DOC
     @summary
       **DEPRECATED**: Looks up into a complex structure of arrays and hashes and returns a value
       or the default value if nothing was found.

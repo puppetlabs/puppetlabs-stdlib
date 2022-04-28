@@ -7,7 +7,7 @@ Puppet::Parser::Functions.newfunction(
   :seeded_rand,
   arity: 2,
   type: :rvalue,
-  doc: <<-DOC,
+  doc: <<-DOC
     @summary
       Generates a random whole number greater than or equal to 0 and less than MAX, using the value of SEED for repeatable randomness.
 

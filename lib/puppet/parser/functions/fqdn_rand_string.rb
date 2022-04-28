@@ -4,7 +4,7 @@ Puppet::Parser::Functions.newfunction(
   :fqdn_rand_string,
   arity: -2,
   type: :rvalue,
-  doc: <<-DOC,
+  doc: <<-DOC
   @summary
     Generates a random alphanumeric string. Combining the `$fqdn` fact and an
     optional seed for repeatable randomness.

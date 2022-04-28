@@ -5,7 +5,7 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:defined_with_params,
                                       type: :rvalue,
-                                      doc: <<-DOC,
+                                      doc: <<-DOC
     @summary
       Takes a resource reference and an optional hash of attributes.
 

@@ -5,7 +5,7 @@ require 'puppet/parser/functions'
 
 Puppet::Parser::Functions.newfunction(:getparam,
                                       type: :rvalue,
-                                      doc: <<-'DOC',
+                                      doc: <<-'DOC'
     @summary
       Returns the value of a resource's parameter.
 
