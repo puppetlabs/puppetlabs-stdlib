@@ -1,2 +1,2 @@
-# Validate a Windows path
+# @summary Validate a Windows path
 type Stdlib::Windowspath = Pattern[/\A(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+)).*\z/]
