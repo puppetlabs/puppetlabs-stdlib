@@ -1,4 +1,6 @@
 # @summary function to cast ensure parameter to resource specific value
+#
+# @return [String]
 function stdlib::ensure(
   Variant[Boolean, Enum['present', 'absent']] $ensure,
   Enum['directory', 'link', 'mounted', 'service', 'file', 'package'] $resource,
