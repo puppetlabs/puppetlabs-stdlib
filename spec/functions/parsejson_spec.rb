@@ -13,6 +13,14 @@ describe 'parsejson' do
   end
 
   context 'with correct JSON data' do
+    it 'is able to parse JSON this is a null' do
+      is_expected.to run.with_params('null').and_return(nil)
+    end
+
+    it 'is able to parse JSON that is a string' do
+      is_expected.to run.with_params('"a string"').and_return('a string')
+    end
+
     it 'is able to parse JSON data with a Hash' do
       is_expected.to run.with_params('{"a":"1","b":"2"}')
                         .and_return('a' => '1', 'b' => '2')
@@ -49,8 +57,8 @@ describe 'parsejson' do
 
   context 'with incorrect JSON data' do
     it 'raises an error with invalid JSON and no default' do
-      is_expected.to run.with_params('')
-                        .and_raise_error(PSON::ParserError)
+      is_expected.to run.with_params('error')
+                        .and_raise_error(Puppet::Util::Json::ParseError)
     end
 
     it 'supports a structure for a default value' do
@@ -58,7 +66,7 @@ describe 'parsejson' do
                         .and_return('a' => '1')
     end
 
-    ['', 1, 1.2, nil, true, false, [], {}, :yaml].each do |value|
+    [1, 1.2, nil, true, false, [], {}, :yaml].each do |value|
       it "returns the default value for an incorrect #{value.inspect} (#{value.class}) parameter" do
         is_expected.to run.with_params(value, 'default_value')
                           .and_return('default_value')
