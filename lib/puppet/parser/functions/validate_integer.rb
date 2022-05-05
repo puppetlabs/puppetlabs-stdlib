@@ -119,13 +119,11 @@ module Puppet::Parser::Functions
     when Array
       # check every element of the array
       input.each_with_index do |arg, pos|
-        begin
-          raise TypeError if arg.is_a?(Hash)
-          arg = Integer(arg.to_s)
-          validator.call(arg)
-        rescue TypeError, ArgumentError
-          raise Puppet::ParseError, "validate_integer(): Expected element at array position #{pos} to be an Integer, got #{arg.class}"
-        end
+        raise TypeError if arg.is_a?(Hash)
+        arg = Integer(arg.to_s)
+        validator.call(arg)
+      rescue TypeError, ArgumentError
+        raise Puppet::ParseError, "validate_integer(): Expected element at array position #{pos} to be an Integer, got #{arg.class}"
       end
     # for the sake of compatibility with ruby 1.8, we need extra handling of hashes
     when Hash
