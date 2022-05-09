@@ -8,7 +8,7 @@ module Puppet::Parser::Functions
     @summary
       This function loads the metadata of a given module.
 
-    @example Example USage:
+    @example Example Usage:
       $metadata = load_module_metadata('archive')
       notify { $metadata['author']: }
 
