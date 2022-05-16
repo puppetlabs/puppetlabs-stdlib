@@ -6,8 +6,8 @@ describe 'shell_escape' do
   it { is_expected.not_to eq(nil) }
 
   describe 'signature validation' do
-    it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
-    it { is_expected.to run.with_params('foo', 'bar').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
+    it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'shell_escape' expects 1 argument, got none}) }
+    it { is_expected.to run.with_params('foo', 'bar').and_raise_error(ArgumentError, %r{'shell_escape' expects 1 argument, got 2}) }
   end
 
   describe 'stringification' do
