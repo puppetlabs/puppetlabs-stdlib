@@ -26,7 +26,6 @@ Puppet::Functions.create_function(:to_ruby) do
   #   The String representation of the object
   def to_ruby(object)
     case object
-    when :undef then 'nil'
     when Array then "[#{object.map { |x| to_ruby(x) }.join(', ')}]"
     when Hash then "{#{object.map { |k, v| "#{to_ruby(k)} => #{to_ruby(v)}" }.join(', ')}}"
     else object.inspect
