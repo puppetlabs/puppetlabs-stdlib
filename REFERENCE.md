@@ -7,6 +7,7 @@
 ### Classes
 
 * [`stdlib`](#stdlib): This module manages stdlib.
+* [`stdlib::manage`](#stdlibmanage): A simple place to define trivial resources
 * [`stdlib::stages`](#stdlibstages): This class manages a standard set of run stages for Puppet. It is managed by
 the stdlib class, and should not be declared independently.
 
@@ -23,6 +24,7 @@ the stdlib class, and should not be declared independently.
 * [`assert_private`](#assert_private): Sets the current class or definition as private.
 * [`base64`](#base64): Base64 encode or decode a string based on the command and the string submitted
 * [`basename`](#basename): Strips directory (and optional suffix) from a filename
+* [`batch_escape`](#batch_escape): Escapes a string so that it can be safely used in a batch shell command line.
 * [`bool2num`](#bool2num): Converts a boolean to a number.
 * [`bool2str`](#bool2str): Converts a boolean to a string using optionally supplied arguments.
 * [`camelcase`](#camelcase): **Deprecated** Converts the case of a string or all strings in an array to camel case.
@@ -137,6 +139,7 @@ Puppet structure.
 * [`pick`](#pick): This function is similar to a coalesce function in SQL in that it will return
 the first value in a list of values that is not undefined or an empty string.
 * [`pick_default`](#pick_default): This function will return the first value in a list of values that is not undefined or an empty string.
+* [`powershell_escape`](#powershell_escape): Escapes a string so that it can be safely used in a PowerShell command line.
 * [`prefix`](#prefix): This function applies a prefix to all elements in an array or a hash.
 * [`private`](#private): **Deprecated:** Sets the current class or definition as private.
 Calling the class or definition from outside the current module will fail.
@@ -167,6 +170,17 @@ the provided regular expression.
 last Period).
 * [`stdlib::ip_in_range`](#stdlibip_in_range): Returns true if the ipaddress is within the given CIDRs
 * [`stdlib::start_with`](#stdlibstart_with): Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
+* [`stdlib::str2resource`](#stdlibstr2resource): This converts a string to a puppet resource.
+
+This attempts to convert a string like 'File[/foo]' into the
+puppet resource `File['/foo']` as detected by the catalog.
+
+Things like 'File[/foo, /bar]' are not supported as a
+title might contain things like ',' or ' '.  There is
+no clear value seperator to use.
+
+This function can depend on the parse order of your
+manifests/modules as it inspects the catalog thus far.
 * [`stdlib::xml_encode`](#stdlibxml_encode): Encode strings for XML files
 * [`str2bool`](#str2bool): This converts a string to a boolean.
 * [`str2saltedpbkdf2`](#str2saltedpbkdf2): Convert a string into a salted SHA512 PBKDF2 password hash like requred for OS X / macOS 10.8+
@@ -179,12 +193,12 @@ in a hash.
 * [`swapcase`](#swapcase): This function will swap the existing case of a string.
 * [`time`](#time): This function will return the current time since epoch as an integer.
 * [`to_bytes`](#to_bytes): Converts the argument into bytes, for example 4 kB becomes 4096.
-* [`to_json`](#to_json): Convert a data structure and output to JSON
+* [`to_json`](#to_json): }
 * [`to_json_pretty`](#to_json_pretty): Convert data structure and output to pretty JSON
 * [`to_python`](#to_python): Convert an object into a String containing its Python representation
 * [`to_ruby`](#to_ruby): Convert an object into a String containing its Ruby representation
 * [`to_toml`](#to_toml): Convert a data structure and output to TOML.
-* [`to_yaml`](#to_yaml): Convert a data structure and output it as YAML
+* [`to_yaml`](#to_yaml): }
 * [`try_get_value`](#try_get_value)
 * [`type`](#type): **DEPRECATED:** This function will cease to function on Puppet 4;
 * [`type3x`](#type3x): **DEPRECATED:** This function will be removed when Puppet 3 support is dropped; please migrate to the new parser's typing system.
@@ -313,7 +327,63 @@ Most of stdlib's features are automatically loaded by Puppet, but this class sho
 declared in order to use the standardized run stages.
 
 Declares all other classes in the stdlib module. Currently, this consists
-of stdlib::stages.
+of stdlib::stages and stdlib::manage.
+
+### <a name="stdlibmanage"></a>`stdlib::manage`
+
+Sometimes your systems require a single simple resource.
+It can feel unnecessary to create a module for a single
+resource.  There are a number of possible patterns to
+generate trivial resource definitions.  This is an attempt
+to create a single clear method for uncomplicated resources.
+There is limited support for `before`, `require`, `notify`,
+and `subscribe`.  However, the target resources must be defined
+before this module is run.
+
+stdlib::manage::create_resources:
+  file:
+    '/etc/motd.d/hello':
+      content: I say Hi
+      notify: 'Service[sshd]'
+  package:
+    example:
+      ensure: installed
+
+#### Examples
+
+##### 
+
+```puppet
+class { 'stdlib::manage':
+    'create_resources' => {
+      'file' => {
+        '/etc/motd.d/hello' => {
+          'content' => 'I say Hi',
+          'notify' => 'Service[sshd]',
+        }
+      },
+      'package' => {
+        'example' => {
+          'ensure' => 'installed',
+        }
+      }
+    }
+```
+
+#### Parameters
+
+The following parameters are available in the `stdlib::manage` class:
+
+* [`create_resources`](#create_resources)
+
+##### <a name="create_resources"></a>`create_resources`
+
+Data type: `Hash[String, Hash]`
+
+A hash of resources to create
+NOTE: functions, such as `template` or `epp` are not evaluated.
+
+Default value: `{}`
 
 ### <a name="stdlibstages"></a>`stdlib::stages`
 
@@ -802,6 +872,26 @@ Strips directory (and optional suffix) from a filename
 The basename function.
 
 Returns: `String` The stripped filename
+
+### <a name="batch_escape"></a>`batch_escape`
+
+Type: Ruby 4.x API
+
+>* Note:* that the resulting string should be used unquoted and is not intended for use in double quotes nor in single
+quotes.
+
+#### `batch_escape(Any $string)`
+
+>* Note:* that the resulting string should be used unquoted and is not intended for use in double quotes nor in single
+quotes.
+
+Returns: `Any` An escaped string that can be safely used in a batch command line.
+
+##### `string`
+
+Data type: `Any`
+
+The string to escape
 
 ### <a name="bool2num"></a>`bool2num`
 
@@ -3059,7 +3149,7 @@ This function loads the metadata of a given module.
 
 #### Examples
 
-##### Example USage:
+##### Example Usage:
 
 ```puppet
 $metadata = load_module_metadata('archive')
@@ -3074,7 +3164,7 @@ Returns: `Any` The modules metadata
 
 ##### Examples
 
-###### Example USage:
+###### Example Usage:
 
 ```puppet
 $metadata = load_module_metadata('archive')
@@ -3606,6 +3696,26 @@ Returns: `Any` This function is similar to a coalesce function in SQL in that it
 the first value in a list of values that is not undefined or an empty string
 If no value is found, it will return the last argument.
 
+### <a name="powershell_escape"></a>`powershell_escape`
+
+Type: Ruby 4.x API
+
+>* Note:* that the resulting string should be used unquoted and is not intended for use in double quotes nor in single
+quotes.
+
+#### `powershell_escape(Any $string)`
+
+>* Note:* that the resulting string should be used unquoted and is not intended for use in double quotes nor in single
+quotes.
+
+Returns: `Any` An escaped string that can be safely used in a PowerShell command line.
+
+##### `string`
+
+Data type: `Any`
+
+The string to escape
+
 ### <a name="prefix"></a>`prefix`
 
 Type: Ruby 3.x API
@@ -3944,21 +4054,27 @@ String that contains characters to use for the random string.
 
 ### <a name="shell_escape"></a>`shell_escape`
 
-Type: Ruby 3.x API
+Type: Ruby 4.x API
 
 >* Note:* that the resulting string should be used unquoted and is not intended for use in double quotes nor in single
 quotes.
 
 This function behaves the same as ruby's Shellwords.shellescape() function.
 
-#### `shell_escape()`
+#### `shell_escape(Any $string)`
 
 >* Note:* that the resulting string should be used unquoted and is not intended for use in double quotes nor in single
 quotes.
 
 This function behaves the same as ruby's Shellwords.shellescape() function.
 
-Returns: `Any` A string of characters with metacharacters converted to their escaped form.
+Returns: `Any` An escaped string that can be safely used in a Bourne shell command line.
+
+##### `string`
+
+Data type: `Any`
+
+The string to escape
 
 ### <a name="shell_join"></a>`shell_join`
 
@@ -4301,6 +4417,50 @@ Data type: `Variant[String[1],Array[String[1], 1]]`
 
 The prefixes to check.
 
+### <a name="stdlibstr2resource"></a>`stdlib::str2resource`
+
+Type: Ruby 4.x API
+
+This converts a string to a puppet resource.
+
+This attempts to convert a string like 'File[/foo]' into the
+puppet resource `File['/foo']` as detected by the catalog.
+
+Things like 'File[/foo, /bar]' are not supported as a
+title might contain things like ',' or ' '.  There is
+no clear value seperator to use.
+
+This function can depend on the parse order of your
+manifests/modules as it inspects the catalog thus far.
+
+#### Examples
+
+##### 
+
+```puppet
+stdlib::str2resource('File[/foo]') => File[/foo]
+```
+
+#### `stdlib::str2resource(String $res_string)`
+
+The stdlib::str2resource function.
+
+Returns: `Any` Puppet::Resource
+
+##### Examples
+
+###### 
+
+```puppet
+stdlib::str2resource('File[/foo]') => File[/foo]
+```
+
+##### `res_string`
+
+Data type: `String`
+
+The string to lookup as a resource
+
 ### <a name="stdlibxml_encode"></a>`stdlib::xml_encode`
 
 Type: Ruby 4.x API
@@ -4388,7 +4548,7 @@ the pasword using the parameters you provide to the user resource.
 ##### Plain text password and salt
 
 ```puppet
-$pw_info = str2saltedpbkdf2('Pa55w0rd', 'Using s0m3 s@lt', 50000)
+$pw_info = str2saltedpbkdf2('Pa55w0rd', 'Use a s@lt h3r3 th@t is 32 byt3s', 50000)
 user { 'jdoe':
   ensure     => present,
   iterations => $pw_info['interations'],
@@ -4401,7 +4561,7 @@ user { 'jdoe':
 
 ```puppet
 $pw = Sensitive.new('Pa55w0rd')
-$salt = Sensitive.new('Using s0m3 s@lt')
+$salt = Sensitive.new('Use a s@lt h3r3 th@t is 32 byt3s')
 $pw_info = Sensitive.new(str2saltedpbkdf2($pw, $salt, 50000))
 user { 'jdoe':
   ensure     => present,
@@ -4425,7 +4585,7 @@ Returns: `Hash` Provides a hash containing the hex version of the password, the 
 ###### Plain text password and salt
 
 ```puppet
-$pw_info = str2saltedpbkdf2('Pa55w0rd', 'Using s0m3 s@lt', 50000)
+$pw_info = str2saltedpbkdf2('Pa55w0rd', 'Use a s@lt h3r3 th@t is 32 byt3s', 50000)
 user { 'jdoe':
   ensure     => present,
   iterations => $pw_info['interations'],
@@ -4438,7 +4598,7 @@ user { 'jdoe':
 
 ```puppet
 $pw = Sensitive.new('Pa55w0rd')
-$salt = Sensitive.new('Using s0m3 s@lt')
+$salt = Sensitive.new('Use a s@lt h3r3 th@t is 32 byt3s')
 $pw_info = Sensitive.new(str2saltedpbkdf2($pw, $salt, 50000))
 user { 'jdoe':
   ensure     => present,
@@ -4628,35 +4788,13 @@ Returns: `Any` converted value into bytes
 
 Type: Ruby 4.x API
 
-Convert a data structure and output to JSON
-
-#### Examples
-
-##### Output JSON to a file
-
-```puppet
-file { '/tmp/my.json':
-  ensure  => file,
-  content => to_json($myhash),
 }
-```
 
 #### `to_json(Any $data)`
 
-The to_json function.
+}
 
 Returns: `String` Converted data to JSON
-
-##### Examples
-
-###### Output JSON to a file
-
-```puppet
-file { '/tmp/my.json':
-  ensure  => file,
-  content => to_json($myhash),
-}
-```
 
 ##### `data`
 
@@ -4920,53 +5058,13 @@ Data structure which needs to be converted into TOML
 
 Type: Ruby 4.x API
 
-Convert a data structure and output it as YAML
-
-#### Examples
-
-##### Output YAML to a file
-
-```puppet
-file { '/tmp/my.yaml':
-  ensure  => file,
-  content => to_yaml($myhash),
 }
-```
-
-##### Use options to control the output format
-
-```puppet
-file { '/tmp/my.yaml':
-  ensure  => file,
-  content => to_yaml($myhash, {indentation => 4})
-}
-```
 
 #### `to_yaml(Any $data, Optional[Hash] $options)`
 
-The to_yaml function.
+}
 
 Returns: `String` The YAML document
-
-##### Examples
-
-###### Output YAML to a file
-
-```puppet
-file { '/tmp/my.yaml':
-  ensure  => file,
-  content => to_yaml($myhash),
-}
-```
-
-###### Use options to control the output format
-
-```puppet
-file { '/tmp/my.yaml':
-  ensure  => file,
-  content => to_yaml($myhash, {indentation => 4})
-}
-```
 
 ##### `data`
 
