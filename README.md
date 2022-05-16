@@ -40,7 +40,7 @@ If you are authoring a module that depends on stdlib, be sure to [specify depend
 
 Most of stdlib's features are automatically loaded by Puppet. To use standardized run stages in Puppet, declare this class in your manifest with `include stdlib`.
 
-When declared, stdlib declares all other classes in the module. The only other class currently included in the module is `stdlib::stages`.
+When declared, stdlib declares all other classes in the module. This currently consists of `stdlib::manage` and `stdlib::stages`.
 
 The `stdlib::stages` class declares various run stages for deploying infrastructure, language runtimes, and application layers. The high level stages are (in order):
 
@@ -61,6 +61,8 @@ node default {
   class { java: stage => 'runtime' }
 }
 ```
+
+The `stdlib::manage` class provides an interface for generating trivial resource declarations via the `create_resources` parameter.
 
 ## Reference
 

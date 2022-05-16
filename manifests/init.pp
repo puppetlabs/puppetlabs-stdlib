@@ -5,8 +5,9 @@
 # declared in order to use the standardized run stages.
 # 
 # Declares all other classes in the stdlib module. Currently, this consists
-# of stdlib::stages.
+# of stdlib::stages and stdlib::manage.
 #
 class stdlib {
+  include stdlib::manage
   include stdlib::stages
 }
