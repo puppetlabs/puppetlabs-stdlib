@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v8.2.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v8.2.0) (2022-05-16)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.1.0...v8.2.0)
+
+### Added
+
+- Add `xml_encode` function [\#1236](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1236) ([alexjfisher](https://github.com/alexjfisher))
+- \(MODULES-4976\) Add windows escaping functions [\#1235](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1235) ([smortex](https://github.com/smortex))
+- MODULES-11309 : convert a string to a resource [\#1233](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1233) ([jcpunk](https://github.com/jcpunk))
+- pdksync - \(FM-8922\) - Add Support for Windows 2022 [\#1222](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1222) ([david22swan](https://github.com/david22swan))
+- \(MODULES-11196\) Add support for AIX 7.2 [\#1220](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1220) ([david22swan](https://github.com/david22swan))
+- pdksync - \(IAC-1753\) - Add Support for AlmaLinux 8 [\#1216](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1216) ([david22swan](https://github.com/david22swan))
+
+### Fixed
+
+- Update load\_module\_metadata.rb to correct capitalisation in strings documentartion [\#1241](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1241) ([davidsandilands](https://github.com/davidsandilands))
+- Modernize escape functions [\#1238](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1238) ([smortex](https://github.com/smortex))
+- Convert data to Pcore before serialisation in to\_ruby/to\_python [\#1237](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1237) ([smortex](https://github.com/smortex))
+- \(maint\) Update str2saltedpbkdf2.rb to use the correct salt length [\#1232](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1232) ([AriaXLi](https://github.com/AriaXLi))
+- Fix `to_yaml` `options` parameter [\#1231](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1231) ([alexjfisher](https://github.com/alexjfisher))
+- pdksync - \(GH-iac-334\) Remove Support for Ubuntu 14.04/16.04 [\#1224](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1224) ([david22swan](https://github.com/david22swan))
+- pdksync - \(IAC-1787\) Remove Support for CentOS 6 [\#1219](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1219) ([david22swan](https://github.com/david22swan))
+- Fix serialization of undef in to\_python\(\) [\#1205](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1205) ([smortex](https://github.com/smortex))
+
 ## [v8.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v8.1.0) (2021-10-04)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.0.0...v8.1.0)
