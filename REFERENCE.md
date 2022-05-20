@@ -60,6 +60,7 @@ or the default value if nothing was found.
 * [`empty`](#empty): **Deprecated:** Returns true if the variable is empty.
 * [`enclose_ipv6`](#enclose_ipv6): Takes an array of ip addresses and encloses the ipv6 addresses with square brackets.
 * [`ensure_packages`](#ensure_packages): Takes a list of packages and only installs them if they don't already exist.
+* [`ensure_packages`](#ensure_packages): Deprecated 3x version of the `ensure_packages` function
 * [`ensure_resource`](#ensure_resource): Takes a resource type, title, and a list of attributes that describe a
 resource.
 * [`ensure_resources`](#ensure_resources): Takes a resource type, title (only hash), and a list of attributes that describe a
@@ -1966,17 +1967,41 @@ Returns: `Any` encloses the ipv6 addresses with square brackets.
 
 ### <a name="ensure_packages"></a>`ensure_packages`
 
-Type: Ruby 3.x API
+Type: Ruby 4.x API
 
 It optionally takes a hash as a second parameter that will be passed as the
 third argument to the ensure_resource() function.
+
+#### `ensure_packages(Variant[String[1], Array[String[1]], Hash[String[1], Any]] $packages, Optional[Hash] $default_attributes)`
+
+It optionally takes a hash as a second parameter that will be passed as the
+third argument to the ensure_resource() function.
+
+Returns: `Undef` Returns nothing.
+
+##### `packages`
+
+Data type: `Variant[String[1], Array[String[1]], Hash[String[1], Any]]`
+
+The packages to ensure are installed. If it's a Hash it will be passed to `ensure_resource`
+
+##### `default_attributes`
+
+Data type: `Optional[Hash]`
+
+Default attributes to be passed to the `ensure_resource()` function
+
+### <a name="ensure_packages"></a>`ensure_packages`
+
+Type: Ruby 3.x API
+
+Deprecated 3x version of the `ensure_packages` function
 
 #### `ensure_packages()`
 
-It optionally takes a hash as a second parameter that will be passed as the
-third argument to the ensure_resource() function.
+The ensure_packages function.
 
-Returns: `Any` install the passed packages
+Returns: `Any`
 
 ### <a name="ensure_resource"></a>`ensure_resource`
 
