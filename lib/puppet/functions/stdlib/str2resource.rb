@@ -3,15 +3,15 @@
 # @summary
 #   This converts a string to a puppet resource.
 #
-#   This attempts to convert a string like 'File[/foo]' into the
-#   puppet resource `File['/foo']` as detected by the catalog.
+# This attempts to convert a string like 'File[/foo]' into the
+# puppet resource `File['/foo']` as detected by the catalog.
 #
-#   Things like 'File[/foo, /bar]' are not supported as a
-#   title might contain things like ',' or ' '.  There is
-#   no clear value seperator to use.
+# Things like 'File[/foo, /bar]' are not supported as a
+# title might contain things like ',' or ' '.  There is
+# no clear value seperator to use.
 #
-#   This function can depend on the parse order of your
-#   manifests/modules as it inspects the catalog thus far.
+# This function can depend on the parse order of your
+# manifests/modules as it inspects the catalog thus far.
 Puppet::Functions.create_function(:'stdlib::str2resource') do
   # @param res_string The string to lookup as a resource
   # @example
