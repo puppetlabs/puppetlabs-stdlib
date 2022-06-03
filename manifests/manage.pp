@@ -47,31 +47,55 @@ class stdlib::manage (
         $key !~ /(before|require|notify|subscribe)/
       }
 
+      create_resources($type, { $title => $filtered_attributes })
+
       if $attributes['before'] {
-        $_before = stdlib::str2resource($attributes['before'])
-      } else {
-        $_before = undef
+        if type($attributes['before'], 'generalized') == 'Array[String]' {
+          $attributes['before'].map |$element| { 
+            $before_attrib = stdlib::str2resource_attrib($element)
+            Resource[$before_attrib['type']] <| title == $before_attrib['title'] |>  <- Resource[$type] <| title == $title |>
+          }
+        } else {
+          $before_attrib = stdlib::str2resource_attrib($attributes['before'])
+          Resource[$before_attrib['type']] <| title == $before_attrib['title'] |> <- Resource[$type] <| title == $title |>
+        }
       }
 
       if $attributes['require'] {
-        $_require = stdlib::str2resource($attributes['require'])
-      } else {
-        $_require = undef
+        if type($attributes['require'], 'generalized') == 'Array[String]' {
+          $attributes['require'].map |$element| { 
+            $require_attrib = stdlib::str2resource_attrib($element)
+            Resource[$require_attrib['type']] <| title == $require_attrib['title'] |> -> Resource[$type] <| title == $title |>
+          }
+        } else {
+          $require_attrib = stdlib::str2resource_attrib($attributes['require'])
+          Resource[$require_attrib['type']] <| title == $require_attrib['title'] |> -> Resource[$type] <| title == $title |>
+        }
       }
 
       if $attributes['notify'] {
-        $_notify = stdlib::str2resource($attributes['notify'])
-      } else {
-        $_notify = undef
+        if type($attributes['notify'], 'generalized') == 'Array[String]' {
+          $attributes['notify'].map |$element| { 
+            $notify_attrib = stdlib::str2resource_attrib($element)
+            Resource[$notify_attrib['type']] <| title == $notify_attrib['title'] |> ~> Resource[$type] <| title == $title |>
+          }
+        } else {
+          $attrib = stdlib::str2resource_attrib($attributes['notify'])
+          Resource[$notify_attrib['type']] <| title == $notify_attrib['title'] |> ~> Resource[$type] <| title == $title |>
+        }
       }
 
       if $attributes['subscribe'] {
-        $_subscribe = stdlib::str2resource($attributes['subscribe'])
-      } else {
-        $_subscribe = undef
+        if type($attributes['subscribe'], 'generalized') == 'Array[String]' {
+          $attributes['subscribe'].map |$element| { 
+            $subscribe_attrib = stdlib::str2resource_attrib($element)
+            Resource[$subscribe_attrib['type']] <| title == $subscribe_attrib['title'] |> <~ Resource[$type] <| title == $title |>
+          }
+        } else {
+          $attrib = stdlib::str2resource_attrib($attributes['subscribe'])
+          Resource[$subscribe_attrib['type']] <| title == $subscribe_attrib['title'] |> <~ Resource[$type] <| title == $title |>
+        }
       }
-
-      create_resources($type, { $title => $filtered_attributes }, { 'before' => $_before, 'require' => $_require, 'notify' => $_notify, 'subscribe' => $_subscribe })
     }
   }
 }

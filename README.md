@@ -62,7 +62,20 @@ node default {
 }
 ```
 
-The `stdlib::manage` class provides an interface for generating trivial resource declarations via the `create_resources` parameter.
+The `stdlib::manage` class provides an interface for generating trivial resource declarations via the `create_resources` parameter.  Depending on your usage, you may want to set `hiera`'s `lookup_options` for the `stdlib::manage::create_resources:` element.
+
+```yaml
+---
+stdlib::manage::create_resources:
+  file:
+    /etc/somefile:
+      ensure: file
+      owner: root
+      group: root
+  package:
+    badpackage:
+      ensure: absent
+```
 
 ## Reference
 
