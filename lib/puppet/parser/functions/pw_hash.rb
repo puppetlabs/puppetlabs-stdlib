@@ -3,11 +3,7 @@
 #  Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible.
 #  To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 #
-Puppet::Parser::Functions.newfunction(
-  :pw_hash,
-  type: :rvalue,
-  arity: 3,
-  doc: <<-DOC,
+Puppet::Parser::Functions.newfunction(:pw_hash, type: :rvalue, arity: 3, doc: <<-DOC
   @summary
     Hashes a password using the crypt function. Provides a hash usable
     on most POSIX systems.

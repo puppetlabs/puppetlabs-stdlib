@@ -1,4 +1,4 @@
-# Emulate the is_absolute_path and validate_absolute_path functions
+# @summary Emulate the is_absolute_path and validate_absolute_path functions
 #
 # The first pattern is originally from is_absolute_path, which had it from 2.7.x's lib/puppet/util.rb Puppet::Util.absolute_path?
 # slash = '[\\\\/]'

@@ -11,11 +11,9 @@ module Puppet::Parser::Functions
     @return
       the rounded value as integer
 
-    @example
-
-    ```round(2.9)``` returns ```3```
-
-    ```round(2.4)``` returns ```2```
+    @example Example usage
+        round(2.9) #=> 3
+        round(2.4) #=> 2
 
     > *Note:* from Puppet 6.0.0, the compatible function with the same name in Puppet core
       will be used instead of this function.

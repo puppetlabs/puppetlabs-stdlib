@@ -1,4 +1,4 @@
-# Emulate the is_float function
+# @summary Emulate the is_float function
 # The regex is what's currently used in is_float
 # To keep your development moving forward, you can also add a deprecation warning using the Integer type:
 #

@@ -30,14 +30,14 @@
 #       }
 #
 # @example
-# stdlib::manage::create_resources:
-#   file:
-#     '/etc/motd.d/hello':
-#       content: I say Hi
-#       notify: 'Service[sshd]'
-#   package:
-#     example:
-#       ensure: installed
+#   stdlib::manage::create_resources:
+#     file:
+#       '/etc/motd.d/hello':
+#         content: I say Hi
+#         notify: 'Service[sshd]'
+#     package:
+#       example:
+#         ensure: installed
 class stdlib::manage (
   Hash[String, Hash] $create_resources = {}
 ) {

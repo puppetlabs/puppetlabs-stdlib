@@ -1,4 +1,4 @@
-# Emulate the is_integer and validate_integer functions
+# @summary Emulate the is_integer and validate_integer functions
 # The regex is what's currently used in is_integer
 # validate_numeric also allows range checking, which cannot be mapped to the string parsing inside the function.
 # For full backwards compatibility, you will need to keep the validate_numeric call around to catch everything.

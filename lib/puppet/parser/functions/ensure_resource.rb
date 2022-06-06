@@ -3,9 +3,7 @@
 # Test whether a given class or definition is defined
 require 'puppet/parser/functions'
 
-Puppet::Parser::Functions.newfunction(:ensure_resource,
-                                      type: :statement,
-                                      doc: <<-DOC,
+Puppet::Parser::Functions.newfunction(:ensure_resource, type: :statement, doc: <<-DOC
   @summary
     Takes a resource type, title, and a list of attributes that describe a
     resource.
@@ -33,7 +31,7 @@ Puppet::Parser::Functions.newfunction(:ensure_resource,
       ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
 
 DOC
-                                     ) do |vals|
+) do |vals|
   type, title, params = vals
   raise(ArgumentError, 'Must specify a type') unless type
   raise(ArgumentError, 'Must specify a title') unless title

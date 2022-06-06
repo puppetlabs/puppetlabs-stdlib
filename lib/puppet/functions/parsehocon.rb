@@ -4,15 +4,13 @@
 #   This function accepts HOCON as a string and converts it into the correct
 #   Puppet structure
 #
-# @return
-#   Data
-#
 # @example How to parse hocon
 #   $data = parsehocon("{any valid hocon: string}")
 #
 Puppet::Functions.create_function(:parsehocon) do
   # @param hocon_string A valid HOCON string
   # @param default An optional default to return if parsing hocon_string fails
+  # @return [Data]
   dispatch :parsehocon do
     param          'String', :hocon_string
     optional_param 'Any',    :default

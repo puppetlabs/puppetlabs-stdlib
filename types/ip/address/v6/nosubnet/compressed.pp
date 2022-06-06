@@ -1,3 +1,4 @@
+# Validate compressed IPv6 address without subnet
 type Stdlib::IP::Address::V6::Nosubnet::Compressed = Pattern[
   /\A:(:|(:[[:xdigit:]]{1,4}){1,7})\z/,
   /\A([[:xdigit:]]{1,4}:){1}(:|(:[[:xdigit:]]{1,4}){1,6})\z/,
