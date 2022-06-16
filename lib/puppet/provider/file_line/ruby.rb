@@ -83,8 +83,8 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   rescue TypeError => _e
     # Ruby 1.8 doesn't support open_args
     @lines ||= File.readlines(resource[:path])
-  rescue Errno::ENOENT => _e
-    raise _e unless resource.noop?
+  rescue Errno::ENOENT
+    raise unless resource.noop?
     @lines ||= []
   end
 
