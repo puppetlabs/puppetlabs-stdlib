@@ -20,6 +20,9 @@ describe 'file_line type' do
         ensure  => present,
         content => 'a wild test file has appeared!',
       }
+      file { '#{test_file}.does_not_exist':
+        ensure => absent,
+      }
     MANIFEST
     apply_manifest(pp_test_file)
   end
@@ -94,6 +97,57 @@ describe 'file_line type' do
         idempotent_apply(pp)
         expect(file(test_file)).to be_file
         expect(file(test_file).content).to be_empty
+      end
+    end
+  end
+
+  context 'when file does not exist' do
+    context 'with ensure => present' do
+      let(:pp) do
+        <<~MANIFEST
+          file_line { 'test_absent_file':
+            ensure => present,
+            path   => '#{test_file}.does_not_exist',
+            line   => 'this file does not exist',
+          }
+        MANIFEST
+      end
+
+      it 'fails to apply manifest' do
+        apply_manifest(pp, expect_failures: true)
+      end
+    end
+
+    context 'with ensure => present and noop => true' do
+      let(:pp) do
+        <<~MANIFEST
+          file_line { 'test_absent_file':
+            ensure => present,
+            path   => '#{test_file}.does_not_exist',
+            line   => 'this file does not exist',
+            noop   => true,
+          }
+        MANIFEST
+      end
+
+      it 'would apply manifest' do
+        apply_manifest(pp, catch_failures: true)
+      end
+    end
+
+    context 'with ensure => present, in noop mode' do
+      let(:pp) do
+        <<~MANIFEST
+          file_line { 'test_absent_file':
+            ensure => present,
+            path   => '#{test_file}.does_not_exist',
+            line   => 'this file does not exist',
+          }
+        MANIFEST
+      end
+
+      it 'would apply manifest' do
+        apply_manifest(pp, catch_failures: true, noop: true)
       end
     end
   end
