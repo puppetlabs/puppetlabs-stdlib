@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v8.3.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v8.3.0) (2022-07-11)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.2.0...v8.3.0)
+
+### Added
+
+- pdksync - \(GH-cat-12\) Add Support for Redhat 9 [\#1247](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1247) ([david22swan](https://github.com/david22swan))
+- Convert `ensure_packages` to new API and refactor [\#1244](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1244) ([alexjfisher](https://github.com/alexjfisher))
+
+### Fixed
+
+- \(MODULES-2892\) Handle missing file in file\_line [\#1251](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1251) ([silug](https://github.com/silug))
+- Simplify stdlib::manage [\#1250](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1250) ([jcpunk](https://github.com/jcpunk))
+- Unbreak `rake strings:generate:reference` [\#1239](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1239) ([smortex](https://github.com/smortex))
+- loadjson: do not send http\_basic\_authentication if not needed [\#1208](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1208) ([chaen](https://github.com/chaen))
+
 ## [v8.2.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v8.2.0) (2022-05-16)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.1.0...v8.2.0)

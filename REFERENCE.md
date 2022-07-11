@@ -330,9 +330,8 @@ It can feel unnecessary to create a module for a single
 resource.  There are a number of possible patterns to
 generate trivial resource definitions.  This is an attempt
 to create a single clear method for uncomplicated resources.
-There is limited support for `before`, `require`, `notify`,
-and `subscribe`.  However, the target resources must be defined
-before this module is run.
+There is __limited__ support for `before`, `require`, `notify`,
+and `subscribe`.
 
 #### Examples
 
@@ -350,6 +349,7 @@ class { 'stdlib::manage':
       'package' => {
         'example' => {
           'ensure' => 'installed',
+          'subscribe' => ['Service[sshd]', 'Exec[something]'],
         }
       }
     }
@@ -366,6 +366,9 @@ stdlib::manage::create_resources:
   package:
     example:
       ensure: installed
+      subscribe:
+        - 'Service[sshd]'
+        - 'Exec[something]'
 ```
 
 #### Parameters
@@ -379,7 +382,7 @@ The following parameters are available in the `stdlib::manage` class:
 Data type: `Hash[String, Hash]`
 
 A hash of resources to create
-NOTE: functions, such as `template` or `epp` are not evaluated.
+NOTE: functions, such as `template` or `epp`, are not evaluated.
 
 Default value: `{}`
 
