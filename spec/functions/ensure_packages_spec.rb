@@ -4,15 +4,6 @@ require 'spec_helper'
 
 describe 'ensure_packages' do
   it { is_expected.not_to eq(nil) }
-  it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError) }
-  it {
-    pending('should not accept numbers as arguments')
-    is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError)
-  }
-  it {
-    pending('should not accept numbers as arguments')
-    is_expected.to run.with_params(['packagename', 1]).and_raise_error(Puppet::ParseError)
-  }
   it { is_expected.to run.with_params('packagename') }
   it { is_expected.to run.with_params(['packagename1', 'packagename2']) }
 
@@ -33,14 +24,6 @@ describe 'ensure_packages' do
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_package('puppet').with_ensure('absent').without_provider }
       it { expect(-> { catalogue }).to contain_package('facter').with_ensure('installed').with_provider('gem') }
-    end
-  end
-
-  context 'when given an empty packages array' do
-    let(:pre_condition) { 'notify { "hi": } -> Package <| |>; $somearray = ["vim",""]; ensure_packages($somearray)' }
-
-    describe 'after running ensure_package(["vim", ""])' do
-      it { expect { catalogue }.to raise_error(Puppet::ParseError, %r{Empty String provided}) }
     end
   end
 
