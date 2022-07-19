@@ -16,4 +16,3 @@ function stdlib::deferrable_epp(String $template, Hash $variables) >> Variant[St
     epp($template, $variables)
   }
 }
-
