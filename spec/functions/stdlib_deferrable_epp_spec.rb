@@ -22,7 +22,8 @@ describe 'stdlib::deferrable_epp' do
 
     it {
       foo = Puppet::Pops::Types::TypeFactory.deferred.create('join', [1, 2, 3])
-      is_expected.to run.with_params('mymod/template.epp', { 'foo' => foo }) # .and_return(a_kind_of Puppet::Pops::Evaluator::DeferredValue)
+      # This kind_of matcher requires https://github.com/puppetlabs/rspec-puppet/pull/24
+      is_expected.to run.with_params('mymod/template.epp', { 'foo' => foo }) # .and_return(kind_of Puppet::Pops::Types::PuppetObject)
     }
   end
 end
