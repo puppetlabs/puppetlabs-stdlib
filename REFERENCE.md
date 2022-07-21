@@ -171,6 +171,7 @@ the provided regular expression.
 * [`sort`](#sort): Sorts strings and arrays lexically.
 * [`sprintf_hash`](#sprintf_hash): Uses sprintf with named references.
 * [`squeeze`](#squeeze): Returns a new string where runs of the same character that occur in this set are replaced by a single character.
+* [`stdlib::deferrable_epp`](#stdlibdeferrable_epp): This function returns either a rendered template or a deferred function to render at runtime. If any of the values in the variables hash are 
 * [`stdlib::end_with`](#stdlibend_with): Returns true if str ends with one of the prefixes given. Each of the prefixes should be a String.
 * [`stdlib::ensure`](#stdlibensure): function to cast ensure parameter to resource specific value
 * [`stdlib::extname`](#stdlibextname): Returns the Extension (the Portion of Filename in Path starting from the
@@ -4613,6 +4614,40 @@ Returns a new string where runs of the same character that occur in this set are
 The squeeze function.
 
 Returns: `Any` a new string where runs of the same character that occur in this set are replaced by a single character.
+
+### <a name="stdlibdeferrable_epp"></a>`stdlib::deferrable_epp`
+
+Type: Puppet Language
+
+This function returns either a rendered template or a deferred function to render at runtime.
+If any of the values in the variables hash are deferred, then the template will be deferred.
+
+Note: this function requires all parameters to be explicitly passed in. It cannot expect to
+use facts, class variables, and other variables in scope. This is because when deferred, we
+have to explicitly pass the entire scope to the client.
+
+#### `stdlib::deferrable_epp(String $template, Hash $variables)`
+
+This function returns either a rendered template or a deferred function to render at runtime.
+If any of the values in the variables hash are deferred, then the template will be deferred.
+
+Note: this function requires all parameters to be explicitly passed in. It cannot expect to
+use facts, class variables, and other variables in scope. This is because when deferred, we
+have to explicitly pass the entire scope to the client.
+
+Returns: `Variant[String, Deferred]`
+
+##### `template`
+
+Data type: `String`
+
+
+
+##### `variables`
+
+Data type: `Hash`
+
+
 
 ### <a name="stdlibend_with"></a>`stdlib::end_with`
 
