@@ -140,6 +140,8 @@ true boolean.
 Puppet structure
 * [`parsejson`](#parsejson): This function accepts JSON as a string and converts it into the correct
 Puppet structure.
+* [`parsepson`](#parsepson): This function accepts PSON, a Puppet variant of JSON, as a string and 
+converts it into the correct Puppet structure.
 * [`parseyaml`](#parseyaml): This function accepts YAML as a string and converts it into the correct
 Puppet structure.
 * [`pick`](#pick): This function will return
@@ -3938,6 +3940,53 @@ Type: Ruby 3.x API
 > *Note:*
   The optional second argument can be used to pass a default value that will
   be returned if the parsing of YAML string have failed.
+
+### <a name="parsepson"></a>`parsepson`
+
+Type: Ruby 4.x API
+
+This function accepts PSON as a string and converts it into the correct
+Puppet structure
+
+#### Examples
+
+##### How to parse pson
+
+```puppet
+$data = parsepson('{"a":"1","b":"2"}')
+```
+
+For more information on PSON please see the following link:
+https://puppet.com/docs/puppet/7/http_api/pson.html
+
+#### `parsepson(String $pson_string, Optional[Any] $default)`
+
+The parseson function.
+
+Returns: `Data`
+
+##### Examples
+
+###### How to parse pson
+
+```puppet
+$data = parsepson('{"a":"1","b":"2"}')
+```
+
+For more information on PSON please see the following link:
+https://puppet.com/docs/puppet/7/http_api/pson.html
+
+##### `pson_string`
+
+Data type: `String[1]`
+
+A valid PSON string
+
+##### `default`
+
+Data type: `Optional[Any]`
+
+An optional default to return if parsing the pson_string fails
 
 #### `parseyaml()`
 
