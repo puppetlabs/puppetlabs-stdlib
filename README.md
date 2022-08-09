@@ -407,7 +407,7 @@ Valid values: An IPv4 address.
 
 #### `Stdlib::IP::Address::V6`
 
-Match any string consistenting of an IPv6 address in any of the documented formats in RFC 2373, with or without an address prefix.
+Match any string consisting of an IPv6 address in any of the documented formats in RFC 2373, with or without an address prefix.
 
 Examples:
 
