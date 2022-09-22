@@ -60,7 +60,7 @@ This is a major release which removes support for the Scientific 5 and Debian 7 
 - Updated `merge()` with puppt language equivalent example.
 - Updated `min()` and `max()` with note that they are in puppet.
 - Updated `num2bool()` with information that Boolean can convert.
-- Updated `prefix()` function with equivalent operation in pupppet.
+- Updated `prefix()` function with equivalent operation in puppet.
 - Updated `range()` with information that Integer can be used.
 - Updated `reject()` with equivalent filter() call.
 - Added note to `reverse()` that the `reverse_each()` Puppet function does the same as it.
