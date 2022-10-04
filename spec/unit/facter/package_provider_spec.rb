@@ -40,6 +40,15 @@ describe 'package_provider', type: :fact do
           expect(Facter.fact(:package_provider).value).to eq('apt')
         end
       end
+
+      context 'when windows' do
+        it 'returns windows' do
+          provider = Puppet::Type.type(:package).provider(:windows)
+          allow(Puppet::Type.type(:package)).to receive(:defaultprovider).and_return(provider)
+          expect(Facter.fact(:package_provider).value).to eq('windows')
+        end
+      end
+
     end
   end
 end
