@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-require_relative '../stdlib'
+require_relative '../../puppet_x/stdlib'
 require 'date'
 
 module PuppetX::Stdlib
