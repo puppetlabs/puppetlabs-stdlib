@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v8.5.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v8.5.0) (2022-10-13)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.4.0...v8.5.0)
+
+### Added
+
+- Add a Stdlib::CreateResources type [\#1267](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1267) ([ekohl](https://github.com/ekohl))
+- pdksync - \(GH-cat-11\) Certify Support for Ubuntu 22.04 [\#1261](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1261) ([david22swan](https://github.com/david22swan))
+- \(FEAT\) Add function parsepson [\#1259](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1259) ([david22swan](https://github.com/david22swan))
+
+### Fixed
+
+- \(CONT-200\) Fix require relative paths [\#1275](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1275) ([chelnak](https://github.com/chelnak))
+- pdksync - \(CONT-189\) Remove support for RedHat6 / OracleLinux6 / Scientific6 [\#1272](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1272) ([david22swan](https://github.com/david22swan))
+- pdksync - \(CONT-130\) - Dropping Support for Debian 9 [\#1269](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1269) ([jordanbreen28](https://github.com/jordanbreen28))
+- \(MAINT\) Drop support for AIX + Windows EOL OSs [\#1265](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1265) ([jordanbreen28](https://github.com/jordanbreen28))
+- \(GH-1262\) Use 'require\_relative' to load stdlib due to lookup errors [\#1264](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1264) ([david22swan](https://github.com/david22swan))
+- Switch parsejson\(\) from PSON to JSON parsing [\#1240](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1240) ([seanmil](https://github.com/seanmil))
+
 ## [v8.4.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v8.4.0) (2022-07-21)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.3.0...v8.4.0)
