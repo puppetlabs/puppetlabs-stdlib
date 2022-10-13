@@ -140,8 +140,8 @@ true boolean.
 Puppet structure
 * [`parsejson`](#parsejson): This function accepts JSON as a string and converts it into the correct
 Puppet structure.
-* [`parsepson`](#parsepson): This function accepts PSON, a Puppet variant of JSON, as a string and 
-converts it into the correct Puppet structure.
+* [`parsepson`](#parsepson): This function accepts PSON, a Puppet variant of JSON, as a string and converts
+it into the correct Puppet structure
 * [`parseyaml`](#parseyaml): This function accepts YAML as a string and converts it into the correct
 Puppet structure.
 * [`pick`](#pick): This function will return
@@ -272,6 +272,7 @@ OpenSSL.
 * [`Stdlib::Compat::Ipv6`](#stdlibcompatipv6): Validate an IPv6 address
 * [`Stdlib::Compat::Numeric`](#stdlibcompatnumeric): Emulate the is_numeric and validate_numeric functions
 * [`Stdlib::Compat::String`](#stdlibcompatstring): Emulate the is_string and validate_string functions
+* [`Stdlib::CreateResources`](#stdlibcreateresources): A type description used for the create_resources function
 * [`Stdlib::Datasize`](#stdlibdatasize): Validate the size of data
 * [`Stdlib::Email`](#stdlibemail): Validate an e-mail address
 * [`Stdlib::Ensure::File`](#stdlibensurefile): Validate the value of the ensure parameter for a file
@@ -3923,30 +3924,24 @@ Type: Ruby 3.x API
 
 > *Note:*
   The optional second argument can be used to pass a default value that will
-  be returned if the parsing of YAML string have failed.
+  be returned if the parsing of the JSON string failed or if the JSON parse
+  evaluated to nil.
 
 #### `parsejson()`
 
 > *Note:*
   The optional second argument can be used to pass a default value that will
-  be returned if the parsing of YAML string have failed.
+  be returned if the parsing of the JSON string failed or if the JSON parse
+  evaluated to nil.
 
 Returns: `Any` convert JSON into Puppet structure
-
-### <a name="parseyaml"></a>`parseyaml`
-
-Type: Ruby 3.x API
-
-> *Note:*
-  The optional second argument can be used to pass a default value that will
-  be returned if the parsing of YAML string have failed.
 
 ### <a name="parsepson"></a>`parsepson`
 
 Type: Ruby 4.x API
 
-This function accepts PSON as a string and converts it into the correct
-Puppet structure
+For more information on PSON please see the following link:
+https://puppet.com/docs/puppet/7/http_api/pson.html
 
 #### Examples
 
@@ -3956,12 +3951,10 @@ Puppet structure
 $data = parsepson('{"a":"1","b":"2"}')
 ```
 
+#### `parsepson(String[1] $pson_string, Optional[Any] $default)`
+
 For more information on PSON please see the following link:
 https://puppet.com/docs/puppet/7/http_api/pson.html
-
-#### `parsepson(String $pson_string, Optional[Any] $default)`
-
-The parseson function.
 
 Returns: `Data`
 
@@ -3972,9 +3965,6 @@ Returns: `Data`
 ```puppet
 $data = parsepson('{"a":"1","b":"2"}')
 ```
-
-For more information on PSON please see the following link:
-https://puppet.com/docs/puppet/7/http_api/pson.html
 
 ##### `pson_string`
 
@@ -3987,6 +3977,14 @@ A valid PSON string
 Data type: `Optional[Any]`
 
 An optional default to return if parsing the pson_string fails
+
+### <a name="parseyaml"></a>`parseyaml`
+
+Type: Ruby 3.x API
+
+> *Note:*
+  The optional second argument can be used to pass a default value that will
+  be returned if the parsing of YAML string have failed.
 
 #### `parseyaml()`
 
@@ -7602,6 +7600,36 @@ Alias of
 
 ```puppet
 Optional[String]
+```
+
+### <a name="stdlibcreateresources"></a>`Stdlib::CreateResources`
+
+A type description used for the create_resources function
+
+#### Examples
+
+##### As a class parameter
+
+```puppet
+class myclass (
+  Stdlib::CreateResources $myresources = {},
+) {
+  # Using create_resources
+  create_resources('myresource', $myresources)
+
+  # Using iteration
+  $myresources.each |$myresource_name, $myresource_attrs| {
+    myresource { $myresource_name:
+      * => $myresource_attrs,
+    }
+  }
+}
+```
+
+Alias of
+
+```puppet
+Hash[String[1], Hash[String[1], Any]]
 ```
 
 ### <a name="stdlibdatasize"></a>`Stdlib::Datasize`
