@@ -9,7 +9,7 @@ describe 'Root Home Specs' do
       let(:expected_root_home) { '/' }
 
       it 'returns /' do
-        expect(Facter::Util::Resolution).to receive(:exec).with('getent passwd root').and_return(root_ent)
+        expect(Facter::Core::Execution).to receive(:execute).with('getent passwd root').and_return(root_ent)
         expect(described_class.returnt_root_home).to eq(expected_root_home)
       end
     end
@@ -18,13 +18,13 @@ describe 'Root Home Specs' do
       let(:expected_root_home) { '/root' }
 
       it 'returns /root' do
-        expect(Facter::Util::Resolution).to receive(:exec).with('getent passwd root').and_return(root_ent)
+        expect(Facter::Core::Execution).to receive(:execute).with('getent passwd root').and_return(root_ent)
         expect(described_class.returnt_root_home).to eq(expected_root_home)
       end
     end
     context 'when windows' do
       it 'is nil on windows' do
-        expect(Facter::Util::Resolution).to receive(:exec).with('getent passwd root').and_return(nil)
+        expect(Facter::Core::Execution).to receive(:execute).with('getent passwd root').and_return(nil)
         expect(described_class.returnt_root_home).to be_nil
       end
     end
@@ -44,7 +44,7 @@ describe 'Root Home Specs' do
       sample_dscacheutil = File.read(fixtures('dscacheutil', 'root'))
 
       it 'returns /var/root' do
-        allow(Facter::Util::Resolution).to receive(:exec).with('dscacheutil -q user -a name root').and_return(sample_dscacheutil)
+        allow(Facter::Core::Execution).to receive(:execute).with('dscacheutil -q user -a name root').and_return(sample_dscacheutil)
         expect(Facter.fact(:root_home).value).to eq(expected_root_home)
       end
     end
@@ -59,7 +59,7 @@ describe 'Root Home Specs' do
       sample_lsuser = File.read(fixtures('lsuser', 'root'))
 
       it 'returns /root' do
-        allow(Facter::Util::Resolution).to receive(:exec).with('lsuser -c -a home root').and_return(sample_lsuser)
+        allow(Facter::Core::Execution).to receive(:execute).with('lsuser -c -a home root').and_return(sample_lsuser)
         expect(Facter.fact(:root_home).value).to eq(expected_root_home)
       end
     end
