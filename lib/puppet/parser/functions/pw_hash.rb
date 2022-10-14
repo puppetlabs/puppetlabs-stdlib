@@ -25,7 +25,9 @@ Puppet::Parser::Functions.newfunction(:pw_hash, type: :rvalue, arity: 3, doc: <<
   |bcrypt-x |2x    |bug compatible       |
   |bcrypt-y |2y    |historic alias for 2b|
 
-  The third argument to this function is the salt to use.
+  The third argument to this function is the salt to use. For bcrypt-type hashes,
+  the first two characters of the salt represent a strength parameter, with a value
+  between 4 and 31 inclusive.
 
   @return [String]
     Provides a crypt hash usable on most POSIX systems.
