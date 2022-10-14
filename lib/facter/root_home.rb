@@ -9,7 +9,7 @@ module Facter::Util::RootHome
   class << self
     # determines the root home directory
     def returnt_root_home
-      root_ent = Facter::Util::Resolution.exec('getent passwd root')
+      root_ent = Facter::Core::Execution.execute('getent passwd root')
       # The home directory is the sixth element in the passwd entry
       # If the platform doesn't have getent, root_ent will be nil and we should
       # return it straight away.
@@ -25,7 +25,7 @@ end
 Facter.add(:root_home) do
   confine kernel: :darwin
   setcode do
-    str = Facter::Util::Resolution.exec('dscacheutil -q user -a name root')
+    str = Facter::Core::Execution.execute('dscacheutil -q user -a name root')
     hash = {}
     str.split("\n").each do |pair|
       key, value = pair.split(%r{:})
@@ -39,7 +39,7 @@ Facter.add(:root_home) do
   confine kernel: :aix
   root_home = nil
   setcode do
-    str = Facter::Util::Resolution.exec('lsuser -c -a home root')
+    str = Facter::Core::Execution.execute('lsuser -c -a home root')
     str&.split("\n")&.each do |line|
       next if %r{^#}.match?(line)
       root_home = line.split(%r{:})[1]
