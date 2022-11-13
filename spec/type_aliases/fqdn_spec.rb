@@ -22,6 +22,7 @@ describe 'Stdlib::Fqdn' do
         "\nexample",
         "\nexample\n",
         "example\n",
+        '10.10.10.10.10',
         '2001:DB8::1',
         'www www.example.com',
       ].each do |value|

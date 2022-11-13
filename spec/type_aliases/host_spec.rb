@@ -24,6 +24,7 @@ describe 'Stdlib::Host' do
         'bob@example.com',
         '%.example.com',
         '2001:0d8',
+        '10.10.10.10.10',
       ].each do |value|
         describe value.inspect do
           it { is_expected.not_to allow_value(value) }
