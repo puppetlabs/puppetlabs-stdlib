@@ -3,6 +3,10 @@
 require 'spec_helper'
 
 describe 'stdlib::ensure' do
+  context 'work without resource' do
+    it { is_expected.to run.with_params(true).and_return('present') }
+    it { is_expected.to run.with_params(false).and_return('absent') }
+  end
   context 'work with service resource' do
     it { is_expected.to run.with_params('present', 'service').and_return('running') }
     it { is_expected.to run.with_params(true, 'service').and_return('running') }
