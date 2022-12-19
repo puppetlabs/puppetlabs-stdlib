@@ -3,7 +3,7 @@
 # @return [String]
 function stdlib::ensure(
   Variant[Boolean, Enum['present', 'absent']] $ensure,
-  Enum['directory', 'link', 'mounted', 'service', 'file', 'package'] $resource,
+  Optional[Enum['directory', 'link', 'mounted', 'service', 'file', 'package']] $resource = undef,
 ) >> String {
   $_ensure = $ensure ? {
     Boolean => $ensure.bool2str('present', 'absent'),
@@ -22,6 +22,7 @@ function stdlib::ensure(
         default   => 'stopped',
       }
     }
+    undef: { $_ensure }
     default: {
       $_ensure ? {
         'present' => $resource,
