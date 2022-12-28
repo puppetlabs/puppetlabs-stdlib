@@ -173,6 +173,7 @@ the provided regular expression.
 * [`sort`](#sort): Sorts strings and arrays lexically.
 * [`sprintf_hash`](#sprintf_hash): Uses sprintf with named references.
 * [`squeeze`](#squeeze): Returns a new string where runs of the same character that occur in this set are replaced by a single character.
+* [`stdlib::crc32`](#stdlibcrc32): Run a CRC32 calculation against a given value.
 * [`stdlib::deferrable_epp`](#stdlibdeferrable_epp): This function returns either a rendered template or a deferred function to render at runtime. If any of the values in the variables hash are 
 * [`stdlib::end_with`](#stdlibend_with): Returns true if str ends with one of the prefixes given. Each of the prefixes should be a String.
 * [`stdlib::ensure`](#stdlibensure): function to cast ensure parameter to resource specific value
@@ -4190,7 +4191,9 @@ hash types are:
 |bcrypt-x |2x    |bug compatible       |
 |bcrypt-y |2y    |historic alias for 2b|
 
-The third argument to this function is the salt to use.
+The third argument to this function is the salt to use. For bcrypt-type hashes,
+the first two characters of the salt represent a strength parameter, with a value
+between 4 and 31 inclusive.
 
 > *Note:*: this uses the Puppet Server's implementation of crypt(3). If your
   environment contains several different operating systems, ensure that they
@@ -4215,7 +4218,9 @@ hash types are:
 |bcrypt-x |2x    |bug compatible       |
 |bcrypt-y |2y    |historic alias for 2b|
 
-The third argument to this function is the salt to use.
+The third argument to this function is the salt to use. For bcrypt-type hashes,
+the first two characters of the salt represent a strength parameter, with a value
+between 4 and 31 inclusive.
 
 > *Note:*: this uses the Puppet Server's implementation of crypt(3). If your
   environment contains several different operating systems, ensure that they
@@ -4662,6 +4667,66 @@ The squeeze function.
 
 Returns: `Any` a new string where runs of the same character that occur in this set are replaced by a single character.
 
+### <a name="stdlibcrc32"></a>`stdlib::crc32`
+
+Type: Ruby 4.x API
+
+Run a CRC32 calculation against a given value.
+
+#### Examples
+
+##### Check a simple string value
+
+```puppet
+stdlib::crc32('my string') == '18fbd270'
+```
+
+##### Check a Sensitive datatype
+
+```puppet
+stdlib::crc32(sensitive('my string')) == '18fbd270'
+```
+
+##### Check a number
+
+```puppet
+stdlib::crc32(100.0) == 'a3fd429a'
+stdlib::crc32(100.00000) == 'a3fd429a'
+```
+
+#### `stdlib::crc32(Variant[ScalarData, Sensitive[ScalarData], Binary, Sensitive[Binary]] $my_data)`
+
+Run a CRC32 calculation against a given value.
+
+Returns: `String` String
+
+##### Examples
+
+###### Check a simple string value
+
+```puppet
+stdlib::crc32('my string') == '18fbd270'
+```
+
+###### Check a Sensitive datatype
+
+```puppet
+stdlib::crc32(sensitive('my string')) == '18fbd270'
+```
+
+###### Check a number
+
+```puppet
+stdlib::crc32(100.0) == 'a3fd429a'
+stdlib::crc32(100.00000) == 'a3fd429a'
+```
+
+##### `my_data`
+
+Data type: `Variant[ScalarData, Sensitive[ScalarData], Binary, Sensitive[Binary]]`
+
+The ScalarData to evaluate
+
 ### <a name="stdlibdeferrable_epp"></a>`stdlib::deferrable_epp`
 
 Type: Puppet Language
@@ -4746,7 +4811,7 @@ Type: Puppet Language
 
 function to cast ensure parameter to resource specific value
 
-#### `stdlib::ensure(Variant[Boolean, Enum['present', 'absent']] $ensure, Enum['directory', 'link', 'mounted', 'service', 'file', 'package'] $resource)`
+#### `stdlib::ensure(Variant[Boolean, Enum['present', 'absent']] $ensure, Optional[Enum['directory', 'link', 'mounted', 'service', 'file', 'package']] $resource = undef)`
 
 The stdlib::ensure function.
 
@@ -4760,7 +4825,7 @@ Data type: `Variant[Boolean, Enum['present', 'absent']]`
 
 ##### `resource`
 
-Data type: `Enum['directory', 'link', 'mounted', 'service', 'file', 'package']`
+Data type: `Optional[Enum['directory', 'link', 'mounted', 'service', 'file', 'package']]`
 
 
 
