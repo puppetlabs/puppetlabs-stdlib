@@ -180,6 +180,7 @@ the provided regular expression.
 * [`stdlib::extname`](#stdlibextname): Returns the Extension (the Portion of Filename in Path starting from the
 last Period).
 * [`stdlib::ip_in_range`](#stdlibip_in_range): Returns true if the ipaddress is within the given CIDRs
+* [`stdlib::sha256`](#stdlibsha256): Run a SHA256 calculation against a given value.
 * [`stdlib::start_with`](#stdlibstart_with): Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
 * [`stdlib::str2resource`](#stdlibstr2resource): This converts a string to a puppet resource.
 * [`stdlib::xml_encode`](#stdlibxml_encode): Encode strings for XML files
@@ -4917,6 +4918,66 @@ Data type: `Variant[String, Array]`
 
 One CIDR or an array of CIDRs
 defining the range(s) to check against
+
+### <a name="stdlibsha256"></a>`stdlib::sha256`
+
+Type: Ruby 4.x API
+
+Run a SHA256 calculation against a given value.
+
+#### Examples
+
+##### Check a simple string value
+
+```puppet
+stdlib::sha256('my string') == '2f7e2089add0288a309abd71ffcc3b3567e2d4215e20e6ed3b74d6042f7ef8e5'
+```
+
+##### Check a Sensitive datatype
+
+```puppet
+stdlib::sha256(sensitive('my string')) == '2f7e2089add0288a309abd71ffcc3b3567e2d4215e20e6ed3b74d6042f7ef8e5'
+```
+
+##### Check a number
+
+```puppet
+stdlib::sha256(100.0) == '43b87f618caab482ebe4976c92bcd6ad308b48055f1c27b4c574f3e31d7683e0'
+stdlib::sha256(100.00000) == '43b87f618caab482ebe4976c92bcd6ad308b48055f1c27b4c574f3e31d7683e0'
+```
+
+#### `stdlib::sha256(Variant[ScalarData, Sensitive[ScalarData], Binary, Sensitive[Binary]] $my_data)`
+
+Run a SHA256 calculation against a given value.
+
+Returns: `String` String
+
+##### Examples
+
+###### Check a simple string value
+
+```puppet
+stdlib::sha256('my string') == '2f7e2089add0288a309abd71ffcc3b3567e2d4215e20e6ed3b74d6042f7ef8e5'
+```
+
+###### Check a Sensitive datatype
+
+```puppet
+stdlib::sha256(sensitive('my string')) == '2f7e2089add0288a309abd71ffcc3b3567e2d4215e20e6ed3b74d6042f7ef8e5'
+```
+
+###### Check a number
+
+```puppet
+stdlib::sha256(100.0) == '43b87f618caab482ebe4976c92bcd6ad308b48055f1c27b4c574f3e31d7683e0'
+stdlib::sha256(100.00000) == '43b87f618caab482ebe4976c92bcd6ad308b48055f1c27b4c574f3e31d7683e0'
+```
+
+##### `my_data`
+
+Data type: `Variant[ScalarData, Sensitive[ScalarData], Binary, Sensitive[Binary]]`
+
+The ScalarData to evaluate
 
 ### <a name="stdlibstart_with"></a>`stdlib::start_with`
 
