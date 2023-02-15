@@ -6,6 +6,6 @@ Facter.add(:root_home) do
   rescue LoadError
   # Unavailable on platforms like Windows
   else
-    Etc.getpwnam('root').dir
+    Etc.getpwnam('root')&.dir
   end
 end
