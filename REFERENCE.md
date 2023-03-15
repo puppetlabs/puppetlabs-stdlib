@@ -7,8 +7,8 @@
 ### Classes
 
 * [`stdlib`](#stdlib): This module manages stdlib.
-* [`stdlib::manage`](#stdlibmanage): A simple place to define trivial resources
-* [`stdlib::stages`](#stdlibstages): This class manages a standard set of run stages for Puppet. It is managed by
+* [`stdlib::manage`](#stdlib--manage): A simple place to define trivial resources
+* [`stdlib::stages`](#stdlib--stages): This class manages a standard set of run stages for Puppet. It is managed by
 the stdlib class, and should not be declared independently.
 
 ### Resource types
@@ -173,17 +173,17 @@ the provided regular expression.
 * [`sort`](#sort): Sorts strings and arrays lexically.
 * [`sprintf_hash`](#sprintf_hash): Uses sprintf with named references.
 * [`squeeze`](#squeeze): Returns a new string where runs of the same character that occur in this set are replaced by a single character.
-* [`stdlib::crc32`](#stdlibcrc32): Run a CRC32 calculation against a given value.
-* [`stdlib::deferrable_epp`](#stdlibdeferrable_epp): This function returns either a rendered template or a deferred function to render at runtime. If any of the values in the variables hash are 
-* [`stdlib::end_with`](#stdlibend_with): Returns true if str ends with one of the prefixes given. Each of the prefixes should be a String.
-* [`stdlib::ensure`](#stdlibensure): function to cast ensure parameter to resource specific value
-* [`stdlib::extname`](#stdlibextname): Returns the Extension (the Portion of Filename in Path starting from the
+* [`stdlib::crc32`](#stdlib--crc32): Run a CRC32 calculation against a given value.
+* [`stdlib::deferrable_epp`](#stdlib--deferrable_epp): This function returns either a rendered template or a deferred function to render at runtime. If any of the values in the variables hash are 
+* [`stdlib::end_with`](#stdlib--end_with): Returns true if str ends with one of the prefixes given. Each of the prefixes should be a String.
+* [`stdlib::ensure`](#stdlib--ensure): function to cast ensure parameter to resource specific value
+* [`stdlib::extname`](#stdlib--extname): Returns the Extension (the Portion of Filename in Path starting from the
 last Period).
-* [`stdlib::ip_in_range`](#stdlibip_in_range): Returns true if the ipaddress is within the given CIDRs
-* [`stdlib::sha256`](#stdlibsha256): Run a SHA256 calculation against a given value.
-* [`stdlib::start_with`](#stdlibstart_with): Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
-* [`stdlib::str2resource`](#stdlibstr2resource): This converts a string to a puppet resource.
-* [`stdlib::xml_encode`](#stdlibxml_encode): Encode strings for XML files
+* [`stdlib::ip_in_range`](#stdlib--ip_in_range): Returns true if the ipaddress is within the given CIDRs
+* [`stdlib::sha256`](#stdlib--sha256): Run a SHA256 calculation against a given value.
+* [`stdlib::start_with`](#stdlib--start_with): Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
+* [`stdlib::str2resource`](#stdlib--str2resource): This converts a string to a puppet resource.
+* [`stdlib::xml_encode`](#stdlib--xml_encode): Encode strings for XML files
 * [`str2bool`](#str2bool): This converts a string to a boolean.
 * [`str2saltedpbkdf2`](#str2saltedpbkdf2): Convert a string into a salted SHA512 PBKDF2 password hash like requred for OS X / macOS 10.8+
 * [`str2saltedsha512`](#str2saltedsha512): This converts a string to a salted-SHA512 password hash (which is used for
@@ -260,64 +260,65 @@ OpenSSL.
 
 ### Data types
 
-* [`Stdlib::Absolutepath`](#stdlibabsolutepath): A strict absolutepath type
-* [`Stdlib::Base32`](#stdlibbase32): Type to match base32 String
-* [`Stdlib::Base64`](#stdlibbase64): Type to match base64 String
-* [`Stdlib::Compat::Absolute_path`](#stdlibcompatabsolute_path): Emulate the is_absolute_path and validate_absolute_path functions
-* [`Stdlib::Compat::Array`](#stdlibcompatarray): Emulate the is_array and validate_array functions
-* [`Stdlib::Compat::Bool`](#stdlibcompatbool): Emulate the is_bool and validate_bool functions
-* [`Stdlib::Compat::Float`](#stdlibcompatfloat): Emulate the is_float function
-* [`Stdlib::Compat::Hash`](#stdlibcompathash): Emulate the is_hash and validate_hash functions
-* [`Stdlib::Compat::Integer`](#stdlibcompatinteger): Emulate the is_integer and validate_integer functions
-* [`Stdlib::Compat::Ip_address`](#stdlibcompatip_address): Validate an IP address
-* [`Stdlib::Compat::Ipv4`](#stdlibcompatipv4): Emulate the validate_ipv4_address and is_ipv4_address functions
-* [`Stdlib::Compat::Ipv6`](#stdlibcompatipv6): Validate an IPv6 address
-* [`Stdlib::Compat::Numeric`](#stdlibcompatnumeric): Emulate the is_numeric and validate_numeric functions
-* [`Stdlib::Compat::String`](#stdlibcompatstring): Emulate the is_string and validate_string functions
-* [`Stdlib::CreateResources`](#stdlibcreateresources): A type description used for the create_resources function
-* [`Stdlib::Datasize`](#stdlibdatasize): Validate the size of data
-* [`Stdlib::Email`](#stdlibemail): Validate an e-mail address
-* [`Stdlib::Ensure::File`](#stdlibensurefile): Validate the value of the ensure parameter for a file
-* [`Stdlib::Ensure::File::Directory`](#stdlibensurefiledirectory): Validate the ensure parameter of a "directory" file resource
-* [`Stdlib::Ensure::File::File`](#stdlibensurefilefile): Validate the ensure parameter of a "file" file resource
-* [`Stdlib::Ensure::File::Link`](#stdlibensurefilelink): Validate the ensure parameter of a "link" file resource
-* [`Stdlib::Ensure::Service`](#stdlibensureservice): Validate the value of the ensure parameter of a service resource
-* [`Stdlib::Filemode`](#stdlibfilemode): Validate a file mode
-* [`Stdlib::Filesource`](#stdlibfilesource): Validate the source parameter on file types
-* [`Stdlib::Fqdn`](#stdlibfqdn): Validate a Fully Qualified Domain Name
-* [`Stdlib::HTTPSUrl`](#stdlibhttpsurl): Validate a HTTPS URL
-* [`Stdlib::HTTPUrl`](#stdlibhttpurl): Validate a HTTP(S) URL
-* [`Stdlib::Host`](#stdlibhost): Validate a host (FQDN or IP address)
-* [`Stdlib::HttpStatus`](#stdlibhttpstatus): Validate a HTTP status code
-* [`Stdlib::IP::Address`](#stdlibipaddress): Validate an IP address
-* [`Stdlib::IP::Address::Nosubnet`](#stdlibipaddressnosubnet): Validate an IP address without subnet
-* [`Stdlib::IP::Address::V4`](#stdlibipaddressv4): Validate an IPv4 address
-* [`Stdlib::IP::Address::V4::CIDR`](#stdlibipaddressv4cidr): lint:ignore:140chars
-* [`Stdlib::IP::Address::V4::Nosubnet`](#stdlibipaddressv4nosubnet): lint:ignore:140chars
-* [`Stdlib::IP::Address::V6`](#stdlibipaddressv6): Validate an IPv6 address
-* [`Stdlib::IP::Address::V6::Alternative`](#stdlibipaddressv6alternative): lint:ignore:140chars
-* [`Stdlib::IP::Address::V6::CIDR`](#stdlibipaddressv6cidr): lint:ignore:140chars
-* [`Stdlib::IP::Address::V6::Compressed`](#stdlibipaddressv6compressed): Validate a compressed IPv6 address
-* [`Stdlib::IP::Address::V6::Full`](#stdlibipaddressv6full): Validate a full IPv6 address
-* [`Stdlib::IP::Address::V6::Nosubnet`](#stdlibipaddressv6nosubnet): Validate an IPv6 address without subnet
-* [`Stdlib::IP::Address::V6::Nosubnet::Alternative`](#stdlibipaddressv6nosubnetalternative): lint:ignore:140chars
-* [`Stdlib::IP::Address::V6::Nosubnet::Compressed`](#stdlibipaddressv6nosubnetcompressed): Validate compressed IPv6 address without subnet
-* [`Stdlib::IP::Address::V6::Nosubnet::Full`](#stdlibipaddressv6nosubnetfull): Validate full IPv6 address without subnet
-* [`Stdlib::MAC`](#stdlibmac): A type for a MAC address
-* [`Stdlib::ObjectStore`](#stdlibobjectstore): Validate an ObjectStore
-* [`Stdlib::ObjectStore::GSUri`](#stdlibobjectstoregsuri): Validate a Google Cloud object store URI
-* [`Stdlib::ObjectStore::S3Uri`](#stdlibobjectstores3uri): Validate an Amazon Web Services S3 object store URI
-* [`Stdlib::Port`](#stdlibport): Validate a port number
-* [`Stdlib::Port::Dynamic`](#stdlibportdynamic): Validate a dynamic port number
-* [`Stdlib::Port::Ephemeral`](#stdlibportephemeral): Validate an ephemeral port number
-* [`Stdlib::Port::Privileged`](#stdlibportprivileged): Validate a priviliged port number
-* [`Stdlib::Port::Registered`](#stdlibportregistered): Validate a registered port number
-* [`Stdlib::Port::Unprivileged`](#stdlibportunprivileged): Validate an unprivileged port number
-* [`Stdlib::Port::User`](#stdlibportuser): Validate a port number usable by a user
-* [`Stdlib::Syslogfacility`](#stdlibsyslogfacility): Validate a syslog facility
-* [`Stdlib::Unixpath`](#stdlibunixpath): Validate a UNIX path
-* [`Stdlib::Windowspath`](#stdlibwindowspath): Validate a Windows path
-* [`Stdlib::Yes_no`](#stdlibyes_no): Validate a yes / no value
+* [`Stdlib::Absolutepath`](#Stdlib--Absolutepath): A strict absolutepath type
+* [`Stdlib::Base32`](#Stdlib--Base32): Type to match base32 String
+* [`Stdlib::Base64`](#Stdlib--Base64): Type to match base64 String
+* [`Stdlib::Compat::Absolute_path`](#Stdlib--Compat--Absolute_path): Emulate the is_absolute_path and validate_absolute_path functions
+* [`Stdlib::Compat::Array`](#Stdlib--Compat--Array): Emulate the is_array and validate_array functions
+* [`Stdlib::Compat::Bool`](#Stdlib--Compat--Bool): Emulate the is_bool and validate_bool functions
+* [`Stdlib::Compat::Float`](#Stdlib--Compat--Float): Emulate the is_float function
+* [`Stdlib::Compat::Hash`](#Stdlib--Compat--Hash): Emulate the is_hash and validate_hash functions
+* [`Stdlib::Compat::Integer`](#Stdlib--Compat--Integer): Emulate the is_integer and validate_integer functions
+* [`Stdlib::Compat::Ip_address`](#Stdlib--Compat--Ip_address): Validate an IP address
+* [`Stdlib::Compat::Ipv4`](#Stdlib--Compat--Ipv4): Emulate the validate_ipv4_address and is_ipv4_address functions
+* [`Stdlib::Compat::Ipv6`](#Stdlib--Compat--Ipv6): Validate an IPv6 address
+* [`Stdlib::Compat::Numeric`](#Stdlib--Compat--Numeric): Emulate the is_numeric and validate_numeric functions
+* [`Stdlib::Compat::String`](#Stdlib--Compat--String): Emulate the is_string and validate_string functions
+* [`Stdlib::CreateResources`](#Stdlib--CreateResources): A type description used for the create_resources function
+* [`Stdlib::Datasize`](#Stdlib--Datasize): Validate the size of data
+* [`Stdlib::Email`](#Stdlib--Email): Validate an e-mail address
+* [`Stdlib::Ensure::File`](#Stdlib--Ensure--File): Validate the value of the ensure parameter for a file
+* [`Stdlib::Ensure::File::Directory`](#Stdlib--Ensure--File--Directory): Validate the ensure parameter of a "directory" file resource
+* [`Stdlib::Ensure::File::File`](#Stdlib--Ensure--File--File): Validate the ensure parameter of a "file" file resource
+* [`Stdlib::Ensure::File::Link`](#Stdlib--Ensure--File--Link): Validate the ensure parameter of a "link" file resource
+* [`Stdlib::Ensure::Package`](#Stdlib--Ensure--Package): Validate the value of the ensure parameter for a package
+* [`Stdlib::Ensure::Service`](#Stdlib--Ensure--Service): Validate the value of the ensure parameter of a service resource
+* [`Stdlib::Filemode`](#Stdlib--Filemode): Validate a file mode
+* [`Stdlib::Filesource`](#Stdlib--Filesource): Validate the source parameter on file types
+* [`Stdlib::Fqdn`](#Stdlib--Fqdn): Validate a Fully Qualified Domain Name
+* [`Stdlib::HTTPSUrl`](#Stdlib--HTTPSUrl): Validate a HTTPS URL
+* [`Stdlib::HTTPUrl`](#Stdlib--HTTPUrl): Validate a HTTP(S) URL
+* [`Stdlib::Host`](#Stdlib--Host): Validate a host (FQDN or IP address)
+* [`Stdlib::HttpStatus`](#Stdlib--HttpStatus): Validate a HTTP status code
+* [`Stdlib::IP::Address`](#Stdlib--IP--Address): Validate an IP address
+* [`Stdlib::IP::Address::Nosubnet`](#Stdlib--IP--Address--Nosubnet): Validate an IP address without subnet
+* [`Stdlib::IP::Address::V4`](#Stdlib--IP--Address--V4): Validate an IPv4 address
+* [`Stdlib::IP::Address::V4::CIDR`](#Stdlib--IP--Address--V4--CIDR): lint:ignore:140chars
+* [`Stdlib::IP::Address::V4::Nosubnet`](#Stdlib--IP--Address--V4--Nosubnet): lint:ignore:140chars
+* [`Stdlib::IP::Address::V6`](#Stdlib--IP--Address--V6): Validate an IPv6 address
+* [`Stdlib::IP::Address::V6::Alternative`](#Stdlib--IP--Address--V6--Alternative): lint:ignore:140chars
+* [`Stdlib::IP::Address::V6::CIDR`](#Stdlib--IP--Address--V6--CIDR): lint:ignore:140chars
+* [`Stdlib::IP::Address::V6::Compressed`](#Stdlib--IP--Address--V6--Compressed): Validate a compressed IPv6 address
+* [`Stdlib::IP::Address::V6::Full`](#Stdlib--IP--Address--V6--Full): Validate a full IPv6 address
+* [`Stdlib::IP::Address::V6::Nosubnet`](#Stdlib--IP--Address--V6--Nosubnet): Validate an IPv6 address without subnet
+* [`Stdlib::IP::Address::V6::Nosubnet::Alternative`](#Stdlib--IP--Address--V6--Nosubnet--Alternative): lint:ignore:140chars
+* [`Stdlib::IP::Address::V6::Nosubnet::Compressed`](#Stdlib--IP--Address--V6--Nosubnet--Compressed): Validate compressed IPv6 address without subnet
+* [`Stdlib::IP::Address::V6::Nosubnet::Full`](#Stdlib--IP--Address--V6--Nosubnet--Full): Validate full IPv6 address without subnet
+* [`Stdlib::MAC`](#Stdlib--MAC): A type for a MAC address
+* [`Stdlib::ObjectStore`](#Stdlib--ObjectStore): Validate an ObjectStore
+* [`Stdlib::ObjectStore::GSUri`](#Stdlib--ObjectStore--GSUri): Validate a Google Cloud object store URI
+* [`Stdlib::ObjectStore::S3Uri`](#Stdlib--ObjectStore--S3Uri): Validate an Amazon Web Services S3 object store URI
+* [`Stdlib::Port`](#Stdlib--Port): Validate a port number
+* [`Stdlib::Port::Dynamic`](#Stdlib--Port--Dynamic): Validate a dynamic port number
+* [`Stdlib::Port::Ephemeral`](#Stdlib--Port--Ephemeral): Validate an ephemeral port number
+* [`Stdlib::Port::Privileged`](#Stdlib--Port--Privileged): Validate a priviliged port number
+* [`Stdlib::Port::Registered`](#Stdlib--Port--Registered): Validate a registered port number
+* [`Stdlib::Port::Unprivileged`](#Stdlib--Port--Unprivileged): Validate an unprivileged port number
+* [`Stdlib::Port::User`](#Stdlib--Port--User): Validate a port number usable by a user
+* [`Stdlib::Syslogfacility`](#Stdlib--Syslogfacility): Validate a syslog facility
+* [`Stdlib::Unixpath`](#Stdlib--Unixpath): Validate a UNIX path
+* [`Stdlib::Windowspath`](#Stdlib--Windowspath): Validate a Windows path
+* [`Stdlib::Yes_no`](#Stdlib--Yes_no): Validate a yes / no value
 
 ## Classes
 
@@ -329,7 +330,7 @@ declared in order to use the standardized run stages.
 Declares all other classes in the stdlib module. Currently, this consists
 of stdlib::stages and stdlib::manage.
 
-### <a name="stdlibmanage"></a>`stdlib::manage`
+### <a name="stdlib--manage"></a>`stdlib::manage`
 
 Sometimes your systems require a single simple resource.
 It can feel unnecessary to create a module for a single
@@ -381,9 +382,9 @@ stdlib::manage::create_resources:
 
 The following parameters are available in the `stdlib::manage` class:
 
-* [`create_resources`](#create_resources)
+* [`create_resources`](#-stdlib--manage--create_resources)
 
-##### <a name="create_resources"></a>`create_resources`
+##### <a name="-stdlib--manage--create_resources"></a>`create_resources`
 
 Data type: `Hash[String, Hash]`
 
@@ -392,7 +393,7 @@ NOTE: functions, such as `template` or `epp`, are not evaluated.
 
 Default value: `{}`
 
-### <a name="stdlibstages"></a>`stdlib::stages`
+### <a name="stdlib--stages"></a>`stdlib::stages`
 
 Declares various run-stages for deploying infrastructure,
 language runtimes, and application layers.
@@ -462,9 +463,9 @@ class { 'mcollective': } -> class { 'ntp': }
 
 The following parameters are available in the `anchor` type.
 
-* [`name`](#name)
+* [`name`](#-anchor--name)
 
-##### <a name="name"></a>`name`
+##### <a name="-anchor--name"></a>`name`
 
 namevar
 
@@ -586,93 +587,93 @@ The line to be appended to the file or used to replace matches found by the matc
 
 The following parameters are available in the `file_line` type.
 
-* [`after`](#after)
-* [`append_on_no_match`](#append_on_no_match)
-* [`encoding`](#encoding)
-* [`match`](#match)
-* [`match_for_absence`](#match_for_absence)
-* [`multiple`](#multiple)
-* [`name`](#name)
-* [`path`](#path)
-* [`provider`](#provider)
-* [`replace`](#replace)
-* [`replace_all_matches_not_matching_line`](#replace_all_matches_not_matching_line)
+* [`after`](#-file_line--after)
+* [`append_on_no_match`](#-file_line--append_on_no_match)
+* [`encoding`](#-file_line--encoding)
+* [`match`](#-file_line--match)
+* [`match_for_absence`](#-file_line--match_for_absence)
+* [`multiple`](#-file_line--multiple)
+* [`name`](#-file_line--name)
+* [`path`](#-file_line--path)
+* [`provider`](#-file_line--provider)
+* [`replace`](#-file_line--replace)
+* [`replace_all_matches_not_matching_line`](#-file_line--replace_all_matches_not_matching_line)
 
-##### <a name="after"></a>`after`
+##### <a name="-file_line--after"></a>`after`
 
 An optional value used to specify the line after which we will add any new lines. (Existing lines are added in place)
 This is also takes a regex.
 
-##### <a name="append_on_no_match"></a>`append_on_no_match`
+##### <a name="-file_line--append_on_no_match"></a>`append_on_no_match`
 
-Valid values: ``true``, ``false``
+Valid values: `true`, `false`
 
 If true, append line if match is not found. If false, do not append line if a match is not found
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="encoding"></a>`encoding`
+##### <a name="-file_line--encoding"></a>`encoding`
 
 For files that are not UTF-8 encoded, specify encoding such as iso-8859-1
 
 Default value: `UTF-8`
 
-##### <a name="match"></a>`match`
+##### <a name="-file_line--match"></a>`match`
 
 An optional ruby regular expression to run against existing lines in the file.
 If a match is found, we replace that line rather than adding a new line.
 A regex comparison is performed against the line value and if it does not
 match an exception will be raised.
 
-##### <a name="match_for_absence"></a>`match_for_absence`
+##### <a name="-file_line--match_for_absence"></a>`match_for_absence`
 
-Valid values: ``true``, ``false``
+Valid values: `true`, `false`
 
 An optional value to determine if match should be applied when ensure => absent.
 If set to true and match is set, the line that matches match will be deleted.
 If set to false (the default), match is ignored when ensure => absent.
 When `ensure => present`, match_for_absence is ignored.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="multiple"></a>`multiple`
+##### <a name="-file_line--multiple"></a>`multiple`
 
-Valid values: ``true``, ``false``
+Valid values: `true`, `false`
 
 An optional value to determine if match can change multiple lines.
 If set to false, an exception will be raised if more than one line matches
 
-##### <a name="name"></a>`name`
+##### <a name="-file_line--name"></a>`name`
 
 namevar
 
 An arbitrary name used as the identity of the resource.
 
-##### <a name="path"></a>`path`
+##### <a name="-file_line--path"></a>`path`
 
 The file Puppet will ensure contains the line specified by the line parameter.
 
-##### <a name="provider"></a>`provider`
+##### <a name="-file_line--provider"></a>`provider`
 
 The specific backend to use for this `file_line` resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
-##### <a name="replace"></a>`replace`
+##### <a name="-file_line--replace"></a>`replace`
 
-Valid values: ``true``, ``false``
+Valid values: `true`, `false`
 
 If true, replace line that matches. If false, do not write line if a match is found
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="replace_all_matches_not_matching_line"></a>`replace_all_matches_not_matching_line`
+##### <a name="-file_line--replace_all_matches_not_matching_line"></a>`replace_all_matches_not_matching_line`
 
-Valid values: ``true``, ``false``
+Valid values: `true`, `false`
 
 Configures the behavior of replacing all lines in a file which match the `match` parameter regular expression,
 regardless of whether the specified line is already present in the file.
 
-Default value: ``false``
+Default value: `false`
 
 ## Functions
 
@@ -4668,7 +4669,7 @@ The squeeze function.
 
 Returns: `Any` a new string where runs of the same character that occur in this set are replaced by a single character.
 
-### <a name="stdlibcrc32"></a>`stdlib::crc32`
+### <a name="stdlib--crc32"></a>`stdlib::crc32`
 
 Type: Ruby 4.x API
 
@@ -4728,7 +4729,7 @@ Data type: `Variant[ScalarData, Sensitive[ScalarData], Binary, Sensitive[Binary]
 
 The ScalarData to evaluate
 
-### <a name="stdlibdeferrable_epp"></a>`stdlib::deferrable_epp`
+### <a name="stdlib--deferrable_epp"></a>`stdlib::deferrable_epp`
 
 Type: Puppet Language
 
@@ -4762,7 +4763,7 @@ Data type: `Hash`
 
 
 
-### <a name="stdlibend_with"></a>`stdlib::end_with`
+### <a name="stdlib--end_with"></a>`stdlib::end_with`
 
 Type: Ruby 4.x API
 
@@ -4806,7 +4807,7 @@ Data type: `Variant[String[1],Array[String[1], 1]]`
 
 The suffixes to check
 
-### <a name="stdlibensure"></a>`stdlib::ensure`
+### <a name="stdlib--ensure"></a>`stdlib::ensure`
 
 Type: Puppet Language
 
@@ -4830,7 +4831,7 @@ Data type: `Optional[Enum['directory', 'link', 'mounted', 'service', 'file', 'pa
 
 
 
-### <a name="stdlibextname"></a>`stdlib::extname`
+### <a name="stdlib--extname"></a>`stdlib::extname`
 
 Type: Ruby 4.x API
 
@@ -4878,7 +4879,7 @@ Data type: `String`
 
 The Filename
 
-### <a name="stdlibip_in_range"></a>`stdlib::ip_in_range`
+### <a name="stdlib--ip_in_range"></a>`stdlib::ip_in_range`
 
 Type: Ruby 4.x API
 
@@ -4919,7 +4920,7 @@ Data type: `Variant[String, Array]`
 One CIDR or an array of CIDRs
 defining the range(s) to check against
 
-### <a name="stdlibsha256"></a>`stdlib::sha256`
+### <a name="stdlib--sha256"></a>`stdlib::sha256`
 
 Type: Ruby 4.x API
 
@@ -4979,7 +4980,7 @@ Data type: `Variant[ScalarData, Sensitive[ScalarData], Binary, Sensitive[Binary]
 
 The ScalarData to evaluate
 
-### <a name="stdlibstart_with"></a>`stdlib::start_with`
+### <a name="stdlib--start_with"></a>`stdlib::start_with`
 
 Type: Ruby 4.x API
 
@@ -5023,7 +5024,7 @@ Data type: `Variant[String[1],Array[String[1], 1]]`
 
 The prefixes to check.
 
-### <a name="stdlibstr2resource"></a>`stdlib::str2resource`
+### <a name="stdlib--str2resource"></a>`stdlib::str2resource`
 
 Type: Ruby 4.x API
 
@@ -5073,7 +5074,7 @@ Data type: `String`
 
 The string to lookup as a resource
 
-### <a name="stdlibxml_encode"></a>`stdlib::xml_encode`
+### <a name="stdlib--xml_encode"></a>`stdlib::xml_encode`
 
 Type: Ruby 4.x API
 
@@ -5534,7 +5535,10 @@ value `true` or `false`
 
 ##### `opts`
 
-Data type: `Optional[Struct[{
+Data type:
+
+```puppet
+Optional[Struct[{
 indent       => Optional[String],
 space        => Optional[String],
 space_before => Optional[String],
@@ -5542,7 +5546,8 @@ object_nl    => Optional[String],
 array_nl     => Optional[String],
 allow_nan    => Optional[Boolean],
 max_nesting  => Optional[Integer[-1,default]],
-}]]`
+}]]
+```
 
 hash-map of settings passed to JSON.pretty_generate, see
 https://ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/JSON.html#method-i-generate.
@@ -7529,70 +7534,46 @@ Would result in: ["1", "4"], ["2", "5"], ["3", "6"]
 
 ## Data types
 
-### <a name="stdlibabsolutepath"></a>`Stdlib::Absolutepath`
+### <a name="Stdlib--Absolutepath"></a>`Stdlib::Absolutepath`
 
 A strict absolutepath type
 
-Alias of
+Alias of `Variant[Stdlib::Windowspath, Stdlib::Unixpath]`
 
-```puppet
-Variant[Stdlib::Windowspath, Stdlib::Unixpath]
-```
-
-### <a name="stdlibbase32"></a>`Stdlib::Base32`
+### <a name="Stdlib--Base32"></a>`Stdlib::Base32`
 
 Type to match base32 String
 
-Alias of
+Alias of `Pattern[/\A[a-z2-7]+={,6}\z/, /\A[A-Z2-7]+={,6}\z/]`
 
-```puppet
-Pattern[/\A[a-z2-7]+={,6}\z/, /\A[A-Z2-7]+={,6}\z/]
-```
-
-### <a name="stdlibbase64"></a>`Stdlib::Base64`
+### <a name="Stdlib--Base64"></a>`Stdlib::Base64`
 
 Type to match base64 String
 
-Alias of
+Alias of `Pattern[/\A[a-zA-Z0-9\/\+]+={,2}\z/]`
 
-```puppet
-Pattern[/\A[a-zA-Z0-9\/\+]+={,2}\z/]
-```
-
-### <a name="stdlibcompatabsolute_path"></a>`Stdlib::Compat::Absolute_path`
+### <a name="Stdlib--Compat--Absolute_path"></a>`Stdlib::Compat::Absolute_path`
 
 The first pattern is originally from is_absolute_path, which had it from 2.7.x's lib/puppet/util.rb Puppet::Util.absolute_path?
 slash = '[\\\\/]'
 name = '[^\\\\/]+'
 %r!^(([A-Z]:#{slash})|(#{slash}#{slash}#{name}#{slash}#{name})|(#{slash}#{slash}\?#{slash}#{name}))!i,
 
-Alias of
+Alias of `Variant[Pattern[/^(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+))/], Pattern[/^\//]]`
 
-```puppet
-Variant[Pattern[/^(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+))/], Pattern[/^\//]]
-```
-
-### <a name="stdlibcompatarray"></a>`Stdlib::Compat::Array`
+### <a name="Stdlib--Compat--Array"></a>`Stdlib::Compat::Array`
 
 Emulate the is_array and validate_array functions
 
-Alias of
+Alias of `Array[Any]`
 
-```puppet
-Array[Any]
-```
-
-### <a name="stdlibcompatbool"></a>`Stdlib::Compat::Bool`
+### <a name="Stdlib--Compat--Bool"></a>`Stdlib::Compat::Bool`
 
 Emulate the is_bool and validate_bool functions
 
-Alias of
+Alias of `Boolean`
 
-```puppet
-Boolean
-```
-
-### <a name="stdlibcompatfloat"></a>`Stdlib::Compat::Float`
+### <a name="Stdlib--Compat--Float"></a>`Stdlib::Compat::Float`
 
 The regex is what's currently used in is_float
 To keep your development moving forward, you can also add a deprecation warning using the Integer type:
@@ -7612,23 +7593,15 @@ class example(Stdlib::Compat::Float $value) {
 
 This allows you to find all places where a consumers of your code call it with unexpected values.
 
-Alias of
+Alias of `Variant[Float, Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)(?:[eE]-?\d+)?$/]]`
 
-```puppet
-Variant[Float, Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)(?:[eE]-?\d+)?$/]]
-```
-
-### <a name="stdlibcompathash"></a>`Stdlib::Compat::Hash`
+### <a name="Stdlib--Compat--Hash"></a>`Stdlib::Compat::Hash`
 
 Emulate the is_hash and validate_hash functions
 
-Alias of
+Alias of `Hash[Any, Any]`
 
-```puppet
-Hash[Any, Any]
-```
-
-### <a name="stdlibcompatinteger"></a>`Stdlib::Compat::Integer`
+### <a name="Stdlib--Compat--Integer"></a>`Stdlib::Compat::Integer`
 
 The regex is what's currently used in is_integer
 validate_numeric also allows range checking, which cannot be mapped to the string parsing inside the function.
@@ -7652,43 +7625,27 @@ class example(Stdlib::Compat::Integer $value) {
 
 This allows you to find all places where a consumers of your code call it with unexpected values.
 
-Alias of
+Alias of `Variant[Integer, Pattern[/^-?(?:(?:[1-9]\d*)|0)$/], Array[Variant[Integer, Pattern[/^-?(?:(?:[1-9]\d*)|0)$/]]]]`
 
-```puppet
-Variant[Integer, Pattern[/^-?(?:(?:[1-9]\d*)|0)$/], Array[Variant[Integer, Pattern[/^-?(?:(?:[1-9]\d*)|0)$/]]]]
-```
-
-### <a name="stdlibcompatip_address"></a>`Stdlib::Compat::Ip_address`
+### <a name="Stdlib--Compat--Ip_address"></a>`Stdlib::Compat::Ip_address`
 
 Validate an IP address
 
-Alias of
+Alias of `Variant[Stdlib::Compat::Ipv4, Stdlib::Compat::Ipv6]`
 
-```puppet
-Variant[Stdlib::Compat::Ipv4, Stdlib::Compat::Ipv6]
-```
-
-### <a name="stdlibcompatipv4"></a>`Stdlib::Compat::Ipv4`
+### <a name="Stdlib--Compat--Ipv4"></a>`Stdlib::Compat::Ipv4`
 
 Emulate the validate_ipv4_address and is_ipv4_address functions
 
-Alias of
+Alias of `Pattern[/^((([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d))[.]){3}([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d)))(\/((([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d))[.]){3}([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d))|[0-9]+))?$/]`
 
-```puppet
-Pattern[/^((([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d))[.]){3}([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d)))(\/((([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d))[.]){3}([0-9](?!\d)|[1-9][0-9](?!\d)|1[0-9]{2}(?!\d)|2[0-4][0-9](?!\d)|25[0-5](?!\d))|[0-9]+))?$/]
-```
-
-### <a name="stdlibcompatipv6"></a>`Stdlib::Compat::Ipv6`
+### <a name="Stdlib--Compat--Ipv6"></a>`Stdlib::Compat::Ipv6`
 
 Validate an IPv6 address
 
-Alias of
+Alias of `Pattern[/\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/]`
 
-```puppet
-Pattern[/\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/]
-```
-
-### <a name="stdlibcompatnumeric"></a>`Stdlib::Compat::Numeric`
+### <a name="Stdlib--Compat--Numeric"></a>`Stdlib::Compat::Numeric`
 
 The regex is what's currently used in is_numeric
 validate_numeric also allows range checking, which cannot be mapped to the string parsing inside the function.
@@ -7712,23 +7669,15 @@ class example(Stdlib::Compat::Numeric $value) {
 
 This allows you to find all places where a consumers of your code call it with unexpected values.
 
-Alias of
+Alias of `Variant[Numeric, Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$/], Array[Variant[Numeric, Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$/]]]]`
 
-```puppet
-Variant[Numeric, Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$/], Array[Variant[Numeric, Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$/]]]]
-```
-
-### <a name="stdlibcompatstring"></a>`Stdlib::Compat::String`
+### <a name="Stdlib--Compat--String"></a>`Stdlib::Compat::String`
 
 Emulate the is_string and validate_string functions
 
-Alias of
+Alias of `Optional[String]`
 
-```puppet
-Optional[String]
-```
-
-### <a name="stdlibcreateresources"></a>`Stdlib::CreateResources`
+### <a name="Stdlib--CreateResources"></a>`Stdlib::CreateResources`
 
 A type description used for the create_resources function
 
@@ -7752,95 +7701,65 @@ class myclass (
 }
 ```
 
-Alias of
+Alias of `Hash[String[1], Hash[String[1], Any]]`
 
-```puppet
-Hash[String[1], Hash[String[1], Any]]
-```
-
-### <a name="stdlibdatasize"></a>`Stdlib::Datasize`
+### <a name="Stdlib--Datasize"></a>`Stdlib::Datasize`
 
 Validate the size of data
 
-Alias of
+Alias of `Pattern[/^\d+(?i:[kmgt]b?|b)$/]`
 
-```puppet
-Pattern[/^\d+(?i:[kmgt]b?|b)$/]
-```
-
-### <a name="stdlibemail"></a>`Stdlib::Email`
+### <a name="Stdlib--Email"></a>`Stdlib::Email`
 
 https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
 lint:ignore:140chars
 
-Alias of
+Alias of `Pattern[/\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\z/]`
 
-```puppet
-Pattern[/\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\z/]
-```
-
-### <a name="stdlibensurefile"></a>`Stdlib::Ensure::File`
+### <a name="Stdlib--Ensure--File"></a>`Stdlib::Ensure::File`
 
 Validate the value of the ensure parameter for a file
 
-Alias of
+Alias of `Enum['present', 'file', 'directory', 'link', 'absent']`
 
-```puppet
-Enum['present', 'file', 'directory', 'link', 'absent']
-```
-
-### <a name="stdlibensurefiledirectory"></a>`Stdlib::Ensure::File::Directory`
+### <a name="Stdlib--Ensure--File--Directory"></a>`Stdlib::Ensure::File::Directory`
 
 Validate the ensure parameter of a "directory" file resource
 
-Alias of
+Alias of `Enum['directory', 'absent']`
 
-```puppet
-Enum['directory', 'absent']
-```
-
-### <a name="stdlibensurefilefile"></a>`Stdlib::Ensure::File::File`
+### <a name="Stdlib--Ensure--File--File"></a>`Stdlib::Ensure::File::File`
 
 Validate the ensure parameter of a "file" file resource
 
-Alias of
+Alias of `Enum['file', 'absent']`
 
-```puppet
-Enum['file', 'absent']
-```
-
-### <a name="stdlibensurefilelink"></a>`Stdlib::Ensure::File::Link`
+### <a name="Stdlib--Ensure--File--Link"></a>`Stdlib::Ensure::File::Link`
 
 Validate the ensure parameter of a "link" file resource
 
-Alias of
+Alias of `Enum['link', 'absent']`
 
-```puppet
-Enum['link', 'absent']
-```
+### <a name="Stdlib--Ensure--Package"></a>`Stdlib::Ensure::Package`
 
-### <a name="stdlibensureservice"></a>`Stdlib::Ensure::Service`
+Validate the value of the ensure parameter for a package
+
+Alias of `Variant[Enum['present', 'absent', 'purged', 'disabled', 'installed', 'latest'], String[1]]`
+
+### <a name="Stdlib--Ensure--Service"></a>`Stdlib::Ensure::Service`
 
 Validate the value of the ensure parameter of a service resource
 
-Alias of
+Alias of `Enum['stopped', 'running']`
 
-```puppet
-Enum['stopped', 'running']
-```
-
-### <a name="stdlibfilemode"></a>`Stdlib::Filemode`
+### <a name="Stdlib--Filemode"></a>`Stdlib::Filemode`
 
 See `man chmod.1` for the regular expression for symbolic mode
 lint:ignore:140chars
 
-Alias of
+Alias of `Pattern[/\A(([0-7]{1,4})|(([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+)(,([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+))*))\z/]`
 
-```puppet
-Pattern[/\A(([0-7]{1,4})|(([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+)(,([ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+))*))\z/]
-```
-
-### <a name="stdlibfilesource"></a>`Stdlib::Filesource`
+### <a name="Stdlib--Filesource"></a>`Stdlib::Filesource`
 
 Validate the source parameter on file types
 
@@ -7853,343 +7772,207 @@ Variant[Stdlib::Absolutepath, Stdlib::HTTPUrl, Pattern[
   ]]
 ```
 
-### <a name="stdlibfqdn"></a>`Stdlib::Fqdn`
+### <a name="Stdlib--Fqdn"></a>`Stdlib::Fqdn`
 
 Validate a Fully Qualified Domain Name
 
-Alias of
+Alias of `Pattern[/\A(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])\z/]`
 
-```puppet
-Pattern[/\A(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])\z/]
-```
-
-### <a name="stdlibhttpsurl"></a>`Stdlib::HTTPSUrl`
+### <a name="Stdlib--HTTPSUrl"></a>`Stdlib::HTTPSUrl`
 
 Validate a HTTPS URL
 
-Alias of
+Alias of `Pattern[/(?i:\Ahttps:\/\/.*\z)/]`
 
-```puppet
-Pattern[/(?i:\Ahttps:\/\/.*\z)/]
-```
-
-### <a name="stdlibhttpurl"></a>`Stdlib::HTTPUrl`
+### <a name="Stdlib--HTTPUrl"></a>`Stdlib::HTTPUrl`
 
 Validate a HTTP(S) URL
 
-Alias of
+Alias of `Pattern[/(?i:\Ahttps?:\/\/.*\z)/]`
 
-```puppet
-Pattern[/(?i:\Ahttps?:\/\/.*\z)/]
-```
-
-### <a name="stdlibhost"></a>`Stdlib::Host`
+### <a name="Stdlib--Host"></a>`Stdlib::Host`
 
 Validate a host (FQDN or IP address)
 
-Alias of
+Alias of `Variant[Stdlib::Fqdn, Stdlib::Compat::Ip_address]`
 
-```puppet
-Variant[Stdlib::Fqdn, Stdlib::Compat::Ip_address]
-```
-
-### <a name="stdlibhttpstatus"></a>`Stdlib::HttpStatus`
+### <a name="Stdlib--HttpStatus"></a>`Stdlib::HttpStatus`
 
 Validate a HTTP status code
 
-Alias of
+Alias of `Integer[100, 599]`
 
-```puppet
-Integer[100, 599]
-```
-
-### <a name="stdlibipaddress"></a>`Stdlib::IP::Address`
+### <a name="Stdlib--IP--Address"></a>`Stdlib::IP::Address`
 
 Validate an IP address
 
-Alias of
+Alias of `Variant[Stdlib::IP::Address::V4, Stdlib::IP::Address::V6]`
 
-```puppet
-Variant[Stdlib::IP::Address::V4, Stdlib::IP::Address::V6]
-```
-
-### <a name="stdlibipaddressnosubnet"></a>`Stdlib::IP::Address::Nosubnet`
+### <a name="Stdlib--IP--Address--Nosubnet"></a>`Stdlib::IP::Address::Nosubnet`
 
 Validate an IP address without subnet
 
-Alias of
+Alias of `Variant[Stdlib::IP::Address::V4::Nosubnet, Stdlib::IP::Address::V6::Nosubnet]`
 
-```puppet
-Variant[Stdlib::IP::Address::V4::Nosubnet, Stdlib::IP::Address::V6::Nosubnet]
-```
-
-### <a name="stdlibipaddressv4"></a>`Stdlib::IP::Address::V4`
+### <a name="Stdlib--IP--Address--V4"></a>`Stdlib::IP::Address::V4`
 
 Validate an IPv4 address
 
-Alias of
+Alias of `Variant[Stdlib::IP::Address::V4::CIDR, Stdlib::IP::Address::V4::Nosubnet]`
 
-```puppet
-Variant[Stdlib::IP::Address::V4::CIDR, Stdlib::IP::Address::V4::Nosubnet]
-```
-
-### <a name="stdlibipaddressv4cidr"></a>`Stdlib::IP::Address::V4::CIDR`
+### <a name="Stdlib--IP--Address--V4--CIDR"></a>`Stdlib::IP::Address::V4::CIDR`
 
 lint:ignore:140chars
 
-Alias of
+Alias of `Pattern[/\A([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\/([0-9]|[12][0-9]|3[0-2])\z/]`
 
-```puppet
-Pattern[/\A([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\/([0-9]|[12][0-9]|3[0-2])\z/]
-```
-
-### <a name="stdlibipaddressv4nosubnet"></a>`Stdlib::IP::Address::V4::Nosubnet`
+### <a name="Stdlib--IP--Address--V4--Nosubnet"></a>`Stdlib::IP::Address::V4::Nosubnet`
 
 lint:ignore:140chars
 
-Alias of
+Alias of `Pattern[/\A([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/]`
 
-```puppet
-Pattern[/\A([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/]
-```
-
-### <a name="stdlibipaddressv6"></a>`Stdlib::IP::Address::V6`
+### <a name="Stdlib--IP--Address--V6"></a>`Stdlib::IP::Address::V6`
 
 Validate an IPv6 address
 
-Alias of
+Alias of `Variant[Stdlib::IP::Address::V6::Full, Stdlib::IP::Address::V6::Compressed, Stdlib::IP::Address::V6::Alternative, Stdlib::IP::Address::V6::Nosubnet]`
 
-```puppet
-Variant[Stdlib::IP::Address::V6::Full, Stdlib::IP::Address::V6::Compressed, Stdlib::IP::Address::V6::Alternative, Stdlib::IP::Address::V6::Nosubnet]
-```
-
-### <a name="stdlibipaddressv6alternative"></a>`Stdlib::IP::Address::V6::Alternative`
+### <a name="Stdlib--IP--Address--V6--Alternative"></a>`Stdlib::IP::Address::V6::Alternative`
 
 lint:ignore:140chars
 
-Alias of
+Alias of `Pattern[/\A([[:xdigit:]]{1,4}:){6}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){4}(:[[:xdigit:]]{1,4}){0,1}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){3}(:[[:xdigit:]]{1,4}){0,2}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){2}(:[[:xdigit:]]{1,4}){0,3}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){1}(:[[:xdigit:]]{1,4}){0,4}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A:(:[[:xdigit:]]{1,4}){0,5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/]`
 
-```puppet
-Pattern[/\A([[:xdigit:]]{1,4}:){6}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){4}(:[[:xdigit:]]{1,4}){0,1}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){3}(:[[:xdigit:]]{1,4}){0,2}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){2}(:[[:xdigit:]]{1,4}){0,3}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){1}(:[[:xdigit:]]{1,4}){0,4}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A:(:[[:xdigit:]]{1,4}){0,5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/]
-```
-
-### <a name="stdlibipaddressv6cidr"></a>`Stdlib::IP::Address::V6::CIDR`
+### <a name="Stdlib--IP--Address--V6--CIDR"></a>`Stdlib::IP::Address::V6::CIDR`
 
 lint:ignore:140chars
 
-Alias of
+Alias of `Pattern[/\A((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:)))(%.+)?s*\/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])?\z/]`
 
-```puppet
-Pattern[/\A((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:)))(%.+)?s*\/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])?\z/]
-```
-
-### <a name="stdlibipaddressv6compressed"></a>`Stdlib::IP::Address::V6::Compressed`
+### <a name="Stdlib--IP--Address--V6--Compressed"></a>`Stdlib::IP::Address::V6::Compressed`
 
 Validate a compressed IPv6 address
 
-Alias of
+Alias of `Pattern[/\A:(:|(:[[:xdigit:]]{1,4}){1,7})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){1}(:|(:[[:xdigit:]]{1,4}){1,6})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){2}(:|(:[[:xdigit:]]{1,4}){1,5})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){3}(:|(:[[:xdigit:]]{1,4}){1,4})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){4}(:|(:[[:xdigit:]]{1,4}){1,3})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){5}(:|(:[[:xdigit:]]{1,4}){1,2})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){6}(:|(:[[:xdigit:]]{1,4}){1,1})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){7}:(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/]`
 
-```puppet
-Pattern[/\A:(:|(:[[:xdigit:]]{1,4}){1,7})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){1}(:|(:[[:xdigit:]]{1,4}){1,6})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){2}(:|(:[[:xdigit:]]{1,4}){1,5})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){3}(:|(:[[:xdigit:]]{1,4}){1,4})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){4}(:|(:[[:xdigit:]]{1,4}){1,3})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){5}(:|(:[[:xdigit:]]{1,4}){1,2})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){6}(:|(:[[:xdigit:]]{1,4}){1,1})(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/, /\A([[:xdigit:]]{1,4}:){7}:(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/]
-```
-
-### <a name="stdlibipaddressv6full"></a>`Stdlib::IP::Address::V6::Full`
+### <a name="Stdlib--IP--Address--V6--Full"></a>`Stdlib::IP::Address::V6::Full`
 
 Validate a full IPv6 address
 
-Alias of
+Alias of `Pattern[/\A[[:xdigit:]]{1,4}(:[[:xdigit:]]{1,4}){7}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/]`
 
-```puppet
-Pattern[/\A[[:xdigit:]]{1,4}(:[[:xdigit:]]{1,4}){7}(\/(1([01][0-9]|2[0-8])|[1-9][0-9]|[0-9]))?\z/]
-```
-
-### <a name="stdlibipaddressv6nosubnet"></a>`Stdlib::IP::Address::V6::Nosubnet`
+### <a name="Stdlib--IP--Address--V6--Nosubnet"></a>`Stdlib::IP::Address::V6::Nosubnet`
 
 Validate an IPv6 address without subnet
 
-Alias of
+Alias of `Variant[Stdlib::IP::Address::V6::Nosubnet::Full, Stdlib::IP::Address::V6::Nosubnet::Compressed, Stdlib::IP::Address::V6::Nosubnet::Alternative]`
 
-```puppet
-Variant[Stdlib::IP::Address::V6::Nosubnet::Full, Stdlib::IP::Address::V6::Nosubnet::Compressed, Stdlib::IP::Address::V6::Nosubnet::Alternative]
-```
-
-### <a name="stdlibipaddressv6nosubnetalternative"></a>`Stdlib::IP::Address::V6::Nosubnet::Alternative`
+### <a name="Stdlib--IP--Address--V6--Nosubnet--Alternative"></a>`Stdlib::IP::Address::V6::Nosubnet::Alternative`
 
 lint:ignore:140chars
 
-Alias of
+Alias of `Pattern[/\A([[:xdigit:]]{1,4}:){6}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){4}(:[[:xdigit:]]{1,4}){0,1}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){3}(:[[:xdigit:]]{1,4}){0,2}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){2}(:[[:xdigit:]]{1,4}){0,3}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){1}(:[[:xdigit:]]{1,4}){0,4}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A:(:[[:xdigit:]]{1,4}){0,5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/]`
 
-```puppet
-Pattern[/\A([[:xdigit:]]{1,4}:){6}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){4}(:[[:xdigit:]]{1,4}){0,1}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){3}(:[[:xdigit:]]{1,4}){0,2}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){2}(:[[:xdigit:]]{1,4}){0,3}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A([[:xdigit:]]{1,4}:){1}(:[[:xdigit:]]{1,4}){0,4}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/, /\A:(:[[:xdigit:]]{1,4}){0,5}:([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){3}\z/]
-```
-
-### <a name="stdlibipaddressv6nosubnetcompressed"></a>`Stdlib::IP::Address::V6::Nosubnet::Compressed`
+### <a name="Stdlib--IP--Address--V6--Nosubnet--Compressed"></a>`Stdlib::IP::Address::V6::Nosubnet::Compressed`
 
 Validate compressed IPv6 address without subnet
 
-Alias of
+Alias of `Pattern[/\A:(:|(:[[:xdigit:]]{1,4}){1,7})\z/, /\A([[:xdigit:]]{1,4}:){1}(:|(:[[:xdigit:]]{1,4}){1,6})\z/, /\A([[:xdigit:]]{1,4}:){2}(:|(:[[:xdigit:]]{1,4}){1,5})\z/, /\A([[:xdigit:]]{1,4}:){3}(:|(:[[:xdigit:]]{1,4}){1,4})\z/, /\A([[:xdigit:]]{1,4}:){4}(:|(:[[:xdigit:]]{1,4}){1,3})\z/, /\A([[:xdigit:]]{1,4}:){5}(:|(:[[:xdigit:]]{1,4}){1,2})\z/, /\A([[:xdigit:]]{1,4}:){6}(:|(:[[:xdigit:]]{1,4}){1,1})\z/, /\A([[:xdigit:]]{1,4}:){7}:\z/]`
 
-```puppet
-Pattern[/\A:(:|(:[[:xdigit:]]{1,4}){1,7})\z/, /\A([[:xdigit:]]{1,4}:){1}(:|(:[[:xdigit:]]{1,4}){1,6})\z/, /\A([[:xdigit:]]{1,4}:){2}(:|(:[[:xdigit:]]{1,4}){1,5})\z/, /\A([[:xdigit:]]{1,4}:){3}(:|(:[[:xdigit:]]{1,4}){1,4})\z/, /\A([[:xdigit:]]{1,4}:){4}(:|(:[[:xdigit:]]{1,4}){1,3})\z/, /\A([[:xdigit:]]{1,4}:){5}(:|(:[[:xdigit:]]{1,4}){1,2})\z/, /\A([[:xdigit:]]{1,4}:){6}(:|(:[[:xdigit:]]{1,4}){1,1})\z/, /\A([[:xdigit:]]{1,4}:){7}:\z/]
-```
-
-### <a name="stdlibipaddressv6nosubnetfull"></a>`Stdlib::IP::Address::V6::Nosubnet::Full`
+### <a name="Stdlib--IP--Address--V6--Nosubnet--Full"></a>`Stdlib::IP::Address::V6::Nosubnet::Full`
 
 Validate full IPv6 address without subnet
 
-Alias of
+Alias of `Pattern[/\A[[:xdigit:]]{1,4}(:[[:xdigit:]]{1,4}){7}\z/]`
 
-```puppet
-Pattern[/\A[[:xdigit:]]{1,4}(:[[:xdigit:]]{1,4}){7}\z/]
-```
-
-### <a name="stdlibmac"></a>`Stdlib::MAC`
+### <a name="Stdlib--MAC"></a>`Stdlib::MAC`
 
 A type for a MAC address
 
-Alias of
+Alias of `Pattern[/\A([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\z/, /\A([0-9A-Fa-f]{2}[:-]){19}([0-9A-Fa-f]{2})\z/]`
 
-```puppet
-Pattern[/\A([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\z/, /\A([0-9A-Fa-f]{2}[:-]){19}([0-9A-Fa-f]{2})\z/]
-```
-
-### <a name="stdlibobjectstore"></a>`Stdlib::ObjectStore`
+### <a name="Stdlib--ObjectStore"></a>`Stdlib::ObjectStore`
 
 Validate an ObjectStore
 
-Alias of
+Alias of `Variant[Stdlib::ObjectStore::GSUri, Stdlib::ObjectStore::S3Uri]`
 
-```puppet
-Variant[Stdlib::ObjectStore::GSUri, Stdlib::ObjectStore::S3Uri]
-```
-
-### <a name="stdlibobjectstoregsuri"></a>`Stdlib::ObjectStore::GSUri`
+### <a name="Stdlib--ObjectStore--GSUri"></a>`Stdlib::ObjectStore::GSUri`
 
 Validate a Google Cloud object store URI
 
-Alias of
+Alias of `Pattern[/\Ags:\/\/.*\z/]`
 
-```puppet
-Pattern[/\Ags:\/\/.*\z/]
-```
-
-### <a name="stdlibobjectstores3uri"></a>`Stdlib::ObjectStore::S3Uri`
+### <a name="Stdlib--ObjectStore--S3Uri"></a>`Stdlib::ObjectStore::S3Uri`
 
 Validate an Amazon Web Services S3 object store URI
 
-Alias of
+Alias of `Pattern[/\As3:\/\/.*\z/]`
 
-```puppet
-Pattern[/\As3:\/\/.*\z/]
-```
-
-### <a name="stdlibport"></a>`Stdlib::Port`
+### <a name="Stdlib--Port"></a>`Stdlib::Port`
 
 Validate a port number
 
-Alias of
+Alias of `Integer[0, 65535]`
 
-```puppet
-Integer[0, 65535]
-```
-
-### <a name="stdlibportdynamic"></a>`Stdlib::Port::Dynamic`
+### <a name="Stdlib--Port--Dynamic"></a>`Stdlib::Port::Dynamic`
 
 Validate a dynamic port number
 
-Alias of
+Alias of `Integer[49152, 65535]`
 
-```puppet
-Integer[49152, 65535]
-```
-
-### <a name="stdlibportephemeral"></a>`Stdlib::Port::Ephemeral`
+### <a name="Stdlib--Port--Ephemeral"></a>`Stdlib::Port::Ephemeral`
 
 Validate an ephemeral port number
 
-Alias of
+Alias of `Stdlib::Port::Dynamic`
 
-```puppet
-Stdlib::Port::Dynamic
-```
-
-### <a name="stdlibportprivileged"></a>`Stdlib::Port::Privileged`
+### <a name="Stdlib--Port--Privileged"></a>`Stdlib::Port::Privileged`
 
 Validate a priviliged port number
 
-Alias of
+Alias of `Integer[1, 1023]`
 
-```puppet
-Integer[1, 1023]
-```
-
-### <a name="stdlibportregistered"></a>`Stdlib::Port::Registered`
+### <a name="Stdlib--Port--Registered"></a>`Stdlib::Port::Registered`
 
 Validate a registered port number
 
-Alias of
+Alias of `Stdlib::Port::User`
 
-```puppet
-Stdlib::Port::User
-```
-
-### <a name="stdlibportunprivileged"></a>`Stdlib::Port::Unprivileged`
+### <a name="Stdlib--Port--Unprivileged"></a>`Stdlib::Port::Unprivileged`
 
 Validate an unprivileged port number
 
-Alias of
+Alias of `Integer[1024, 65535]`
 
-```puppet
-Integer[1024, 65535]
-```
-
-### <a name="stdlibportuser"></a>`Stdlib::Port::User`
+### <a name="Stdlib--Port--User"></a>`Stdlib::Port::User`
 
 Validate a port number usable by a user
 
-Alias of
+Alias of `Integer[1024, 49151]`
 
-```puppet
-Integer[1024, 49151]
-```
-
-### <a name="stdlibsyslogfacility"></a>`Stdlib::Syslogfacility`
+### <a name="Stdlib--Syslogfacility"></a>`Stdlib::Syslogfacility`
 
 Validate a syslog facility
 
-Alias of
+Alias of `Enum['kern', 'user', 'mail', 'daemon', 'auth', 'syslog', 'lpr', 'news', 'uucp', 'cron', 'authpriv', 'ftp', 'ntp', 'security', 'console', 'solaris-cron', 'local0', 'local1', 'local2', 'local3', 'local4', 'local5', 'local6', 'local7']`
 
-```puppet
-Enum['kern', 'user', 'mail', 'daemon', 'auth', 'syslog', 'lpr', 'news', 'uucp', 'cron', 'authpriv', 'ftp', 'ntp', 'security', 'console', 'solaris-cron', 'local0', 'local1', 'local2', 'local3', 'local4', 'local5', 'local6', 'local7']
-```
-
-### <a name="stdlibunixpath"></a>`Stdlib::Unixpath`
+### <a name="Stdlib--Unixpath"></a>`Stdlib::Unixpath`
 
 this regex rejects any path component that does not start with "/" or is NUL
 
-Alias of
+Alias of `Pattern[/\A\/([^\n\/\0]+\/*)*\z/]`
 
-```puppet
-Pattern[/\A\/([^\n\/\0]+\/*)*\z/]
-```
-
-### <a name="stdlibwindowspath"></a>`Stdlib::Windowspath`
+### <a name="Stdlib--Windowspath"></a>`Stdlib::Windowspath`
 
 Validate a Windows path
 
-Alias of
+Alias of `Pattern[/\A(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+)).*\z/]`
 
-```puppet
-Pattern[/\A(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+)).*\z/]
-```
-
-### <a name="stdlibyes_no"></a>`Stdlib::Yes_no`
+### <a name="Stdlib--Yes_no"></a>`Stdlib::Yes_no`
 
 Validate a yes / no value
 
-Alias of
-
-```puppet
-Pattern[/\A(?i:(yes|no))\z/]
-```
+Alias of `Pattern[/\A(?i:(yes|no))\z/]`
 
