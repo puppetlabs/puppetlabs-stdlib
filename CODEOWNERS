@@ -1,2 +1,3 @@
 # Setting ownership to the modules team
-* @puppetlabs/modules
+# include Trusted Contributors
+* @puppetlabs/modules @alexjfisher @b4ldr @bastelfreak @ekohl @smortex
