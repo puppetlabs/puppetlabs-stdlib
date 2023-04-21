@@ -68,7 +68,7 @@ describe 'fqdn_rotate' do
 
     # workaround not being able to use let(:facts) because some tests need
     # multiple different hostnames in one context
-    allow(scope).to receive(:lookupvar).with('::fqdn').and_return(host)
+    allow(scope).to receive(:lookupvar).with('facts').and_return(host)
 
     function_args = [value] + extra
     scope.function_fqdn_rotate(function_args)
