@@ -57,7 +57,11 @@ describe 'fqdn_rand_string' do
 
     # workaround not being able to use let(:facts) because some tests need
     # multiple different hostnames in one context
-    allow(scope).to receive(:lookupvar).with('::fqdn', {}).and_return(host)
+    if Gem::Version.new(Puppet::PUPPETVERSION) < Gem::Version.new('7.23.0')
+      allow(scope).to receive(:lookupvar).with('::fqdn', {}).and_return(host)
+    else
+      allow(scope).to receive(:lookupvar).with('facts', {}).and_return({ 'networking' => { 'fqdn' => host } })
+    end
 
     function_args = [max]
     if args.key?(:charset) || !extra.empty?
