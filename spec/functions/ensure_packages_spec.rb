@@ -32,6 +32,14 @@ describe 'ensure_packages' do
       subject.execute({ 'foo' => { 'provider' => 'rpm' }, 'bar' => { 'provider' => 'gem' } }, 'ensure' => 'present')
       subject.execute('パッケージ' => { 'ensure' => 'absent' })
       subject.execute('ρǻ¢κầģẻ' => { 'ensure' => 'absent' })
+      subject.execute(
+        {
+          'package_one'   => {},
+          'package_two'   => {},
+          'package_three' => { 'provider' => 'puppetserver_gem' },
+        },
+        { 'provider' => 'puppet_gem' },
+      )
     end
 
     # this lambda is required due to strangeness within rspec-puppet's expectation handling
@@ -41,6 +49,14 @@ describe 'ensure_packages' do
     context 'with UTF8 and double byte characters' do
       it { expect(-> { catalogue }).to contain_package('パッケージ').with('ensure' => 'absent') }
       it { expect(-> { catalogue }).to contain_package('ρǻ¢κầģẻ').with('ensure' => 'absent') }
+    end
+
+    describe 'default attributes' do
+      it 'package specific attributes take precedence' do
+        expect(-> { catalogue }).to contain_package('package_one').with('provider' => 'puppet_gem')
+        expect(-> { catalogue }).to contain_package('package_two').with('provider' => 'puppet_gem')
+        expect(-> { catalogue }).to contain_package('package_three').with('provider' => 'puppetserver_gem')
+      end
     end
   end
 
@@ -52,6 +68,28 @@ describe 'ensure_packages' do
 
       # this lambda is required due to strangeness within rspec-puppet's expectation handling
       it { expect(-> { catalogue }).to contain_package('puppet').with_ensure('installed') }
+    end
+  end
+
+  context 'when given a catalog with "package { puppet: ensure => present }"' do
+    let(:pre_condition) { 'package { puppet: ensure => present }' }
+
+    describe 'after running ensure_package("puppet", { "ensure" => "present" })' do
+      before(:each) { subject.execute('puppet', 'ensure' => 'present') }
+
+      it { expect(-> { catalogue }).to contain_package('puppet').with_ensure('present') }
+    end
+
+    describe 'after running ensure_package("puppet", { "ensure" => "installed" })' do
+      before(:each) { subject.execute('puppet', 'ensure' => 'installed') }
+
+      it { expect(-> { catalogue }).to contain_package('puppet').with_ensure('present') }
+    end
+
+    describe 'after running ensure_package(["puppet"])' do
+      before(:each) { subject.execute(['puppet']) }
+
+      it { expect(-> { catalogue }).to contain_package('puppet').with_ensure('present') }
     end
   end
 end
