@@ -1,2 +1,4 @@
 # @summary Validate a HTTP status code
-type Stdlib::HttpStatus = Integer[100, 599]
+# @deprecated Use Stdlib::Http::Status
+# @see Stdlib::Http::Status
+type Stdlib::HttpStatus = Stdlib::Http::Status
