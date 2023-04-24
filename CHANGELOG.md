@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
+
+## [v8.6.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v8.6.0) - 2023-04-24
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.5.0...v8.6.0)
+
+### Added
+
+- Stdlib::Http::Method: Add new type for http methods [#1299](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1299) ([b4ldr](https://github.com/b4ldr))
+- Add `stdlib::sha256` [#1289](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1289) ([jcpunk](https://github.com/jcpunk))
+- Add `stdlib::crc32` [#1288](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1288) ([jcpunk](https://github.com/jcpunk))
+- Add Stdlib::Ensure::Package type [#1281](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1281) ([arjenz](https://github.com/arjenz))
+
+### Fixed
+
+- (PUP-11752) Fix fqdn_rand_string_spec.rb test [#1308](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1308) ([alexjfisher](https://github.com/alexjfisher))
+- Make ensure_packages work with `ensure => present` [#1300](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1300) ([alexjfisher](https://github.com/alexjfisher))
+- Safely handle a missing root user [#1295](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1295) ([ekohl](https://github.com/ekohl))
+- stdlib::ensure: update function to support the generic case [#1286](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1286) ([b4ldr](https://github.com/b4ldr))
+- Drop Puppet < 3.6 support in package_provider fact [#1280](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1280) ([ekohl](https://github.com/ekohl))
+- Correct bcrypt salt regex [#1279](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1279) ([sabo](https://github.com/sabo))
+- Determine root_home without shelling out [#1278](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1278) ([ekohl](https://github.com/ekohl))
+- (CONT-173) - Updating deprecated facter instances [#1277](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1277) ([jordanbreen28](https://github.com/jordanbreen28))
+
 ## [v8.5.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v8.5.0) (2022-10-13)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.4.0...v8.5.0)
