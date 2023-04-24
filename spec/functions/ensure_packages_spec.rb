@@ -34,9 +34,9 @@ describe 'ensure_packages' do
       subject.execute('ρǻ¢κầģẻ' => { 'ensure' => 'absent' })
       subject.execute(
         {
-          'package_one'   => {},
-          'package_two'   => {},
-          'package_three' => { 'provider' => 'puppetserver_gem' },
+          'package_one' => {},
+          'package_two' => {},
+          'package_three' => { 'provider' => 'puppetserver_gem' }
         },
         { 'provider' => 'puppet_gem' },
       )
