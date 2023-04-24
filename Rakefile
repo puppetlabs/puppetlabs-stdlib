@@ -49,6 +49,7 @@ if Bundler.rubygems.find_name('github_changelog_generator').any?
     raise "Set CHANGELOG_GITHUB_TOKEN environment variable eg 'export CHANGELOG_GITHUB_TOKEN=valid_token_here'" if Rake.application.top_level_tasks.include? "changelog" and ENV['CHANGELOG_GITHUB_TOKEN'].nil?
     config.user = "#{changelog_user}"
     config.project = "#{changelog_project}"
+    config.since_tag = "5.0.0"
     config.max_issues = 500
     config.future_release = "#{changelog_future_release}"
     config.exclude_labels = ['maintenance']
