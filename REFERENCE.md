@@ -82,6 +82,7 @@ environment.
 * [`glob`](#glob): Uses same patterns as Dir#glob.
 * [`grep`](#grep): This function searches through an array and returns any elements that match
 the provided regular expression.
+* [`has_interface_with`](#has_interface_with): DEPRECATED.  Use the namespaced function [`stdlib::has_interface_with`](#stdlibhas_interface_with) instead.
 * [`has_interface_with`](#has_interface_with): Returns boolean based on kind and value.
 * [`has_ip_address`](#has_ip_address): Returns true if the client has the requested IP address on some interface.
 * [`has_ip_network`](#has_ip_network): Returns true if the client has an IP address within the requested network.
@@ -179,6 +180,7 @@ the provided regular expression.
 * [`stdlib::ensure`](#stdlib--ensure): function to cast ensure parameter to resource specific value
 * [`stdlib::extname`](#stdlib--extname): Returns the Extension (the Portion of Filename in Path starting from the
 last Period).
+* [`stdlib::has_interface_with`](#stdlib--has_interface_with): Returns boolean based on network interfaces present and their attribute values.
 * [`stdlib::ip_in_range`](#stdlib--ip_in_range): Returns true if the ipaddress is within the given CIDRs
 * [`stdlib::sha256`](#stdlib--sha256): Run a SHA256 calculation against a given value.
 * [`stdlib::start_with`](#stdlib--start_with): Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
@@ -2586,6 +2588,24 @@ grep(['aaa','bbb','ccc','aaaddd'], 'aaa') # Returns ['aaa','aaaddd']
 
 ### <a name="has_interface_with"></a>`has_interface_with`
 
+Type: Ruby 4.x API
+
+DEPRECATED.  Use the namespaced function [`stdlib::has_interface_with`](#stdlibhas_interface_with) instead.
+
+#### `has_interface_with(Any *$args)`
+
+The has_interface_with function.
+
+Returns: `Any`
+
+##### `*args`
+
+Data type: `Any`
+
+
+
+### <a name="has_interface_with"></a>`has_interface_with`
+
 Type: Ruby 3.x API
 
 Valid kinds are `macaddress`, `netmask`, `ipaddress` and `network`.
@@ -4880,6 +4900,64 @@ stdlib::extname('.profile')      => ''
 Data type: `String`
 
 The Filename
+
+### <a name="stdlib--has_interface_with"></a>`stdlib::has_interface_with`
+
+Type: Ruby 4.x API
+
+Can be called with one, or two arguments.
+
+#### `stdlib::has_interface_with(String[1] $interface)`
+
+The stdlib::has_interface_with function.
+
+Returns: `Boolean` Returns `true` if `interface` exists and `false` otherwise
+
+##### Examples
+
+###### When called with a single argument, the presence of the interface is checked
+
+```puppet
+stdlib::has_interface_with('lo') # Returns `true`
+```
+
+##### `interface`
+
+Data type: `String[1]`
+
+The name of an interface
+
+#### `stdlib::has_interface_with(Enum['macaddress','netmask','ipaddress','network','ip','mac'] $kind, String[1] $value)`
+
+The stdlib::has_interface_with function.
+
+Returns: `Boolean` Returns `true` if any of the interfaces in the `networking` fact has a `kind` attribute with the value `value`. Otherwise returns `false`
+
+##### Examples
+
+###### Checking if an interface exists with a given mac address
+
+```puppet
+stdlib::has_interface_with('macaddress', 'x:x:x:x:x:x') # Returns `false`
+```
+
+###### Checking if an interface exists with a given IP address
+
+```puppet
+stdlib::has_interface_with('ipaddress', '127.0.0.1') # Returns `true`
+```
+
+##### `kind`
+
+Data type: `Enum['macaddress','netmask','ipaddress','network','ip','mac']`
+
+A supported interface attribute
+
+##### `value`
+
+Data type: `String[1]`
+
+The value of the attribute
 
 ### <a name="stdlib--ip_in_range"></a>`stdlib::ip_in_range`
 
