@@ -5,7 +5,7 @@
 # use facts, class variables, and other variables in scope. This is because when deferred, we
 # have to explicitly pass the entire scope to the client.
 #
-function stdlib::deferrable_epp(String $template, Hash $variables) >> Variant[String, Deferred] {
+function stdlib::deferrable_epp(String $template, Hash $variables) >> Variant[String, Sensitive[String], Deferred] {
   if $variables.any |$key, $value| { $value.is_a(Deferred) } {
     Deferred(
       'inline_epp',
