@@ -25,49 +25,31 @@ describe 'fqdn_rand_string' do
   it { is_expected.to run.with_params(100, 'ab').and_return(%r{\A[ab]{100}\z}) }
   it { is_expected.to run.with_params(100, 'ãβ').and_return(%r{\A[ãβ]{100}\z}) }
 
-  it "provides the same 'random' value on subsequent calls for the same host" do
-    expect(fqdn_rand_string(10)).to eql(fqdn_rand_string(10))
-  end
-
-  it 'considers the same host and same extra arguments to have the same random sequence' do
-    first_random = fqdn_rand_string(10, extra_identifier: [1, 'same', 'host'])
-    second_random = fqdn_rand_string(10, extra_identifier: [1, 'same', 'host'])
-
-    expect(first_random).to eql(second_random)
-  end
-
-  it 'allows extra arguments to control the random value on a single host' do
-    first_random = fqdn_rand_string(10, extra_identifier: [1, 'different', 'host'])
-    second_different_random = fqdn_rand_string(10, extra_identifier: [2, 'different', 'host'])
-
-    expect(first_random).not_to eql(second_different_random)
-  end
-
-  it 'returns different strings for different hosts' do
-    val1 = fqdn_rand_string(10, host: 'first.host.com')
-    val2 = fqdn_rand_string(10, host: 'second.host.com')
-
-    expect(val1).not_to eql(val2)
-  end
-
-  def fqdn_rand_string(max, args = {})
-    host = args[:host] || '127.0.0.1'
-    charset = args[:charset]
-    extra = args[:extra_identifier] || []
-
-    # workaround not being able to use let(:facts) because some tests need
-    # multiple different hostnames in one context
-    if Gem::Version.new(Puppet::PUPPETVERSION) < Gem::Version.new('7.23.0')
-      allow(scope).to receive(:lookupvar).with('::fqdn', {}).and_return(host)
-    else
-      allow(scope).to receive(:lookupvar).with('facts', {}).and_return({ 'networking' => { 'fqdn' => host } })
+  context 'produce predictible and reproducible results' do
+    before(:each) do
+      if Gem::Version.new(Puppet::PUPPETVERSION) < Gem::Version.new('7.23.0')
+        allow(scope).to receive(:lookupvar).with('::fqdn', {}).and_return(fqdn)
+      else
+        allow(scope).to receive(:lookupvar).with('facts', {}).and_return({ 'networking' => { 'fqdn' => fqdn } })
+      end
     end
 
-    function_args = [max]
-    if args.key?(:charset) || !extra.empty?
-      function_args << charset
+    context 'on a node named example.com' do
+      let(:fqdn) { 'example.com' }
+
+      it { is_expected.to run.with_params(5).and_return('Pw5NP') }
+      it { is_expected.to run.with_params(10, 'abcd').and_return('cdadaaacaa') }
+      it { is_expected.to run.with_params(20, '', 'custom seed').and_return('3QKQHP4wmEObY3a6hkeg') }
+      it { is_expected.to run.with_params(20, '', 'custom seed', 1, 'extra').and_return('OA19SVDoc3QPY5NlSQ28') }
     end
-    function_args += extra
-    scope.function_fqdn_rand_string(function_args)
+
+    context 'on a node named desktop-fln40kq.lan' do
+      let(:fqdn) { 'desktop-fln40kq.lan' }
+
+      it { is_expected.to run.with_params(5).and_return('bgQsB') }
+      it { is_expected.to run.with_params(10, 'abcd').and_return('bcdbcdacad') }
+      it { is_expected.to run.with_params(20, '', 'custom seed').and_return('KaZsFlWkUo5SeA3gBEf0') }
+      it { is_expected.to run.with_params(20, '', 'custom seed', 1, 'extra').and_return('dcAzn1e8AA7hhoLpxAD6') }
+    end
   end
 end
