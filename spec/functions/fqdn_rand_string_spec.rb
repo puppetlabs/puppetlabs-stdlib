@@ -6,20 +6,20 @@ describe 'fqdn_rand_string' do
   let(:default_charset) { %r{\A[a-zA-Z0-9]{100}\z} }
 
   it { is_expected.not_to eq(nil) }
-  it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{wrong number of arguments}i) }
-  it { is_expected.to run.with_params(0).and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params(1.5).and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params(-10).and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params('-10').and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params('string').and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params([]).and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params({}).and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params(1, 1).and_raise_error(ArgumentError, %r{second argument must be undef or a string}) }
-  it { is_expected.to run.with_params(1, []).and_raise_error(ArgumentError, %r{second argument must be undef or a string}) }
-  it { is_expected.to run.with_params(1, {}).and_raise_error(ArgumentError, %r{second argument must be undef or a string}) }
+  it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{expects at least 1 argument, got none}i) }
+  it { is_expected.to run.with_params(0).and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer\[1\] value, got Integer\[0, 0\]}) }
+  it { is_expected.to run.with_params(1.5).and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer\ value, got Float}) }
+  it { is_expected.to run.with_params(-10).and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer\[1\] value, got Integer\[-10, -10\]}) }
+  it { is_expected.to run.with_params('-10').and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer\ value, got String}) }
+  it { is_expected.to run.with_params('string').and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer\ value, got String}) }
+  it { is_expected.to run.with_params([]).and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer value, got Array}) }
+  it { is_expected.to run.with_params({}).and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer value, got Hash}) }
+  it { is_expected.to run.with_params(1, 1).and_raise_error(ArgumentError, %r{parameter 'charset' expects a String value, got Integer}) }
+  it { is_expected.to run.with_params(1, []).and_raise_error(ArgumentError, %r{parameter 'charset' expects a String value, got Array}) }
+  it { is_expected.to run.with_params(1, {}).and_raise_error(ArgumentError, %r{parameter 'charset' expects a String value, got Hash}) }
+  it { is_expected.to run.with_params('100').and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer value, got String}) }
+  it { is_expected.to run.with_params(100, nil).and_raise_error(ArgumentError, %r{parameter 'charset' expects a String value, got Undef}) }
   it { is_expected.to run.with_params(100).and_return(default_charset) }
-  it { is_expected.to run.with_params('100').and_return(default_charset) }
-  it { is_expected.to run.with_params(100, nil).and_return(default_charset) }
   it { is_expected.to run.with_params(100, '').and_return(default_charset) }
   it { is_expected.to run.with_params(100, 'a').and_return(%r{\Aa{100}\z}) }
   it { is_expected.to run.with_params(100, 'ab').and_return(%r{\A[ab]{100}\z}) }
