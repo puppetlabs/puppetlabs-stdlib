@@ -4,7 +4,12 @@ require 'spec_helper'
 
 describe 'Stdlib::Fqdn' do
   describe 'valid handling' do
-    ['example', 'example.com', 'www.example.com'].each do |value|
+    [
+      'example',
+      'example.com',
+      'www.example.com',
+      '10.10.10.10.10',
+    ].each do |value|
       describe value.inspect do
         it { is_expected.to allow_value(value) }
       end
