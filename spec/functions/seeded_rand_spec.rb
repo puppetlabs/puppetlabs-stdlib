@@ -4,18 +4,17 @@ require 'spec_helper'
 
 describe 'seeded_rand' do
   it { is_expected.not_to eq(nil) }
-  it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{wrong number of arguments}i) }
-  it { is_expected.to run.with_params(1).and_raise_error(ArgumentError, %r{wrong number of arguments}i) }
-  it { is_expected.to run.with_params(0, '').and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params(1.5, '').and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params(-10, '').and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params('-10', '').and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params('string', '').and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params([], '').and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params({}, '').and_raise_error(ArgumentError, %r{first argument must be a positive integer}) }
-  it { is_expected.to run.with_params(1, 1).and_raise_error(ArgumentError, %r{second argument must be a string}) }
-  it { is_expected.to run.with_params(1, []).and_raise_error(ArgumentError, %r{second argument must be a string}) }
-  it { is_expected.to run.with_params(1, {}).and_raise_error(ArgumentError, %r{second argument must be a string}) }
+  it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'seeded_rand' expects 2 arguments, got none}i) }
+  it { is_expected.to run.with_params(1).and_raise_error(ArgumentError, %r{'seeded_rand' expects 2 arguments, got 1}i) }
+  it { is_expected.to run.with_params(0, '').and_raise_error(ArgumentError, %r{parameter 'max' expects an Integer\[1\] value, got Integer\[0, 0\]}) }
+  it { is_expected.to run.with_params(1.5, '').and_raise_error(ArgumentError, %r{parameter 'max' expects an Integer value, got Float}) }
+  it { is_expected.to run.with_params(-10, '').and_raise_error(ArgumentError, %r{parameter 'max' expects an Integer\[1\] value, got Integer\[-10, -10\]}) }
+  it { is_expected.to run.with_params('string', '').and_raise_error(ArgumentError, %r{parameter 'max' expects an Integer value, got String}) }
+  it { is_expected.to run.with_params([], '').and_raise_error(ArgumentError, %r{parameter 'max' expects an Integer value, got Array}) }
+  it { is_expected.to run.with_params({}, '').and_raise_error(ArgumentError, %r{parameter 'max' expects an Integer value, got Hash}) }
+  it { is_expected.to run.with_params(1, 1).and_raise_error(ArgumentError, %r{parameter 'seed' expects a String value, got Integer}) }
+  it { is_expected.to run.with_params(1, []).and_raise_error(ArgumentError, %r{parameter 'seed' expects a String value, got Array}) }
+  it { is_expected.to run.with_params(1, {}).and_raise_error(ArgumentError, %r{parameter 'seed' expects a String value, got Hash}) }
 
   context 'produce predictible and reproducible results' do
     it { is_expected.to run.with_params(20, 'foo').and_return(1) }
