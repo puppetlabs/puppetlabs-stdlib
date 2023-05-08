@@ -24,5 +24,11 @@ Puppet::Functions.create_function(:validate_domain_name) do
     repeated_param 'Variant[Stdlib::Fqdn, Stdlib::Dns::Zone]', :values
   end
 
-  def validate_domain_name(*_values); end
+  def validate_domain_name(*args)
+    assert_arg_count(args)
+  end
+
+  def assert_arg_count(args)
+    raise(ArgumentError, 'validate_domain_name(): Wrong number of arguments need at least one') if args.empty?
+  end
 end
