@@ -34,9 +34,6 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
   end
 
   describe '#create' do
-    context 'when adding' do
-      pending('To be added.')
-    end
     context 'when replacing' do
       let :params do
         {
@@ -68,9 +65,6 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         }.to raise_error(Puppet::Error, %r{Invalid value "asgadga"\. Valid values are true, false\.})
       end
     end
-  end
-  describe '#destroy' do
-    pending('To be added?')
   end
   context 'when matching' do
     # rubocop:disable RSpec/InstanceVariable : replacing before with let breaks the tests, variables need to be altered within it block : multi
@@ -146,9 +140,6 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         expect(File.read(tmpfile).chomp).to eql("foo1\nfoo = blah\nfoo2\nfoo = baz")
       end
     end
-  end
-  context 'when match+replace+append_on_no_match' do
-    pending('to do')
   end
   context 'when after' do
     let :resource do

@@ -22,7 +22,7 @@ describe 'has_interface_with' do
                   'network' => '127.0.0.0'
                 },
               ],
-              "bindings6": [
+              bindings6: [
                 {
                   'address' => '::1',
                   'netmask' => 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
