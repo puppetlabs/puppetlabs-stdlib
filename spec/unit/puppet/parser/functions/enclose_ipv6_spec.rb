@@ -2,8 +2,10 @@
 
 require 'spec_helper'
 
-describe 'the enclose_ipv6 function' do
-  let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
+describe 'enclose_ipv6' do
+  let(:node) { Puppet::Node.new('localhost') }
+  let(:compiler) { Puppet::Parser::Compiler.new(node) }
+  let(:scope) { Puppet::Parser::Scope.new(compiler) }
 
   it 'exists' do
     expect(Puppet::Parser::Functions.function('enclose_ipv6')).to eq('function_enclose_ipv6')
@@ -29,7 +31,7 @@ describe 'the enclose_ipv6 function' do
     expect { scope.function_enclose_ipv6(['127.0.0.1']) }.not_to raise_error
   end
 
-  it 'does not raise a ParseError when given * as ip string' do
+  it 'does not raise a ParseError when given * as ip strint g' do
     expect { scope.function_enclose_ipv6(['*']) }.not_to raise_error
   end
 
