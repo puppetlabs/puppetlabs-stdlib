@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 # @summary
-#   Validate a value against both the target_type (new) and the previous_validation function (old).
+#   **Deprecated:** Validate a value against both the target_type (new).
 Puppet::Functions.create_function(:validate_legacy) do
-  # The function checks a value against both the target_type (new) and the previous_validation function (old).
+  # The function checks a value against both the target_type (new).
   # @param scope
   #   The main value that will be passed to the method
   # @param target_type
   # @param function_name
+  #   Unused
   # @param value
   # @param args
   #   Any additional values that are to be passed to the method
@@ -25,6 +26,7 @@ Puppet::Functions.create_function(:validate_legacy) do
   #   The main value that will be passed to the method
   # @param type_string
   # @param function_name
+  #   Unused
   # @param value
   # @param args Any additional values that are to be passed to the method
   # @return Legacy validation method
@@ -49,31 +51,15 @@ Puppet::Functions.create_function(:validate_legacy) do
     validate_legacy(scope, t, *args)
   end
 
-  def validate_legacy(scope, target_type, function_name, value, *prev_args)
+  def validate_legacy(_scope, target_type, _function_name, value, *_prev_args)
+    call_function('deprecation', 'validate_legacy', 'This method is deprecated, please use Puppet data types to validate parameters')
     if assert_type(target_type, value)
-      if previous_validation(scope, function_name, value, *prev_args)
-        # Silently passes
-      else
-        Puppet.notice("Accepting previously invalid value for target type '#{target_type}'")
-      end
+      # "Silently" passes
     else
       inferred_type = Puppet::Pops::Types::TypeCalculator.infer_set(value)
-      error_msg = Puppet::Pops::Types::TypeMismatchDescriber.new.describe_mismatch("validate_legacy(#{function_name})", target_type, inferred_type)
-      if previous_validation(scope, function_name, value, *prev_args)
-        call_function('deprecation', 'validate_legacy', error_msg)
-      else
-        call_function('fail', error_msg)
-      end
+      error_msg = Puppet::Pops::Types::TypeMismatchDescriber.new.describe_mismatch("validate_legacy(#{target_type}, ...)", target_type, inferred_type)
+      call_function('fail', error_msg)
     end
-  end
-
-  def previous_validation(scope, function_name, value, *prev_args)
-    # Call the previous validation function and catch any errors. Return true if no errors are thrown.
-
-    scope.send("function_#{function_name}".to_s, [value, *prev_args])
-    true
-  rescue Puppet::ParseError
-    false
   end
 
   def assert_type(type, value)
