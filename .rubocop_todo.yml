@@ -37,7 +37,7 @@ Lint/MissingCopEnableDirective:
 # Configuration parameters: AllowComments, AllowNil.
 Lint/SuppressedException:
   Exclude:
-    - 'lib/puppet/functions/merge.rb'
+    - 'lib/puppet/functions/stdlib/merge.rb'
     - 'lib/puppet/parser/functions/has_interface_with.rb'
 
 # Offense count: 5
