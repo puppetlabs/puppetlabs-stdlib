@@ -192,5 +192,5 @@ Style/MixinUsage:
 # AllowedMethods: respond_to_missing?
 Style/OptionalBooleanParameter:
   Exclude:
-    - 'lib/puppet/functions/to_json_pretty.rb'
+    - 'lib/puppet/functions/stdlib/to_json_pretty.rb'
     - 'lib/puppet_x/stdlib/toml_dumper.rb'
