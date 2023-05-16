@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'to_json' do
+describe 'stdlib::to_json' do
   it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params('').and_return('""') }
   it { is_expected.to run.with_params(true).and_return('true') }
