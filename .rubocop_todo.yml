@@ -93,7 +93,7 @@ Naming/VariableNumber:
 # Configuration parameters: MinSize.
 Performance/CollectionLiteralInLoop:
   Exclude:
-    - 'lib/puppet/functions/ensure_packages.rb'
+    - 'lib/puppet/functions/stdlib/ensure_packages.rb'
 
 # Offense count: 36
 # Configuration parameters: Prefixes, AllowedPatterns.

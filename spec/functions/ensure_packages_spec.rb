@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'ensure_packages' do
+describe 'stdlib::ensure_packages' do
   it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params('packagename') }
   it { is_expected.to run.with_params(['packagename1', 'packagename2']) }
