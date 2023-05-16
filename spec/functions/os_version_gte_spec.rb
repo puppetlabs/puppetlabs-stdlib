@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'os_version_gte' do
+describe 'stdlib::os_version_gte' do
   context 'on Debian 9' do
     let(:facts) do
       {
