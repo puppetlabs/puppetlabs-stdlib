@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe 'seeded_rand' do
+describe 'stdlib::seeded_rand' do
   it { is_expected.not_to be_nil }
-  it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'seeded_rand' expects 2 arguments, got none}i) }
-  it { is_expected.to run.with_params(1).and_raise_error(ArgumentError, %r{'seeded_rand' expects 2 arguments, got 1}i) }
+  it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'stdlib::seeded_rand' expects 2 arguments, got none}i) }
+  it { is_expected.to run.with_params(1).and_raise_error(ArgumentError, %r{'stdlib::seeded_rand' expects 2 arguments, got 1}i) }
   it { is_expected.to run.with_params(0, '').and_raise_error(ArgumentError, %r{parameter 'max' expects an Integer\[1\] value, got Integer\[0, 0\]}) }
   it { is_expected.to run.with_params(1.5, '').and_raise_error(ArgumentError, %r{parameter 'max' expects an Integer value, got Float}) }
   it { is_expected.to run.with_params(-10, '').and_raise_error(ArgumentError, %r{parameter 'max' expects an Integer\[1\] value, got Integer\[-10, -10\]}) }
