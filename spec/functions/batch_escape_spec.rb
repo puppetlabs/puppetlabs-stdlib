@@ -2,12 +2,12 @@
 
 require 'spec_helper'
 
-describe 'batch_escape' do
+describe 'stdlib::batch_escape' do
   it { is_expected.not_to be_nil }
 
   describe 'signature validation' do
-    it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'batch_escape' expects 1 argument, got none}) }
-    it { is_expected.to run.with_params('foo', 'bar').and_raise_error(ArgumentError, %r{'batch_escape' expects 1 argument, got 2}) }
+    it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'stdlib::batch_escape' expects 1 argument, got none}) }
+    it { is_expected.to run.with_params('foo', 'bar').and_raise_error(ArgumentError, %r{'stdlib::batch_escape' expects 1 argument, got 2}) }
   end
 
   describe 'stringification' do
