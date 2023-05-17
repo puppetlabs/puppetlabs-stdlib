@@ -5,10 +5,12 @@ require 'spec_helper'
 describe 'suffix' do
   it { is_expected.not_to eq(nil) }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
+
   it {
     pending('Current implementation ignores parameters after the second.')
     is_expected.to run.with_params([], 'a', '').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
   }
+
   it { is_expected.to run.with_params('', '').and_raise_error(Puppet::ParseError, %r{expected first argument to be an Array}) }
   it { is_expected.to run.with_params([], 2).and_raise_error(Puppet::ParseError, %r{expected second argument to be a String}) }
   it { is_expected.to run.with_params([]).and_return([]) }
@@ -24,6 +26,7 @@ describe 'suffix' do
   it { is_expected.to run.with_params({}, '').and_return({}) }
   it { is_expected.to run.with_params({ 'key' => 'value' }, '').and_return('key' => 'value') }
   it { is_expected.to run.with_params({ 'key' => 'value' }, 'post').and_return('keypost' => 'value') }
+
   it {
     is_expected.to run \
       .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'post') \

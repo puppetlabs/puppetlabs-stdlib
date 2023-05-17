@@ -43,16 +43,19 @@ describe 'delete' do
     it { is_expected.to run.with_params({}, '').and_return({}) }
     it { is_expected.to run.with_params({}, 'key').and_return({}) }
     it { is_expected.to run.with_params({ 'key' => 'value' }, 'key').and_return({}) }
+
     it {
       is_expected.to run \
         .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'key2') \
         .and_return('key1' => 'value1', 'key3' => 'value3')
     }
+
     it {
       is_expected.to run \
         .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, ['key1', 'key2']) \
         .and_return('key3' => 'value3')
     }
+
     it {
       is_expected.to run \
         .with_params({ 'ĸəұ1' => 'νãŀủĕ1', 'ĸəұ2' => 'νãŀủĕ2', 'ĸəұ3' => 'νãŀủĕ3' }, ['ĸəұ1', 'ĸəұ2']) \
@@ -66,12 +69,14 @@ describe 'delete' do
     _result = subject.execute(argument1, 'two')
     expect(argument1).to eq(original1)
   end
+
   it 'leaves the original string intact' do
     argument1 = 'onetwothree'
     original1 = argument1.dup
     _result = subject.execute(argument1, 'two')
     expect(argument1).to eq(original1)
   end
+
   it 'leaves the original hash intact' do
     argument1 = { 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }
     original1 = argument1.dup

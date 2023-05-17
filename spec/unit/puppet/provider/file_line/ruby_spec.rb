@@ -47,6 +47,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'appends the line' do
         provider.create
         expect(File.read(tmpfile).chomp).to eq("foo bar\nfoo")
@@ -63,6 +64,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the match' do
         provider.create
         expect(File.read(tmpfile).chomp).to eq("foo bar\nfoo")
@@ -102,6 +104,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the match' do
         provider.create
         expect(File.read(tmpfile).chomp).to eq("foo\nbar")
@@ -123,6 +126,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the match' do
         provider.create
         expect(File.read(tmpfile).chomp).to eql("foo\nbar")
@@ -164,6 +168,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the matches' do
         provider.create
         expect(File.read(tmpfile).chomp).to eql("foo\nfoo\nbar\nfoo")
@@ -198,6 +203,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the matches' do
         provider.create
         expect(File.read(tmpfile).chomp).to eql("foo\nfoo bar\nfoo\nfoo")
@@ -217,6 +223,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the matches' do
         provider.create
         expect(File.read(tmpfile).chomp).to eql("foo\nfoo\nfoo\nfoo")
@@ -252,6 +259,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
     it 'requests changes' do
       expect(provider).not_to be_exists
     end
+
     it 'appends the line' do
       provider.create
       expect(File.read(tmpfile).chomp).to eql("foo bar\nfoo")

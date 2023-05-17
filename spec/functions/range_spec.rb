@@ -7,10 +7,12 @@ describe 'range' do
 
   describe 'signature validation in puppet3', unless: RSpec.configuration.puppet_future do
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
+
     it {
       pending('Current implementation ignores parameters after the third.')
       is_expected.to run.with_params(1, 2, 3, 4).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
     }
+
     it { is_expected.to run.with_params('1..2..3').and_raise_error(Puppet::ParseError, %r{Unable to compute range}i) }
     it { is_expected.to run.with_params('').and_raise_error(Puppet::ParseError, %r{Unknown range format}i) }
   end
@@ -20,41 +22,51 @@ describe 'range' do
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params.and_raise_error(ArgumentError)
     }
+
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params('').and_raise_error(ArgumentError)
     }
+
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params({}).and_raise_error(ArgumentError)
     }
+
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params([]).and_raise_error(ArgumentError)
     }
+
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params(true).and_raise_error(ArgumentError)
     }
+
     it {
       is_expected.to run.with_params(1, 2, 'foo').and_raise_error(ArgumentError)
     }
+
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params(1, 2, []).and_raise_error(ArgumentError)
     }
+
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params(1, 2, {}).and_raise_error(ArgumentError)
     }
+
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params(1, 2, true).and_raise_error(ArgumentError)
     }
+
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params(1, 2, 3, 4).and_raise_error(ArgumentError)
     }
+
     it {
       pending 'the puppet 4 implementation'
       is_expected.to run.with_params('1..2..3').and_raise_error(ArgumentError)
@@ -147,10 +159,12 @@ describe 'range' do
       pending('these bounds should not be allowed as ruby will OOM hard. e.g. `(\'host0\'..\'hosta\').to_a` has 3239930 elements on ruby 1.9, adding more \'0\'s and \'a\'s increases that exponentially') # rubocop:disable Layout/LineLength : unable to cut line to required length
       is_expected.to run.with_params('0', 'a').and_raise_error(Puppet::ParseError, %r{cannot interpolate between numeric and non-numeric bounds})
     }
+
     it {
       pending('these bounds should not be allowed as ruby will OOM hard. e.g. `(\'host0\'..\'hosta\').to_a` has 3239930 elements on ruby 1.9, adding more \'0\'s and \'a\'s increases that exponentially') # rubocop:disable Layout/LineLength : unable to cut line to required length
       is_expected.to run.with_params(0, 'a').and_raise_error(Puppet::ParseError, %r{cannot interpolate between numeric and non-numeric bounds})
     }
+
     it {
       pending('these bounds should not be allowed as ruby will OOM hard. e.g. `(\'host0\'..\'hosta\').to_a` has 3239930 elements on ruby 1.9, adding more \'0\'s and \'a\'s increases that exponentially') # rubocop:disable Layout/LineLength : unable to cut line to required length
       is_expected.to run.with_params('h0', 'ha').and_raise_error(Puppet::ParseError, %r{cannot interpolate between numeric and non-numeric bounds})

@@ -5,18 +5,23 @@ require 'spec_helper'
 describe 'dos2unix' do
   context 'when checking parameter validity' do
     it { is_expected.not_to eq(nil) }
+
     it do
       is_expected.to run.with_params.and_raise_error(ArgumentError, %r{Wrong number of arguments})
     end
+
     it do
       is_expected.to run.with_params('one', 'two').and_raise_error(ArgumentError, %r{Wrong number of arguments})
     end
+
     it do
       is_expected.to run.with_params([]).and_raise_error(Puppet::ParseError, %r{Requires string as argument})
     end
+
     it do
       is_expected.to run.with_params({}).and_raise_error(Puppet::ParseError, %r{Requires string as argument})
     end
+
     it do
       is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{Requires string as argument})
     end

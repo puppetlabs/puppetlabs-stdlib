@@ -47,6 +47,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the matches' do
         provider.create
         expect(File.read(tmpfile).chomp).to eq("*	hard	core	0\n*	hard	core	0")
@@ -81,6 +82,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the matches' do
         provider.create
         expect(File.read(tmpfile).chomp).to eq("*	hard	core	0\n*	hard	core	0")
@@ -99,6 +101,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the match' do
         provider.create
         expect(File.read(tmpfile).chomp).to eq("LogLevel=notice\nstuff")

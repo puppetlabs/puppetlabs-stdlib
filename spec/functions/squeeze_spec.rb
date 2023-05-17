@@ -30,11 +30,13 @@ describe 'squeeze' do
         .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc']) \
         .and_return(['', 'a', 'a', 'abc'])
     }
+
     it {
       is_expected.to run \
         .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc'], 'a') \
         .and_return(['', 'a', 'a', 'abbbbbbbbbbcccccccccc'])
     }
+
     it {
       is_expected.to run \
         .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc'], 'b-c') \

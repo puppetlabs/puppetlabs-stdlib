@@ -47,16 +47,19 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it "providor 'be_exists'" do
         expect(provider).to be_exists
       end
+
       it 'does not replace the matching line' do
         provider.create
         expect(File.read(tmpfile).chomp).to eql("foo1\nfoo=blah\nfoo2\nfoo3")
       end
+
       it 'appends the line if no matches are found' do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo2") }
         expect(provider.exists?).to be false
         provider.create
         expect(File.read(tmpfile).chomp).to eql("foo1\nfoo2\nfoo = bar")
       end
+
       it 'raises an error with invalid values' do
         expect {
           @resource = Puppet::Type::File_line.new(
@@ -113,11 +116,13 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         @provider.create
         expect(File.read(tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2")
       end
+
       it 'adds a new line if no lines match' do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo2") }
         @provider.create
         expect(File.read(tmpfile)).to eql("foo1\nfoo2\nfoo = bar\n")
       end
+
       it 'does nothing if the exact line already exists' do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo = bar\nfoo2") }
         @provider.create
@@ -258,16 +263,19 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo2")
     end
+
     it 'removes the line without touching the last new line' do
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo\nfoo2\n") }
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo2\n")
     end
+
     it 'removes any occurence of the line' do
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo\nfoo2\nfoo\nfoo") }
       @provider.destroy
       expect(File.read(tmpfile)).to eql("foo1\nfoo2\n")
     end
+
     it 'example in the docs' do
       @resource = Puppet::Type::File_line.new(name: 'bashrc_proxy', ensure: 'absent', path: tmpfile, line: 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128')
       @provider = provider_class.new(@resource)

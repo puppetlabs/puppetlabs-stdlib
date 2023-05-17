@@ -140,12 +140,6 @@ RSpec/ContextWording:
 RSpec/DescribeClass:
   Enabled: false
 
-# Offense count: 161
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowConsecutiveOneLiners.
-RSpec/EmptyLineAfterExample:
-  Enabled: false
-
 # Offense count: 25
 # This cop supports safe autocorrection (--autocorrect).
 RSpec/EmptyLineAfterExampleGroup:

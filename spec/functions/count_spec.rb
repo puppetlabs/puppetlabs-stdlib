@@ -7,10 +7,12 @@ describe 'count' do
   it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
   it { is_expected.to run.with_params('one').and_raise_error(ArgumentError) }
   it { is_expected.to run.with_params('one', 'two').and_return(1) }
+
   it {
     pending('should actually be like this, and not like above')
     is_expected.to run.with_params('one', 'two').and_raise_error(ArgumentError)
   }
+
   it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(ArgumentError) }
   it { is_expected.to run.with_params(['one', 'two', 'three']).and_return(3) }
   it { is_expected.to run.with_params(['one', 'two', 'two'], 'two').and_return(2) }

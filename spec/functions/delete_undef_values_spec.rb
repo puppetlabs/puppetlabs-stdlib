@@ -43,6 +43,7 @@ describe 'delete_undef_values' do
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == :undef && is_puppet_6
         end
         it { is_expected.to run.with_params('key' => undef_value).and_return({}) }
+
         it {
           is_expected.to run \
             .with_params('key1' => 'value1', 'undef_key' => undef_value, 'key2' => 'value2') \

@@ -18,10 +18,12 @@ describe 'shell_split' do
   describe 'shell line spliting' do
     it { is_expected.to run.with_params('foo').and_return(['foo']) }
     it { is_expected.to run.with_params('foo bar').and_return(['foo', 'bar']) }
+
     it {
       is_expected.to run.with_params('\~\`\!@\#\$\%\^\&\*\(\)_\+-\=\[\]\\\\\{\}\|\;\\\':\",./\<\>\?')
                         .and_return(['~`!@#$%^&*()_+-=[]\{}|;\':",./<>?'])
     }
+
     it {
       is_expected.to run.with_params('\~\`\!@\#\$ \%\^\&\*\(\)_\+-\= \[\]\\\\\{\}\|\;\\\':\" ,./\<\>\?')
                         .and_return(['~`!@#$', '%^&*()_+-=', '[]\{}|;\':"', ',./<>?'])

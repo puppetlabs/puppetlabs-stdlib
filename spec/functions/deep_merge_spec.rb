@@ -20,6 +20,7 @@ describe 'deep_merge' do
         .with_params({ 'key1' => 'value1', 'key2' => 'value2' }, 'key2' => 'replacement_value', 'key3' => 'value3') \
         .and_return('key1' => 'value1', 'key2' => 'replacement_value', 'key3' => 'value3')
     end
+
     it {
       is_expected.to run \
         .with_params({ 'key1' => 'value1' }, { 'key1' => 'value2' }, 'key1' => 'value3') \
@@ -33,11 +34,13 @@ describe 'deep_merge' do
         .with_params({ 'key1' => 'value1' }, 'key2' => 'value2', 'key3' => { 'subkey1' => 'value4' }) \
         .and_return('key1' => 'value1', 'key2' => 'value2', 'key3' => { 'subkey1' => 'value4' })
     }
+
     it {
       is_expected.to run \
         .with_params({ 'key1' => { 'subkey1' => 'value1' } }, 'key1' => { 'subkey2' => 'value2' }) \
         .and_return('key1' => { 'subkey1' => 'value1', 'subkey2' => 'value2' })
     }
+
     it {
       is_expected.to run \
         .with_params({ 'key1' => { 'subkey1' => { 'subsubkey1' => 'value1' } } }, 'key1' => { 'subkey1' => { 'subsubkey1' => 'value2' } }) \

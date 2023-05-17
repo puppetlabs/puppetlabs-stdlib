@@ -101,10 +101,12 @@ describe 'pw_hash' do
     if Puppet::Util::Package.versioncmp(Puppet.version, '4.7.0') >= 0
       describe 'when arguments are sensitive' do
         it { is_expected.to run.with_params(Puppet::Pops::Types::PSensitiveType::Sensitive.new('password'), 'md5', 'salt').and_return('$1$salt$qJH7.N4xYta3aEG/dfqo/0') }
+
         it {
           is_expected.to run.with_params(Puppet::Pops::Types::PSensitiveType::Sensitive.new('password'), 'md5', Puppet::Pops::Types::PSensitiveType::Sensitive.new('salt'))
                             .and_return('$1$salt$qJH7.N4xYta3aEG/dfqo/0')
         }
+
         it { is_expected.to run.with_params('password', 'md5', Puppet::Pops::Types::PSensitiveType::Sensitive.new('salt')).and_return('$1$salt$qJH7.N4xYta3aEG/dfqo/0') }
       end
     end

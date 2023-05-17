@@ -8,6 +8,7 @@ describe 'delete_at' do
   it { is_expected.to run.with_params('one', 1).and_raise_error(Puppet::ParseError, %r{Requires array}) }
   it { is_expected.to run.with_params(1, 1).and_raise_error(Puppet::ParseError, %r{Requires array}) }
   it { is_expected.to run.with_params(['one'], 'two').and_raise_error(Puppet::ParseError, %r{You must provide non-negative numeric}) }
+
   it {
     pending('Current implementation ignores parameters after the first two.')
     is_expected.to run.with_params(['one'], 0, 1).and_raise_error(Puppet::ParseError)
