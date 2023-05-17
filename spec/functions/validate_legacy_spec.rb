@@ -12,7 +12,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0
         expect(subject.func).to receive(:call_function).with('deprecation', 'validate_legacy', include('deprecated')).once
         expect(scope).not_to receive(:function_validate_foo)
         expect(Puppet).not_to receive(:notice)
-        is_expected.to run.with_params('Integer', 'validate_foo', 5)
+        expect(subject).to run.with_params('Integer', 'validate_foo', 5)
       end
     end
 
@@ -21,16 +21,16 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0
         expect(subject.func).to receive(:call_function).with('deprecation', 'validate_legacy', include('deprecated')).once
         expect(scope).not_to receive(:function_validate_foo)
         expect(subject.func).to receive(:call_function).with('fail', 'validate_legacy(Integer, ...) expects an Integer value, got String').once
-        is_expected.to run.with_params('Integer', 'validate_foo', '5')
+        expect(subject).to run.with_params('Integer', 'validate_foo', '5')
       end
     end
 
     describe 'when passing in undef' do
-      it 'works' do
+      it 'passes without failure' do
         expect(subject.func).to receive(:call_function).with('deprecation', 'validate_legacy', include('deprecated')).once
         expect(scope).not_to receive(:function_validate_foo)
         expect(Puppet).not_to receive(:notice)
-        is_expected.to run.with_params('Optional[Integer]', 'validate_foo', :undef)
+        expect(subject).to run.with_params('Optional[Integer]', 'validate_foo', :undef)
       end
     end
 
@@ -39,7 +39,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0
         expect(subject.func).to receive(:call_function).with('deprecation', 'validate_legacy', include('deprecated')).once
         expect(scope).not_to receive(:function_validate_foo)
         expect(Puppet).not_to receive(:notice)
-        is_expected.to run.with_params('Optional[Integer]', 'validate_foo', :undef, 1, 'foo')
+        expect(subject).to run.with_params('Optional[Integer]', 'validate_foo', :undef, 1, 'foo')
       end
     end
   end

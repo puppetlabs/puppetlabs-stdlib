@@ -8,7 +8,7 @@ describe 'str2bool' do
 
   it {
     pending('Current implementation ignores parameters after the first.')
-    is_expected.to run.with_params('true', 'extra').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
+    expect(subject).to run.with_params('true', 'extra').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
   }
 
   it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError, %r{Unknown type of boolean given}) }

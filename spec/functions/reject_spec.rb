@@ -9,12 +9,12 @@ describe 'reject' do
 
   it {
     pending('reject does not actually check this, and raises NoMethodError instead')
-    is_expected.to run.with_params('one', 'two').and_raise_error(Puppet::ParseError, %r{first argument not an array})
+    expect(subject).to run.with_params('one', 'two').and_raise_error(Puppet::ParseError, %r{first argument not an array})
   }
 
   it {
     pending('reject does not actually check this, and raises NoMethodError instead')
-    is_expected.to run.with_params(1, 'two').and_raise_error(Puppet::ParseError, %r{first argument not an array})
+    expect(subject).to run.with_params(1, 'two').and_raise_error(Puppet::ParseError, %r{first argument not an array})
   }
 
   it { is_expected.to run.with_params([], 'two').and_return([]) }

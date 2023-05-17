@@ -8,7 +8,7 @@ describe 'assert_private' do
       expect(scope).to receive(:lookupvar).with('module_name').and_return('foo')
       expect(scope).to receive(:lookupvar).with('caller_module_name').and_return('foo')
 
-      is_expected.to run.with_params
+      expect(subject).to run.with_params
     end
   end
 
@@ -19,11 +19,11 @@ describe 'assert_private' do
       expect(scope.source).to receive(:name).and_return('foo::baz')
       expect(scope.source).to receive(:type).and_return('hostclass')
 
-      is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Class foo::baz is private})
+      expect(subject).to run.with_params.and_raise_error(Puppet::ParseError, %r{Class foo::baz is private})
     end
 
     it 'fails with an explicit failure message' do
-      is_expected.to run.with_params('failure message!').and_raise_error(Puppet::ParseError, %r{failure message!})
+      expect(subject).to run.with_params('failure message!').and_raise_error(Puppet::ParseError, %r{failure message!})
     end
   end
 
@@ -34,7 +34,7 @@ describe 'assert_private' do
       expect(scope.source).to receive(:name).and_return('foo::baz')
       expect(scope.source).to receive(:type).and_return('definition')
 
-      is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Definition foo::baz is private})
+      expect(subject).to run.with_params.and_raise_error(Puppet::ParseError, %r{Definition foo::baz is private})
     end
   end
 end

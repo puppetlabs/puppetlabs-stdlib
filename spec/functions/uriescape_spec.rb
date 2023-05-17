@@ -11,7 +11,7 @@ describe 'uriescape' do
 
       it {
         pending('Current implementation ignores parameters after the first.')
-        is_expected.to run.with_params('', '').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
+        expect(subject).to run.with_params('', '').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
       }
 
       it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{Requires either array or string to work}) }
@@ -22,7 +22,7 @@ describe 'uriescape' do
     describe 'handling normal strings' do
       it 'calls ruby\'s URI::DEFAULT_PARSER.escape function' do
         expect(URI::DEFAULT_PARSER).to receive(:escape).with('uri_string').and_return('escaped_uri_string').once
-        is_expected.to run.with_params('uri_string').and_return('escaped_uri_string')
+        expect(subject).to run.with_params('uri_string').and_return('escaped_uri_string')
       end
     end
 
@@ -30,7 +30,7 @@ describe 'uriescape' do
       it 'calls ruby\'s URI::DEFAULT_PARSER.escape function' do
         uri_string = AlsoString.new('uri_string')
         expect(URI::DEFAULT_PARSER).to receive(:escape).with(uri_string).and_return('escaped_uri_string').once
-        is_expected.to run.with_params(uri_string).and_return('escaped_uri_string')
+        expect(subject).to run.with_params(uri_string).and_return('escaped_uri_string')
       end
     end
 

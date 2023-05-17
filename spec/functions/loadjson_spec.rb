@@ -102,7 +102,7 @@ describe 'loadjson' do
           expect(URI).to receive(:open).with(filename).and_return(json)
           expect(JSON).to receive(:parse).with(json).and_return(data).once
         end
-        is_expected.to run.with_params(filename).and_return(data)
+        expect(subject).to run.with_params(filename).and_return(data)
       }
     end
 
@@ -123,7 +123,7 @@ describe 'loadjson' do
           expect(URI).to receive(:open).with(url_no_auth, basic_auth).and_return(json)
           expect(JSON).to receive(:parse).with(json).and_return(data).once
         end
-        is_expected.to run.with_params(filename).and_return(data)
+        expect(subject).to run.with_params(filename).and_return(data)
       }
     end
 
@@ -144,7 +144,7 @@ describe 'loadjson' do
           expect(URI).to receive(:open).with(url_no_auth, basic_auth).and_return(json)
           expect(JSON).to receive(:parse).with(json).and_return(data).once
         end
-        is_expected.to run.with_params(filename).and_return(data)
+        expect(subject).to run.with_params(filename).and_return(data)
       }
     end
 
@@ -162,7 +162,7 @@ describe 'loadjson' do
           expect(URI).to receive(:open).with(filename).and_return(json)
           expect(JSON).to receive(:parse).with(json).once.and_raise StandardError, 'Something terrible have happened!'
         end
-        is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
+        expect(subject).to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
       }
     end
 
@@ -177,7 +177,7 @@ describe 'loadjson' do
         else
           expect(URI).to receive(:open).with(filename).and_raise URI::Error, '404 File not Found'
         end
-        is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
+        expect(subject).to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
       }
     end
   end

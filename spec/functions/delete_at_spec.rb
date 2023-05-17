@@ -11,7 +11,7 @@ describe 'delete_at' do
 
   it {
     pending('Current implementation ignores parameters after the first two.')
-    is_expected.to run.with_params(['one'], 0, 1).and_raise_error(Puppet::ParseError)
+    expect(subject).to run.with_params(['one'], 0, 1).and_raise_error(Puppet::ParseError)
   }
 
   describe 'argument validation' do

@@ -92,7 +92,7 @@ describe 'defined_with_params' do
     it { is_expected.to run.with_params(Puppet::Resource.new('Test::Deftype[foo]'), {}).and_return(true) }
 
     it {
-      is_expected.to run.with_params(Puppet::Resource.new('Test::Deftype[bar]'), {}).and_return(false)
+      expect(subject).to run.with_params(Puppet::Resource.new('Test::Deftype[bar]'), {}).and_return(false)
 
       expect(catalogue.resource('Notify[Duplicate found somewhere]')).not_to be_nil
       expect(catalogue.resource('Notify[Should not find me]')).to be_nil

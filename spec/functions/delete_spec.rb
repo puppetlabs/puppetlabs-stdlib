@@ -45,19 +45,19 @@ describe 'delete' do
     it { is_expected.to run.with_params({ 'key' => 'value' }, 'key').and_return({}) }
 
     it {
-      is_expected.to run \
+      expect(subject).to run \
         .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'key2') \
         .and_return('key1' => 'value1', 'key3' => 'value3')
     }
 
     it {
-      is_expected.to run \
+      expect(subject).to run \
         .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, ['key1', 'key2']) \
         .and_return('key3' => 'value3')
     }
 
     it {
-      is_expected.to run \
+      expect(subject).to run \
         .with_params({ 'ĸəұ1' => 'νãŀủĕ1', 'ĸəұ2' => 'νãŀủĕ2', 'ĸəұ3' => 'νãŀủĕ3' }, ['ĸəұ1', 'ĸəұ2']) \
         .and_return('ĸəұ3' => 'νãŀủĕ3')
     }

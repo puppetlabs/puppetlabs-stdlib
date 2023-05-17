@@ -9,7 +9,7 @@ describe 'member' do
 
   it {
     pending('Current implementation ignores parameters after the first.')
-    is_expected.to run.with_params([], [], []).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
+    expect(subject).to run.with_params([], [], []).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
   }
 
   it { is_expected.to run.with_params([], '').and_return(false) }

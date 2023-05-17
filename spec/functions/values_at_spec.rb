@@ -10,7 +10,7 @@ describe 'values_at' do
 
     it {
       pending('Current implementation ignores parameters after the first two.')
-      is_expected.to run.with_params([], 0, 1).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
+      expect(subject).to run.with_params([], 0, 1).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
     }
 
     it { is_expected.to run.with_params('', 1).and_raise_error(Puppet::ParseError, %r{Requires array}i) }
@@ -52,7 +52,7 @@ describe 'values_at' do
 
       it {
         pending('fix this bounds check')
-        is_expected.to run.with_params([0, 1, 2], '0...3').and_return([0, 1, 2])
+        expect(subject).to run.with_params([0, 1, 2], '0...3').and_return([0, 1, 2])
       }
     end
   end

@@ -7,23 +7,23 @@ describe 'dos2unix' do
     it { is_expected.not_to eq(nil) }
 
     it do
-      is_expected.to run.with_params.and_raise_error(ArgumentError, %r{Wrong number of arguments})
+      expect(subject).to run.with_params.and_raise_error(ArgumentError, %r{Wrong number of arguments})
     end
 
     it do
-      is_expected.to run.with_params('one', 'two').and_raise_error(ArgumentError, %r{Wrong number of arguments})
+      expect(subject).to run.with_params('one', 'two').and_raise_error(ArgumentError, %r{Wrong number of arguments})
     end
 
     it do
-      is_expected.to run.with_params([]).and_raise_error(Puppet::ParseError, %r{Requires string as argument})
+      expect(subject).to run.with_params([]).and_raise_error(Puppet::ParseError, %r{Requires string as argument})
     end
 
     it do
-      is_expected.to run.with_params({}).and_raise_error(Puppet::ParseError, %r{Requires string as argument})
+      expect(subject).to run.with_params({}).and_raise_error(Puppet::ParseError, %r{Requires string as argument})
     end
 
     it do
-      is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{Requires string as argument})
+      expect(subject).to run.with_params(1).and_raise_error(Puppet::ParseError, %r{Requires string as argument})
     end
   end
 
@@ -32,7 +32,7 @@ describe 'dos2unix' do
     desired_output = "Hello\nWorld\n"
 
     it 'outputs unix format' do
-      is_expected.to run.with_params(sample_text).and_return(desired_output)
+      expect(subject).to run.with_params(sample_text).and_return(desired_output)
     end
   end
 
@@ -44,11 +44,11 @@ describe 'dos2unix' do
     desired_output_doublebyte = "こんにちは\n世界\n"
 
     it 'outputs uft8 string' do
-      is_expected.to run.with_params(sample_text_utf8).and_return(desired_output_utf8)
+      expect(subject).to run.with_params(sample_text_utf8).and_return(desired_output_utf8)
     end
 
     it 'outputs double byte string' do
-      is_expected.to run.with_params(sample_text_doublebyte).and_return(desired_output_doublebyte)
+      expect(subject).to run.with_params(sample_text_doublebyte).and_return(desired_output_doublebyte)
     end
   end
 end

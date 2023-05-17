@@ -8,7 +8,7 @@ describe 'swapcase' do
 
   it {
     pending('Current implementation ignores parameters after the first.')
-    is_expected.to run.with_params('a', '').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
+    expect(subject).to run.with_params('a', '').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
   }
 
   it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{Requires either array or string to work}) }
@@ -44,6 +44,6 @@ describe 'swapcase' do
   end
 
   it 'accepts objects which extend String' do
-    is_expected.to run.with_params(AlsoString.new('OnE')).and_return('oNe')
+    expect(subject).to run.with_params(AlsoString.new('OnE')).and_return('oNe')
   end
 end

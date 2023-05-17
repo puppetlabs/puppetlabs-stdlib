@@ -47,7 +47,7 @@ describe 'delete_undef_values' do
         it { is_expected.to run.with_params('key' => undef_value).and_return({}) }
 
         it {
-          is_expected.to run \
+          expect(subject).to run \
             .with_params('key1' => 'value1', 'undef_key' => undef_value, 'key2' => 'value2') \
             .and_return('key1' => 'value1', 'key2' => 'value2')
         }

@@ -17,17 +17,17 @@ if Puppet.version.to_f >= 4.0
     it { is_expected.to run.with_params('', '').and_raise_error(ArgumentError) }
 
     it 'succeeds when comparing a string and a string' do
-      is_expected.to run.with_params('hello world', String).and_return(true)
+      expect(subject).to run.with_params('hello world', String).and_return(true)
     end
 
     it 'fails when comparing an integer and a string' do
-      is_expected.to run.with_params(5, String).and_return(false)
+      expect(subject).to run.with_params(5, String).and_return(false)
     end
 
     it 'suceeds when comparing an UTF8 and double byte characters' do
       comparison_array = ['このテキスト', 'ŧћịś ŧêχŧ']
       comparison_array.each do |comparison_value|
-        is_expected.to run.with_params(comparison_value, String).and_return(true)
+        expect(subject).to run.with_params(comparison_value, String).and_return(true)
       end
     end
   end

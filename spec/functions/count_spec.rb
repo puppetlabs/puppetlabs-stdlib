@@ -10,7 +10,7 @@ describe 'count' do
 
   it {
     pending('should actually be like this, and not like above')
-    is_expected.to run.with_params('one', 'two').and_raise_error(ArgumentError)
+    expect(subject).to run.with_params('one', 'two').and_raise_error(ArgumentError)
   }
 
   it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(ArgumentError) }

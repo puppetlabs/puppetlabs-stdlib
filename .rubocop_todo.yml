@@ -153,13 +153,6 @@ RSpec/FilePath:
     - 'spec/unit/puppet/provider/file_line/ruby_spec_alter.rb'
     - 'spec/unit/puppet/provider/file_line/ruby_spec_use_cases.rb'
 
-# Offense count: 198
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: single_line_only, single_statement_only, disallow, require_implicit
-RSpec/ImplicitSubject:
-  Enabled: false
-
 # Offense count: 2
 RSpec/LeakyConstantDeclaration:
   Exclude:
