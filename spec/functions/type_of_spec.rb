@@ -17,11 +17,11 @@ if Puppet.version.to_f >= 4.0
     it { is_expected.to run.with_params('', '').and_raise_error(ArgumentError) }
 
     it 'gives the type of a string' do
-      expect(subject.call({}, 'hello world')).to be_kind_of(Puppet::Pops::Types::PStringType)
+      expect(subject.call({}, 'hello world')).to be_a(Puppet::Pops::Types::PStringType)
     end
 
     it 'gives the type of an integer' do
-      expect(subject.call({}, 5)).to be_kind_of(Puppet::Pops::Types::PIntegerType)
+      expect(subject.call({}, 5)).to be_a(Puppet::Pops::Types::PIntegerType)
     end
   end
 end

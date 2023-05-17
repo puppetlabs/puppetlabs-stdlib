@@ -21,9 +21,9 @@ Puppet::Functions.create_function(:parsepson) do
 
   def parsepson(pson_string, default = :no_default_provided)
     PSON.load(pson_string)
-  rescue StandardError => err
-    Puppet.debug("Parsing PSON failed with error: #{err.message}")
-    raise err if default == :no_default_provided
+  rescue StandardError => e
+    Puppet.debug("Parsing PSON failed with error: #{e.message}")
+    raise e if default == :no_default_provided
 
     default
   end

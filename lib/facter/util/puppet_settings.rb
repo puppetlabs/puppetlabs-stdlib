@@ -9,7 +9,7 @@ module Facter::Util::PuppetSettings
   # facter without the --puppet flag and they happen to be working in a lib
   # directory of a module.
   def self.with_puppet
-    Module.const_get('Puppet')
+    Module.const_get(:Puppet)
   rescue NameError
     nil
   else

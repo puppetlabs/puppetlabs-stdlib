@@ -89,8 +89,6 @@ describe 'validate_x509_rsa_key_pair' do
       -----END RSA PRIVATE KEY-----
     DOC
   end
-  # rubocop:enable Layout/IndentHeredoc
-
   let(:valid_cert_but_indented) do
     valid_cert.gsub(%r{^}, '  ')
   end

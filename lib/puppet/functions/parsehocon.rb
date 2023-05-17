@@ -22,9 +22,9 @@ Puppet::Functions.create_function(:parsehocon) do
     begin
       data = Hocon::ConfigFactory.parse_string(hocon_string)
       data.resolve.root.unwrapped
-    rescue Hocon::ConfigError::ConfigParseError => err
-      Puppet.debug("Parsing hocon failed with error: #{err.message}")
-      raise err if default == :no_default_provided
+    rescue Hocon::ConfigError::ConfigParseError => e
+      Puppet.debug("Parsing hocon failed with error: #{e.message}")
+      raise e if default == :no_default_provided
 
       default
     end

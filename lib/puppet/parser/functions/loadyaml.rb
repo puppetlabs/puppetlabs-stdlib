@@ -44,8 +44,8 @@ module Puppet::Parser::Functions
         end
         begin
           contents = OpenURI.open_uri(url, http_basic_authentication: [username, password])
-        rescue OpenURI::HTTPError => err
-          res = err.io
+        rescue OpenURI::HTTPError => e
+          res = e.io
           warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
           args[1]
         end

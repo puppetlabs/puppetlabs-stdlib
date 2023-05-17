@@ -46,8 +46,8 @@ module Puppet::Parser::Functions
         if Puppet::Util::Package.versioncmp(Puppet.version, '8.0.0').negative?
           begin
             contents = OpenURI.open_uri(url, **http_options)
-          rescue OpenURI::HTTPError => err
-            res = err.io
+          rescue OpenURI::HTTPError => e
+            res = e.io
             warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
             args[1]
           end
@@ -55,8 +55,8 @@ module Puppet::Parser::Functions
         else
           begin
             contents = URI.open(url, **http_options) # rubocop:disable Security/Open  : Temporarily disabling this cop. This is a security risk and must be addressed before release.
-          rescue URI::Error => err
-            res = err.io
+          rescue URI::Error => e
+            res = e.io
             warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
             args[1]
           end

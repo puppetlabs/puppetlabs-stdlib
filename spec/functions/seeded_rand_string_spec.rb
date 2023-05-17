@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'seeded_rand_string' do
-  it { is_expected.not_to be(nil) }
+  it { is_expected.not_to be_nil }
 
   # Test for erroneous params
   it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{expects between.+got none}i) }

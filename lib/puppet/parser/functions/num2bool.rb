@@ -27,14 +27,14 @@ module Puppet::Parser::Functions
     when String
       begin
         number = Float(number)
-      rescue ArgumentError => ex
-        raise(Puppet::ParseError, "num2bool(): '#{number}' does not look like a number: #{ex.message}")
+      rescue ArgumentError => e
+        raise(Puppet::ParseError, "num2bool(): '#{number}' does not look like a number: #{e.message}")
       end
     else
       begin
         number = number.to_s
-      rescue NoMethodError => ex
-        raise(Puppet::ParseError, "num2bool(): Unable to parse argument: #{ex.message}")
+      rescue NoMethodError => e
+        raise(Puppet::ParseError, "num2bool(): Unable to parse argument: #{e.message}")
       end
     end
 

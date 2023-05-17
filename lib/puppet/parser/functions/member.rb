@@ -55,7 +55,7 @@ module Puppet::Parser::Functions
              arguments[1]
            end
 
-    raise(Puppet::ParseError, 'member(): You must provide item to search for within array given') if item.respond_to?('empty?') && item.empty?
+    raise(Puppet::ParseError, 'member(): You must provide item to search for within array given') if item.respond_to?(:empty?) && item.empty?
 
     result = (item - array).empty?
 

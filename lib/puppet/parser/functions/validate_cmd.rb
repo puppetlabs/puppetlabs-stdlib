@@ -55,16 +55,16 @@ module Puppet::Parser::Functions
                                       "#{checkscript} #{tmpfile.path}"
                                     end
 
-      if Puppet::Util::Execution.respond_to?('execute')
+      if Puppet::Util::Execution.respond_to?(:execute)
         Puppet::Util::Execution.execute(check_with_correct_location)
       else
         Puppet::Util.execute(check_with_correct_location)
       end
-    rescue Puppet::ExecutionFailure => detail
-      msg += "\n#{detail}"
+    rescue Puppet::ExecutionFailure => e
+      msg += "\n#{e}"
       raise Puppet::ParseError, msg
-    rescue StandardError => detail
-      msg += "\n#{detail.class.name} #{detail}"
+    rescue StandardError => e
+      msg += "\n#{e.class.name} #{e}"
       raise Puppet::ParseError, msg
     ensure
       tmpfile.unlink

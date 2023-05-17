@@ -10,7 +10,7 @@ describe 'root_home', type: :fact do
   after(:each) { Facter.clear }
 
   context 'when Windows', if: Facter.value(:kernel) == 'Windows' do
-    it { expect(subject.value).to be(nil) }
+    it { expect(subject.value).to be_nil }
   end
 
   context 'when non-Windows', if: Facter.value(:kernel) != 'Windows' do

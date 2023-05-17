@@ -34,12 +34,6 @@ Lint/MissingCopEnableDirective:
     - 'spec/functions/merge_spec.rb'
     - 'spec/unit/puppet/provider/file_line/ruby_spec_alter.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Lint/RedundantCopEnableDirective:
-  Exclude:
-    - 'spec/functions/validate_x509_rsa_key_pair_spec.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: AllowedMethods.
@@ -97,18 +91,6 @@ Naming/MethodParameterName:
   Exclude:
     - 'spec/functions/pick_default_spec.rb'
 
-# Offense count: 9
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: PreferredName.
-Naming/RescuedExceptionsVariableName:
-  Exclude:
-    - 'lib/puppet/functions/parsehocon.rb'
-    - 'lib/puppet/functions/parsepson.rb'
-    - 'lib/puppet/parser/functions/loadjson.rb'
-    - 'lib/puppet/parser/functions/loadyaml.rb'
-    - 'lib/puppet/parser/functions/num2bool.rb'
-    - 'lib/puppet/parser/functions/validate_cmd.rb'
-
 # Offense count: 1
 # Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
 # SupportedStyles: snake_case, normalcase, non_integer
@@ -136,14 +118,6 @@ Performance/RedundantEqualityComparisonBlock:
   Exclude:
     - 'lib/puppet/parser/functions/bool2str.rb'
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-Performance/StringIdentifierArgument:
-  Exclude:
-    - 'lib/facter/util/puppet_settings.rb'
-    - 'lib/puppet/parser/functions/member.rb'
-    - 'lib/puppet/parser/functions/validate_cmd.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/UnfreezeString:
@@ -154,23 +128,6 @@ Performance/UnfreezeString:
 # This cop supports unsafe autocorrection (--autocorrect-all).
 RSpec/BeEq:
   Enabled: false
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: be, be_nil
-RSpec/BeNil:
-  Exclude:
-    - 'spec/functions/seeded_rand_string_spec.rb'
-    - 'spec/unit/facter/root_home_spec.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: be_a, be_kind_of
-RSpec/ClassCheck:
-  Exclude:
-    - 'spec/functions/type_of_spec.rb'
 
 # Offense count: 36
 # Configuration parameters: Prefixes, AllowedPatterns.
