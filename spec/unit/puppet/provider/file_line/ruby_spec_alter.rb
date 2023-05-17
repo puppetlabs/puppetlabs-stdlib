@@ -20,7 +20,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
     Puppet::Type::File_line.new({
       name: 'foo',
       path: tmpfile,
-      line: 'foo',
+      line: 'foo'
     }.merge(params))
   end
   let :provider do
@@ -37,7 +37,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         {
           line: 'foo = bar',
           match: '^foo\s*=.*$',
-          replace: false,
+          replace: false
         }
       end
       let(:content) { "foo1\nfoo=blah\nfoo2\nfoo3" }

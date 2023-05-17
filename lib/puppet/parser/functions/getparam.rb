@@ -51,9 +51,7 @@ DOC
   return '' if param.empty?
 
   resource = findresource(reference.to_s)
-  if resource
-    return resource[param] unless resource[param].nil?
-  end
+  return resource[param] if resource && !resource[param].nil?
 
   return ''
 end

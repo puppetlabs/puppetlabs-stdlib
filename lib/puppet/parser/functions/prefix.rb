@@ -29,9 +29,7 @@ module Puppet::Parser::Functions
 
     prefix = arguments[1] if arguments[1]
 
-    if prefix
-      raise Puppet::ParseError, "prefix(): expected second argument to be a String, got #{prefix.inspect}" unless prefix.is_a?(String)
-    end
+    raise Puppet::ParseError, "prefix(): expected second argument to be a String, got #{prefix.inspect}" if prefix && !prefix.is_a?(String)
 
     result = if enumerable.is_a?(Array)
                # Turn everything into string same as join would do ...

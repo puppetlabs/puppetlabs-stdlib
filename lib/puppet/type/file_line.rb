@@ -188,9 +188,7 @@ Puppet::Type.newtype(:file_line) do
     raise(Puppet::Error, 'multiple must be true when replace_all_matches_not_matching_line is true') if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:multiple].to_s == 'false'
     raise(Puppet::Error, 'replace must be true when replace_all_matches_not_matching_line is true') if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:replace].to_s == 'false'
 
-    unless self[:line]
-      raise(Puppet::Error, 'line is a required attribute') unless (self[:ensure].to_s == 'absent') && (self[:match_for_absence].to_s == 'true') && self[:match]
-    end
+    raise(Puppet::Error, 'line is a required attribute') if !self[:line] && !((self[:ensure].to_s == 'absent') && (self[:match_for_absence].to_s == 'true') && self[:match])
     raise(Puppet::Error, 'path is a required attribute') unless self[:path]
   end
 end

@@ -62,9 +62,9 @@ module Puppet::Parser::Functions
     hash       = OpenSSL::PKCS5.pbkdf2_hmac(password, salt, iterations, keylen, digest)
 
     {
-      'password_hex' => hash.unpack('H*').first,
-      'salt_hex' => salt.unpack('H*').first,
-      'iterations' => iterations,
+      'password_hex' => hash.unpack1('H*'),
+      'salt_hex' => salt.unpack1('H*'),
+      'iterations' => iterations
     }
   end
 end

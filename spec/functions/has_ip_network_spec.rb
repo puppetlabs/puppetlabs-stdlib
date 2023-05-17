@@ -12,7 +12,7 @@ describe 'has_ip_network' do
       {
         interfaces: 'eth0,lo',
         network_lo: '127.0.0.0',
-        network_eth0: '10.0.0.0',
+        network_eth0: '10.0.0.0'
       }
     end
 

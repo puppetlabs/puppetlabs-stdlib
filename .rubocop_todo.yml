@@ -302,17 +302,6 @@ Style/SlicingWithRange:
   Exclude:
     - 'spec/functions/validate_x509_rsa_key_pair_spec.rb'
 
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowModifier.
-Style/SoleNestedConditional:
-  Exclude:
-    - 'lib/puppet/parser/functions/convert_base.rb'
-    - 'lib/puppet/parser/functions/getparam.rb'
-    - 'lib/puppet/parser/functions/prefix.rb'
-    - 'lib/puppet/parser/functions/suffix.rb'
-    - 'lib/puppet/type/file_line.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/StringChars:
@@ -339,36 +328,3 @@ Style/SymbolProc:
     - 'lib/puppet/parser/functions/fqdn_uuid.rb'
     - 'lib/puppet/parser/functions/shell_join.rb'
     - 'lib/puppet/parser/functions/squeeze.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, AllowSafeAssignment.
-# SupportedStyles: require_parentheses, require_no_parentheses, require_parentheses_when_complex
-Style/TernaryParentheses:
-  Exclude:
-    - 'spec/unit/facter/root_home_spec.rb'
-
-# Offense count: 31
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'lib/puppet/parser/functions/pw_hash.rb'
-    - 'lib/puppet/parser/functions/str2saltedpbkdf2.rb'
-    - 'spec/classes/manage_spec.rb'
-    - 'spec/functions/has_interface_with_spec.rb'
-    - 'spec/functions/has_ip_address_spec.rb'
-    - 'spec/functions/has_ip_network_spec.rb'
-    - 'spec/functions/os_version_gte_spec.rb'
-    - 'spec/spec_helper.rb'
-    - 'spec/unit/puppet/provider/file_line/ruby_spec.rb'
-    - 'spec/unit/puppet/provider/file_line/ruby_spec_alter.rb'
-    - 'spec/unit/puppet/provider/file_line/ruby_spec_use_cases.rb'
-
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-Style/UnpackFirst:
-  Exclude:
-    - 'lib/puppet/parser/functions/str2saltedpbkdf2.rb'
-    - 'lib/puppet/parser/functions/str2saltedsha512.rb'

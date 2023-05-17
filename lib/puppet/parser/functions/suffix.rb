@@ -33,9 +33,7 @@ module Puppet::Parser::Functions
 
     suffix = arguments[1] if arguments[1]
 
-    if suffix
-      raise Puppet::ParseError, "suffix(): expected second argument to be a String, got #{suffix.inspect}" unless suffix.is_a? String
-    end
+    raise Puppet::ParseError, "suffix(): expected second argument to be a String, got #{suffix.inspect}" if suffix && !(suffix.is_a? String)
 
     result = if enumerable.is_a?(Array)
                # Turn everything into string same as join would do ...

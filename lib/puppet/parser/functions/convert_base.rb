@@ -32,13 +32,9 @@ module Puppet::Parser::Functions
     raise Puppet::ParseError, 'convert_base(): First argument must be either a string or an integer' unless args[0].is_a?(Integer) || args[0].is_a?(String)
     raise Puppet::ParseError, 'convert_base(): Second argument must be either a string or an integer' unless args[1].is_a?(Integer) || args[1].is_a?(String)
 
-    if args[0].is_a?(String)
-      raise Puppet::ParseError, 'convert_base(): First argument must be an integer or a string corresponding to an integer in base 10' unless %r{^[0-9]+$}.match?(args[0])
-    end
+    raise Puppet::ParseError, 'convert_base(): First argument must be an integer or a string corresponding to an integer in base 10' if args[0].is_a?(String) && !%r{^[0-9]+$}.match?(args[0])
 
-    if args[1].is_a?(String)
-      raise Puppet::ParseError, 'convert_base(): First argument must be an integer or a string corresponding to an integer in base 10' unless %r{^[0-9]+$}.match?(args[1])
-    end
+    raise Puppet::ParseError, 'convert_base(): First argument must be an integer or a string corresponding to an integer in base 10' if args[1].is_a?(String) && !%r{^[0-9]+$}.match?(args[1])
 
     number_to_convert = args[0]
     new_base = args[1]

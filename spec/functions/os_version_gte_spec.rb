@@ -8,7 +8,7 @@ describe 'os_version_gte' do
       {
         os: {
           name: 'Debian',
-          release: { major: '9' },
+          release: { major: '9' }
         }
       }
     end
@@ -26,7 +26,7 @@ describe 'os_version_gte' do
       {
         os: {
           name: 'Ubuntu',
-          release: { major: '16.04' },
+          release: { major: '16.04' }
         }
       }
     end
@@ -45,7 +45,7 @@ describe 'os_version_gte' do
       {
         os: {
           name: 'Ubuntu',
-          release: { major: '16.04' },
+          release: { major: '16.04' }
         }
       }
     end

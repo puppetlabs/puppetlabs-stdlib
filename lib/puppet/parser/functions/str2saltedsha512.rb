@@ -29,7 +29,7 @@ module Puppet::Parser::Functions
     seedint    = rand((2**31) - 1)
     seedstring = Array(seedint).pack('L')
     saltedpass = Digest::SHA512.digest(seedstring + password)
-    (seedstring + saltedpass).unpack('H*')[0]
+    (seedstring + saltedpass).unpack1('H*')
   end
 end
 

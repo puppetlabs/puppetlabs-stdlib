@@ -14,7 +14,7 @@ describe 'root_home', type: :fact do
   end
 
   context 'when non-Windows', if: Facter.value(:kernel) != 'Windows' do
-    let(:expected) { Facter.value(:kernel) == 'Darwin' ? '/var/root' : '/root' }
+    let(:expected) { (Facter.value(:kernel) == 'Darwin') ? '/var/root' : '/root' }
 
     it { expect(subject.value).to eq(expected) }
   end

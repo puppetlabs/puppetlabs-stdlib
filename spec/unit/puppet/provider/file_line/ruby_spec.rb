@@ -20,7 +20,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
     Puppet::Type::File_line.new({
       name: 'foo',
       path: tmpfile,
-      line: 'foo',
+      line: 'foo'
     }.merge(params))
   end
   let :provider do
@@ -115,7 +115,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
     let(:params) do
       {
         append_on_no_match: false,
-        match: '^foo1$',
+        match: '^foo1$'
       }
     end
 
@@ -146,7 +146,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       let(:params) do
         {
           replace_all_matches_not_matching_line: true,
-          replace: false,
+          replace: false
         }
       end
 
@@ -160,7 +160,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         {
           replace_all_matches_not_matching_line: true,
           match: '^foo',
-          multiple: true,
+          multiple: true
         }
       end
       let(:content) { "foo\nfoo bar\nbar\nfoo baz" }
@@ -180,7 +180,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         {
           replace_all_matches_not_matching_line: true,
           match: '^foo',
-          multiple: true,
+          multiple: true
         }
       end
       let(:content) { "foo\nfoo\nbar" }
@@ -195,7 +195,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         {
           replace_all_matches_not_matching_line: true,
           match: '^bar',
-          multiple: true,
+          multiple: true
         }
       end
       let(:content) { "foo\nfoo bar\nbar\nbar baz" }
@@ -215,7 +215,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         {
           replace_all_matches_not_matching_line: true,
           match: '^bar',
-          multiple: true,
+          multiple: true
         }
       end
       let(:content) { "foo\nfoo\nbar\nbar baz" }
@@ -236,7 +236,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       {
         replace_all_matches_not_matching_line: true,
         match: '^bar',
-        multiple: true,
+        multiple: true
       }
     end
     let(:content) { "foo\nfoo bar" }
@@ -251,7 +251,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       {
         replace_all_matches_not_matching_line: true,
         match: '^bar',
-        multiple: true,
+        multiple: true
       }
     end
     let(:content) { 'foo bar' }

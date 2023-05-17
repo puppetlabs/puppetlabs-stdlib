@@ -42,7 +42,7 @@ describe 'has_interface_with' do
               'network' => '127.0.0.0',
               'network6' => '::1',
               'scope6' => 'host'
-            },
+            }
           }
         }
       }
@@ -129,8 +129,8 @@ describe 'has_interface_with' do
               'network' => '127.0.0.0',
               'network6' => '::1'
             }
-          },
-        },
+          }
+        }
       }
     end
 
