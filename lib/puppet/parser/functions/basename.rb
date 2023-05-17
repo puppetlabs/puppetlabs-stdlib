@@ -18,6 +18,7 @@ module Puppet::Parser::Functions
     rv = File.basename(arguments[0]) if arguments.size == 1
     if arguments.size == 2
       raise(Puppet::ParseError, 'basename(): Requires string as second argument') unless arguments[1].is_a?(String)
+
       rv = File.basename(arguments[0], arguments[1])
     end
 

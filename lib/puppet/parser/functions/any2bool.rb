@@ -40,10 +40,10 @@ module Puppet::Parser::Functions
     end
 
     valid_float = begin
-                    !!Float(arg) # rubocop:disable Style/DoubleNegation : Could not find a better way to check if a boolean
-                  rescue
-                    false
-                  end
+      !!Float(arg) # rubocop:disable Style/DoubleNegation : Could not find a better way to check if a boolean
+    rescue
+      false
+    end
 
     if arg.is_a?(Numeric)
       return function_num2bool([arguments[0]])
@@ -51,6 +51,7 @@ module Puppet::Parser::Functions
 
     if arg.is_a?(String)
       return function_num2bool([arguments[0]]) if valid_float
+
       return function_str2bool([arguments[0]])
     end
 

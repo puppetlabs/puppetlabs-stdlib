@@ -31,6 +31,7 @@ module Puppet::Parser::Functions
   DOC
   ) do |args|
     raise 'Must receive at least one argument.' if args.empty?
+
     default = args.last
     args = args[0..-2].compact
     args.delete(:undef)

@@ -12,6 +12,7 @@ describe 'get_module_path' do
   # class Stubmodule
   class StubModule
     attr_reader :path
+
     def initialize(path)
       @path = path
     end

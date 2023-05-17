@@ -29,6 +29,7 @@ module Puppet::Parser::Functions
     unless hash.is_a?(Hash)
       raise(TypeError, "delete_values(): First argument must be a Hash. Given an argument of class #{hash.class}.")
     end
+
     hash.dup.delete_if { |_key, val| item == val }
   end
 end

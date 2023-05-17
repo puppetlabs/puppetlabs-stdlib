@@ -20,6 +20,7 @@ module Puppet::Parser::Functions
 
     raise(ArgumentError, 'fqdn_uuid: No arguments given') if args.empty?
     raise(ArgumentError, "fqdn_uuid: Too many arguments given (#{args.length})") unless args.length == 1
+
     fqdn = args[0]
 
     # Code lovingly taken from

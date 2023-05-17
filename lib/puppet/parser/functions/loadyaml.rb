@@ -24,6 +24,7 @@ module Puppet::Parser::Functions
   DOC
 
     raise ArgumentError, 'Wrong number of arguments. 1 or 2 arguments should be provided.' unless args.length >= 1
+
     require 'yaml'
     require 'open-uri'
     begin
@@ -57,6 +58,7 @@ module Puppet::Parser::Functions
       end
     rescue StandardError => e
       raise e unless args[1]
+
       args[1]
     end
   end

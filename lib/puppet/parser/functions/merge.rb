@@ -34,6 +34,7 @@ module Puppet::Parser::Functions
       unless arg.is_a?(Hash)
         raise Puppet::ParseError, "merge: unexpected argument type #{arg.class}, only expects hash arguments"
       end
+
       accumulator.merge!(arg)
     end
     # Return the fully merged hash

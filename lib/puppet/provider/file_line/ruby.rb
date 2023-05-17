@@ -53,6 +53,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
 
   def create
     return if resource[:replace].to_s != 'true' && count_matches(new_match_regex) > 0
+
     if resource[:match]
       handle_create_with_match
     elsif resource[:after]
@@ -85,6 +86,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     @lines ||= File.readlines(resource[:path])
   rescue Errno::ENOENT
     raise unless resource.noop?
+
     @lines ||= []
   end
 
@@ -119,6 +121,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
       lines.each do |line|
         fh.puts(match_regex.match(line) ? resource[:line] : line)
         next unless match_count.zero? && after_regex
+
         if after_regex.match(line)
           fh.puts(resource[:line])
           match_count += 1 # Increment match_count to indicate that the new line has been inserted.

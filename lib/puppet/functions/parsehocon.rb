@@ -25,6 +25,7 @@ Puppet::Functions.create_function(:parsehocon) do
     rescue Hocon::ConfigError::ConfigParseError => err
       Puppet.debug("Parsing hocon failed with error: #{err.message}")
       raise err if default == :no_default_provided
+
       default
     end
   end

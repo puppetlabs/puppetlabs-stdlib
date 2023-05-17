@@ -74,7 +74,6 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
           line: "*\thard\tcore\t0",
           match: "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
           multiple: true,
-
         }.merge(replace_all_matches_not_matching_line: true)
       end
       let(:content) { "*	hard	core	90\n*	hard	core	0\n" }

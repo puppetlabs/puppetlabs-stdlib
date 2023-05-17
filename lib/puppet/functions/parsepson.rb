@@ -24,6 +24,7 @@ Puppet::Functions.create_function(:parsepson) do
   rescue StandardError => err
     Puppet.debug("Parsing PSON failed with error: #{err.message}")
     raise err if default == :no_default_provided
+
     default
   end
 end

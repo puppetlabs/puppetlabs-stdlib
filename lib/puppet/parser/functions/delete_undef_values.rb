@@ -31,6 +31,7 @@ module Puppet::Parser::Functions
     unless args[0].is_a?(Array) || args[0].is_a?(Hash)
       raise(Puppet::ParseError, "delete_undef_values(): expected an array or hash, got #{args[0]} type  #{args[0].class} ")
     end
+
     result = args[0].dup
     if result.is_a?(Hash)
       result.delete_if { |_, val| val.equal?(:undef) || val.nil? }

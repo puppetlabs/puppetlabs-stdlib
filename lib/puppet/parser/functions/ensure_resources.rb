@@ -38,9 +38,11 @@ DOC
   type, title, params = vals
   raise(ArgumentError, 'Must specify a type') unless type
   raise(ArgumentError, 'Must specify a title') unless title
+
   params ||= {}
 
   raise(Puppet::ParseError, 'ensure_resources(): Requires second argument to be a Hash') unless title.is_a?(Hash)
+
   resource_hash = title.dup
   resources = resource_hash.keys
 
