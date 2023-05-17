@@ -7,7 +7,7 @@ describe Facter::Util::PuppetSettings do
   describe '#with_puppet' do
     context 'without Puppet loaded' do
       before(:each) do
-        allow(Module).to receive(:const_get).with('Puppet').and_raise(NameError)
+        allow(Module).to receive(:const_get).with(:Puppet).and_raise(NameError)
       end
 
       it 'is nil' do

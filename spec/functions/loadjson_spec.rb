@@ -28,9 +28,9 @@ describe 'loadjson' do
       before(:each) do
         allow(File).to receive(:exists?).with(filename).and_return(false).once
         if Puppet::PUPPETVERSION[0].to_i < 8
-          allow(PSON).not_to receive(:load)
+          allow(PSON).to receive(:load).never # rubocop:disable RSpec/ReceiveNever  Switching to not_to receive breaks testing in this case
         else
-          allow(JSON).not_to receive(:parse)
+          allow(JSON).to receive(:parse).never # rubocop:disable RSpec/ReceiveNever
         end
       end
 
