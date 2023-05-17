@@ -4,7 +4,7 @@
 # loadyaml.rb
 #
 module Puppet::Parser::Functions
-  newfunction(:loadyaml, type: :rvalue, arity: -2, doc: <<-'DOC') do |args|
+  newfunction(:loadyaml, type: :rvalue, arity: -2, doc: <<-DOC) do |args|
     @summary
       Load a YAML file containing an array, string, or hash, and return the data
       in the corresponding native data type.
@@ -31,11 +31,11 @@ module Puppet::Parser::Functions
       if args[0].start_with?('http://', 'https://')
         username = ''
         password = ''
-        if (match = args[0].match(%r{(http\://|https\://)(.*):(.*)@(.*)}))
+        if (match = args[0].match(%r{(http://|https://)(.*):(.*)@(.*)}))
           # If URL is in the format of https://username:password@example.local/my_hash.yaml
           protocol, username, password, path = match.captures
           url = "#{protocol}#{path}"
-        elsif (match = args[0].match(%r{(http\:\/\/|https\:\/\/)(.*)@(.*)}))
+        elsif (match = args[0].match(%r{(http://|https://)(.*)@(.*)}))
           # If URL is in the format of https://username@example.local/my_hash.yaml
           protocol, username, path = match.captures
           url = "#{protocol}#{path}"

@@ -59,7 +59,7 @@ module Puppet::Parser::Functions
     else # arguments.size == 1
       value = arguments[0]
 
-      m = value.match(%r{^(\w+)(\.\.\.?|\-)(\w+)$})
+      m = value.match(%r{^(\w+)(\.\.\.?|-)(\w+)$})
       if m
         start = m[1]
         stop  = m[3]

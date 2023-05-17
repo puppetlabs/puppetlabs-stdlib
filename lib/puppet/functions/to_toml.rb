@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../puppet_x/stdlib/toml_dumper.rb'
+require_relative '../../puppet_x/stdlib/toml_dumper'
 
 # @summary Convert a data structure and output to TOML.
 Puppet::Functions.create_function(:to_toml) do

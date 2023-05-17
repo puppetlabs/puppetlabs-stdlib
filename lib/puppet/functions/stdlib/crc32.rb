@@ -25,7 +25,7 @@ Puppet::Functions.create_function(:'stdlib::crc32') do
 
   def crc32(my_data)
     Zlib.crc32(my_data.unwrap.to_s).to_s(16).downcase
-  rescue
+  rescue StandardError
     Zlib.crc32(my_data.to_s).to_s(16).downcase
   end
 end

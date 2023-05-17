@@ -3,7 +3,7 @@
 # Test whether a given class or definition is defined
 require 'puppet/parser/functions'
 
-Puppet::Parser::Functions.newfunction(:getparam, type: :rvalue, doc: <<-'DOC'
+Puppet::Parser::Functions.newfunction(:getparam, type: :rvalue, doc: <<-DOC
     @summary
       Returns the value of a resource's parameter.
 

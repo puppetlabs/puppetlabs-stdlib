@@ -31,7 +31,7 @@ describe 'validate_cmd', unless: Puppet::Util::Platform.windows? do
     context 'with % placeholder' do
       it {
         expect(subject).to run
-          .with_params('', "#{touch} % /no/such/file").and_raise_error(Puppet::ParseError, %r{Execution of '#{touch} \S+ \/no\/such\/file' returned 1:.*(cannot touch|o such file or)})
+          .with_params('', "#{touch} % /no/such/file").and_raise_error(Puppet::ParseError, %r{Execution of '#{touch} \S+ /no/such/file' returned 1:.*(cannot touch|o such file or)})
       }
 
       it { is_expected.to run.with_params('', "#{touch} % /no/such/file", 'custom error').and_raise_error(Puppet::ParseError, %r{custom error}) }
@@ -40,7 +40,7 @@ describe 'validate_cmd', unless: Puppet::Util::Platform.windows? do
     context 'without % placeholder' do
       it {
         expect(subject).to run
-          .with_params('', "#{touch} /no/such/file").and_raise_error(Puppet::ParseError, %r{Execution of '#{touch} \/no\/such\/file \S+' returned 1:.*(cannot touch|o such file or)})
+          .with_params('', "#{touch} /no/such/file").and_raise_error(Puppet::ParseError, %r{Execution of '#{touch} /no/such/file \S+' returned 1:.*(cannot touch|o such file or)})
       }
 
       it { is_expected.to run.with_params('', "#{touch} /no/such/file", 'custom error').and_raise_error(Puppet::ParseError, %r{custom error}) }

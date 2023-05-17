@@ -32,7 +32,7 @@ Puppet::Type.newtype(:file_line) do
       ensure => present,
       path   => '/etc/bashrc',
       line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
-      match  => '^export\ HTTP_PROXY\=',
+      match  => '^export HTTP_PROXY=',
     }
     ```
 
@@ -50,7 +50,7 @@ Puppet::Type.newtype(:file_line) do
     file_line { 'bashrc_proxy':
       ensure            => absent,
       path              => '/etc/bashrc',
-      match             => '^export\ HTTP_PROXY\=',
+      match             => '^export HTTP_PROXY=',
       match_for_absence => true,
     }
     ```

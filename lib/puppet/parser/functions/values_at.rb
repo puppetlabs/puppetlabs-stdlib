@@ -53,7 +53,7 @@ module Puppet::Parser::Functions
 
     indices.each do |i|
       i = i.to_s
-      m = i.match(%r{^(\d+)(\.\.\.?|\-)(\d+)$})
+      m = i.match(%r{^(\d+)(\.\.\.?|-)(\d+)$})
       if m
         start = m[1].to_i
         stop  = m[3].to_i
@@ -64,8 +64,8 @@ module Puppet::Parser::Functions
         raise(Puppet::ParseError, 'values_at(): Stop index in given indices range exceeds array size') if stop > array.size - 1 # First element is at index 0 is it not?
 
         range = case type
-                when %r{^(\.\.|\-)$} then (start..stop)
-                when %r{^(\.\.\.)$}  then (start...stop) # Exclusive of last element ...
+                when %r{^(\.\.|-)$} then (start..stop)
+                when %r{^(\.\.\.)$} then (start...stop) # Exclusive of last element ...
                 end
 
         range.each { |i| indices_list << i.to_i } # rubocop:disable Lint/ShadowingOuterLocalVariable : Value is meant to be shadowed
