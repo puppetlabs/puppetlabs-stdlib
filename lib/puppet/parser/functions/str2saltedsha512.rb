@@ -28,7 +28,7 @@ module Puppet::Parser::Functions
       raise(Puppet::ParseError, "str2saltedsha512(): Requires a String argument, you passed: #{password.class}")
     end
 
-    seedint    = rand(2**31 - 1)
+    seedint    = rand((2**31) - 1)
     seedstring = Array(seedint).pack('L')
     saltedpass = Digest::SHA512.digest(seedstring + password)
     (seedstring + saltedpass).unpack('H*')[0]

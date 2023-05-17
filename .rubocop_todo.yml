@@ -7,32 +7,6 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-Layout/HeredocIndentation:
-  Exclude:
-    - 'spec/functions/validate_x509_rsa_key_pair_spec.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: aligned, indented
-Layout/LineEndStringConcatenationIndentation:
-  Exclude:
-    - 'lib/puppet/parser/functions/glob.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Layout/RescueEnsureAlignment:
-  Exclude:
-    - 'lib/puppet/parser/functions/any2bool.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Lint/AmbiguousOperatorPrecedence:
-  Exclude:
-    - 'lib/puppet/parser/functions/str2saltedsha512.rb'
-
-# Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Lint/BooleanSymbol:
   Exclude:
@@ -45,12 +19,6 @@ Lint/ConstantDefinitionInBlock:
   Exclude:
     - 'spec/functions/get_module_path_spec.rb'
     - 'spec/unit/facter/util/puppet_settings_spec.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Lint/DeprecatedOpenSSLConstant:
-  Exclude:
-    - 'lib/puppet/parser/functions/str2saltedpbkdf2.rb'
 
 # Offense count: 3
 # Configuration parameters: IgnoreLiteralBranches, IgnoreConstantBranches.
