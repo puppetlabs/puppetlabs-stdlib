@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'parsejson' do
   it 'exists' do
-    expect(subject).not_to eq(nil)
+    expect(subject).not_to be_nil
   end
 
   it 'raises an error if called without any arguments' do

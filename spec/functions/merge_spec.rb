@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'merge' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
 
   it {
     expect(subject).to run \

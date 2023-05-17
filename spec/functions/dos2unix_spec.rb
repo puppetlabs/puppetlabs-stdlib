@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'dos2unix' do
   context 'when checking parameter validity' do
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
 
     it do
       expect(subject).to run.with_params.and_raise_error(ArgumentError, %r{Wrong number of arguments})

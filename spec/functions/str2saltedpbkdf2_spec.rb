@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'str2saltedpbkdf2' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{wrong number of arguments}i) }
   it { is_expected.to run.with_params('Pa55w0rd', 2).and_raise_error(ArgumentError, %r{wrong number of arguments}i) }
   it { is_expected.to run.with_params(1, 'Using s0m3 s@lt', 50_000).and_raise_error(ArgumentError, %r{first argument must be a string}) }

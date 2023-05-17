@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'to_yaml' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params('').and_return("--- ''\n") }
   it { is_expected.to run.with_params(true).and_return(%r{--- true\n}) }
   it { is_expected.to run.with_params('one').and_return(%r{--- one\n}) }

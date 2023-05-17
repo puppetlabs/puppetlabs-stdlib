@@ -96,11 +96,6 @@ Performance/CollectionLiteralInLoop:
   Exclude:
     - 'lib/puppet/functions/ensure_packages.rb'
 
-# Offense count: 95
-# This cop supports unsafe autocorrection (--autocorrect-all).
-RSpec/BeEq:
-  Enabled: false
-
 # Offense count: 36
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without

@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'has_interface_with' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{expects between 1 and 2 arguments, got none}) }
   it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(ArgumentError, %r{expects between 1 and 2 arguments, got 3}) }
 

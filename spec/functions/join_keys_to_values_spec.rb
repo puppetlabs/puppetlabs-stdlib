@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'join_keys_to_values' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Takes exactly two arguments}) }
   it { is_expected.to run.with_params({}, '', '').and_raise_error(Puppet::ParseError, %r{Takes exactly two arguments}) }
   it { is_expected.to run.with_params('one', '').and_raise_error(TypeError, %r{The first argument must be a hash}) }

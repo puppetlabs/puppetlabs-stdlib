@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'stdlib::ip_in_range' do
   describe 'signature validation' do
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
     it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'stdlib::ip_in_range' expects 2 arguments, got none}) }
     it { is_expected.to run.with_params('one', 'two', '3').and_raise_error(ArgumentError, %r{'stdlib::ip_in_range' expects 2 arguments, got 3}) }
     it { is_expected.to run.with_params([], []).and_raise_error(ArgumentError, %r{'stdlib::ip_in_range' parameter 'ipaddress' expects a String value, got Array}) }

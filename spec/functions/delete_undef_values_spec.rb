@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'delete_undef_values' do
   let(:is_puppet_6) { Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') == 0 }
 
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
   it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{expected an array or hash}) }
   it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError, %r{expected an array or hash}) }

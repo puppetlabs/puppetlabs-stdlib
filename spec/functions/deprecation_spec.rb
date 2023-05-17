@@ -14,7 +14,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
       Puppet.settings[:strict] = :warning
     end
 
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
     it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
 
     it 'displays a single warning' do
@@ -66,7 +66,7 @@ elsif Puppet.version.to_f < 4.0
       ENV['STDLIB_LOG_DEPRECATIONS'] = 'true'
     end
 
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
 
     it 'displays a single warning' do

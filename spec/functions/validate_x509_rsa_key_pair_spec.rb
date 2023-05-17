@@ -114,7 +114,7 @@ describe 'validate_x509_rsa_key_pair' do
   end
 
   context 'with function signature validation' do
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
     it { is_expected.to run.with_params(0, 1, 2, 3).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   end

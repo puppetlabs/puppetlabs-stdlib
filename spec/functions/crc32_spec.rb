@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'stdlib::crc32' do
   context 'when default' do
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
     it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{stdlib::crc32}) }
   end
 

@@ -6,7 +6,7 @@ describe 'validate_cmd', unless: Puppet::Util::Platform.windows? do
   let(:touch) { File.exist?('/usr/bin/touch') ? '/usr/bin/touch' : '/bin/touch' }
 
   describe 'signature validation' do
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
     it { is_expected.to run.with_params('').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
     it { is_expected.to run.with_params('', '', '', 'extra').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }

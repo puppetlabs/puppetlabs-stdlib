@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'fqdn_rand_string' do
   let(:default_charset) { %r{\A[a-zA-Z0-9]{100}\z} }
 
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{expects at least 1 argument, got none}i) }
   it { is_expected.to run.with_params(0).and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer\[1\] value, got Integer\[0, 0\]}) }
   it { is_expected.to run.with_params(1.5).and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer\ value, got Float}) }

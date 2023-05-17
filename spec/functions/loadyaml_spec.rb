@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'loadyaml' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{wrong number of arguments}i) }
 
   context 'when a non-existing file is specified' do

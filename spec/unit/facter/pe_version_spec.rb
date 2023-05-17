@@ -31,7 +31,7 @@ describe 'PE Version specs' do
         (major, minor, patch) = version.split('.')
 
         it 'returns true' do
-          expect(Facter.fact(:is_pe).value).to eq(true)
+          expect(Facter.fact(:is_pe).value).to be(true)
         end
 
         it "has a version of #{version}" do
@@ -59,7 +59,7 @@ describe 'PE Version specs' do
     end
 
     it 'is_pe is false' do
-      expect(Facter.fact(:is_pe).value).to eq(false)
+      expect(Facter.fact(:is_pe).value).to be(false)
     end
 
     it 'pe_version is nil' do

@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'parsepson' do
   if Puppet::Util::Package.versioncmp(Puppet.version, '8.0.0').negative?
     it 'exists' do
-      expect(subject).not_to eq(nil)
+      expect(subject).not_to be_nil
     end
 
     it 'raises an error if called without any arguments' do

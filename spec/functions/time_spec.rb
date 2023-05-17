@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'time' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params('a', '').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
 
   context 'when running at a specific time' do

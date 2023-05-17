@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'convert_base' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
   it { is_expected.to run.with_params('asdf').and_raise_error(ArgumentError) }
   it { is_expected.to run.with_params('asdf', 'moo', 'cow').and_raise_error(ArgumentError) }
