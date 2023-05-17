@@ -20,9 +20,7 @@ module Puppet::Parser::Functions
     ```['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }```
   DOC
   ) do |arguments|
-    if arguments.size != 2
-      raise(Puppet::ParseError, "grep(): Wrong number of arguments given #{arguments.size} for 2")
-    end
+    raise(Puppet::ParseError, "grep(): Wrong number of arguments given #{arguments.size} for 2") if arguments.size != 2
 
     a = arguments[0]
     pattern = Regexp.new(arguments[1])

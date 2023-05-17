@@ -152,9 +152,7 @@ Puppet::Type.newtype(:file_line) do
   newparam(:path) do
     desc 'The file Puppet will ensure contains the line specified by the line parameter.'
     validate do |value|
-      unless Puppet::Util.absolute_path?(value)
-        raise Puppet::Error, "File paths must be fully qualified, not '#{value}'"
-      end
+      raise Puppet::Error, "File paths must be fully qualified, not '#{value}'" unless Puppet::Util.absolute_path?(value)
     end
   end
 
@@ -187,20 +185,12 @@ Puppet::Type.newtype(:file_line) do
     self[:path]
   end
   validate do
-    if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:multiple].to_s == 'false'
-      raise(Puppet::Error, 'multiple must be true when replace_all_matches_not_matching_line is true')
-    end
-    if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:replace].to_s == 'false'
-      raise(Puppet::Error, 'replace must be true when replace_all_matches_not_matching_line is true')
-    end
+    raise(Puppet::Error, 'multiple must be true when replace_all_matches_not_matching_line is true') if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:multiple].to_s == 'false'
+    raise(Puppet::Error, 'replace must be true when replace_all_matches_not_matching_line is true') if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:replace].to_s == 'false'
 
     unless self[:line]
-      unless (self[:ensure].to_s == 'absent') && (self[:match_for_absence].to_s == 'true') && self[:match]
-        raise(Puppet::Error, 'line is a required attribute')
-      end
+      raise(Puppet::Error, 'line is a required attribute') unless (self[:ensure].to_s == 'absent') && (self[:match_for_absence].to_s == 'true') && self[:match]
     end
-    unless self[:path]
-      raise(Puppet::Error, 'path is a required attribute')
-    end
+    raise(Puppet::Error, 'path is a required attribute') unless self[:path]
   end
 end

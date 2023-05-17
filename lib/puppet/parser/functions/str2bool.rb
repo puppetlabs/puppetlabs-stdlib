@@ -21,13 +21,9 @@ module Puppet::Parser::Functions
     string = arguments[0]
 
     # If string is already Boolean, return it
-    if !!string == string # rubocop:disable Style/DoubleNegation : No viable alternative
-      return string
-    end
+    return string if !!string == string # rubocop:disable Style/DoubleNegation : No viable alternative
 
-    unless string.is_a?(String)
-      raise(Puppet::ParseError, 'str2bool(): Requires string to work with')
-    end
+    raise(Puppet::ParseError, 'str2bool(): Requires string to work with') unless string.is_a?(String)
 
     # We consider all the yes, no, y, n and so on too ...
     result = case string

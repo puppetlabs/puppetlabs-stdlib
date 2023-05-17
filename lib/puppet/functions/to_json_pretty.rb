@@ -61,11 +61,9 @@ max_nesting  => Optional[Integer[-1,default]],
     # It's not possible to make an abstract type that can be either a boolean
     # false or an integer, so we use -1 as the falsey value
     if opts
-      opts = Hash[opts.map { |k, v| [k.to_sym, v] }]
+      opts = opts.map { |k, v| [k.to_sym, v] }.to_h
 
-      if opts[:max_nesting] == -1
-        opts[:max_nesting] = false
-      end
+      opts[:max_nesting] = false if opts[:max_nesting] == -1
     end
 
     if skip_undef
@@ -77,6 +75,6 @@ max_nesting  => Optional[Integer[-1,default]],
     end
     # Call ::JSON to ensure it references the JSON library from Ruby's standard library
     # instead of a random JSON namespace that might be in scope due to user code.
-    ::JSON.pretty_generate(data, opts) << "\n"
+    JSON.pretty_generate(data, opts) << "\n"
   end
 end

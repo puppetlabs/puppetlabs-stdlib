@@ -12,9 +12,7 @@ module Puppet::Parser::Functions
     Takes a single string argument.
   DOC
   ) do |arguments|
-    unless arguments[0].is_a?(String)
-      raise(Puppet::ParseError, 'unix2dos(): Requires string as argument')
-    end
+    raise(Puppet::ParseError, 'unix2dos(): Requires string as argument') unless arguments[0].is_a?(String)
 
     arguments[0].gsub(%r{\r*\n}, "\r\n")
   end

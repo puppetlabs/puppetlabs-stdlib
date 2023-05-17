@@ -16,9 +16,7 @@ module Puppet::Parser::Functions
 
     value = arguments[0]
 
-    unless value.is_a?(Array) || value.is_a?(String)
-      raise(Puppet::ParseError, 'shuffle(): Requires either array or string to work with')
-    end
+    raise(Puppet::ParseError, 'shuffle(): Requires either array or string to work with') unless value.is_a?(Array) || value.is_a?(String)
 
     result = value.clone
 

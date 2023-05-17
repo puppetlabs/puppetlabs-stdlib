@@ -22,9 +22,7 @@ module Puppet::Parser::Functions
     a = arguments[0]
     b = arguments[1]
 
-    unless a.is_a?(Array) && b.is_a?(Array)
-      raise(Puppet::ParseError, 'zip(): Requires array to work with')
-    end
+    raise(Puppet::ParseError, 'zip(): Requires array to work with') unless a.is_a?(Array) && b.is_a?(Array)
 
     flatten = function_str2bool([arguments[2]]) if arguments[2]
 

@@ -47,9 +47,7 @@ module Puppet::Parser::Functions
       raise Puppet::ParseError, 'validate_augeas(): this function requires the augeas feature. See http://docs.puppetlabs.com/guides/augeas.html#pre-requisites for how to activate it.'
     end
 
-    if (args.length < 2) || (args.length > 4)
-      raise Puppet::ParseError, "validate_augeas(): wrong number of arguments (#{args.length}; must be 2, 3, or 4)"
-    end
+    raise Puppet::ParseError, "validate_augeas(): wrong number of arguments (#{args.length}; must be 2, 3, or 4)" if (args.length < 2) || (args.length > 4)
 
     msg = args[3] || "validate_augeas(): Failed to validate content against #{args[1].inspect}"
 

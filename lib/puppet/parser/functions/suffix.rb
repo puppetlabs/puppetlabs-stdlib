@@ -29,16 +29,12 @@ module Puppet::Parser::Functions
 
     enumerable = arguments[0]
 
-    unless enumerable.is_a?(Array) || enumerable.is_a?(Hash)
-      raise Puppet::ParseError, "suffix(): expected first argument to be an Array or a Hash, got #{enumerable.inspect}"
-    end
+    raise Puppet::ParseError, "suffix(): expected first argument to be an Array or a Hash, got #{enumerable.inspect}" unless enumerable.is_a?(Array) || enumerable.is_a?(Hash)
 
     suffix = arguments[1] if arguments[1]
 
     if suffix
-      unless suffix.is_a? String
-        raise Puppet::ParseError, "suffix(): expected second argument to be a String, got #{suffix.inspect}"
-      end
+      raise Puppet::ParseError, "suffix(): expected second argument to be a String, got #{suffix.inspect}" unless suffix.is_a? String
     end
 
     result = if enumerable.is_a?(Array)
@@ -48,10 +44,10 @@ module Puppet::Parser::Functions
                  suffix ? i + suffix : i
                end
              else
-               Hash[enumerable.map do |k, v|
+               enumerable.map { |k, v|
                  k = k.to_s
                  [suffix ? k + suffix : k, v]
-               end]
+               }.to_h
              end
 
     return result

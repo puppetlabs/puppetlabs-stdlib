@@ -22,9 +22,7 @@ DOC
   value = args.shift
   require 'digest/md5'
 
-  unless value.is_a?(Array) || value.is_a?(String)
-    raise(Puppet::ParseError, 'fqdn_rotate(): Requires either array or string to work with')
-  end
+  raise(Puppet::ParseError, 'fqdn_rotate(): Requires either array or string to work with') unless value.is_a?(Array) || value.is_a?(String)
 
   result = value.clone
 

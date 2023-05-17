@@ -30,9 +30,7 @@ module Puppet::Parser::Functions
     a = arguments[0]
 
     # Check that the first parameter is an array
-    unless a.is_a?(Array)
-      raise(Puppet::ParseError, 'concat(): Requires array to work with')
-    end
+    raise(Puppet::ParseError, 'concat(): Requires array to work with') unless a.is_a?(Array)
 
     result = a
     arguments.shift

@@ -24,9 +24,7 @@ module Puppet::Parser::Functions
 
     password = arguments[0]
 
-    unless password.is_a?(String)
-      raise(Puppet::ParseError, "str2saltedsha512(): Requires a String argument, you passed: #{password.class}")
-    end
+    raise(Puppet::ParseError, "str2saltedsha512(): Requires a String argument, you passed: #{password.class}") unless password.is_a?(String)
 
     seedint    = rand((2**31) - 1)
     seedstring = Array(seedint).pack('L')

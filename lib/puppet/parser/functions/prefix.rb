@@ -25,16 +25,12 @@ module Puppet::Parser::Functions
 
     enumerable = arguments[0]
 
-    unless enumerable.is_a?(Array) || enumerable.is_a?(Hash)
-      raise Puppet::ParseError, "prefix(): expected first argument to be an Array or a Hash, got #{enumerable.inspect}"
-    end
+    raise Puppet::ParseError, "prefix(): expected first argument to be an Array or a Hash, got #{enumerable.inspect}" unless enumerable.is_a?(Array) || enumerable.is_a?(Hash)
 
     prefix = arguments[1] if arguments[1]
 
     if prefix
-      unless prefix.is_a?(String)
-        raise Puppet::ParseError, "prefix(): expected second argument to be a String, got #{prefix.inspect}"
-      end
+      raise Puppet::ParseError, "prefix(): expected second argument to be a String, got #{prefix.inspect}" unless prefix.is_a?(String)
     end
 
     result = if enumerable.is_a?(Array)
@@ -44,10 +40,10 @@ module Puppet::Parser::Functions
                  prefix ? prefix + i : i
                end
              else
-               Hash[enumerable.map do |k, v|
+               enumerable.map { |k, v|
                  k = k.to_s
                  [prefix ? prefix + k : k, v]
-               end]
+               }.to_h
              end
 
     return result

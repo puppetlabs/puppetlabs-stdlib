@@ -27,21 +27,15 @@ module Puppet::Parser::Functions
   DOC
   ) do |arguments|
     # Validate the number of arguments.
-    if arguments.size != 2
-      raise(Puppet::ParseError, "join_keys_to_values(): Takes exactly two arguments, but #{arguments.size} given.")
-    end
+    raise(Puppet::ParseError, "join_keys_to_values(): Takes exactly two arguments, but #{arguments.size} given.") if arguments.size != 2
 
     # Validate the first argument.
     hash = arguments[0]
-    unless hash.is_a?(Hash)
-      raise(TypeError, "join_keys_to_values(): The first argument must be a hash, but a #{hash.class} was given.")
-    end
+    raise(TypeError, "join_keys_to_values(): The first argument must be a hash, but a #{hash.class} was given.") unless hash.is_a?(Hash)
 
     # Validate the second argument.
     separator = arguments[1]
-    unless separator.is_a?(String)
-      raise(TypeError, "join_keys_to_values(): The second argument must be a string, but a #{separator.class} was given.")
-    end
+    raise(TypeError, "join_keys_to_values(): The second argument must be a string, but a #{separator.class} was given.") unless separator.is_a?(String)
 
     # Join the keys to their values.
     hash.map { |k, v|

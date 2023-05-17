@@ -27,9 +27,7 @@ module Puppet::Parser::Functions
     # The Time Zone argument is optional ...
     time_zone = arguments[0] if arguments[0]
 
-    if !arguments.empty? && (arguments.size != 1)
-      raise(Puppet::ParseError, "time(): Wrong number of arguments given #{arguments.size} for 0 or 1")
-    end
+    raise(Puppet::ParseError, "time(): Wrong number of arguments given #{arguments.size} for 0 or 1") if !arguments.empty? && (arguments.size != 1)
 
     time = Time.new
 

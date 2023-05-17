@@ -41,13 +41,9 @@ module Puppet::Parser::Functions
 
     array = arguments[0]
 
-    unless array.is_a?(Array)
-      raise(Puppet::ParseError, 'member(): Requires array to work with')
-    end
+    raise(Puppet::ParseError, 'member(): Requires array to work with') unless array.is_a?(Array)
 
-    unless arguments[1].is_a?(String) || arguments[1].is_a?(Integer) || arguments[1].is_a?(Array)
-      raise(Puppet::ParseError, 'member(): Item to search for must be a string, fixnum, or array')
-    end
+    raise(Puppet::ParseError, 'member(): Item to search for must be a string, fixnum, or array') unless arguments[1].is_a?(String) || arguments[1].is_a?(Integer) || arguments[1].is_a?(Array)
 
     item = if arguments[1].is_a?(String) || arguments[1].is_a?(Integer)
              [arguments[1]]

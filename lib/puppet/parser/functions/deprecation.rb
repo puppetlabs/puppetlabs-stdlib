@@ -20,8 +20,6 @@ module Puppet::Parser::Functions
     key = arguments[0]
     message = arguments[1]
 
-    if ENV['STDLIB_LOG_DEPRECATIONS'] == 'true'
-      warning("deprecation. #{key}. #{message}")
-    end
+    warning("deprecation. #{key}. #{message}") if ENV['STDLIB_LOG_DEPRECATIONS'] == 'true'
   end
 end

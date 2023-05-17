@@ -15,9 +15,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     lines_count = 0
     lines.each do |line|
       found = line.chomp == resource[:line]
-      if found
-        lines_count += 1
-      end
+      lines_count += 1 if found
     end
     return found = lines_count > 0 if resource[:match].nil?
 
@@ -113,9 +111,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     match_regex = new_match_regex
     match_count = count_matches(new_match_regex)
 
-    if match_count > 1 && resource[:multiple].to_s != 'true'
-      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
-    end
+    raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'" if match_count > 1 && resource[:multiple].to_s != 'true'
 
     File.open(resource[:path], 'w') do |fh|
       lines.each do |line|
@@ -128,9 +124,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
         end
       end
 
-      if match_count.zero?
-        fh.puts(resource[:line])
-      end
+      fh.puts(resource[:line]) if match_count.zero?
     end
   end
 
@@ -145,23 +139,17 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     File.open(resource[:path], 'w') do |fh|
       lines.each do |line|
         fh.puts(line)
-        if after_regex.match(line)
-          fh.puts(resource[:line])
-        end
+        fh.puts(resource[:line]) if after_regex.match(line)
       end
 
-      if after_count.zero?
-        fh.puts(resource[:line])
-      end
+      fh.puts(resource[:line]) if after_count.zero?
     end
   end
 
   def handle_destroy_with_match
     match_regex = new_match_regex
     match_count = count_matches(match_regex)
-    if match_count > 1 && resource[:multiple].to_s != 'true'
-      raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'"
-    end
+    raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'" if match_count > 1 && resource[:multiple].to_s != 'true'
 
     local_lines = lines
     File.write(resource[:path], local_lines.reject { |line| match_regex.match(line) }.join(''))

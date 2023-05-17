@@ -11,9 +11,7 @@ module Puppet::Parser::Functions
     @return The retrieved version
   DOC
   ) do |arguments|
-    unless arguments[0].is_a?(String)
-      raise(Puppet::ParseError, 'dos2unix(): Requires string as argument')
-    end
+    raise(Puppet::ParseError, 'dos2unix(): Requires string as argument') unless arguments[0].is_a?(String)
 
     arguments[0].gsub(%r{\r\n}, "\n")
   end

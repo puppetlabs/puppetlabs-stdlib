@@ -27,9 +27,7 @@ module Puppet::Parser::Functions
     @return [Integer] The amount of elements counted within the array
   DOC
   ) do |args|
-    if args.size > 2
-      raise(ArgumentError, "count(): Wrong number of arguments given #{args.size} for 1 or 2.")
-    end
+    raise(ArgumentError, "count(): Wrong number of arguments given #{args.size} for 1 or 2.") if args.size > 2
 
     collection, item = args
 
