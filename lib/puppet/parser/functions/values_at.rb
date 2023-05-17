@@ -37,7 +37,7 @@ module Puppet::Parser::Functions
     `['a', 'b', 'c', 'd'][2, -1]`  results in `['c', 'd']`
     `['a', 'b', 'c', 'd'][1, -2]`  results in `['b', 'c']`
 
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "values_at(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 

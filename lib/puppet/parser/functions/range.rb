@@ -43,7 +43,7 @@ module Puppet::Parser::Functions
       the step() function in Puppet for skipping values.
 
      Integer[0, 9].each |$x| { notice($x) } # notices 0, 1, 2, ... 9
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, 'range(): Wrong number of arguments given (0 for 1)') if arguments.empty?
 

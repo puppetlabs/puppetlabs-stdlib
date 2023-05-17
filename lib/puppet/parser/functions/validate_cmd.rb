@@ -32,7 +32,7 @@ module Puppet::Parser::Functions
       % as file location
         validate_cmd($haproxycontent, '/usr/sbin/haproxy -f % -c', 'Haproxy failed to validate config content')
 
-    DOC
+  DOC
   ) do |args|
     if (args.length < 2) || (args.length > 3)
       raise Puppet::ParseError, "validate_cmd(): wrong number of arguments (#{args.length}; must be 2 or 3)"

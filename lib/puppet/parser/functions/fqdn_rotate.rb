@@ -15,7 +15,7 @@ Puppet::Parser::Functions.newfunction(:fqdn_rotate, type: :rvalue, doc: <<-DOC
     fqdn_rotate(['a', 'b', 'c', 'd'])
     fqdn_rotate('abcd')
     fqdn_rotate([1, 2, 3], 'custom seed')
-  DOC
+DOC
 ) do |args|
   raise(Puppet::ParseError, "fqdn_rotate(): Wrong number of arguments given (#{args.size} for 1)") if args.empty?
 

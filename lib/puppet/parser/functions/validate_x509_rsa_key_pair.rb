@@ -17,7 +17,7 @@ module Puppet::Parser::Functions
 
     ```validate_x509_rsa_key_pair($cert, $key)```
 
-    DOC
+  DOC
   ) do |args|
     require 'openssl'
 

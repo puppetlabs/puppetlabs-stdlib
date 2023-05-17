@@ -22,7 +22,7 @@ module Puppet::Parser::Functions
 
     ```Timestamp()```
 
-    DOC
+  DOC
   ) do |arguments|
     # The Time Zone argument is optional ...
     time_zone = arguments[0] if arguments[0]

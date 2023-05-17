@@ -28,7 +28,7 @@ module Puppet::Parser::Functions
       ```
 
     @return [Integer] The converted value as a number
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "bool2num(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 

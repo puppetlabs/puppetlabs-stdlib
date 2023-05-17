@@ -9,7 +9,7 @@ module Puppet::Parser::Functions
       Returns the dirname of a path.
 
     @return [String] the given path's dirname
-    DOC
+  DOC
   ) do |arguments|
     if arguments.empty?
       raise(Puppet::ParseError, 'dirname(): No arguments given')

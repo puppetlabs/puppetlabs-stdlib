@@ -12,7 +12,7 @@ module Puppet::Parser::Functions
       set the current class or definition as private.
 
     Calling the class or definition from outside the current module will fail.
-    DOC
+  DOC
   ) do |args|
     raise(Puppet::ParseError, "assert_private(): Wrong number of arguments given (#{args.size}}) for 0 or 1)") if args.size > 1
 

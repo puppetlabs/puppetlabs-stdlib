@@ -10,7 +10,7 @@ module Puppet::Parser::Functions
       Requires either a single string or an array as an input.
     @return [String]
       A string of characters with metacharacters converted to their escaped form.
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "regexpescape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 

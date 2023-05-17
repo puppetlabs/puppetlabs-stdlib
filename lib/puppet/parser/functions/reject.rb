@@ -21,7 +21,7 @@ module Puppet::Parser::Functions
     > *Note:*
     Since Puppet 4.0.0 the same is in general done with the filter function. Here is the equivalence of the reject() function:
     ['aaa','bbb','ccc','aaaddd'].filter |$x| { $x !~ /aaa/ }
-DOC
+  DOC
 
     if args.size != 2
       raise Puppet::ParseError,

@@ -37,7 +37,7 @@ module Puppet::Parser::Functions
         notice(String(false, '%y'))   # Notices 'yes'
         notice(String(true, '%y'))    # Notices 'no'
       ```
-    DOC
+  DOC
   ) do |arguments|
     unless arguments.size == 1 || arguments.size == 3
       raise(Puppet::ParseError, "bool2str(): Wrong number of arguments given (#{arguments.size} for 3)")

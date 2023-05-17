@@ -16,7 +16,7 @@ module Puppet::Parser::Functions
 
       swapcase("aBcD")
       Would result in: "AbCd"
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "swapcase(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 

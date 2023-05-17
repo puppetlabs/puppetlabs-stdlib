@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
     Takes a single string value as an argument.
     These conversions reflect a layperson's understanding of
     1 MB = 1024 KB, when in fact 1 MB = 1000 KB, and 1 MiB = 1024 KiB.
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "to_bytes(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 

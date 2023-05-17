@@ -20,7 +20,7 @@ module Puppet::Parser::Functions
 
     Note that since Puppet 4.0.0 the same merge can be achieved with the + operator.
       `$merged_hash = $hash1 + $hash2`
-    DOC
+  DOC
 
     if args.length < 2
       raise Puppet::ParseError, "merge(): wrong number of arguments (#{args.length}; must be at least 2)"

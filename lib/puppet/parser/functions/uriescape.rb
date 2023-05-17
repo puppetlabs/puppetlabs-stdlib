@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
     @return [String]
       a string that contains the converted value
 
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "uriescape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 

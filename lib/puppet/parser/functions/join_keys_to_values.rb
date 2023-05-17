@@ -24,7 +24,7 @@ module Puppet::Parser::Functions
     line breaks, delimiters around arrays and hash entries, between key/values in hash entries, and individual
     formatting of values in the array) - see the `new` function for `String` and its formatting
     options for `Array` and `Hash`.
-    DOC
+  DOC
   ) do |arguments|
     # Validate the number of arguments.
     if arguments.size != 2

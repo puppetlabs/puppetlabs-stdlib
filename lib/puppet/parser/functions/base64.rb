@@ -33,7 +33,7 @@ module Puppet::Parser::Functions
         function for reading a file with binary (non UTF-8) content.
 
     @return [String] The encoded/decoded value
-    DOC
+  DOC
 
     require 'base64'
 

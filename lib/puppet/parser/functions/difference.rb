@@ -24,7 +24,7 @@ module Puppet::Parser::Functions
     @return [Array]
       The difference between the two given arrays
 
-    DOC
+  DOC
   ) do |arguments|
     # Two arguments are required
     raise(Puppet::ParseError, "difference(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size != 2

@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
     @example Example Usage:
       intersection(["a","b","c"],["b","c","d"])  # returns ["b","c"]
       intersection(["a","b","c"],[1,2,3,4])      # returns [] (true, when evaluated as a Boolean)
-    DOC
+  DOC
   ) do |arguments|
     # Two arguments are required
     raise(Puppet::ParseError, "intersection(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size != 2

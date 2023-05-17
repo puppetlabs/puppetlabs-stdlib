@@ -35,7 +35,7 @@ Puppet::Parser::Functions.newfunction(:pw_hash, type: :rvalue, arity: 3, doc: <<
   > *Note:*: this uses the Puppet Server's implementation of crypt(3). If your
     environment contains several different operating systems, ensure that they
     are compatible before using this function.
-  DOC
+DOC
 ) do |args|
   raise ArgumentError, "pw_hash(): wrong number of arguments (#{args.size} for 3)" if args.size != 3
   args.map! do |arg|

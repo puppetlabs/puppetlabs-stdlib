@@ -20,7 +20,7 @@ module Puppet::Parser::Functions
     $hash.filter |$key, $val| { $val != 'B' }
 
     @return [Hash] The given hash now missing all instances of the targeted value
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "delete_values(): Wrong number of arguments given (#{arguments.size} of 2)") if arguments.size != 2
 

@@ -27,7 +27,7 @@ module Puppet::Parser::Functions
       `$hex_repr = String(254, "%#x")` return `"0xfe"`
 
       @return [String] The converted value as a String
-    DOC
+  DOC
 
     raise Puppet::ParseError, 'convert_base(): First argument must be either a string or an integer' unless args[0].is_a?(Integer) || args[0].is_a?(String)
     raise Puppet::ParseError, 'convert_base(): Second argument must be either a string or an integer' unless args[1].is_a?(Integer) || args[1].is_a?(String)

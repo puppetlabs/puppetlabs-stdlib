@@ -42,7 +42,7 @@ Puppet::Parser::Functions.newfunction(:getparam, type: :rvalue, doc: <<-'DOC'
     and the [ ] operator. The example below is equivalent to a call to getparam():
       ```Example_resource['example_resource_instance']['param']``
 
-  DOC
+DOC
 ) do |vals|
   reference, param = vals
   raise(ArgumentError, 'Must specify a reference') unless reference

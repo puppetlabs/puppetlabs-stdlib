@@ -22,7 +22,7 @@ module Puppet::Parser::Functions
       When there is a duplicate key that is not a hash, the key in the rightmost hash will "win."
 
     @return [Hash] The merged hash
-    DOC
+  DOC
 
     if args.length < 2
       raise Puppet::ParseError, "deep_merge(): wrong number of arguments (#{args.length}; must be at least 2)"

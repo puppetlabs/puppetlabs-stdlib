@@ -10,7 +10,7 @@ module Puppet::Parser::Functions
       the DOS version of the given string.
 
     Takes a single string argument.
-    DOC
+  DOC
   ) do |arguments|
     unless arguments[0].is_a?(String)
       raise(Puppet::ParseError, 'unix2dos(): Requires string as argument')

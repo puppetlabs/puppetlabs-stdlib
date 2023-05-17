@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
     @example
       zip(['1','2','3'],['4','5','6'])
       Would result in: ["1", "4"], ["2", "5"], ["3", "6"]
-    DOC
+  DOC
   ) do |arguments|
     # Technically we support three arguments but only first is mandatory ...
     raise(Puppet::ParseError, "zip(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2

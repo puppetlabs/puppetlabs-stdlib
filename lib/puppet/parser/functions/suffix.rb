@@ -22,7 +22,7 @@ module Puppet::Parser::Functions
 
     ```['a', 'b', 'c'].map |$x| { "${x}p" }```
 
-    DOC
+  DOC
   ) do |arguments|
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "suffix(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?

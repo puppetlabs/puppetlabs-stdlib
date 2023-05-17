@@ -13,7 +13,7 @@ module Puppet::Parser::Functions
 
     @example Example Usage:
       $confs = glob(['/etc/**/*.conf', '/opt/**/*.conf'])
-    DOC
+  DOC
   ) do |arguments|
     unless arguments.size == 1
       raise(Puppet::ParseError, 'glob(): Wrong number of arguments given ' \

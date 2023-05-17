@@ -35,7 +35,7 @@ module Puppet::Parser::Functions
     > **Note** that since Puppet 5.2.0, the general form to test the content of an array or
     hash is to use the built-in [`any`](https://puppet.com/docs/puppet/latest/function.html#any)
     and [`all`](https://puppet.com/docs/puppet/latest/function.html#all) functions.
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "member(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 

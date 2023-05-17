@@ -23,7 +23,7 @@ module Puppet::Parser::Functions
       `[$minval, $maxval, $value_to_clamp].sort[1]`
 
     @return [Array[Integer]] The sorted Array
-    DOC
+  DOC
   ) do |args|
     args.flatten!
 

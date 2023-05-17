@@ -18,7 +18,7 @@ module Puppet::Parser::Functions
     ['a', 'b', 'c'].map |$x| { "p${x}" }
 
     @return [Hash] or [Array] The passed values now contains the passed prefix
-    DOC
+  DOC
   ) do |arguments|
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "prefix(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?

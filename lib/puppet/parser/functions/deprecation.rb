@@ -13,7 +13,7 @@ module Puppet::Parser::Functions
 
   @return [String]
     return deprecation warnings
-DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "deprecation: Wrong number of arguments given (#{arguments.size} for 2)") unless arguments.size == 2
 

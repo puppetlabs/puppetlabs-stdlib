@@ -24,7 +24,7 @@ module Puppet::Parser::Functions
     $hash.filter |$key, $val| { $val =~ NotUndef }
 
     @return [Array] The given array now issing of undefined values.
-    DOC
+  DOC
   ) do |args|
     raise(Puppet::ParseError, "delete_undef_values(): Wrong number of arguments given (#{args.size})") if args.empty?
 

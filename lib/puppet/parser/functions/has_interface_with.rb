@@ -19,7 +19,7 @@ module Puppet::Parser::Functions
 
     @example If no "kind" is given, then the presence of the interface is checked:
       has_interface_with("lo") # Returns `true`
-    DOC
+  DOC
   ) do |args|
     raise(Puppet::ParseError, "has_interface_with(): Wrong number of arguments given (#{args.size} for 1 or 2)") if args.empty? || args.size > 2
 

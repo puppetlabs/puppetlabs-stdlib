@@ -16,7 +16,7 @@ module Puppet::Parser::Functions
     Given any simple string, you will get a hex version
     of a salted-SHA512 password hash that can be inserted into your Puppet
     manifests as a valid password attribute.
-    DOC
+  DOC
   ) do |arguments|
     require 'digest/sha2'
 
