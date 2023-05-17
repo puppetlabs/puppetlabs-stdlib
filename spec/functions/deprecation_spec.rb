@@ -9,6 +9,11 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
       Puppet.settings[:strict] = :warning
     end
 
+    after(:each) do
+      # this is to reset the strict variable to default
+      Puppet.settings[:strict] = :warning
+    end
+
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
 
@@ -36,7 +41,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
 
     it 'fails twice with message, with multiple calls. when strict= :error' do
       Puppet.settings[:strict] = :error
-      expect(Puppet).to receive(:warning).with(include('heelo')).never
+      expect(Puppet).not_to receive(:warning).with(include('heelo'))
       (0..1).each do |_i|
         is_expected.to run.with_params('key', 'heelo').and_raise_error(RuntimeError, %r{deprecation. key. heelo})
       end
@@ -44,15 +49,10 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
 
     it 'displays nothing, despite multiple calls. strict= :off' do
       Puppet.settings[:strict] = :off
-      expect(Puppet).to receive(:warning).with(include('heelo')).never
+      expect(Puppet).not_to receive(:warning).with(include('heelo'))
       (0..1).each do |_i|
         is_expected.to run.with_params('key', 'heelo')
       end
-    end
-
-    after(:each) do
-      # this is to reset the strict variable to default
-      Puppet.settings[:strict] = :warning
     end
   end
 elsif Puppet.version.to_f < 4.0
@@ -61,9 +61,11 @@ elsif Puppet.version.to_f < 4.0
     after(:each) do
       ENV.delete('STDLIB_LOG_DEPRECATIONS')
     end
+
     before(:each) do
       ENV['STDLIB_LOG_DEPRECATIONS'] = 'true'
     end
+
     it { is_expected.not_to eq(nil) }
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
 

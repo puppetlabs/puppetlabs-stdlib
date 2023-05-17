@@ -19,6 +19,7 @@ describe 'delete_undef_values' do
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == ''
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == :undef && is_puppet_6
         end
+
         it { is_expected.to run.with_params([undef_value]).and_return([]) }
         it { is_expected.to run.with_params(['one', undef_value, 'two', 'three']).and_return(['one', 'two', 'three']) }
         it { is_expected.to run.with_params(['ớņέ', undef_value, 'ŧשּׁō', 'ŧħґëə']).and_return(['ớņέ', 'ŧשּׁō', 'ŧħґëə']) }
@@ -42,6 +43,7 @@ describe 'delete_undef_values' do
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == ''
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == :undef && is_puppet_6
         end
+
         it { is_expected.to run.with_params('key' => undef_value).and_return({}) }
 
         it {

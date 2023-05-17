@@ -28,11 +28,12 @@ describe 'loadjson' do
       before(:each) do
         allow(File).to receive(:exists?).with(filename).and_return(false).once
         if Puppet::PUPPETVERSION[0].to_i < 8
-          allow(PSON).to receive(:load).never
+          allow(PSON).not_to receive(:load)
         else
-          allow(JSON).to receive(:parse).never
+          allow(JSON).not_to receive(:parse)
         end
       end
+
       it { is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value') }
       it { is_expected.to run.with_params(filename, 'đẽƒằưļŧ' => '٧ẵłựέ').and_return('đẽƒằưļŧ' => '٧ẵłựέ') }
       it { is_expected.to run.with_params(filename, 'デフォルト' => '値').and_return('デフォルト' => '値') }
@@ -59,6 +60,7 @@ describe 'loadjson' do
           allow(JSON).to receive(:parse).with(json).and_return(data).once
         end
       end
+
       it { is_expected.to run.with_params(filename).and_return(data) }
     end
 
@@ -81,6 +83,7 @@ describe 'loadjson' do
           allow(JSON).to receive(:parse).with(json).once.and_raise StandardError, 'Something terrible have happened!'
         end
       end
+
       it { is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value') }
     end
 

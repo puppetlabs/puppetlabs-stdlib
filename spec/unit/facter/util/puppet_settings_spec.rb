@@ -15,10 +15,11 @@ describe Facter::Util::PuppetSettings do
       end
 
       it 'does not yield to the block' do
-        expect(Puppet).to receive(:[]).never
+        expect(Puppet).not_to receive(:[])
         expect(subject.with_puppet { Puppet[:vardir] }).to be_nil
       end
     end
+
     context 'with Puppet loaded' do
       # module Puppet
       module Puppet; end

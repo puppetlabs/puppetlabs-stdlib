@@ -140,44 +140,10 @@ RSpec/ContextWording:
 RSpec/DescribeClass:
   Enabled: false
 
-# Offense count: 25
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/EmptyLineAfterExampleGroup:
-  Exclude:
-    - 'spec/functions/defined_with_params_spec.rb'
-    - 'spec/functions/stdlib_ensure_spec.rb'
-    - 'spec/functions/swapcase_spec.rb'
-    - 'spec/functions/validate_cmd_spec.rb'
-    - 'spec/type_aliases/email_spec.rb'
-    - 'spec/type_aliases/ensure_package_spec.rb'
-    - 'spec/unit/facter/util/puppet_settings_spec.rb'
-    - 'spec/unit/puppet/provider/file_line/ruby_spec.rb'
-    - 'spec/unit/puppet/provider/file_line/ruby_spec_alter.rb'
-
-# Offense count: 13
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowConsecutiveOneLiners.
-RSpec/EmptyLineAfterHook:
-  Exclude:
-    - 'spec/functions/delete_undef_values_spec.rb'
-    - 'spec/functions/deprecation_spec.rb'
-    - 'spec/functions/get_module_path_spec.rb'
-    - 'spec/functions/loadjson_spec.rb'
-    - 'spec/functions/time_spec.rb'
-    - 'spec/unit/puppet/provider/file_line/ruby_spec_alter.rb'
-
 # Offense count: 10
 # Configuration parameters: CountAsOne.
 RSpec/ExampleLength:
   Max: 9
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: CustomTransform, IgnoredWords, DisallowedExamples.
-# DisallowedExamples: works
-RSpec/ExampleWording:
-  Exclude:
-    - 'spec/functions/validate_legacy_spec.rb'
 
 # Offense count: 2
 # Configuration parameters: Include, CustomTransform, IgnoreMethods, SpecSuffixOnly.
@@ -186,12 +152,6 @@ RSpec/FilePath:
   Exclude:
     - 'spec/unit/puppet/provider/file_line/ruby_spec_alter.rb'
     - 'spec/unit/puppet/provider/file_line/ruby_spec_use_cases.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/HooksBeforeExamples:
-  Exclude:
-    - 'spec/functions/deprecation_spec.rb'
 
 # Offense count: 198
 # This cop supports safe autocorrection (--autocorrect).
@@ -239,16 +199,6 @@ RSpec/PendingWithoutReason:
   Exclude:
     - 'spec/functions/is_a_spec.rb'
     - 'spec/functions/type_of_spec.rb'
-
-# Offense count: 13
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/ReceiveNever:
-  Exclude:
-    - 'spec/functions/deprecation_spec.rb'
-    - 'spec/functions/loadjson_spec.rb'
-    - 'spec/functions/loadyaml_spec.rb'
-    - 'spec/functions/validate_legacy_spec.rb'
-    - 'spec/unit/facter/util/puppet_settings_spec.rb'
 
 # Offense count: 4
 RSpec/RepeatedExampleGroupDescription:

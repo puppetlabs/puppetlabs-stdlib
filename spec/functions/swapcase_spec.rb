@@ -21,6 +21,7 @@ describe 'swapcase' do
     it { is_expected.to run.with_params('ONE').and_return('one') }
     it { is_expected.to run.with_params('oNe').and_return('OnE') }
   end
+
   describe 'with arrays as inputs' do
     it { is_expected.to run.with_params([]).and_return([]) }
 
@@ -33,6 +34,7 @@ describe 'swapcase' do
       it { is_expected.to run.with_params(['ONE', 'OnE']).and_return(['one', 'oNe']) }
       it { is_expected.to run.with_params(['oNe', 'one']).and_return(['OnE', 'ONE']) }
     end
+
     describe 'containing mixed types' do
       it { is_expected.to run.with_params(['OnE', {}]).and_return(['oNe', {}]) }
       it { is_expected.to run.with_params(['OnE', 1]).and_return(['oNe', 1]) }
@@ -40,6 +42,7 @@ describe 'swapcase' do
       it { is_expected.to run.with_params(['OnE', ['two']]).and_return(['oNe', ['two']]) }
     end
   end
+
   it 'accepts objects which extend String' do
     is_expected.to run.with_params(AlsoString.new('OnE')).and_return('oNe')
   end

@@ -36,6 +36,7 @@ describe 'Stdlib::Email' do
       end
     end
   end
+
   describe 'invalid handling' do
     ['plainaddress',
      '#@%^%#$@#$@#.com',

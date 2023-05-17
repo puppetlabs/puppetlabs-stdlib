@@ -11,7 +11,7 @@ describe 'loadyaml' do
 
     it "'default' => 'value'" do
       expect(File).to receive(:exists?).with(filename).and_return(false).once
-      expect(YAML).to receive(:load_file).never
+      expect(YAML).not_to receive(:load_file)
       is_expected.to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
     end
   end

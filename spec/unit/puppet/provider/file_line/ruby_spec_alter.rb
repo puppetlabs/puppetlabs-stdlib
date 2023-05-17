@@ -69,6 +69,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       end
     end
   end
+
   context 'when matching' do
     # rubocop:disable RSpec/InstanceVariable : replacing before with let breaks the tests, variables need to be altered within it block : multi
     before :each do
@@ -80,6 +81,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       )
       @provider = provider_class.new(@resource)
     end
+
     describe 'using match' do
       it 'raises an error if more than one line matches, and should not have modified the file' do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo=blah\nfoo2\nfoo=baz") }
@@ -129,6 +131,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         expect(File.read(tmpfile).chomp).to eql("foo1\nfoo = bar\nfoo2")
       end
     end
+
     describe 'using match+append_on_no_match - when there is a match' do
       it 'replaces line' do
         @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'inserted = line', match: '^foo3$', append_on_no_match: false)
@@ -137,6 +140,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         expect(File.read(tmpfile).chomp).to eql("foo1\nfoo = blah\nfoo2\nfoo = baz")
       end
     end
+
     describe 'using match+append_on_no_match - when there is no match' do
       it 'does not add line after no matches found' do
         @resource = Puppet::Type::File_line.new(name: 'foo', path: tmpfile, line: 'inserted = line', match: '^foo3$', append_on_no_match: false)
@@ -146,6 +150,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       end
     end
   end
+
   context 'when after' do
     let :resource do
       Puppet::Type::File_line.new(
@@ -174,9 +179,11 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
           )
         end
       end
+
       before :each do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo2\nfoo = baz") }
       end
+
       describe 'inserts at match' do
         include_context 'resource_create'
         it {
@@ -184,6 +191,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
           expect(File.read(tmpfile).chomp).to eq("foo1\ninserted = line\nfoo = baz")
         }
       end
+
       describe 'inserts a new line after when no match' do
         include_context 'resource_create' do
           let(:match) { '^nevergoingtomatch$' }
@@ -193,6 +201,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
           expect(File.read(tmpfile).chomp).to eq("foo1\ninserted = line\nfoo2\nfoo = baz")
         }
       end
+
       describe 'append to end of file if no match for both after and match' do
         include_context 'resource_create' do
           let(:match) { '^nevergoingtomatch$' }
@@ -204,6 +213,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         }
       end
     end
+
     context 'with one line matching the after expression' do
       before :each do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo = blah\nfoo2\nfoo = baz") }
@@ -214,6 +224,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         expect(File.read(tmpfile).chomp).to eql("foo1\ninserted = line\nfoo = blah\nfoo2\nfoo = baz")
       end
     end
+
     context 'with multiple lines matching the after expression' do
       before :each do
         File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo = blah\nfoo2\nfoo1\nfoo = baz") }
@@ -230,6 +241,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         expect(File.read(tmpfile).chomp).to eql("foo1\ninserted = line\nfoo = blah\nfoo2\nfoo1\ninserted = line\nfoo = baz")
       end
     end
+
     context 'with no lines matching the after expression' do
       let :content do
         "foo3\nfoo = blah\nfoo2\nfoo = baz\n"
@@ -245,6 +257,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       end
     end
   end
+
   context 'when removing with a line' do
     before :each do
       # TODO: these should be ported over to use the PuppetLabs spec_helper
@@ -258,6 +271,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       )
       @provider = provider_class.new(@resource)
     end
+
     it 'removes the line if it exists' do
       File.open(tmpfile, 'w') { |fh| fh.write("foo1\nfoo\nfoo2") }
       @provider.destroy
@@ -284,6 +298,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       expect(File.read(tmpfile)).to eql("foo1\nfoo2\nfoo4\n")
     end
   end
+
   context 'when removing with a match' do
     before :each do
       @resource = Puppet::Type::File_line.new(

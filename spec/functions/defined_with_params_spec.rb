@@ -6,6 +6,7 @@ describe 'defined_with_params' do
   describe 'when no resource is specified' do
     it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
   end
+
   describe 'when compared against a resource with no attributes' do
     let :pre_condition do
       'user { "dan": }'
@@ -52,6 +53,7 @@ describe 'defined_with_params' do
     context 'with reference' do
       it { is_expected.to run.with_params(Puppet::Resource.new('User[dan]'), {}).and_return(true) }
     end
+
     if Puppet::Util::Package.versioncmp(Puppet.version, '4.6.0') >= 0
       context 'with array' do
         it 'fails' do

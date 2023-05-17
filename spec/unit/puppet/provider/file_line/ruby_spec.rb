@@ -41,6 +41,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         expect(provider).to be_exists
       end
     end
+
     context 'when line does not exist' do
       let(:content) { 'foo bar' }
 
@@ -132,6 +133,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         expect(File.read(tmpfile).chomp).to eql("foo\nbar")
       end
     end
+
     context 'when not matching' do
       let(:content) { "foo3\nbar" }
 

@@ -20,6 +20,7 @@ describe 'Stdlib::Ensure::Package' do
       end
     end
   end
+
   describe 'No complex types can match' do
     context 'Garbage inputs, no complex or non string types can match' do
       [

@@ -30,6 +30,7 @@ describe 'get_module_path' do
       before(:each) do
         allow(Puppet::Module).to receive(:find).with('foo', 'rp_env').and_return(path_of_module_foo)
       end
+
       it 'runs against foo' do
         is_expected.to run.with_params('foo').and_return(path_of_module_foo.path)
       end
@@ -47,6 +48,7 @@ describe 'get_module_path' do
       before(:each) do
         allow(Puppet::Module).to receive(:find).with('foo', 'test').and_return(path_of_module_foo)
       end
+
       it 'runs against foo' do
         is_expected.to run.with_params('foo').and_return(path_of_module_foo.path)
       end

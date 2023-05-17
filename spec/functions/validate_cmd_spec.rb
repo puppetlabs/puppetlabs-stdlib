@@ -36,6 +36,7 @@ describe 'validate_cmd', unless: Puppet::Util::Platform.windows? do
 
       it { is_expected.to run.with_params('', "#{touch} % /no/such/file", 'custom error').and_raise_error(Puppet::ParseError, %r{custom error}) }
     end
+
     context 'without % placeholder' do
       it {
         is_expected.to run
