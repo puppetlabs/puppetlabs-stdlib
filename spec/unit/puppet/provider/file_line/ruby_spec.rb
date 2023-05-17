@@ -28,9 +28,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
   end
 
   before :each do
-    File.open(tmpfile, 'w') do |fh|
-      fh.write(content)
-    end
+    File.write(tmpfile, content)
   end
 
   describe 'line parameter' do

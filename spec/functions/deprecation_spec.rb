@@ -34,7 +34,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
       else
         expect(Puppet).to receive(:warning).with(include('heelo')).once
       end
-      (0..1).each do |_i|
+      2.times do |_i|
         expect(subject).to run.with_params('key', 'heelo')
       end
     end
@@ -42,7 +42,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     it 'fails twice with message, with multiple calls. when strict= :error' do
       Puppet.settings[:strict] = :error
       expect(Puppet).not_to receive(:warning).with(include('heelo'))
-      (0..1).each do |_i|
+      2.times do |_i|
         expect(subject).to run.with_params('key', 'heelo').and_raise_error(RuntimeError, %r{deprecation. key. heelo})
       end
     end
@@ -50,7 +50,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     it 'displays nothing, despite multiple calls. strict= :off' do
       Puppet.settings[:strict] = :off
       expect(Puppet).not_to receive(:warning).with(include('heelo'))
-      (0..1).each do |_i|
+      2.times do |_i|
         expect(subject).to run.with_params('key', 'heelo')
       end
     end

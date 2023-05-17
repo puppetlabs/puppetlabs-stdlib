@@ -43,7 +43,7 @@ DOC
   if Puppet::Util.respond_to?(:deterministic_rand)
     offset = Puppet::Util.deterministic_rand(seed, elements).to_i
   else
-    return offset = Random.new(seed).rand(elements) if defined?(Random) == 'constant' && Random.class == Class
+    return offset = Random.new(seed).rand(elements) if defined?(Random) == 'constant' && Random.instance_of?(Class)
 
     old_seed = srand(seed)
     offset = rand(elements)

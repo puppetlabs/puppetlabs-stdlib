@@ -164,16 +164,12 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     end
 
     local_lines = lines
-    File.open(resource[:path], 'w') do |fh|
-      fh.write(local_lines.reject { |line| match_regex.match(line) }.join(''))
-    end
+    File.write(resource[:path], local_lines.reject { |line| match_regex.match(line) }.join(''))
   end
 
   def handle_destroy_line
     local_lines = lines
-    File.open(resource[:path], 'w') do |fh|
-      fh.write(local_lines.reject { |line| line.chomp == resource[:line] }.join(''))
-    end
+    File.write(resource[:path], local_lines.reject { |line| line.chomp == resource[:line] }.join(''))
   end
 
   def handle_append_line

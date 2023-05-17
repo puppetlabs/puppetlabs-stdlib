@@ -35,7 +35,7 @@ module Puppet::Parser::Functions
 
     # There is probably a better way to handle Time Zone ...
     if time_zone && !time_zone.empty?
-      original_zone = ENV['TZ']
+      original_zone = ENV.fetch('TZ', nil)
 
       local_time = time.clone
       local_time = local_time.utc
