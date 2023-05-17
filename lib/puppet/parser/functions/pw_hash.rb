@@ -76,7 +76,7 @@ DOC
 
   # handle weak implementations of String#crypt
   # dup the string to get rid of frozen status for testing
-  if 'test'.dup.crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
+  if (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
     password.crypt(salt)
   else
     # JRuby < 1.7.17

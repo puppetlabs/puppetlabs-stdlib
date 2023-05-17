@@ -49,7 +49,7 @@ module Puppet::Parser::Functions
     # We can have either true or false, and nothing else
     raise(Puppet::ParseError, 'bool2str(): Requires a boolean to work with') unless [FalseClass, TrueClass].include?(klass)
 
-    raise(Puppet::ParseError, 'bool2str(): Requires strings to convert to') unless [true_string, false_string].all? { |x| x.is_a?(String) }
+    raise(Puppet::ParseError, 'bool2str(): Requires strings to convert to') unless [true_string, false_string].all?(String)
 
     return value ? true_string : false_string
   end

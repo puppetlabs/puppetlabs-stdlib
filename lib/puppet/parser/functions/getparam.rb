@@ -46,7 +46,7 @@ DOC
 ) do |vals|
   reference, param = vals
   raise(ArgumentError, 'Must specify a reference') unless reference
-  raise(ArgumentError, 'Must specify name of a parameter') unless param&.instance_of?(String)
+  raise(ArgumentError, 'Must specify name of a parameter') unless param.instance_of?(String)
 
   return '' if param.empty?
 

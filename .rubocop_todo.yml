@@ -34,15 +34,6 @@ Lint/MissingCopEnableDirective:
     - 'spec/functions/merge_spec.rb'
     - 'spec/unit/puppet/provider/file_line/ruby_spec_alter.rb'
 
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowedMethods.
-# AllowedMethods: instance_of?, kind_of?, is_a?, eql?, respond_to?, equal?
-Lint/RedundantSafeNavigation:
-  Exclude:
-    - 'lib/puppet/parser/functions/assert_private.rb'
-    - 'lib/puppet/parser/functions/getparam.rb'
-
 # Offense count: 3
 # Configuration parameters: AllowComments, AllowNil.
 Lint/SuppressedException:
@@ -104,19 +95,6 @@ Naming/VariableNumber:
 Performance/CollectionLiteralInLoop:
   Exclude:
     - 'lib/puppet/functions/ensure_packages.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowRegexpMatch.
-Performance/RedundantEqualityComparisonBlock:
-  Exclude:
-    - 'lib/puppet/parser/functions/bool2str.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Performance/UnfreezeString:
-  Exclude:
-    - 'lib/puppet/parser/functions/pw_hash.rb'
 
 # Offense count: 95
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -201,21 +179,6 @@ RSpec/StubbedMock:
     - 'spec/functions/loadyaml_spec.rb'
     - 'spec/functions/reverse_spec.rb'
     - 'spec/functions/squeeze_spec.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: MinBranchesCount.
-Style/CaseLikeIf:
-  Exclude:
-    - 'lib/puppet_x/stdlib/toml_dumper.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'lib/puppet_x/stdlib/toml_dumper.rb'
 
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
