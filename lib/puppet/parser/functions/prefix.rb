@@ -38,10 +38,10 @@ module Puppet::Parser::Functions
                  prefix ? prefix + i : i
                end
              else
-               enumerable.map { |k, v|
+               enumerable.to_h do |k, v|
                  k = k.to_s
                  [prefix ? prefix + k : k, v]
-               }.to_h
+               end
              end
 
     return result

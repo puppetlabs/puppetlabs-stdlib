@@ -45,7 +45,7 @@ module Puppet::Parser::Functions
                            0x4f,
                            0xd4,
                            0x30,
-                           0xc8].map { |b| b.chr }.join
+                           0xc8].map(&:chr).join
 
     sha1 = Digest::SHA1.new
     sha1.update(uuid_name_space_dns)

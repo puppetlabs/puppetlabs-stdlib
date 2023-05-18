@@ -30,11 +30,7 @@ end
 # Fact: is_pe
 Facter.add('is_pe') do
   setcode do
-    if Facter.value(:pe_version).to_s.empty?
-      false
-    else
-      true
-    end
+    !Facter.value(:pe_version).to_s.empty?
   end
 end
 

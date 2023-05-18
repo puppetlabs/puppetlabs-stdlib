@@ -20,13 +20,13 @@ module Puppet::Parser::Functions
 
     result = value.clone
 
-    string = value.is_a?(String) ? true : false
+    string = value.is_a?(String)
 
     # Check whether it makes sense to shuffle ...
     return result if result.size <= 1
 
     # We turn any string value into an array to be able to shuffle ...
-    result = string ? result.split('') : result
+    result = string ? result.chars : result
 
     elements = result.size
 

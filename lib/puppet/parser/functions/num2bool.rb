@@ -42,7 +42,7 @@ module Puppet::Parser::Functions
     number = number.to_i
 
     # Return true for any positive number and false otherwise
-    return number > 0
+    return number.positive?
   end
 end
 

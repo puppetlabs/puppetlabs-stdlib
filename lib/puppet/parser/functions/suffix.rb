@@ -42,10 +42,10 @@ module Puppet::Parser::Functions
                  suffix ? i + suffix : i
                end
              else
-               enumerable.map { |k, v|
+               enumerable.to_h do |k, v|
                  k = k.to_s
                  [suffix ? k + suffix : k, v]
-               }.to_h
+               end
              end
 
     return result

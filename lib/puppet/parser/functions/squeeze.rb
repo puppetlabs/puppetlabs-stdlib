@@ -21,7 +21,7 @@ module Puppet::Parser::Functions
       if squeezeval
         item.map { |i| i.squeeze(squeezeval) }
       else
-        item.map { |i| i.squeeze }
+        item.map(&:squeeze)
       end
     elsif squeezeval
       item.squeeze(squeezeval)

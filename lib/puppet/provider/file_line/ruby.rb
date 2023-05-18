@@ -17,17 +17,15 @@ Puppet::Type.type(:file_line).provide(:ruby) do
       found = line.chomp == resource[:line]
       lines_count += 1 if found
     end
-    return found = lines_count > 0 if resource[:match].nil?
+    return found = lines_count.positive? if resource[:match].nil?
 
     match_count = count_matches(new_match_regex)
     found = if resource[:ensure] == :present
               if match_count.zero?
                 if lines_count.zero? && resource[:append_on_no_match].to_s == 'false'
                   true # lies, but gets the job done
-                elsif lines_count.zero? && resource[:append_on_no_match].to_s != 'false'
-                  false
                 else
-                  true
+                  !(lines_count.zero? && resource[:append_on_no_match].to_s != 'false')
                 end
               elsif resource[:replace_all_matches_not_matching_line].to_s == 'true'
                 false # maybe lies, but knows there's still work to do
@@ -50,7 +48,7 @@ Puppet::Type.type(:file_line).provide(:ruby) do
   end
 
   def create
-    return if resource[:replace].to_s != 'true' && count_matches(new_match_regex) > 0
+    return if resource[:replace].to_s != 'true' && count_matches(new_match_regex).positive?
 
     if resource[:match]
       handle_create_with_match

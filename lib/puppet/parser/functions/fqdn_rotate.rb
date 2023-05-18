@@ -26,13 +26,13 @@ DOC
 
   result = value.clone
 
-  string = value.is_a?(String) ? true : false
+  string = value.is_a?(String)
 
   # Check whether it makes sense to rotate ...
   return result if result.size <= 1
 
   # We turn any string value into an array to be able to rotate ...
-  result = string ? result.split('') : result
+  result = string ? result.chars : result
 
   elements = result.size
 

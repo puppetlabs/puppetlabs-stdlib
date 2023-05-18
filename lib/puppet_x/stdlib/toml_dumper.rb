@@ -103,9 +103,9 @@ class PuppetX::Stdlib::TomlDumper
 
   def print_prefix(prefix, extra_brackets = false)
     new_prefix = prefix.join('.')
-    new_prefix = '[' + new_prefix + ']' if extra_brackets
+    new_prefix = "[#{new_prefix}]" if extra_brackets
 
-    @toml_str += "[" + new_prefix + "]\n" # rubocop:disable Style/StringLiterals
+    @toml_str += "[#{new_prefix}]\n"
   end
 
   def to_toml(obj)
@@ -130,6 +130,6 @@ class PuppetX::Stdlib::TomlDumper
   end
 
   def quote_key(key)
-    '"' + key.gsub('"', '\\"') + '"'
+    "\"#{key.gsub('"', '\\"')}\""
   end
 end

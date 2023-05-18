@@ -41,6 +41,6 @@ module Puppet::Parser::Functions
 
     # convert to numeric each element
     # then sort them and get a middle value
-    args.map { |n| n.to_i }.sort[1]
+    args.map(&:to_i).sort[1]
   end
 end

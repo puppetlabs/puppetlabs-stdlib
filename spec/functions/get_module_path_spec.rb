@@ -36,7 +36,7 @@ describe 'get_module_path' do
       end
 
       it 'when the modulepath is a list' do
-        Puppet[:modulepath] = modulepath + 'tmp/something_else'
+        Puppet[:modulepath] = "#{modulepath}tmp/something_else"
 
         expect(subject).to run.with_params('foo').and_return(path_of_module_foo.path)
       end
@@ -54,7 +54,7 @@ describe 'get_module_path' do
       end
 
       it 'when the modulepath is a list' do
-        Puppet[:modulepath] = modulepath + 'tmp/something_else'
+        Puppet[:modulepath] = "#{modulepath}tmp/something_else"
         expect(subject).to run.with_params('foo').and_return(path_of_module_foo.path)
       end
     end

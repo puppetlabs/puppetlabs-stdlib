@@ -61,7 +61,7 @@ max_nesting  => Optional[Integer[-1,default]],
     # It's not possible to make an abstract type that can be either a boolean
     # false or an integer, so we use -1 as the falsey value
     if opts
-      opts = opts.transform_keys { |k| k.to_sym }
+      opts = opts.transform_keys(&:to_sym)
 
       opts[:max_nesting] = false if opts[:max_nesting] == -1
     end
