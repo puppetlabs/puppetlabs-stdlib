@@ -31,7 +31,7 @@ module Puppet::Parser::Functions
     ary = args[0]
     pattern = Regexp.new(args[1])
 
-    ary.reject { |e| e =~ pattern }
+    ary.grep_v(pattern)
   end
 end
 

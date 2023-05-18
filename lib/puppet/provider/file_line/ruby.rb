@@ -152,12 +152,12 @@ Puppet::Type.type(:file_line).provide(:ruby) do
     raise Puppet::Error, "More than one line in file '#{resource[:path]}' matches pattern '#{resource[:match]}'" if match_count > 1 && resource[:multiple].to_s != 'true'
 
     local_lines = lines
-    File.write(resource[:path], local_lines.reject { |line| match_regex.match(line) }.join(''))
+    File.write(resource[:path], local_lines.reject { |line| match_regex.match(line) }.join)
   end
 
   def handle_destroy_line
     local_lines = lines
-    File.write(resource[:path], local_lines.reject { |line| line.chomp == resource[:line] }.join(''))
+    File.write(resource[:path], local_lines.reject { |line| line.chomp == resource[:line] }.join)
   end
 
   def handle_append_line
