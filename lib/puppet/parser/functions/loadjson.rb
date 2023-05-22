@@ -43,23 +43,16 @@ module Puppet::Parser::Functions
         else
           url = args[0]
         end
+        begin
+          contents = OpenURI.open_uri(url, http_options)
+        rescue OpenURI::HTTPError => e
+          res = e.io
+          warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
+          args[1]
+        end
         if Puppet::Util::Package.versioncmp(Puppet.version, '8.0.0').negative?
-          begin
-            contents = OpenURI.open_uri(url, **http_options)
-          rescue OpenURI::HTTPError => e
-            res = e.io
-            warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
-            args[1]
-          end
           PSON.load(contents) || args[1]
         else
-          begin
-            contents = URI.open(url, **http_options) # rubocop:disable Security/Open  : Temporarily disabling this cop. This is a security risk and must be addressed before release.
-          rescue URI::Error => e
-            res = e.io
-            warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
-            args[1]
-          end
           JSON.parse(contents) || args[1]
         end
       elsif File.exists?(args[0]) # rubocop:disable Lint/DeprecatedClassMethods : Changing to .exist? breaks the code

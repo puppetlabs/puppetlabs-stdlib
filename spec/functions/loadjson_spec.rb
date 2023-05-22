@@ -95,11 +95,10 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       it {
+        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(json)
         if Puppet::PUPPETVERSION[0].to_i < 8
-          expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(json)
           expect(PSON).to receive(:load).with(json).and_return(data).once
         else
-          expect(URI).to receive(:open).with(filename).and_return(json)
           expect(JSON).to receive(:parse).with(json).and_return(data).once
         end
         expect(subject).to run.with_params(filename).and_return(data)
@@ -116,11 +115,10 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       it {
+        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
         if Puppet::PUPPETVERSION[0].to_i < 8
-          expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
           expect(PSON).to receive(:load).with(json).and_return(data).once
         else
-          expect(URI).to receive(:open).with(url_no_auth, basic_auth).and_return(json)
           expect(JSON).to receive(:parse).with(json).and_return(data).once
         end
         expect(subject).to run.with_params(filename).and_return(data)
@@ -137,11 +135,10 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       it {
+        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
         if Puppet::PUPPETVERSION[0].to_i < 8
-          expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
           expect(PSON).to receive(:load).with(json).and_return(data).once
         else
-          expect(URI).to receive(:open).with(url_no_auth, basic_auth).and_return(json)
           expect(JSON).to receive(:parse).with(json).and_return(data).once
         end
         expect(subject).to run.with_params(filename).and_return(data)
@@ -155,11 +152,10 @@ describe 'loadjson' do
       let(:json) { ',;{"key":"value"}' }
 
       it {
+        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(json)
         if Puppet::PUPPETVERSION[0].to_i < 8
-          expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(json)
           expect(PSON).to receive(:load).with(json).once.and_raise StandardError, 'Something terrible have happened!'
         else
-          expect(URI).to receive(:open).with(filename).and_return(json)
           expect(JSON).to receive(:parse).with(json).once.and_raise StandardError, 'Something terrible have happened!'
         end
         expect(subject).to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
@@ -172,11 +168,7 @@ describe 'loadjson' do
       end
 
       it {
-        if Puppet::PUPPETVERSION[0].to_i < 8
-          expect(OpenURI).to receive(:open_uri).with(filename, {}).and_raise OpenURI::HTTPError, '404 File not Found'
-        else
-          expect(URI).to receive(:open).with(filename).and_raise URI::Error, '404 File not Found'
-        end
+        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_raise OpenURI::HTTPError, '404 File not Found'
         expect(subject).to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
       }
     end
