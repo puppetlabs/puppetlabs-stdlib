@@ -65,4 +65,9 @@ describe 'parsepson' do
       end
     end
   end
+  if Puppet::Util::Package.versioncmp(Puppet.version, '8.0.0').positive?
+    it 'doesnt work on Puppet 8' do
+      expect(subject).to run.with_params('{"a":"1","b":"2"}').and_return(nil)
+    end
+  end
 end
