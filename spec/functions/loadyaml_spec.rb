@@ -10,7 +10,7 @@ describe 'loadyaml' do
     let(:filename) { '/tmp/doesnotexist' }
 
     it "'default' => 'value'" do
-      expect(File).to receive(:exists?).with(filename).and_return(false).once
+      expect(File).to receive(:exist?).with(filename).and_return(false).once
       expect(YAML).not_to receive(:load_file)
       expect(subject).to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
     end
@@ -21,7 +21,7 @@ describe 'loadyaml' do
     let(:data) { { 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値' } }
 
     it "returns 'key' => 'value', 'ķęŷ' => 'νậŀųề', 'キー' => '値'" do
-      expect(File).to receive(:exists?).with(filename).and_return(true).once
+      expect(File).to receive(:exist?).with(filename).and_return(true).once
       expect(YAML).to receive(:load_file).with(filename).and_return(data).once
       expect(subject).to run.with_params(filename).and_return(data)
     end
@@ -31,7 +31,7 @@ describe 'loadyaml' do
     let(:filename) { '/tmp/doesexist' }
 
     it 'filename /tmp/doesexist' do
-      expect(File).to receive(:exists?).with(filename).and_return(true).once
+      expect(File).to receive(:exist?).with(filename).and_return(true).once
       allow(YAML).to receive(:load_file).with(filename).once.and_raise(StandardError, 'Something terrible have happened!')
       expect(subject).to run.with_params(filename, 'default' => 'value').and_return('default' => 'value')
     end

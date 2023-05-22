@@ -26,7 +26,7 @@ describe 'loadjson' do
       end
 
       before(:each) do
-        allow(File).to receive(:exists?).with(filename).and_return(false).once
+        allow(File).to receive(:exist?).with(filename).and_return(false).once
         if Puppet::PUPPETVERSION[0].to_i < 8
           allow(PSON).to receive(:load).never # rubocop:disable RSpec/ReceiveNever  Switching to not_to receive breaks testing in this case
         else
@@ -51,7 +51,7 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       before(:each) do
-        allow(File).to receive(:exists?).with(filename).and_return(true).once
+        allow(File).to receive(:exist?).with(filename).and_return(true).once
         allow(File).to receive(:read).with(filename).and_return(json).once
         allow(File).to receive(:read).with(filename).and_return(json).once
         if Puppet::PUPPETVERSION[0].to_i < 8
@@ -75,7 +75,7 @@ describe 'loadjson' do
       let(:json) { '{"key":"value"}' }
 
       before(:each) do
-        allow(File).to receive(:exists?).with(filename).and_return(true).once
+        allow(File).to receive(:exist?).with(filename).and_return(true).once
         allow(File).to receive(:read).with(filename).and_return(json).once
         if Puppet::PUPPETVERSION[0].to_i < 8
           allow(PSON).to receive(:load).with(json).once.and_raise StandardError, 'Something terrible have happened!'

@@ -23,7 +23,7 @@ module Puppet::Parser::Functions
     module_path = function_get_module_path([mod])
     metadata_json = File.join(module_path, 'metadata.json')
 
-    metadata_exists = File.exists?(metadata_json) # rubocop:disable Lint/DeprecatedClassMethods : Changing to .exist? breaks the code
+    metadata_exists = File.exist?(metadata_json)
     if metadata_exists
       metadata = if Puppet::Util::Package.versioncmp(Puppet.version, '8.0.0').negative?
                    PSON.load(File.read(metadata_json))

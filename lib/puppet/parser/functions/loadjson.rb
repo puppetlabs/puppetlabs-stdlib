@@ -55,7 +55,7 @@ module Puppet::Parser::Functions
         else
           JSON.parse(contents) || args[1]
         end
-      elsif File.exists?(args[0]) # rubocop:disable Lint/DeprecatedClassMethods : Changing to .exist? breaks the code
+      elsif File.exist?(args[0])
         content = File.read(args[0])
         if Puppet::Util::Package.versioncmp(Puppet.version, '8.0.0').negative?
           PSON.load(content) || args[1]
