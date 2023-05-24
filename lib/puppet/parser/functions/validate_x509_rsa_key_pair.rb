@@ -17,7 +17,7 @@ module Puppet::Parser::Functions
 
     ```validate_x509_rsa_key_pair($cert, $key)```
 
-    DOC
+  DOC
   ) do |args|
     require 'openssl'
 
@@ -29,9 +29,7 @@ module Puppet::Parser::Functions
     end
 
     args.each do |arg|
-      unless arg.is_a?(String)
-        raise Puppet::ParseError, "#{arg.inspect} is not a string."
-      end
+      raise Puppet::ParseError, "#{arg.inspect} is not a string." unless arg.is_a?(String)
     end
 
     begin
@@ -46,8 +44,6 @@ module Puppet::Parser::Functions
       raise Puppet::ParseError, "Not a valid RSA key: #{e}"
     end
 
-    unless cert.verify(key)
-      raise Puppet::ParseError, 'Certificate signature does not match supplied key'
-    end
+    raise Puppet::ParseError, 'Certificate signature does not match supplied key' unless cert.verify(key)
   end
 end

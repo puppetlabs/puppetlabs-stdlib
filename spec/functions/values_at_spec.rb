@@ -4,13 +4,15 @@ require 'spec_helper'
 
 describe 'values_at' do
   describe 'signature validation' do
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
     it { is_expected.to run.with_params([]).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
+
     it {
       pending('Current implementation ignores parameters after the first two.')
-      is_expected.to run.with_params([], 0, 1).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
+      expect(subject).to run.with_params([], 0, 1).and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i)
     }
+
     it { is_expected.to run.with_params('', 1).and_raise_error(Puppet::ParseError, %r{Requires array}i) }
     it { is_expected.to run.with_params({}, 1).and_raise_error(Puppet::ParseError, %r{Requires array}i) }
     it { is_expected.to run.with_params(true, 1).and_raise_error(Puppet::ParseError, %r{Requires array}i) }
@@ -47,9 +49,10 @@ describe 'values_at' do
       it { is_expected.to run.with_params([0, 1, 2], '0-2').and_return([0, 1, 2]) }
       it { is_expected.to run.with_params([0, 1, 2], '0..2').and_return([0, 1, 2]) }
       it { is_expected.to run.with_params([0, 1, 2], '0...2').and_return([0, 1]) }
+
       it {
         pending('fix this bounds check')
-        is_expected.to run.with_params([0, 1, 2], '0...3').and_return([0, 1, 2])
+        expect(subject).to run.with_params([0, 1, 2], '0...3').and_return([0, 1, 2])
       }
     end
   end

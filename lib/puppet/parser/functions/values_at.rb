@@ -37,27 +37,23 @@ module Puppet::Parser::Functions
     `['a', 'b', 'c', 'd'][2, -1]`  results in `['c', 'd']`
     `['a', 'b', 'c', 'd'][1, -2]`  results in `['b', 'c']`
 
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "values_at(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size < 2
 
     array = arguments.shift
 
-    unless array.is_a?(Array)
-      raise(Puppet::ParseError, 'values_at(): Requires array to work with')
-    end
+    raise(Puppet::ParseError, 'values_at(): Requires array to work with') unless array.is_a?(Array)
 
     indices = [arguments.shift].flatten # Get them all ... Pokemon ...
 
-    if !indices || indices.empty?
-      raise(Puppet::ParseError, 'values_at(): You must provide at least one positive index to collect')
-    end
+    raise(Puppet::ParseError, 'values_at(): You must provide at least one positive index to collect') if !indices || indices.empty?
 
     indices_list = []
 
     indices.each do |i|
       i = i.to_s
-      m = i.match(%r{^(\d+)(\.\.\.?|\-)(\d+)$})
+      m = i.match(%r{^(\d+)(\.\.\.?|-)(\d+)$})
       if m
         start = m[1].to_i
         stop  = m[3].to_i
@@ -68,23 +64,19 @@ module Puppet::Parser::Functions
         raise(Puppet::ParseError, 'values_at(): Stop index in given indices range exceeds array size') if stop > array.size - 1 # First element is at index 0 is it not?
 
         range = case type
-                when %r{^(\.\.|\-)$} then (start..stop)
-                when %r{^(\.\.\.)$}  then (start...stop) # Exclusive of last element ...
+                when %r{^(\.\.|-)$} then (start..stop)
+                when %r{^(\.\.\.)$} then (start...stop) # Exclusive of last element ...
                 end
 
         range.each { |i| indices_list << i.to_i } # rubocop:disable Lint/ShadowingOuterLocalVariable : Value is meant to be shadowed
       else
         # Only positive numbers allowed in this case ...
-        unless %r{^\d+$}.match?(i)
-          raise(Puppet::ParseError, 'values_at(): Unknown format of given index')
-        end
+        raise(Puppet::ParseError, 'values_at(): Unknown format of given index') unless %r{^\d+$}.match?(i)
 
         # In Puppet numbers are often string-encoded ...
         i = i.to_i
 
-        if i > array.size - 1 # Same story.  First element is at index 0 ...
-          raise(Puppet::ParseError, 'values_at(): Given index exceeds array size')
-        end
+        raise(Puppet::ParseError, 'values_at(): Given index exceeds array size') if i > array.size - 1 # Same story.  First element is at index 0 ...
 
         indices_list << i
       end

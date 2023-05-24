@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'concat' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
   it { is_expected.to run.with_params([1]).and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
   it { is_expected.to run.with_params(1, [2]).and_raise_error(Puppet::ParseError, %r{Requires array}) }

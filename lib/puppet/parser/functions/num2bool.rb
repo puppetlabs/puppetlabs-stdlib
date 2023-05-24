@@ -15,7 +15,7 @@ module Puppet::Parser::Functions
     @return [Boolean]
         Boolean(0) # false for any zero or negative number
         Boolean(1) # true for any positive number
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "num2bool(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.size != 1
 
@@ -27,14 +27,14 @@ module Puppet::Parser::Functions
     when String
       begin
         number = Float(number)
-      rescue ArgumentError => ex
-        raise(Puppet::ParseError, "num2bool(): '#{number}' does not look like a number: #{ex.message}")
+      rescue ArgumentError => e
+        raise(Puppet::ParseError, "num2bool(): '#{number}' does not look like a number: #{e.message}")
       end
     else
       begin
         number = number.to_s
-      rescue NoMethodError => ex
-        raise(Puppet::ParseError, "num2bool(): Unable to parse argument: #{ex.message}")
+      rescue NoMethodError => e
+        raise(Puppet::ParseError, "num2bool(): Unable to parse argument: #{e.message}")
       end
     end
 
@@ -42,7 +42,7 @@ module Puppet::Parser::Functions
     number = number.to_i
 
     # Return true for any positive number and false otherwise
-    return number > 0
+    return number.positive?
   end
 end
 

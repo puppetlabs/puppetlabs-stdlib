@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
     @example Example Usage:
       intersection(["a","b","c"],["b","c","d"])  # returns ["b","c"]
       intersection(["a","b","c"],[1,2,3,4])      # returns [] (true, when evaluated as a Boolean)
-    DOC
+  DOC
   ) do |arguments|
     # Two arguments are required
     raise(Puppet::ParseError, "intersection(): Wrong number of arguments given (#{arguments.size} for 2)") if arguments.size != 2
@@ -22,9 +22,7 @@ module Puppet::Parser::Functions
     first = arguments[0]
     second = arguments[1]
 
-    unless first.is_a?(Array) && second.is_a?(Array)
-      raise(Puppet::ParseError, "intersection(): Requires 2 arrays, got #{first.class} and #{second.class}")
-    end
+    raise(Puppet::ParseError, "intersection(): Requires 2 arrays, got #{first.class} and #{second.class}") unless first.is_a?(Array) && second.is_a?(Array)
 
     result = first & second
 

@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
 
       union(["a","b","c"],["b","c","d"])
       Would return: ["a","b","c","d"]
-    DOC
+  DOC
   ) do |arguments|
     # Check that 2 or more arguments have been given ...
     raise(Puppet::ParseError, "union(): Wrong number of arguments given (#{arguments.size} for < 2)") if arguments.size < 2

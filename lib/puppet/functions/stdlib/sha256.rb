@@ -20,7 +20,7 @@ Puppet::Functions.create_function(:'stdlib::sha256') do
 
   def sha256(my_data)
     Digest::SHA256.hexdigest(my_data.unwrap.to_s)
-  rescue
+  rescue StandardError
     Digest::SHA256.hexdigest(my_data.to_s)
   end
 end

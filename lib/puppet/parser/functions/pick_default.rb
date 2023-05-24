@@ -28,9 +28,10 @@ module Puppet::Parser::Functions
       Contrary to the pick() function, the pick_default does not fail if
       all arguments are empty. This allows pick_default to use an empty value as
       default.
-    DOC
+  DOC
   ) do |args|
     raise 'Must receive at least one argument.' if args.empty?
+
     default = args.last
     args = args[0..-2].compact
     args.delete(:undef)

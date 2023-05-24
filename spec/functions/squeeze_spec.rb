@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'squeeze' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it { is_expected.to run.with_params('', '', '').and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
   it { is_expected.to run.with_params(1).and_raise_error(NoMethodError) }
@@ -26,17 +26,19 @@ describe 'squeeze' do
 
   context 'when squeezing values in an array' do
     it {
-      is_expected.to run \
+      expect(subject).to run \
         .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc']) \
         .and_return(['', 'a', 'a', 'abc'])
     }
+
     it {
-      is_expected.to run \
+      expect(subject).to run \
         .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc'], 'a') \
         .and_return(['', 'a', 'a', 'abbbbbbbbbbcccccccccc'])
     }
+
     it {
-      is_expected.to run \
+      expect(subject).to run \
         .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc'], 'b-c') \
         .and_return(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabc'])
     }

@@ -16,7 +16,7 @@ module Puppet::Parser::Functions
 
       `pry()`
 
-    DOC
+  DOC
   ) do |arguments|
     begin
       require 'pry'

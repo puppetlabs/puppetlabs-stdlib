@@ -10,15 +10,13 @@ module Puppet::Parser::Functions
       Requires either a single string or an array as an input.
     @return [String]
       A string of characters with metacharacters converted to their escaped form.
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "regexpescape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
 
-    unless value.is_a?(Array) || value.is_a?(String)
-      raise(Puppet::ParseError, 'regexpescape(): Requires either array or string to work with')
-    end
+    raise(Puppet::ParseError, 'regexpescape(): Requires either array or string to work with') unless value.is_a?(Array) || value.is_a?(String)
 
     result = if value.is_a?(Array)
                # Numbers in Puppet are often string-encoded which is troublesome ...

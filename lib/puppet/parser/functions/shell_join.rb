@@ -22,7 +22,7 @@ module Puppet::Parser::Functions
     raise Puppet::ParseError, "First argument is not an Array: #{array.inspect}" unless array.is_a?(Array)
 
     # explicit conversion to string is required for ruby 1.9
-    array = array.map { |item| item.to_s }
+    array = array.map(&:to_s)
     result = Shellwords.shelljoin(array)
 
     return result

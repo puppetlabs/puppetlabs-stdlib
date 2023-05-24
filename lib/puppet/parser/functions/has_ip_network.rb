@@ -13,7 +13,7 @@ module Puppet::Parser::Functions
 
     This function iterates through the 'interfaces' fact and checks the
     'network_IFACE' facts, performing a simple string comparision.
-    DOC
+  DOC
   ) do |args|
     raise(Puppet::ParseError, "has_ip_network(): Wrong number of arguments given (#{args.size} for 1)") if args.size != 1
 

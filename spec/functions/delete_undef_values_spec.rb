@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'delete_undef_values' do
   let(:is_puppet_6) { Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') == 0 }
 
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
   it { is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError, %r{expected an array or hash}) }
   it { is_expected.to run.with_params('one').and_raise_error(Puppet::ParseError, %r{expected an array or hash}) }
@@ -19,6 +19,7 @@ describe 'delete_undef_values' do
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == ''
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == :undef && is_puppet_6
         end
+
         it { is_expected.to run.with_params([undef_value]).and_return([]) }
         it { is_expected.to run.with_params(['one', undef_value, 'two', 'three']).and_return(['one', 'two', 'three']) }
         it { is_expected.to run.with_params(['ớņέ', undef_value, 'ŧשּׁō', 'ŧħґëə']).and_return(['ớņέ', 'ŧשּׁō', 'ŧħґëə']) }
@@ -42,9 +43,11 @@ describe 'delete_undef_values' do
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == ''
           pending("review behaviour when being passed undef as #{undef_value.inspect}") if undef_value == :undef && is_puppet_6
         end
+
         it { is_expected.to run.with_params('key' => undef_value).and_return({}) }
+
         it {
-          is_expected.to run \
+          expect(subject).to run \
             .with_params('key1' => 'value1', 'undef_key' => undef_value, 'key2' => 'value2') \
             .and_return('key1' => 'value1', 'key2' => 'value2')
         }

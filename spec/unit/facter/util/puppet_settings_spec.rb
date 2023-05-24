@@ -7,17 +7,19 @@ describe Facter::Util::PuppetSettings do
   describe '#with_puppet' do
     context 'without Puppet loaded' do
       before(:each) do
-        allow(Module).to receive(:const_get).with('Puppet').and_raise(NameError)
+        allow(Module).to receive(:const_get).with(:Puppet).and_raise(NameError)
       end
 
       it 'is nil' do
         expect(subject.with_puppet { Puppet[:vardir] }).to be_nil
       end
+
       it 'does not yield to the block' do
-        expect(Puppet).to receive(:[]).never
+        expect(Puppet).not_to receive(:[])
         expect(subject.with_puppet { Puppet[:vardir] }).to be_nil
       end
     end
+
     context 'with Puppet loaded' do
       # module Puppet
       module Puppet; end
@@ -30,6 +32,7 @@ describe Facter::Util::PuppetSettings do
       it 'yields to the block' do
         subject.with_puppet { Puppet[:vardir] }
       end
+
       it 'returns the nodes vardir' do
         expect(subject.with_puppet { Puppet[:vardir] }).to eq vardir
       end

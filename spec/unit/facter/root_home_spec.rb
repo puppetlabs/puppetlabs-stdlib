@@ -10,11 +10,11 @@ describe 'root_home', type: :fact do
   after(:each) { Facter.clear }
 
   context 'when Windows', if: Facter.value(:kernel) == 'Windows' do
-    it { expect(subject.value).to be(nil) }
+    it { expect(subject.value).to be_nil }
   end
 
   context 'when non-Windows', if: Facter.value(:kernel) != 'Windows' do
-    let(:expected) { Facter.value(:kernel) == 'Darwin' ? '/var/root' : '/root' }
+    let(:expected) { (Facter.value(:kernel) == 'Darwin') ? '/var/root' : '/root' }
 
     it { expect(subject.value).to eq(expected) }
   end

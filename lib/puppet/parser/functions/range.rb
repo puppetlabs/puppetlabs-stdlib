@@ -43,7 +43,7 @@ module Puppet::Parser::Functions
       the step() function in Puppet for skipping values.
 
      Integer[0, 9].each |$x| { notice($x) } # notices 0, 1, 2, ... 9
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, 'range(): Wrong number of arguments given (0 for 1)') if arguments.empty?
 
@@ -59,7 +59,7 @@ module Puppet::Parser::Functions
     else # arguments.size == 1
       value = arguments[0]
 
-      m = value.match(%r{^(\w+)(\.\.\.?|\-)(\w+)$})
+      m = value.match(%r{^(\w+)(\.\.\.?|-)(\w+)$})
       if m
         start = m[1]
         stop  = m[3]

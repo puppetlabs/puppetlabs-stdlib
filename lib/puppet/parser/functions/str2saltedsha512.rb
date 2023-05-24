@@ -16,7 +16,7 @@ module Puppet::Parser::Functions
     Given any simple string, you will get a hex version
     of a salted-SHA512 password hash that can be inserted into your Puppet
     manifests as a valid password attribute.
-    DOC
+  DOC
   ) do |arguments|
     require 'digest/sha2'
 
@@ -24,14 +24,12 @@ module Puppet::Parser::Functions
 
     password = arguments[0]
 
-    unless password.is_a?(String)
-      raise(Puppet::ParseError, "str2saltedsha512(): Requires a String argument, you passed: #{password.class}")
-    end
+    raise(Puppet::ParseError, "str2saltedsha512(): Requires a String argument, you passed: #{password.class}") unless password.is_a?(String)
 
-    seedint    = rand(2**31 - 1)
+    seedint    = rand((2**31) - 1)
     seedstring = Array(seedint).pack('L')
     saltedpass = Digest::SHA512.digest(seedstring + password)
-    (seedstring + saltedpass).unpack('H*')[0]
+    (seedstring + saltedpass).unpack1('H*')
   end
 end
 

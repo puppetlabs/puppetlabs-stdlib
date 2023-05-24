@@ -3,9 +3,10 @@
 require 'spec_helper'
 
 describe 'ensure_resource' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{Must specify a type}) }
   it { is_expected.to run.with_params('type').and_raise_error(ArgumentError, %r{Must specify a title}) }
+
   if Puppet::Util::Package.versioncmp(Puppet.version, '4.6.0') >= 0
     it { is_expected.to run.with_params('type', 'title', {}, 'extras').and_raise_error(ArgumentError) }
   else
@@ -14,7 +15,7 @@ describe 'ensure_resource' do
 
   it {
     pending('should not accept numbers as arguments')
-    is_expected.to run.with_params(1, 2, 3).and_raise_error(Puppet::ParseError)
+    expect(subject).to run.with_params(1, 2, 3).and_raise_error(Puppet::ParseError)
   }
 
   context 'when given an empty catalog' do
@@ -121,7 +122,7 @@ describe 'ensure_resource' do
 
     context 'when trying to add params' do
       it {
-        is_expected.to run \
+        expect(subject).to run \
           .with_params('User', 'username1', 'ensure' => 'present', 'shell' => true) \
           .and_raise_error(Puppet::Resource::Catalog::DuplicateResourceError, %r{User\[username1\] is already declared})
       }

@@ -16,15 +16,13 @@ module Puppet::Parser::Functions
 
       swapcase("aBcD")
       Would result in: "AbCd"
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, "swapcase(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
 
-    unless value.is_a?(Array) || value.is_a?(String)
-      raise(Puppet::ParseError, 'swapcase(): Requires either array or string to work with')
-    end
+    raise(Puppet::ParseError, 'swapcase(): Requires either array or string to work with') unless value.is_a?(Array) || value.is_a?(String)
 
     result = if value.is_a?(Array)
                # Numbers in Puppet are often string-encoded which is troublesome ...

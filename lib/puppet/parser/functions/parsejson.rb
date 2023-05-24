@@ -25,6 +25,7 @@ module Puppet::Parser::Functions
       Puppet::Util::Json.load(arguments[0]) || arguments[1]
     rescue StandardError => e
       raise e unless arguments[1]
+
       arguments[1]
     end
   end

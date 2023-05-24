@@ -16,10 +16,11 @@ module Puppet::Parser::Functions
     @example Example Usage:
       fqdn_uuid('puppetlabs.com') # Returns '9c70320f-6815-5fc5-ab0f-debe68bf764c'
       fqdn_uuid('google.com') # Returns '64ee70a4-8cc1-5d25-abf2-dea6c79a09c8'
-    DOC
+  DOC
 
     raise(ArgumentError, 'fqdn_uuid: No arguments given') if args.empty?
     raise(ArgumentError, "fqdn_uuid: Too many arguments given (#{args.length})") unless args.length == 1
+
     fqdn = args[0]
 
     # Code lovingly taken from
@@ -44,7 +45,7 @@ module Puppet::Parser::Functions
                            0x4f,
                            0xd4,
                            0x30,
-                           0xc8].map { |b| b.chr }.join
+                           0xc8].map(&:chr).join
 
     sha1 = Digest::SHA1.new
     sha1.update(uuid_name_space_dns)

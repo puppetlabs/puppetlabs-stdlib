@@ -6,7 +6,7 @@ describe 'stdlib::xml_encode' do
   let(:string) { 'this is "my" complicated <String>' }
 
   it 'exists' do
-    is_expected.not_to be_nil
+    expect(subject).not_to be_nil
   end
 
   describe 'for XML text' do

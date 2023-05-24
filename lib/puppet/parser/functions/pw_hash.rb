@@ -35,9 +35,10 @@ Puppet::Parser::Functions.newfunction(:pw_hash, type: :rvalue, arity: 3, doc: <<
   > *Note:*: this uses the Puppet Server's implementation of crypt(3). If your
     environment contains several different operating systems, ensure that they
     are compatible before using this function.
-  DOC
+DOC
 ) do |args|
   raise ArgumentError, "pw_hash(): wrong number of arguments (#{args.size} for 3)" if args.size != 3
+
   args.map! do |arg|
     if (defined? Puppet::Pops::Types::PSensitiveType::Sensitive) && (arg.is_a? Puppet::Pops::Types::PSensitiveType::Sensitive)
       arg.unwrap
@@ -47,21 +48,23 @@ Puppet::Parser::Functions.newfunction(:pw_hash, type: :rvalue, arity: 3, doc: <<
   end
 
   hashes = {
-    'md5'       => { prefix: '1' },
-    'sha-256'   => { prefix: '5' },
-    'sha-512'   => { prefix: '6' },
-    'bcrypt'    => { prefix: '2b', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
-    'bcrypt-a'  => { prefix: '2a', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
-    'bcrypt-x'  => { prefix: '2x', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
-    'bcrypt-y'  => { prefix: '2y', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
+    'md5' => { prefix: '1' },
+    'sha-256' => { prefix: '5' },
+    'sha-512' => { prefix: '6' },
+    'bcrypt' => { prefix: '2b', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
+    'bcrypt-a' => { prefix: '2a', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
+    'bcrypt-x' => { prefix: '2x', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
+    'bcrypt-y' => { prefix: '2y', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} }
   }
 
   raise ArgumentError, 'pw_hash(): first argument must be a string' unless args[0].is_a?(String) || args[0].nil?
   raise ArgumentError, 'pw_hash(): second argument must be a string' unless args[1].is_a? String
+
   hash_type = hashes[args[1].downcase]
   raise ArgumentError, "pw_hash(): #{args[1]} is not a valid hash type" if hash_type.nil?
   raise ArgumentError, 'pw_hash(): third argument must be a string' unless args[2].is_a? String
   raise ArgumentError, 'pw_hash(): third argument must not be empty' if args[2].empty?
+
   salt_doc = hash_type.include?(:salt) ? "match #{hash_type[:salt]}" : 'be in the set [a-zA-Z0-9./]'
   salt_regex = hash_type.fetch(:salt, %r{\A[a-zA-Z0-9./]+\z})
   raise ArgumentError, "pw_hash(): characters in salt must #{salt_doc}" unless salt_regex.match?(args[2])
@@ -73,13 +76,14 @@ Puppet::Parser::Functions.newfunction(:pw_hash, type: :rvalue, arity: 3, doc: <<
 
   # handle weak implementations of String#crypt
   # dup the string to get rid of frozen status for testing
-  if ('test'.dup).crypt('$1$1') != '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
+  if (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
+    password.crypt(salt)
+  else
     # JRuby < 1.7.17
     # MS Windows and other systems that don't support enhanced salts
     raise Puppet::ParseError, 'system does not support enhanced salts' unless RUBY_PLATFORM == 'java'
+
     # puppetserver bundles Apache Commons Codec
     org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
-  else
-    password.crypt(salt)
   end
 end

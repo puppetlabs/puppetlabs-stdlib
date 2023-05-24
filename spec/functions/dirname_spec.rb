@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'dirname' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{No arguments given}) }
   it { is_expected.to run.with_params('one', 'two').and_raise_error(Puppet::ParseError, %r{Too many arguments given}) }
   it { is_expected.to run.with_params([]).and_raise_error(Puppet::ParseError, %r{Requires string as argument}) }

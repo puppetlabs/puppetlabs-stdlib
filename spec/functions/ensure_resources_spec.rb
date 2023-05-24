@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'ensure_resources' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{Must specify a type}) }
   it { is_expected.to run.with_params('type').and_raise_error(ArgumentError, %r{Must specify a title}) }
 

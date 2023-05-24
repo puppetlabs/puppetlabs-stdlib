@@ -36,13 +36,12 @@ module Puppet::Parser::Functions
     @return [Array] The new array containing the given object
   DOC
   ) do |arguments|
-    if arguments.empty?
-      return []
-    end
+    return [] if arguments.empty?
 
     return arguments unless arguments.length == 1
     return arguments[0] if arguments[0].is_a?(Array)
     return [] if arguments == ['']
+
     if arguments[0].is_a?(Hash)
       result = []
       arguments[0].each do |key, value|

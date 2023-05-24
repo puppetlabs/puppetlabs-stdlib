@@ -3,14 +3,15 @@
 require 'spec_helper'
 
 describe 'delete_at' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
   it { is_expected.to run.with_params('one', 1).and_raise_error(Puppet::ParseError, %r{Requires array}) }
   it { is_expected.to run.with_params(1, 1).and_raise_error(Puppet::ParseError, %r{Requires array}) }
   it { is_expected.to run.with_params(['one'], 'two').and_raise_error(Puppet::ParseError, %r{You must provide non-negative numeric}) }
+
   it {
     pending('Current implementation ignores parameters after the first two.')
-    is_expected.to run.with_params(['one'], 0, 1).and_raise_error(Puppet::ParseError)
+    expect(subject).to run.with_params(['one'], 0, 1).and_raise_error(Puppet::ParseError)
   }
 
   describe 'argument validation' do

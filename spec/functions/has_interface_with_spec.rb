@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'has_interface_with' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{expects between 1 and 2 arguments, got none}) }
   it { is_expected.to run.with_params('one', 'two', 'three').and_raise_error(ArgumentError, %r{expects between 1 and 2 arguments, got 3}) }
 
@@ -22,7 +22,7 @@ describe 'has_interface_with' do
                   'network' => '127.0.0.0'
                 },
               ],
-              "bindings6": [
+              bindings6: [
                 {
                   'address' => '::1',
                   'netmask' => 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
@@ -42,7 +42,7 @@ describe 'has_interface_with' do
               'network' => '127.0.0.0',
               'network6' => '::1',
               'scope6' => 'host'
-            },
+            }
           }
         }
       }
@@ -129,8 +129,8 @@ describe 'has_interface_with' do
               'network' => '127.0.0.0',
               'network6' => '::1'
             }
-          },
-        },
+          }
+        }
       }
     end
 

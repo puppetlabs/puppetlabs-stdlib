@@ -20,7 +20,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
     Puppet::Type::File_line.new({
       name: 'foo',
       path: tmpfile,
-      line: 'foo',
+      line: 'foo'
     }.merge(params))
   end
   let :provider do
@@ -28,9 +28,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
   end
 
   before :each do
-    File.open(tmpfile, 'w') do |fh|
-      fh.write(content)
-    end
+    File.write(tmpfile, content)
   end
 
   describe 'customer use cases - no lines' do
@@ -39,7 +37,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         {
           line: "*\thard\tcore\t0",
           match: "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
-          multiple: true,
+          multiple: true
         }
       end
       let(:content) { "*	hard	core	90\n*	hard	core	10\n" }
@@ -47,6 +45,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the matches' do
         provider.create
         expect(File.read(tmpfile).chomp).to eq("*	hard	core	0\n*	hard	core	0")
@@ -58,7 +57,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         {
           line: "*\thard\tcore\t0",
           match: "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
-          multiple: true,
+          multiple: true
         }
       end
       let(:content) { "*	hard	core	90\n*	hard	core	0\n" }
@@ -73,8 +72,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
         {
           line: "*\thard\tcore\t0",
           match: "^[ \t]*\\*[ \t]+hard[ \t]+core[ \t]+.*",
-          multiple: true,
-
+          multiple: true
         }.merge(replace_all_matches_not_matching_line: true)
       end
       let(:content) { "*	hard	core	90\n*	hard	core	0\n" }
@@ -82,6 +80,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the matches' do
         provider.create
         expect(File.read(tmpfile).chomp).to eq("*	hard	core	0\n*	hard	core	0")
@@ -92,7 +91,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       let(:params) do
         {
           line: 'LogLevel=notice',
-          match: '^#LogLevel$',
+          match: '^#LogLevel$'
         }
       end
       let(:content) { "#LogLevel\nstuff" }
@@ -100,6 +99,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       it 'requests changes' do
         expect(provider).not_to be_exists
       end
+
       it 'replaces the match' do
         provider.create
         expect(File.read(tmpfile).chomp).to eq("LogLevel=notice\nstuff")
@@ -110,7 +110,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       let(:params) do
         {
           line: 'LogLevel=notice',
-          match: '^#LogLevel$',
+          match: '^#LogLevel$'
         }
       end
       let(:content) { "#Loglevel\nLogLevel=notice\nstuff" }
@@ -124,7 +124,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       let(:params) do
         {
           line: 'LogLevel=notice',
-          match: '^#LogLevel$',
+          match: '^#LogLevel$'
         }
       end
       let(:content) { "LogLevel=notice\nstuff" }

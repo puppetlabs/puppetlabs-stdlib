@@ -18,11 +18,9 @@ module Puppet::Parser::Functions
     [`filter`](https://puppet.com/docs/puppet/latest/function.html#filter) function does
     the "same" - as any logic can be used to filter, as opposed to just regular expressions:
     ```['aaa', 'bbb', 'ccc', 'aaaddd']. filter |$x| { $x =~ 'aaa' }```
-    DOC
+  DOC
   ) do |arguments|
-    if arguments.size != 2
-      raise(Puppet::ParseError, "grep(): Wrong number of arguments given #{arguments.size} for 2")
-    end
+    raise(Puppet::ParseError, "grep(): Wrong number of arguments given #{arguments.size} for 2") if arguments.size != 2
 
     a = arguments[0]
     pattern = Regexp.new(arguments[1])

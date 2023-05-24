@@ -24,13 +24,13 @@ describe 'stdlib::manage' do
           'file' => {
             '/etc/motd.d/hello' => {
               'content' => 'I say Hi',
-              'notify' => 'Service[sshd]',
+              'notify' => 'Service[sshd]'
             }
           },
           'package' => {
             'example' => {
               'ensure' => 'installed',
-              'subscribe' => ['Service[sshd]', 'File[/etc/motd.d]'],
+              'subscribe' => ['Service[sshd]', 'File[/etc/motd.d]']
             }
           }
         }

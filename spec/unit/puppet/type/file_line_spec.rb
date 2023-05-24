@@ -25,10 +25,12 @@ describe Puppet::Type.type(:file_line) do
     file_line[:line] = 'my_line'
     expect(file_line[:line]).to eq('my_line')
   end
+
   it 'accepts a path' do
     file_line[:path] = my_path
     expect(file_line[:path]).to eq(my_path)
   end
+
   it 'accepts a match regex' do
     file_line[:match] = '^foo.*$'
     expect(file_line[:match]).to eq('^foo.*$')
@@ -41,6 +43,7 @@ describe Puppet::Type.type(:file_line) do
       )
     }.not_to raise_error
   end
+
   it 'accepts a match regex that does match the specified line' do
     expect {
       Puppet::Type.type(:file_line).new(
@@ -48,6 +51,7 @@ describe Puppet::Type.type(:file_line) do
       )
     }.not_to raise_error
   end
+
   it 'accepts utf8 characters' do
     expect {
       Puppet::Type.type(:file_line).new(
@@ -55,6 +59,7 @@ describe Puppet::Type.type(:file_line) do
       )
     }.not_to raise_error
   end
+
   it 'accepts double byte characters' do
     expect {
       Puppet::Type.type(:file_line).new(
@@ -62,34 +67,44 @@ describe Puppet::Type.type(:file_line) do
       )
     }.not_to raise_error
   end
+
   it 'accepts posix filenames' do
     file_line[:path] = tmp_path
     expect(file_line[:path]).to eq(tmp_path)
   end
+
   it 'does not accept unqualified path' do
     expect { file_line[:path] = 'file' }.to raise_error(Puppet::Error, %r{File paths must be fully qualified})
   end
+
   it 'requires that a line is specified' do
     expect { Puppet::Type.type(:file_line).new(name: 'foo', path: tmp_path) }.to raise_error(Puppet::Error, %r{line is a required attribute})
   end
+
   it 'does not require that a line is specified when matching for absence' do
     expect { Puppet::Type.type(:file_line).new(name: 'foo', path: tmp_path, ensure: :absent, match_for_absence: :true, match: 'match') }.not_to raise_error
   end
+
   it 'although if a line is specified anyway when matching for absence it still works and the line is silently ignored' do
     expect { Puppet::Type.type(:file_line).new(name: 'foo', path: tmp_path, line: 'i_am_irrelevant', ensure: :absent, match_for_absence: :true, match: 'match') }.not_to raise_error
   end
+
   it 'requires that a file is specified' do
     expect { Puppet::Type.type(:file_line).new(name: 'foo', line: 'path') }.to raise_error(Puppet::Error, %r{path is a required attribute})
   end
+
   it 'defaults to ensure => present' do
     expect(file_line[:ensure]).to eq :present
   end
+
   it 'defaults to replace => true' do
     expect(file_line[:replace]).to eq :true
   end
+
   it 'defaults to encoding => UTF-8' do
     expect(file_line[:encoding]).to eq 'UTF-8'
   end
+
   it 'accepts encoding => iso-8859-1' do
     expect { Puppet::Type.type(:file_line).new(name: 'foo', path: tmp_path, ensure: :present, encoding: 'iso-8859-1', line: 'bar') }.not_to raise_error
   end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 # @summary
+#   **Deprecated:** Starting Puppet 8, we no longer natively support PSON usage. This function should be removed once we stop supporting Puppet 7.
+#
 #   This function accepts PSON, a Puppet variant of JSON, as a string and converts
 #   it into the correct Puppet structure
 #
@@ -20,10 +22,13 @@ Puppet::Functions.create_function(:parsepson) do
   end
 
   def parsepson(pson_string, default = :no_default_provided)
-    PSON.load(pson_string)
-  rescue StandardError => err
-    Puppet.debug("Parsing PSON failed with error: #{err.message}")
-    raise err if default == :no_default_provided
+    call_function('deprecation', 'parsepson', 'This method is deprecated. From Puppet 8, PSON is no longer natively supported. Please use JSON.parse().')
+
+    PSON.load(pson_string) if Puppet::Util::Package.versioncmp(Puppet.version, '8').negative?
+  rescue StandardError => e
+    Puppet.debug("Parsing PSON failed with error: #{e.message}")
+    raise e if default == :no_default_provided
+
     default
   end
 end

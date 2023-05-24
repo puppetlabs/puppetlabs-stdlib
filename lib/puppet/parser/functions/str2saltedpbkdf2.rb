@@ -58,13 +58,13 @@ module Puppet::Parser::Functions
     salt       = args[1]
     iterations = args[2]
     keylen     = 128
-    digest     = OpenSSL::Digest::SHA512.new
+    digest     = OpenSSL::Digest.new('SHA512')
     hash       = OpenSSL::PKCS5.pbkdf2_hmac(password, salt, iterations, keylen, digest)
 
     {
-      'password_hex' => hash.unpack('H*').first,
-      'salt_hex'     => salt.unpack('H*').first,
-      'iterations'   => iterations,
+      'password_hex' => hash.unpack1('H*'),
+      'salt_hex' => salt.unpack1('H*'),
+      'iterations' => iterations
     }
   end
 end

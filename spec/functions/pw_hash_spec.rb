@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'pw_hash' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
 
   context 'when there are less than 3 arguments' do
     it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{wrong number of arguments}i) }
@@ -101,10 +101,12 @@ describe 'pw_hash' do
     if Puppet::Util::Package.versioncmp(Puppet.version, '4.7.0') >= 0
       describe 'when arguments are sensitive' do
         it { is_expected.to run.with_params(Puppet::Pops::Types::PSensitiveType::Sensitive.new('password'), 'md5', 'salt').and_return('$1$salt$qJH7.N4xYta3aEG/dfqo/0') }
+
         it {
-          is_expected.to run.with_params(Puppet::Pops::Types::PSensitiveType::Sensitive.new('password'), 'md5', Puppet::Pops::Types::PSensitiveType::Sensitive.new('salt'))
-                            .and_return('$1$salt$qJH7.N4xYta3aEG/dfqo/0')
+          expect(subject).to run.with_params(Puppet::Pops::Types::PSensitiveType::Sensitive.new('password'), 'md5', Puppet::Pops::Types::PSensitiveType::Sensitive.new('salt'))
+                                .and_return('$1$salt$qJH7.N4xYta3aEG/dfqo/0')
         }
+
         it { is_expected.to run.with_params('password', 'md5', Puppet::Pops::Types::PSensitiveType::Sensitive.new('salt')).and_return('$1$salt$qJH7.N4xYta3aEG/dfqo/0') }
       end
     end

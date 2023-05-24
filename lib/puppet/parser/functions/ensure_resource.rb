@@ -35,6 +35,7 @@ DOC
   type, title, params = vals
   raise(ArgumentError, 'Must specify a type') unless type
   raise(ArgumentError, 'Must specify a title') unless title
+
   params ||= {}
 
   items = [title].flatten

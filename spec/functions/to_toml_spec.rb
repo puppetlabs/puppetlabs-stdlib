@@ -4,7 +4,8 @@ require 'spec_helper'
 
 describe 'to_toml' do
   context 'fails on invalid params' do
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
+
     [
       nil,
       '',

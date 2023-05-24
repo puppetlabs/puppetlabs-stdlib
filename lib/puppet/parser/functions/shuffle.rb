@@ -16,19 +16,17 @@ module Puppet::Parser::Functions
 
     value = arguments[0]
 
-    unless value.is_a?(Array) || value.is_a?(String)
-      raise(Puppet::ParseError, 'shuffle(): Requires either array or string to work with')
-    end
+    raise(Puppet::ParseError, 'shuffle(): Requires either array or string to work with') unless value.is_a?(Array) || value.is_a?(String)
 
     result = value.clone
 
-    string = value.is_a?(String) ? true : false
+    string = value.is_a?(String)
 
     # Check whether it makes sense to shuffle ...
     return result if result.size <= 1
 
     # We turn any string value into an array to be able to shuffle ...
-    result = string ? result.split('') : result
+    result = string ? result.chars : result
 
     elements = result.size
 

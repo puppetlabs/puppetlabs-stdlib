@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'shell_join' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
 
   describe 'signature validation' do
     it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{wrong number of arguments}i) }
@@ -15,9 +15,10 @@ describe 'shell_join' do
     it { is_expected.to run.with_params(['foo']).and_return('foo') }
     it { is_expected.to run.with_params(['foo', 'bar']).and_return('foo bar') }
     it { is_expected.to run.with_params(['foo', 'bar baz']).and_return('foo bar\ baz') }
+
     it {
-      is_expected.to run.with_params(['~`!@#$', '%^&*()_-=', '[]\{}|;\':"', ',./<>?'])
-                        .and_return('\~\`\!@\#\$ \%\^\&\*\(\)_-\= \[\]\\\\\{\}\|\;\\\':\" ,./\<\>\?')
+      expect(subject).to run.with_params(['~`!@#$', '%^&*()_-=', '[]\{}|;\':"', ',./<>?'])
+                            .and_return('\~\`\!@\#\$ \%\^\&\*\(\)_-\= \[\]\\\\\{\}\|\;\\\':\" ,./\<\>\?')
     }
 
     context 'with UTF8 and double byte characters' do

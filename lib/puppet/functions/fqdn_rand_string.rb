@@ -25,7 +25,7 @@ Puppet::Functions.create_function(:fqdn_rand_string) do
   def fqdn_rand_string(length, charset = '', *seed)
     charset = charset.chars.to_a
 
-    charset = (0..9).map { |i| i.to_s } + ('A'..'Z').to_a + ('a'..'z').to_a if charset.empty?
+    charset = (0..9).map(&:to_s) + ('A'..'Z').to_a + ('a'..'z').to_a if charset.empty?
 
     rand_string = ''
     length.times do |current|

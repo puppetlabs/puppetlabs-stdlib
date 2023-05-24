@@ -26,9 +26,8 @@ DOC
 ) do |vals|
   reference, params = vals
   raise(ArgumentError, 'Must specify a reference') unless reference
-  if !params || params == ''
-    params = {}
-  end
+
+  params = {} if !params || params == ''
   ret = false
 
   if Puppet::Util::Package.versioncmp(Puppet.version, '4.6.0') >= 0

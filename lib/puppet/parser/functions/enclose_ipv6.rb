@@ -16,16 +16,10 @@ module Puppet::Parser::Functions
     require 'ipaddr'
 
     rescuable_exceptions = [ArgumentError]
-    if defined?(IPAddr::InvalidAddressError)
-      rescuable_exceptions << IPAddr::InvalidAddressError
-    end
+    rescuable_exceptions << IPAddr::InvalidAddressError if defined?(IPAddr::InvalidAddressError)
 
-    if arguments.size != 1
-      raise(Puppet::ParseError, "enclose_ipv6(): Wrong number of arguments given #{arguments.size} for 1")
-    end
-    unless arguments[0].is_a?(String) || arguments[0].is_a?(Array)
-      raise(Puppet::ParseError, "enclose_ipv6(): Wrong argument type given #{arguments[0].class} expected String or Array")
-    end
+    raise(Puppet::ParseError, "enclose_ipv6(): Wrong number of arguments given #{arguments.size} for 1") if arguments.size != 1
+    raise(Puppet::ParseError, "enclose_ipv6(): Wrong argument type given #{arguments[0].class} expected String or Array") unless arguments[0].is_a?(String) || arguments[0].is_a?(Array)
 
     input = [arguments[0]].flatten.compact
     result = []

@@ -4,21 +4,26 @@ require 'spec_helper'
 
 describe 'unix2dos' do
   context 'when checking parameter validity' do
-    it { is_expected.not_to eq(nil) }
+    it { is_expected.not_to be_nil }
+
     it do
-      is_expected.to run.with_params.and_raise_error(ArgumentError, %r{Wrong number of arguments})
+      expect(subject).to run.with_params.and_raise_error(ArgumentError, %r{Wrong number of arguments})
     end
+
     it do
-      is_expected.to run.with_params('one', 'two').and_raise_error(ArgumentError, %r{Wrong number of arguments})
+      expect(subject).to run.with_params('one', 'two').and_raise_error(ArgumentError, %r{Wrong number of arguments})
     end
+
     it do
-      is_expected.to run.with_params([]).and_raise_error(Puppet::ParseError)
+      expect(subject).to run.with_params([]).and_raise_error(Puppet::ParseError)
     end
+
     it do
-      is_expected.to run.with_params({}).and_raise_error(Puppet::ParseError)
+      expect(subject).to run.with_params({}).and_raise_error(Puppet::ParseError)
     end
+
     it do
-      is_expected.to run.with_params(1).and_raise_error(Puppet::ParseError)
+      expect(subject).to run.with_params(1).and_raise_error(Puppet::ParseError)
     end
   end
 
@@ -27,7 +32,7 @@ describe 'unix2dos' do
     desired_output = "Hello\r\nWorld\r\n"
 
     it 'outputs dos format' do
-      is_expected.to run.with_params(sample_text).and_return(desired_output)
+      expect(subject).to run.with_params(sample_text).and_return(desired_output)
     end
   end
 
@@ -36,7 +41,7 @@ describe 'unix2dos' do
     desired_output = "Hello\r\nWorld\r\n"
 
     it 'outputs dos format' do
-      is_expected.to run.with_params(sample_text).and_return(desired_output)
+      expect(subject).to run.with_params(sample_text).and_return(desired_output)
     end
   end
 end

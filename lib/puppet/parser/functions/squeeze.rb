@@ -12,9 +12,7 @@ module Puppet::Parser::Functions
       a new string where runs of the same character that occur in this set are replaced by a single character.
   DOC
   ) do |arguments|
-    if (arguments.size != 2) && (arguments.size != 1)
-      raise(Puppet::ParseError, "squeeze(): Wrong number of arguments given #{arguments.size} for 2 or 1")
-    end
+    raise(Puppet::ParseError, "squeeze(): Wrong number of arguments given #{arguments.size} for 2 or 1") if (arguments.size != 2) && (arguments.size != 1)
 
     item = arguments[0]
     squeezeval = arguments[1]
@@ -23,7 +21,7 @@ module Puppet::Parser::Functions
       if squeezeval
         item.map { |i| i.squeeze(squeezeval) }
       else
-        item.map { |i| i.squeeze }
+        item.map(&:squeeze)
       end
     elsif squeezeval
       item.squeeze(squeezeval)

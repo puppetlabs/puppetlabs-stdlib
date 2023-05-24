@@ -7,12 +7,14 @@ describe 'stdlib::ensure' do
     it { is_expected.to run.with_params(true).and_return('present') }
     it { is_expected.to run.with_params(false).and_return('absent') }
   end
+
   context 'work with service resource' do
     it { is_expected.to run.with_params('present', 'service').and_return('running') }
     it { is_expected.to run.with_params(true, 'service').and_return('running') }
     it { is_expected.to run.with_params('absent', 'service').and_return('stopped') }
     it { is_expected.to run.with_params(false, 'service').and_return('stopped') }
   end
+
   ['directory', 'link', 'mounted', 'file'].each do |resource|
     context "work with #{resource} resource" do
       it { is_expected.to run.with_params('present', resource).and_return(resource) }

@@ -31,6 +31,7 @@ module Puppet::Parser::Functions
     args.delete(:undefined)
     args.delete('')
     raise Puppet::ParseError, 'pick(): must receive at least one non empty value' if args[0].to_s.empty?
+
     return args[0]
   end
 end

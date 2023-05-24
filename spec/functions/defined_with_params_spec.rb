@@ -6,6 +6,7 @@ describe 'defined_with_params' do
   describe 'when no resource is specified' do
     it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
   end
+
   describe 'when compared against a resource with no attributes' do
     let :pre_condition do
       'user { "dan": }'
@@ -52,6 +53,7 @@ describe 'defined_with_params' do
     context 'with reference' do
       it { is_expected.to run.with_params(Puppet::Resource.new('User[dan]'), {}).and_return(true) }
     end
+
     if Puppet::Util::Package.versioncmp(Puppet.version, '4.6.0') >= 0
       context 'with array' do
         it 'fails' do
@@ -88,8 +90,9 @@ describe 'defined_with_params' do
     it { is_expected.to run.with_params('Test::Deftype[foo]', {}).and_return(true) }
     it { is_expected.to run.with_params('Test::Deftype[bar]', {}).and_return(false) }
     it { is_expected.to run.with_params(Puppet::Resource.new('Test::Deftype[foo]'), {}).and_return(true) }
+
     it {
-      is_expected.to run.with_params(Puppet::Resource.new('Test::Deftype[bar]'), {}).and_return(false)
+      expect(subject).to run.with_params(Puppet::Resource.new('Test::Deftype[bar]'), {}).and_return(false)
 
       expect(catalogue.resource('Notify[Duplicate found somewhere]')).not_to be_nil
       expect(catalogue.resource('Notify[Should not find me]')).to be_nil

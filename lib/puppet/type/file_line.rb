@@ -32,7 +32,7 @@ Puppet::Type.newtype(:file_line) do
       ensure => present,
       path   => '/etc/bashrc',
       line   => 'export HTTP_PROXY=http://squid.puppetlabs.vm:3128',
-      match  => '^export\ HTTP_PROXY\=',
+      match  => '^export HTTP_PROXY=',
     }
     ```
 
@@ -50,7 +50,7 @@ Puppet::Type.newtype(:file_line) do
     file_line { 'bashrc_proxy':
       ensure            => absent,
       path              => '/etc/bashrc',
-      match             => '^export\ HTTP_PROXY\=',
+      match             => '^export HTTP_PROXY=',
       match_for_absence => true,
     }
     ```
@@ -152,9 +152,7 @@ Puppet::Type.newtype(:file_line) do
   newparam(:path) do
     desc 'The file Puppet will ensure contains the line specified by the line parameter.'
     validate do |value|
-      unless Puppet::Util.absolute_path?(value)
-        raise Puppet::Error, "File paths must be fully qualified, not '#{value}'"
-      end
+      raise Puppet::Error, "File paths must be fully qualified, not '#{value}'" unless Puppet::Util.absolute_path?(value)
     end
   end
 
@@ -187,19 +185,10 @@ Puppet::Type.newtype(:file_line) do
     self[:path]
   end
   validate do
-    if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:multiple].to_s == 'false'
-      raise(Puppet::Error, 'multiple must be true when replace_all_matches_not_matching_line is true')
-    end
-    if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:replace].to_s == 'false'
-      raise(Puppet::Error, 'replace must be true when replace_all_matches_not_matching_line is true')
-    end
-    unless self[:line]
-      unless (self[:ensure].to_s == 'absent') && (self[:match_for_absence].to_s == 'true') && self[:match]
-        raise(Puppet::Error, 'line is a required attribute')
-      end
-    end
-    unless self[:path]
-      raise(Puppet::Error, 'path is a required attribute')
-    end
+    raise(Puppet::Error, 'multiple must be true when replace_all_matches_not_matching_line is true') if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:multiple].to_s == 'false'
+    raise(Puppet::Error, 'replace must be true when replace_all_matches_not_matching_line is true') if self[:replace_all_matches_not_matching_line].to_s == 'true' && self[:replace].to_s == 'false'
+
+    raise(Puppet::Error, 'line is a required attribute') if !self[:line] && !((self[:ensure].to_s == 'absent') && (self[:match_for_absence].to_s == 'true') && self[:match])
+    raise(Puppet::Error, 'path is a required attribute') unless self[:path]
   end
 end

@@ -3,7 +3,7 @@ fixtures:
     facts: 'https://github.com/puppetlabs/puppetlabs-facts.git'
     puppet_agent:
       repo: 'https://github.com/puppetlabs/puppetlabs-puppet_agent.git'
-      ref: v4.12.1
+      ref: v4.13.0
     provision: 'https://github.com/puppetlabs/provision.git'
   symlinks:
     stdlib: "#{source_dir}"

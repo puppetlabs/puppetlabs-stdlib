@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'delete_regex' do
-  it { is_expected.not_to eq(nil) }
+  it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params.and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
   it { is_expected.to run.with_params([]).and_raise_error(Puppet::ParseError, %r{Wrong number of arguments}) }
   it { is_expected.to run.with_params([], 'two') }
@@ -30,13 +30,15 @@ describe 'delete_regex' do
     it { is_expected.to run.with_params({}, '').and_return({}) }
     it { is_expected.to run.with_params({}, 'key').and_return({}) }
     it { is_expected.to run.with_params({ 'key' => 'value' }, 'key').and_return({}) }
+
     it {
-      is_expected.to run \
+      expect(subject).to run \
         .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'key2') \
         .and_return('key1' => 'value1', 'key3' => 'value3')
     }
+
     it {
-      is_expected.to run \
+      expect(subject).to run \
         .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, ['key1', 'key2']) \
         .and_return('key3' => 'value3')
     }
@@ -48,6 +50,7 @@ describe 'delete_regex' do
     subject.execute(argument1, 'two')
     expect(argument1).to eq(original1)
   end
+
   it 'leaves the original hash intact' do
     argument1 = { 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }
     original1 = argument1.dup

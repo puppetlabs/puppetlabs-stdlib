@@ -9,7 +9,7 @@ module Puppet::Parser::Functions
       Strips directory (and optional suffix) from a filename
 
     @return [String] The stripped filename
-    DOC
+  DOC
   ) do |arguments|
     raise(Puppet::ParseError, 'basename(): No arguments given') if arguments.empty?
     raise(Puppet::ParseError, "basename(): Too many arguments given (#{arguments.size})") if arguments.size > 2
@@ -18,6 +18,7 @@ module Puppet::Parser::Functions
     rv = File.basename(arguments[0]) if arguments.size == 1
     if arguments.size == 2
       raise(Puppet::ParseError, 'basename(): Requires string as second argument') unless arguments[1].is_a?(String)
+
       rv = File.basename(arguments[0], arguments[1])
     end
 

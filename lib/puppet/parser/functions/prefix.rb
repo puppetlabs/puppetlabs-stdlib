@@ -18,24 +18,18 @@ module Puppet::Parser::Functions
     ['a', 'b', 'c'].map |$x| { "p${x}" }
 
     @return [Hash] or [Array] The passed values now contains the passed prefix
-    DOC
+  DOC
   ) do |arguments|
     # Technically we support two arguments but only first is mandatory ...
     raise(Puppet::ParseError, "prefix(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     enumerable = arguments[0]
 
-    unless enumerable.is_a?(Array) || enumerable.is_a?(Hash)
-      raise Puppet::ParseError, "prefix(): expected first argument to be an Array or a Hash, got #{enumerable.inspect}"
-    end
+    raise Puppet::ParseError, "prefix(): expected first argument to be an Array or a Hash, got #{enumerable.inspect}" unless enumerable.is_a?(Array) || enumerable.is_a?(Hash)
 
     prefix = arguments[1] if arguments[1]
 
-    if prefix
-      unless prefix.is_a?(String)
-        raise Puppet::ParseError, "prefix(): expected second argument to be a String, got #{prefix.inspect}"
-      end
-    end
+    raise Puppet::ParseError, "prefix(): expected second argument to be a String, got #{prefix.inspect}" if prefix && !prefix.is_a?(String)
 
     result = if enumerable.is_a?(Array)
                # Turn everything into string same as join would do ...
@@ -44,10 +38,10 @@ module Puppet::Parser::Functions
                  prefix ? prefix + i : i
                end
              else
-               Hash[enumerable.map do |k, v|
+               enumerable.to_h do |k, v|
                  k = k.to_s
                  [prefix ? prefix + k : k, v]
-               end]
+               end
              end
 
     return result
