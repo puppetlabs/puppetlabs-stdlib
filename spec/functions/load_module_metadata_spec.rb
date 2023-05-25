@@ -29,7 +29,7 @@ describe 'load_module_metadata' do
 
       it 'jsons parse the file' do
         allow(scope).to receive(:function_get_module_path).with(['science']).and_return("#{prefix}/path/to/module/")
-        allow(File).to receive(:exists?).with("#{prefix}/path/to/module/metadata.json").and_return(true)
+        allow(File).to receive(:exist?).with("#{prefix}/path/to/module/metadata.json").and_return(true)
         allow(File).to receive(:read).with("#{prefix}/path/to/module/metadata.json").and_return('{"name": "spencer-science"}')
 
         result = subject.execute('science')
@@ -38,13 +38,13 @@ describe 'load_module_metadata' do
 
       it 'fails by default if there is no metadata.json' do
         allow(scope).to receive(:function_get_module_path).with(['science']).and_return("#{prefix}/path/to/module/")
-        allow(File).to receive(:exists?).with("#{prefix}/path/to/module/metadata.json").and_return(false)
+        allow(File).to receive(:exist?).with("#{prefix}/path/to/module/metadata.json").and_return(false)
         expect { subject.call(['science']) }.to raise_error(Puppet::ParseError)
       end
 
       it 'returns nil if user allows empty metadata.json' do
         allow(scope).to receive(:function_get_module_path).with(['science']).and_return("#{prefix}/path/to/module/")
-        allow(File).to receive(:exists?).with("#{prefix}/path/to/module/metadata.json").and_return(false)
+        allow(File).to receive(:exist?).with("#{prefix}/path/to/module/metadata.json").and_return(false)
         result = subject.execute('science', true)
         expect(result).to eq({})
       end

@@ -50,7 +50,7 @@ module Puppet::Parser::Functions
           args[1]
         end
         YAML.safe_load(contents) || args[1]
-      elsif File.exists?(args[0]) # rubocop:disable Lint/DeprecatedClassMethods : Changing to .exist? breaks the code
+      elsif File.exist?(args[0])
         YAML.load_file(args[0]) || args[1]
       else
         warning("Can't load '#{args[0]}' File does not exist!")
