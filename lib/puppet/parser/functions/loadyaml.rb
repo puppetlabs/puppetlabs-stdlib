@@ -49,9 +49,12 @@ module Puppet::Parser::Functions
           warning("Can't load '#{url}' HTTP Error Code: '#{res.status[0]}'")
           args[1]
         end
-        YAML.safe_load(contents) || args[1]
+        YAML.safe_load(contents, aliases: true) || args[1]
       elsif File.exist?(args[0])
-        YAML.load_file(args[0]) || args[1]
+        # Read the file first rather than calling YAML.load_file as ruby2.7
+        # doesn't support the aliases option on YAML.load_file
+        contents = File.read(args[0])
+        YAML.safe_load(contents, aliases: true) || args[1]
       else
         warning("Can't load '#{args[0]}' File does not exist!")
         args[1]
