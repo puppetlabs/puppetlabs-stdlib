@@ -6,7 +6,7 @@
 # have to explicitly pass the entire scope to the client.
 #
 function stdlib::deferrable_epp(String $template, Hash $variables) >> Variant[String, Sensitive[String], Deferred] {
-  if $variables.hash_values.any |$value| { $value.is_a(Deferred) } {
+  if $variables.nested_values.any |$value| { $value.is_a(Deferred) } {
     Deferred(
       'inline_epp',
       [find_template($template).file, $variables],

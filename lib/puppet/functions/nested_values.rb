@@ -8,19 +8,19 @@
 #   "key1" => "value1",
 #   "key2" => { "key2.1" => "value2.1"}
 # }
-# $hash.hash_value
+# $hash.nested_values
 #
 # Output : ["value1", "value2.1"]
 #
-Puppet::Functions.create_function(:hash_values) do
-  dispatch :hash_values do
+Puppet::Functions.create_function(:nested_values) do
+  dispatch :nested_values do
     param 'Hash', :options
     return_type 'Array'
   end
 
-  def hash_values(options)
+  def nested_values(options)
     options.each_with_object([]) do |(_k, v), values|
-      v.is_a?(Hash) ? values.concat(hash_values(v)) : (values << v)
+      v.is_a?(Hash) ? values.concat(nested_values(v)) : (values << v)
     end
   end
 end
