@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 if ENV['FUTURE_PARSER'] == 'yes'
-  describe 'type_of' do
+  describe 'stdlib::type_of' do
     pending 'teach rspec-puppet to load future-only functions under 3.7.5' do
       it { is_expected.not_to be_nil }
     end
@@ -11,7 +11,7 @@ if ENV['FUTURE_PARSER'] == 'yes'
 end
 
 if Puppet.version.to_f >= 4.0
-  describe 'type_of' do
+  describe 'stdlib::type_of' do
     it { is_expected.not_to be_nil }
     it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
     it { is_expected.to run.with_params('', '').and_raise_error(ArgumentError) }

@@ -2,12 +2,12 @@
 
 require 'spec_helper'
 
-describe 'powershell_escape' do
+describe 'stdlib::powershell_escape' do
   it { is_expected.not_to be_nil }
 
   describe 'signature validation' do
-    it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'powershell_escape' expects 1 argument, got none}) }
-    it { is_expected.to run.with_params('foo', 'bar').and_raise_error(ArgumentError, %r{'powershell_escape' expects 1 argument, got 2}) }
+    it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'stdlib::powershell_escape' expects 1 argument, got none}) }
+    it { is_expected.to run.with_params('foo', 'bar').and_raise_error(ArgumentError, %r{'stdlib::powershell_escape' expects 1 argument, got 2}) }
   end
 
   describe 'stringification' do

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'merge' do
+describe 'stdlib::merge' do
   it { is_expected.not_to be_nil }
 
   it {

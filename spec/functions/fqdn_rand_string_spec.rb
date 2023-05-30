@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'fqdn_rand_string' do
+describe 'stdlib::fqdn_rand_string' do
   let(:default_charset) { %r{\A[a-zA-Z0-9]{100}\z} }
 
   it { is_expected.not_to be_nil }

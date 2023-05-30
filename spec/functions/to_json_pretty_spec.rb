@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'to_json_pretty' do
+describe 'stdlib::to_json_pretty' do
   it { is_expected.not_to be_nil }
   it { is_expected.to run.with_params([]).and_return("[\n\n]\n") }
   it { is_expected.to run.with_params(['one']).and_return("[\n  \"one\"\n]\n") }

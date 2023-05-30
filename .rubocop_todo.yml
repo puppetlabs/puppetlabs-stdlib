@@ -37,7 +37,7 @@ Lint/MissingCopEnableDirective:
 # Configuration parameters: AllowComments, AllowNil.
 Lint/SuppressedException:
   Exclude:
-    - 'lib/puppet/functions/merge.rb'
+    - 'lib/puppet/functions/stdlib/merge.rb'
     - 'lib/puppet/parser/functions/has_interface_with.rb'
 
 # Offense count: 5
@@ -93,7 +93,7 @@ Naming/VariableNumber:
 # Configuration parameters: MinSize.
 Performance/CollectionLiteralInLoop:
   Exclude:
-    - 'lib/puppet/functions/ensure_packages.rb'
+    - 'lib/puppet/functions/stdlib/ensure_packages.rb'
 
 # Offense count: 36
 # Configuration parameters: Prefixes, AllowedPatterns.
@@ -192,5 +192,5 @@ Style/MixinUsage:
 # AllowedMethods: respond_to_missing?
 Style/OptionalBooleanParameter:
   Exclude:
-    - 'lib/puppet/functions/to_json_pretty.rb'
+    - 'lib/puppet/functions/stdlib/to_json_pretty.rb'
     - 'lib/puppet_x/stdlib/toml_dumper.rb'
