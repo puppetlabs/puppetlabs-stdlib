@@ -8,7 +8,7 @@
 Puppet::Functions.create_function(:'stdlib::fqdn_rand_string') do
   # @param length The length of the resulting string.
   # @param charset The character set to use.
-  # @param The seed for repeatable randomness.
+  # @param seed The seed for repeatable randomness.
   #
   # @return [String]
   #
