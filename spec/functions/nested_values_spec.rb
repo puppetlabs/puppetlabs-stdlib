@@ -2,10 +2,7 @@
 
 require 'spec_helper'
 
-describe 'nested_values' do
-  # please note that these tests are examples only
-  # you will need to replace the params and return value
-  # with your expectations
+describe 'stdlib::nested_values' do
   it { is_expected.to run.with_params({}).and_return([]) }
   it { is_expected.to run.with_params({ 'key' => 'value' }).and_return(['value']) }
   it { is_expected.to run.with_params({ 'key' => { 'key1' => 'value1', 'key2' => 'value2' } }).and_return(['value1', 'value2']) }
