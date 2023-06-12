@@ -15,17 +15,19 @@ Puppet::Functions.create_function(:'stdlib::fqdn_rand_string') do
   # @example Example Usage:
   #   stdlib::fqdn_rand_string(10)
   #   stdlib::fqdn_rand_string(10, 'ABCDEF!@$%^')
-  #   stdlib::fqdn_rand_string(10, '', 'custom seed')
+  #   stdlib::fqdn_rand_string(10, undef, 'custom seed')
   dispatch :fqdn_rand_string do
     param 'Integer[1]', :length
-    optional_param 'String', :charset
+    optional_param 'Optional[String]', :charset
     optional_repeated_param 'Any', :seed
   end
 
-  def fqdn_rand_string(length, charset = '', *seed)
-    charset = charset.chars.to_a
-
-    charset = (0..9).map(&:to_s) + ('A'..'Z').to_a + ('a'..'z').to_a if charset.empty?
+  def fqdn_rand_string(length, charset = nil, *seed)
+    charset = if charset && !charset.empty?
+                charset.chars.to_a
+              else
+                (0..9).map(&:to_s) + ('A'..'Z').to_a + ('a'..'z').to_a
+              end
 
     rand_string = ''
     length.times do |current|

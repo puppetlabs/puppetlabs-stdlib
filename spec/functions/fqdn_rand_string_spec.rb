@@ -14,13 +14,15 @@ describe 'stdlib::fqdn_rand_string' do
   it { is_expected.to run.with_params('string').and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer\ value, got String}) }
   it { is_expected.to run.with_params([]).and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer value, got Array}) }
   it { is_expected.to run.with_params({}).and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer value, got Hash}) }
-  it { is_expected.to run.with_params(1, 1).and_raise_error(ArgumentError, %r{parameter 'charset' expects a String value, got Integer}) }
-  it { is_expected.to run.with_params(1, []).and_raise_error(ArgumentError, %r{parameter 'charset' expects a String value, got Array}) }
-  it { is_expected.to run.with_params(1, {}).and_raise_error(ArgumentError, %r{parameter 'charset' expects a String value, got Hash}) }
+  it { is_expected.to run.with_params(1, 1).and_raise_error(ArgumentError, %r{parameter 'charset' expects a value of type Undef or String, got Integer}) }
+  it { is_expected.to run.with_params(1, []).and_raise_error(ArgumentError, %r{parameter 'charset' expects a value of type Undef or String, got Array}) }
+  it { is_expected.to run.with_params(1, {}).and_raise_error(ArgumentError, %r{parameter 'charset' expects a value of type Undef or String, got Hash}) }
   it { is_expected.to run.with_params('100').and_raise_error(ArgumentError, %r{parameter 'length' expects an Integer value, got String}) }
-  it { is_expected.to run.with_params(100, nil).and_raise_error(ArgumentError, %r{parameter 'charset' expects a String value, got Undef}) }
-  it { is_expected.to run.with_params(100).and_return(default_charset) }
+  it { is_expected.to run.with_params(100, nil).and_return(default_charset) }
   it { is_expected.to run.with_params(100, '').and_return(default_charset) }
+  it { is_expected.to run.with_params(100, nil, 'MY_CUSTOM_SEED').and_return(default_charset) }
+  it { is_expected.to run.with_params(100, '', 'MY_CUSTOM_SEED').and_return(default_charset) }
+  it { is_expected.to run.with_params(100).and_return(default_charset) }
   it { is_expected.to run.with_params(100, 'a').and_return(%r{\Aa{100}\z}) }
   it { is_expected.to run.with_params(100, 'ab').and_return(%r{\A[ab]{100}\z}) }
   it { is_expected.to run.with_params(100, 'ãβ').and_return(%r{\A[ãβ]{100}\z}) }
