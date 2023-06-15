@@ -92,8 +92,13 @@ task :regenerate_unamespaced_shims do
   Dir['lib/puppet/functions/*.rb'].each do |filename|
     content = File.read(filename)
 
-    unless content =~ /@summary DEPRECATED.  Use the namespaced function/
+    unless content =~ /@summary DEPRECATED\.  Use the namespaced function/
       warn("#{filename} does not look like a deprecation shim (skipping)")
+      next
+    end
+
+    if content =~ /InternalFunction/
+      warn("#{filename} is a special case. Not regenerating a shim for this file")
       next
     end
 
