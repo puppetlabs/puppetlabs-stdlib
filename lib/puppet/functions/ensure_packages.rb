@@ -7,7 +7,7 @@ Puppet::Functions.create_function(:ensure_packages, Puppet::Functions::InternalF
     repeated_param 'Any', :args
   end
   def deprecation_gen(scope, *args)
-    call_function('deprecation', 'ensure_packages', 'This function is deprecated, please use stdlib::ensure_packages instead.')
+    call_function('deprecation', 'ensure_packages', 'This function is deprecated, please use stdlib::ensure_packages instead.', false)
     scope.call_function('stdlib::ensure_packages', args)
   end
 end

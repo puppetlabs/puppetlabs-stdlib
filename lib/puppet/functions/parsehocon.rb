@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:parsehocon) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'parsehocon', 'This function is deprecated, please use stdlib::parsehocon instead.')
+    call_function('deprecation', 'parsehocon', 'This function is deprecated, please use stdlib::parsehocon instead.', false)
     call_function('stdlib::parsehocon', *args)
   end
 end

@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:has_interface_with) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'has_interface_with', 'This function is deprecated, please use stdlib::has_interface_with instead.')
+    call_function('deprecation', 'has_interface_with', 'This function is deprecated, please use stdlib::has_interface_with instead.', false)
     call_function('stdlib::has_interface_with', *args)
   end
 end

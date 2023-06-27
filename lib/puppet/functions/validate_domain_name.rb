@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:validate_domain_name) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'validate_domain_name', 'This function is deprecated, please use stdlib::validate_domain_name instead.')
+    call_function('deprecation', 'validate_domain_name', 'This function is deprecated, please use stdlib::validate_domain_name instead.', false)
     call_function('stdlib::validate_domain_name', *args)
   end
 end

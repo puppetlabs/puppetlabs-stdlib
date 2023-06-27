@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:to_python) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'to_python', 'This function is deprecated, please use stdlib::to_python instead.')
+    call_function('deprecation', 'to_python', 'This function is deprecated, please use stdlib::to_python instead.', false)
     call_function('stdlib::to_python', *args)
   end
 end

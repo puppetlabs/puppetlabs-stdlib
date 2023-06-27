@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:shell_escape) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'shell_escape', 'This function is deprecated, please use stdlib::shell_escape instead.')
+    call_function('deprecation', 'shell_escape', 'This function is deprecated, please use stdlib::shell_escape instead.', false)
     call_function('stdlib::shell_escape', *args)
   end
 end

@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:batch_escape) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'batch_escape', 'This function is deprecated, please use stdlib::batch_escape instead.')
+    call_function('deprecation', 'batch_escape', 'This function is deprecated, please use stdlib::batch_escape instead.', false)
     call_function('stdlib::batch_escape', *args)
   end
 end

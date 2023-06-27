@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:seeded_rand) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'seeded_rand', 'This function is deprecated, please use stdlib::seeded_rand instead.')
+    call_function('deprecation', 'seeded_rand', 'This function is deprecated, please use stdlib::seeded_rand instead.', false)
     call_function('stdlib::seeded_rand', *args)
   end
 end

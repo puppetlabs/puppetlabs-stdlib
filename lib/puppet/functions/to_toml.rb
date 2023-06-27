@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:to_toml) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'to_toml', 'This function is deprecated, please use stdlib::to_toml instead.')
+    call_function('deprecation', 'to_toml', 'This function is deprecated, please use stdlib::to_toml instead.', false)
     call_function('stdlib::to_toml', *args)
   end
 end

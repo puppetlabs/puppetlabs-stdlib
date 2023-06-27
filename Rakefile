@@ -115,7 +115,7 @@ task :regenerate_unamespaced_shims do
           repeated_param 'Any', :args
         end
         def deprecation_gen(*args)
-          call_function('deprecation', '#{function_name}', 'This function is deprecated, please use stdlib::#{function_name} instead.')
+          call_function('deprecation', '#{function_name}', 'This function is deprecated, please use stdlib::#{function_name} instead.', false)
           call_function('stdlib::#{function_name}', *args)
         end
       end
