@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:powershell_escape) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'powershell_escape', 'This function is deprecated, please use stdlib::powershell_escape instead.')
+    call_function('deprecation', 'powershell_escape', 'This function is deprecated, please use stdlib::powershell_escape instead.', false)
     call_function('stdlib::powershell_escape', *args)
   end
 end

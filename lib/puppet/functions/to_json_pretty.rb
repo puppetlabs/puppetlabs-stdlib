@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:to_json_pretty) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'to_json_pretty', 'This function is deprecated, please use stdlib::to_json_pretty instead.')
+    call_function('deprecation', 'to_json_pretty', 'This function is deprecated, please use stdlib::to_json_pretty instead.', false)
     call_function('stdlib::to_json_pretty', *args)
   end
 end

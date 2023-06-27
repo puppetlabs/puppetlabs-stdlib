@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:type_of) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'type_of', 'This function is deprecated, please use stdlib::type_of instead.')
+    call_function('deprecation', 'type_of', 'This function is deprecated, please use stdlib::type_of instead.', false)
     call_function('stdlib::type_of', *args)
   end
 end

@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:validate_email_address) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'validate_email_address', 'This function is deprecated, please use stdlib::validate_email_address instead.')
+    call_function('deprecation', 'validate_email_address', 'This function is deprecated, please use stdlib::validate_email_address instead.', false)
     call_function('stdlib::validate_email_address', *args)
   end
 end

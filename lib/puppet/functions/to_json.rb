@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:to_json) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'to_json', 'This function is deprecated, please use stdlib::to_json instead.')
+    call_function('deprecation', 'to_json', 'This function is deprecated, please use stdlib::to_json instead.', false)
     call_function('stdlib::to_json', *args)
   end
 end

@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:to_yaml) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'to_yaml', 'This function is deprecated, please use stdlib::to_yaml instead.')
+    call_function('deprecation', 'to_yaml', 'This function is deprecated, please use stdlib::to_yaml instead.', false)
     call_function('stdlib::to_yaml', *args)
   end
 end

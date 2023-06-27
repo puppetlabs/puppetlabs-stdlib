@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:os_version_gte) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'os_version_gte', 'This function is deprecated, please use stdlib::os_version_gte instead.')
+    call_function('deprecation', 'os_version_gte', 'This function is deprecated, please use stdlib::os_version_gte instead.', false)
     call_function('stdlib::os_version_gte', *args)
   end
 end

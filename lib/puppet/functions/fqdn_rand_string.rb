@@ -8,7 +8,7 @@ Puppet::Functions.create_function(:fqdn_rand_string) do
     repeated_param 'Any', :args
   end
   def deprecation_gen(*args)
-    call_function('deprecation', 'fqdn_rand_string', 'This function is deprecated, please use stdlib::fqdn_rand_string instead.')
+    call_function('deprecation', 'fqdn_rand_string', 'This function is deprecated, please use stdlib::fqdn_rand_string instead.', false)
     call_function('stdlib::fqdn_rand_string', *args)
   end
 end
