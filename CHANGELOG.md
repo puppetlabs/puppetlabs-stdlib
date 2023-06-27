@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v9.2.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.2.0) - 2023-06-27
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.1.0...v9.2.0)
+
+### Added
+
+- Add `use_strict_setting` parameter to `deprecation` function [#1378](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1378) ([alexjfisher](https://github.com/alexjfisher))
+
+### Fixed
+
+- Ignore Puppet's `strict` setting when calling function without namespace [#1377](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1377) ([alexjfisher](https://github.com/alexjfisher))
+- Pass calling scope to `stdlib::ensure_packages` from shim [#1366](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1366) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [v9.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.1.0) - 2023-06-15
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.0.0...v9.1.0)
@@ -445,11 +458,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - correct test cases to properly check result [#826](https://github.com/puppetlabs/puppetlabs-stdlib/pull/826) ([felixdoerre](https://github.com/felixdoerre))
 - (MODULES-5651) Do not append infinitely [#825](https://github.com/puppetlabs/puppetlabs-stdlib/pull/825) ([hunner](https://github.com/hunner))
 - use single quotes in validate_legacy example code [#816](https://github.com/puppetlabs/puppetlabs-stdlib/pull/816) ([mutante](https://github.com/mutante))
-- Fix filenames of two function spec tests [#777](https://github.com/puppetlabs/puppetlabs-stdlib/pull/777) ([alexjfisher](https://github.com/alexjfisher))
-
-### Other
-
 - Allow root as valid UNIX path [#811](https://github.com/puppetlabs/puppetlabs-stdlib/pull/811) ([kofrezo](https://github.com/kofrezo))
+- Fix filenames of two function spec tests [#777](https://github.com/puppetlabs/puppetlabs-stdlib/pull/777) ([alexjfisher](https://github.com/alexjfisher))
 
 ## [4.20.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/4.20.0) - 2017-09-11
 
@@ -474,6 +484,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - add type for MAC address [#796](https://github.com/puppetlabs/puppetlabs-stdlib/pull/796) ([bastelfreak](https://github.com/bastelfreak))
 - (MODULES-4908) adds support for sensitive data type to pw_hash [#791](https://github.com/puppetlabs/puppetlabs-stdlib/pull/791) ([eputnam](https://github.com/eputnam))
 - (FACT-932) Add new function, fact() [#787](https://github.com/puppetlabs/puppetlabs-stdlib/pull/787) ([reidmv](https://github.com/reidmv))
+- Add validate_domain_name function [#753](https://github.com/puppetlabs/puppetlabs-stdlib/pull/753) ([frapex](https://github.com/frapex))
 - Add a round function to complement ceiling and floor [#748](https://github.com/puppetlabs/puppetlabs-stdlib/pull/748) ([npwalker](https://github.com/npwalker))
 - Add new file_line option append_on_no_match [#717](https://github.com/puppetlabs/puppetlabs-stdlib/pull/717) ([ripclawffb](https://github.com/ripclawffb))
 
@@ -485,10 +496,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - (MODULES-5113) Make line support Sensitive [#786](https://github.com/puppetlabs/puppetlabs-stdlib/pull/786) ([reidmv](https://github.com/reidmv))
 - Fix headers in CHANGELOG.md so that headers render correctly [#783](https://github.com/puppetlabs/puppetlabs-stdlib/pull/783) ([davewongillies](https://github.com/davewongillies))
 - (Modules 4377) Causes ensure_packages to accept concurrent declarations with ensure => 'present' and 'installed' [#716](https://github.com/puppetlabs/puppetlabs-stdlib/pull/716) ([EmersonPrado](https://github.com/EmersonPrado))
-
-### Other
-
-- Add validate_domain_name function [#753](https://github.com/puppetlabs/puppetlabs-stdlib/pull/753) ([frapex](https://github.com/frapex))
 
 ## [4.17.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/4.17.1) - 2017-06-16
 
@@ -529,6 +536,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - (FM-6086) - Unit tests for Resource Types [#734](https://github.com/puppetlabs/puppetlabs-stdlib/pull/734) ([pmcmaw](https://github.com/pmcmaw))
 - (FM-6063) - Unit tests for high effort functions [#732](https://github.com/puppetlabs/puppetlabs-stdlib/pull/732) ([pmcmaw](https://github.com/pmcmaw))
 - (MODULES-4485) Improve ipv6 support for type [#731](https://github.com/puppetlabs/puppetlabs-stdlib/pull/731) ([petems](https://github.com/petems))
+- (#FM-6068) allow file encoding to be specified [#726](https://github.com/puppetlabs/puppetlabs-stdlib/pull/726) ([GeoffWilliams](https://github.com/GeoffWilliams))
 
 ### Fixed
 
@@ -538,10 +546,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - loosen the regex for tuple checking [#728](https://github.com/puppetlabs/puppetlabs-stdlib/pull/728) ([tphoney](https://github.com/tphoney))
 - Fix acceptance test failure "Hiera is not a class" [#720](https://github.com/puppetlabs/puppetlabs-stdlib/pull/720) ([DavidS](https://github.com/DavidS))
 - Fix unsupported data type error with rspec-puppet master [#715](https://github.com/puppetlabs/puppetlabs-stdlib/pull/715) ([domcleal](https://github.com/domcleal))
-
-### Other
-
-- (#FM-6068) allow file encoding to be specified [#726](https://github.com/puppetlabs/puppetlabs-stdlib/pull/726) ([GeoffWilliams](https://github.com/GeoffWilliams))
 
 ## [4.15.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/4.15.0) - 2017-01-20
 
@@ -612,9 +616,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - (MODULES-3543) Fixup defined_with_params to work on all puppet versions [#615](https://github.com/puppetlabs/puppetlabs-stdlib/pull/615) ([DavidS](https://github.com/DavidS))
 - (MODULES-3543) Fix define_with_params to handle undef properly [#614](https://github.com/puppetlabs/puppetlabs-stdlib/pull/614) ([DavidS](https://github.com/DavidS))
 - (MODULES-3354) Use 1.8.7 hash in validate_email_address function [#606](https://github.com/puppetlabs/puppetlabs-stdlib/pull/606) ([stbenjam](https://github.com/stbenjam))
-
-### Other
-
 - Use reject instead of delete_if [#592](https://github.com/puppetlabs/puppetlabs-stdlib/pull/592) ([jyaworski](https://github.com/jyaworski))
 
 ## [4.12.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/4.12.0) - 2016-05-03
@@ -668,6 +669,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Added
 
+- Add validator for any IP address [#546](https://github.com/puppetlabs/puppetlabs-stdlib/pull/546) ([devvesa](https://github.com/devvesa))
 - Add check to ensure regex does not throw for none type. [#539](https://github.com/puppetlabs/puppetlabs-stdlib/pull/539) ([mentat](https://github.com/mentat))
 - add functionality to bool2str function [#538](https://github.com/puppetlabs/puppetlabs-stdlib/pull/538) ([mmckinst](https://github.com/mmckinst))
 - Add package_provider fact [#534](https://github.com/puppetlabs/puppetlabs-stdlib/pull/534) ([asasfu](https://github.com/asasfu))
@@ -686,10 +688,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Fix load module metadata [#537](https://github.com/puppetlabs/puppetlabs-stdlib/pull/537) ([cmurphy](https://github.com/cmurphy))
 - prevent deprecation warning about the allow_virtual parameter [#535](https://github.com/puppetlabs/puppetlabs-stdlib/pull/535) ([martinpfeifer](https://github.com/martinpfeifer))
 - Fix backwards compatibility from #511 [#527](https://github.com/puppetlabs/puppetlabs-stdlib/pull/527) ([underscorgan](https://github.com/underscorgan))
-
-### Other
-
-- Add validator for any IP address [#546](https://github.com/puppetlabs/puppetlabs-stdlib/pull/546) ([devvesa](https://github.com/devvesa))
 
 ## [4.9.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/4.9.0) - 2015-09-08
 
@@ -787,10 +785,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - (MODULES-1738) Don't modify the global seed in fqdn_rotate() [#406](https://github.com/puppetlabs/puppetlabs-stdlib/pull/406) ([elyscape](https://github.com/elyscape))
 - (MODULES-1670) Do not match dotted-quad IP address as domain name [#404](https://github.com/puppetlabs/puppetlabs-stdlib/pull/404) ([roderickm](https://github.com/roderickm))
 - Dirname typecheck [#369](https://github.com/puppetlabs/puppetlabs-stdlib/pull/369) ([rfugina](https://github.com/rfugina))
-
-### Other
-
-- Adding markdown for the range() function's 3rd argument [#410](https://github.com/puppetlabs/puppetlabs-stdlib/pull/410) ([robruma](https://github.com/robruma))
 
 ## [4.5.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/4.5.1) - 2015-01-14
 
