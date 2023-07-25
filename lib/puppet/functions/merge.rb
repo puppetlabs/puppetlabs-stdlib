@@ -6,9 +6,10 @@
 Puppet::Functions.create_function(:merge) do
   dispatch :deprecation_gen do
     repeated_param 'Any', :args
+    optional_block_param 'Variant[Callable[2,2], Callable[3,3]]', :block
   end
-  def deprecation_gen(*args)
+  def deprecation_gen(*args, &block)
     call_function('deprecation', 'merge', 'This function is deprecated, please use stdlib::merge instead.', false)
-    call_function('stdlib::merge', *args)
+    call_function('stdlib::merge', *args, &block)
   end
 end
