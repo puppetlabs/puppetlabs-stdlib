@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v9.3.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.3.0) - 2023-07-31
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.2.0...v9.3.0)
+
+### Added
+
+- Add stdlib::has_function [#1386](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1386) ([seanmil](https://github.com/seanmil))
+
+### Fixed
+
+- Re-add block support to deprecated top-level merge [#1385](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1385) ([seanmil](https://github.com/seanmil))
+
 ## [v9.2.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.2.0) - 2023-06-27
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.1.0...v9.2.0)
@@ -29,6 +41,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Fixed
 
 - (CONT-1035) Alter logic of pw_hash [#1370](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1370) ([david22swan](https://github.com/david22swan))
+- Fix `fqdn_rand_string` regression [#1367](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1367) ([alexjfisher](https://github.com/alexjfisher))
 - (CONT-1023) - Enhancing deferrable_epp to support nested hash [#1359](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1359) ([Ramesh7](https://github.com/Ramesh7))
 
 ## [v9.0.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.0.0) - 2023-05-30
