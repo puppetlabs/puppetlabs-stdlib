@@ -164,7 +164,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
     end
 
     context 'when match and after set' do
-      shared_context 'when resource_create' do
+      shared_context 'resource_create' do
         let(:match) { '^foo2$' }
         let(:after) { '^foo1$' }
         let(:resource) do
@@ -251,7 +251,7 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
 
       it 'appends the specified line to the file' do
         provider.create
-        expect(File.read(tmpfile)).to eq(content << resource[:line] << "\n")
+        expect(File.read(tmpfile)).to eq("#{content}#{resource[:line]}\n")
       end
     end
   end
@@ -385,4 +385,5 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
       expect(File.read(tmpfile)).to eql("foo1\nfoo2\nfoo4\n")
     end
   end
+  # rubocop:enable RSpec/InstanceVariable
 end
