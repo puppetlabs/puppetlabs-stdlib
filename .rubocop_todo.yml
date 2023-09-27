@@ -112,6 +112,14 @@ RSpec/ExampleLength:
   Max: 9
 
 # Offense count: 2
+# Configuration parameters: Include, CustomTransform, IgnoreMethods, SpecSuffixOnly.
+# Include: **/*_spec*rb*, **/spec/**/*
+RSpec/SpecFilePathSuffix:
+  Exclude:
+    - 'spec/unit/puppet/provider/file_line/ruby_spec_alter.rb'
+    - 'spec/unit/puppet/provider/file_line/ruby_spec_use_cases.rb'
+
+# Offense count: 2
 RSpec/LeakyConstantDeclaration:
   Exclude:
     - 'spec/functions/get_module_path_spec.rb'

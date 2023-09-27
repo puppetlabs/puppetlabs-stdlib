@@ -3128,7 +3128,7 @@ Puppet Enterprise 3.7では、stdlibモジュールがPEに含まれていませ
 Puppet ForgeのPuppet Labsモジュールはオープンプロジェクトで、良い状態に保つためには、コミュニティの貢献が必要不可欠です。Puppetが役に立つはずでありながら、私たちがアクセスできないプラットフォームやハードウェア、ソフトウェア、デプロイ構成は無数にあります。私たちの目標は、できる限り簡単に変更に貢献し、みなさまの環境で私たちのモジュールが機能できるようにすることにあります。最高の状態を維持できるようにするために、コントリビュータが従う必要のあるいくつかのガイドラインが存在します。詳細については、[モジュールコントリビューションガイド](https://docs.puppetlabs.com/forge/contributing.html)を参照してください。
 
 このモジュールの一部に関するバグの報告または調査は、
-[http://tickets.puppetlabs.com/browse/MODULES](http://tickets.puppetlabs.com/browse/MODULES)からお願いします。
+[https://github.com/puppetlabs/puppetlabs-stdlib/issues](https://github.com/puppetlabs/puppetlabs-stdlib/issues)からお願いします。
 
 ## コントリビュータ
 
