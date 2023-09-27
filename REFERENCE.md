@@ -41,7 +41,7 @@ string, or key from a hash.
 from an array or key from a hash.
 * [`delete_undef_values`](#delete_undef_values): Returns a copy of input hash or array with all undefs deleted.
 * [`delete_values`](#delete_values): Deletes all instances of a given value from a hash.
-* [`deprecation`](#deprecation): Function to print deprecation warnings, Logs a warning once for a given key.  The uniqueness key - can appear once. The msg is the message te
+* [`deprecation`](#deprecation): Function to print deprecation warnings, Logs a warning once for a given key.
 * [`deprecation`](#deprecation): Function to print deprecation warnings (this is the 3.X version of it).
 * [`difference`](#difference): This function returns the difference between two arrays.
 * [`dirname`](#dirname): Returns the dirname of a path.
@@ -54,8 +54,7 @@ resource.
 resource.
 * [`fact`](#fact): Digs into the facts hash using dot-notation
 * [`fqdn_rand_string`](#fqdn_rand_string): DEPRECATED.  Use the namespaced function [`stdlib::fqdn_rand_string`](#stdlibfqdn_rand_string) instead.
-* [`fqdn_rotate`](#fqdn_rotate): Rotates an array or string a random number of times, combining the `$fqdn` fact
-and an optional seed for repeatable randomness.
+* [`fqdn_rotate`](#fqdn_rotate): DEPRECATED.  Use the namespaced function [`stdlib::fqdn_rotate`](#stdlibfqdn_rotate) instead.
 * [`fqdn_uuid`](#fqdn_uuid): Returns a [RFC 4122](https://tools.ietf.org/html/rfc4122) valid version 5 UUID based
 on an FQDN string under the DNS namespace
 * [`get_module_path`](#get_module_path): Returns the absolute path of the specified module for the current
@@ -64,8 +63,8 @@ environment.
 * [`glob`](#glob): Uses same patterns as Dir#glob.
 * [`grep`](#grep): This function searches through an array and returns any elements that match
 the provided regular expression.
-* [`has_interface_with`](#has_interface_with): Returns boolean based on kind and value.
 * [`has_interface_with`](#has_interface_with): DEPRECATED.  Use the namespaced function [`stdlib::has_interface_with`](#stdlibhas_interface_with) instead.
+* [`has_interface_with`](#has_interface_with): Returns boolean based on kind and value.
 * [`has_ip_address`](#has_ip_address): Returns true if the client has the requested IP address on some interface.
 * [`has_ip_network`](#has_ip_network): Returns true if the client has an IP address within the requested network.
 * [`intersection`](#intersection): This function returns an array of the intersection of two.
@@ -79,9 +78,8 @@ in the corresponding native data type.
 * [`loadyaml`](#loadyaml): Load a YAML file containing an array, string, or hash, and return the data
 in the corresponding native data type.
 * [`member`](#member): This function determines if a variable is a member of an array.
-* [`merge`](#merge): Merges two or more hashes together and returns the resulting hash.
 * [`merge`](#merge): DEPRECATED.  Use the namespaced function [`stdlib::merge`](#stdlibmerge) instead.
-* [`nested_values`](#nested_values): This function will return list of Hash values, the return value will be Array NOTE : This function is expecting only Hash and return value wi
+* [`merge`](#merge): Merges two or more hashes together and returns the resulting hash.
 * [`num2bool`](#num2bool): This function converts a number or a string representation of a number into a
 true boolean.
 * [`os_version_gte`](#os_version_gte): DEPRECATED.  Use the namespaced function [`stdlib::os_version_gte`](#stdlibos_version_gte) instead.
@@ -126,10 +124,14 @@ the provided regular expression.
 last Period).
 * [`stdlib::fqdn_rand_string`](#stdlib--fqdn_rand_string): Generates a random alphanumeric string. Combining the `$fqdn` fact and an
 optional seed for repeatable randomness.
+* [`stdlib::fqdn_rotate`](#stdlib--fqdn_rotate): Rotates an array or string a random number of times, combining the `fqdn` fact and an optional seed for repeatable randomness.
+* [`stdlib::has_function`](#stdlib--has_function): Returns whether the Puppet runtime has access to a given function.
 * [`stdlib::has_interface_with`](#stdlib--has_interface_with): Returns boolean based on network interfaces present and their attribute values.
 * [`stdlib::ip_in_range`](#stdlib--ip_in_range): Returns true if the ipaddress is within the given CIDRs
 * [`stdlib::merge`](#stdlib--merge): Merges two or more hashes together or hashes resulting from iteration, and returns
 the resulting hash.
+* [`stdlib::nested_values`](#stdlib--nested_values): Get list of nested values from given hash
+This function will return list of nested Hash values and returns list of values in form of Array
 * [`stdlib::os_version_gte`](#stdlib--os_version_gte): Checks if the OS version is at least a certain version.
 * [`stdlib::parsehocon`](#stdlib--parsehocon): This function accepts HOCON as a string and converts it into the correct
 Puppet structure
@@ -1452,37 +1454,31 @@ Type: Ruby 4.x API
 
 Function to print deprecation warnings, Logs a warning once for a given key.
 
-The uniqueness key - can appear once.
-The msg is the message text including any positional information that is formatted by the
-user/caller of the method.
-It is affected by the puppet setting 'strict', which can be set to :error
-(outputs as an error message), :off (no message / error is displayed) and :warning
-(default, outputs a warning)  *Type*: String, String.
+#### `deprecation(String $key, String $message, Optional[Boolean] $use_strict_setting)`
 
-#### `deprecation(String $key, String $message)`
+The deprecation function.
 
-Function to print deprecation warnings, Logs a warning once for a given key.
-
-The uniqueness key - can appear once.
-The msg is the message text including any positional information that is formatted by the
-user/caller of the method.
-It is affected by the puppet setting 'strict', which can be set to :error
-(outputs as an error message), :off (no message / error is displayed) and :warning
-(default, outputs a warning)  *Type*: String, String.
-
-Returns: `Any` deprecated warnings
+Returns: `Any`
 
 ##### `key`
 
 Data type: `String`
 
-
+The uniqueness key.  This function logs once for any given key.
 
 ##### `message`
 
 Data type: `String`
 
+Is the message text including any positional information that is formatted by the user/caller of the function.
 
+##### `use_strict_setting`
+
+Data type: `Optional[Boolean]`
+
+When `true`, (the default), the function is affected by the puppet setting 'strict', which can be set to :error
+(outputs as an error message), :off (no message / error is displayed) and :warning
+(default, outputs a warning).
 
 ### <a name="deprecation"></a>`deprecation`
 
@@ -1800,36 +1796,21 @@ Data type: `Any`
 
 ### <a name="fqdn_rotate"></a>`fqdn_rotate`
 
-Type: Ruby 3.x API
+Type: Ruby 4.x API
 
-Rotates an array or string a random number of times, combining the `$fqdn` fact
-and an optional seed for repeatable randomness.
+DEPRECATED.  Use the namespaced function [`stdlib::fqdn_rotate`](#stdlibfqdn_rotate) instead.
 
-#### Examples
-
-##### Example Usage:
-
-```puppet
-fqdn_rotate(['a', 'b', 'c', 'd'])
-fqdn_rotate('abcd')
-fqdn_rotate([1, 2, 3], 'custom seed')
-```
-
-#### `fqdn_rotate()`
+#### `fqdn_rotate(Any *$args)`
 
 The fqdn_rotate function.
 
-Returns: `Any` rotated array or string
+Returns: `Any`
 
-##### Examples
+##### `*args`
 
-###### Example Usage:
+Data type: `Any`
 
-```puppet
-fqdn_rotate(['a', 'b', 'c', 'd'])
-fqdn_rotate('abcd')
-fqdn_rotate([1, 2, 3], 'custom seed')
-```
+
 
 ### <a name="fqdn_uuid"></a>`fqdn_uuid`
 
@@ -2045,6 +2026,24 @@ grep(['aaa','bbb','ccc','aaaddd'], 'aaa') # Returns ['aaa','aaaddd']
 
 ### <a name="has_interface_with"></a>`has_interface_with`
 
+Type: Ruby 4.x API
+
+DEPRECATED.  Use the namespaced function [`stdlib::has_interface_with`](#stdlibhas_interface_with) instead.
+
+#### `has_interface_with(Any *$args)`
+
+The has_interface_with function.
+
+Returns: `Any`
+
+##### `*args`
+
+Data type: `Any`
+
+
+
+### <a name="has_interface_with"></a>`has_interface_with`
+
 Type: Ruby 3.x API
 
 Valid kinds are `macaddress`, `netmask`, `ipaddress` and `network`.
@@ -2084,24 +2083,6 @@ has_interface_with("ipaddress", "127.0.0.1") # Returns `true`
 ```puppet
 has_interface_with("lo") # Returns `true`
 ```
-
-### <a name="has_interface_with"></a>`has_interface_with`
-
-Type: Ruby 4.x API
-
-DEPRECATED.  Use the namespaced function [`stdlib::has_interface_with`](#stdlibhas_interface_with) instead.
-
-#### `has_interface_with(Any *$args)`
-
-The has_interface_with function.
-
-Returns: `Any`
-
-##### `*args`
-
-Data type: `Any`
-
-
 
 ### <a name="has_ip_address"></a>`has_ip_address`
 
@@ -2445,6 +2426,30 @@ member(['a', 'b', 'c'], ['d', 'b']) # Returns: false
 
 ### <a name="merge"></a>`merge`
 
+Type: Ruby 4.x API
+
+DEPRECATED.  Use the namespaced function [`stdlib::merge`](#stdlibmerge) instead.
+
+#### `merge(Any *$args, Optional[Variant[Callable[2,2], Callable[3,3]]] &$block)`
+
+The merge function.
+
+Returns: `Any`
+
+##### `*args`
+
+Data type: `Any`
+
+
+
+##### `&block`
+
+Data type: `Optional[Variant[Callable[2,2], Callable[3,3]]]`
+
+
+
+### <a name="merge"></a>`merge`
+
 Type: Ruby 3.x API
 
 When there is a duplicate key, the key in the rightmost hash will "win."
@@ -2480,76 +2485,6 @@ $hash1 = {'one' => 1, 'two', => 2}
 $hash2 = {'two' => 'dos', 'three', => 'tres'}
 $merged_hash = merge($hash1, $hash2) # $merged_hash =  {'one' => 1, 'two' => 'dos', 'three' => 'tres'}
 ```
-
-### <a name="merge"></a>`merge`
-
-Type: Ruby 4.x API
-
-DEPRECATED.  Use the namespaced function [`stdlib::merge`](#stdlibmerge) instead.
-
-#### `merge(Any *$args)`
-
-The merge function.
-
-Returns: `Any`
-
-##### `*args`
-
-Data type: `Any`
-
-
-
-### <a name="nested_values"></a>`nested_values`
-
-Type: Ruby 4.x API
-
-This function will return list of Hash values, the return value will be Array
-NOTE : This function is expecting only Hash and return value will be Array
-
-$hash = {
-  "key1" => "value1",
-  "key2" => { "key2.1" => "value2.1"}
-}
-$hash.nested_values
-
-Output : ["value1", "value2.1"]
-
-#### Examples
-
-##### :
-
-```puppet
-
-```
-
-#### `nested_values(Hash $options)`
-
-This function will return list of Hash values, the return value will be Array
-NOTE : This function is expecting only Hash and return value will be Array
-
-$hash = {
-  "key1" => "value1",
-  "key2" => { "key2.1" => "value2.1"}
-}
-$hash.nested_values
-
-Output : ["value1", "value2.1"]
-
-Returns: `Array`
-
-##### Examples
-
-###### :
-
-```puppet
-
-```
-
-##### `options`
-
-Data type: `Hash`
-
-
 
 ### <a name="num2bool"></a>`num2bool`
 
@@ -3427,10 +3362,10 @@ Optionally, you can specify a character set for the function (defaults to alphan
 ```puppet
 stdlib::fqdn_rand_string(10)
 stdlib::fqdn_rand_string(10, 'ABCDEF!@$%^')
-stdlib::fqdn_rand_string(10, '', 'custom seed')
+stdlib::fqdn_rand_string(10, undef, 'custom seed')
 ```
 
-#### `stdlib::fqdn_rand_string(Integer[1] $length, Optional[String] $charset, Optional[Any] *$seed)`
+#### `stdlib::fqdn_rand_string(Integer[1] $length, Optional[Optional[String]] $charset, Optional[Any] *$seed)`
 
 Optionally, you can specify a character set for the function (defaults to alphanumeric).
 
@@ -3443,7 +3378,7 @@ Returns: `String`
 ```puppet
 stdlib::fqdn_rand_string(10)
 stdlib::fqdn_rand_string(10, 'ABCDEF!@$%^')
-stdlib::fqdn_rand_string(10, '', 'custom seed')
+stdlib::fqdn_rand_string(10, undef, 'custom seed')
 ```
 
 ##### `length`
@@ -3454,7 +3389,7 @@ The length of the resulting string.
 
 ##### `charset`
 
-Data type: `Optional[String]`
+Data type: `Optional[Optional[String]]`
 
 The character set to use.
 
@@ -3463,6 +3398,114 @@ The character set to use.
 Data type: `Optional[Any]`
 
 The seed for repeatable randomness.
+
+### <a name="stdlib--fqdn_rotate"></a>`stdlib::fqdn_rotate`
+
+Type: Ruby 4.x API
+
+Rotates an array or string a random number of times, combining the `fqdn` fact and an optional seed for repeatable randomness.
+
+#### `stdlib::fqdn_rotate(String $input, Optional[Variant[Integer,String]] *$seeds)`
+
+The stdlib::fqdn_rotate function.
+
+Returns: `String` Returns the rotated String
+
+##### Examples
+
+###### Rotating a String
+
+```puppet
+stdlib::fqdn_rotate('abcd')
+```
+
+###### Using a custom seed
+
+```puppet
+stdlib::fqdn_rotate('abcd', 'custom seed')
+```
+
+##### `input`
+
+Data type: `String`
+
+The String you want rotated a random number of times
+
+##### `*seeds`
+
+Data type: `Optional[Variant[Integer,String]]`
+
+One of more values to use as a custom seed. These will be combined with the host's FQDN
+
+#### `stdlib::fqdn_rotate(Array $input, Optional[Variant[Integer,String]] *$seeds)`
+
+The stdlib::fqdn_rotate function.
+
+Returns: `Array` Returns the rotated Array
+
+##### Examples
+
+###### Rotating an Array
+
+```puppet
+stdlib::fqdn_rotate(['a', 'b', 'c', 'd'])
+```
+
+###### Using custom seeds
+
+```puppet
+stdlib::fqdn_rotate([1, 2, 3], 'custom', 'seed', 1)
+```
+
+##### `input`
+
+Data type: `Array`
+
+The Array you want rotated a random number of times
+
+##### `*seeds`
+
+Data type: `Optional[Variant[Integer,String]]`
+
+One of more values to use as a custom seed. These will be combined with the host's FQDN
+
+### <a name="stdlib--has_function"></a>`stdlib::has_function`
+
+Type: Ruby 4.x API
+
+Determines whether the Puppet runtime has access to a function by the
+name provided.
+
+#### Examples
+
+##### Using stdlib::has_function()
+
+```puppet
+stdlib::has_function('stdlib::has_function') # true
+stdlib::has_function('not_a_function') # false
+```
+
+#### `stdlib::has_function(String[1] $function_name)`
+
+Determines whether the Puppet runtime has access to a function by the
+name provided.
+
+Returns: `Boolean`
+
+##### Examples
+
+###### Using stdlib::has_function()
+
+```puppet
+stdlib::has_function('stdlib::has_function') # true
+stdlib::has_function('not_a_function') # false
+```
+
+##### `function_name`
+
+Data type: `String[1]`
+
+
 
 ### <a name="stdlib--has_interface_with"></a>`stdlib::has_interface_with`
 
@@ -3655,6 +3698,53 @@ Repeated Param - The hashes that are to be merged
 Data type: `Callable[2,2]`
 
 A block placed on the repeatable param `args`
+
+### <a name="stdlib--nested_values"></a>`stdlib::nested_values`
+
+Type: Ruby 4.x API
+
+Get list of nested values from given hash
+This function will return list of nested Hash values and returns list of values in form of Array
+
+#### Examples
+
+##### Example Usage:
+
+```puppet
+$hash = {
+  "key1" => "value1",
+  "key2" => { "key2.1" => "value2.1"},
+  "key3" => "value3"
+}
+$data = $hash.stdlib::nested_values
+#Output : ["value1", "value2.1", "value3"]
+```
+
+#### `stdlib::nested_values(Hash $hash)`
+
+The stdlib::nested_values function.
+
+Returns: `Array` All the values found in the input hash included those deeply nested.
+
+##### Examples
+
+###### Example Usage:
+
+```puppet
+$hash = {
+  "key1" => "value1",
+  "key2" => { "key2.1" => "value2.1"},
+  "key3" => "value3"
+}
+$data = $hash.stdlib::nested_values
+#Output : ["value1", "value2.1", "value3"]
+```
+
+##### `hash`
+
+Data type: `Hash`
+
+A (nested) hash
 
 ### <a name="stdlib--os_version_gte"></a>`stdlib::os_version_gte`
 
@@ -5552,6 +5642,8 @@ Alias of `Integer[100, 599]`
 ### <a name="Stdlib--HttpStatus"></a>`Stdlib::HttpStatus`
 
 Validate a HTTP status code
+
+* **DEPRECATED** Use Stdlib::Http::Status
 
 * **See also**
   * Stdlib::Http::Status
