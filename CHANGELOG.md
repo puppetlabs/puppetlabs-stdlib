@@ -5,7 +5,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v9.3.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.3.0) - 2023-07-31
+## [v9.4.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.4.0) - 2023-09-28
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.3.0...v9.4.0)
+
+### Added
+
+- Modernise `fqdn_rotate` function [#1341](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1341) ([alexjfisher](https://github.com/alexjfisher))
+
+### Other
+
+- Remove unused parser deprecation function [#1392](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1392) ([ekohl](https://github.com/ekohl))
+
+## [v9.3.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.3.0) - 2023-08-01
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.2.0...v9.3.0)
 
@@ -439,7 +451,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Fixed
 
 - (MODULES-6216) - Fix type3x function in stdlib [#861](https://github.com/puppetlabs/puppetlabs-stdlib/pull/861) ([pmcmaw](https://github.com/pmcmaw))
-- MODULES-6106: Fix broken `.sync.yml` [#854](https://github.com/puppetlabs/puppetlabs-stdlib/pull/854) ([](https://github.com/))
 
 ## [4.23.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/4.23.0) - 2017-11-24
 
@@ -652,7 +663,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Undo changing delete() to delete regex matches [#599](https://github.com/puppetlabs/puppetlabs-stdlib/pull/599) ([hunner](https://github.com/hunner))
 - (MODULES-3271) Ensure that is_email_address works on unsupported rubies [#598](https://github.com/puppetlabs/puppetlabs-stdlib/pull/598) ([DavidS](https://github.com/DavidS))
 - (MODULES-3246) Fix concat with Hash arguments. [#590](https://github.com/puppetlabs/puppetlabs-stdlib/pull/590) ([alext](https://github.com/alext))
-- [MODULES-2370] file_line.rb: Fix `line` attribute validation [#585](https://github.com/puppetlabs/puppetlabs-stdlib/pull/585) ([](https://github.com/))
 - (maint) Fixes fqdn_rand_string tests [#578](https://github.com/puppetlabs/puppetlabs-stdlib/pull/578) ([bmjen](https://github.com/bmjen))
 - Fix reference to validate_bool in function [#568](https://github.com/puppetlabs/puppetlabs-stdlib/pull/568) ([mattbostock](https://github.com/mattbostock))
 
@@ -712,7 +722,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Add a new function "try_get_value" [#513](https://github.com/puppetlabs/puppetlabs-stdlib/pull/513) ([dmitryilyin](https://github.com/dmitryilyin))
 - (MODULES-2456) Modify union to accept more than two arrays [#507](https://github.com/puppetlabs/puppetlabs-stdlib/pull/507) ([Jetroid](https://github.com/Jetroid))
 - (MODULES-2410) Add new functions dos2unix and unix2dos [#505](https://github.com/puppetlabs/puppetlabs-stdlib/pull/505) ([gibbsoft](https://github.com/gibbsoft))
-- [MODULES-2370] allow `match` parameter to influence `ensure => absent` behavior. [#499](https://github.com/puppetlabs/puppetlabs-stdlib/pull/499) ([](https://github.com/))
 
 ### Fixed
 
