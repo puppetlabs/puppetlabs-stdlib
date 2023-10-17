@@ -15,13 +15,8 @@ module Puppet::Parser::Functions
     @return [String]
       a string that contains the converted value
 
-    > **Note:**  **Deprecated:** Starting Puppet 8, our Ruby version has upgraded to 3.2.
-    Therefore, its no longer possible to call URI.escape as it was deprecated by 2.7 and removed completely by 3+.
-    This function should be removed once Puppet 7 is no longer supported.
   DOC
   ) do |arguments|
-    raise(Puppet::ParseError, 'Puppet: This function is not available in Puppet 8. URI.escape no longer exists as of Ruby 3+.') if Puppet::Util::Package.versioncmp(Puppet.version, '8').positive?
-
     raise(Puppet::ParseError, "uriescape(): Wrong number of arguments given (#{arguments.size} for 1)") if arguments.empty?
 
     value = arguments[0]
