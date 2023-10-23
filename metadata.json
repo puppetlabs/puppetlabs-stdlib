@@ -16,7 +16,8 @@
       "operatingsystemrelease": [
         "7",
         "8",
-        "9"
+        "9",
+        "9-arm"
       ]
     },
     {
