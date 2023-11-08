@@ -5619,7 +5619,7 @@ Alias of `Pattern[/(?i:\Ahttps?:\/\/.*\z)/]`
 
 Validate a host (FQDN or IP address)
 
-Alias of `Variant[Stdlib::Fqdn, Stdlib::Ip::Address]`
+Alias of `Variant[Stdlib::Fqdn, Stdlib::IP::Address]`
 
 ### <a name="Stdlib--Http--Method"></a>`Stdlib::Http::Method`
 
