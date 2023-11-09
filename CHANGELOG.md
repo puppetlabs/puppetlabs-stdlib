@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v9.4.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.4.0) - 2023-09-28
+## [v9.4.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.4.1) - 2023-11-08
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.4.0...v9.4.1)
+
+### Fixed
+
+- Correct casing of Stdlib::IP::Address [#1406](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1406) ([ekohl](https://github.com/ekohl))
+
+## [v9.4.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.4.0) - 2023-09-29
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.3.0...v9.4.0)
 
