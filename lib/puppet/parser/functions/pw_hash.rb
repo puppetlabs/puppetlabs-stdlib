@@ -76,7 +76,7 @@ DOC
 
   # handle weak implementations of String#crypt
   # dup the string to get rid of frozen status for testing
-  if RUBY_PLATFORM == 'java'
+  if RUBY_PLATFORM == 'java' && !args[1].downcase.start_with?('bcrypt')
     # puppetserver bundles Apache Commons Codec
     org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
   elsif (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
