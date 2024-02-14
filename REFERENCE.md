@@ -135,6 +135,7 @@ This function will return list of nested Hash values and returns list of values 
 * [`stdlib::parsehocon`](#stdlib--parsehocon): This function accepts HOCON as a string and converts it into the correct
 Puppet structure
 * [`stdlib::powershell_escape`](#stdlib--powershell_escape): Escapes a string so that it can be safely used in a PowerShell command line.
+* [`stdlib::rewrap_sensitive_data`](#stdlib--rewrap_sensitive_data): Unwraps any sensitives in data and returns a sensitive
 * [`stdlib::seeded_rand`](#stdlib--seeded_rand): Generates a random whole number greater than or equal to 0 and less than max, using the value of seed for repeatable randomness.
 * [`stdlib::seeded_rand_string`](#stdlib--seeded_rand_string): Generates a consistent random string of specific length based on provided seed.
 * [`stdlib::sha256`](#stdlib--sha256): Run a SHA256 calculation against a given value.
@@ -3836,6 +3837,50 @@ Returns: `Any` An escaped string that can be safely used in a PowerShell command
 Data type: `Any`
 
 The string to escape
+
+### <a name="stdlib--rewrap_sensitive_data"></a>`stdlib::rewrap_sensitive_data`
+
+Type: Ruby 4.x API
+
+It's not uncommon to have Sensitive strings as values within a hash or array.
+Before passing the data to a type property or another function, it's useful
+to be able to `unwrap` these values first. This function does this. If
+sensitive data was included in the data, the whole result is then rewrapped
+as Sensitive.
+
+Optionally, this function can be passed a block. When a block is given, it will
+be run with the unwrapped data, but before the final rewrapping.  This is useful
+to provide transparent rewrapping to other functions in stdlib especially.
+
+This is analogous to the way `epp` transparently handles sensitive parameters.
+
+#### `stdlib::rewrap_sensitive_data(Any $data, Optional[Callable[Any]] &$block)`
+
+It's not uncommon to have Sensitive strings as values within a hash or array.
+Before passing the data to a type property or another function, it's useful
+to be able to `unwrap` these values first. This function does this. If
+sensitive data was included in the data, the whole result is then rewrapped
+as Sensitive.
+
+Optionally, this function can be passed a block. When a block is given, it will
+be run with the unwrapped data, but before the final rewrapping.  This is useful
+to provide transparent rewrapping to other functions in stdlib especially.
+
+This is analogous to the way `epp` transparently handles sensitive parameters.
+
+Returns: `Any` Returns the rewrapped data
+
+##### `data`
+
+Data type: `Any`
+
+The data
+
+##### `&block`
+
+Data type: `Optional[Callable[Any]]`
+
+A lambda that will be run after the data has been unwrapped, but before it is rewrapped, (if it contained sensitives)
 
 ### <a name="stdlib--seeded_rand"></a>`stdlib::seeded_rand`
 
