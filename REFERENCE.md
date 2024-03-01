@@ -124,6 +124,7 @@ last Period).
 * [`stdlib::fqdn_rand_string`](#stdlib--fqdn_rand_string): Generates a random alphanumeric string. Combining the `$fqdn` fact and an
 optional seed for repeatable randomness.
 * [`stdlib::fqdn_rotate`](#stdlib--fqdn_rotate): Rotates an array or string a random number of times, combining the `fqdn` fact and an optional seed for repeatable randomness.
+* [`stdlib::getpwnam`](#stdlib--getpwnam): Given a username returns the user's entry from the `/etc/passwd` file.
 * [`stdlib::has_function`](#stdlib--has_function): Returns whether the Puppet runtime has access to a given function.
 * [`stdlib::has_interface_with`](#stdlib--has_interface_with): Returns boolean based on network interfaces present and their attribute values.
 * [`stdlib::ip_in_range`](#stdlib--ip_in_range): Returns true if the ipaddress is within the given CIDRs
@@ -139,6 +140,7 @@ Puppet structure
 * [`stdlib::seeded_rand_string`](#stdlib--seeded_rand_string): Generates a consistent random string of specific length based on provided seed.
 * [`stdlib::sha256`](#stdlib--sha256): Run a SHA256 calculation against a given value.
 * [`stdlib::shell_escape`](#stdlib--shell_escape): Escapes a string so that it can be safely used in a Bourne shell command line.
+* [`stdlib::sort_by`](#stdlib--sort_by): Sort an Array, Hash or String by mapping values through a given block.
 * [`stdlib::start_with`](#stdlib--start_with): Returns true if str starts with one of the prefixes given. Each of the prefixes should be a String.
 * [`stdlib::str2resource`](#stdlib--str2resource): This converts a string to a puppet resource.
 * [`stdlib::time`](#stdlib--time): This function is deprecated. It implements the functionality of the original non-namespaced stdlib `time` function.
@@ -3455,6 +3457,52 @@ Data type: `Optional[Variant[Integer,String]]`
 
 One of more values to use as a custom seed. These will be combined with the host's FQDN
 
+### <a name="stdlib--getpwnam"></a>`stdlib::getpwnam`
+
+Type: Ruby 4.x API
+
+Given a username returns the user's entry from the `/etc/passwd` file.
+
+#### Examples
+
+##### Get a password entry for user steve as a hash.
+
+```puppet
+$passwd_entry = stdlib::getpwnam('steve')
+```
+
+##### Get the UID of user steve
+
+```puppet
+$uid = stdlib::getpwnam('steve')["uid"]
+```
+
+#### `stdlib::getpwnam(String $user)`
+
+The stdlib::getpwnam function.
+
+Returns: `Hash` [Hash] For example {"name"=>"root", "passwd"=>"x", "uid"=>0, "gid"=>0, "gecos"=>"root", "dir"=>"/root", "shell"=>"/bin/bash"}
+
+##### Examples
+
+###### Get a password entry for user steve as a hash.
+
+```puppet
+$passwd_entry = stdlib::getpwnam('steve')
+```
+
+###### Get the UID of user steve
+
+```puppet
+$uid = stdlib::getpwnam('steve')["uid"]
+```
+
+##### `user`
+
+Data type: `String`
+
+The username to fetch password record for.
+
 ### <a name="stdlib--has_function"></a>`stdlib::has_function`
 
 Type: Ruby 4.x API
@@ -4002,6 +4050,75 @@ Returns: `Any` An escaped string that can be safely used in a Bourne shell comma
 Data type: `Any`
 
 The string to escape
+
+### <a name="stdlib--sort_by"></a>`stdlib::sort_by`
+
+Type: Ruby 4.x API
+
+Sort an Array, Hash or String by mapping values through a given block.
+
+#### Examples
+
+##### Sort local devices according to their used space.
+
+```puppet
+$facts['mountpoints'].stdlib::sort_by |$m| { $m.dig(1, 'used_bytes') }
+```
+
+#### `stdlib::sort_by(Array $ary, Callable[1,1] &$block)`
+
+The stdlib::sort_by function.
+
+Returns: `Array` Returns an ordered copy of ary.
+
+##### `ary`
+
+Data type: `Array`
+
+The Array to sort.
+
+##### `&block`
+
+Data type: `Callable[1,1]`
+
+The block for transforming elements of ary.
+
+#### `stdlib::sort_by(String $str, Callable[1,1] &$block)`
+
+The stdlib::sort_by function.
+
+Returns: `String` Returns an ordered copy of str.
+
+##### `str`
+
+Data type: `String`
+
+The String to sort.
+
+##### `&block`
+
+Data type: `Callable[1,1]`
+
+The block for transforming elements of str.
+
+#### `stdlib::sort_by(Hash $hsh, Variant[Callable[1,1], Callable[2,2]] &$block)`
+
+The stdlib::sort_by function.
+
+Returns: `Hash` Returns an ordered copy of hsh.
+
+##### `hsh`
+
+Data type: `Hash`
+
+The Hash to sort.
+
+##### `&block`
+
+Data type: `Variant[Callable[1,1], Callable[2,2]]`
+
+The block for transforming elements of hsh.
+The block may have arity of one or two.
 
 ### <a name="stdlib--start_with"></a>`stdlib::start_with`
 
