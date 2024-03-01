@@ -3461,7 +3461,8 @@ One of more values to use as a custom seed. These will be combined with the host
 
 Type: Ruby 4.x API
 
-Given a username returns the user's entry from the `/etc/passwd` file.
+>* Note:*   The `stdlib::getpwnam` function will work only on platforms that support
+  `getpwnam`. Typically that is on POSIX like OSes and not Windows.
 
 #### Examples
 
@@ -3479,7 +3480,8 @@ $uid = stdlib::getpwnam('steve')["uid"]
 
 #### `stdlib::getpwnam(String $user)`
 
-The stdlib::getpwnam function.
+>* Note:*   The `stdlib::getpwnam` function will work only on platforms that support
+  `getpwnam`. Typically that is on POSIX like OSes and not Windows.
 
 Returns: `Hash` [Hash] For example {"name"=>"root", "passwd"=>"x", "uid"=>0, "gid"=>0, "gecos"=>"root", "dir"=>"/root", "shell"=>"/bin/bash"}
 

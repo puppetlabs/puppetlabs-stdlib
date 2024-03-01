@@ -3,6 +3,8 @@
 # @summary
 #   Given a username returns the user's entry from the `/etc/passwd` file.
 #
+# >* Note:*   The `stdlib::getpwnam` function will work only on platforms that support
+#   `getpwnam`. Typically that is on POSIX like OSes and not Windows.
 #
 Puppet::Functions.create_function(:'stdlib::getpwnam') do
   # @param user
