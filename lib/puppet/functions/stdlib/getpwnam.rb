@@ -16,8 +16,10 @@ Puppet::Functions.create_function(:'stdlib::getpwnam') do
   # @example Get the UID of user steve
   #   $uid = stdlib::getpwnam('steve')["uid"]
   #
+  # @raise ArgumentError if no password entry can be found for the specified user.
+  #
   # @return
-  #   [Hash] For example {"name"=>"root", "passwd"=>"x", "uid"=>0, "gid"=>0, "gecos"=>"root", "dir"=>"/root", "shell"=>"/bin/bash"}
+  #   [Hash] For example `{"name"=>"root", "passwd"=>"x", "uid"=>0, "gid"=>0, "gecos"=>"root", "dir"=>"/root", "shell"=>"/bin/bash"}`
   dispatch :getpwnam do
     param 'String', :user
     return_type 'Hash'

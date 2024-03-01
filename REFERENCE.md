@@ -3483,7 +3483,11 @@ $uid = stdlib::getpwnam('steve')["uid"]
 >* Note:*   The `stdlib::getpwnam` function will work only on platforms that support
   `getpwnam`. Typically that is on POSIX like OSes and not Windows.
 
-Returns: `Hash` [Hash] For example {"name"=>"root", "passwd"=>"x", "uid"=>0, "gid"=>0, "gecos"=>"root", "dir"=>"/root", "shell"=>"/bin/bash"}
+Returns: `Hash` [Hash] For example `{"name"=>"root", "passwd"=>"x", "uid"=>0, "gid"=>0, "gecos"=>"root", "dir"=>"/root", "shell"=>"/bin/bash"}`
+
+Raises:
+
+* `ArgumentError` if no password entry can be found for the specified user.
 
 ##### Examples
 
