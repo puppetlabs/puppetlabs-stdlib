@@ -5,7 +5,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v9.4.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.4.1) - 2023-11-08
+## [v9.5.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.5.0) - 2024-03-11
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.4.1...v9.5.0)
+
+### Added
+
+- Add function stdlib::sort_by [#1384](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1384) ([XMol](https://github.com/XMol))
+
+### Fixed
+
+- (#1389) - pw_hash with bcrypt not working on puppet master [#1410](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1410) ([TuningYourCode](https://github.com/TuningYourCode))
+
+### Other
+
+- Deprecate `time` function [#1417](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1417) ([alexjfisher](https://github.com/alexjfisher))
+
+## [v9.4.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.4.1) - 2023-11-09
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.4.0...v9.4.1)
 
@@ -20,10 +36,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 
 - Modernise `fqdn_rotate` function [#1341](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1341) ([alexjfisher](https://github.com/alexjfisher))
-
-### Other
-
-- Remove unused parser deprecation function [#1392](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1392) ([ekohl](https://github.com/ekohl))
 
 ## [v9.3.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.3.0) - 2023-08-01
 
@@ -68,11 +80,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.6.0...v9.0.0)
 
-### Added
-
-- Namespace Puppet 4.x functions [#1356](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1356) ([smortex](https://github.com/smortex))
-- Add a function to update / regenerate deprecated shims [#1349](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1349) ([smortex](https://github.com/smortex))
-
 ### Changed
 - Deprecate the `validate_legacy()` function [#1353](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1353) ([smortex](https://github.com/smortex))
 - Remove deprecated functions [#1352](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1352) ([smortex](https://github.com/smortex))
@@ -107,6 +114,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Remove deprecated Private function [#1310](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1310) ([MartyEwings](https://github.com/MartyEwings))
 - Remove deprecated type and type3x functions [#1309](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1309) ([MartyEwings](https://github.com/MartyEwings))
 - (CONT-801) Puppet 8 support / Drop Puppet 6 support [#1307](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1307) ([LukasAud](https://github.com/LukasAud))
+
+### Added
+
+- Namespace Puppet 4.x functions [#1356](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1356) ([smortex](https://github.com/smortex))
+- Add a function to update / regenerate deprecated shims [#1349](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1349) ([smortex](https://github.com/smortex))
 
 ### Fixed
 
@@ -226,18 +238,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v7.1.0...v8.0.0)
 
+### Changed
+- Flip installed and present in Function ensure_packages [#1196](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1196) ([cocker-cc](https://github.com/cocker-cc))
+
 ### Added
 
 - New function to_python() / to_ruby() [#1200](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1200) ([smortex](https://github.com/smortex))
 - pdksync - (IAC-1709) - Add Support for Debian 11 [#1199](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1199) ([david22swan](https://github.com/david22swan))
 - Stdlib::Http::Method: Add new type for http methods [#1192](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1192) ([b4ldr](https://github.com/b4ldr))
 
-### Changed
-- Flip installed and present in Function ensure_packages [#1196](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1196) ([cocker-cc](https://github.com/cocker-cc))
-
 ### Fixed
 
-- (MODULES-11099) Make merge parameter data types actually backwards compatible [#1191](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1191) ([SimonPe](https://github.com/SimonPe))
+- (MODULES-11099) Make merge parameter data types actually backwards compatible [#1191](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1191) ([LadyNamedLaura](https://github.com/LadyNamedLaura))
 
 ## [v7.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v7.1.0) - 2021-05-17
 
@@ -259,12 +271,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v6.6.0...v7.0.0)
 
+### Changed
+- pdksync - Remove Puppet 5 from testing and bump minimal version to 6.0.0 [#1164](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1164) ([carabasdaniel](https://github.com/carabasdaniel))
+
 ### Added
 
 - Stdlib::Email type [#1160](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1160) ([b4ldr](https://github.com/b4ldr))
-
-### Changed
-- pdksync - Remove Puppet 5 from testing and bump minimal version to 6.0.0 [#1164](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1164) ([carabasdaniel](https://github.com/carabasdaniel))
 
 ### Fixed
 
@@ -367,13 +379,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/5.2.0...v6.0.0)
 
+### Changed
+- pdksync - (MODULES-8444) - Raise lower Puppet bound [#1011](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1011) ([david22swan](https://github.com/david22swan))
+
 ### Added
 
 - (MODULES-8760) Add iterative feature to merge() function [#1008](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1008) ([hlindberg](https://github.com/hlindberg))
 - Add a stdlib::ip_in_range() function [#1003](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1003) ([iglov](https://github.com/iglov))
-
-### Changed
-- pdksync - (MODULES-8444) - Raise lower Puppet bound [#1011](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1011) ([david22swan](https://github.com/david22swan))
 
 ## [5.2.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/5.2.0) - 2019-01-18
 
