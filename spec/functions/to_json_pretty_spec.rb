@@ -28,4 +28,8 @@ describe 'stdlib::to_json_pretty' do
     pending('Current implementation only elides nil values for hashes of depth=1')
     expect(subject).to run.with_params({ 'omg' => { 'lol' => nil }, 'what' => nil }, true).and_return("{\n}\n")
   }
+
+  context 'with data containing sensitive' do
+    it { is_expected.to run.with_params('key' => sensitive('value')).and_return(sensitive("{\n  \"key\": \"value\"\n}\n")) }
+  end
 end
