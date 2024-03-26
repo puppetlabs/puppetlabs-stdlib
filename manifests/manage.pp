@@ -14,17 +14,21 @@
 #
 # @example
 #   class { 'stdlib::manage':
-#       'create_resources' => {
-#         'file' => {
+#       'create_resources'      => {
+#         'file'                => {
 #           '/etc/motd.d/hello' => {
-#             'content' => 'I say Hi',
-#             'notify' => 'Service[sshd]',
+#             'content'         => 'I say Hi',
+#             'notify'          => 'Service[sshd]',
+#           },
+#           '/etc/motd'         => {
+#             'ensure'          => 'file',
+#             'template'        => 'profile/motd.epp',
 #           }
 #         },
-#         'package' => {
-#           'example' => {
-#             'ensure' => 'installed',
-#             'subscribe' => ['Service[sshd]', 'Exec[something]'],
+#         'package'             => {
+#           'example'           => {
+#             'ensure'          => 'installed',
+#             'subscribe'       => ['Service[sshd]', 'Exec[something]'],
 #           }
 #         }
 #       }
@@ -35,6 +39,9 @@
 #       '/etc/motd.d/hello':
 #         content: I say Hi
 #         notify: 'Service[sshd]'
+#       '/etc/motd':
+#         ensure: 'file'
+#         template: 'profile/motd.epp'
 #     package:
 #       example:
 #         ensure: installed
@@ -46,7 +53,27 @@ class stdlib::manage (
 ) {
   $create_resources.each |$type, $resources| {
     $resources.each |$title, $attributes| {
-      create_resources($type, { $title => $attributes })
+      case $type {
+        'file': {
+          if 'template' in $attributes and 'content' in $attributes {
+            fail("You can not set content and template fir file ${title}")
+          }
+          if 'template' in $attributes {
+            $content = epp($attributes['template'])
+          } elsif 'content' in $attributes {
+            $content = $attributes['content']
+          } else {
+            $content = undef
+          }
+          file { $title:
+            *       => $attributes - 'template' - 'content',
+            content => $content,
+          }
+        }
+        default: {
+          create_resources($type, { $title => $attributes })
+        }
+      }
     }
   }
 }

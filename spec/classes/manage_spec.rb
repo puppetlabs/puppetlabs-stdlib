@@ -25,6 +25,9 @@ describe 'stdlib::manage' do
             '/etc/motd.d/hello' => {
               'content' => 'I say Hi',
               'notify' => 'Service[sshd]'
+            },
+            '/etc/motd' => {
+              'template' => 'stdlib/manage_spec.epp'
             }
           },
           'package' => {
@@ -39,6 +42,7 @@ describe 'stdlib::manage' do
 
     it { is_expected.to compile }
     it { is_expected.to contain_file('/etc/motd.d/hello').with_content('I say Hi').with_notify('Service[sshd]') }
+    it { is_expected.to contain_file('/etc/motd').with_content(%r{I am a template}) }
     it { is_expected.to contain_package('example').with_ensure('installed').that_subscribes_to(['Service[sshd]', 'File[/etc/motd.d]']) }
   end
 end
