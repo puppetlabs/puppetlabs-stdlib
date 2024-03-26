@@ -39,7 +39,8 @@ describe 'stdlib::manage' do
         }
       }
     end
-    Puppet::Functions.create_function(:'epp') do
+
+    Puppet::Functions.create_function(:epp) do
       return 'I am a template'
     end
 
