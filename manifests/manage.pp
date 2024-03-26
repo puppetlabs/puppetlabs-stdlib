@@ -56,7 +56,7 @@ class stdlib::manage (
       case $type {
         'file': {
           if 'template' in $attributes and 'content' in $attributes {
-            fail("You can not set content and template fir file ${title}")
+            fail("You can not set 'content' and 'template' for file ${title}")
           }
           if 'template' in $attributes {
             $content = epp($attributes['template'])

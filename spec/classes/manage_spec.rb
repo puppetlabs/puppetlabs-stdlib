@@ -39,6 +39,9 @@ describe 'stdlib::manage' do
         }
       }
     end
+    Puppet::Functions.create_function(:'epp') do
+      return 'I am a template'
+    end
 
     it { is_expected.to compile }
     it { is_expected.to contain_file('/etc/motd.d/hello').with_content('I say Hi').with_notify('Service[sshd]') }
