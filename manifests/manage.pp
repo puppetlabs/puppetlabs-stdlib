@@ -41,7 +41,13 @@
 #         notify: 'Service[sshd]'
 #       '/etc/motd':
 #         ensure: 'file'
-#         template: 'profile/motd.epp'
+#         epp:
+#           template: 'profile/motd.epp'
+#           context: {}
+#       '/etc/information':
+#         ensure: 'file'
+#         erb:
+#           template: 'profile/information.erb'
 #     package:
 #       example:
 #         ensure: installed
@@ -55,18 +61,41 @@ class stdlib::manage (
     $resources.each |$title, $attributes| {
       case $type {
         'file': {
-          if 'template' in $attributes and 'content' in $attributes {
-            fail("You can not set 'content' and 'template' for file ${title}")
+          # sanity checks
+          # epp, erb and content are exclusive
+          if 'epp' in $attributes and 'content' in $attributes {
+            fail("You can not set 'epp' and 'content' for file ${title}")
           }
-          if 'template' in $attributes {
-            $content = epp($attributes['template'])
+          if 'erb' in $attributes and 'content' in $attributes {
+            fail("You can not set 'erb' and 'content' for file ${title}")
+          }
+          if 'erb' in $attributes and 'epp' in $attributes {
+            fail("You can not set 'erb' and 'epp' for file ${title}")
+          }
+
+          if 'epp' in $attributes {
+            if 'template' in $attributes['epp'] {
+              if 'context' in $attributes['epp'] {
+                $content = epp($attributes['epp']['template'], $attributes['epp']['context'])
+              } else {
+                $content = epp($attributes['epp']['template'])
+              }
+            } else {
+              fail("No template configured for epp for file ${title}")
+            }
+          } elsif 'erb' in $attributes {
+            if 'template' in $attributes['erb'] {
+              $content = template($attributes['erb']['template'])
+            } else {
+              fail("No template configured for erb for file ${title}")
+            }
           } elsif 'content' in $attributes {
             $content = $attributes['content']
           } else {
             $content = undef
           }
           file { $title:
-            *       => $attributes - 'template' - 'content',
+            *       => $attributes - 'erb' - 'epp' - 'content',
             content => $content,
           }
         }
