@@ -10,28 +10,38 @@
 #
 # @param create_resources
 #   A hash of resources to create
-#   NOTE: functions, such as `template` or `epp`, are not evaluated.
+#   NOTE: functions, such as `template` or `epp`, are not directly evaluated
+#         but processed as Puppet code based on epp and erb hash keys.
 #
 # @example
 #   class { 'stdlib::manage':
-#       'create_resources'      => {
-#         'file'                => {
-#           '/etc/motd.d/hello' => {
-#             'content'         => 'I say Hi',
-#             'notify'          => 'Service[sshd]',
-#           },
-#           '/etc/motd'         => {
-#             'ensure'          => 'file',
-#             'template'        => 'profile/motd.epp',
+#     'create_resources'      => {
+#       'file'                => {
+#         '/etc/motd.d/hello' => {
+#           'content'         => 'I say Hi',
+#           'notify'          => 'Service[sshd]',
+#         },
+#         '/etc/motd'         => {
+#           'ensure'          => 'file',
+#           'epp'             => {
+#             'template'      => 'profile/motd.epp',
 #           }
 #         },
-#         'package'             => {
-#           'example'           => {
-#             'ensure'          => 'installed',
-#             'subscribe'       => ['Service[sshd]', 'Exec[something]'],
+#         '/etc/information'  => {
+#           'ensure'          => 'file',
+#           'erb'             => {
+#             'template'      => 'profile/informaiton.erb',
 #           }
 #         }
+#       },
+#       'package'             => {
+#         'example'           => {
+#           'ensure'          => 'installed',
+#           'subscribe'       => ['Service[sshd]', 'Exec[something]'],
+#         }
 #       }
+#     }
+#   }
 #
 # @example
 #   stdlib::manage::create_resources:
