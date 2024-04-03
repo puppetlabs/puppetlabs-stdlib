@@ -266,20 +266,33 @@ and `subscribe`.
 
 ```puppet
 class { 'stdlib::manage':
-    'create_resources' => {
-      'file' => {
-        '/etc/motd.d/hello' => {
-          'content' => 'I say Hi',
-          'notify' => 'Service[sshd]',
+  'create_resources'      => {
+    'file'                => {
+      '/etc/motd.d/hello' => {
+        'content'         => 'I say Hi',
+        'notify'          => 'Service[sshd]',
+      },
+      '/etc/motd'         => {
+        'ensure'          => 'file',
+        'epp'             => {
+          'template'      => 'profile/motd.epp',
         }
       },
-      'package' => {
-        'example' => {
-          'ensure' => 'installed',
-          'subscribe' => ['Service[sshd]', 'Exec[something]'],
+      '/etc/information'  => {
+        'ensure'          => 'file',
+        'erb'             => {
+          'template'      => 'profile/informaiton.erb',
         }
       }
+    },
+    'package'             => {
+      'example'           => {
+        'ensure'          => 'installed',
+        'subscribe'       => ['Service[sshd]', 'Exec[something]'],
+      }
     }
+  }
+}
 ```
 
 ##### 
@@ -290,6 +303,15 @@ stdlib::manage::create_resources:
     '/etc/motd.d/hello':
       content: I say Hi
       notify: 'Service[sshd]'
+    '/etc/motd':
+      ensure: 'file'
+      epp:
+        template: 'profile/motd.epp'
+        context: {}
+    '/etc/information':
+      ensure: 'file'
+      erb:
+        template: 'profile/information.erb'
   package:
     example:
       ensure: installed
@@ -309,7 +331,8 @@ The following parameters are available in the `stdlib::manage` class:
 Data type: `Hash[String, Hash]`
 
 A hash of resources to create
-NOTE: functions, such as `template` or `epp`, are not evaluated.
+NOTE: functions, such as `template` or `epp`, are not directly evaluated
+      but processed as Puppet code based on epp and erb hash keys.
 
 Default value: `{}`
 

@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v9.6.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.6.0) - 2024-04-03
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.5.0...v9.6.0)
+
+### Added
+
+- Allow usage of file templates with stdlib::manage [#1422](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1422) ([tuxmea](https://github.com/tuxmea))
+
 ## [v9.5.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.5.0) - 2024-03-11
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.4.1...v9.5.0)
