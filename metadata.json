@@ -95,6 +95,13 @@
       "operatingsystemrelease": [
         "8"
       ]
+    },
+    {
+      "operatingsystem": "AmazonLinux",
+      "operatingsystemrelease": [
+        "2",
+        "2023"
+      ]
     }
   ],
   "requirements": [
