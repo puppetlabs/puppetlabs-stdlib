@@ -55,7 +55,6 @@ describe 'loadjson' do
         allow(File).to receive(:exist?).and_call_original
         allow(File).to receive(:exist?).with(filename).and_return(true).once
         allow(File).to receive(:read).with(filename).and_return(json).once
-        allow(File).to receive(:read).with(filename).and_return(json).once
         if Puppet::PUPPETVERSION[0].to_i < 8
           allow(PSON).to receive(:load).with(json).and_return(data).once
         else
@@ -98,7 +97,7 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       it {
-        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(json)
+        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(StringIO.new(json))
         if Puppet::PUPPETVERSION[0].to_i < 8
           expect(PSON).to receive(:load).with(json).and_return(data).once
         else
@@ -118,7 +117,7 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       it {
-        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
+        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(StringIO.new(json))
         if Puppet::PUPPETVERSION[0].to_i < 8
           expect(PSON).to receive(:load).with(json).and_return(data).once
         else
@@ -138,7 +137,7 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       it {
-        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
+        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(StringIO.new(json))
         if Puppet::PUPPETVERSION[0].to_i < 8
           expect(PSON).to receive(:load).with(json).and_return(data).once
         else
@@ -155,7 +154,7 @@ describe 'loadjson' do
       let(:json) { ',;{"key":"value"}' }
 
       it {
-        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(json)
+        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(StringIO.new(json))
         if Puppet::PUPPETVERSION[0].to_i < 8
           expect(PSON).to receive(:load).with(json).once.and_raise StandardError, 'Something terrible have happened!'
         else
