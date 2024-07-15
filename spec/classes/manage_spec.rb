@@ -37,6 +37,29 @@ describe 'stdlib::manage' do
               }
             }
           },
+          'concat' => {
+            '/tmp/filename' => {
+              'ensure' => 'present',
+            }
+          },
+          'concat::fragment' => {
+            'rawcontent' => {
+              'target' => '/tmp/filename',
+              'content' => 'test content',
+            },
+            'eppcontent' => {
+              'target' => '/tmp/filename',
+              'epp' => {
+                'template' => 'profile/motd.epp'
+              },
+            },
+            'erbcontent' => {
+              'target' => '/tmp/filename',
+              'erb' => {
+                'template' => 'profile/information.erb'
+              },
+            }
+          },
           'package' => {
             'example' => {
               'ensure' => 'installed',
@@ -58,6 +81,10 @@ describe 'stdlib::manage' do
     it { is_expected.to contain_file('/etc/motd.d/hello').with_content('I say Hi').with_notify('Service[sshd]') }
     it { is_expected.to contain_file('/etc/motd').with_content(%r{I am an epp template}) }
     it { is_expected.to contain_file('/etc/information').with_content(%r{I am an erb template}) }
+    it { is_expected.to contain_concat('/tmp/filename') }
+    it { is_expected.to contain_concat__fragment('rawcontent').with_content('test content') }
+    it { is_expected.to contain_concat__fragment('eppcontent').with_content(%r{I am an epp template}) }
+    it { is_expected.to contain_concat__fragment('erbcontent').with_content(%r{I am an erb template}) }
     it { is_expected.to contain_package('example').with_ensure('installed').that_subscribes_to(['Service[sshd]', 'File[/etc/motd.d]']) }
   end
 end
