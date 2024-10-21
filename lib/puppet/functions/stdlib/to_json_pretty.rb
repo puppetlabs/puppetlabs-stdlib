@@ -67,8 +67,10 @@ max_nesting  => Optional[Integer[-1,default]],
     end
 
     data = data.compact if skip_undef && (data.is_a?(Array) || Hash)
-    # Call ::JSON to ensure it references the JSON library from Ruby's standard library
-    # instead of a random JSON namespace that might be in scope due to user code.
-    JSON.pretty_generate(data, opts) << "\n"
+    call_function('stdlib::rewrap_sensitive_data', data) do |unwrapped_data|
+      # Call ::JSON to ensure it references the JSON library from Ruby's standard library
+      # instead of a random JSON namespace that might be in scope due to user code.
+      ::JSON.pretty_generate(unwrapped_data, opts) << "\n"
+    end
   end
 end
