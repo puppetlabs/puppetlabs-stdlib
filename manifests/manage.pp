@@ -70,17 +70,17 @@ class stdlib::manage (
   $create_resources.each |$type, $resources| {
     $resources.each |$title, $attributes| {
       case $type {
-        'file': {
+        'file', 'concat::fragment': {
           # sanity checks
           # epp, erb and content are exclusive
           if 'epp' in $attributes and 'content' in $attributes {
-            fail("You can not set 'epp' and 'content' for file ${title}")
+            fail("You can not set 'epp' and 'content' for ${type} ${title}")
           }
           if 'erb' in $attributes and 'content' in $attributes {
-            fail("You can not set 'erb' and 'content' for file ${title}")
+            fail("You can not set 'erb' and 'content' for ${type} ${title}")
           }
           if 'erb' in $attributes and 'epp' in $attributes {
-            fail("You can not set 'erb' and 'epp' for file ${title}")
+            fail("You can not set 'erb' and 'epp' for ${type} ${title}")
           }
 
           if 'epp' in $attributes {
@@ -91,20 +91,20 @@ class stdlib::manage (
                 $content = epp($attributes['epp']['template'])
               }
             } else {
-              fail("No template configured for epp for file ${title}")
+              fail("No template configured for epp for ${type} ${title}")
             }
           } elsif 'erb' in $attributes {
             if 'template' in $attributes['erb'] {
               $content = template($attributes['erb']['template'])
             } else {
-              fail("No template configured for erb for file ${title}")
+              fail("No template configured for erb for ${type} ${title}")
             }
           } elsif 'content' in $attributes {
             $content = $attributes['content']
           } else {
             $content = undef
           }
-          file { $title:
+          $type { $title:
             *       => $attributes - 'erb' - 'epp' - 'content',
             content => $content,
           }
