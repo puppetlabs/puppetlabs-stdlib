@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v9.7.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.7.0) - 2024-12-17
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.6.0...v9.7.0)
+
+### Added
+
+- (CAT-2119) Add Ubuntu 24.04 support [#1440](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1440) ([shubhamshinde360](https://github.com/shubhamshinde360))
+- (CAT-2101) Add support for Debian-12 [#1439](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1439) ([skyamgarp](https://github.com/skyamgarp))
+- Support for Amazon linux 2 and 2023 [#1427](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1427) ([h0tw1r3](https://github.com/h0tw1r3))
+
+### Fixed
+
+- (CAT-2180) Upgrade rexml to address CVE-2024-49761 [#1443](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1443) ([amitkarsale](https://github.com/amitkarsale))
+
 ## [v9.6.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.6.0) - 2024-04-03
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.5.0...v9.6.0)
@@ -89,6 +103,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v8.6.0...v9.0.0)
 
 ### Changed
+
 - Deprecate the `validate_legacy()` function [#1353](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1353) ([smortex](https://github.com/smortex))
 - Remove deprecated functions [#1352](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1352) ([smortex](https://github.com/smortex))
 - Rewrite validate_email_address() as a Puppet 4.x function [#1350](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1350) ([smortex](https://github.com/smortex))
@@ -247,6 +262,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v7.1.0...v8.0.0)
 
 ### Changed
+
 - Flip installed and present in Function ensure_packages [#1196](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1196) ([cocker-cc](https://github.com/cocker-cc))
 
 ### Added
@@ -280,6 +296,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v6.6.0...v7.0.0)
 
 ### Changed
+
 - pdksync - Remove Puppet 5 from testing and bump minimal version to 6.0.0 [#1164](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1164) ([carabasdaniel](https://github.com/carabasdaniel))
 
 ### Added
@@ -388,6 +405,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/5.2.0...v6.0.0)
 
 ### Changed
+
 - pdksync - (MODULES-8444) - Raise lower Puppet bound [#1011](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1011) ([david22swan](https://github.com/david22swan))
 
 ### Added
