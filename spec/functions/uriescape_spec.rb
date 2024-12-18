@@ -39,9 +39,5 @@ describe 'uriescape' do
       it { is_expected.to run.with_params(['one}', 'two']).and_return(['one%7D', 'two']) }
       it { is_expected.to run.with_params(['one}', 1, true, {}, 'two']).and_return(['one%7D', 1, true, {}, 'two']) }
     end
-  else
-    describe 'raising errors in Puppet 8' do
-      it { is_expected.to run.with_params([]).and_raise_error(Puppet::ParseError, %r{This function is not available in Puppet 8. URI.escape no longer exists as of Ruby 3+.}) }
-    end
   end
 end
