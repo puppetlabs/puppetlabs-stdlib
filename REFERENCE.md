@@ -47,10 +47,8 @@ from an array or key from a hash.
 * [`dos2unix`](#dos2unix): Returns the Unix version of the given string.
 * [`enclose_ipv6`](#enclose_ipv6): Takes an array of ip addresses and encloses the ipv6 addresses with square brackets.
 * [`ensure_packages`](#ensure_packages): DEPRECATED.  Use the namespaced function [`stdlib::ensure_packages`](#stdlibensure_packages) instead.
-* [`ensure_resource`](#ensure_resource): Takes a resource type, title, and a list of attributes that describe a
-resource.
-* [`ensure_resources`](#ensure_resources): Takes a resource type, title (only hash), and a list of attributes that describe a
-resource.
+* [`ensure_resource`](#ensure_resource): DEPRECATED.  Use the namespaced function [`stdlib::ensure_resource`](#stdlibensure_resource) instead.
+* [`ensure_resources`](#ensure_resources): DEPRECATED.  Use the namespaced function [`stdlib::ensure_resources`](#stdlibensure_resources) instead.
 * [`fact`](#fact): Digs into the facts hash using dot-notation
 * [`fqdn_rand_string`](#fqdn_rand_string): DEPRECATED.  Use the namespaced function [`stdlib::fqdn_rand_string`](#stdlibfqdn_rand_string) instead.
 * [`fqdn_rotate`](#fqdn_rotate): DEPRECATED.  Use the namespaced function [`stdlib::fqdn_rotate`](#stdlibfqdn_rotate) instead.
@@ -120,6 +118,8 @@ the provided regular expression.
 * [`stdlib::end_with`](#stdlib--end_with): Returns true if str ends with one of the prefixes given. Each of the prefixes should be a String.
 * [`stdlib::ensure`](#stdlib--ensure): function to cast ensure parameter to resource specific value
 * [`stdlib::ensure_packages`](#stdlib--ensure_packages): Takes a list of packages and only installs them if they don't already exist.
+* [`stdlib::ensure_resource`](#stdlib--ensure_resource): @summary    Takes a resource type, title, and a list of attributes that describe a    resource.   user { 'dan':    ensure => present,  }   @r
+* [`stdlib::ensure_resources`](#stdlib--ensure_resources): @summary    Takes a resource type, title (only hash), and a list of attributes that describe a    resource.   @return    created resources wi
 * [`stdlib::extname`](#stdlib--extname): Returns the Extension (the Portion of Filename in Path starting from the
 last Period).
 * [`stdlib::fqdn_rand_string`](#stdlib--fqdn_rand_string): Generates a random alphanumeric string. Combining the `$fqdn` fact and an
@@ -1605,125 +1605,39 @@ Data type: `Any`
 
 ### <a name="ensure_resource"></a>`ensure_resource`
 
-Type: Ruby 3.x API
+Type: Ruby 4.x API
 
-user { 'dan':
-  ensure => present,
-}
+DEPRECATED.  Use the namespaced function [`stdlib::ensure_resource`](#stdlibensure_resource) instead.
 
-#### Examples
+#### `ensure_resource(Any *$args)`
 
-##### Example usage
+The ensure_resource function.
 
-```puppet
+Returns: `Any`
 
-Creates the resource if it does not already exist:
+##### `*args`
 
-  ensure_resource('user', 'dan', {'ensure' => 'present' })
+Data type: `Any`
 
-If the resource already exists but does not match the specified parameters,
-this function will attempt to recreate the resource leading to a duplicate
-resource definition error.
 
-An array of resources can also be passed in and each will be created with
-the type and parameters specified if it doesn't already exist.
-
-  ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
-```
-
-#### `ensure_resource()`
-
-user { 'dan':
-  ensure => present,
-}
-
-Returns: `Any` created or recreated the passed resource with the passed type and attributes
-
-##### Examples
-
-###### Example usage
-
-```puppet
-
-Creates the resource if it does not already exist:
-
-  ensure_resource('user', 'dan', {'ensure' => 'present' })
-
-If the resource already exists but does not match the specified parameters,
-this function will attempt to recreate the resource leading to a duplicate
-resource definition error.
-
-An array of resources can also be passed in and each will be created with
-the type and parameters specified if it doesn't already exist.
-
-  ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
-```
 
 ### <a name="ensure_resources"></a>`ensure_resources`
 
-Type: Ruby 3.x API
+Type: Ruby 4.x API
 
-An hash of resources should be passed in and each will be created with
-  the type and parameters specified if it doesn't already exist.
+DEPRECATED.  Use the namespaced function [`stdlib::ensure_resources`](#stdlibensure_resources) instead.
 
-  ensure_resources('user', {'dan' => { gid => 'mygroup', uid => '600' }, 'alex' => { gid => 'mygroup' }}, {'ensure' => 'present'})
+#### `ensure_resources(Any *$args)`
 
-  From Hiera Backend:
+The ensure_resources function.
 
-  userlist:
-    dan:
-      gid: 'mygroup'
-   uid: '600'
-    alex:
-   gid: 'mygroup'
+Returns: `Any`
 
-  Call:
-  ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
+##### `*args`
 
-#### Examples
+Data type: `Any`
 
-##### Example usage
 
-```puppet
-
-user { 'dan':
-  gid => 'mygroup',
-  ensure => present,
-}
-```
-
-#### `ensure_resources()`
-
-An hash of resources should be passed in and each will be created with
-  the type and parameters specified if it doesn't already exist.
-
-  ensure_resources('user', {'dan' => { gid => 'mygroup', uid => '600' }, 'alex' => { gid => 'mygroup' }}, {'ensure' => 'present'})
-
-  From Hiera Backend:
-
-  userlist:
-    dan:
-      gid: 'mygroup'
-   uid: '600'
-    alex:
-   gid: 'mygroup'
-
-  Call:
-  ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
-
-Returns: `Any` created resources with the passed type and attributes
-
-##### Examples
-
-###### Example usage
-
-```puppet
-
-user { 'dan':
-  gid => 'mygroup',
-  ensure => present,
-}
-```
 
 ### <a name="fact"></a>`fact`
 
@@ -3332,7 +3246,7 @@ Data type: `Optional[Enum['directory', 'link', 'mounted', 'service', 'file', 'pa
 Type: Ruby 4.x API
 
 It optionally takes a hash as a second parameter that will be passed as the
-third argument to the ensure_resource() function.
+third argument to the stdlib::ensure_resource() function.
 
 #### `stdlib::ensure_packages(Variant[String[1], Array[String[1]]] $packages, Optional[Hash] $default_attributes)`
 
@@ -3350,7 +3264,7 @@ The packages to ensure are installed.
 
 Data type: `Optional[Hash]`
 
-Default attributes to be passed to the `ensure_resource()` function
+Default attributes to be passed to the `stdlib::ensure_resource()` function
 
 #### `stdlib::ensure_packages(Hash[String[1], Any] $packages, Optional[Hash] $default_attributes)`
 
@@ -3369,6 +3283,172 @@ The packages to ensure are installed. The keys are packages and values are the a
 Data type: `Optional[Hash]`
 
 Default attributes. Package specific attributes from the `packages` parameter will take precedence.
+
+### <a name="stdlib--ensure_resource"></a>`stdlib::ensure_resource`
+
+Type: Ruby 4.x API
+
+@summary
+   Takes a resource type, title, and a list of attributes that describe a
+   resource.
+
+ user { 'dan':
+   ensure => present,
+ }
+
+ @return
+   created or recreated the passed resource with the passed type and attributes
+
+ @example Example usage
+
+   Creates the resource if it does not already exist:
+
+     stdlib::ensure_resource('user', 'dan', {'ensure' => 'present' })
+
+   If the resource already exists but does not match the specified parameters,
+   this function will attempt to recreate the resource leading to a duplicate
+   resource definition error.
+
+   An array of resources can also be passed in and each will be created with
+   the type and parameters specified if it doesn't already exist.
+
+     ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
+
+#### `stdlib::ensure_resource(String $type, Variant[String,Array[String]] $title, Hash $params)`
+
+@summary
+   Takes a resource type, title, and a list of attributes that describe a
+   resource.
+
+ user { 'dan':
+   ensure => present,
+ }
+
+ @return
+   created or recreated the passed resource with the passed type and attributes
+
+ @example Example usage
+
+   Creates the resource if it does not already exist:
+
+     stdlib::ensure_resource('user', 'dan', {'ensure' => 'present' })
+
+   If the resource already exists but does not match the specified parameters,
+   this function will attempt to recreate the resource leading to a duplicate
+   resource definition error.
+
+   An array of resources can also be passed in and each will be created with
+   the type and parameters specified if it doesn't already exist.
+
+     ensure_resource('user', ['dan','alex'], {'ensure' => 'present'})
+
+Returns: `Any`
+
+##### `type`
+
+Data type: `String`
+
+The resource type to create
+
+##### `title`
+
+Data type: `Variant[String,Array[String]]`
+
+The resource title or array of resource titles
+
+##### `params`
+
+Data type: `Hash`
+
+The resource parameters
+
+### <a name="stdlib--ensure_resources"></a>`stdlib::ensure_resources`
+
+Type: Ruby 4.x API
+
+@summary
+   Takes a resource type, title (only hash), and a list of attributes that describe a
+   resource.
+
+ @return
+   created resources with the passed type and attributes
+
+ @example Example usage
+
+       user { 'dan':
+         gid => 'mygroup',
+         ensure => present,
+       }
+
+   An hash of resources should be passed in and each will be created with
+   the type and parameters specified if it doesn't already exist.
+
+   stdlib::ensure_resources('user', {'dan' => { gid => 'mygroup', uid => '600' }, 'alex' => { gid => 'mygroup' }}, {'ensure' => 'present'})
+
+   From Hiera Backend:
+
+   userlist:
+     dan:
+       gid: 'mygroup'
+    uid: '600'
+     alex:
+    gid: 'mygroup'
+
+   Call:
+   ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
+
+#### `stdlib::ensure_resources(String $type, Hash[String,Hash] $titles, Optional[Hash] $params)`
+
+@summary
+   Takes a resource type, title (only hash), and a list of attributes that describe a
+   resource.
+
+ @return
+   created resources with the passed type and attributes
+
+ @example Example usage
+
+       user { 'dan':
+         gid => 'mygroup',
+         ensure => present,
+       }
+
+   An hash of resources should be passed in and each will be created with
+   the type and parameters specified if it doesn't already exist.
+
+   stdlib::ensure_resources('user', {'dan' => { gid => 'mygroup', uid => '600' }, 'alex' => { gid => 'mygroup' }}, {'ensure' => 'present'})
+
+   From Hiera Backend:
+
+   userlist:
+     dan:
+       gid: 'mygroup'
+    uid: '600'
+     alex:
+    gid: 'mygroup'
+
+   Call:
+   ensure_resources('user', hiera_hash('userlist'), {'ensure' => 'present'})
+
+Returns: `Any`
+
+##### `type`
+
+Data type: `String`
+
+The resource type to create
+
+##### `titles`
+
+Data type: `Hash[String,Hash]`
+
+A hash of resource titles mapping to resource parameters
+
+##### `params`
+
+Data type: `Optional[Hash]`
+
+A hash of default parameters to be merged with individual resource parameters
 
 ### <a name="stdlib--extname"></a>`stdlib::extname`
 
