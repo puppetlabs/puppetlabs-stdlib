@@ -115,6 +115,7 @@ the provided regular expression.
 * [`stdlib::batch_escape`](#stdlib--batch_escape): Escapes a string so that it can be safely used in a batch shell command line.
 * [`stdlib::crc32`](#stdlib--crc32): Run a CRC32 calculation against a given value.
 * [`stdlib::deferrable_epp`](#stdlib--deferrable_epp): This function returns either a rendered template or a deferred function to render at runtime. If any of the values in the variables hash are 
+* [`stdlib::defined_with_params`](#stdlib--defined_with_params): @summary    Takes a resource reference and an optional hash of attributes.   Returns `true` if a resource with the specified attributes has a
 * [`stdlib::end_with`](#stdlib--end_with): Returns true if str ends with one of the prefixes given. Each of the prefixes should be a String.
 * [`stdlib::ensure`](#stdlib--ensure): function to cast ensure parameter to resource specific value
 * [`stdlib::ensure_packages`](#stdlib--ensure_packages): Takes a list of packages and only installs them if they don't already exist.
@@ -3166,6 +3167,64 @@ Data type: `String`
 Data type: `Hash`
 
 
+
+### <a name="stdlib--defined_with_params"></a>`stdlib::defined_with_params`
+
+Type: Ruby 4.x API
+
+@summary
+   Takes a resource reference and an optional hash of attributes.
+
+ Returns `true` if a resource with the specified attributes has already been added
+ to the catalog, and `false` otherwise.
+
+   ```
+   user { 'dan':
+     ensure => present,
+   }
+
+   if ! stdlib::defined_with_params(User[dan], {'ensure' => 'present' }) {
+     user { 'dan': ensure => present, }
+   }
+   ```
+
+ @return [Boolean]
+   returns `true` or `false`
+
+#### `stdlib::defined_with_params(Variant[String,Type[Resource]] $reference, Variant[String[0],Hash] $params)`
+
+@summary
+   Takes a resource reference and an optional hash of attributes.
+
+ Returns `true` if a resource with the specified attributes has already been added
+ to the catalog, and `false` otherwise.
+
+   ```
+   user { 'dan':
+     ensure => present,
+   }
+
+   if ! stdlib::defined_with_params(User[dan], {'ensure' => 'present' }) {
+     user { 'dan': ensure => present, }
+   }
+   ```
+
+ @return [Boolean]
+   returns `true` or `false`
+
+Returns: `Boolean` Returns `true` if a resource has already been added
+
+##### `reference`
+
+Data type: `Variant[String,Type[Resource]]`
+
+The resource reference to check for
+
+##### `params`
+
+Data type: `Variant[String[0],Hash]`
+
+The resource's attributes
 
 ### <a name="stdlib--end_with"></a>`stdlib::end_with`
 
