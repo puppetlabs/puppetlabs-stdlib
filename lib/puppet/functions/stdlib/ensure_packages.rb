@@ -3,12 +3,12 @@
 # @summary Takes a list of packages and only installs them if they don't already exist.
 #
 # It optionally takes a hash as a second parameter that will be passed as the
-# third argument to the ensure_resource() function.
+# third argument to the stdlib::ensure_resource() function.
 Puppet::Functions.create_function(:'stdlib::ensure_packages', Puppet::Functions::InternalFunction) do
   # @param packages
   #   The packages to ensure are installed.
   # @param default_attributes
-  #   Default attributes to be passed to the `ensure_resource()` function
+  #   Default attributes to be passed to the `stdlib::ensure_resource()` function
   # @return [Undef] Returns nothing.
   dispatch :ensure_packages do
     scope_param
@@ -37,7 +37,7 @@ Puppet::Functions.create_function(:'stdlib::ensure_packages', Puppet::Functions:
       # with `installed` by default but `present` if this package is already in the catalog with `ensure => present`
       defaults['ensure'] = default_ensure(package_name) if ['present', 'installed'].include?(defaults['ensure'])
 
-      scope.call_function('ensure_resource', ['package', package_name, defaults])
+      scope.call_function('stdlib::ensure_resource', ['package', package_name, defaults])
     end
     nil
   end
