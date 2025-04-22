@@ -16,4 +16,4 @@ jobs:
     uses: "puppetlabs/cat-github-actions/.github/workflows/module_acceptance.yml@main"
     secrets: "inherit"
     with:
-      runs_on: "ubuntu-20.04"
+      runs_on: "ubuntu-24.04"
