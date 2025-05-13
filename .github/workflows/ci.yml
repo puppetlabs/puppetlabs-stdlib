@@ -13,7 +13,7 @@ jobs:
 
   Acceptance:
     needs: Spec
-    uses: "puppetlabs/cat-github-actions/.github/workflows/module_acceptance.yml@main"
+    uses: "imaqsood/cat-github-actions/.github/workflows/module_acceptance.yml@CAT-2275"
     secrets: "inherit"
     with:
       runs_on: "ubuntu-20.04"
