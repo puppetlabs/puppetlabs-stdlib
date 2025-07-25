@@ -172,8 +172,8 @@ describe provider_class, unless: Puppet::Util::Platform.windows? do
             name: 'foo',
             path: tmpfile,
             line: 'inserted = line',
-            after: after,
-            match: match,
+            after:,
+            match:,
           )
         end
       end
