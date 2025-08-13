@@ -22,7 +22,7 @@ module Puppet::Parser::Functions
     require 'yaml'
 
     begin
-      YAML.load(arguments[0]) || arguments[1] # rubocop:disable Security/YAMLLoad : using YAML.safe_load causes the code to break
+      YAML.load(arguments[0]) || arguments[1] # : using YAML.safe_load causes the code to break
       # in ruby 1.9.3 Psych::SyntaxError is a RuntimeException
       # this still needs to catch that and work also on rubies that
       # do not have Psych available.

@@ -67,7 +67,7 @@ module Puppet::Parser::Functions
       # Check for syntax
       lens = args[1]
       aug.transform(
-        lens: lens,
+        lens:,
         name: 'Validate_augeas',
         incl: tmpfile.path,
       )
