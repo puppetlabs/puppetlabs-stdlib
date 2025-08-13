@@ -14,4 +14,6 @@ jobs:
   Acceptance:
     needs: Spec
     uses: "puppetlabs/cat-github-actions/.github/workflows/module_acceptance.yml@main"
+    with:
+      flags: "--nightly"
     secrets: "inherit"
