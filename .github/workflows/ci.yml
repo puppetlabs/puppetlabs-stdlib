@@ -16,4 +16,5 @@ jobs:
     uses: "puppetlabs/cat-github-actions/.github/workflows/module_acceptance.yml@main"
     with:
       flags: "--nightly"
+      service_url: 'https://facade-set-subnetwork-1079112402178.europe-west1.run.app/v1/provision'
     secrets: "inherit"
