@@ -81,7 +81,9 @@ DOC
   if RUBY_PLATFORM == 'java' && !['bcrypt', 'bcrypt-a', 'bcrypt-x', 'bcrypt-y', 'yescrypt'].include?(args[1].downcase)
     # puppetserver bundles Apache Commons Codec
     org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
-  elsif (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
+  elsif args[1].downcase == 'yescrypt' && (+'test').crypt('$y$j9T$') == '$y$j9T$$6tN6tt5mmPHxQskcf5Oi7Sb.1nKYbi5cOZgTiMq7Qw4'
+    password.crypt(salt)
+  elsif args[1].downcase.start_with?('bcrypt') && (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
     password.crypt(salt)
   else
     # JRuby < 1.7.17
