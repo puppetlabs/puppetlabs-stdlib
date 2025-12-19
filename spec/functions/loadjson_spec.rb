@@ -98,7 +98,8 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       it {
-        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(json)
+        io = instance_double('StringIO', read: json)
+        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(io)
         if Puppet::PUPPETVERSION[0].to_i < 8
           expect(PSON).to receive(:load).with(json).and_return(data).once
         else
@@ -118,7 +119,8 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       it {
-        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
+        io = instance_double('StringIO', read: json)
+        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(io)
         if Puppet::PUPPETVERSION[0].to_i < 8
           expect(PSON).to receive(:load).with(json).and_return(data).once
         else
@@ -138,7 +140,8 @@ describe 'loadjson' do
       let(:json) { '{"key":"value", {"ķęŷ":"νậŀųề" }, {"キー":"値" }' }
 
       it {
-        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(json)
+        io = instance_double('StringIO', read: json)
+        expect(OpenURI).to receive(:open_uri).with(url_no_auth, basic_auth).and_return(io)
         if Puppet::PUPPETVERSION[0].to_i < 8
           expect(PSON).to receive(:load).with(json).and_return(data).once
         else
@@ -155,7 +158,8 @@ describe 'loadjson' do
       let(:json) { ',;{"key":"value"}' }
 
       it {
-        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(json)
+        io = instance_double('StringIO', read: json)
+        expect(OpenURI).to receive(:open_uri).with(filename, {}).and_return(io)
         if Puppet::PUPPETVERSION[0].to_i < 8
           expect(PSON).to receive(:load).with(json).once.and_raise StandardError, 'Something terrible have happened!'
         else
