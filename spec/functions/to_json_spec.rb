@@ -22,4 +22,8 @@ describe 'stdlib::to_json' do
   it { is_expected.to run.with_params('竹').and_return('"竹"') }
   it { is_expected.to run.with_params('Ü').and_return('"Ü"') }
   it { is_expected.to run.with_params('∇').and_return('"∇"') }
+
+  context 'with data containing sensitive' do
+    it { is_expected.to run.with_params('key' => sensitive('value')).and_return(sensitive('{"key":"value"}')) }
+  end
 end
