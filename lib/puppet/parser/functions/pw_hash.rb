@@ -24,6 +24,7 @@ Puppet::Parser::Functions.newfunction(:pw_hash, type: :rvalue, arity: 3, doc: <<
   |bcrypt-a |2a    |bug compatible       |
   |bcrypt-x |2x    |bug compatible       |
   |bcrypt-y |2y    |historic alias for 2b|
+  |yescrypt |y     |                     |
 
   The third argument to this function is the salt to use. For bcrypt-type hashes,
   the first two characters of the salt represent a strength parameter, with a value
@@ -54,7 +55,8 @@ DOC
     'bcrypt' => { prefix: '2b', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
     'bcrypt-a' => { prefix: '2a', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
     'bcrypt-x' => { prefix: '2x', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
-    'bcrypt-y' => { prefix: '2y', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} }
+    'bcrypt-y' => { prefix: '2y', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
+    'yescrypt' => { prefix: 'y', salt: %r{^[./A-Za-z0-9]+\$[./A-Za-z0-9]{0,86}} }
   }
 
   raise ArgumentError, 'pw_hash(): first argument must be a string' unless args[0].is_a?(String) || args[0].nil?
@@ -76,10 +78,12 @@ DOC
 
   # handle weak implementations of String#crypt
   # dup the string to get rid of frozen status for testing
-  if RUBY_PLATFORM == 'java' && !args[1].downcase.start_with?('bcrypt')
+  if RUBY_PLATFORM == 'java' && !['bcrypt', 'bcrypt-a', 'bcrypt-x', 'bcrypt-y', 'yescrypt'].include?(args[1].downcase)
     # puppetserver bundles Apache Commons Codec
     org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
-  elsif (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
+  elsif args[1].downcase == 'yescrypt' && (+'test').crypt('$y$j9T$') == '$y$j9T$$6tN6tt5mmPHxQskcf5Oi7Sb.1nKYbi5cOZgTiMq7Qw4'
+    password.crypt(salt)
+  elsif args[1].downcase.start_with?('bcrypt') && (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
     password.crypt(salt)
   else
     # JRuby < 1.7.17
