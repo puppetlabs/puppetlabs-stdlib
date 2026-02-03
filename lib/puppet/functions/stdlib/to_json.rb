@@ -19,6 +19,8 @@ Puppet::Functions.create_function(:'stdlib::to_json') do
   end
 
   def to_json(data)
-    data.to_json
+    call_function('stdlib::rewrap_sensitive_data', data) do |unwrapped_data|
+      unwrapped_data.to_json
+    end
   end
 end

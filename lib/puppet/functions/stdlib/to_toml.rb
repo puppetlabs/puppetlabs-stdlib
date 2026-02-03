@@ -13,10 +13,12 @@ Puppet::Functions.create_function(:'stdlib::to_toml') do
   #     }
   dispatch :to_toml do
     required_param 'Hash', :data
-    return_type 'String'
+    return_type 'Variant[String, Sensitive[String]]'
   end
 
   def to_toml(data)
-    PuppetX::Stdlib::TomlDumper.new(data).toml_str
+    call_function('stdlib::rewrap_sensitive_data', data) do |unwrapped_data|
+      PuppetX::Stdlib::TomlDumper.new(unwrapped_data).toml_str
+    end
   end
 end

@@ -27,6 +27,8 @@ Puppet::Functions.create_function(:'stdlib::to_yaml') do
   end
 
   def to_yaml(data, options = {})
-    data.to_yaml(options.transform_keys(&:to_sym))
+    call_function('stdlib::rewrap_sensitive_data', data) do |unwrapped_data|
+      unwrapped_data.to_yaml(options.transform_keys(&:to_sym))
+    end
   end
 end
