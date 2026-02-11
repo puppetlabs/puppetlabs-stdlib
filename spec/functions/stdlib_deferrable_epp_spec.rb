@@ -24,8 +24,37 @@ describe 'stdlib::deferrable_epp' do
 
     it {
       foo = Puppet::Pops::Types::TypeFactory.deferred.create('join', [1, 2, 3])
-      # This kind_of matcher requires https://github.com/puppetlabs/rspec-puppet/pull/24
-      expect(subject).to run.with_params('mymod/template.epp', { 'foo' => foo }) # .and_return(kind_of Puppet::Pops::Types::PuppetObject)
+      expect(subject).to run.with_params('mymod/template.epp', { 'foo' => foo }).and_return(kind_of(Puppet::Pops::Types::PuppetObject))
+    }
+  end
+
+  context 'defers rendering with mixed deferred and undeferred input' do
+    let(:pre_condition) do
+      <<~END
+        function epp($str, $data) { fail("should not have invoked epp()") }
+        function find_template($str) { return "path" }
+        function file($path) { return "foo: <%= foo %>, bar: <%= bar %>" }
+      END
+    end
+
+    it {
+      foo = Puppet::Pops::Types::TypeFactory.deferred.create('join', [1, 2, 3])
+      expect(subject).to run.with_params('mymod/template.epp', { 'foo' => foo, 'bar' => 'xyz' }).and_return(kind_of(Puppet::Pops::Types::PuppetObject))
+    }
+  end
+
+  context 'defers rendering with mixed deferred and undeferred input and preparse false' do
+    let(:pre_condition) do
+      <<~END
+        function epp($str, $data) { fail("should not have invoked epp()") }
+        function find_template($str) { return "path" }
+        function file($path) { return "foo: <%= foo %>, bar: <%= bar %>" }
+      END
+    end
+
+    it {
+      foo = Puppet::Pops::Types::TypeFactory.deferred.create('join', [1, 2, 3])
+      expect(subject).to run.with_params('mymod/template.epp', { 'foo' => foo, 'bar' => 'xyz' }, false).and_return(kind_of(Puppet::Pops::Types::PuppetObject))
     }
   end
 end
