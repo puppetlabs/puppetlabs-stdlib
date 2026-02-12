@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v10.0.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.0.0) - 2026-02-12
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.7.0...v10.0.0)
+
+### Changed
+
+- (CAT-2395) Puppetcore upgrade [#1457](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1457) ([LukasAud](https://github.com/LukasAud))
+
+### Added
+
+- stdlib::manage: Also permit templates for concat::fragment [#1434](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1434) ([jcpunk](https://github.com/jcpunk))
+
+### Fixed
+
+- Fix `has_ip_address` and `has_ip_network` functions [#1448](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1448) ([alexjfisher](https://github.com/alexjfisher))
+
+### Other
+
+- Support `Sensitive` values in more functions [#1463](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1463) ([alexjfisher](https://github.com/alexjfisher))
+- (CAT-2296) Update github runner image to ubuntu-24.04 [#1451](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1451) ([shubhamshinde360](https://github.com/shubhamshinde360))
+- Support sensitive values in `to_json_pretty` [#1418](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1418) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [v9.7.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.7.0) - 2024-12-17
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.6.0...v9.7.0)

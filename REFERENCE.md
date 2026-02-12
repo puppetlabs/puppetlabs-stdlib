@@ -4533,7 +4533,7 @@ file { '/tmp/config.toml':
 
 The stdlib::to_toml function.
 
-Returns: `String` Converted data as TOML string
+Returns: `Variant[String, Sensitive[String]]` Converted data as TOML string
 
 ##### Examples
 
