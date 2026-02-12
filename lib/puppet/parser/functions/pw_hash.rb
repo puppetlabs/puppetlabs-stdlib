@@ -3,6 +3,10 @@
 #  Please note: This function is an implementation of a Ruby class and as such may not be entirely UTF8 compatible.
 #  To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
 #
+
+# Mutex for MRI Ruby - native crypt(3) is not thread-safe
+PW_HASH_CRYPT_LOCK = Mutex.new unless RUBY_PLATFORM == 'java'
+
 Puppet::Parser::Functions.newfunction(:pw_hash, type: :rvalue, arity: 3, doc: <<-DOC
   @summary
     Hashes a password using the crypt function. Provides a hash usable
@@ -79,8 +83,15 @@ DOC
   if RUBY_PLATFORM == 'java' && !args[1].downcase.start_with?('bcrypt')
     # puppetserver bundles Apache Commons Codec
     org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
+  elsif RUBY_PLATFORM == 'java'
+    # JVM-wide lock for bcrypt on JRuby - crypt(3) uses static buffer, not thread-safe across workers
+    org.apache.commons.codec.digest.Crypt.java_class.synchronized do
+      raise Puppet::ParseError, 'system does not support enhanced salts' unless (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
+      password.crypt(salt)
+    end
   elsif (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
-    password.crypt(salt)
+    # MRI Ruby with thread-safety mutex
+    PW_HASH_CRYPT_LOCK.synchronize { password.crypt(salt) }
   else
     # JRuby < 1.7.17
     # MS Windows and other systems that don't support enhanced salts
