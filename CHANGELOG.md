@@ -5,9 +5,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v10.0.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.0.0) - 2026-06-04
+## [v10.0.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.0.1) - 2026-06-30
 
-[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.7.0...v10.0.0)
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.7.0...v10.0.1)
+
+### Changed
+
+- (CAT-2395) Puppetcore upgrade - drop support for Puppet 7 [#1457](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1457) ([LukasAud](https://github.com/LukasAud))
 
 ### Added
 
