@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.7.0...v10.0.0)
 
+### Changed
+
+- (CAT-2395) Puppetcore upgrade - drop support for Puppet 7 [#1457](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1457) ([LukasAud](https://github.com/LukasAud))
+
 ### Added
 
 - Support `Sensitive` values in more functions [#1463](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1463) ([alexjfisher](https://github.com/alexjfisher))
