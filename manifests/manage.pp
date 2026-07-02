@@ -104,10 +104,8 @@ class stdlib::manage (
           } else {
             $content = undef
           }
-          $type { $title:
-            *       => $attributes - 'erb' - 'epp' - 'content',
-            content => $content,
-          }
+          $merged_attributes = ($attributes - 'erb' - 'epp' - 'content') + { 'content' => $content }
+          create_resources($type, { $title => $merged_attributes })
         }
         default: {
           create_resources($type, { $title => $attributes })
