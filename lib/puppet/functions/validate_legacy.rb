@@ -52,7 +52,6 @@ Puppet::Functions.create_function(:validate_legacy) do
   end
 
   def validate_legacy(_scope, target_type, _function_name, value, *_prev_args)
-    call_function('deprecation', 'validate_legacy', 'This method is deprecated, please use Puppet data types to validate parameters')
     if assert_type(target_type, value)
       # "Silently" passes
     else
