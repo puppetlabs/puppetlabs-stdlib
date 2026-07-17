@@ -8,8 +8,8 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0
     it { is_expected.to run.with_params.and_raise_error(ArgumentError) }
 
     describe 'when passing the type assertion' do
-      it 'passes without a deprecation warning' do
-        expect(subject.func).not_to receive(:call_function).with('deprecation', anything, anything)
+      it 'passes with a deprecation warning that does not honour strict mode' do
+        expect(subject.func).to receive(:call_function).with('deprecation', 'validate_legacy', include('deprecated'), false).once
         expect(scope).not_to receive(:function_validate_foo)
         expect(Puppet).not_to receive(:notice)
         expect(subject).to run.with_params('Integer', 'validate_foo', 5)
@@ -18,7 +18,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0
 
     describe 'when failing the type assertion' do
       it 'fails with a helpful message' do
-        expect(subject.func).not_to receive(:call_function).with('deprecation', anything, anything)
+        expect(subject.func).to receive(:call_function).with('deprecation', 'validate_legacy', include('deprecated'), false).once
         expect(scope).not_to receive(:function_validate_foo)
         expect(subject.func).to receive(:call_function).with('fail', 'validate_legacy(Integer, ...) expects an Integer value, got String').once
         expect(subject).to run.with_params('Integer', 'validate_foo', '5')
@@ -27,7 +27,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0
 
     describe 'when passing in undef' do
       it 'passes without failure' do
-        expect(subject.func).not_to receive(:call_function).with('deprecation', anything, anything)
+        expect(subject.func).to receive(:call_function).with('deprecation', 'validate_legacy', include('deprecated'), false).once
         expect(scope).not_to receive(:function_validate_foo)
         expect(Puppet).not_to receive(:notice)
         expect(subject).to run.with_params('Optional[Integer]', 'validate_foo', :undef)
@@ -35,8 +35,8 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0
     end
 
     describe 'when passing in multiple arguments' do
-      it 'passes without a deprecation message' do
-        expect(subject.func).not_to receive(:call_function).with('deprecation', anything, anything)
+      it 'passes with a deprecation message that does not honour strict mode' do
+        expect(subject.func).to receive(:call_function).with('deprecation', 'validate_legacy', include('deprecated'), false).once
         expect(scope).not_to receive(:function_validate_foo)
         expect(Puppet).not_to receive(:notice)
         expect(subject).to run.with_params('Optional[Integer]', 'validate_foo', :undef, 1, 'foo')
