@@ -16,6 +16,9 @@ describe 'stdlib::manage' do
       <<-PRECOND
         file { '/etc/motd.d' : }
         service { 'sshd' : }
+
+        function epp(*$args) { 'I am an epp template' }
+        function template(*$args) { 'I am an erb template' }
       PRECOND
     end
     let :params do
@@ -68,13 +71,6 @@ describe 'stdlib::manage' do
           }
         }
       }
-    end
-
-    Puppet::Functions.create_function(:epp) do
-      return 'I am an epp template'
-    end
-    Puppet::Functions.create_function(:template) do
-      return 'I am an erb template'
     end
 
     it { is_expected.to compile }

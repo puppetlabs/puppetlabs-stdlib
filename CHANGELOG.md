@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v10.0.2](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.0.2) - 2026-08-06
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v10.0.1...v10.0.2)
+
+### Fixed
+
+- fix(stdlib::manage) parser fails `$type` resources [#1477](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1477) ([jcpunk](https://github.com/jcpunk))
+
+## [v10.0.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.0.1) - 2026-06-30
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.7.0...v10.0.1)
+
+### Changed
+
+- (CAT-2395) Puppetcore upgrade - drop support for Puppet 7 [#1457](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1457) ([LukasAud](https://github.com/LukasAud))
+
+### Added
+
+- Support `Sensitive` values in more functions [#1463](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1463) ([alexjfisher](https://github.com/alexjfisher))
+- (CAT-2152) Add support for  CentOS 9 [#1442](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1442) ([skyamgarp](https://github.com/skyamgarp))
+- stdlib::manage: Also permit templates for concat::fragment [#1434](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1434) ([jcpunk](https://github.com/jcpunk))
+
+### Fixed
+
+- Fix `has_ip_address` and `has_ip_network` functions [#1448](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1448) ([alexjfisher](https://github.com/alexjfisher))
+
+### Other
+
+- Update link to Puppet modules contributing documentation [#1468](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1468) ([jst-cyr](https://github.com/jst-cyr))
+- Support sensitive values in `to_json_pretty` [#1418](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1418) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [v9.7.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v9.7.0) - 2024-12-17
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v9.6.0...v9.7.0)
@@ -420,7 +451,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 
 - (MODULES-8404) - Relax `Stdlib::Filesource` type [#981](https://github.com/puppetlabs/puppetlabs-stdlib/pull/981) ([alexjfisher](https://github.com/alexjfisher))
-- Creates new type Stdlib::IP::Address::V6::CIDR [#980](https://github.com/puppetlabs/puppetlabs-stdlib/pull/980) ([timhughes](https://github.com/timhughes))
 - (MODULES-8137) - Addition of support for SLES 15 [#978](https://github.com/puppetlabs/puppetlabs-stdlib/pull/978) ([david22swan](https://github.com/david22swan))
 - (MODULES-8322) Consider IPs with /0 as valid [#975](https://github.com/puppetlabs/puppetlabs-stdlib/pull/975) ([simondeziel](https://github.com/simondeziel))
 - Add a function to compare the OS version [#972](https://github.com/puppetlabs/puppetlabs-stdlib/pull/972) ([ekohl](https://github.com/ekohl))
