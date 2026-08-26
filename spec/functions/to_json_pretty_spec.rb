@@ -4,10 +4,13 @@ require 'spec_helper'
 
 describe 'stdlib::to_json_pretty' do
   it { is_expected.not_to be_nil }
-  it { is_expected.to run.with_params([]).and_return("[\n\n]\n") }
+  # JSON.pretty_generate's formatting of empty arrays/hashes changed between json gem
+  # versions (older gems emit "[\n\n]"/"{\n}", newer ones emit the compact "[]"/"{}"). Match
+  # either shape with a regexp instead of a gem-version-specific literal string.
+  it { is_expected.to run.with_params([]).and_return(%r{\A\[\s*\]\n\z}) }
   it { is_expected.to run.with_params(['one']).and_return("[\n  \"one\"\n]\n") }
   it { is_expected.to run.with_params(['one', 'two']).and_return("[\n  \"one\",\n  \"two\"\n]\n") }
-  it { is_expected.to run.with_params({}).and_return("{\n}\n") }
+  it { is_expected.to run.with_params({}).and_return(%r{\A\{\s*\}\n\z}) }
   it { is_expected.to run.with_params('key' => 'value').and_return("{\n  \"key\": \"value\"\n}\n") }
 
   it {
