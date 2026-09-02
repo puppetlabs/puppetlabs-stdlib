@@ -32,5 +32,6 @@ jobs:
         --collection-platform-exclude 9:debian-10
         --collection-platform-exclude 9:ubuntu-18.04
         --collection-platform-exclude 9:ubuntu-20.04
+        --collection-platform-exclude 9:amazonlinux-2
       ruby_version: "3.2"
     secrets: "inherit"

@@ -39,6 +39,7 @@ spec/spec_helper.rb:
     - '--collection-platform-exclude 9:debian-10'
     - '--collection-platform-exclude 9:ubuntu-18.04'
     - '--collection-platform-exclude 9:ubuntu-20.04'
+    - '--collection-platform-exclude 9:amazonlinux-2'
 .github/workflows/nightly.yml:
   unmanaged: true
   acceptance_flags:
@@ -50,6 +51,7 @@ spec/spec_helper.rb:
     - '--collection-platform-exclude 9:debian-10'
     - '--collection-platform-exclude 9:ubuntu-18.04'
     - '--collection-platform-exclude 9:ubuntu-20.04'
+    - '--collection-platform-exclude 9:amazonlinux-2'
 .github/workflows/release.yml:
   unmanaged: false
 .travis.yml:

@@ -25,12 +25,14 @@ jobs:
       # Puppet 9 ships no agent for these EOL platforms: the EL7 family (RedHat/CentOS/
       # OracleLinux 7), Debian 10, and Ubuntu 18.04/20.04 (Focal). metadata.json still lists
       # these for Puppet 8 compatibility, so exclude them from the Puppet 9 lane only.
-      # CentOS 8, SLES 12, and AmazonLinux 2 are deliberately NOT excluded here, even though a
-      # local matrix run can show the same "no provisioner found" false positive as the el-7
-      # family. puppetlabs-vcsrepo#659 verified against puppet-agent-private's packaging
-      # configs that SLES 12 still ships a Puppet 9 agent despite that signature; trusting the
-      # same reasoning for CentOS 8 and AmazonLinux 2 here rather than excluding them on an
-      # unverified assumption. Revisit if the Puppet 9 acceptance lane actually fails on them.
+      # AmazonLinux 2 maps to el-7 packaging and is excluded for the same reason -- confirmed
+      # by CI (PR #1482): the puppet9-nightly RPM 404s at
+      # .../yum/puppet9-nightly-release-el-7.noarch.rpm when provisioning AmazonLinux-2.
+      # CentOS 8 is deliberately NOT excluded: its puppetcore9-nightly run passed in the same
+      # CI run, confirming (unlike AmazonLinux 2) it does get a real Puppet 9 agent.
+      # SLES 12 is also left un-excluded, per puppetlabs-vcsrepo#659's packaging-config
+      # verification that it still ships a Puppet 9 agent -- not yet independently confirmed
+      # by this module's own CI; revisit if its puppetcore9-nightly run fails.
       # scientific-7 is excluded from every lane: Scientific Linux's own upstream package
       # mirrors are gone (the distro was discontinued), so provisioning it fails regardless
       # of Puppet version.
@@ -43,5 +45,6 @@ jobs:
         --collection-platform-exclude 9:debian-10
         --collection-platform-exclude 9:ubuntu-18.04
         --collection-platform-exclude 9:ubuntu-20.04
+        --collection-platform-exclude 9:amazonlinux-2
       ruby_version: "3.2"
     secrets: "inherit"
