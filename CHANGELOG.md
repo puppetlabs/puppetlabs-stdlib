@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v10.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.1.0) - 2026-09-04
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v10.0.2...v10.1.0)
+
+### Added
+
+- (MODULES-11710) Add Puppet 9 support [#1482](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1482) ([skyamgarp](https://github.com/skyamgarp))
+
 ## [v10.0.2](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.0.2) - 2026-08-06
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v10.0.1...v10.0.2)
@@ -451,6 +459,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 
 - (MODULES-8404) - Relax `Stdlib::Filesource` type [#981](https://github.com/puppetlabs/puppetlabs-stdlib/pull/981) ([alexjfisher](https://github.com/alexjfisher))
+- Creates new type Stdlib::IP::Address::V6::CIDR [#980](https://github.com/puppetlabs/puppetlabs-stdlib/pull/980) ([timhughes](https://github.com/timhughes))
 - (MODULES-8137) - Addition of support for SLES 15 [#978](https://github.com/puppetlabs/puppetlabs-stdlib/pull/978) ([david22swan](https://github.com/david22swan))
 - (MODULES-8322) Consider IPs with /0 as valid [#975](https://github.com/puppetlabs/puppetlabs-stdlib/pull/975) ([simondeziel](https://github.com/simondeziel))
 - Add a function to compare the OS version [#972](https://github.com/puppetlabs/puppetlabs-stdlib/pull/972) ([ekohl](https://github.com/ekohl))
