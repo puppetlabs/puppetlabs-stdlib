@@ -111,4 +111,10 @@ describe 'pw_hash' do
       end
     end
   end
+
+  if 'test'.crypt('$y$j9T$') == '$y$j9T$$6tN6tt5mmPHxQskcf5Oi7Sb.1nKYbi5cOZgTiMq7Qw4'
+    describe 'on systems with yescrypt support' do
+      it { is_expected.to run.with_params('password', 'yescrypt', 'j9T$salt').and_return('$y$j9T$salt$Cw3H19laQT.rHIYMLvuoUzLb8st7PboO9rfxAylYPx9') }
+    end
+  end
 end
