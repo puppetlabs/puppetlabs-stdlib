@@ -4,8 +4,8 @@ require 'spec_helper'
 
 describe 'ensure_resource' do
   it { is_expected.not_to be_nil }
-  it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{Must specify a type}) }
-  it { is_expected.to run.with_params('type').and_raise_error(ArgumentError, %r{Must specify a title}) }
+  it { is_expected.to run.with_params.and_raise_error(ArgumentError, %r{'stdlib::ensure_resource' expects 3 arguments, got none}) }
+  it { is_expected.to run.with_params('type').and_raise_error(ArgumentError, %r{'stdlib::ensure_resource' expects 3 arguments, got 1}) }
 
   if Puppet::Util::Package.versioncmp(Puppet.version, '4.6.0') >= 0
     it { is_expected.to run.with_params('type', 'title', {}, 'extras').and_raise_error(ArgumentError) }
@@ -14,8 +14,7 @@ describe 'ensure_resource' do
   end
 
   it {
-    pending('should not accept numbers as arguments')
-    expect(subject).to run.with_params(1, 2, 3).and_raise_error(Puppet::ParseError)
+    expect(subject).to run.with_params(1, 2, 3).and_raise_error(ArgumentError, %r{'stdlib::ensure_resource' parameter 'type' expects a String value, got Integer})
   }
 
   context 'when given an empty catalog' do
