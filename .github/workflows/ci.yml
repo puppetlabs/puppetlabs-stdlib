@@ -5,15 +5,46 @@ on:
     branches:
       - "main"
   workflow_dispatch:
-    
+
 jobs:
   Spec:
     uses: "puppetlabs/cat-github-actions/.github/workflows/module_ci.yml@main"
+    with:
+      # patron (a faraday-patron/faraday_middleware transitive dep pulled in by
+      # puppet_litmus's winrm chain) needs libcurl dev headers to build its native extension.
+      additional_packages: "libcurl4-openssl-dev"
+      # voxpupuli-puppet-lint-plugins is unconditionally ~> 7.0, which needs Ruby >= 3.2;
+      # the Setup Test Matrix job's own bundle install needs the same bump.
+      ruby_version: "3.2"
     secrets: "inherit"
 
   Acceptance:
     needs: Spec
     uses: "puppetlabs/cat-github-actions/.github/workflows/module_acceptance.yml@main"
     with:
-      flags: "--nightly"
+      # Puppet 9 ships no agent for these EOL platforms: the EL7 family (RedHat/CentOS/
+      # OracleLinux 7), Debian 10, and Ubuntu 18.04/20.04 (Focal). metadata.json still lists
+      # these for Puppet 8 compatibility, so exclude them from the Puppet 9 lane only.
+      # AmazonLinux 2 maps to el-7 packaging and is excluded for the same reason -- confirmed
+      # by CI (PR #1482): the puppet9-nightly RPM 404s at
+      # .../yum/puppet9-nightly-release-el-7.noarch.rpm when provisioning AmazonLinux-2.
+      # CentOS 8 is deliberately NOT excluded: its puppetcore9-nightly run passed in the same
+      # CI run, confirming (unlike AmazonLinux 2) it does get a real Puppet 9 agent.
+      # SLES 12 is also left un-excluded, per puppetlabs-vcsrepo#659's packaging-config
+      # verification that it still ships a Puppet 9 agent -- not yet independently confirmed
+      # by this module's own CI; revisit if its puppetcore9-nightly run fails.
+      # scientific-7 is excluded from every lane: Scientific Linux's own upstream package
+      # mirrors are gone (the distro was discontinued), so provisioning it fails regardless
+      # of Puppet version.
+      flags: >-
+        --nightly
+        --platform-exclude scientific-7
+        --collection-platform-exclude 9:redhat-7
+        --collection-platform-exclude 9:centos-7
+        --collection-platform-exclude 9:oraclelinux-7
+        --collection-platform-exclude 9:debian-10
+        --collection-platform-exclude 9:ubuntu-18.04
+        --collection-platform-exclude 9:ubuntu-20.04
+        --collection-platform-exclude 9:amazonlinux-2
+      ruby_version: "3.2"
     secrets: "inherit"

@@ -17,11 +17,54 @@ spec/spec_helper.rb:
   unmanaged: false
 .github/workflows/auto_release.yml:
   unmanaged: false
+# MODULES-11710: ci.yml and nightly.yml are maintained by hand because they carry
+# Puppet 9 customisations that pdk-templates cannot express -- the `ruby_version`
+# and `additional_packages` workflow inputs (no such keys in the templates).
+# The `--platform-exclude`/`--collection-platform-exclude` flags below are captured
+# via `acceptance_flags`, which IS a real template-supported key (see
+# moduleroot/.github/workflows/ci.yml.erb) -- it's only listed here, rather than
+# left to template management on its own, so it stays in step with the
+# hand-written `flags:` in these otherwise-unmanaged files. Leaving these files
+# managed means the scheduled `pdk update` PR silently reverts Puppet 9 support;
+# they can go back to full template management once pdk-templates gains
+# `ruby_version` and `additional_packages` inputs.
 .github/workflows/ci.yml:
-  unmanaged: false
+  unmanaged: true
+  acceptance_flags:
+    - '--nightly'
+    - '--platform-exclude scientific-7'
+    - '--collection-platform-exclude 9:redhat-7'
+    - '--collection-platform-exclude 9:centos-7'
+    - '--collection-platform-exclude 9:oraclelinux-7'
+    - '--collection-platform-exclude 9:debian-10'
+    - '--collection-platform-exclude 9:ubuntu-18.04'
+    - '--collection-platform-exclude 9:ubuntu-20.04'
+    - '--collection-platform-exclude 9:amazonlinux-2'
 .github/workflows/nightly.yml:
-  unmanaged: false
+  unmanaged: true
+  acceptance_flags:
+    - '--nightly'
+    - '--platform-exclude scientific-7'
+    - '--collection-platform-exclude 9:redhat-7'
+    - '--collection-platform-exclude 9:centos-7'
+    - '--collection-platform-exclude 9:oraclelinux-7'
+    - '--collection-platform-exclude 9:debian-10'
+    - '--collection-platform-exclude 9:ubuntu-18.04'
+    - '--collection-platform-exclude 9:ubuntu-20.04'
+    - '--collection-platform-exclude 9:amazonlinux-2'
 .github/workflows/release.yml:
   unmanaged: false
 .travis.yml:
   delete: true
+# MODULES-11710: pin puppetlabs_spec_helper and puppet_litmus above pdk-templates'
+# own defaults, which are loose enough for a scheduled `pdk update` to silently
+# revert this PR: puppetlabs_spec_helper below 9.0.0 pins puppet-lint ~> 4.0
+# (conflicts with voxpupuli-puppet-lint-plugins ~> 7.0, needed for Puppet 9), and
+# puppet_litmus below 2.8.0 doesn't support --collection-platform-exclude, which
+# ci.yml/nightly.yml pass unconditionally.
+Gemfile:
+  overrides:
+    - gem: 'puppetlabs_spec_helper'
+      version: '~> 9.0'
+    - gem: 'puppet_litmus'
+      version: '~> 2.8'

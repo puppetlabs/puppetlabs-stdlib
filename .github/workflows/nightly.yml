@@ -8,11 +8,30 @@ on:
 jobs:
   Spec:
     uses: "puppetlabs/cat-github-actions/.github/workflows/module_ci.yml@main"
+    with:
+      # patron (a faraday-patron/faraday_middleware transitive dep pulled in by
+      # puppet_litmus's winrm chain) needs libcurl dev headers to build its native extension.
+      additional_packages: "libcurl4-openssl-dev"
+      # voxpupuli-puppet-lint-plugins is unconditionally ~> 7.0, which needs Ruby >= 3.2;
+      # the Setup Test Matrix job's own bundle install needs the same bump.
+      ruby_version: "3.2"
     secrets: "inherit"
 
   Acceptance:
     needs: Spec
     uses: "puppetlabs/cat-github-actions/.github/workflows/module_acceptance.yml@main"
     with:
-      flags: "--nightly"
+      # See .github/workflows/ci.yml for the rationale behind each exclude below; kept in
+      # sync so the nightly Puppet 9 lane matches the PR lane instead of silently drifting.
+      flags: >-
+        --nightly
+        --platform-exclude scientific-7
+        --collection-platform-exclude 9:redhat-7
+        --collection-platform-exclude 9:centos-7
+        --collection-platform-exclude 9:oraclelinux-7
+        --collection-platform-exclude 9:debian-10
+        --collection-platform-exclude 9:ubuntu-18.04
+        --collection-platform-exclude 9:ubuntu-20.04
+        --collection-platform-exclude 9:amazonlinux-2
+      ruby_version: "3.2"
     secrets: "inherit"
