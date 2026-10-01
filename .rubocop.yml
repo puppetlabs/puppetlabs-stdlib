@@ -729,3 +729,10 @@ Style/StringChars:
   Enabled: false
 Style/SwapValues:
   Enabled: false
+
+# Temporary until the next PDK sync updates RuboCop.
+# RuboCop 1.50 defaults EnforcedShorthandSyntax to `always`; the newer
+# RuboCop used by current PDK templates defaults to `either`, making
+# this override unnecessary after the sync.
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
