@@ -42,6 +42,7 @@ spec/spec_helper.rb:
     - '--collection-platform-exclude 9:amazonlinux-2'
 .github/workflows/nightly.yml:
   unmanaged: true
+  cron: '5 0 * * *'
   acceptance_flags:
     - '--nightly'
     - '--platform-exclude scientific-7'
