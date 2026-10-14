@@ -27,6 +27,10 @@ DOC
   reference, params = vals
   raise(ArgumentError, 'Must specify a reference') unless reference
 
+  unless ENV['STDLIB_LOG_DEPRECATIONS'] == 'false'
+    Puppet.deprecation_warning('defined_with_params: This function is deprecated, please use stdlib::defined_with_params instead.')
+  end
+
   params = {} if !params || params == ''
   ret = false
 
