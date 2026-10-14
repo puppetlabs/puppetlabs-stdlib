@@ -4578,6 +4578,14 @@ file { '/tmp/my.yaml':
 }
 ```
 
+##### Sort keys for stable output
+
+```puppet
+file { '/tmp/my.yaml':
+  ensure  => file,
+  content => stdlib::to_yaml($myhash, {sort_keys => true})
+```
+
 #### `stdlib::to_yaml(Any $data, Optional[Hash] $options)`
 
 Convert a data structure and output it as YAML
@@ -4602,6 +4610,14 @@ file { '/tmp/my.yaml':
   ensure  => file,
   content => stdlib::to_yaml($myhash, {indentation => 4})
 }
+```
+
+###### Sort keys for stable output
+
+```puppet
+file { '/tmp/my.yaml':
+  ensure  => file,
+  content => stdlib::to_yaml($myhash, {sort_keys => true})
 ```
 
 ##### `data`
