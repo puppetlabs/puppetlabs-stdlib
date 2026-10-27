@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v10.1.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.1.1) - 2026-10-27
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v10.1.0...v10.1.1)
+
+### Fixed
+
+- Avoid Ruby 3.1-only hash shorthand [#1493](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1493) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [v10.1.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.1.0) - 2026-09-04
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v10.0.2...v10.1.0)
