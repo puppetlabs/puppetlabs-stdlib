@@ -4578,6 +4578,15 @@ file { '/tmp/my.yaml':
 }
 ```
 
+##### Sort keys for stable output
+
+```puppet
+file { '/tmp/my.yaml':
+  ensure  => file,
+  content => stdlib::to_yaml($myhash, {sort_keys => true})
+}
+```
+
 #### `stdlib::to_yaml(Any $data, Optional[Hash] $options)`
 
 Convert a data structure and output it as YAML
@@ -4604,6 +4613,15 @@ file { '/tmp/my.yaml':
 }
 ```
 
+###### Sort keys for stable output
+
+```puppet
+file { '/tmp/my.yaml':
+  ensure  => file,
+  content => stdlib::to_yaml($myhash, {sort_keys => true})
+}
+```
+
 ##### `data`
 
 Data type: `Any`
@@ -4615,6 +4633,12 @@ The data you want to convert to YAML
 Data type: `Optional[Hash]`
 
 A hash of options that will be passed to Ruby's Psych library. Note, this could change between Puppet versions, but at time of writing these are `line_width`, `indentation`, and `canonical`.
+
+In addition to those, `sort_keys` (Boolean, default `false`) recursively
+sorts every Hash's keys so the generated YAML has stable, deterministic
+output. Keys of mixed types are ordered by their string form, with ties
+broken by the key's Ruby class name; for example the integer `1` sorts
+before the string `'1'`, and list (Array) order is always preserved.
 
 ### <a name="stdlib--type_of"></a>`stdlib::type_of`
 
