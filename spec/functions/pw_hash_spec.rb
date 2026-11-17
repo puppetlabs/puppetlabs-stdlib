@@ -69,29 +69,39 @@ describe 'pw_hash' do
     it { is_expected.to run.with_params('password', 'bcrypt-y', '32$salt.salt.salt.salt.sa').and_raise_error(ArgumentError, %r{characters in salt must match}) }
   end
 
+  # Same check pw_hash makes: a crypt(3) that supports an algorithm keeps the
+  # "$id$" prefix of the salt in its result.
+  def self.crypt_supports?(salt)
+    'test'.crypt(salt).start_with?(salt[%r{\A\$[^$]+\$}])
+  rescue Errno::EINVAL
+    false
+  end
+
   context 'when running on a platform with a weak String#crypt implementation' do
-    before(:each) { allow_any_instance_of(String).to receive(:crypt).with('$1$1').and_return('a bad hash') } # rubocop:disable RSpec/AnyInstance : Unable to find a viable replacement
+    before(:each) { allow_any_instance_of(String).to receive(:crypt).and_return('a bad hash') } # rubocop:disable RSpec/AnyInstance : Unable to find a viable replacement
 
     it { is_expected.to run.with_params('password', 'sha-512', 'salt').and_raise_error(Puppet::ParseError, %r{system does not support enhanced salts}) }
+    it { is_expected.to run.with_params('password', 'bcrypt', '05$salt.salt.salt.salt.sa').and_raise_error(Puppet::ParseError, %r{system does not support enhanced salts}) }
   end
 
-  begin
-    require 'etc'
-    if Etc.confstr(Etc::CS_GNU_LIBC_VERSION) =~ %r{(\d+\.\d+)} && Puppet::Util::Package.versioncmp(Regexp.last_match(1), '2.28') >= 0
-      context 'when running on platform with bcrypt' do
-        it { is_expected.to run.with_params('password', 'bcrypt', '05$salt.salt.salt.salt.sa').and_return('$2b$05$salt.salt.salt.salt.sO5QUgeeLRANZyvfNiKJW5amLo3cVD8nW') }
-        it { is_expected.to run.with_params('password', 'bcrypt-a', '05$salt.salt.salt.salt.sa').and_return('$2a$05$salt.salt.salt.salt.sO5QUgeeLRANZyvfNiKJW5amLo3cVD8nW') }
-        it { is_expected.to run.with_params('password', 'bcrypt-x', '05$salt.salt.salt.salt.sa').and_return('$2x$05$salt.salt.salt.salt.sO5QUgeeLRANZyvfNiKJW5amLo3cVD8nW') }
-        it { is_expected.to run.with_params('password', 'bcrypt-y', '05$salt.salt.salt.salt.sa').and_return('$2y$05$salt.salt.salt.salt.sO5QUgeeLRANZyvfNiKJW5amLo3cVD8nW') }
-      end
-    else
-      pending('Only testing bcrypt results on glibc 2.28 and later')
+  context 'when String#crypt rejects the algorithm' do
+    before(:each) { allow_any_instance_of(String).to receive(:crypt).and_raise(Errno::EINVAL) } # rubocop:disable RSpec/AnyInstance : Unable to find a viable replacement
+
+    it { is_expected.to run.with_params('password', 'bcrypt', '05$salt.salt.salt.salt.sa').and_raise_error(Puppet::ParseError, %r{system does not support enhanced salts}) }
+  end
+
+  if crypt_supports?('$2b$04$abcdefghijklmnopqrstuv')
+    context 'when running on platform with bcrypt' do
+      it { is_expected.to run.with_params('password', 'bcrypt', '05$salt.salt.salt.salt.sa').and_return('$2b$05$salt.salt.salt.salt.sO5QUgeeLRANZyvfNiKJW5amLo3cVD8nW') }
+      it { is_expected.to run.with_params('password', 'bcrypt-a', '05$salt.salt.salt.salt.sa').and_return('$2a$05$salt.salt.salt.salt.sO5QUgeeLRANZyvfNiKJW5amLo3cVD8nW') }
+      it { is_expected.to run.with_params('password', 'bcrypt-x', '05$salt.salt.salt.salt.sa').and_return('$2x$05$salt.salt.salt.salt.sO5QUgeeLRANZyvfNiKJW5amLo3cVD8nW') }
+      it { is_expected.to run.with_params('password', 'bcrypt-y', '05$salt.salt.salt.salt.sa').and_return('$2y$05$salt.salt.salt.salt.sO5QUgeeLRANZyvfNiKJW5amLo3cVD8nW') }
     end
-  rescue NameError
-    pending('Only testing bcrypt results on glibc')
+  else
+    pending('Only testing bcrypt results where crypt(3) supports bcrypt')
   end
 
-  if RUBY_PLATFORM == 'java' || 'test'.crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
+  if RUBY_PLATFORM == 'java' || crypt_supports?('$1$1')
     describe 'on systems with enhanced salts support' do
       it { is_expected.to run.with_params('password', 'md5', 'salt').and_return('$1$salt$qJH7.N4xYta3aEG/dfqo/0') }
       it { is_expected.to run.with_params('password', 'sha-256', 'salt').and_return('$5$salt$Gcm6FsVtF/Qa77ZKD.iwsJlCVPY0XSMgLJL0Hnww/c1') }

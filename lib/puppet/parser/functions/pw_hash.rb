@@ -74,16 +74,21 @@ DOC
 
   salt = "$#{hash_type[:prefix]}$#{args[2]}"
 
-  # handle weak implementations of String#crypt
-  # dup the string to get rid of frozen status for testing
   if RUBY_PLATFORM == 'java' && !args[1].downcase.start_with?('bcrypt')
     # puppetserver bundles Apache Commons Codec
     org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
-  elsif (+'test').crypt('$1$1') == '$1$1$Bp8CU9Oujr9SSEw53WV6G.'
-    password.crypt(salt)
   else
-    # JRuby < 1.7.17
-    # MS Windows and other systems that don't support enhanced salts
-    raise Puppet::ParseError, 'system does not support enhanced salts'
+    # Check the requested algorithm itself rather than probing MD5: a crypt(3)
+    # can support bcrypt or SHA-512 without MD5. Weak implementations (MS Windows,
+    # JRuby < 1.7.17, DES-only crypt) ignore the "$id$" prefix and return a
+    # traditional DES hash, and some return NULL (Errno::EINVAL) for an unknown id.
+    begin
+      result = password.crypt(salt)
+    rescue Errno::EINVAL
+      result = nil
+    end
+    raise Puppet::ParseError, 'system does not support enhanced salts' unless result&.start_with?("$#{hash_type[:prefix]}$")
+
+    result
   end
 end
