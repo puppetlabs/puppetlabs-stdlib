@@ -64,7 +64,7 @@ module Puppet::Parser::Functions
     {
       'password_hex' => hash.unpack1('H*'),
       'salt_hex' => salt.unpack1('H*'),
-      'iterations' => iterations
+      'iterations' => iterations,
     }
   end
 end

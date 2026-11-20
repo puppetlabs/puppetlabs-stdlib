@@ -70,7 +70,7 @@ max_nesting  => Optional[Integer[-1,default]],
     call_function('stdlib::rewrap_sensitive_data', data) do |unwrapped_data|
       # Call ::JSON to ensure it references the JSON library from Ruby's standard library
       # instead of a random JSON namespace that might be in scope due to user code.
-      ::JSON.pretty_generate(unwrapped_data, opts) << "\n"
+      JSON.pretty_generate(unwrapped_data, opts) << "\n"
     end
   end
 end

@@ -26,7 +26,7 @@ module Puppet::Parser::Functions
     return result if result.size <= 1
 
     # We turn any string value into an array to be able to shuffle ...
-    result = string ? result.chars : result
+    result = result.chars if string
 
     elements = result.size
 
@@ -36,7 +36,7 @@ module Puppet::Parser::Functions
       result[j], result[i] = result[i], result[j]
     end
 
-    result = string ? result.join : result
+    result = result.join if string
 
     return result
   end

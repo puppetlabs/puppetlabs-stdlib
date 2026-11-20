@@ -27,8 +27,8 @@ describe 'prefix' do
   it { is_expected.to run.with_params({ 'key' => 'value' }, 'pre').and_return('prekey' => 'value') }
 
   it {
-    expect(subject).to run \
-      .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'pre') \
+    expect(subject).to run
+      .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'pre')
       .and_return('prekey1' => 'value1', 'prekey2' => 'value2', 'prekey3' => 'value3')
   }
 end

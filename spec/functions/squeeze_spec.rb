@@ -26,20 +26,20 @@ describe 'squeeze' do
 
   context 'when squeezing values in an array' do
     it {
-      expect(subject).to run \
-        .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc']) \
+      expect(subject).to run
+        .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc'])
         .and_return(['', 'a', 'a', 'abc'])
     }
 
     it {
-      expect(subject).to run \
-        .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc'], 'a') \
+      expect(subject).to run
+        .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc'], 'a')
         .and_return(['', 'a', 'a', 'abbbbbbbbbbcccccccccc'])
     }
 
     it {
-      expect(subject).to run \
-        .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc'], 'b-c') \
+      expect(subject).to run
+        .with_params(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabbbbbbbbbbcccccccccc'], 'b-c')
         .and_return(['', 'a', 'aaaaaaaaa', 'aaaaaaaaabc'])
     }
   end

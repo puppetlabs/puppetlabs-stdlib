@@ -20,5 +20,7 @@ describe 'difference' do
   it { is_expected.to run.with_params(['one', 'two', 'two', 'three'], ['two', 'three']).and_return(['one']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], ['two', 'two', 'three']).and_return(['one']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], ['two', 'three', 'four']).and_return(['one']) }
-  it 'does not confuse types' do is_expected.to run.with_params(['1', '2', '3'], [1, 2]).and_return(['1', '2', '3']) end
+  it 'does not confuse types' do
+    is_expected.to run.with_params(['1', '2', '3'], [1, 2]).and_return(['1', '2', '3'])
+  end
 end

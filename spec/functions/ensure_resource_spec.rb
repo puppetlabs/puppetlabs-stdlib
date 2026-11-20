@@ -122,8 +122,8 @@ describe 'ensure_resource' do
 
     context 'when trying to add params' do
       it {
-        expect(subject).to run \
-          .with_params('User', 'username1', 'ensure' => 'present', 'shell' => true) \
+        expect(subject).to run
+          .with_params('User', 'username1', 'ensure' => 'present', 'shell' => true)
           .and_raise_error(Puppet::Resource::Catalog::DuplicateResourceError, %r{User\[username1\] is already declared})
       }
     end

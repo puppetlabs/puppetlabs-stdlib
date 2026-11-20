@@ -20,5 +20,7 @@ describe 'intersection' do
   it { is_expected.to run.with_params(['one', 'two', 'two', 'three'], ['two', 'three']).and_return(['two', 'three']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], ['two', 'two', 'three']).and_return(['two', 'three']) }
   it { is_expected.to run.with_params(['one', 'two', 'three'], ['two', 'three', 'four']).and_return(['two', 'three']) }
-  it 'does not confuse types' do is_expected.to run.with_params(['1', '2', '3'], [1, 2]).and_return([]) end
+  it 'does not confuse types' do
+    is_expected.to run.with_params(['1', '2', '3'], [1, 2]).and_return([])
+  end
 end

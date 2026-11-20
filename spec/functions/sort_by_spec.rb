@@ -24,30 +24,30 @@ describe 'stdlib::sort_by' do
 
   describe 'with sane input' do
     it 'does sort Array' do
-      expect(subject).to run \
-        .with_params(unordered_array) \
-        .with_lambda { |e| e } \
+      expect(subject).to run
+        .with_params(unordered_array)
+        .with_lambda { |e| e }
         .and_return(ordered_array)
     end
 
     it 'does sort Hash by entry' do
-      expect(subject).to run \
-        .with_params(unordered_hash) \
-        .with_lambda { |e| e[1] } \
+      expect(subject).to run
+        .with_params(unordered_hash)
+        .with_lambda { |e| e[1] }
         .and_return(ordered_hash)
     end
 
     it 'does sort Hash by key-value pairs' do
-      expect(subject).to run \
-        .with_params(unordered_hash) \
-        .with_lambda { |_, v| v } \
+      expect(subject).to run
+        .with_params(unordered_hash)
+        .with_lambda { |_, v| v }
         .and_return(ordered_hash)
     end
 
     it 'does sort String' do
-      expect(subject).to run \
-        .with_params(unordered_string) \
-        .with_lambda { |e| e } \
+      expect(subject).to run
+        .with_params(unordered_string)
+        .with_lambda { |e| e }
         .and_return(ordered_string)
     end
   end

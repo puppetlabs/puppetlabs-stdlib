@@ -21,14 +21,14 @@ describe 'stdlib::rewrap_sensitive_data' do
       is_expected.to run.with_params(
         {
           'username' => 'my_user',
-          'password' => sensitive('hunter2')
+          'password' => sensitive('hunter2'),
         },
       ).and_return(sensitive(
-        {
-          'username' => 'my_user',
-          'password' => 'hunter2'
-        },
-      ))
+                     {
+                       'username' => 'my_user',
+                       'password' => 'hunter2',
+                     },
+                   ))
     end
   end
 
@@ -44,8 +44,8 @@ describe 'stdlib::rewrap_sensitive_data' do
             true,
             false,
             {
-              'password'      => sensitive('secret'),
-              'weird_example' => sensitive({ 'foo' => sensitive(42) }) # A sensitive hash containing a sensitive Int as the value to a hash contained in an array which is the value of a hash key...
+              'password' => sensitive('secret'),
+              'weird_example' => sensitive({ 'foo' => sensitive(42) }), # A sensitive hash containing a sensitive Int as the value to a hash contained in an array which is the value of a hash key...
             },
           ],
           'c' => :undef,
@@ -54,25 +54,25 @@ describe 'stdlib::rewrap_sensitive_data' do
           'f' => false,
         },
       ).and_return(sensitive(
-        {
-          'a' => 'bar',
-          'b' => [
-            1,
-            2,
-            :undef,
-            true,
-            false,
-            {
-              'password'      => 'secret',
-              'weird_example' => { 'foo' => 42 }
-            },
-          ],
-          'c' => :undef,
-          'd' => [],
-          'e' => true,
-          'f' => false,
-        },
-      ))
+                     {
+                       'a' => 'bar',
+                       'b' => [
+                         1,
+                         2,
+                         :undef,
+                         true,
+                         false,
+                         {
+                           'password' => 'secret',
+                           'weird_example' => { 'foo' => 42 },
+                         },
+                       ],
+                       'c' => :undef,
+                       'd' => [],
+                       'e' => true,
+                       'f' => false,
+                     },
+                   ))
     end
   end
 
@@ -83,10 +83,10 @@ describe 'stdlib::rewrap_sensitive_data' do
           sensitive('key') => 'value',
         },
       ).and_return(sensitive(
-        {
-          'key' => 'value',
-        },
-      ))
+                     {
+                       'key' => 'value',
+                     },
+                   ))
     end
   end
 

@@ -27,23 +27,23 @@ describe 'stdlib::manage' do
           'file' => {
             '/etc/motd.d/hello' => {
               'content' => 'I say Hi',
-              'notify' => 'Service[sshd]'
+              'notify' => 'Service[sshd]',
             },
             '/etc/motd' => {
               'epp' => {
-                'template' => 'profile/motd.epp'
-              }
+                'template' => 'profile/motd.epp',
+              },
             },
             '/etc/information' => {
               'erb' => {
-                'template' => 'profile/information.erb'
-              }
-            }
+                'template' => 'profile/information.erb',
+              },
+            },
           },
           'concat' => {
             '/tmp/filename' => {
               'ensure' => 'present',
-            }
+            },
           },
           'concat::fragment' => {
             'rawcontent' => {
@@ -53,23 +53,23 @@ describe 'stdlib::manage' do
             'eppcontent' => {
               'target' => '/tmp/filename',
               'epp' => {
-                'template' => 'profile/motd.epp'
+                'template' => 'profile/motd.epp',
               },
             },
             'erbcontent' => {
               'target' => '/tmp/filename',
               'erb' => {
-                'template' => 'profile/information.erb'
+                'template' => 'profile/information.erb',
               },
-            }
+            },
           },
           'package' => {
             'example' => {
               'ensure' => 'installed',
-              'subscribe' => ['Service[sshd]', 'File[/etc/motd.d]']
-            }
-          }
-        }
+              'subscribe' => ['Service[sshd]', 'File[/etc/motd.d]'],
+            },
+          },
+        },
       }
     end
 

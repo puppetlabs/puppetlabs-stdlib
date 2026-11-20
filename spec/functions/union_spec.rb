@@ -23,5 +23,7 @@ describe 'union' do
   it { is_expected.to run.with_params(['one', 'two'], ['two', 'three'], ['one', 'three']).and_return(['one', 'two', 'three']) }
   it { is_expected.to run.with_params(['one', 'two'], ['three', 'four'], ['one', 'two', 'three'], ['four']).and_return(['one', 'two', 'three', 'four']) }
   it { is_expected.to run.with_params(['ốńə', 'ţשׂợ'], ['ŧĥяếệ', 'ƒởųŗ'], ['ốńə', 'ţשׂợ', 'ŧĥяếệ'], ['ƒởųŗ']).and_return(['ốńə', 'ţשׂợ', 'ŧĥяếệ', 'ƒởųŗ']) }
-  it 'does not confuse types' do is_expected.to run.with_params(['1', '2', '3'], [1, 2]).and_return(['1', '2', '3', 1, 2]) end
+  it 'does not confuse types' do
+    is_expected.to run.with_params(['1', '2', '3'], [1, 2]).and_return(['1', '2', '3', 1, 2])
+  end
 end

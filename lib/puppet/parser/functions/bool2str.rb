@@ -39,7 +39,7 @@ module Puppet::Parser::Functions
       ```
   DOC
   ) do |arguments|
-    raise(Puppet::ParseError, "bool2str(): Wrong number of arguments given (#{arguments.size} for 3)") unless arguments.size == 1 || arguments.size == 3
+    raise(Puppet::ParseError, "bool2str(): Wrong number of arguments given (#{arguments.size} for 3)") unless [1, 3].include?(arguments.size)
 
     value = arguments[0]
     true_string = arguments[1] || 'true'

@@ -32,14 +32,14 @@ describe 'delete_regex' do
     it { is_expected.to run.with_params({ 'key' => 'value' }, 'key').and_return({}) }
 
     it {
-      expect(subject).to run \
-        .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'key2') \
+      expect(subject).to run
+        .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'key2')
         .and_return('key1' => 'value1', 'key3' => 'value3')
     }
 
     it {
-      expect(subject).to run \
-        .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, ['key1', 'key2']) \
+      expect(subject).to run
+        .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, ['key1', 'key2'])
         .and_return('key3' => 'value3')
     }
   end
