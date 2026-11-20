@@ -24,10 +24,28 @@ Puppet::Parser::Functions.newfunction(:pw_hash, type: :rvalue, arity: 3, doc: <<
   |bcrypt-a |2a    |bug compatible       |
   |bcrypt-x |2x    |bug compatible       |
   |bcrypt-y |2y    |historic alias for 2b|
+  |yescrypt |y     |                     |
 
-  The third argument to this function is the salt to use. For bcrypt-type hashes,
-  the first two characters of the salt represent a strength parameter, with a value
-  between 4 and 31 inclusive.
+  The third argument to this function is the salt to use.
+
+  **bcrypt**
+
+  For bcrypt-type hashes, the first two characters of the salt represent a
+  strength parameter, with a value between 4 and 31 inclusive.
+
+  **yescrypt**
+
+  For yescrypt, the characters preceding the first `$` are the encoded
+  parameters. The `j9T` parameter string is commonly used and corresponds to
+  the "Large and slow" profile described in the yescrypt documentation.
+
+  Unlike bcrypt salts, a yescrypt salt cannot be an arbitrary string of
+  characters from the permitted alphabet. Its encoded form must represent a
+  whole number of bytes; consequently, some lengths or final characters may
+  be rejected by crypt(3).
+
+  See the yescrypt PARAMETERS documentation:
+  https://github.com/openwall/yescrypt/blob/main/PARAMETERS
 
   @return [String]
     Provides a crypt hash usable on most POSIX systems.
@@ -54,7 +72,8 @@ DOC
     'bcrypt' => { prefix: '2b', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
     'bcrypt-a' => { prefix: '2a', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
     'bcrypt-x' => { prefix: '2x', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
-    'bcrypt-y' => { prefix: '2y', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} }
+    'bcrypt-y' => { prefix: '2y', salt: %r{^(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{22}} },
+    'yescrypt' => { prefix: 'y', salt: %r{^[./A-Za-z0-9]+\$[./A-Za-z0-9]{0,86}} }
   }
 
   raise ArgumentError, 'pw_hash(): first argument must be a string' unless args[0].is_a?(String) || args[0].nil?
@@ -74,7 +93,7 @@ DOC
 
   salt = "$#{hash_type[:prefix]}$#{args[2]}"
 
-  if RUBY_PLATFORM == 'java' && !args[1].downcase.start_with?('bcrypt')
+  if RUBY_PLATFORM == 'java' && !['bcrypt', 'bcrypt-a', 'bcrypt-x', 'bcrypt-y', 'yescrypt'].include?(args[1].downcase)
     # puppetserver bundles Apache Commons Codec
     org.apache.commons.codec.digest.Crypt.crypt(password.to_java_bytes, salt)
   else
@@ -87,7 +106,20 @@ DOC
     rescue Errno::EINVAL
       result = nil
     end
-    raise Puppet::ParseError, 'system does not support enhanced salts' unless result&.start_with?("$#{hash_type[:prefix]}$")
+
+    unless result&.start_with?("$#{hash_type[:prefix]}$")
+      if args[1].casecmp('yescrypt').zero?
+        begin
+          yescrypt_probe = ''.crypt('$y$j9T$')
+        rescue Errno::EINVAL
+          yescrypt_probe = nil
+        end
+        raise Puppet::ParseError, 'system does not support enhanced salts' if yescrypt_probe.nil?
+        raise ArgumentError, 'pw_hash(): invalid yescrypt parameters or salt'
+      end
+
+      raise Puppet::ParseError, 'system does not support enhanced salts'
+    end
 
     result
   end
