@@ -27,6 +27,13 @@
 #             'template'      => 'profile/motd.epp',
 #           }
 #         },
+#         '/etc/inline'       => {
+#           'ensure'          => 'file',
+#           'epp'             => {
+#             'inline'        => 'Hello <%= $name %>',
+#             'context'       => { 'name' => 'world' },
+#           }
+#         },
 #         '/etc/information'  => {
 #           'ensure'          => 'file',
 #           'erb'             => {
@@ -54,6 +61,12 @@
 #         epp:
 #           template: 'profile/motd.epp'
 #           context: {}
+#       '/etc/inline':
+#         ensure: 'file'
+#         epp:
+#           inline: 'Hello <%= $name %>'
+#           context:
+#             name: world
 #       '/etc/information':
 #         ensure: 'file'
 #         erb:
@@ -84,14 +97,23 @@ class stdlib::manage (
           }
 
           if 'epp' in $attributes {
+            if 'template' in $attributes['epp'] and 'inline' in $attributes['epp'] {
+              fail("You can not set both 'template' and 'inline' for epp for ${type} ${title}")
+            }
             if 'template' in $attributes['epp'] {
               if 'context' in $attributes['epp'] {
                 $content = epp($attributes['epp']['template'], $attributes['epp']['context'])
               } else {
                 $content = epp($attributes['epp']['template'])
               }
+            } elsif 'inline' in $attributes['epp'] {
+              if 'context' in $attributes['epp'] {
+                $content = inline_epp($attributes['epp']['inline'], $attributes['epp']['context'])
+              } else {
+                $content = inline_epp($attributes['epp']['inline'])
+              }
             } else {
-              fail("No template configured for epp for ${type} ${title}")
+              fail("No template or inline configured for epp for ${type} ${title}")
             }
           } elsif 'erb' in $attributes {
             if 'template' in $attributes['erb'] {

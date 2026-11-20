@@ -280,6 +280,13 @@ class { 'stdlib::manage':
           'template'      => 'profile/motd.epp',
         }
       },
+      '/etc/inline'       => {
+        'ensure'          => 'file',
+        'epp'             => {
+          'inline'        => 'Hello <%= $name %>',
+          'context'       => { 'name' => 'world' },
+        }
+      },
       '/etc/information'  => {
         'ensure'          => 'file',
         'erb'             => {
@@ -310,6 +317,12 @@ stdlib::manage::create_resources:
       epp:
         template: 'profile/motd.epp'
         context: {}
+    '/etc/inline':
+      ensure: 'file'
+      epp:
+        inline: 'Hello <%= $name %>'
+        context:
+          name: world
     '/etc/information':
       ensure: 'file'
       erb:
