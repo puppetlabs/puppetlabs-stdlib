@@ -4304,34 +4304,39 @@ Convert data structure and output to pretty JSON
 
 #### Examples
 
-##### **Usage**
+##### Output pretty JSON to file
 
 ```puppet
-* how to output pretty JSON to file
-  file { '/tmp/my.json':
-    ensure  => file,
-    content => stdlib::to_json_pretty($myhash),
-  }
+file { '/tmp/my.json':
+  ensure  => file,
+  content => stdlib::to_json_pretty($myhash),
+}
+```
 
-* how to output pretty JSON skipping over keys with undef values
-  file { '/tmp/my.json':
-    ensure  => file,
-    content => stdlib::to_json_pretty({
-      param_one => 'value',
-      param_two => undef,
-    }, true),
-  }
+##### Output pretty JSON skipping over keys with undef values
 
-* how to output pretty JSON using tabs for indentation
-  file { '/tmp/my.json':
-    ensure  => file,
-    content => stdlib::to_json_pretty({
-      param_one => 'value',
-      param_two => {
-        param_more => 42,
-      },
-    }, nil, {indent => '    '}),
-  }
+```puppet
+file { '/tmp/my.json':
+  ensure  => file,
+  content => stdlib::to_json_pretty({
+    param_one => 'value',
+    param_two => undef,
+  }, true),
+}
+```
+
+##### Output pretty JSON using tabs for indentation
+
+```puppet
+file { '/tmp/my.json':
+  ensure  => file,
+  content => stdlib::to_json_pretty({
+    param_one => 'value',
+    param_two => {
+      param_more => 42,
+    },
+  }, undef, {indent => "\t"}),
+}
 ```
 
 #### `stdlib::to_json_pretty(Variant[Hash, Array] $data, Optional[Optional[Boolean]] $skip_undef, Optional[Struct[{
@@ -4350,34 +4355,39 @@ Returns: `Any` converted data to pretty json
 
 ##### Examples
 
-###### **Usage**
+###### Output pretty JSON to file
 
 ```puppet
-* how to output pretty JSON to file
-  file { '/tmp/my.json':
-    ensure  => file,
-    content => stdlib::to_json_pretty($myhash),
-  }
+file { '/tmp/my.json':
+  ensure  => file,
+  content => stdlib::to_json_pretty($myhash),
+}
+```
 
-* how to output pretty JSON skipping over keys with undef values
-  file { '/tmp/my.json':
-    ensure  => file,
-    content => stdlib::to_json_pretty({
-      param_one => 'value',
-      param_two => undef,
-    }, true),
-  }
+###### Output pretty JSON skipping over keys with undef values
 
-* how to output pretty JSON using tabs for indentation
-  file { '/tmp/my.json':
-    ensure  => file,
-    content => stdlib::to_json_pretty({
-      param_one => 'value',
-      param_two => {
-        param_more => 42,
-      },
-    }, nil, {indent => '    '}),
-  }
+```puppet
+file { '/tmp/my.json':
+  ensure  => file,
+  content => stdlib::to_json_pretty({
+    param_one => 'value',
+    param_two => undef,
+  }, true),
+}
+```
+
+###### Output pretty JSON using tabs for indentation
+
+```puppet
+file { '/tmp/my.json':
+  ensure  => file,
+  content => stdlib::to_json_pretty({
+    param_one => 'value',
+    param_two => {
+      param_more => 42,
+    },
+  }, undef, {indent => "\t"}),
+}
 ```
 
 ##### `data`

@@ -2,36 +2,33 @@
 
 require 'json'
 
-# @summary
-#   Convert data structure and output to pretty JSON
+# @summary Convert data structure and output to pretty JSON
 #
-# @example **Usage**
-#   * how to output pretty JSON to file
-#     file { '/tmp/my.json':
-#       ensure  => file,
-#       content => stdlib::to_json_pretty($myhash),
-#     }
+# @example Output pretty JSON to file
+#   file { '/tmp/my.json':
+#     ensure  => file,
+#     content => stdlib::to_json_pretty($myhash),
+#   }
 #
-#   * how to output pretty JSON skipping over keys with undef values
-#     file { '/tmp/my.json':
-#       ensure  => file,
-#       content => stdlib::to_json_pretty({
-#         param_one => 'value',
-#         param_two => undef,
-#       }, true),
-#     }
+# @example Output pretty JSON skipping over keys with undef values
+#   file { '/tmp/my.json':
+#     ensure  => file,
+#     content => stdlib::to_json_pretty({
+#       param_one => 'value',
+#       param_two => undef,
+#     }, true),
+#   }
 #
-#   * how to output pretty JSON using tabs for indentation
-#     file { '/tmp/my.json':
-#       ensure  => file,
-#       content => stdlib::to_json_pretty({
-#         param_one => 'value',
-#         param_two => {
-#           param_more => 42,
-#         },
-#       }, nil, {indent => '    '}),
-#     }
-
+# @example Output pretty JSON using tabs for indentation
+#   file { '/tmp/my.json':
+#     ensure  => file,
+#     content => stdlib::to_json_pretty({
+#       param_one => 'value',
+#       param_two => {
+#         param_more => 42,
+#       },
+#     }, undef, {indent => "\t"}),
+#   }
 Puppet::Functions.create_function(:'stdlib::to_json_pretty') do
   # @param data
   #   data structure which needs to be converted to pretty json
