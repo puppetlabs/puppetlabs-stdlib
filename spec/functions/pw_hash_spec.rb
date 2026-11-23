@@ -101,6 +101,24 @@ describe 'pw_hash' do
     pending('Only testing bcrypt results where crypt(3) supports bcrypt')
   end
 
+  if crypt_supports?('$y$j9T$abcdefghijklmnopqrst')
+    context 'when running on platform with yescrypt' do
+      it { is_expected.to run.with_params('password', 'yescrypt', 'j9T$salt').and_return('$y$j9T$salt$Cw3H19laQT.rHIYMLvuoUzLb8st7PboO9rfxAylYPx9') }
+
+      # Invalid salt should be normalized (salt.salt => salt.sal)
+      it { is_expected.to run.with_params('password', 'yescrypt', 'j9T$salt.salt').and_return('$y$j9T$salt.sal$DlaLChIG0BzYZKlpRzZkJozjSJPyQX9fLXNWVVrrF53') }
+
+      # Invalid salt should be normalized (salt.salt.salt => salt.salt.sal/)
+      it { is_expected.to run.with_params('password', 'yescrypt', 'j9T$salt.salt.salt').and_return('$y$j9T$salt.salt.sal/$8j.UvleAT2eU0ifFhaZ1KAVrchxkZcL8qo547.k9FMB') }
+    end
+
+    context 'when the third argument has an invalid salt for yescrypt' do
+      it { is_expected.to run.with_params('password', 'yescrypt', 'abc$').and_raise_error(ArgumentError, %r{invalid yescrypt parameters}) }
+    end
+  else
+    pending('Only testing yescrypt results where crypt(3) supports yescrypt')
+  end
+
   if RUBY_PLATFORM == 'java' || crypt_supports?('$1$1')
     describe 'on systems with enhanced salts support' do
       it { is_expected.to run.with_params('password', 'md5', 'salt').and_return('$1$salt$qJH7.N4xYta3aEG/dfqo/0') }
