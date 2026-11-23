@@ -91,7 +91,39 @@ DOC
   password = args[0]
   return nil if password.nil? || password.empty?
 
-  salt = "$#{hash_type[:prefix]}$#{args[2]}"
+  yescrypt_base64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  normalize_yescrypt_salt = lambda do |encoded_salt|
+    normalized = encoded_salt.gsub(%r{[^./0-9A-Za-z]}, '')
+
+    # A length congruent to 1 modulo 4 contains a trailing character
+    # that cannot contribute to a complete decoded byte.
+    normalized.chop! if normalized.length % 4 == 1
+    next normalized if normalized.empty?
+
+    # Determine how many bits from the final character belong to the
+    # decoded salt. The remaining high-order bits must be cleared.
+    significant_bits = case normalized.length % 4
+                       when 0 then 6
+                       when 2 then 2
+                       when 3 then 4
+                       end
+
+    # No normalization is required when all six bits are significant.
+    next normalized if significant_bits == 6
+
+    index = yescrypt_base64.index(normalized[-1])
+    normalized[-1] = yescrypt_base64[index & ((1 << significant_bits) - 1)]
+    normalized
+  end
+
+  if args[1].casecmp('yescrypt').zero?
+    parameters, encoded_salt = args[2].split('$', 2)
+    encoded_salt = normalize_yescrypt_salt.call(encoded_salt)
+
+    salt = "$#{hash_type[:prefix]}$#{parameters}$#{encoded_salt}"
+  else
+    salt = "$#{hash_type[:prefix]}$#{args[2]}"
+  end
 
   if RUBY_PLATFORM == 'java' && !['bcrypt', 'bcrypt-a', 'bcrypt-x', 'bcrypt-y', 'yescrypt'].include?(args[1].downcase)
     # puppetserver bundles Apache Commons Codec
@@ -115,7 +147,7 @@ DOC
           yescrypt_probe = nil
         end
         raise Puppet::ParseError, 'system does not support enhanced salts' if yescrypt_probe.nil?
-        raise ArgumentError, 'pw_hash(): invalid yescrypt parameters or salt'
+        raise ArgumentError, 'pw_hash(): invalid yescrypt parameters'
       end
 
       raise Puppet::ParseError, 'system does not support enhanced salts'
