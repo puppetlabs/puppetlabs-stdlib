@@ -3080,6 +3080,10 @@ Type: Ruby 4.x API
 
 Run a CRC32 calculation against a given value.
 
+* **Note** The CRC32 algorithm can easily generate collisions,
+but may be useful for generating sharding, describing
+secrets, or seeding nonce values.
+
 #### Examples
 
 ##### Check a simple string value
@@ -3103,7 +3107,7 @@ stdlib::crc32(100.00000) == 'a3fd429a'
 
 #### `stdlib::crc32(Variant[ScalarData, Sensitive[ScalarData], Binary, Sensitive[Binary]] $my_data)`
 
-Run a CRC32 calculation against a given value.
+The stdlib::crc32 function.
 
 Returns: `String` String
 
@@ -4020,7 +4024,7 @@ stdlib::sha256(100.00000) == '43b87f618caab482ebe4976c92bcd6ad308b48055f1c27b4c5
 
 #### `stdlib::sha256(Variant[ScalarData, Sensitive[ScalarData], Binary, Sensitive[Binary]] $my_data)`
 
-Run a SHA256 calculation against a given value.
+The stdlib::sha256 function.
 
 Returns: `String` String
 
@@ -4275,7 +4279,7 @@ file { '/tmp/my.json':
 
 #### `stdlib::to_json(Any $data)`
 
-Convert a data structure and output to JSON
+The stdlib::to_json function.
 
 Returns: `String` Converted data to JSON
 
@@ -4580,7 +4584,7 @@ file { '/tmp/my.yaml':
 
 #### `stdlib::to_yaml(Any $data, Optional[Hash] $options)`
 
-Convert a data structure and output it as YAML
+The stdlib::to_yaml function.
 
 Returns: `String` The YAML document
 

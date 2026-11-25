@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v10.2.0](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.2.0) - 2026-11-25
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v10.1.1...v10.2.0)
+
+### Added
+
+- feat: add support for ubuntu2604 [#1484](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1484) ([Tonguechaude](https://github.com/Tonguechaude))
+
+### Fixed
+
+- (maint) Check the requested algorithm in pw_hash instead of MD5 [#1505](https://github.com/puppetlabs/puppetlabs-stdlib/pull/1505) ([span786](https://github.com/span786))
+
 ## [v10.1.1](https://github.com/puppetlabs/puppetlabs-stdlib/tree/v10.1.1) - 2026-10-27
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-stdlib/compare/v10.1.0...v10.1.1)
