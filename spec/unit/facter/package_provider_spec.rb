@@ -40,6 +40,15 @@ describe 'package_provider', type: :fact do
           expect(Facter.fact(:package_provider).value).to eq('apt')
         end
       end
+
+      context 'when windows' do
+        it 'returns windows without instantiating a package' do
+          allow(Facter).to receive(:[]).with(:kernel).and_return(instance_double(Facter::Util::Fact, value: 'windows'))
+          expect(Puppet::Type.type(:package)).not_to receive(:newpackage)
+
+          expect(Facter.fact(:package_provider).value).to eq('windows')
+        end
+      end
     end
   end
 end
