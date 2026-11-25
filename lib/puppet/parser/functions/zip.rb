@@ -27,7 +27,7 @@ module Puppet::Parser::Functions
     flatten = function_str2bool([arguments[2]]) if arguments[2]
 
     result = a.zip(b)
-    result = flatten ? result.flatten : result
+    result = result.flatten if flatten
 
     return result
   end

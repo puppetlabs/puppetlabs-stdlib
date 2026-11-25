@@ -19,26 +19,26 @@ describe 'delete_values' do
     it { is_expected.to run.with_params({}, 'value').and_return({}) }
 
     it {
-      expect(subject).to run \
-        .with_params({ 'key1' => 'value1' }, 'non-existing value') \
+      expect(subject).to run
+        .with_params({ 'key1' => 'value1' }, 'non-existing value')
         .and_return('key1' => 'value1')
     }
 
     it {
-      expect(subject).to run \
-        .with_params({ 'ҝếỵ1 ' => 'νâĺūẹ1', 'ҝếỵ2' => 'value to delete' }, 'value to delete') \
+      expect(subject).to run
+        .with_params({ 'ҝếỵ1 ' => 'νâĺūẹ1', 'ҝếỵ2' => 'value to delete' }, 'value to delete')
         .and_return('ҝếỵ1 ' => 'νâĺūẹ1')
     }
 
     it {
-      expect(subject).to run \
-        .with_params({ 'key1' => 'value1', 'key2' => 'νǎŀữ℮ ťớ đêłểťė' }, 'νǎŀữ℮ ťớ đêłểťė') \
+      expect(subject).to run
+        .with_params({ 'key1' => 'value1', 'key2' => 'νǎŀữ℮ ťớ đêłểťė' }, 'νǎŀữ℮ ťớ đêłểťė')
         .and_return('key1' => 'value1')
     }
 
     it {
-      expect(subject).to run \
-        .with_params({ 'key1' => 'value1', 'key2' => 'value to delete', 'key3' => 'value to delete' }, 'value to delete') \
+      expect(subject).to run
+        .with_params({ 'key1' => 'value1', 'key2' => 'value to delete', 'key3' => 'value to delete' }, 'value to delete')
         .and_return('key1' => 'value1')
     }
   end

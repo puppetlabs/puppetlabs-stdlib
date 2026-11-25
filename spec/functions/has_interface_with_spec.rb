@@ -19,19 +19,19 @@ describe 'has_interface_with' do
                 {
                   'address' => '127.0.0.1',
                   'netmask' => '255.0.0.0',
-                  'network' => '127.0.0.0'
+                  'network' => '127.0.0.0',
                 },
               ],
               bindings6: [
                 {
                   'address' => '::1',
                   'netmask' => 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
-                  'network' => '::1'
+                  'network' => '::1',
                 },
                 {
                   'address' => 'fe80::1',
                   'netmask' => 'ffff:ffff:ffff:ffff::',
-                  'network' => 'fe80::'
+                  'network' => 'fe80::',
                 },
               ],
               'ip' => '127.0.0.1',
@@ -41,10 +41,10 @@ describe 'has_interface_with' do
               'netmask6' => 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
               'network' => '127.0.0.0',
               'network6' => '::1',
-              'scope6' => 'host'
-            }
-          }
-        }
+              'scope6' => 'host',
+            },
+          },
+        },
       }
     end
 
@@ -62,14 +62,14 @@ describe 'has_interface_with' do
                 {
                   'address' => '10.0.2.15',
                   'netmask' => '255.255.255.0',
-                  'network' => '10.0.2.0'
+                  'network' => '10.0.2.0',
                 },
               ],
               'bindings6' => [
                 {
                   'address' => 'fe80::5054:ff:fe8a:fee6',
                   'netmask' => 'ffff:ffff:ffff:ffff::',
-                  'network' => 'fe80::'
+                  'network' => 'fe80::',
                 },
               ],
               'dhcp' => '10.0.2.2',
@@ -80,21 +80,21 @@ describe 'has_interface_with' do
               'netmask' => '255.255.255.0',
               'netmask6' => 'ffff:ffff:ffff:ffff::',
               'network' => '10.0.2.0',
-              'network6' => 'fe80::'
+              'network6' => 'fe80::',
             },
             'eth1' => {
               'bindings' => [
                 {
                   'address' => '10.0.0.2',
                   'netmask' => '255.255.255.0',
-                  'network' => '10.0.0.0'
+                  'network' => '10.0.0.0',
                 },
               ],
               'bindings6' => [
                 {
                   'address' => 'fe80::a00:27ff:fed1:d28c',
                   'netmask' => 'ffff:ffff:ffff:ffff::',
-                  'network' => 'fe80::'
+                  'network' => 'fe80::',
                 },
               ],
               'ip' => '10.0.0.2',
@@ -104,21 +104,21 @@ describe 'has_interface_with' do
               'netmask' => '255.255.255.0',
               'netmask6' => 'ffff:ffff:ffff:ffff::',
               'network' => '10.0.0.0',
-              'network6' => 'fe80::'
+              'network6' => 'fe80::',
             },
             'lo' => {
               'bindings' => [
                 {
                   'address' => '127.0.0.1',
                   'netmask' => '255.0.0.0',
-                  'network' => '127.0.0.0'
+                  'network' => '127.0.0.0',
                 },
               ],
               'bindings6' => [
                 {
                   'address' => '::1',
                   'netmask' => 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
-                  'network' => '::1'
+                  'network' => '::1',
                 },
               ],
               'ip' => '127.0.0.1',
@@ -127,10 +127,10 @@ describe 'has_interface_with' do
               'netmask' => '255.0.0.0',
               'netmask6' => 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
               'network' => '127.0.0.0',
-              'network6' => '::1'
-            }
-          }
-        }
+              'network6' => '::1',
+            },
+          },
+        },
       }
     end
 

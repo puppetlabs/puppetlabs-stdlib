@@ -36,7 +36,7 @@ describe 'stdlib::ensure_packages' do
         {
           'package_one' => {},
           'package_two' => {},
-          'package_three' => { 'provider' => 'puppetserver_gem' }
+          'package_three' => { 'provider' => 'puppetserver_gem' },
         },
         { 'provider' => 'puppet_gem' },
       )

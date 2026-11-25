@@ -28,8 +28,8 @@ describe 'suffix' do
   it { is_expected.to run.with_params({ 'key' => 'value' }, 'post').and_return('keypost' => 'value') }
 
   it {
-    expect(subject).to run \
-      .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'post') \
+    expect(subject).to run
+      .with_params({ 'key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3' }, 'post')
       .and_return('key1post' => 'value1', 'key2post' => 'value2', 'key3post' => 'value3')
   }
 end

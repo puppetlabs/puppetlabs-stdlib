@@ -3,6 +3,16 @@
   delete: true
 ".rubocop.yml":
   include_todos: true
+  # cop settings the module set by hand (MODULES-11997 pdk update)
+  cop_overrides:
+    Style/HashSyntax:
+      EnforcedShorthandSyntax: either
+    # rubocop-hash_inspect 0.2.0 crashes (invalid byte sequence in UTF-8) on the
+    # binary string literals these specs pass; nothing here is Hash#inspect output.
+    HashInspect/LegacyHashInspectFormat:
+      Exclude:
+        - spec/functions/crc32_spec.rb
+        - spec/functions/sha256_spec.rb
 appveyor.yml:
   delete: true
 Rakefile:
@@ -65,7 +75,5 @@ spec/spec_helper.rb:
 # ci.yml/nightly.yml pass unconditionally.
 Gemfile:
   overrides:
-    - gem: 'puppetlabs_spec_helper'
-      version: '~> 9.0'
     - gem: 'puppet_litmus'
       version: '~> 2.8'
